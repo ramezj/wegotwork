@@ -4,13 +4,13 @@ import prisma from "@/lib/db"
 import { auth } from "@/auth"
 import { redirect } from "next/navigation";
 
-export async function CreateWorkspace() {
+export async function CreateWorkspace(name: string) {
     const session = await auth();
     if(!session) { redirect('/') }
     try {
         const workspace = await prisma.workspace.create({
             data: {
-                name: "workspace-2",
+                name: name,
                 users: {
                     create: {
                         userId: session.user?.id as string

@@ -64,6 +64,7 @@ model VerificationToken {
 model Workspace {
   id String @id @default(cuid())
   name String
+  slug String @unique @default(cuid())
   users WorkspaceUser[]
   invitations WorkspaceInvite[]
 }
@@ -72,13 +73,19 @@ model WorkspaceUser {
   id String @id @default(cuid())
   userId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @default(member)
   workspaceId String
   workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 }
 model WorkspaceInvite {
   id String @id @default(cuid())
   email String @unique
+  role Role @default(member)
   workspaceId String
   workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
+}
+enum Role {
+  owner
+  member
 }
