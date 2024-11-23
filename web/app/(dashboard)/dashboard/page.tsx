@@ -11,9 +11,12 @@ export default async function Page() {
     if(!session) { redirect('/') }
     const userWorkspaces = await UserWorkspaces();
     return (
-        <div>
+        <div className="p-8">
+        <div className="flex items-center justify-center">
+        <h1 className="font-bold text-3xl">Pick a Workspace</h1>
+        </div>
         <CreateWorkspaceForm />
-        <p>Pick a Workspace</p>
+        <div className="flex flex-col space-y-4">
         {
             userWorkspaces?.UserWorkspaces?.map((workspace) => {
                 return (
@@ -27,6 +30,7 @@ export default async function Page() {
                 )
             })
         }
+        </div>
         </div>
     )
 }
