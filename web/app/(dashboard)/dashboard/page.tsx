@@ -5,6 +5,7 @@ import { UserWorkspaces } from "@/actions/workspace/user-workspaces";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CreateWorkspaceForm } from "@/components/create-workspace";
+import { Card, CardHeader, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 
 export default async function Page() {
     const session = await auth();
@@ -20,13 +21,19 @@ export default async function Page() {
         {
             userWorkspaces?.UserWorkspaces?.map((workspace) => {
                 return (
-                    <div key={workspace.workspace.id}>
+                    <Card className="" key={workspace.workspace.id}>
+                        <CardHeader>
+                            <CardTitle>{workspace.workspace.name}</CardTitle>
+                            <CardDescription>{workspace.role}</CardDescription>
+                        </CardHeader>
+                        <CardContent>
                         <Button asChild>
                             <Link href={workspace.workspace.slug}>
-                            {workspace.workspace.name}
+                            View
                             </Link>
                         </Button>
-                    </div>
+                        </CardContent>
+                    </Card>
                 )
             })
         }
