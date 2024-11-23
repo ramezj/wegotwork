@@ -4,7 +4,9 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     const workspace = await GetWorkspace((await params).workspace);
     return (
         <>
-        {JSON.stringify(workspace?.workspace)}
+        <p>Workspace Name : {workspace?.workspace.name}</p>
+        <p>Workspace ID : {workspace?.workspace.id}</p>
+        <p>User Role : {workspace?.role}</p>
         </>
     )
 }
