@@ -19,7 +19,7 @@ export default async function Page() {
         <CreateWorkspaceForm />
         <div className="flex flex-col space-y-4">
         {
-            userWorkspaces?.UserWorkspaces?.map((workspace) => {
+            userWorkspaces?.UserWorkspaces?.map((workspace: any) => {
                 return (
                     <Card className="" key={workspace.workspace.id}>
                         <CardHeader>
