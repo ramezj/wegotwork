@@ -8,6 +8,7 @@ import { Home, BriefcaseBusiness, Users, SparklesIcon, DollarSignIcon, Laptop, S
 // import { Organization } from "@prisma/client"
 // import { TwitterLogoIcon } from "@radix-ui/react-icons"
 import { NavigationMenuForNavbar } from "../navigation-menu"
+import { Session } from "next-auth"
 
 function useLastPathSegment() {
   const pathname = usePathname();
@@ -15,7 +16,11 @@ function useLastPathSegment() {
   return segments[segments.length - 1];  // Returns the last segment of the path
 }
 
-export function Navigation(props:any) {
+interface Props {
+  session?: Session | null
+}
+
+export function Navigation(props: Props) {
   const path = useLastPathSegment();
   return (
     <div className="flex w-full flex-col">

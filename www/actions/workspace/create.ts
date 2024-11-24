@@ -3,9 +3,10 @@
 import prisma from "@/lib/db"
 import { auth } from "@/auth"
 import { redirect } from "next/navigation";
+import { Session } from "next-auth";
 
 export async function CreateWorkspace(name: string) {
-    const session = await auth();
+    const session:Session | null = await auth();
     if(!session) { redirect('/') }
     try {
         const workspace = await prisma.workspace.create({

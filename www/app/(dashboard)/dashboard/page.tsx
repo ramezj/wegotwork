@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CreateWorkspaceForm } from "@/components/create-workspace";
 import { Card, CardHeader, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
+import { DeleteWorkspace } from "@/actions/workspace/delete-workspace";
+import { DeleteWorkspaceButton } from "@/components/delete-workspace-button";
 
 export default async function Page() {
     const session = await auth();
@@ -32,6 +34,7 @@ export default async function Page() {
                             View
                             </Link>
                         </Button>
+                        <DeleteWorkspaceButton workspaceId={workspace.workspace.id}/>
                         </CardContent>
                     </Card>
                 )
