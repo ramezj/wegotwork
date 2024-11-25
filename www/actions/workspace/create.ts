@@ -14,7 +14,8 @@ export async function CreateWorkspace(name: string) {
                 name: name,
                 users: {
                     create: {
-                        userId: session.user?.id as string
+                        userId: session.user?.id as string,
+                        role: 'owner'
                     }
                 }
             }
