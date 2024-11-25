@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Home, Users, BriefcaseBusiness, Settings2, Banknote, LogOut, ChevronUp, User2, ChevronsUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from "@/components/ui/sheet"
 import { usePathname } from "next/navigation"
 import { Session } from "next-auth"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
@@ -14,9 +14,10 @@ import { Gem } from "lucide-react"
 
 export default function LayoutNavigation({ children, session }: { children: React.ReactNode; session: Session }) {
     const path = usePathname();
+    console.log(path);
     return (
       <div className="grid min-h-screen w-full md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
-        <div className="hidden border-r md:block ">
+        <div className="hidden border-r md:block">
           <div className="flex h-full max-h-screen flex-col gap-2 sticky top-0 z-50">
             <div className="flex h-16 items-center border-b px-3 lg:h-16 text-center justify-center">
             <Link href='/' className="flex items-center justify-center align-middle">
@@ -25,9 +26,9 @@ export default function LayoutNavigation({ children, session }: { children: Reac
             </div>
             <div className="flex-1 ">
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4 gap-2 mt-1">
-                <Link href={`/dashboard`} className={`${path.includes('/dashboard') ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <Link href={`/dashboard`} className={`${path.includes('/overview') ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
                   <Home className="h-4 w-4" />
-                  Home
+                  Overview
                 </Link>
                 <Link href={`/jobs`} className={`${path.includes('/jobs') ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
                   <BriefcaseBusiness className="h-4 w-4" />
@@ -60,6 +61,9 @@ export default function LayoutNavigation({ children, session }: { children: Reac
                   className="w-[--radix-popper-anchor-width] bg-background space-y-2"
                 >
                   <DropdownMenuItem className="cursor-pointer" asChild>
+                  <Link href={"/settings"} className="flex align-middle items-center"><Settings2 className="size-4 mr-2" />Switch Workspace</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer" asChild>
                   <Link href={"/settings"} className="flex align-middle items-center"><Settings2 className="size-4 mr-2" />Settings</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="cursor-pointer" asChild>
@@ -87,16 +91,18 @@ export default function LayoutNavigation({ children, session }: { children: Reac
               </Button>
             </SheetTrigger>
               <SheetContent side="left" className="flex flex-col bg-background">
+              <SheetTitle>
                 <SheetClose asChild>
                   <Link href="/" className="px-2 flex items-center text-lg font-bold italic justify-center">
                     heliup
                   </Link>
                   </SheetClose>
+                </SheetTitle>
                 <nav className="grid gap-3 text-lg font-medium mt-1">
                   <SheetClose asChild>
                   <Link href="/dashboard" className={`${path.includes('/dashboard') ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-lg px-2 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
                   <Home className="h-4 w-4" />
-                  Home
+                  Overview
                   </Link>
                   </SheetClose>
                   <SheetClose asChild>
@@ -135,7 +141,7 @@ export default function LayoutNavigation({ children, session }: { children: Reac
                 <DropdownMenuContent
                   side="top"
                   className="w-[--radix-popper-anchor-width] bg-background space-y-2">
-                 <DropdownMenuItem className="cursor-pointer" asChild>
+                    <DropdownMenuItem className="cursor-pointer" asChild>
                   <Link href={"/settings"} className="flex align-middle items-center"><Settings2 className="size-4 mr-2" />Settings</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="cursor-pointer" asChild>
@@ -146,7 +152,6 @@ export default function LayoutNavigation({ children, session }: { children: Reac
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-                {/* <Button onClick={((e) => { signOut({ callbackUrl: "/" })})} variant={"outline"} size={"icon"} className="bg-inherit w-full"><LogOut className="text-white size-4 mr-2"/>Log out</Button> */}
                 </div>
               </SheetContent>
             </Sheet>
@@ -167,7 +172,7 @@ export default function LayoutNavigation({ children, session }: { children: Reac
               }
             </div> */}
           </header>
-              {children}
+            {children}
         </div>
       </div>
     )

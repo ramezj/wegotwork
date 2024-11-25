@@ -34,7 +34,7 @@ export default async function Page() {
                 userWorkspaces?.UserWorkspaces?.map((workspace) => {
                     return (
                         <>
-                        <Link href={workspace.workspace.slug} className="w-full flex border border-foreground/20 hover:border-foreground/30 rounded-md items-center duration-300" key={workspace.workspace.id}>
+                        <Link href={`${workspace.workspace.slug}/overview`} className="w-full flex border border-foreground/20 hover:border-foreground/30 rounded-md items-center duration-300" key={workspace.workspace.id}>
                         <div className="mx-5 my-3 flex flex-col items-start text-left">
                         <p className='text-sm font-bold text-left text-foreground'>
                         {workspace.workspace.name}     
