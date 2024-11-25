@@ -22,7 +22,7 @@ export default async function Page() {
         </div>
         <div className="w-full flex items-center justify-center mt-8">
     <Card className="w-[350px]">
-      <CardHeader>
+      <CardHeader className="text-center">
         <CardTitle>Workspaces</CardTitle>
         <CardDescription>Workspaces you own or are a part of</CardDescription>
       </CardHeader>
@@ -34,13 +34,13 @@ export default async function Page() {
                 userWorkspaces?.UserWorkspaces?.map((workspace) => {
                     return (
                         <>
-                        <div className="w-full flex border border-foreground/20 hover:border-foreground/30 rounded-md items-center duration-300" key={workspace.workspace.id}>
+                        <Link href={workspace.workspace.slug} className="w-full flex border border-foreground/20 hover:border-foreground/30 rounded-md items-center duration-300" key={workspace.workspace.id}>
                         <div className="mx-5 my-3 flex flex-col items-start text-left">
                         <p className='text-sm font-bold text-left text-foreground'>
                         {workspace.workspace.name}     
                         </p>   
                         </div>
-                        </div>
+                        </Link>
                         </>
                     )
                 })

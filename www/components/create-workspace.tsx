@@ -30,12 +30,12 @@ export function CreateWorkspaceButton() {
         Create Workspace
         </Button>    
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="w-[90%] rounded-lg">
         <DialogHeader>
-            <DialogTitle>Create Workspace</DialogTitle>
+            <DialogTitle className="text-left">Create Workspace</DialogTitle>
         </DialogHeader>
         <form className="flex items-center gap-3" onSubmit={create_workspace}>
-        <Input required value={name} onChange={((e) => {setName(e.target.value)})} className="flex-1 w-full"/>
+        <Input placeholder="Workspace name" required value={name} onChange={((e) => {setName(e.target.value)})} className="flex-1 w-full"/>
         <div>
         <Button type="submit">
             {
