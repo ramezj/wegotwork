@@ -1,20 +1,18 @@
 'use client'
 
 import Link from "next/link"
-import { Home, Users, BriefcaseBusiness, Settings2, Banknote, LogOut, ChevronUp, User2, ChevronsUpDown } from "lucide-react"
+import { HomeIcon, Home, Users, BriefcaseBusiness, Settings2, Banknote, LogOut, ChevronsUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from "@/components/ui/sheet"
 import { usePathname } from "next/navigation"
 import { Session } from "next-auth"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { signOut } from "next-auth/react"
-import { Gem } from "lucide-react"
 // import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 // import { SidebarFooter, SidebarMenuItem } from "./ui/sidebar"
 
-export default function LayoutNavigation({ children, session }: { children: React.ReactNode; session: Session }) {
+export default function LayoutNavigation({ children, session, params }: { children: React.ReactNode; session: Session, params: {workspace: string} }) {
     const path = usePathname();
-    console.log(path);
     return (
       <div className="grid min-h-screen w-full md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
         <div className="hidden border-r md:block">
@@ -26,24 +24,34 @@ export default function LayoutNavigation({ children, session }: { children: Reac
             </div>
             <div className="flex-1 ">
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4 gap-2 mt-1">
-                <Link href={`/dashboard`} className={`${path.includes('/overview') ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
-                  <Home className="h-4 w-4" />
+                <Link href={`/${params.workspace}/overview`} className={`${path.includes('/overview') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                 <div className="border rounded-md border-foreground/30 dark:bg-black p-1 bg-white">
+                 <Home className="size-4" />
+                 </div>
                   Overview
                 </Link>
-                <Link href={`/jobs`} className={`${path.includes('/jobs') ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <Link href={`/${params.workspace}/jobs`} className={`${path.includes('/jobs') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">
                   <BriefcaseBusiness className="h-4 w-4" />
+                  </div>
                   Jobs
                 </Link>
-                <Link href={`/applicants`} className={`${path.includes('/applicants') ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
-                  <Users className="h-4 w-4" />
+                <Link href={`/${params.workspace}/applicants`} className={`${path.includes('/applicants') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">
+                <Users className="h-4 w-4" />
+                </div>
                   Applicants
                 </Link>
-                <Link href='/billing' className={`${path == '/billing' ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <Link href='/billing' className={`${path == '/billing' ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">
                 <Banknote className="h-4 w-4" />
+                </div>
                   Billing
                 </Link>
-                <Link href='/settings' className={`${path == '/settings' ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <Link href='/settings' className={`${path == '/settings' ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">     
                 <Settings2 className="h-4 w-4" />
+                </div>
                   Settings
                 </Link>
               </nav>
@@ -101,7 +109,7 @@ export default function LayoutNavigation({ children, session }: { children: Reac
                 <nav className="grid gap-3 text-lg font-medium mt-1">
                   <SheetClose asChild>
                   <Link href="/dashboard" className={`${path.includes('/dashboard') ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-lg px-2 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
-                  <Home className="h-4 w-4" />
+                  <HomeIcon className="h-4 w-4" />
                   Overview
                   </Link>
                   </SheetClose>
