@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link"
-import { HomeIcon, Home, Users, BriefcaseBusiness, Settings2, Banknote, LogOut, ChevronsUpDown } from "lucide-react"
+import { Home, Users, BriefcaseBusiness, Settings2, Banknote, LogOut, ChevronsUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from "@/components/ui/sheet"
 import { usePathname } from "next/navigation"
@@ -108,32 +108,43 @@ export default function LayoutNavigation({ children, session, params }: { childr
                 </SheetTitle>
                 <nav className="grid gap-3 text-lg font-medium mt-1">
                   <SheetClose asChild>
-                  <Link href="/dashboard" className={`${path.includes('/dashboard') ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-lg px-2 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
-                  <HomeIcon className="h-4 w-4" />
+                  <Link href={`/${params.workspace}/overview`} className={`${path.includes('/overview') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                 <div className="border rounded-md border-foreground/30 dark:bg-black p-1 bg-white">
+                 <Home className="size-4" />
+                 </div>
                   Overview
-                  </Link>
+                </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href="/jobs" className={`${path.includes('/jobs') ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-lg px-2 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <Link href={`/${params.workspace}/jobs`} className={`${path.includes('/jobs') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">
                   <BriefcaseBusiness className="h-4 w-4" />
+                  </div>
                   Jobs
-                  </Link>
+                </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href="/applicants" className={`${path.includes('/applicants') ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-lg px-2 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <Link href={`/${params.workspace}/applicants`} className={`${path.includes('/applicants') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">
                   <Users className="h-4 w-4" />
-                  Applicants
+                  </div>
+                    Applicants
                   </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href='/billing' className={`${path == '/billing' ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-lg px-2 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <Link href={`/${params.workspace}/billing`} className={`${path.includes('/billing')? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">
                   <Banknote className="h-4 w-4" />
+                  </div>
                     Billing
                   </Link>
                   </SheetClose>
+                  <Separator />
                   <SheetClose asChild>
-                  <Link href='/settings' className={`${path == '/settings' ? 'bg-accent text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-lg px-2 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <Link href={`/${params.workspace}/settings`} className={`${path.includes('/settings') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">     
                   <Settings2 className="h-4 w-4" />
+                  </div>
                     Settings
                   </Link>
                   </SheetClose>
