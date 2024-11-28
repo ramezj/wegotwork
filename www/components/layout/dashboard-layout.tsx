@@ -8,8 +8,7 @@ import { usePathname } from "next/navigation"
 import { Session } from "next-auth"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { signOut } from "next-auth/react"
-// import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-// import { SidebarFooter, SidebarMenuItem } from "./ui/sidebar"
+import { Separator } from "../ui/separator"
 
 export default function LayoutNavigation({ children, session, params }: { children: React.ReactNode; session: Session, params: {workspace: string} }) {
     const path = usePathname();
@@ -48,6 +47,7 @@ export default function LayoutNavigation({ children, session, params }: { childr
                 </div>
                   Billing
                 </Link>
+                <Separator />
                 <Link href='/settings' className={`${path == '/settings' ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
                 <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">     
                 <Settings2 className="h-4 w-4" />
