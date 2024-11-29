@@ -4,14 +4,17 @@ import Link from "next/link"
 import { Home, Users, BriefcaseBusiness, Settings2, Banknote, LogOut, ChevronsUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from "@/components/ui/sheet"
-import { usePathname } from "next/navigation"
+import { redirect, usePathname } from "next/navigation"
 import { Session } from "next-auth"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { signOut } from "next-auth/react"
 import { Separator } from "../ui/separator"
 
 export default function LayoutNavigation({ children, session, params }: { children: React.ReactNode; session: Session, params: {workspace: string} }) {
-    const path = usePathname();
+  if(!session) {
+    redirect('/');
+  } 
+  const path = usePathname();
     return (
       <div className="grid min-h-screen w-full md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
         <div className="hidden border-r md:block">
@@ -77,7 +80,7 @@ export default function LayoutNavigation({ children, session, params }: { childr
                   <DropdownMenuItem className="cursor-pointer" asChild>
                   <Link href={"/billing"} className="flex align-middle items-center"><Banknote className="size-4 mr-2" />Billing</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={(() => { signOut({ callbackUrl: "/" })})} className="cursor-pointer">
+                  <DropdownMenuItem onClick={(() => { signOut({ callbackUrl: "/"})})} className="cursor-pointer">
                     <span className="flex align-middle items-center"><LogOut className="size-4 mr-2" />Sign out</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>

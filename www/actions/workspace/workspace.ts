@@ -16,7 +16,15 @@ export async function GetWorkspace(slug: string) {
                 }
             },
             include: {
-                workspace: true
+                workspace: {
+                    include: {
+                        users: {
+                            include: {
+                                user: true
+                            }
+                        }
+                    }
+                }
             }
         })
         return ( workspace )

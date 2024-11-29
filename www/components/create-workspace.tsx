@@ -6,7 +6,6 @@ import { CreateWorkspace } from "@/actions/workspace/create"
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,

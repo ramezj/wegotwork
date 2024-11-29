@@ -2,14 +2,9 @@
 import { auth } from "@/auth"
 import { redirect } from "next/navigation";
 import { UserWorkspaces } from "@/actions/workspace/user-workspaces";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CreateWorkspaceButton } from "@/components/create-workspace";
 import { Card, CardHeader, CardContent, CardDescription, CardTitle, CardFooter } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { DeleteWorkspace } from "@/actions/workspace/delete-workspace";
-import { DeleteWorkspaceButton } from "@/components/delete-workspace-button";
 
 export default async function Page() {
     const session = await auth();
@@ -33,7 +28,7 @@ export default async function Page() {
             {
                 userWorkspaces?.UserWorkspaces?.map((workspace) => {
                     return (
-                        <>
+                        <div key={workspace.id}>
                         <Link href={`${workspace.workspace.slug}/overview`} className="w-full flex border border-foreground/20 hover:border-foreground/30 rounded-md items-center duration-300" key={workspace.workspace.id}>
                         <div className="mx-5 my-3 flex flex-col items-start text-left">
                         <p className='text-sm font-bold text-left text-foreground'>
@@ -41,7 +36,7 @@ export default async function Page() {
                         </p>   
                         </div>
                         </Link>
-                        </>
+                        </div>
                     )
                 })
             }

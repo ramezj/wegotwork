@@ -65,6 +65,7 @@ model Workspace {
   id String @id @default(cuid())
   name String
   slug String @unique @default(cuid())
+  jobs Job[]
   users WorkspaceUser[]
   invitations WorkspaceInvite[]
 }
@@ -88,4 +89,20 @@ model WorkspaceInvite {
 enum Role {
   owner
   member
+}
+model Job {
+  id String @id @default(cuid())
+  title String
+  type Type @default(fulltime)
+  location String?
+  content String
+  createdAt DateTime @default(now())
+  workspaceId String
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+}
+enum Type {
+  fulltime
+  parttime
+  internship
+  contract
 }
