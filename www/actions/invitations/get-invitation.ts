@@ -5,11 +5,13 @@ import { redirect } from "next/navigation";
 
 export async function GetInvitation(invitationId: string) {
     const session = await auth();
-    if(!session) { redirect('/') }
     try {
         const invitation = await prisma.workspaceInvite.findFirst({
             where: {
                 id: invitationId,
+            },
+            include: {
+                workspace: true
             }
         })
         return { invitation }
