@@ -17,8 +17,8 @@ export default async function Home() {
       </div>
       <div>
       <div className="flex flex-col items-center text-center">
-      <h1 className="sm:text-6xl text-4xl font-light text-greenish">
-              Build Career Pages Effortlessly.
+      <h1 className="sm:text-6xl text-4xl font-medium text-greenish">
+        Build Career Pages Effortlessly
       </h1>
       </div>
       </div>
