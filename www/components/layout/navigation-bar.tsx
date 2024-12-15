@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from "@/components/ui/sheet"
 // import { Toggle } from "./toggle"
 import { usePathname } from "next/navigation"
-import { Home, BriefcaseBusiness, Users, SparklesIcon, DollarSignIcon, Laptop, StarIcon, Globe } from "lucide-react"
+import { DollarSignIcon, Laptop } from "lucide-react"
 // import { Organization } from "@prisma/client"
 // import { TwitterLogoIcon } from "@radix-ui/react-icons"
 import { NavigationMenuForNavbar } from "../navigation-menu"
@@ -24,7 +24,7 @@ export function Navigation(props: Props) {
   const path = useLastPathSegment();
   return (
     <div className="flex w-full flex-col">
-      <header className="sticky top-2 mt-8 flex h-16 items-center gap-4 px-4 z-50 md:mx-12 mx-4 rounded-xl border border-foreground/20 backdrop-blur-lg">
+      <header className="sticky top-2 mt-8 flex h-16 items-center gap-4 px-4 z-50 md:mx-12 mx-4 rounded-none border border-foreground/20 backdrop-blur-lg">
         <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
           <Link href="/" className="flex items-center text-lg font-bold italic">
           heliup
@@ -80,7 +80,7 @@ export function Navigation(props: Props) {
             </>
             :
             <>
-                  <Button variant="default" asChild className="duration-200">
+                  <Button variant="default" asChild className="duration-200 bg-greenish text-background rounded-none">
                   <Link href='/auth'>
                   Login
                   </Link>
