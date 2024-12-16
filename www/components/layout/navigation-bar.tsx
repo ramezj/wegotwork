@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
 // import { Toggle } from "./toggle"
 import { usePathname } from "next/navigation"
 import { DollarSignIcon, Laptop } from "lucide-react"
@@ -24,7 +24,7 @@ export function Navigation(props: Props) {
   const path = useLastPathSegment();
   return (
     <div className="flex w-full flex-col">
-      <header className="sticky top-2 mt-8 flex h-16 items-center gap-4 px-4 z-50 md:mx-12 mx-4 rounded-none border border-foreground/20 backdrop-blur-lg">
+      <header className="sticky top-2 mt-8 flex h-16 items-center gap-4 px-4 z-50 md:mx-12 mx-4 rounded-xl border border-foreground/20 backdrop-blur-lg">
         <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
           <Link href="/" className="flex items-center text-lg font-bold italic">
           heliup
@@ -43,13 +43,11 @@ export function Navigation(props: Props) {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="flex flex-col dark:bg-black bg-white">
-                <SheetTitle>
               <SheetClose asChild>
                 <Link href="/" className="px-2 flex items-center text-lg font-bold justify-center italic">
                   heliup
                 </Link>
                 </SheetClose>
-                </SheetTitle>
                 <nav className="grid gap-3 text-lg font-medium mt-1">
                 <SheetClose asChild>
                 <Link href='https://demo.heliup.xyz' className={`${path == 'jobs' ? 'bg-muted/50 text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-lg px-2 py-2 text-primary transition-all hover:text-primary hover:bg-muted/50 duration-200 font-medium`}>
@@ -68,6 +66,7 @@ export function Navigation(props: Props) {
         </Sheet>
         <div className="flex w-full items-center gap-3">
           <div className="ml-auto align-middle flex gap-3">
+            {/* <Toggle /> */}
           {
             props.session 
             ? 
@@ -80,7 +79,7 @@ export function Navigation(props: Props) {
             </>
             :
             <>
-                  <Button variant="default" asChild className="duration-200 bg-greenish text-background rounded-none">
+                  <Button variant="default" asChild className="duration-200">
                   <Link href='/auth'>
                   Login
                   </Link>

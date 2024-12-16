@@ -17,7 +17,7 @@ export function NavigationMenuForNavbar() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem className="bg-transparent">
+        <NavigationMenuItem className="">
           <Link href="https://demo.heliup.xyz" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()} target="_blank">
               Demo
