@@ -1,6 +1,7 @@
 'use client'
 import { Button } from "./ui/button"
 import { signIn } from "next-auth/react"
+import { authClient } from "@/lib/auth-client"
 
 export function GoogleSignIn({ callbackUrl } : { callbackUrl: string | null}) {
     return (
@@ -21,6 +22,20 @@ export function GoogleSignIn({ callbackUrl } : { callbackUrl: string | null}) {
             </Button>
             </>
         }
+        </>
+    )
+}
+
+export function TestSignInButton() {
+    return (
+        <>
+        <Button onClick={(() => {
+              authClient.signIn.social({
+                provider: "google"
+              })
+            })}>
+                Sign In Test
+            </Button>
         </>
     )
 }
