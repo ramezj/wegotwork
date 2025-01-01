@@ -5,6 +5,7 @@ import { UserWorkspaces } from "@/actions/workspace/user-workspaces";
 import Link from "next/link";
 import { CreateWorkspaceButton } from "@/components/create-workspace";
 import { Card, CardHeader, CardContent, CardDescription, CardTitle, CardFooter } from "@/components/ui/card";
+import { LogOutButton } from "@/components/login-button";
 
 export default async function Page() {
     const session = await auth();
@@ -49,6 +50,7 @@ export default async function Page() {
         </CardFooter>
         </Card>
         </div>
+        <LogOutButton />
         </div>
     )
 }
