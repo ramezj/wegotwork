@@ -4,13 +4,15 @@ import { Navigation } from "@/components/layout/navigation-bar";
 // import { Session } from "next-auth";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
-import { TestSignInButton } from "@/components/sign-in-buttons";
+import { auth } from "@/auth";
+import { Session } from "next-auth";
 
 export default async function Home() {
-  // const session:Session | null = await auth();
+  const session:Session | null = await auth();
+  
   return (
     <main>
-      <Navigation session={null} />
+      <Navigation session={session} />
       <div className="flex flex-col items-center text-center pt-12">
       <Button className="font-semibold mb-6 w-fit bg-inherit px-16" size={"sm"} variant={"outline"}>
       Introducing heliup <ArrowUpRight className="w-4 ml-2" />
@@ -25,7 +27,6 @@ export default async function Home() {
         Build career pages, create jobs, receive applicants & start the hiring process. All in one place.
       </h3>
       </div>
-      <TestSignInButton />
       <div className="flex flex-col items-center p-4 -mt-4">
       <div className="flex flex-row w-full max-w-fit items-center justify-center content-center gap-4 mt-6">
             <Button variant={"default"} className="font-semibold w-60 bg-greenish rounded-none text-background hover:bg-greenish">
