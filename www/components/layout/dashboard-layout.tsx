@@ -1,14 +1,13 @@
 'use client'
 
 import Link from "next/link"
-import { Home, Users, BriefcaseBusiness, Settings2, Banknote, LogOut, ChevronsUpDown } from "lucide-react"
+import { Home, Users, BriefcaseBusiness, Settings2, Banknote } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from "@/components/ui/sheet"
 import { redirect, usePathname } from "next/navigation"
 import { Session } from "next-auth"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { signOut } from "next-auth/react"
 import { Separator } from "../ui/separator"
+import { DropDownMenuUser } from "./dropdown-menu-user"
 
 export default function LayoutNavigation({ children, session, params }: { children: React.ReactNode; session: Session, params: {workspace: string} }) {
   if(!session) {
@@ -60,31 +59,7 @@ export default function LayoutNavigation({ children, session, params }: { childr
               </nav>
             </div>
             <div className="p-4 w-full flex gap-2">
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant={"outline"} className="w-full bg-inherit border-foreground/20">
-                    {session.user?.name}
-                    <ChevronsUpDown className="ml-auto size-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  side="top"
-                  className="w-[--radix-popper-anchor-width] bg-background space-y-2"
-                >
-                  <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/settings"} className="flex align-middle items-center"><Settings2 className="size-4 mr-2" />Switch Workspace</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/settings"} className="flex align-middle items-center"><Settings2 className="size-4 mr-2" />Settings</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/billing"} className="flex align-middle items-center"><Banknote className="size-4 mr-2" />Billing</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={(() => { signOut({ callbackUrl: "/"})})} className="cursor-pointer">
-                    <span className="flex align-middle items-center"><LogOut className="size-4 mr-2" />Sign out</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
+              <DropDownMenuUser session={session} />
             </div>
           </div>
         </div>
@@ -153,46 +128,13 @@ export default function LayoutNavigation({ children, session, params }: { childr
                   </SheetClose>
                 </nav>
                 <div className="w-full flex gap-2 pt-4 bottom-0 mt-auto">
-                <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant={"outline"} className="w-full bg-inherit border-foreground/20">
-                    {session.user?.name}
-                    <ChevronsUpDown className="ml-auto size-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  side="top"
-                  className="w-[--radix-popper-anchor-width] bg-background space-y-2">
-                    <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/settings"} className="flex align-middle items-center"><Settings2 className="size-4 mr-2" />Settings</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/billing"} className="flex align-middle items-center"><Banknote className="size-4 mr-2" />Billing</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={(() => { signOut({ callbackUrl: "/" })})} className="cursor-pointer">
-                    <span className="flex align-middle items-center"><LogOut className="size-4 mr-2" />Sign out</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-                </div>
+                <DropDownMenuUser session={session} />
+              </div>
               </SheetContent>
             </Sheet>
             <div className="w-full flex-1">
             </div>
             <div className="flex-1"></div> 
-            {/* <div className="ml-auto">
-              {
-                session.user?.isPremium === false &&
-                <>
-                <Button asChild className="bg-inherit" variant={"outline"}>
-                <Link href="/billing">
-                <Gem className="size-4 mr-2"/>
-                Upgrade to Professional
-                </Link>
-                </Button>
-                </>
-              }
-            </div> */}
           </header>
             {children}
         </div>

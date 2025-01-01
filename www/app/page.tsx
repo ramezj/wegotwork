@@ -20,21 +20,21 @@ export default async function Home() {
       </div>
       <div>
       <div className="flex flex-col items-center text-center">
-      <h1 className="sm:text-6xl text-4xl font-medium text-greenish">
+      <h1 className="sm:text-6xl text-4xl font-medium">
         Build Career Pages Effortlessly
       </h1>
-      <h3 className="text-greenish sm:text-lg text-sm mt-2 font-thin text-balance">
+      <h3 className="sm:text-lg text-sm mt-2 font-thin text-balance">
         Build career pages, create jobs, receive applicants & start the hiring process. All in one place.
       </h3>
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
       <div className="flex flex-row w-full max-w-fit items-center justify-center content-center gap-4 mt-6">
-            <Button variant={"default"} className="font-semibold w-60 bg-greenish rounded-none text-background hover:bg-greenish">
+            <Button variant={"default"} className="font-semibold w-60 rounded-md text-background">
                 {/* <Link href='/auth'> */}
                 Start Hiring
                 {/* </Link> */}
             </Button>
-            <Button className="font-medium bg-inherit w-60 border-foreground/20 rounded-none text-greenish border-greenish" variant={"outline"}>
+            <Button className="font-medium bg-inherit w-60 border-foreground/20 rounded-md" variant={"outline"}>
                 {/* <Link href="https://demo.heliup.xyz" target="_blank"> */}
                 See Demo
                 <ArrowUpRight className="w-4 ml-2" />

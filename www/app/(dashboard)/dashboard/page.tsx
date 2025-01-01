@@ -16,7 +16,7 @@ export default async function Page() {
         <h1 className="font-bold text-3xl">Pick a Workspace</h1>
         </div>
         <div className="w-full flex items-center justify-center mt-8">
-    <Card className="w-[350px]">
+    <Card className="w-[350px] bg-background">
       <CardHeader className="text-center">
         <CardTitle>Workspaces</CardTitle>
         <CardDescription>Workspaces you own or are a part of</CardDescription>
