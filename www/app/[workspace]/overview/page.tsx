@@ -14,7 +14,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
         <main className="p-2">
         <h1 className="font-bold text-3xl">Overview</h1>
         {/* {JSON.stringify(userWorkspace?.workspace)} */}
-        <div className="flex sm:flex-row flex-col gap-2 w-full">
+        <div className="flex sm:flex-row flex-col gap-2 w-full mt-4">
         <Stats title="Total Jobs" amount={10}/>
         <Stats title="Total Applicants" amount={57}/>
         </div>
