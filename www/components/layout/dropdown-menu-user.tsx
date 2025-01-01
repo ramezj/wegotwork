@@ -5,13 +5,14 @@ import { Button } from "../ui/button"
 import { ChevronsUpDown, Settings2, Banknote, LogOut} from "lucide-react"
 import { signOut } from "next-auth/react"
 import { Session } from "next-auth"
+import { Separator } from "../ui/separator"
 
 export function DropDownMenuUser({ session } : { session: Session | null }) {
     return (
         <>
         <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant={"outline"} className="w-full bg-inherit border-foreground/20 font-bold">
+                  <Button variant={"outline"} className="w-full bg-inherit border-foreground/20 font-semibold">
                     {session?.user?.name}
                     <ChevronsUpDown className="ml-auto size-4" />
                   </Button>
@@ -21,16 +22,18 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                   className="w-[--radix-popper-anchor-width] bg-background space-y-2"
                 >
                   <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/settings"} className="flex align-middle items-center"><Settings2 className="size-4 mr-2" />Switch Workspace</Link>
+                  <Link href={"/settings"} className="flex align-middle items-center font-semibold"><Settings2 className="size-4" />Switch Workspace</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/settings"} className="flex align-middle items-center"><Settings2 className="size-4 mr-2" />Settings</Link>
+                  <Link href={"/settings"} className="flex align-middle items-center font-semibold"><Settings2 className="size-4" />Settings</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/billing"} className="flex align-middle items-center"><Banknote className="size-4 mr-2" />Billing</Link>
+                  <Link href={"/billing"} className="flex align-middle items-center font-semibold"><Banknote className="size-4" />Billing</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={(() => { signOut({ callbackUrl: "/"})})} className="cursor-pointer">
-                    <span className="flex align-middle items-center"><LogOut className="size-4 mr-2" />Sign out</span>
+                  <Separator className=""/>
+                  <DropdownMenuItem onClick={(() => { signOut({ callbackUrl: "/"})})} className="cursor-pointer flex align-middle items-center font-semibold">
+                        <LogOut className="size-4" />
+                    Logout
                   </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
