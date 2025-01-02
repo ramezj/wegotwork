@@ -1,8 +1,17 @@
+import type { Metadata } from "next"
+import { ReactNode } from "react"
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export const metadata:Metadata ={
+    title:"Pick a Workspace",
+    description:"Pick a Workspace"
+}
+
+export default async function Layout({ children, params }: { children: ReactNode, params: { workspace: string}}) {
     return (
         <>
-        {children}
+        <main>
+          {children}
+        </main>
         </>
     )
-  }
+}

@@ -80,7 +80,6 @@ model WorkspaceUser {
 }
 model WorkspaceInvite {
   id String @id @default(cuid())
-  email String @unique
   role Role @default(member)
   workspaceId String
   workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
