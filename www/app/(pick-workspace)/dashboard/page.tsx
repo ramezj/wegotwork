@@ -6,6 +6,7 @@ import Link from "next/link";
 import { CreateWorkspaceButton } from "@/components/create-workspace";
 import { Card, CardHeader, CardContent, CardDescription, CardTitle, CardFooter } from "@/components/ui/card";
 import { LogOutButton } from "@/components/login-button";
+import { Button } from "@/components/ui/button";
 
 export default async function Page() {
     const session = await auth();
@@ -24,19 +25,17 @@ export default async function Page() {
       </CardHeader>
       <CardContent>
         <form>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
+          <div className="grid w-full items-center">
+            <div className="flex flex-col">
             {
                 userWorkspaces?.UserWorkspaces?.map((workspace) => {
                     return (
                         <div key={workspace.id}>
-                        <Link href={`${workspace.workspace.slug}/overview`} className="w-full flex border border-foreground/20 hover:border-foreground/30 rounded-md items-center duration-300" key={workspace.workspace.id}>
-                        <div className="mx-5 my-3 flex flex-col items-start text-left">
-                        <p className='text-sm font-bold text-left text-foreground'>
-                        {workspace.workspace.name}     
-                        </p>   
-                        </div>
-                        </Link>
+                        <Button asChild variant={"outline"} className="my-2 flex flex-col items-start text-left">
+                        <Link href={`${workspace.workspace.slug}/overview`} className="" key={workspace.workspace.id}>
+                        {workspace.workspace.name}    
+                        </Link> 
+                        </Button>
                         </div>
                     )
                 })
