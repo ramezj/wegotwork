@@ -9,9 +9,7 @@ export const metadata:Metadata ={
 export default async function Layout({ children, params }: { children: ReactNode, params: { workspace: string}}) {
     return (
         <>
-        <main>
           {children}
-        </main>
         </>
     )
 }
