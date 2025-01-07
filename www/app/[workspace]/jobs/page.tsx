@@ -9,7 +9,6 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     const session:Session | null = await auth();
     if(!session) { redirect('/')}
     const jobs = await GetWorkspaceJobs(await((await params).workspace))
-    console.log(jobs);
     return (
         <>
         <h1 className="font-bold text-3xl tracking-tight">Jobs</h1>
@@ -21,7 +20,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
                 <h1 className="font-bold text-xl text-center">You dont have any jobs yet.</h1>
                 <p className="text-muted-foreground">create some jobs & start hiring immediately</p>
                 </div>
-                <CreateJob />
+                <CreateJob workspaceId={await((await (params)).workspace)} />
             </div>
             </>
             }
