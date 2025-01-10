@@ -21,9 +21,8 @@ export default function CreateJob({ workspaceId } : { workspaceId: string}) {
     const createjob = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        console.log("NAME:", name);
-        console.log("WORKSPACE ID:", workspaceId);
         const res = await CreateJobAction(name, workspaceId);
+        console.log(res);
         if(res) {
 
         } else {
