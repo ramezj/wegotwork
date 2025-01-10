@@ -15,13 +15,13 @@ import {
   import { Loader2 } from "lucide-react"
 import { CreateJobAction } from "@/actions/jobs/create-job"
 
-export default function CreateJob({ workspaceId } : { workspaceId: string}) {
+export default function CreateJob({ slug } : { slug: string}) {
     const [ loading, setLoading ] = useState<boolean>(false);
     const [ name, setName ] = useState<string>("");
     const createjob = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        const res = await CreateJobAction(name, workspaceId);
+        const res = await CreateJobAction(name, slug);
         console.log(res);
         if(res) {
 

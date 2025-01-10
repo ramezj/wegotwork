@@ -20,7 +20,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
                 <h1 className="font-bold text-xl text-center">You dont have any jobs yet.</h1>
                 <p className="text-muted-foreground">create some jobs & start hiring immediately</p>
                 </div>
-                <CreateJob workspaceId={await((await (params)).workspace)} />
+                <CreateJob slug={await((await (params)).workspace)} />
             </div>
             </>
             }
