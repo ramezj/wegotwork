@@ -10,7 +10,6 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     if(!session) { return redirect('/') }
     const userWorkspace = await GetWorkspace((await params).workspace);
     if(userWorkspace === null) { redirect('/') }
-    console.log(userWorkspace?.workspace)
     return (
         <main className="p-2">
         <h1 className="font-bold text-3xl">Overview</h1>

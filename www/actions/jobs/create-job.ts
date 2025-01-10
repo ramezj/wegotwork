@@ -8,19 +8,21 @@ import { Session } from "next-auth";
 export async function CreateJobAction(title: string, workspaceId: string) {
     const session:Session | null = await auth();
     if(!session) { redirect('/') }
-    console.log(title, workspaceId);
     try {
         const job = await prisma.job.create({
             data: {
-                title: title,
-                content: "",
-                workspaceId: workspaceId
+                title: "test title 123",
+                type:"fulltime",
+                content: "New Job!",
+                workspaceId: "cm5dowima00026o5eqmpziahc"
             }
         })
+        console.log(job);
         return {
             job
         }
     } catch (error) {
-        return error;
+        console.log(error);
+        return null;
     }
 }
