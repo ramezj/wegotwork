@@ -28,12 +28,12 @@ export async function CreateJobAction(title: string, slug: string) {
                 workspaceId: workspace.id
             }
         })
-        console.log(job);
         revalidatePath(`/${slug}/jobs`);
         return {
             job
         }
     } catch (error) {
+        console.error(error);
         return { error };
     }
 }

@@ -11,13 +11,12 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     const userWorkspace = await GetWorkspace((await params).workspace);
     if(userWorkspace === null) { redirect('/') }
     return (
-        <main className="p-2">
-        <h1 className="font-bold text-3xl">Overview</h1>
-        {/* {JSON.stringify(userWorkspace?.workspace)} */}
+        <>
+        <h1 className="font-bold text-3xl tracking-tight">Overview</h1>
         <div className="flex sm:flex-row flex-col gap-2 w-full mt-4">
         <TotalJobs title="Total Jobs" amount={10}/>
         <TotalApplicants title="Total Applicants" amount={57}/>
         </div>
-        </main>
+        </>
     )
 }

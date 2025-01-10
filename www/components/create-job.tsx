@@ -34,7 +34,7 @@ export default function CreateJob({ slug } : { slug: string}) {
         <>
             <Dialog>
       <DialogTrigger asChild>
-      <Button variant={"outline"}>
+      <Button>
         Create a Job
       </Button>
       </DialogTrigger>
@@ -68,7 +68,7 @@ export default function CreateJob({ slug } : { slug: string}) {
             loading
             ? 
             <>
-            <Button disabled form="form" type="submit" className="w-full"><Loader2 className="mr-2 h-4 w-4 animate-spin" />Create Job</Button>
+            <Button disabled form="form" type="submit" className="w-full"><Loader2 className="mr-1 h-4 w-4 animate-spin" />Creating Job</Button>
             </>
             : 
             <>
