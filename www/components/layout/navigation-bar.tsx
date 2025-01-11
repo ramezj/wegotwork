@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from "@/components/ui/sheet"
 // import { Toggle } from "./toggle"
 import { usePathname } from "next/navigation"
 import { DollarSignIcon, Laptop } from "lucide-react"
@@ -43,12 +43,20 @@ export function Navigation(props: Props) {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="flex flex-col dark:bg-black bg-white">
+            <SheetTitle>
               <SheetClose asChild>
                 <Link href="/" className="px-2 flex items-center text-lg font-bold justify-center italic">
                   heliup
                 </Link>
                 </SheetClose>
+                </SheetTitle>
                 <nav className="grid gap-3 text-lg font-medium mt-1">
+                <SheetClose asChild>
+                <Link href='https://demo.heliup.xyz' className={`${path == 'jobs' ? 'bg-muted/50 text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-lg px-2 py-2 text-primary transition-all hover:text-primary hover:bg-muted/50 duration-200 font-medium`}>
+                <Laptop className="h-4 w-4" />
+                Features
+                </Link>
+                </SheetClose>
                 <SheetClose asChild>
                 <Link href='https://demo.heliup.xyz' className={`${path == 'jobs' ? 'bg-muted/50 text-foreground' : ' text-muted-foreground'} flex items-center gap-3 rounded-lg px-2 py-2 text-primary transition-all hover:text-primary hover:bg-muted/50 duration-200 font-medium`}>
                 <Laptop className="h-4 w-4" />

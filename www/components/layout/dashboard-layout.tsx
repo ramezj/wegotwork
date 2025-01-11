@@ -27,7 +27,7 @@ export default function LayoutNavigation({ children, session, params }: { childr
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4 gap-2 mt-1">
                 <Link href={`/${params.workspace}/overview`} className={`${path.includes('/overview') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
                  <Home className="size-4" />
-                  Home
+                  Overview
                 </Link>
                 <Link href={`/${params.workspace}/jobs`} className={`${path.includes('/jobs') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
                   <Briefcase className="h-4 w-4" />

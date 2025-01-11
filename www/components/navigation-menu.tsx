@@ -17,11 +17,17 @@ export function NavigationMenuForNavbar() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
+      <NavigationMenuItem className="">
+          <Link href="https://demo.heliup.xyz" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()} target="_blank">
+              Features
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
         <NavigationMenuItem className="">
           <Link href="https://demo.heliup.xyz" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()} target="_blank">
               Demo
-              <ArrowUpRight className="size-4 ml-2" />
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
