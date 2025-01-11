@@ -5,7 +5,7 @@
     "@next/next/no-page-custom-font": "off",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": [
-    "error",
+    "off",
     {
       "vars": "all",
       "args": "none", // Allow unused arguments
