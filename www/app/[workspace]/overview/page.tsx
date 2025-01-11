@@ -13,7 +13,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     return (
         <>
         <h1 className="font-bold text-3xl tracking-tight">Overview</h1>
-        <div className="flex sm:flex-row flex-col gap-2 w-full mt-4">
+        <div className="flex sm:flex-row flex-col gap-2 w-full">
         <TotalJobs title="Total Jobs" amount={10}/>
         <TotalApplicants title="Total Applicants" amount={57}/>
         </div>

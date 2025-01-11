@@ -34,7 +34,7 @@ export default function CreateJob({ slug } : { slug: string}) {
         <>
             <Dialog>
       <DialogTrigger asChild>
-      <Button>
+      <Button size={"sm"}>
         Create a Job
       </Button>
       </DialogTrigger>

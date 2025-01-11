@@ -31,7 +31,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
             : 
             <>
              <div className="flex justify-between items-center w-full">
-                <h1 className="font-bold text-3xl tracking-tight">Overview</h1>
+                <h1 className="font-bold text-3xl tracking-tight">Jobs</h1>
                 <CreateJob slug={await((await (params)).workspace)} />
                 </div>
                 <div className="gap-4 flex flex-col">
