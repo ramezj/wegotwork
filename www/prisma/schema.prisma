@@ -98,10 +98,34 @@ model Job {
   createdAt DateTime @default(now())
   workspaceId String
   workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  applicants Applicant[]
 }
 enum Type {
   fulltime
   parttime
   internship
   contract
+}
+enum Status {
+  SUBMITTED
+  UNDERREVIEW
+  INTERVIEW
+  OFFER
+  REJECTED
+  HIRED
+}
+model Applicant {
+  id String @id @default(cuid())
+  name String
+  number BigInt
+  motivation String @default("")
+  email String
+  linkedIn String?
+  twitter String?
+  github String?
+  createdAt DateTime @default(now())
+  status Status @default(SUBMITTED)
+  resumeKey String
+  jobId String
+  job Job @relation(fields: [jobId], references: [id], onDelete: Cascade)
 }
