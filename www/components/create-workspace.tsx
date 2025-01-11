@@ -35,7 +35,7 @@ export function CreateWorkspaceButton() {
         </DialogTrigger>
         <DialogContent className="w-[90%] rounded-lg">
         <DialogHeader>
-        <DialogTitle className="text-left">Create Workspace</DialogTitle>
+        <DialogTitle className="text-left text-xl">Create Workspace</DialogTitle>
         <p className="text-muted-foreground text-sm text-left">Create a workspace, invite members & start hiring now.</p>
         </DialogHeader>
         <form className="grid items-center gap-3 text-left" onSubmit={create_workspace}>
