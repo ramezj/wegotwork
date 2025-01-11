@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 import { Session } from "next-auth";
 import { ReactNode } from "react";
 
-export default async function DashboardLayout({ children, params }: { children: ReactNode, params: { workspace: string}}) {
+export default async function DashboardLayout({ children, params }: { children: ReactNode, params: Promise<{ workspace: string}>}) {
     const session:Session | null = await auth();
     return (
         <>

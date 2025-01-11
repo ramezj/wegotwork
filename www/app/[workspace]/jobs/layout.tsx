@@ -6,7 +6,7 @@ export const metadata:Metadata ={
     description:"Workspace Jobs"
 }
 
-export default async function Layout({ children, params }: { children: ReactNode, params: { workspace: string}}) {
+export default async function Layout({ children, params }: { children: ReactNode, params: Promise<{ workspace: string}>}) {
     return (
         <>
           {children}

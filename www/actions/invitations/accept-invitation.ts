@@ -13,9 +13,9 @@ export async function AcceptInvitation(invitationId: string) {
                 id: invitationId,
             }
         })
-        if(invitation?.email !== session.user?.email) {
-            return redirect('/');
-        }
+        // if(invitation?.email !== session.user?.email) {
+        //     return redirect('/');
+        // }
         const accept_invitation = await prisma.workspaceUser.create({
             data: {
                 workspaceId: invitation?.workspaceId as string,
