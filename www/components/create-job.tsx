@@ -15,7 +15,9 @@ import {
   import { Loader2 } from "lucide-react"
 import { CreateJobAction } from "@/actions/jobs/create-job"
 
-export default function CreateJob({ slug } : { slug: string}) {
+type ButtonSize = "default" | "sm" | "default" | "lg" | "icon" | null
+
+export default function CreateJob({ slug, buttonSize } : { slug: string, buttonSize: ButtonSize}) {
     const [ loading, setLoading ] = useState<boolean>(false);
     const [ name, setName ] = useState<string>("");
     const createjob = async (e: React.FormEvent) => {
@@ -34,8 +36,8 @@ export default function CreateJob({ slug } : { slug: string}) {
         <>
             <Dialog>
       <DialogTrigger asChild>
-      <Button size={"sm"}>
-        Create a Job
+      <Button size={buttonSize} >
+        Create New Job
       </Button>
       </DialogTrigger>
       <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] rounded-md bg-black">
