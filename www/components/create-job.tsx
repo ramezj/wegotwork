@@ -70,11 +70,11 @@ export default function CreateJob({ slug, buttonSize } : { slug: string, buttonS
             loading
             ? 
             <>
-            <Button disabled form="form" type="submit" className="w-full"><Loader2 className="mr-1 h-4 w-4 animate-spin" />Creating Job</Button>
+            <Button size={"sm"} disabled form="form" type="submit" className="w-full"><Loader2 className="mr-1 h-4 w-4 animate-spin" />Creating Job</Button>
             </>
             : 
             <>
-            <Button form="form" type="submit" className="w-full">Create Job</Button>
+            <Button form="form" type="submit" className="w-full" size={"sm"}>Create Job</Button>
             </>
           }
         </DialogFooter>
