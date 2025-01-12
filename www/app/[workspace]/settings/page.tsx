@@ -8,14 +8,14 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     if(userWorkspace === null) { redirect('/') }
     if(userWorkspace?.role !== "owner") {
         return (
-            <main className="p-2">
+            <>
             <h1 className="font-bold text-3xl">Settings</h1>
             <p className="text-muted-foreground font-semibold">Restricted Access, please contact owner of workspace.</p>
-            </main>
+            </>
         )
     }
     return (
-        <main className="p-2">
+        <>
         <h1 className="font-bold text-3xl">Settings</h1>
         View Team Members
         <div>
@@ -31,6 +31,6 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
         <div className="mt-2">
         <CreateUserInvitation workspaceId={userWorkspace.workspaceId} />
         </div>
-        </main>
+        </>
     )
 }
