@@ -8,6 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardFooter, CardTitle }
 import { Settings } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { SettingsCard } from "@/components/cards/settings";
+import { Workspace } from "@prisma/client";
 
 export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
     const session:Session | null = await auth();
@@ -21,26 +23,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
         <TotalJobs title="Total Jobs" amount={10}/>
         <TotalApplicants title="Total Applicants" amount={57}/>
         </div>
-        <Card className="w-full bg-background">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-xl font-bold">
-        Settings
-        </CardTitle>
-        <Settings className="size-4" />
-        </CardHeader>
-        <CardContent>
-        <div className="space-y-4">
-        <div className="space-y-2">
-        <Label>Workspace Name</Label>
-        <Input placeholder="Workspace name"></Input>
-        </div>
-        <div className="space-y-2">
-        <Label>Workspace Slug</Label>
-        <Input placeholder="Workspace slug"></Input>
-        </div>
-        </div>
-        </CardContent>
-        </Card>
+        <SettingsCard workspace={userWorkspace?.workspace as Workspace}/>
         </>
     )
 }
