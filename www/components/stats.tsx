@@ -6,7 +6,7 @@ export function TotalJobs({title, amount} : { title: string, amount: number}) {
         <>
         <Card className="w-full bg-background">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-lg">
+                    <CardTitle className="text-xl">
                       {title}
                     </CardTitle>
                     <Briefcase className="size-4" />
@@ -24,7 +24,7 @@ export function TotalApplicants({title, amount} : { title: string, amount: numbe
       <>
       <Card className="w-full bg-background">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-lg">
+                  <CardTitle className="text-xl">
                     {title}
                   </CardTitle>
                   <Users className="size-4" />
