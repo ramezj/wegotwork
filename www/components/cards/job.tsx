@@ -14,7 +14,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
     // };
   
     const handleCardClick = () => {
-      router.push(`jobs/${job.id}/edit`);
+      router.push(`jobs/${job.id}`);
     };
     return (
       <div onClick={handleCardClick}>
