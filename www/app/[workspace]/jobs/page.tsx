@@ -23,9 +23,9 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
             <div className="w-full border border-white/20 h-full rounded-lg items-center flex flex-col gap-3 justify-center">
                 <div>
                 <h1 className="font-bold text-xl text-center">You dont have any jobs yet.</h1>
-                <p className="text-muted-foreground">create some jobs & start hiring immediately</p>
+                <p className="text-muted-foreground text-md">create some jobs & start hiring immediately</p>
                 </div>
-                <CreateJob slug={await((await (params)).workspace)} buttonSize={"default"} />
+                <CreateJob slug={await((await (params)).workspace)} buttonSize={"sm"} />
             </div>
             </>
             : 
