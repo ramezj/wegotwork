@@ -65,6 +65,7 @@ model Workspace {
   id String @id @default(cuid())
   name String
   slug String @unique
+  description String @default("")
   jobs Job[]
   users WorkspaceUser[]
   invitations WorkspaceInvite[]

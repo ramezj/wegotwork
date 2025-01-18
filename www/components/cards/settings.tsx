@@ -8,6 +8,7 @@ import { Workspace } from "@prisma/client"
 import { useState } from "react"
 import { EditWorkspace } from "@/actions/workspace/edit-workspace"
 import { toast } from "sonner"
+import { Textarea } from "../ui/textarea"
 
 export function SettingsCard({ workspace } : { workspace: Workspace}) {
     const [ current, setCurrent ] = useState<Workspace>(workspace);
@@ -34,9 +35,13 @@ export function SettingsCard({ workspace } : { workspace: Workspace}) {
         <Label>Workspace Name</Label>
         <Input placeholder="Workspace name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
         </div>
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
         <Label>Workspace Slug</Label>
         <Input placeholder="Workspace slug" value={current.slug} onChange={((e) => { setCurrent((previous) => ({...previous, slug: e.target.value}))})}></Input>
+        </div> */}
+        <div className="space-y-2">
+        <Label>Workspace Description</Label>
+        <Textarea placeholder="Workspace description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
         <div className="space-y-2">
         {

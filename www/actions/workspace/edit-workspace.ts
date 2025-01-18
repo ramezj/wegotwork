@@ -39,13 +39,13 @@ export async function EditWorkspace(workspace: Workspace) {
                 id: workspace.id
             },
             data: {
-                slug: workspace.slug,
-                name: workspace.name
+                name: workspace.name,
+                description: workspace.description
             }
         })
         return { 
             error: false,
-            message: "Updated Successfully"
+            message: "Updated Workspace"
         }
     } catch (error) {
         console.log(error);
