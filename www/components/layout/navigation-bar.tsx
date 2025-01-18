@@ -80,7 +80,7 @@ export function Navigation(props: Props) {
             ? 
             <>
                 <Button variant="default" asChild className="duration-200">
-                  <Link href='/dashboard'>
+                  <Link href='/pick-workspace'>
                   Dashboard
                   </Link>
                   </Button>

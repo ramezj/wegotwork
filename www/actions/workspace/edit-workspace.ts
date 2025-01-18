@@ -40,9 +40,11 @@ export async function EditWorkspace(workspace: Workspace) {
             },
             data: {
                 name: workspace.name,
+                slug: workspace.slug,
                 description: workspace.description
             }
         })
+        revalidatePath(`/${workspace.id}/overview`)
         return { 
             error: false,
             message: "Updated Workspace"

@@ -32,7 +32,7 @@ export default async function Page() {
                     return (
                         <div key={workspace.id}>
                         <Button asChild variant={"outline"} className="my-2 flex flex-col items-start text-left">
-                        <Link href={`${workspace.workspace.slug}/overview`} className="" key={workspace.workspace.id}>
+                        <Link href={`${workspace.workspace.id}/overview`} className="" key={workspace.workspace.id}>
                         {workspace.workspace.name}    
                         </Link> 
                         </Button>

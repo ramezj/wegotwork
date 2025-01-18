@@ -4,7 +4,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation";
 import { Session } from "next-auth";
 
-export async function GetWorkspace(slug: string) {
+export async function GetWorkspace(workspaceId: string) {
     const session:Session | null = await auth();
     if(!session) { redirect('/') }
     try {
@@ -12,7 +12,7 @@ export async function GetWorkspace(slug: string) {
             where: {
                 userId: session.user?.id,
                 workspace: {
-                    slug: slug
+                    id: workspaceId
                 }
             },
             include: {
