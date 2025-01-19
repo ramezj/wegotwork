@@ -44,12 +44,12 @@ export default async function Page() {
           </div>
         </form>
       </CardContent>
-        <CardFooter className="flex justify-between">
+        <CardFooter className="flex flex-col space-y-2 justify-between">
             <CreateWorkspaceButton />
+            <LogOutButton />
         </CardFooter>
         </Card>
         </div>
-        <LogOutButton />
         </div>
     )
 }

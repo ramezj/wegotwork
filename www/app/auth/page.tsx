@@ -24,7 +24,7 @@ export default async function Page() {
             <div className="-mt-2">
               <Separator />
             </div>
-                <GoogleSignIn callbackUrl="/dashboard" />
+                <GoogleSignIn callbackUrl="/pick-workspace" />
                 <div className="text-center">
                 <p className="text-muted-foreground text-sm">by signing up you agree to our <Link className="underline" href={'/policy'}>terms and conditions</Link></p>
                 </div>

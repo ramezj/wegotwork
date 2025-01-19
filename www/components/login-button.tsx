@@ -17,7 +17,7 @@ export function LoginButton() {
 export function LogOutButton() {
     return (
         <>
-        <Button
+        <Button className="w-full"
         onClick={(() => {
             signOut();
         })}
