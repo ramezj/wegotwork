@@ -6,13 +6,13 @@ import { redirect } from "next/navigation";
 import { Session } from "next-auth";
 import { revalidatePath } from "next/cache";
 
-export async function CreateJobAction(title: string, slug: string) {
+export async function CreateJobAction(title: string, id: string) {
     const session:Session | null = await auth();
     if(!session) { redirect('/') }
     try {
         const workspace = await prisma.workspace.findFirst({
             where: {
-                slug: slug
+                id: id
             }
         })
         if(!workspace) {
@@ -28,7 +28,7 @@ export async function CreateJobAction(title: string, slug: string) {
                 workspaceId: workspace.id
             }
         })
-        revalidatePath(`/${slug}/jobs`);
+        revalidatePath(`/${id}/jobs`);
         return {
             job
         }

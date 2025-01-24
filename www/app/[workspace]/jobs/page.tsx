@@ -18,21 +18,21 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
             <>
             <div className="flex items-center justify-between w-full">
             <h1 className="font-bold text-3xl tracking-tight">Jobs</h1>
-            <CreateJob slug={await((await (params)).workspace)} buttonSize="sm" />
+            <CreateJob id={await((await (params)).workspace)} buttonSize="sm" />
             </div>
             <div className="w-full border border-white/20 h-full rounded-lg items-center flex flex-col gap-3 justify-center">
                 <div>
                 <h1 className="font-bold text-xl text-center">You dont have any jobs yet.</h1>
                 <p className="text-muted-foreground text-md">create some jobs & start hiring immediately</p>
                 </div>
-                <CreateJob slug={await((await (params)).workspace)} buttonSize={"sm"} />
+                <CreateJob id={await((await (params)).workspace)} buttonSize={"sm"} />
             </div>
             </>
             : 
             <>
              <div className="flex justify-between items-center w-full">
                 <h1 className="font-bold text-3xl tracking-tight">Jobs</h1>
-                <CreateJob slug={await((await (params)).workspace)} buttonSize={"sm"} />
+                <CreateJob id={await((await (params)).workspace)} buttonSize={"sm"} />
                 </div>
                 <div className="gap-4 flex flex-col">
                 {

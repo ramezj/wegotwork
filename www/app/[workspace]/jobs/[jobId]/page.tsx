@@ -9,6 +9,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     }
     return (
         <>
+        <h1 className="font-bold text-3xl tracking-tight">Manage Job</h1>
         workspace : {await((await params).workspace)}
         jobId: {await((await params).jobId)}
         </>

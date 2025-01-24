@@ -17,13 +17,13 @@ import { CreateJobAction } from "@/actions/jobs/create-job"
 
 type ButtonSize = "default" | "sm" | "default" | "lg" | "icon" | null
 
-export default function CreateJob({ slug, buttonSize } : { slug: string, buttonSize: ButtonSize}) {
+export default function CreateJob({ id, buttonSize } : { id: string, buttonSize: ButtonSize}) {
     const [ loading, setLoading ] = useState<boolean>(false);
     const [ name, setName ] = useState<string>("");
     const createjob = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        const res = await CreateJobAction(name, slug);
+        const res = await CreateJobAction(name, id);
         console.log(res);
         if(res) {
 
