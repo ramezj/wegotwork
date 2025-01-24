@@ -36,20 +36,36 @@ export function EditJobCard({ job } : { job: Job}) {
         <Label>Workspace Description</Label>
         <Textarea placeholder="Workspace description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
         </div>
-        <div className="space-y-2">
+        <div className="gap-2 flex flex-row justify-between">
         {
             loading
             ? 
             <>
-            <Button type="submit" disabled>
+            <Button type="submit" disabled className="w-full">
             <Loader2 className="animate-spin mr-2" />
             Save Changes
             </Button>
             </>
             :
             <>
-            <Button type="submit">
+            <Button type="submit" className="w-full">
             Save Changes
+            </Button>
+            </>
+        }
+                {
+            loading
+            ? 
+            <>
+            <Button type="submit" disabled className="w-full">
+            <Loader2 className="animate-spin mr-2" />
+            Delete Job
+            </Button>
+            </>
+            :
+            <>
+            <Button variant={'destructive'} type="submit" className="w-full">
+            Delete Job
             </Button>
             </>
         }
