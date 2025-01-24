@@ -31,7 +31,7 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                   <Link href={"/billing"} className="flex align-middle items-center font-semibold"><Banknote className="size-4" />Billing</Link>
                   </DropdownMenuItem> */}
                   <div>
-                  <Separator/>
+                  <Separator className="-my-1"/>
                   </div>
                   <DropdownMenuItem onClick={(() => { signOut({ callbackUrl: "/"})})} className="cursor-pointer flex align-middle items-center font-semibold">
                         <LogOut className="size-4" />
