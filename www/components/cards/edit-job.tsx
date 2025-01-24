@@ -1,6 +1,6 @@
 "use client"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card"
-import { Loader2, Settings } from "lucide-react"
+import { Delete, DeleteIcon, Loader2, Settings, Trash } from "lucide-react"
 import { Label } from "../ui/label"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
@@ -20,7 +20,9 @@ export function EditJobCard({ job } : { job: Job}) {
         <CardTitle className="text-xl font-bold">
         Manage Job
         </CardTitle>
-        <Settings className="size-4" />
+        <Button size={"icon"} variant={"destructive"}>
+            <Trash className="size-4" />
+        </Button>
         </CardHeader>
         <CardContent>
         <form className="space-y-4">
@@ -36,36 +38,20 @@ export function EditJobCard({ job } : { job: Job}) {
         <Label>Workspace Description</Label>
         <Textarea placeholder="Workspace description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
         </div>
-        <div className="gap-2 flex flex-row justify-between">
+        <div className="gap-2">
         {
             loading
             ? 
             <>
-            <Button type="submit" disabled className="w-full">
+            <Button type="submit" disabled className="">
             <Loader2 className="animate-spin mr-2" />
             Save Changes
             </Button>
             </>
             :
             <>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="">
             Save Changes
-            </Button>
-            </>
-        }
-                {
-            loading
-            ? 
-            <>
-            <Button type="submit" disabled className="w-full">
-            <Loader2 className="animate-spin mr-2" />
-            Delete Job
-            </Button>
-            </>
-            :
-            <>
-            <Button variant={'destructive'} type="submit" className="w-full">
-            Delete Job
             </Button>
             </>
         }
