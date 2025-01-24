@@ -2,6 +2,7 @@
 import { GetWorkspace } from "@/actions/workspace/workspace"
 import { redirect } from "next/navigation";
 import { CreateUserInvitation } from "@/components/create-invitation";
+import { SettingsCard } from "@/components/cards/settings";
 
 export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
     const userWorkspace = await GetWorkspace((await params).workspace);
@@ -17,6 +18,9 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     return (
         <>
         <h1 className="font-bold text-3xl">Settings</h1>
+        <div className="mt-2">
+        <SettingsCard workspace={userWorkspace.workspace} />
+        </div>
         View Team Members
         <div>
             {userWorkspace.workspace.users.map((users) => {
