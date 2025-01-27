@@ -11,10 +11,18 @@ import { toast } from "sonner"
 import { Textarea } from "../ui/textarea"
 import { Select, SelectContent,  SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 import { SelectGroup } from "@radix-ui/react-select"
+import { EditJob } from "@/actions/jobs/edit-job"
 
 export function EditJobCard({ job } : { job: Job}) {
     const [ current, setCurrent ] = useState<Job>(job);
     const [ loading, setLoading ] = useState<boolean>(false);
+    const EditTheJob = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        const response = await EditJob(current);
+        toast(JSON.stringify(response?.message))
+        setLoading(false);
+    }
     return (
         <>
         <Card className="w-full bg-background">
@@ -27,7 +35,7 @@ export function EditJobCard({ job } : { job: Job}) {
         </Button>
         </CardHeader>
         <CardContent>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={EditTheJob}>
         <div className="space-y-2">
         <Label>Job Title</Label>
         <Input placeholder="Workspace name" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>

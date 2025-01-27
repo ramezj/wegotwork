@@ -1,20 +1,20 @@
+"use server"
 import { auth } from "@/auth";
 import prisma from "@/lib/db";
+import { Job } from "@prisma/client";
 import { Session } from "next-auth";
 import { redirect } from "next/navigation";
 
-export async function EditJob(jobId: string) {
-    const session: Session | null = await auth();
-    if(!session) {
-        return redirect('/');
-    }
+export async function EditJob(job: Job) {
+    const session:Session | null = await auth();
+    if(!session) { redirect('/') }
     try {
-        const job = await prisma.job.findFirst({
+        const thejob = await prisma.job.findFirst({
             where: {
-                id: jobId
+                id: job?.id
             }
         });
-        if(!job) {
+        if(!thejob) {
             return { 
                 error: true,
                 message: "Job doesnt exist"
@@ -22,18 +22,32 @@ export async function EditJob(jobId: string) {
         }
         const checkuser = await prisma.workspaceUser.findFirst({
             where: {
-                id: session.user?.id,
+                userId: session.user?.id,
                 workspaceId: job.workspaceId
             }
         })
         if(!checkuser) {
-            return redirect('/');
+            return { 
+                ok:false,
+                error: "Only administrator can perform this action."
+            }
         }
-        return {
-            error: false,
-            job:job
-        };
+        const newjob = await prisma.job.update({
+            where: {
+                id: job.id
+            },
+            data: {
+                type: job.type,
+                title: job.title,
+                content: job.content
+            }
+        })
+        return { 
+            ok:true,
+            message: "Updated Job"
+        }
     } catch (error) {
+        console.error(error);
         return {
             error: true,
             message: error
