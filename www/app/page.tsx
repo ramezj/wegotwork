@@ -1,7 +1,5 @@
 "use server"
 import { Navigation } from "@/components/layout/navigation-bar";
-// import { auth } from "@/auth";
-// import { Session } from "next-auth";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { auth } from "@/auth";
