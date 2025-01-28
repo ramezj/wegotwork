@@ -59,21 +59,18 @@ export function EditJobCard({ job } : { job: Job}) {
           setCurrent((prevJob) => ({...prevJob, content: editor.getHTML()}));
         },
       });
-      if(!editor) {
-        return null;
-      }
+    //   if(!editor) {
+    //     return null;
+    //   }
     return (
         <>
-        <Card className="w-full bg-background">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-xl font-bold">
-        Manage Job
-        </CardTitle>
+        <div className="flex justify-between items-center w-full">
+        <h1 className="font-bold text-3xl tracking-tight">Job Information</h1>
         <Button size={"icon"} variant={"destructive"}>
             <Trash className="size-4" />
         </Button>
-        </CardHeader>
-        <CardContent>
+        </div>
+        <div>
         <form className="space-y-4" onSubmit={EditTheJob}>
         <div className="space-y-2">
         <Label>Job Title</Label>
@@ -119,8 +116,7 @@ export function EditJobCard({ job } : { job: Job}) {
         }
         </div>
         </form>
-        </CardContent>
-        </Card>
+        </div>
         </>
     )
 }

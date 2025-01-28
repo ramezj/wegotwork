@@ -2,7 +2,7 @@
 import { useEditor, EditorContent, type Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Bold, Strikethrough, Italic, List, ListOrdered, Heading1 } from "lucide-react";
-import { Toggle } from "./toggle";
+import { Toggle } from "@/components/ui/toggle";
 import { Separator } from "@/components/ui/separator";
 
 const RichTextEditor = ({editor }: { editor:Editor }) => {
