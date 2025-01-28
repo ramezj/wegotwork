@@ -20,6 +20,7 @@ export async function EditJob(job: Job) {
                 message: "Job doesnt exist"
             }
         }
+        // check if logged in user's id = the id in workspace of job.
         const checkuser = await prisma.workspaceUser.findFirst({
             where: {
                 userId: session.user?.id,
@@ -29,7 +30,7 @@ export async function EditJob(job: Job) {
         if(!checkuser) {
             return { 
                 ok:false,
-                error: "Only administrator can perform this action."
+                message: "Only administrator can perform this action."
             }
         }
         const newjob = await prisma.job.update({
