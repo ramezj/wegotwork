@@ -11,6 +11,7 @@ import { Select, SelectContent,  SelectItem, SelectTrigger, SelectValue } from "
 import { SelectGroup } from "@radix-ui/react-select"
 import { EditJob } from "@/actions/jobs/edit-job"
 import { formatJobType } from "@/lib/format-job"
+import { DeleteJob } from "@/actions/jobs/delete-job"
 
 export function EditJobCard({ job } : { job: Job}) {
     const [ current, setCurrent ] = useState<Job>(job);
@@ -22,11 +23,17 @@ export function EditJobCard({ job } : { job: Job}) {
         toast(JSON.stringify(response?.message))
         setLoading(false);
     }
+    const deletejob = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setLoading(true);
+      const res = await DeleteJob(job.id);
+      setLoading(false);
+    }
     return (
         <>
         <div className="flex justify-between items-center w-full">
         <h1 className="font-bold text-3xl tracking-tight">Job Information</h1>
-        <Button size={"icon"} variant={"destructive"}>
+        <Button onClick={deletejob} size={"icon"} variant={"destructive"}>
             <Trash className="size-4" />
         </Button>
         </div>
@@ -37,7 +44,7 @@ export function EditJobCard({ job } : { job: Job}) {
         <Input placeholder="Job name" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
-        <Label>Job Type</Label>
+        <Label>Employment Type</Label>
         <Select value={current.type} defaultValue={current.type} onValueChange={((e) => { setCurrent((previous) => ({ ...previous, type: e as Type}))})}>
             <SelectTrigger value={current.type} className="" defaultValue={current.type}>
               <SelectValue>
