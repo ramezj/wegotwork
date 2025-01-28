@@ -12,8 +12,12 @@ import { Textarea } from "../ui/textarea"
 import { Select, SelectContent,  SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 import { SelectGroup } from "@radix-ui/react-select"
 import { EditJob } from "@/actions/jobs/edit-job"
+import RichTextEditor from "../text-editor"
+import { useEditor } from "@tiptap/react"
+import StarterKit from "@tiptap/starter-kit"
 
 export function EditJobCard({ job } : { job: Job}) {
+    
     const [ current, setCurrent ] = useState<Job>(job);
     const [ loading, setLoading ] = useState<boolean>(false);
     const EditTheJob = async (e: React.FormEvent) => {
@@ -23,6 +27,41 @@ export function EditJobCard({ job } : { job: Job}) {
         toast(JSON.stringify(response?.message))
         setLoading(false);
     }
+    const editor = useEditor({
+        editorProps: {
+          attributes: {
+            class:
+              "min-h-[150px] w-full rounded-md rounded-br-none rounded-bl-none border border-input bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 overflow-auto",
+          },
+        },
+        extensions: [
+          StarterKit.configure({
+            orderedList: {
+              HTMLAttributes: {
+                class: "list-decimal pl-4",
+              },
+            },
+            bulletList: {
+              HTMLAttributes: {
+                class: "list-disc pl-4",
+              },
+            },
+            heading: {
+              HTMLAttributes: {
+                class: "text-2xl"
+              }
+            },
+            
+          }),
+        ],
+        content: current.content,
+        onUpdate: ({ editor }) => {
+          setCurrent((prevJob) => ({...prevJob, content: editor.getHTML()}));
+        },
+      });
+      if(!editor) {
+        return null;
+      }
     return (
         <>
         <Card className="w-full bg-background">
@@ -58,6 +97,7 @@ export function EditJobCard({ job } : { job: Job}) {
         </div>
         <div className="space-y-2">
         <Label>Job Description</Label>
+        <RichTextEditor editor={editor!} />
         <Textarea placeholder="Job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
         </div>
         <div className="gap-2">
