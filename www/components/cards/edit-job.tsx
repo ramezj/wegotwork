@@ -12,6 +12,7 @@ import { SelectGroup } from "@radix-ui/react-select"
 import { EditJob } from "@/actions/jobs/edit-job"
 import { formatJobType } from "@/lib/format-job"
 import { DeleteJob } from "@/actions/jobs/delete-job"
+import { DeleteJobButton } from "../delete-job"
 
 export function EditJobCard({ job } : { job: Job}) {
     const [ current, setCurrent ] = useState<Job>(job);
@@ -23,8 +24,7 @@ export function EditJobCard({ job } : { job: Job}) {
         toast(JSON.stringify(response?.message))
         setLoading(false);
     }
-    const deletejob = async (e: React.FormEvent) => {
-      e.preventDefault();
+    const deletejob = async () => {
       setLoading(true);
       const res = await DeleteJob(job.id);
       setLoading(false);
@@ -33,9 +33,7 @@ export function EditJobCard({ job } : { job: Job}) {
         <>
         <div className="flex justify-between items-center w-full">
         <h1 className="font-bold text-3xl tracking-tight">Job Information</h1>
-        <Button onClick={deletejob} size={"icon"} variant={"destructive"}>
-            <Trash className="size-4" />
-        </Button>
+        <DeleteJobButton  job={current as Job}/>
         </div>
         <div>
         <form className="space-y-4" onSubmit={EditTheJob}>
