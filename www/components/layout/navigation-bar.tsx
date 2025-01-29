@@ -87,12 +87,12 @@ export function Navigation(props: Props) {
             </>
             :
             <>
-                  <Button variant="outline" asChild className="duration-200">
+                  <Button variant="default" asChild className="duration-200">
                   <Link href='/auth'>
                   Login
                   </Link>
                   </Button>
-                  <Button variant="default" asChild className="duration-200">
+                  <Button variant="outline" asChild className="duration-200 hidden md:block">
                   <Link href='/auth'>
                   Start for free
                   </Link>
