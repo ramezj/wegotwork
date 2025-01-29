@@ -8,11 +8,6 @@ import { useRouter } from "next/navigation";
 
 export function JobCardForDashboard({ job }: { job: Job}) {
     const router = useRouter();
-    // const handleApplicantsClick = (e: React.MouseEvent) => {
-    //   e.stopPropagation();
-    //   router.push(`jobs/${job.id}/applicants`);
-    // };
-  
     const handleCardClick = () => {
       router.push(`jobs/${job.id}`);
     };

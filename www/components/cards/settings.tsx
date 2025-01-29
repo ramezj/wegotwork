@@ -22,17 +22,9 @@ export function SettingsCard({ workspace } : { workspace: Workspace}) {
     }
     return (
         <>
-        <Card className="w-full bg-background">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-xl font-bold">
-        Manage Workspace
-        </CardTitle>
-        <Settings className="size-4" />
-        </CardHeader>
-        <CardContent>
         <form onSubmit={editworkspace} className="space-y-4">
         <div className="space-y-2">
-        <Label>Workspace Name</Label>
+        <Label>Workspace Title</Label>
         <Input placeholder="Workspace name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
@@ -62,8 +54,6 @@ export function SettingsCard({ workspace } : { workspace: Workspace}) {
         }
         </div>
         </form>
-        </CardContent>
-        </Card>
         </>
     )
 }

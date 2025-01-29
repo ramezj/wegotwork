@@ -3,6 +3,8 @@ import { GetWorkspace } from "@/actions/workspace/workspace"
 import { redirect } from "next/navigation";
 import { CreateUserInvitation } from "@/components/create-invitation";
 import { SettingsCard } from "@/components/cards/settings";
+import { Settings } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
     const userWorkspace = await GetWorkspace((await params).workspace);
@@ -17,12 +19,17 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     }
     return (
         <>
-        <h1 className="font-bold text-3xl">Settings</h1>
-        <div className="mt-2">
+        <div className="flex justify-between items-center w-full">
+        <h1 className="font-bold text-3xl tracking-tight">Settings</h1>
+        <Button size={"sm"}>
+            <Settings className="size-4" />
+        </Button>
+        </div>
+        <div className="">
         <SettingsCard workspace={userWorkspace.workspace} />
         </div>
-        View Team Members
-        <div>
+        {/* View Team Members */}
+        {/* <div>
             {userWorkspace.workspace.users.map((users) => {
                 return (
                     <div key={users.user.id}>
@@ -34,7 +41,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
         </div>
         <div className="mt-2">
         <CreateUserInvitation workspaceId={userWorkspace.workspaceId} />
-        </div>
+        </div> */}
         </>
     )
 }
