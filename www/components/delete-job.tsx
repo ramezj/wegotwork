@@ -7,17 +7,21 @@ import { Job } from "@prisma/client"
 import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "./ui/dialog"
 import { Label } from "./ui/label"
 import { Loader2 } from "lucide-react"
+import { redirect } from "next/navigation"
 
 export function DeleteJobButton({ job } : { job: Job}) {
     const [ loading, setLoading ] = useState<boolean>(false);
     const deletejob = async () => {
         setLoading(true);
         const res = await DeleteJob(job.id);
+        if(res.ok) {
+          redirect(`/${job.workspaceId}/jobs`)
+        }
         setLoading(false);
       }
     return (
         <>
-        <Dialog>
+      <Dialog>
       <DialogTrigger asChild>
       <Button size={"icon"} variant={"destructive"}>
             <Trash className="size-4" />

@@ -39,7 +39,10 @@ export async function DeleteJob(jobId: string) {
                     id: jobId
                 }
             });
-            redirect(`/${job.workspaceId}/jobs`)
+            return {
+                ok:true,
+                message: "Deleted Successfully"
+            }
         } catch (error) {
             return { 
                 ok:false,
