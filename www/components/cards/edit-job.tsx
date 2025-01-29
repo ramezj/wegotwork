@@ -33,7 +33,7 @@ export function EditJobCard({ job } : { job: Job}) {
         <>
         <div className="flex justify-between items-center w-full">
         <h1 className="font-bold text-3xl tracking-tight">Job Information</h1>
-        <DeleteJobButton  job={current as Job}/>
+        <DeleteJobButton job={current as Job}/>
         </div>
         <div>
         <form className="space-y-4" onSubmit={EditTheJob}>
