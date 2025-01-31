@@ -28,20 +28,23 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
         <div className="">
         <SettingsCard workspace={userWorkspace.workspace} />
         </div>
-        {/* View Team Members */}
-        {/* <div>
+        <div className="mt-4">
+        <h1 className="font-bold text-3xl tracking-tighter">Team Members</h1>
+        </div>
+        <div>
             {userWorkspace.workspace.users.map((users) => {
                 return (
                     <div key={users.user.id}>
-                    <p className="text-muted-foreground">{users.user.name}</p>
+                    <p className="">{users.user.name}</p>
                     <p className="text-muted-foreground">{users.user.email}</p>
+                    <p className="text-muted-foreground">{users.role}</p>
                     </div>
                 )
             })}
         </div>
         <div className="mt-2">
         <CreateUserInvitation workspaceId={userWorkspace.workspaceId} />
-        </div> */}
+        </div> 
         </>
     )
 }
