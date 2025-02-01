@@ -21,7 +21,7 @@ export function EditJobCard({ job } : { job: Job}) {
         e.preventDefault();
         setLoading(true);
         const response = await EditJob(current);
-        toast(JSON.stringify(response?.message))
+        toast(response?.message as string)
         setLoading(false);
     }
     const deletejob = async () => {
