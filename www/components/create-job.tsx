@@ -50,7 +50,7 @@ export default function CreateJob({ id, buttonSize } : { id: string, buttonSize:
         <div className="grid py-2">
           <div className="grid items-center gap-4">
             <Label htmlFor="name" className="text-left">
-              Name
+              Job Title
             </Label>
             <form id="form" onSubmit={createjob}>
             <Input
