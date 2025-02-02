@@ -3,7 +3,7 @@ import { GetWorkspace } from "@/actions/workspace/workspace"
 import { redirect } from "next/navigation";
 import { CreateUserInvitation } from "@/components/create-invitation";
 import { SettingsCard } from "@/components/cards/settings";
-import { Settings } from "lucide-react";
+import { Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
@@ -20,16 +20,10 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-bold text-3xl tracking-tight">Settings</h1>
+        <h1 className="font-bold text-3xl tracking-tight">Team Members</h1>
         <Button size={"sm"}>
-            <Settings className="size-4" />
+            <Users className="size-4" />
         </Button>
-        </div>
-        <div className="">
-        <SettingsCard workspace={userWorkspace.workspace} />
-        </div>
-        {/* <div className="mt-4">
-        <h1 className="font-bold text-3xl tracking-tighter">Team Members</h1>
         </div>
         <div>
             {userWorkspace.workspace.users.map((users) => {
@@ -44,7 +38,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
         </div>
         <div className="mt-2">
         <CreateUserInvitation workspaceId={userWorkspace.workspaceId} />
-        </div>  */}
+        </div> 
         </>
     )
 }
