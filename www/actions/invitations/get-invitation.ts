@@ -15,7 +15,28 @@ export async function GetInvitation(invitationId: string) {
                 workspace: true
             }
         })
-        return { invitation }
+        if(!invitation) {
+            return {
+                error:true,
+                message:"Invitation Expired or doesn't exist"
+            }
+        }
+        const userAlreadyMember = await prisma.workspaceUser.findFirst({
+            where: {
+                userId: session?.user?.id,
+                workspaceId: invitation.workspaceId
+            }
+        })
+        if(userAlreadyMember) {
+            return {
+                error: true,
+                message:"You are already a member of this organization."
+            }
+        }
+        return { 
+            error:false,
+            invitation: invitation
+         }
     } catch (error) {
         console.error(error);
     }

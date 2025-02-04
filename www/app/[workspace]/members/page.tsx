@@ -29,7 +29,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
             <Users className="size-4" />
         </Button>
         </div>
-        <div>
+        <div className="space-y-2">
             {userWorkspace.workspace.users.map((users) => {
                 return (
                     <Card className="bg-background" key={users.user.id}>

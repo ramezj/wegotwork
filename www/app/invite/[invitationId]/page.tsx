@@ -27,12 +27,22 @@ export default async function Page({ params } : { params: Promise<{ invitationId
     }
     return (
         <main className="flex flex-col w-full items-center justify-center p-6 space-y-2">
-            <h1 className="font-bold text-2xl">
-                You have been invited to {invitation?.invitation?.workspace.name}
-            </h1>
-            <div>
-                <AcceptInvitationButton invitationId={await((await params).invitationId)} />
-            </div>
+            {
+                invitation?.error
+                ?
+                <>
+                 <p className="text-muted-foreground">{invitation.message}</p>
+                </>
+                :
+                <>
+                <h1 className="font-bold text-2xl">
+                    You have been invited to {invitation?.invitation?.workspace.name}
+                </h1>
+                <div>
+                    <AcceptInvitationButton invitationId={await((await params).invitationId)} />
+                </div>
+                </>
+            }
             </main>
     )
 }
