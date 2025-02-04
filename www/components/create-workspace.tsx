@@ -12,6 +12,7 @@ import {
   } from "@/components/ui/dialog"
   import { Label } from "./ui/label"
 import { Loader2 } from "lucide-react"
+import { redirect } from "next/navigation"
   
 
 export function CreateWorkspaceButton() {
@@ -22,7 +23,9 @@ export function CreateWorkspaceButton() {
         e.preventDefault();
         setLoading(true);
         const create = await CreateWorkspace(name, slug);
-        console.log(create);
+        if(create?.workspace) {
+            redirect(`/${create.workspace.id}/overview`)
+        }
         setLoading(false);
     }
     return (

@@ -5,6 +5,7 @@ import { CreateUserInvitation } from "@/components/create-invitation";
 import { SettingsCard } from "@/components/cards/settings";
 import { Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
     const userWorkspace = await GetWorkspace((await params).workspace);
@@ -20,7 +21,10 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     return (
         <>
         <div className="flex justify-between items-center w-full">
+        <div>
         <h1 className="font-bold text-3xl tracking-tight">Settings</h1>
+        <p className="text-muted-foreground text-sm">Manage organization, update information & change name.</p>
+        </div>
         <Button size={"sm"}>
             <Settings className="size-4" />
         </Button>

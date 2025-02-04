@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar } from "@/components/ui/avatar";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { formatRole } from "@/lib/format-role";
 
 export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
     const userWorkspace = await GetWorkspace((await params).workspace);
@@ -32,15 +33,15 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
             {userWorkspace.workspace.users.map((users) => {
                 return (
                     <Card className="bg-background" key={users.user.id}>
-                    <CardHeader>
+                    <CardHeader className="flex flex-row items-center gap-4">
                     <Avatar>
                             <AvatarImage src={users.user.image as string} />
                     </Avatar>
-                        <CardTitle>{users.user.name}</CardTitle>
+                    <CardTitle>{users.user.name}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                    <p className="text-muted-foreground">{users.user.email}</p>
-                    <p className="text-muted-foreground">{users.role}</p>
+                    <p className="text-muted-foreground text-sm">{users.user.email}</p>
+                    <p className="text-muted-foreground text-sm">{formatRole(users.role)}</p>
                     </CardContent>
                     </Card>
                 )
