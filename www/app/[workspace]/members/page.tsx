@@ -34,7 +34,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
                 return (
                     <Card className="bg-background" key={users.user.id}>
                     <CardHeader className="flex flex-row items-center gap-4">
-                    <Avatar>
+                    <Avatar >
                             <AvatarImage src={users.user.image as string} />
                     </Avatar>
                     <CardTitle>{users.user.name}</CardTitle>
