@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogDescription, DialogTitle, DialogFooter } from "./ui/dialog";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
-import { Loader2, CheckCircle, Link, Copy } from "lucide-react";
+import { Loader2, CheckCircle, Link, Copy, Check } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "./ui/card";
 
 export function CreateUserInvitation({ workspaceId} : { workspaceId: string}) {
@@ -57,7 +57,7 @@ export function CreateUserInvitation({ workspaceId} : { workspaceId: string}) {
             <div className="flex items-center space-x-2">
               <Input value={invitationLink} readOnly className="flex-grow" />
               <Button onClick={handleCopyLink} variant="outline" size="icon" className="flex-shrink-0">
-                {isCopied ? <CheckCircle className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+                {isCopied ? <Check className="h-4 w-4 text-white" /> : <Copy className="h-4 w-4" />}
               </Button>
             </div>
           </div>
