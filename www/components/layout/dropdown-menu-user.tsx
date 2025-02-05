@@ -6,13 +6,15 @@ import { ChevronsUpDown, Settings2, LogOut} from "lucide-react"
 import { signOut } from "next-auth/react"
 import { Session } from "next-auth"
 import { Separator } from "../ui/separator"
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { SidebarMenuButton } from "../ui/sidebar"
 
 export function DropDownMenuUser({ session } : { session: Session | null }) {
     return (
         <>
         <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant={"outline"} className="w-full bg-inherit border-foreground/20 font-semibold">
+                <Button variant={"outline"} className="w-full bg-inherit border-foreground/20 font-semibold p-3">
                     {session?.user?.name}
                     <ChevronsUpDown className="ml-auto size-4" />
                   </Button>
@@ -24,12 +26,6 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                   <DropdownMenuItem className="cursor-pointer" asChild>
                   <Link href={"/pick-workspace"} className="flex align-middle items-center font-semibold"><Settings2 className="size-4" />Switch Workspace</Link>
                   </DropdownMenuItem>
-                  {/* <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/settings"} className="flex align-middle items-center font-semibold"><Settings2 className="size-4" />Settings</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/billing"} className="flex align-middle items-center font-semibold"><Banknote className="size-4" />Billing</Link>
-                  </DropdownMenuItem> */}
                   <div>
                   <Separator className="-my-1"/>
                   </div>

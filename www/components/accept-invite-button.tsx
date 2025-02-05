@@ -3,6 +3,7 @@ import { useState } from "react"
 import { AcceptInvitation } from "@/actions/invitations/accept-invitation"
 import { Button } from "./ui/button";
 import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 export function AcceptInvitationButton({invitationId} : { invitationId: string}) {
     const [ loading, setLoading ] = useState<boolean>(false);
@@ -10,7 +11,9 @@ export function AcceptInvitationButton({invitationId} : { invitationId: string})
         setLoading(true);
         const res = await AcceptInvitation(invitationId);
         setLoading(false);
-        toast(res?.success);
+        if(res?.success) {
+            redirect('/pick-workspace')
+        }
     }
     return (
         <>

@@ -29,10 +29,10 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
             <Users className="size-4" />
         </Button>
         </div>
-        <div className="space-y-2">
+        <div className="flex sm:flex-row flex-col justify-center gap-4">
             {userWorkspace.workspace.users.map((users) => {
                 return (
-                    <Card className="bg-background" key={users.user.id}>
+                    <Card className="bg-background w-full" key={users.user.id}>
                     <CardHeader className="flex flex-row items-center gap-4">
                     <Avatar >
                             <AvatarImage src={users.user.image as string} />
