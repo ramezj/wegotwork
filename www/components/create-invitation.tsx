@@ -8,6 +8,7 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Loader2, CheckCircle, Link, Copy, Check } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "./ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export function CreateUserInvitation({ workspaceId} : { workspaceId: string}) {
     const [ loading, setLoading ] = useState<boolean>(false);
