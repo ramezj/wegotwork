@@ -14,6 +14,8 @@ import {
   import { Label } from "@/components/ui/label"
   import { Loader2 } from "lucide-react"
 import { CreateJobAction } from "@/actions/jobs/create-job"
+import { redirect } from "next/navigation"
+import { toast } from "sonner"
 
 type ButtonSize = "default" | "sm" | "default" | "lg" | "icon" | null
 
@@ -25,10 +27,10 @@ export default function CreateJob({ id, buttonSize } : { id: string, buttonSize:
         setLoading(true);
         const res = await CreateJobAction(name, id);
         console.log(res);
-        if(res) {
-
+        if(res.error) {
+          toast(res.message as string)
         } else {
-
+          redirect(`/${id}/jobs/${res.job?.id}`)
         }
         setLoading(false);
     }

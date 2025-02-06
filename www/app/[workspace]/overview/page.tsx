@@ -26,7 +26,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
         </Button>
         </div>
         <div className="flex sm:flex-row flex-col gap-2 w-full">
-        <TotalJobs title="Total Jobs" amount={10}/>
+        <TotalJobs title="Total Jobs" amount={userWorkspace?.workspace.jobs.length as number}/>
         <TotalApplicants title="Total Applicants" amount={57}/>
         </div>
         <SettingsCard workspace={userWorkspace?.workspace as Workspace}/>

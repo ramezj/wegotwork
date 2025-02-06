@@ -22,7 +22,8 @@ export async function GetWorkspace(workspaceId: string) {
                             include: {
                                 user: true
                             }
-                        }
+                        },
+                        jobs:true
                     }
                 }
             }

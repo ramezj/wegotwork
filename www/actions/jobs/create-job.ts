@@ -30,10 +30,14 @@ export async function CreateJobAction(title: string, id: string) {
         })
         revalidatePath(`/${id}/jobs`);
         return {
-            job
+            error:false,
+            job:job
         }
     } catch (error) {
         console.error(error);
-        return { error };
+        return { 
+            error:true,
+            message:error
+        };
     }
 }
