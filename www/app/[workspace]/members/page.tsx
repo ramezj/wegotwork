@@ -50,13 +50,12 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
         <CardHeader>
             <CardTitle>Members</CardTitle>
         </CardHeader>
-        <CardContent>
-        <div className="flex items-center justify-between space-x-4">
+        <CardContent className="space-y-4">
             {
                 userWorkspace.workspace.users.map((users) => {
                     return (
-                        <>
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center justify-between" key={users.user.id}>
+                        <div className="flex items-center space-x-4" key={users.userId}>
                         <Avatar>
                         <AvatarImage src={users.user.image!} />
                         <AvatarFallback>OM</AvatarFallback>
@@ -67,11 +66,10 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
                         </div>
                         </div>
                         <p>{formatRole(users.role)}</p>
-                        </>
+                        </div>
                     )
                 })
             }
-        </div>
         </CardContent>
         </Card>
         <div>
