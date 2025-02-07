@@ -13,8 +13,13 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     if(userWorkspace?.role !== "owner") {
         return (
             <>
-            <h1 className="font-bold text-3xl">Settings</h1>
-            <p className="text-muted-foreground font-semibold">Restricted Access, please contact owner of workspace.</p>
+            <div className="flex justify-between items-center w-full">
+            <h1 className="font-bold text-3xl tracking-tight">Settings</h1>
+            <Button size={"sm"}>
+                <Settings className="size-4" />
+            </Button>
+            </div>
+            <p className="text-muted-foreground font-semibold">Restricted Access</p>
             </>
         )
     }

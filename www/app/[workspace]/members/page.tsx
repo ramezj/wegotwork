@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatRole } from "@/lib/format-role";
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
     const userWorkspace = await GetWorkspace((await params).workspace);
@@ -16,8 +17,13 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     if(userWorkspace?.role !== "owner") {
         return (
             <>
-            <h1 className="font-bold text-3xl">Settings</h1>
-            <p className="text-muted-foreground font-semibold">Restricted Access, please contact owner of workspace.</p>
+             <div className="flex justify-between items-center w-full">
+            <h1 className="font-bold text-3xl tracking-tight">Team Members</h1>
+            <Button size={"sm"}>
+                <Users className="size-4" />
+            </Button>
+            </div>
+            <p className="text-muted-foreground font-semibold">Restricted Access</p>
             </>
         )
     }

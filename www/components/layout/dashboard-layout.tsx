@@ -42,13 +42,13 @@ export default function LayoutNavigation({ children, session, params }: { childr
                   Billing
                 </Link>
                 <Separator />
-                <Link href={`/${params.workspace}/settings`} className={`${path.includes('/settings') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>   
-                <Settings className="h-4 w-4" />
-                  Settings
-                </Link>
                 <Link href={`/${params.workspace}/members`} className={`${path.includes('/members') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>   
                 <Users className="h-4 w-4" />
                   Members
+                </Link>
+                <Link href={`/${params.workspace}/settings`} className={`${path.includes('/settings') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>   
+                <Settings className="h-4 w-4" />
+                  Settings
                 </Link>
               </nav>
             </div>
@@ -105,15 +105,15 @@ export default function LayoutNavigation({ children, session, params }: { childr
                   </SheetClose>
                   <Separator />
                   <SheetClose asChild>
-                  <Link href={`/${params.workspace}/settings`} className={`${path.includes('/settings') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
-                  <Settings className="h-4 w-4" />
-                    Settings
-                  </Link>
-                  </SheetClose>
-                  <SheetClose asChild>
                   <Link href={`/${params.workspace}/members`} className={`${path.includes('/members') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
                   <Users className="h-4 w-4" />
                     Members
+                  </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                  <Link href={`/${params.workspace}/settings`} className={`${path.includes('/settings') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <Settings className="h-4 w-4" />
+                    Settings
                   </Link>
                   </SheetClose>
                 </nav>
