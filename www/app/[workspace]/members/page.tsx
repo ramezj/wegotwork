@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatRole } from "@/lib/format-role";
+import { Badge } from "@/components/ui/badge";
 
 export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
     const userWorkspace = await GetWorkspace((await params).workspace);
@@ -28,29 +29,11 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
             <Users className="size-4" />
         </Button>
         </div>
-        {/* <div className="flex sm:flex-row flex-col justify-center gap-4">
-            {userWorkspace.workspace.users.map((users) => {
-                return (
-                    <Card className="bg-background w-full" key={users.user.id}>
-                    <CardHeader className="flex flex-row items-center gap-4">
-                    <Avatar >
-                            <AvatarImage src={users.user.image as string} />
-                    </Avatar>
-                    <CardTitle>{users.user.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                    <p className="text-muted-foreground text-sm">{users.user.email}</p>
-                    <p className="text-muted-foreground text-sm">{formatRole(users.role)}</p>
-                    </CardContent>
-                    </Card>
-                )
-            })}
-        </div> */}
         <Card className="bg-background">
         <CardHeader>
             <CardTitle>Members</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
             {
                 userWorkspace.workspace.users.map((users) => {
                     return (
@@ -62,10 +45,10 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
                         </Avatar>
                         <div>
                         <p className="text-sm font-medium leading-none">{users.user.name}</p>
-                        <p className="text-sm text-muted-foreground">{users.user.email}</p>
+                        {/* <p className="text-sm text-muted-foreground">{users.user.email}</p> */}
                         </div>
                         </div>
-                        <p>{formatRole(users.role)}</p>
+                        <Badge className="rounded-md">{formatRole(users.role)}</Badge>
                         </div>
                     )
                 })
