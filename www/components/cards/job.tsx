@@ -1,10 +1,12 @@
 "use client"
 // import { formatJobType } from "@/lib/format-job";
-import { Job } from "@prisma/client";
+import { Job, Type } from "@prisma/client";
 import { formatDistanceToNow } from "date-fns"
 import { Button } from "../ui/button";
-import { Settings } from "lucide-react";
+import { Settings, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { formatJobType } from "@/lib/format-job";
+import Link from "next/link";
 
 export function JobCardForDashboard({ job }: { job: Job}) {
     const router = useRouter();
@@ -30,4 +32,27 @@ export function JobCardForDashboard({ job }: { job: Job}) {
         </div>
         </div>
       )
-  }
+}
+
+export function JobCard({ job }: { job: Job }) {
+    return (
+      <Link href={`/${job.id}`} target="_blank">
+      <div 
+      className="w-full flex border border-foreground/20 hover:border-foreground/30 rounded-lg items-center duration-300 pt-3 pb-3">
+      <div className="mx-5 my-3 flex flex-col items-start text-left">
+        <p className='sm:text-lg text-md font-bold text-left text-black dark:text-white'>
+         {job.title}     
+        </p>
+        <div className="mt-1 flex">
+        <p className="text-xs text-muted-foreground">{formatDistanceToNow(job.createdAt)} ago</p>
+        </div>
+        </div>
+        <div className="ml-auto mr-5">
+          <Button size={"icon"} variant={"outline"} className="rounded-lg bg-inherit border border-foreground/20">
+            <ArrowRight className="size-4" />
+          </Button>
+        </div>
+        </div>
+        </Link>
+      )
+}
