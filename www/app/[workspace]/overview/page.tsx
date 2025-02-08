@@ -11,6 +11,8 @@ import { Input } from "@/components/ui/input";
 import { SettingsCard } from "@/components/cards/settings";
 import { Workspace } from "@prisma/client";
 import { Button } from "@/components/ui/button";
+import { SquareArrowOutUpRight } from "lucide-react";
+import Link from "next/link";
 
 export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
     const session:Session | null = await auth();
@@ -21,8 +23,11 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
         <>
         <div className="flex justify-between items-center w-full">
         <h1 className="font-bold text-3xl tracking-tight">Overview</h1>
-        <Button size={"sm"}>
-            <Home className="size-4" />
+        <Button asChild size={"sm"}>
+            <Link target="_blank" href={`http://${userWorkspace?.workspace.slug}.${process.env.NEXT_PUBLIC_URL}`}>
+            Preview
+            <SquareArrowOutUpRight className="size-4" />
+            </Link>
         </Button>
         </div>
         <div className="flex sm:flex-row flex-col gap-2 w-full">

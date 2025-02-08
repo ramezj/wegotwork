@@ -15,8 +15,9 @@ export default function Loading() {
         <>
         <div className="flex justify-between items-center w-full">
         <h1 className="font-bold text-3xl tracking-tight">Overview</h1>
-        <Button size={"sm"}>
-            <Home className="size-4" />
+        <Button disabled size={"sm"}>
+            Preview
+        <SquareArrowOutUpRight className="size-4" />
         </Button>
         </div>
         <div className="w-full h-full items-center flex flex-col justify-center">

@@ -19,7 +19,7 @@ export function CreateUserInvitation({ workspaceId} : { workspaceId: string}) {
         setLoading(true);
         const res = await CreateInvitation(workspaceId);
         setLoading(false);
-        setInvitationLink(`localhost:3000/invite/${res?.invitation.id}`);
+        setInvitationLink(`${process.env.NEXT_PUBLIC_URL}/invite/${res?.invitation.id}`);
         setIsCopied(false);
     }
     const handleCopyLink = () => {
