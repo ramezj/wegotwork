@@ -8,7 +8,7 @@ export const getValidSubdomain = (host?: string | null) => {
     if (!host && typeof window !== 'undefined') {
       host = window.location.host;
     }
-    if(host === process.env.NEXT_URL || host === "workspace.up.railway.app") {
+    if(host === process.env.NEXT_PUBLIC_URL) {
         return;
     }
     if (host && host.includes('.')) {
