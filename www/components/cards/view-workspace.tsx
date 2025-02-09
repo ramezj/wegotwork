@@ -14,7 +14,7 @@ type WorkspaceWithJobs = Prisma.WorkspaceGetPayload<{
     }
 }>
 
-export function ViewWorkspace({ workspace, locations} : { workspace:WorkspaceWithJobs, locations: Array<string> }) {
+export function ViewWorkspace({ workspace, locations, types } : { workspace:WorkspaceWithJobs, locations: Array<string>, types: Array<string> }) {
     const [ originalJobs, setOriginalJobs ] = useState<Array<Job>>(workspace.jobs);
     const [ jobs, setJobs ] = useState<Array<Job>>(workspace.jobs);
     const [ selectedLocation, setSelectedLocation ] = useState<string>("All");
@@ -66,7 +66,7 @@ export function ViewWorkspace({ workspace, locations} : { workspace:WorkspaceWit
         </SelectContent>
     </Select>
     </div>
-    {/* <div className="w-full">
+    <div className="w-full">
     <Select 
       onValueChange={(type) => {
       setSelectedEmploymentType(type); 
@@ -76,21 +76,19 @@ export function ViewWorkspace({ workspace, locations} : { workspace:WorkspaceWit
       <SelectValue placeholder="All Employment" />
       </SelectTrigger>
       <SelectContent className="bg-background border-foreground/20">
-        <SelectGroup key={"Items2"}>
+        <SelectGroup>
           <SelectItem key={"All"} value="All">All Employment</SelectItem>
           {
               types.map((type, index) => {
                 return (
-                  <>
                   <SelectItem key={index} value={type}>{type}</SelectItem>
-                  </>
                 )
               })
             }
         </SelectGroup>
       </SelectContent>
       </Select>
-    </div> */}
+    </div>
     </div>
     <div className="flex flex-col gap-4 lg:w-1/2 w-full pt-6">
     {jobs.map((job:Job, index) => {

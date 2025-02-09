@@ -15,7 +15,10 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
     }
     return (
         <>
-        <ViewWorkspace workspace={workspace.workspace as WorkspaceWithJobs} locations={workspace.locations as Array<string>}/>
+        <ViewWorkspace 
+        workspace={workspace.workspace as WorkspaceWithJobs} 
+        locations={workspace.locations as Array<string>} 
+        types={workspace.types as Array<string>} />
         </>
     )
 }
