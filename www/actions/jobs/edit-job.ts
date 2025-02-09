@@ -40,7 +40,8 @@ export async function EditJob(job: Job) {
             data: {
                 type: job.type,
                 title: job.title,
-                content: job.content
+                content: job.content,
+                location: job.location
             }
         })
         return { 

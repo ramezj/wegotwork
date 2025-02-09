@@ -9,6 +9,7 @@ export async function FindWorkspace(slug: string) {
                 slug: slug
             },
             select: {
+                id: true,
                 name: true,
                 slug: true,
                 description: true,
@@ -26,9 +27,24 @@ export async function FindWorkspace(slug: string) {
                 message:"Workspace Not Found"
             }
         }
+        const uniqueLocations = await prisma.job.findMany({
+            where: {
+                workspaceId: workspace.id,
+                location: {
+                    not: null
+                }
+            },
+            select: {
+                location: true
+            },
+            distinct: ['location']
+        })
+        const locations = uniqueLocations.map(job => job.location);
+        console.log(locations);
         return {
             error: false,
             workspace: workspace,
+            locations:locations,
             message:"Workspace Found"
         }
     } catch (error) {

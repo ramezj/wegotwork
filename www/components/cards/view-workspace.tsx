@@ -14,7 +14,7 @@ type WorkspaceWithJobs = Prisma.WorkspaceGetPayload<{
     }
 }>
 
-export function ViewWorkspace({ workspace} : { workspace:WorkspaceWithJobs }) {
+export function ViewWorkspace({ workspace, locations} : { workspace:WorkspaceWithJobs, locations: Array<string> }) {
     const [ originalJobs, setOriginalJobs ] = useState<Array<Job>>(workspace.jobs);
     const [ jobs, setJobs ] = useState<Array<Job>>(workspace.jobs);
     const [ selectedLocation, setSelectedLocation ] = useState<string>("All");
@@ -43,7 +43,7 @@ export function ViewWorkspace({ workspace} : { workspace:WorkspaceWithJobs }) {
       :  <div className="p-3"></div>
     }
     <div className="flex sm:flex-row flex-col gap-4 lg:w-1/2 w-full pt-2 justify-center">
-    {/* <div className="w-full">
+    <div className="w-full">
     <Select
       onValueChange={(loc) => {
       setSelectedLocation(loc); 
@@ -53,13 +53,13 @@ export function ViewWorkspace({ workspace} : { workspace:WorkspaceWithJobs }) {
         <SelectValue placeholder="All Locations" />
         </SelectTrigger>
         <SelectContent className="bg-background border-foreground/20">
-          <SelectGroup key={"Items"}>
+          <SelectGroup>
             <SelectItem key={"All"} value="All">All Locations</SelectItem>
             {
               locations.map((location, index) => {
                 return (
                   <>
-                  <SelectItem key={index} value={location}>{location}</SelectItem>
+                  <SelectItem key={location} value={location}>{location}</SelectItem>
                   </>
                 )
               })
@@ -67,7 +67,7 @@ export function ViewWorkspace({ workspace} : { workspace:WorkspaceWithJobs }) {
           </SelectGroup>
         </SelectContent>
     </Select>
-    </div> */}
+    </div>
     {/* <div className="w-full">
     <Select 
       onValueChange={(type) => {

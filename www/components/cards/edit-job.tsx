@@ -59,8 +59,12 @@ export function EditJobCard({ job } : { job: Job}) {
                     </Select>
                 </div>
                 <div className="space-y-2">
-                    <Label>Job Description</Label>
-                    <Textarea placeholder="Job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
+                <Label>Job Location</Label>
+                <Input placeholder="Job Location" value={current.location == null ? '' : current.location} onChange={((e) => { setCurrent((previous) => ({...previous, location: e.target.value}))})}></Input>
+                </div>
+                <div className="space-y-2">
+                <Label>Job Description</Label>
+                <Textarea placeholder="Job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
                 </div>
                 <div className="gap-2">
                 {
