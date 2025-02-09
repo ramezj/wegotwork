@@ -12,7 +12,11 @@ export async function FindWorkspace(slug: string) {
                 name: true,
                 slug: true,
                 description: true,
-                jobs: true
+                jobs: {
+                    orderBy: {
+                        createdAt: 'desc'
+                    }
+                }
             }
         });
         if(!workspace) {
