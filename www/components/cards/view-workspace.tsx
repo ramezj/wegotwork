@@ -58,9 +58,7 @@ export function ViewWorkspace({ workspace, locations} : { workspace:WorkspaceWit
             {
               locations.map((location, index) => {
                 return (
-                  <>
                   <SelectItem key={location} value={location}>{location}</SelectItem>
-                  </>
                 )
               })
             }
