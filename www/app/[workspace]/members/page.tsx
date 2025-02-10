@@ -51,10 +51,10 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
                         </Avatar>
                         <div>
                         <p className="text-sm font-medium leading-none">{users.user.name}</p>
-                        {/* <p className="text-sm text-muted-foreground">{users.user.email}</p> */}
+                        <p className="text-sm text-muted-foreground">{formatRole(users.role)}</p>
                         </div>
                         </div>
-                        <Badge className="rounded-md">{formatRole(users.role)}</Badge>
+                        <Button variant={"outline"}>Manage</Button>
                         </div>
                     )
                 })
