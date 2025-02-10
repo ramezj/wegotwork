@@ -13,6 +13,13 @@ import { Separator } from "@/components/ui/separator";
 import { ManageMember } from "@/components/manage-member";
 import { Session } from "next-auth";
 import { auth } from "@/auth";
+import { Prisma, WorkspaceUser } from "@prisma/client";
+
+type WorkspaceUserWithUser = Prisma.WorkspaceUserGetPayload<{
+    include: {
+        user: true
+    }
+}>
 
 export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
     const session:Session | null = await auth();
@@ -46,10 +53,10 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
         </CardHeader>
         <CardContent className="space-y-6">
             {
-                userWorkspace.workspace.users.map((users) => {
+                userWorkspace.workspace.users.map((users: WorkspaceUserWithUser) => {
                     return (
                         <div className="flex items-center justify-between" key={users.user.id}>
-                        <div className="flex items-center space-x-4" key={users.userId}>
+                        <div className="flex items-center space-x-4" key={users.user.id}>
                         <Avatar>
                         <AvatarImage src={users.user.image!} />
                         <AvatarFallback>OM</AvatarFallback>
