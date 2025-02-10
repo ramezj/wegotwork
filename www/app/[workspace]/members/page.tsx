@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatRole } from "@/lib/format-role";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { ManageMember } from "@/components/manage-member";
 
 export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
     const userWorkspace = await GetWorkspace((await params).workspace);
@@ -54,7 +55,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
                         <p className="text-sm text-muted-foreground">{formatRole(users.role)}</p>
                         </div>
                         </div>
-                        <Button variant={"outline"}>Manage</Button>
+                        <ManageMember />
                         </div>
                     )
                 })
