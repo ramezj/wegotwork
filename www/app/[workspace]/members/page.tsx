@@ -11,8 +11,12 @@ import { formatRole } from "@/lib/format-role";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ManageMember } from "@/components/manage-member";
+import { Session } from "next-auth";
+import { auth } from "@/auth";
 
 export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
+    const session:Session | null = await auth();
+    if(!session) { redirect('/') }
     const userWorkspace = await GetWorkspace((await params).workspace);
     if(userWorkspace === null) { redirect('/') }
     if(userWorkspace?.role !== "owner") {
@@ -55,7 +59,16 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
                         <p className="text-sm text-muted-foreground">{formatRole(users.role)}</p>
                         </div>
                         </div>
-                        <ManageMember />
+                        {
+                            session.user?.id === users.userId 
+                            ? 
+                            <>
+                            </>
+                            :
+                            <>
+                            <ManageMember />
+                            </>
+                        }
                         </div>
                     )
                 })
