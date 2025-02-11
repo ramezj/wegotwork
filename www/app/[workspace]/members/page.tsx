@@ -73,7 +73,7 @@ export default async function Page({ params } : { params: Promise<{ workspace: s
                             </>
                             :
                             <>
-                            <ManageMember />
+                            <ManageMember WorkspaceUser={users} />
                             </>
                         }
                         </div>
