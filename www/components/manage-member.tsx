@@ -22,16 +22,15 @@ export function ManageMember({ WorkspaceUser } : { WorkspaceUser: WorkspaceUserW
       <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="w-[90%] rounded-md bg-black">
         <DialogHeader>
           <DialogTitle className="">Manage {WorkspaceUser.user.name}</DialogTitle>
-          <DialogDescription className="text-left">
-          Description Here.
-          </DialogDescription>
         </DialogHeader>
         <Avatar>
         <AvatarImage src={WorkspaceUser.user.image!} />
         <AvatarFallback>OM</AvatarFallback>
         </Avatar>
         <DialogFooter>
-        Footer Here.
+        <Button variant={"destructive"}>
+          Revoke Access
+        </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
