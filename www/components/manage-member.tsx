@@ -28,7 +28,7 @@ export function ManageMember({ WorkspaceUser } : { WorkspaceUser: WorkspaceUserW
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="flex items-center gap-4">
-            <Avatar className="h-16 w-16">
+            <Avatar className="size-16">
               <AvatarImage src={WorkspaceUser.user.image!} alt="User Avatar" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
