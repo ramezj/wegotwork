@@ -23,7 +23,8 @@ export function ManageMember({ WorkspaceUser } : { WorkspaceUser: WorkspaceUserW
         </DialogTrigger>
         <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="w-[90%] rounded-md bg-black">
         <DialogHeader>
-          <DialogTitle className="">Manage {WorkspaceUser.user.name}</DialogTitle>
+          <DialogTitle className="">Manage Team Member</DialogTitle>
+          <DialogDescription>View and manage team member details and permissions.</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="flex items-center gap-4">
@@ -38,10 +39,6 @@ export function ManageMember({ WorkspaceUser } : { WorkspaceUser: WorkspaceUserW
             </div>
           </div>
         </div>
-        {/* <Avatar>
-        <AvatarImage src={WorkspaceUser.user.image!} />
-        <AvatarFallback>OM</AvatarFallback>
-        </Avatar> */}
         <DialogFooter>
         <Button variant={"destructive"} className="w-full">
           Revoke Access
