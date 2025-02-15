@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id            Int       @id @default(autoincrement())
+  id            String       @id @default(cuid())
   email         String    @unique
   name          String?
   emailVerified Boolean
@@ -37,7 +37,6 @@ model Session {
   userAgent String?
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   @@unique([token])
   @@map("session")
 }
