@@ -71,7 +71,8 @@ export function ViewWorkspace({ workspace, locations, types } : { workspace:Work
       onValueChange={(type) => {
       setSelectedEmploymentType(type); 
       filterJobs(selectedLocation, type);
-    }}>
+    }}> 
+    
       <SelectTrigger aria-label="Select Employment" className="bg-background border-foreground/20 w-full">
       <SelectValue placeholder="All Employment" />
       </SelectTrigger>
