@@ -27,6 +27,10 @@ export default function SignInButton() {
       </CardHeader>
       <CardContent>
         <div className="grid gap-4">
+          <form className="grid gap-4" onSubmit={async () => {
+                setLoading(true);
+                await signIn.email({ email, password });
+              }}>
           <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -74,20 +78,14 @@ export default function SignInButton() {
           <Button
               type="submit"
               className="w-full"
-              disabled={loading}
-              onClick={async () => {
-                await signIn.email({ email, password });
-              }}
-            >
+              disabled={loading}>
               {loading ? (
                 <Loader2 size={16} className="animate-spin" />
               ) : (
                 "Login"
               )}
             </Button>
-
-          
-
+          </form>
           <div className={cn(
               "w-full gap-2 flex items-center",
               "justify-between flex-col"
