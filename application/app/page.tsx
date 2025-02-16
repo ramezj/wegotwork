@@ -1,7 +1,8 @@
 
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
-import SignInButton from "@/components/sign-in";
+import { SignOutButton } from "@/components/sign-out";
+import { SignInButton } from "@/components/sign-in-btn";
 
 export default async function Home() {
   const session = await auth.api.getSession({
@@ -10,7 +11,17 @@ export default async function Home() {
   return (
     <>
     {JSON.stringify(session?.user)}
-    <SignInButton />
+    {
+      session?.user 
+      ? 
+      <>
+      <SignOutButton />
+      </>
+      :
+      <>
+      <SignInButton />
+      </>
+    }
     </>
   );
 }
