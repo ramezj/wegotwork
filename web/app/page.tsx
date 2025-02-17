@@ -1,7 +1,8 @@
 
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { SignInButton, SignOutButton } from "@/components/auth-buttons";
+import { SignOutButton } from "@/components/auth-buttons";
+import SignIn from "@/components/sign-in";
 
 export default async function Home() {
   const session = await auth.api.getSession({
@@ -17,9 +18,9 @@ export default async function Home() {
       <SignOutButton />
       </>
       : 
-      <>
-      <SignInButton />
-      </>
+      <div className="flex flex-row w-full items-center gap-4">
+      <SignIn />
+      </div>
     }
     </>
   );
