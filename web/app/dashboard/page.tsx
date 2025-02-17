@@ -16,7 +16,6 @@ type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
     }
 }>
 
-
 export default async function Home() {
   const session = await auth.api.getSession({
     headers: await headers()
@@ -27,13 +26,13 @@ export default async function Home() {
     <>
     <Navigation session={session} />
     <div className="flex items-center justify-center mt-12">
-        <h1 className="font-bold text-3xl">Pick a Workspace</h1>
+        <h1 className="font-bold text-3xl">Pick an Organization</h1>
         </div>
         <div className="w-full flex items-center justify-center mt-8">
         <Card className="w-[350px] bg-background">
         <CardHeader className="text-center">
-        <CardTitle>Workspaces</CardTitle>
-        <CardDescription>Workspaces you own or are a part of</CardDescription>
+        <CardTitle>Organizations</CardTitle>
+        <CardDescription>Organizations you own or are a part of</CardDescription>
         </CardHeader>
         <CardContent>
         <form>
