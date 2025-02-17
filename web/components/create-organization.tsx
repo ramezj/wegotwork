@@ -14,12 +14,17 @@ import {
 import { Loader2 } from "lucide-react"
 // import { redirect } from "next/navigation"
 import { toast } from "sonner"
+import { useEffect } from "react"
   
 
 export function CreateOrganizationButton() {
     const [ name, setName ] = useState<string>("");
     const [ slug, setSlug ] = useState<string>("");
     const [ loading, setLoading ] = useState<boolean>(false);
+    useEffect(() => {
+        setSlug(name.trim().toLowerCase().replace(/\s+/g, "-"));
+      }, [name]);
+    
     const create_workspace = async (e:React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
