@@ -79,7 +79,7 @@ export function Navigation({ session } : { session: Session | null}) {
             <>
                 <SignOutButton />
                 <Button variant="default" asChild className="duration-200">
-                  <Link href='/pick-workspace'>
+                  <Link href='/dashboard'>
                   Dashboard
                   </Link>
                   </Button>

@@ -23,7 +23,7 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
-  userWorkspaces WorkspaceUser[]
+  userOrganizations OrganizationUser[]
   @@unique([email])
   @@map("user")
 }
@@ -73,29 +73,29 @@ model Verification {
   @@map("verification")
 }
 
-model Workspace {
+model Organization {
   id String @id @default(cuid())
   name String
   slug String @unique
   description String @default("")
   jobs Job[]
-  users WorkspaceUser[]
-  invitations WorkspaceInvite[]
+  users OrganizationUser[]
+  invitations OrganizationInvite[]
 }
 
-model WorkspaceUser {
+model OrganizationUser {
   id String @id @default(cuid())
   userId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   role Role @default(member)
-  workspaceId String
-  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  organizationId String
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 }
-model WorkspaceInvite {
+model OrganizationInvite {
   id String @id @default(cuid())
   role Role @default(member)
-  workspaceId String
-  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  organizationId String
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
 }
 enum Role {
@@ -109,8 +109,8 @@ model Job {
   location String?
   content String
   createdAt DateTime @default(now())
-  workspaceId String
-  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  organizationId String
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   applicants Applicant[]
 }
 enum Type {

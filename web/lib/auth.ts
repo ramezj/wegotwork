@@ -5,6 +5,12 @@ import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient();
  
 export const auth = betterAuth({
+    session: {
+        cookieCache: {
+            enabled: true,
+            maxAge: 5 * 60
+        }
+    },
     database: prismaAdapter(prisma, {
         provider: "postgresql"
     }),
