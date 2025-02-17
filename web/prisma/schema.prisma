@@ -23,7 +23,7 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
-
+  userWorkspaces WorkspaceUser[]
   @@unique([email])
   @@map("user")
 }
@@ -71,4 +71,74 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model Workspace {
+  id String @id @default(cuid())
+  name String
+  slug String @unique
+  description String @default("")
+  jobs Job[]
+  users WorkspaceUser[]
+  invitations WorkspaceInvite[]
+}
+
+model WorkspaceUser {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @default(member)
+  workspaceId String
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+}
+model WorkspaceInvite {
+  id String @id @default(cuid())
+  role Role @default(member)
+  workspaceId String
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+enum Role {
+  owner
+  member
+}
+model Job {
+  id String @id @default(cuid())
+  title String
+  type Type @default(fulltime)
+  location String?
+  content String
+  createdAt DateTime @default(now())
+  workspaceId String
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  applicants Applicant[]
+}
+enum Type {
+  fulltime
+  parttime
+  internship
+  contract
+}
+enum Status {
+  SUBMITTED
+  UNDERREVIEW
+  INTERVIEW
+  OFFER
+  REJECTED
+  HIRED
+}
+model Applicant {
+  id String @id @default(cuid())
+  name String
+  number BigInt
+  motivation String @default("")
+  email String
+  linkedIn String?
+  twitter String?
+  github String?
+  createdAt DateTime @default(now())
+  status Status @default(SUBMITTED)
+  resumeKey String
+  jobId String
+  job Job @relation(fields: [jobId], references: [id], onDelete: Cascade)
 }
