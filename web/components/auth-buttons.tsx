@@ -2,6 +2,7 @@
 import { signIn, signOut } from "@/lib/auth-client";
 import { Button } from "./ui/button";
 import { redirect } from "next/navigation";
+import { SquareArrowLeft } from "lucide-react";
 
 export function SignInButton() {
     return (
@@ -15,14 +16,14 @@ export function SignInButton() {
 
 export function SignOutButton() {
     return (
-        <Button onClick={(async () => {
+        <Button size={"icon"} onClick={(async () => {
             await signOut({ fetchOptions: {
                 onSuccess: () => {
                     redirect('/');
                 }
             }})
         })}>
-            Sign Out
+            <SquareArrowLeft className="size-4" />
         </Button>
     )
 }

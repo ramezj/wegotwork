@@ -9,6 +9,7 @@ import { DollarSignIcon, Laptop } from "lucide-react"
 // import { TwitterLogoIcon } from "@radix-ui/react-icons"
 import { NavigationMenuForNavbar } from "./navgiation-menu"
 import { Session } from "@/lib/auth-client"
+import { SignOutButton } from "./auth-buttons"
 
 function useLastPathSegment() {
   const pathname = usePathname();
@@ -76,6 +77,7 @@ export function Navigation({ session } : { session: Session | null}) {
             session?.user
             ? 
             <>
+                <SignOutButton />
                 <Button variant="default" asChild className="duration-200">
                   <Link href='/pick-workspace'>
                   Dashboard
