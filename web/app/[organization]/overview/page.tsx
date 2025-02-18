@@ -1,17 +1,37 @@
 "use server"
+import { GetOrganization } from "@/actions/organization/organization"
 import { auth } from "@/lib/auth"
 import { Session } from "@/lib/auth-client"
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { SquareArrowOutUpRight } from "lucide-react"
+import { TotalJobs, TotalApplicants } from "@/components/statistics"
 
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
     const session:Session | null = await auth.api.getSession({
         headers: await headers()
     })
     if(!session?.user) { redirect('/') }
+    const userOrganization = await GetOrganization((await params).organization);
+    console.log(userOrganization);
     return (
         <>
-        {(await params).organization}
+        <div className="flex justify-between items-center w-full">
+        <h1 className="font-bold text-3xl tracking-tight">Overview</h1>
+        <Button asChild size={"sm"}>
+            <Link target="_blank" href={`http://${userOrganization?.organization.slug}.${process.env.NEXT_PUBLIC_URL}`}>
+            Preview
+            <SquareArrowOutUpRight className="size-4" />
+            </Link>
+        </Button>
+        </div>
+        <div className="flex sm:flex-row flex-col gap-2 w-full">
+        <TotalJobs title="Total Jobs" amount={userOrganization?.organization.jobs.length as number}/>
+        <TotalApplicants title="Total Applicants" amount={57}/>
+        </div>
+        {/* <SettingsCard workspace={userWorkspace?.workspace as Workspace}/> */}
         </>
     )
 }
