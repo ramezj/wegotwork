@@ -15,7 +15,6 @@ export default async function Page({ params } : { params: Promise<{ organization
     })
     if(!session?.user) { redirect('/') }
     const userOrganization = await GetOrganization((await params).organization);
-    console.log(userOrganization);
     return (
         <>
         <div className="flex justify-between items-center w-full">
