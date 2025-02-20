@@ -1,4 +1,3 @@
-"use server"
 import { GetOrganization } from "@/actions/organization/organization"
 import { auth } from "@/lib/auth"
 import { Session } from "@/lib/auth-client"
@@ -8,6 +7,12 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { SquareArrowOutUpRight } from "lucide-react"
 import { TotalJobs, TotalApplicants } from "@/components/statistics"
+import { Metadata } from "next"
+
+export const metadata:Metadata = {
+    title: "Overview",
+    description: "Overview"
+}
 
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
     const session:Session | null = await auth.api.getSession({

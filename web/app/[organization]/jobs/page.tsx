@@ -7,6 +7,12 @@ import CreateJob from "@/components/create-job";
 import { JobCardForDashboard } from "@/components/cards/job";
 import { Job } from "@prisma/client";
 import { headers } from "next/headers";
+import { Metadata } from "next";
+
+export const metadata:Metadata = {
+    title: "Jobs",
+    description: "Jobs"
+}
 
 export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
     const session:Session | null = await auth.api.getSession({
