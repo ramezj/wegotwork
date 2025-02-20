@@ -14,38 +14,42 @@ export const metadata:Metadata = {
     description: "Jobs"
 }
 
-export default async function Page({ params } : { params: Promise<{ workspace: string }>}) {
+export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
     const session:Session | null = await auth.api.getSession({
         headers: await headers()
     });
     if(!session) { redirect('/')}
-    const jobs = await GetOrganizationJobs(await((await params).workspace))
+    const jobs = await GetOrganizationJobs(await((await params).organization));
+    console.log(jobs);
+    if(jobs?.error) {
+        redirect('/');
+    }
     return (
         <>
-            { jobs?.jobs.length === 0 
+            { jobs?.jobs?.jobs.length === 0 
             ?
             <>
             <div className="flex items-center justify-between w-full">
             <h1 className="font-bold text-3xl tracking-tight">Jobs</h1>
-            <CreateJob id={await((await (params)).workspace)} buttonSize="sm" />
+            <CreateJob id={await((await (params)).organization)} buttonSize="sm" />
             </div>
             <div className="w-full border border-white/20 h-full rounded-lg items-center flex flex-col gap-3 justify-center">
                 <div>
                 <h1 className="font-bold text-xl text-center">You dont have any jobs yet</h1>
                 <p className="text-muted-foreground text-md">Create some jobs & start hiring immediately</p>
                 </div>
-                <CreateJob id={await((await (params)).workspace)} buttonSize={"sm"} />
+                <CreateJob id={await((await (params)).organization)} buttonSize={"sm"} />
             </div>
             </>
             : 
             <>
              <div className="flex justify-between items-center w-full">
                 <h1 className="font-bold text-3xl tracking-tight">Jobs</h1>
-                <CreateJob id={await((await (params)).workspace)} buttonSize={"sm"} />
+                <CreateJob id={await((await (params)).organization)} buttonSize={"sm"} />
                 </div>
                 <div className="gap-4 flex flex-col">
                 {
-                jobs?.jobs.map((job:Job) => {
+                jobs?.jobs?.jobs.map((job:Job) => {
                     return (
                     <div className="relative" key={job.id}>
                     <JobCardForDashboard job={job}/>

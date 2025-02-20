@@ -20,7 +20,16 @@ export async function GetOrganizationJobs(organizationId: string) {
             }
             
         })
-        return ( jobs )
+        if(!jobs) {
+            return {
+                error: true,
+                message:"Organization Not Found"
+            }
+        }
+        return {
+            error: false,
+            jobs: jobs
+         }
     } catch (error) {
         console.error(error);
     }

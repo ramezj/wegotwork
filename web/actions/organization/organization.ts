@@ -11,13 +11,11 @@ export async function GetOrganization(organizationId: string) {
         headers: await headers()
     })
     if(!session) { redirect('/') }
-    console.log(session.user.id);
-    console.log(organizationId);
     try {
         const organization = await prisma.organizationUser.findFirst({
             where: {
                 userId: session.user?.id,
-                id: organizationId
+                organizationId: organizationId
             },
             include: {
                 organization: {

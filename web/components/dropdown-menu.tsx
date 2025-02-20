@@ -23,7 +23,7 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                   className="w-[--radix-popper-anchor-width] bg-background space-y-2"
                 >
                   <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/pick-workspace"} className="flex align-middle items-center font-semibold"><Settings2 className="size-4" />Switch Workspace</Link>
+                  <Link href={"/dashboard"} className="flex align-middle items-center font-semibold"><Settings2 className="size-4" />Switch Workspace</Link>
                   </DropdownMenuItem>
                   <div>
                   <Separator className="-my-1"/>

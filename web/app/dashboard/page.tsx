@@ -43,7 +43,7 @@ export default async function Home() {
                     return (
                         <div key={organization.id}>
                         <Button asChild variant={"outline"} className="my-2 flex flex-col items-start text-left">
-                        <Link href={`${organization.id}/overview`} className="" key={organization.id}>
+                        <Link href={`${organization.organizationId}/overview`} className="" key={organization.id}>
                         {organization.organization.name}    
                         </Link> 
                         </Button>
