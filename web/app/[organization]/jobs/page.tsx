@@ -20,7 +20,6 @@ export default async function Page({ params } : { params: Promise<{ organization
     });
     if(!session) { redirect('/')}
     const jobs = await GetOrganizationJobs(await((await params).organization));
-    console.log(jobs);
     if(jobs?.error) {
         redirect('/');
     }
