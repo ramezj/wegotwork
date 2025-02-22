@@ -34,11 +34,11 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
       <>
       <Card className="w-full bg-background">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">Add Members</CardTitle>
+        <CardTitle className="text-2xl font-bold">Invite Members</CardTitle>
       </CardHeader>
       <CardContent className="">
         <form className="flex flex-row gap-2" onSubmit={create_the_invitation}>
-        <Input type="email" required placeholder="Email" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
+        <Input type="email" required placeholder="john@heliup.xyz" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
         {
           loading
           ? 
@@ -51,27 +51,15 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
           : 
           <>
           <Button type="submit" className="">
-          {/* <Link className="mr-2 h-4 w-4" /> */}
           Invite Member
           </Button>
           </>
         }
         </form>
-        {/* {invitationLink && (
-          <div className="mt-4">
-            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Invitation Link:</p>
-            <div className="flex items-center space-x-2">
-              <Input value={invitationLink} readOnly className="flex-grow" />
-              <Button onClick={handleCopyLink} variant="outline" size="icon" className="flex-shrink-0">
-                {isCopied ? <Check className="h-4 w-4 text-white" /> : <Copy className="h-4 w-4" />}
-              </Button>
-            </div>
-          </div>
-        )} */}
       </CardContent>
       <CardFooter>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          Share this link with your team members to invite them to join.
+        <p className="text-sm text-muted-foreground">
+          Add team members to join your organization & help you recruit.
         </p>
       </CardFooter>
     </Card>

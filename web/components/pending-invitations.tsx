@@ -20,6 +20,13 @@ export function PendingInvitations({ OrganizationInvites } : { OrganizationInvit
       </CardHeader>
       <CardContent className="">
         {
+          OrganizationInvites.length === 0 
+          && 
+          <>
+          <p className="text-sm text-muted-foreground">No pending invitations</p>
+          </>
+        }
+        {
             OrganizationInvites.map((Invitation) => {
                 return (
                     <div className="flex items-center justify-between" key={Invitation.id}>
