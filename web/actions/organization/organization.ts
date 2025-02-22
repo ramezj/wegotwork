@@ -20,6 +20,7 @@ export async function GetOrganization(organizationId: string) {
             include: {
                 organization: {
                     include: {
+                        invitations: true,
                         users: {
                             include: {
                                 user: true

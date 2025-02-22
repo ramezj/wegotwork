@@ -30,30 +30,33 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
     }
     return (
       <>
-    <Card className="w-full bg-background">
+      <Card className="w-full bg-background">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">Team Invitation</CardTitle>
+        <CardTitle className="text-2xl font-bold">Add Members</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="">
+        <form className="flex flex-row gap-2" onSubmit={create_the_invitation}>
+        <Input type="email" required placeholder="Email" />
         {
           loading
           ? 
           <>
-          <Button onClick={create_the_invitation} className="">
+          <Button disabled onClick={create_the_invitation} className="">
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Generate Invitation Link
+          Invite Member 
           </Button>
           </>
           : 
           <>
-          <Button onClick={create_the_invitation} className="">
-          <Link className="mr-2 h-4 w-4" />
-          Generate Invitation Link
-        </Button>
+          <Button type="submit" className="">
+          {/* <Link className="mr-2 h-4 w-4" /> */}
+          Invite Member
+          </Button>
           </>
         }
-        {invitationLink && (
-          <div className="mt-4 space-y-2">
+        </form>
+        {/* {invitationLink && (
+          <div className="mt-4">
             <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Invitation Link:</p>
             <div className="flex items-center space-x-2">
               <Input value={invitationLink} readOnly className="flex-grow" />
@@ -62,7 +65,7 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
               </Button>
             </div>
           </div>
-        )}
+        )} */}
       </CardContent>
       <CardFooter>
         <p className="text-sm text-gray-500 dark:text-gray-400">

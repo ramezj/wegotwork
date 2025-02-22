@@ -15,6 +15,8 @@ import { Session } from "@/lib/auth-client";
 import { auth } from "@/lib/auth";
 import { Prisma } from "@prisma/client";
 import { headers } from "next/headers";
+import { PendingInvitations } from "@/components/pending-invitations";
+import { GetPendingInvitations } from "@/actions/invitations/pending-invitations";
 
 type OrganizationWithUser = Prisma.OrganizationUserGetPayload<{
     include: {
@@ -88,6 +90,9 @@ export default async function Page({ params } : { params: Promise<{ organization
         <div>
         <CreateUserInvitation organizationId={userOrganization.organizationId} />
         </div> 
+        <div>
+        <PendingInvitations OrganizationInvites={userOrganization.organization.invitations} />
+        </div>
         </>
     )
 }
