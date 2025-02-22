@@ -16,7 +16,6 @@ import { auth } from "@/lib/auth";
 import { Prisma } from "@prisma/client";
 import { headers } from "next/headers";
 import { PendingInvitations } from "@/components/pending-invitations";
-import { GetPendingInvitations } from "@/actions/invitations/pending-invitations";
 
 type OrganizationWithUser = Prisma.OrganizationUserGetPayload<{
     include: {
