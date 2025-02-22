@@ -94,6 +94,7 @@ model OrganizationUser {
 model OrganizationInvite {
   id String @id @default(cuid())
   role Role @default(member)
+  email String @unique
   organizationId String
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())

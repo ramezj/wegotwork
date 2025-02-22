@@ -22,7 +22,8 @@ export function PendingInvitations({ OrganizationInvites } : { OrganizationInvit
         {
             OrganizationInvites.map((Invitation) => {
                 return (
-                    <div key={Invitation.id}>
+                    <div className="flex items-center justify-between" key={Invitation.id}>
+                    <h1>{Invitation.email}</h1>
                     <p>{Invitation.role}</p>
                     </div>
                 )

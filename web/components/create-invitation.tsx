@@ -14,12 +14,14 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
     const [ loading, setLoading ] = useState<boolean>(false);
     const [ invitationLink, setInvitationLink ] = useState<string | null>(null)
     const [ isCopied, setIsCopied ] = useState<boolean>(false);
+    const [ email, setEmail ] = useState<string>("");
     const create_the_invitation = async (e:React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        const res = await CreateInvitation(organizationId);
+        const res = await CreateInvitation(organizationId, email!);
         setLoading(false);
-        setInvitationLink(`${process.env.NEXT_PUBLIC_URL}/invite/${res?.invitation.id}`);
+        toast(res?.message)
+        // setInvitationLink(`${process.env.NEXT_PUBLIC_URL}/invite/${res?.invitation.id}`);
         setIsCopied(false);
     }
     const handleCopyLink = () => {
@@ -36,7 +38,7 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
       </CardHeader>
       <CardContent className="">
         <form className="flex flex-row gap-2" onSubmit={create_the_invitation}>
-        <Input type="email" required placeholder="Email" />
+        <Input type="email" required placeholder="Email" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
         {
           loading
           ? 
