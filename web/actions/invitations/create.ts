@@ -6,6 +6,7 @@ import { resend } from "@/email/config";
 import { InviteUserEmail } from "@/email/invitation";
 import { Prisma } from "@prisma/client";
 import { headers } from "next/headers";
+import { revalidatePath } from "next/cache";
 
 type OrganizationInviteWithOrganization = Prisma.OrganizationInviteGetPayload<{
     include: {
@@ -67,6 +68,7 @@ export async function CreateInvitation(organizationId: string, email: string) {
                 react: InviteUserEmail({OrganizationInvite: InvitationWithOrganization as OrganizationInviteWithOrganization})
             })
         }
+        revalidatePath(`/${organizationId}/members`)
         return {
             error: false,
             message:"Invited Successfully",

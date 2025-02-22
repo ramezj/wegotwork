@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import { Prisma } from "@prisma/client"
+import { Prisma, Type } from "@prisma/client"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"  
 import { Job } from "@prisma/client"
 import { JobCard } from "./cards/job"
@@ -82,7 +82,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
           {
               types.map((type, index) => {
                 return (
-                  <SelectItem key={index} value={type}>{type}</SelectItem>
+                  <SelectItem key={index} value={type}>{formatJobType(type as Type)}</SelectItem>
                 )
               })
             }

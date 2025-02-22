@@ -10,6 +10,7 @@ import { Loader2, CheckCircle, Link, Copy, Check } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "./ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { OrganizationInvite } from "@prisma/client";
+import { formatRole } from "@/lib/format-role";
 
 export function PendingInvitations({ OrganizationInvites } : { OrganizationInvites: OrganizationInvite[] }) {
     return (
@@ -29,9 +30,9 @@ export function PendingInvitations({ OrganizationInvites } : { OrganizationInvit
         {
             OrganizationInvites.map((Invitation) => {
                 return (
-                    <div className="flex items-center justify-between" key={Invitation.id}>
+                    <div className="flex items-center justify-between space-y-2" key={Invitation.id}>
                     <h1>{Invitation.email}</h1>
-                    <p>{Invitation.role}</p>
+                    <p className="text-muted-foreground">{formatRole(Invitation.role)}</p>
                     </div>
                 )
             })
