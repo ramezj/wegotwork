@@ -29,8 +29,8 @@ export default async function Page({ params } : { params: Promise<{ organization
     });
     if(!session?.user) { redirect('/') }
     const userOrganization = await GetOrganization((await params).organization);
-    if(userOrganization === null) { redirect('/') }
-    if(userOrganization?.role !== "owner") {
+    if(userOrganization?.error) { redirect('/') }
+    if(userOrganization?.organization?.role !== "owner") {
         return (
             <>
              <div className="flex justify-between items-center w-full">
@@ -57,7 +57,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         </CardHeader>
         <CardContent className="space-y-6">
             {
-                userOrganization.organization.users.map((users: OrganizationWithUser) => {
+                userOrganization?.organization?.organization?.users.map((users: OrganizationWithUser) => {
                     return (
                         <div className="flex items-center justify-between" key={users.user.id}>
                         <div className="flex items-center space-x-4" key={users.user.id}>
@@ -87,10 +87,10 @@ export default async function Page({ params } : { params: Promise<{ organization
         </CardContent>
         </Card>
         <div>
-        <CreateUserInvitation organizationId={userOrganization.organizationId} />
+        <CreateUserInvitation organizationId={userOrganization?.organization.organizationId} />
         </div> 
         <div>
-        <PendingInvitations OrganizationInvites={userOrganization.organization.invitations} />
+        <PendingInvitations OrganizationInvites={userOrganization.organization.organization.invitations} />
         </div>
         </>
     )

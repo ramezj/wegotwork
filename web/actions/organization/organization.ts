@@ -31,7 +31,16 @@ export async function GetOrganization(organizationId: string) {
                 }
             }
         })
-        return ( organization )
+        if(!organization) {
+            return {
+                error: true,
+                message:"Organization Not Found"
+            }
+        }
+        return {
+            error:false,
+            organization,
+        }
     } catch (error) {
         console.error(error);
     }
