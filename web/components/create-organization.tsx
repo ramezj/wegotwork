@@ -25,13 +25,14 @@ export function CreateOrganizationButton() {
         setSlug(name.trim().toLowerCase().replace(/\s+/g, "-"));
       }, [name]);
     
-    const create_workspace = async (e:React.FormEvent) => {
+    const create_organization = async (e:React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         const create = await CreateOrganization(name, slug);
         if(create?.organization) {
-            // redirect(`/${create.workspace.id}/overview`)
             toast(create.message)
+        } else {
+            toast(create?.message);
         }
         setLoading(false);
     }
@@ -45,10 +46,10 @@ export function CreateOrganizationButton() {
         </DialogTrigger>
         <DialogContent className="w-[90%] rounded-lg">
         <DialogHeader>
-        <DialogTitle className="text-left text-xl">Create Workspace</DialogTitle>
-        <p className="text-muted-foreground text-sm text-left">Create a workspace, invite members & start hiring now.</p>
+        <DialogTitle className="text-left text-xl">Create Organization</DialogTitle>
+        <p className="text-muted-foreground text-sm text-left">Create an organization, invite members & start hiring now.</p>
         </DialogHeader>
-        <form className="grid items-center gap-3 text-left" onSubmit={create_workspace}>
+        <form className="grid items-center gap-3 text-left" onSubmit={create_organization}>
         <Label className="text-left">
         Name
         </Label>
@@ -58,16 +59,16 @@ export function CreateOrganizationButton() {
         </Label>
         <Input placeholder="Workspace slug" required value={slug} onChange={((e) => {setSlug(e.target.value)})} className="flex w-full"/>
         <div>
-        <Button type="submit"  className="w-full mt-2 font-semibold">
+        <Button type="submit" disabled={loading}  className="w-full mt-2 font-semibold">
             {
                 loading
                 ? 
                 <>
                 <Loader2 className="animate-spin" />
-                Creating Workspace
+                Creating Organization
                 </>
                 : 
-                <>Create Workspace</>
+                <>Create Organization</>
             }
         </Button>
         </div>    

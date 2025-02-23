@@ -37,6 +37,8 @@ export async function CreateOrganization(name: string, slug: string) {
         })
         revalidatePath('/dashboard')
         return {
+            error:false,
+            message:"Created Organization 🥳",
             organization: organization
         }
     } catch (error) {
