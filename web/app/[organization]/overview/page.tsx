@@ -20,19 +20,22 @@ export default async function Page({ params } : { params: Promise<{ organization
     })
     if(!session?.user) { redirect('/') }
     const userOrganization = await GetOrganization((await params).organization);
+    if(userOrganization?.error) {
+        redirect('/');
+    }
     return (
         <>
         <div className="flex justify-between items-center w-full">
         <h1 className="font-bold text-3xl tracking-tight">Overview</h1>
         <Button asChild size={"sm"}>
-            <Link target="_blank" href={`http://${userOrganization?.organization.slug}.${process.env.NEXT_PUBLIC_URL}`}>
+            <Link target="_blank" href={`http://${userOrganization?.organization?.organization.slug}.${process.env.NEXT_PUBLIC_URL}`}>
             Preview
             <SquareArrowOutUpRight className="size-4" />
             </Link>
         </Button>
         </div>
         <div className="flex sm:flex-row flex-col gap-2 w-full">
-        <TotalJobs title="Total Jobs" amount={userOrganization?.organization.jobs.length as number}/>
+        <TotalJobs title="Total Jobs" amount={userOrganization?.organization?.organization.jobs.length as number}/>
         <TotalApplicants title="Total Applicants" amount={57}/>
         </div>
         {/* <SettingsCard workspace={userWorkspace?.workspace as Workspace}/> */}
