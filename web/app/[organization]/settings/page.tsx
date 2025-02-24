@@ -5,11 +5,12 @@ import { redirect } from "next/navigation";
 import { SettingsCard } from "@/components/cards/settings";
 import { Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DeleteOrganizationCard } from "@/components/cards/delete-org";
 
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
     const userOrganization = await GetOrganization((await params).organization);
     if(userOrganization === null) { redirect('/') }
-    if(userOrganization?.role !== "owner") {
+    if(userOrganization?.organization?.role !== "owner") {
         return (
             <>
             <div className="flex justify-between items-center w-full">
@@ -30,8 +31,9 @@ export default async function Page({ params } : { params: Promise<{ organization
             <Settings className="size-4" />
         </Button>
         </div>
-        <div className="">
-        <SettingsCard organization={userOrganization.organization} />
+        <div className="space-y-4">
+        <SettingsCard organization={userOrganization.organization.organization} />
+        <DeleteOrganizationCard />
         </div>
         </>
     )

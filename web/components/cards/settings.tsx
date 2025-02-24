@@ -7,6 +7,7 @@ import { Organization } from "@prisma/client"
 import { useState } from "react"
 import { EditOrganization } from "@/actions/organization/edit-organization"
 import { toast } from "sonner"
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../ui/card"
 import { Textarea } from "../ui/textarea"
 
 export function SettingsCard({ organization } : { organization: Organization}) {
@@ -20,10 +21,16 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         setLoading(false);
     }
     return (
-        <>
+        <Card className="w-full bg-background">
+            <CardHeader>
+                <CardTitle>
+                    Organization Information
+                </CardTitle>
+            </CardHeader>
+        <CardContent>
         <form onSubmit={editOrganization} className="space-y-4">
         <div className="space-y-2">
-        <Label>Organization Title</Label>
+        <Label>Organization Name</Label>
         <Input required placeholder="Organization name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
@@ -53,6 +60,7 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         }
         </div>
         </form>
-        </>
+        </CardContent>
+        </Card>
     )
 }
