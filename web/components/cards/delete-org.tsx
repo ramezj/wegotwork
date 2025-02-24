@@ -6,7 +6,7 @@ export function DeleteOrganizationCard() {
     return (
         <Card className="w-full bg-background">
         <CardHeader>
-            <CardTitle>Danger Zone</CardTitle>
+            <CardTitle>Delete Organization</CardTitle>
         </CardHeader>
         <CardContent className="flex justify-between items-center">
             <p>Are you sure you want to delete this organization?</p>

@@ -8,6 +8,8 @@ import Link from "next/link"
 import { SquareArrowOutUpRight } from "lucide-react"
 import { TotalJobs, TotalApplicants } from "@/components/statistics"
 import { Metadata } from "next"
+import { SettingsCard } from "@/components/cards/settings"
+import { Organization } from "@prisma/client"
 
 export const metadata:Metadata = {
     title: "Overview",
@@ -38,6 +40,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         <TotalJobs title="Total Jobs" amount={userOrganization?.organization?.organization.jobs.length as number}/>
         <TotalApplicants title="Total Applicants" amount={57}/>
         </div>
+        <SettingsCard organization={userOrganization?.organization?.organization as Organization} />
         {/* <SettingsCard workspace={userWorkspace?.workspace as Workspace}/> */}
         </>
     )
