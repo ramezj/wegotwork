@@ -4,6 +4,12 @@ import { Session } from "@/lib/auth-client"
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 import { BillingCard } from "@/components/billing"
+import { Metadata } from "next"
+
+export const metadata:Metadata = {
+    title: "Billing",
+    description: "Billing"
+}
 
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
     const session:Session | null = await auth.api.getSession({

@@ -1,4 +1,3 @@
-"use server"
 import { GetOrganization } from "@/actions/organization/organization";
 import { redirect } from "next/navigation";
 import { CreateUserInvitation } from "@/components/create-invitation";
@@ -16,12 +15,18 @@ import { auth } from "@/lib/auth";
 import { Prisma } from "@prisma/client";
 import { headers } from "next/headers";
 import { PendingInvitations } from "@/components/pending-invitations";
+import { Metadata } from "next";
 
 type OrganizationWithUser = Prisma.OrganizationUserGetPayload<{
     include: {
         user: true
     }
 }>
+
+export const metadata:Metadata = {
+    title: "Members",
+    description: "Members"
+}
 
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
     const session:Session | null = await auth.api.getSession({

@@ -1,4 +1,3 @@
-"use server"
 import { GetOrganization } from "@/actions/organization/organization";
 import { redirect } from "next/navigation";
 // import { CreateUserInvitation } from "@/components/create-invitation";
@@ -6,6 +5,12 @@ import { SettingsCard } from "@/components/cards/settings";
 import { Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DeleteOrganizationCard } from "@/components/cards/delete-org";
+import { Metadata } from "next";
+
+export const metadata:Metadata = {
+    title: "Settings",
+    description: "Settings"
+}
 
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
     const userOrganization = await GetOrganization((await params).organization);
