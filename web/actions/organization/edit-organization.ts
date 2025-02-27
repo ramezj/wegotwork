@@ -50,7 +50,7 @@ export async function EditOrganization(organization: Organization) {
         revalidatePath(`/${organization.id}/overview`)
         return { 
             error: false,
-            message: "Updated Workspace"
+            message: "Updated Organization"
         }
     } catch (error) {
         console.log(error);
