@@ -18,10 +18,9 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
     const create_the_invitation = async (e:React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        const res = await CreateInvitation(organizationId, email!);
+        const res = await CreateInvitation(organizationId, email as string);
         setLoading(false);
         toast(res?.message)
-        // setInvitationLink(`${process.env.NEXT_PUBLIC_URL}/invite/${res?.invitation.id}`);
         setIsCopied(false);
     }
     const handleCopyLink = () => {

@@ -77,7 +77,7 @@ export function Navigation({ session } : { session: Session | null}) {
             session?.user
             ? 
             <>
-                <SignOutButton />
+                {/* <SignOutButton /> */}
                 <Button variant="default" asChild className="duration-200">
                   <Link href='/dashboard'>
                   Dashboard
