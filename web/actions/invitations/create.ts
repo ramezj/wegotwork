@@ -27,6 +27,7 @@ export async function CreateInvitation(organizationId: string, email: string) {
             }
         })
         if(InvitationExists) {
+            console.log(`Invitation for ${email} already exists.`)
             return {
                 error: true,
                 message:"User already Invited"
@@ -41,6 +42,7 @@ export async function CreateInvitation(organizationId: string, email: string) {
             }
         })
         if(user_in_organization) {
+            console.log(`${email} already in organization`)
             return {
                 error: true,
                 message: "User already in organization."
