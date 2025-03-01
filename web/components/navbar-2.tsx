@@ -21,46 +21,47 @@ export function Navbar({ session } : { session: Session | null}) {
       document.body.style.overflow = "unset"
     }
   }, [isOpen])
-
   return (
     <div className="border-b border-white/10">
-      <div className="flex h-16 items-center justify-between px-4">
+      <div className="flex h-16 items-center px-4 justify-between">
         <Link href="/" className="flex items-center z-50">
-        <span className="text-2xl font-bold tracking-tighter text-white">heliup</span>
+          <span className="text-2xl font-bold tracking-tighter text-white">heliup</span>
         </Link>
-        <NavigationMenuForNavbar />
-        <div className="hidden md:block">
-            {session?.user
-            ?
-            <>
-            <Button variant={"default"}>
-                <Link href='/dashboard'>
-                    dashboard
-                </Link>
-            </Button>
-            </>
-            :
-            <>
-            <Button variant={"default"}>
-                <Link href='/auth'>
-                    start hiring
-                </Link>
-            </Button>
-            </>
-            }
+        <div>
+          <NavigationMenuForNavbar />
         </div>
-        <Button variant="ghost" size="icon" className="md:hidden z-50 text-white hover:text-white/80" onClick={() => setIsOpen(!isOpen)}>
+        <div className="hidden md:block">
+          {session?.user ? (
+            <Button variant="default">
+              <Link href="/dashboard">dashboard</Link>
+            </Button>
+          ) : (
+            <Button variant="default">
+              <Link href="/auth">start hiring</Link>
+            </Button>
+          )}
+        </div>
+  
+        {/* Mobile Menu Toggle */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden z-50 text-white hover:text-white/80"
+          onClick={() => setIsOpen(!isOpen)}
+        >
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           <span className="sr-only">Toggle menu</span>
         </Button>
+  
+        {/* Mobile Menu */}
         <div
           className={cn(
             "fixed inset-0 bg-black z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
-            isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none",
+            isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           )}
         >
           <nav className="flex flex-col items-center space-y-8 text-center">
-            {["Individuals", "Merchants", "Support", "About", "News"].map((item) => (
+            {["Features", "Demo", "Pricing"].map((item) => (
               <Link
                 key={item}
                 href={`/${item.toLowerCase()}`}
@@ -74,5 +75,6 @@ export function Navbar({ session } : { session: Session | null}) {
         </div>
       </div>
     </div>
-  )
+  );
+  
 }
