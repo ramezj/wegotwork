@@ -14,7 +14,7 @@ import {
 
 export function NavigationMenuForNavbar() {
   return (
-    <NavigationMenu>
+    <NavigationMenu  className="hidden md:flex">
       <NavigationMenuList>
       <NavigationMenuItem className="">
           <Link href="https://demo.heliup.xyz" legacyBehavior passHref>

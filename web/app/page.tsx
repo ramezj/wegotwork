@@ -1,9 +1,16 @@
-
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { Navigation } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
+import { Navbar } from "@/components/navbar-2";
+import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata:Metadata = {
+  title: "heliup, hiring just got easier.",
+  description: "hiring just got easier."
+}
 
 export default async function Home() {
   const session = await auth.api.getSession({
@@ -11,33 +18,24 @@ export default async function Home() {
   })
   return (
     <main>
-      <Navigation session={session} />
-      <div className="flex flex-col items-center text-center pt-12">
-      <Button className="font-semibold mb-6 w-fit bg-inherit px-16" size={"sm"} variant={"outline"}>
-      Introducing heliup <ArrowUpRight className="w-4 ml-2" />
-      </Button>
-      </div>
+      <Navbar session={session}/>
       <div>
-      <div className="flex flex-col items-center text-center">
-      <h1 className="sm:text-6xl text-4xl font-medium">
-        Build Career Pages Effortlessly
+      <div className="flex flex-col items-center text-center mt-24">
+      <h1 className="sm:text-6xl text-4xl font-extrabold">
+        hiring just got easier.
       </h1>
       <h3 className="sm:text-lg text-sm mt-2 font-thin text-balance">
-        Build career pages, create jobs, receive applicants & start the hiring process. All in one place.
+        build career pages, create jobs, receive applicants & start the hiring process. all in one place.
       </h3>
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
       <div className="flex flex-row w-full max-w-fit items-center justify-center content-center gap-4 mt-6">
             <Button variant={"default"} className="font-semibold w-60 rounded-md text-background">
-                {/* <Link href='/auth'> */}
-                Start Hiring
-                {/* </Link> */}
+                start hiring
             </Button>
             <Button className="font-medium bg-inherit w-60 border-foreground/20 rounded-md" variant={"outline"}>
-                {/* <Link href="https://demo.heliup.xyz" target="_blank"> */}
-                See Demo
+                see demo
                 <ArrowUpRight className="w-4 ml-2" />
-                {/* </Link> */}
                 </Button>
       </div>
       </div>
