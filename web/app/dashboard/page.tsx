@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Prisma } from "@prisma/client";
+import { Navbar } from "@/components/navbar-2";
 
 type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
     include: {
@@ -24,7 +25,7 @@ export default async function Home() {
   const Organizations = await UserOrganizations();
   return (
     <>
-    <Navigation session={session} />
+    <Navbar session={session} />
     <div className="flex items-center justify-center mt-12">
         <h1 className="font-bold text-3xl">Pick an Organization</h1>
         </div>

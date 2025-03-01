@@ -19,21 +19,21 @@ export function NavigationMenuForNavbar() {
       <NavigationMenuItem className="">
           <Link href="https://demo.heliup.xyz" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()} target="_blank">
-              Features
+              features
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem className="">
           <Link href="https://demo.heliup.xyz" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()} target="_blank">
-              Demo
+              demo
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <Link href="/pricing" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Pricing
+              pricing
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

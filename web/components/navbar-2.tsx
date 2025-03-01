@@ -22,7 +22,7 @@ export function Navbar({ session } : { session: Session | null}) {
     }
   }, [isOpen])
   return (
-    <div className="border-b border-white/10">
+    <div className="border-b border-white/20">
       <div className="flex h-16 items-center px-4 justify-between">
         <Link href="/" className="flex items-center z-50">
           <span className="text-2xl font-bold tracking-tighter text-white">heliup</span>
