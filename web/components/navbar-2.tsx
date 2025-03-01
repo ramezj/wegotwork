@@ -32,7 +32,7 @@ export function Navbar({ session } : { session: Session | null}) {
         </div>
         <div className="hidden md:block">
           {session?.user ? (
-            <Button variant="default" className="border-l py-8 rounded-none hover:bg-[#fff48d]">
+            <Button variant="default" className="border-l py-8 rounded-none hover:bg-[#82f683] font-bold text-black">
               <Link href="/dashboard">dashboard</Link>
             </Button>
           ) : (
