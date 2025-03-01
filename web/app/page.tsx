@@ -22,7 +22,7 @@ export default async function Home() {
       <Navbar session={session}/>
       <div>
       <div className="flex flex-col items-center text-center mt-24">
-      <h1 className="sm:text-6xl text-4xl font-black text-black">
+      <h1 className="sm:text-7xl text-4xl font-black text-black">
         hiring just got easier.
       </h1>
       <h3 className="sm:text-lg text-sm mt-2 font-medium text-balance text-black">
@@ -31,7 +31,7 @@ export default async function Home() {
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
       <div className="flex flex-row w-full max-w-fit items-center justify-center content-center gap-4 mt-6">
-            <Button variant={"default"} className="font-extrabold w-60 rounded-sm">
+            <Button variant={"default"} className="font-extrabold w-60 rounded-sm bg-black text-white hover:bg-black">
                 start hiring
             </Button>
             <Button className="font-extrabold w-60 bg-black hover:bg-black text-white rounded-sm" variant={"default"}>

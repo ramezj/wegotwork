@@ -25,7 +25,7 @@ export function Navbar({ session } : { session: Session | null}) {
     <div className="border-b border-black bg-white">
       <div className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center z-50 pl-4">
-          <span className="text-2xl font-bold tracking-tighter text-black">heliup</span>
+          <span className="text-2xl font-extrabold tracking-tighter text-black">heliup</span>
         </Link>
         <div>
           <NavigationMenuForNavbar />
