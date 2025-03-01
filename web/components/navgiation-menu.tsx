@@ -15,24 +15,24 @@ import {
 export function NavigationMenuForNavbar() {
   return (
     <NavigationMenu  className="hidden md:flex">
-      <NavigationMenuList>
+      <NavigationMenuList className="gap-4">
       <NavigationMenuItem className="">
           <Link href="https://demo.heliup.xyz" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()} target="_blank">
+            <NavigationMenuLink className="text-black font-bold" target="_blank">
               features
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem className="">
           <Link href="https://demo.heliup.xyz" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()} target="_blank">
+            <NavigationMenuLink className="text-black font-bold" target="_blank">
               demo
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <Link href="/pricing" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <NavigationMenuLink className="text-black font-bold">
               pricing
             </NavigationMenuLink>
           </Link>

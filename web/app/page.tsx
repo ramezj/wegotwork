@@ -17,26 +17,26 @@ export default async function Home() {
     headers: await headers()
   })
   return (
-    <main>
+    <main className="">
       <Navbar session={session}/>
       <div>
       <div className="flex flex-col items-center text-center mt-24">
-      <h1 className="sm:text-6xl text-4xl font-extrabold">
+      <h1 className="sm:text-6xl text-4xl font-extrabold text-black">
         hiring just got easier.
       </h1>
-      <h3 className="sm:text-lg text-sm mt-2 font-thin text-balance">
+      <h3 className="sm:text-lg text-sm mt-2 font-medium text-balance text-black">
         build career pages, create jobs, receive applicants & start the hiring process. all in one place.
       </h3>
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
       <div className="flex flex-row w-full max-w-fit items-center justify-center content-center gap-4 mt-6">
-            <Button variant={"default"} className="font-semibold w-60 rounded-md text-background">
+            <Button variant={"default"} className="font-extrabold w-60 rounded-md text-background">
                 start hiring
             </Button>
-            <Button className="font-medium bg-inherit w-60 border-foreground/20 rounded-md" variant={"outline"}>
+            <Button className="font-extrabold w-60 bg-black text-white" variant={"default"}>
                 see demo
                 <ArrowUpRight className="w-4 ml-2" />
-                </Button>
+            </Button>
       </div>
       </div>
       </div>

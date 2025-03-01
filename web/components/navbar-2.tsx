@@ -22,17 +22,17 @@ export function Navbar({ session } : { session: Session | null}) {
     }
   }, [isOpen])
   return (
-    <div className="border-b border-white/20">
-      <div className="flex h-16 items-center px-4 justify-between">
-        <Link href="/" className="flex items-center z-50">
-          <span className="text-2xl font-bold tracking-tighter text-white">heliup</span>
+    <div className="border-b border-black bg-white">
+      <div className="flex h-16 items-center justify-between">
+        <Link href="/" className="flex items-center z-50 pl-4">
+          <span className="text-2xl font-bold tracking-tighter text-black">heliup</span>
         </Link>
         <div>
           <NavigationMenuForNavbar />
         </div>
         <div className="hidden md:block">
           {session?.user ? (
-            <Button variant="default">
+            <Button variant="default" className="border-l py-8 rounded-none hover:bg-[#fff48d]">
               <Link href="/dashboard">dashboard</Link>
             </Button>
           ) : (
@@ -41,8 +41,6 @@ export function Navbar({ session } : { session: Session | null}) {
             </Button>
           )}
         </div>
-  
-        {/* Mobile Menu Toggle */}
         <Button
           variant="ghost"
           size="icon"
@@ -52,8 +50,6 @@ export function Navbar({ session } : { session: Session | null}) {
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           <span className="sr-only">Toggle menu</span>
         </Button>
-  
-        {/* Mobile Menu */}
         <div
           className={cn(
             "fixed inset-0 bg-black z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
