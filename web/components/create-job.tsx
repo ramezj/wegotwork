@@ -38,7 +38,7 @@ export default function CreateJob({ id, buttonSize } : { id: string, buttonSize:
         <>
             <Dialog>
       <DialogTrigger asChild>
-      <Button size={buttonSize} >
+      <Button size={buttonSize} className="rounded-sm border font-extrabold" >
         Create New Job
       </Button>
       </DialogTrigger>

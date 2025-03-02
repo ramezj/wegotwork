@@ -31,10 +31,10 @@ export default async function Home() {
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
       <div className="flex flex-row w-full max-w-fit items-center justify-center content-center gap-4 mt-6">
-            <Button variant={"default"} className="font-extrabold w-60 rounded-sm bg-black text-white hover:bg-black">
+            <Button variant={"default"} className="font-extrabold w-60 rounded-sm bg-white text-black border border-black hover:bg-white">
                 start hiring
             </Button>
-            <Button className="font-extrabold w-60 bg-black hover:bg-black text-white rounded-sm" variant={"default"}>
+            <Button className="font-extrabold w-60 rounded-sm bg-white text-black border border-black hover:bg-white" variant={"default"}>
                 see demo
                 {/* <ArrowUpRight className="w-4 ml-2" /> */}
             </Button>

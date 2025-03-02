@@ -14,17 +14,17 @@ export function JobCardForDashboard({ job }: { job: Job}) {
     };
     return (
       <div onClick={handleCardClick}>
-      <div className="w-full flex border border-foreground/20 hover:border-foreground/30 rounded-lg items-center duration-300 pt-3 pb-3 cursor-pointer">
+      <div className="w-full flex border border-black bg-white rounded-sm items-center duration-300 pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
-        <p className='sm:text-lg text-md font-bold text-left text-black dark:text-white'>
+        <p className='sm:text-lg text-md font-extrabold text-left text-black'>
          {job.title}     
         </p>
         <div className="mt-1 flex">
-          <p className="text-xs text-muted-foreground">{formatDistanceToNow(job.createdAt)} ago</p>
+          <p className="text-xs text-black font-bold">{formatDistanceToNow(job.createdAt)} ago</p>
           </div>
         </div>
         <div className="mr-5 ml-auto">
-        <Button size={"sm"} variant={"outline"} className="rounded-lg bg-inherit border border-foreground/20">
+        <Button size={"sm"} variant={"outline"} className="rounded-sm bg-black hover:bg-black border border-none text-white">
           <Settings className="size-4"/>
         </Button>
         </div>

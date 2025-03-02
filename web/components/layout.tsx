@@ -26,19 +26,19 @@ export default function LayoutNavigation({ children, session, organization }: { 
             </div>
             <div className="flex-1 ">
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4 gap-2 mt-1">
-                <Link href={`/${organization}/overview`} className={`${path.includes('/overview') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:bg-black hover:text-white duration-200`}>
+                <Link href={`/${organization}/overview`} className={`${path.includes('/overview') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black hover:bg-black hover:text-white transition-all duration-200`}>
                  <Home className="size-4" />
                   Overview
                 </Link>
-                <Link href={`/${organization}/jobs`} className={`${path.includes('/jobs') ? 'bg-accent text-foreground' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:bg-black hover:text-white duration-200`}>
+                <Link href={`/${organization}/jobs`} className={`${path.includes('/jobs') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                   <Briefcase className="h-4 w-4" />
                   Jobs
                 </Link>
-                <Link href={`/${organization}/applicants`} className={`${path.includes('/applicants') ? 'bg-accent text-foreground' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:bg-black hover:text-white duration-200`}>
+                <Link href={`/${organization}/applicants`} className={`${path.includes('/applicants') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                 <Users className="h-4 w-4" />
                   Applicants
                 </Link>
-                <Link href={`/${organization}/billing`} className={`${path.includes('/billing')? 'bg-accent text-foreground' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:bg-black hover:text-white duration-200`}>
+                <Link href={`/${organization}/billing`} className={`${path.includes('/billing') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:bg-black hover:text-white duration-200`}>
                 <Banknote className="h-4 w-4" />
                   Billing
                 </Link>
