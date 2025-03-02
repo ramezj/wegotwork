@@ -27,13 +27,13 @@ export default async function Home() {
     <>
     <Navbar session={session} />
     <div className="flex items-center justify-center mt-12">
-        <h1 className="font-bold text-3xl">Pick an Organization</h1>
+        <h1 className="font-bold text-3xl text-black">Pick an Organization</h1>
         </div>
         <div className="w-full flex items-center justify-center mt-8">
-        <Card className="w-[350px] bg-background">
+        <Card className="w-[350px] bg-white border rounded-sm">
         <CardHeader className="text-center">
-        <CardTitle>Organizations</CardTitle>
-        <CardDescription>Organizations you own or are a part of</CardDescription>
+        <CardTitle className="text-black">Organizations</CardTitle>
+        <CardDescription className="text-black">Organizations you own or are a part of</CardDescription>
         </CardHeader>
         <CardContent>
         <form>
@@ -43,7 +43,7 @@ export default async function Home() {
                 Organizations?.userOrganizations?.map((organization: OrganizationUserWithOrganization) => {
                     return (
                         <div key={organization.id}>
-                        <Button asChild variant={"outline"} className="my-2 flex flex-col items-start text-left">
+                        <Button asChild variant={"outline"} className="my-2 flex flex-col items-start text-left rounded-sm">
                         <Link href={`${organization.organizationId}/overview`} className="" key={organization.id}>
                         {organization.organization.name}    
                         </Link> 

@@ -8,6 +8,7 @@ import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@/compon
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Session } from "@/lib/auth-client"
+import { NavigationMenuLink } from "@/components/ui/navigation-menu"
 
 export function Navbar({ session } : { session: Session | null}) {
   const [isOpen, setIsOpen] = React.useState(false)
@@ -32,7 +33,7 @@ export function Navbar({ session } : { session: Session | null}) {
         </div>
         <div className="hidden md:block">
           {session?.user ? (
-            <Button variant="default" asChild className="border-l py-8 rounded-none hover:bg-[#82f683] font-bold text-black">
+            <Button variant="default" asChild className="border-l py-8 rounded-none hover:bg-[#82f683] font-bold text-black text-base">
               <Link href="/dashboard">dashboard</Link>
             </Button>
           ) : (
