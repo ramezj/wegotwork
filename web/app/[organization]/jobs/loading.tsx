@@ -11,8 +11,8 @@ export default function Loading() {
     return (
         <> 
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-bold text-3xl tracking-tight">Jobs</h1>
-        <Button disabled size={"sm"} variant={"default"}>
+        <h1 className="font-extrabold text-4xl text-black tracking-tight">Jobs</h1>
+        <Button disabled size={"sm"} variant={"default"} className="rounded-sm font-extrabold border border-black">
         Create New Job
         </Button>
         </div>
