@@ -25,7 +25,7 @@ export default async function Home() {
       <h1 className="sm:text-7xl text-4xl font-black text-black">
         hiring just got easier.
       </h1>
-      <h3 className="sm:text-lg text-sm mt-2 font-medium text-balance text-black">
+      <h3 className="sm:text-lg text-sm mt-2 font-bold text-balance text-black">
         build career pages, create jobs, receive applicants & start the hiring process. all in one place.
       </h3>
       </div>
