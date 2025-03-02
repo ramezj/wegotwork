@@ -69,7 +69,7 @@ export function LandingPageJobCard({ title, type, location, age }: { title: stri
       </div>
       </div>
       <div className="ml-auto mr-5">
-      <Button className="rounded-sm bg-inherit bg-black hover:bg-black" variant={"outline"} size={"icon"}>
+      <Button className="rounded-sm bg-inherit bg-black hover:bg-black border-none" variant={"outline"} size={"icon"}>
         <ArrowRight className="size-4" />
       </Button>
       </div>

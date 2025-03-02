@@ -33,11 +33,14 @@ export function Navbar({ session } : { session: Session | null}) {
         </div>
         <div className="hidden md:block">
           {session?.user ? (
-            <Button variant="default" asChild className="border-l py-8 rounded-none hover:bg-[#82f683] font-bold text-black text-base">
-              <Link href="/dashboard">dashboard</Link>
+            // <Button variant="default" asChild className="border-l py-8 rounded-none hover:bg-[#7bf7f7] font-bold text-black text-base">
+            //   <Link href="/dashboard">dashboard</Link>
+            // </Button>
+            <Button variant="default" asChild className="border-l py-8 rounded-none hover:bg-black bg-black font-bold text-white text-base">
+            <Link href="/dashboard">dashboard</Link>
             </Button>
           ) : (
-            <Button asChild variant="default" className="border-l py-8 rounded-none hover:bg-[#82f683] font-bold text-black">
+            <Button asChild variant="default" className="border-l py-8 rounded-none hover:bg-[#7bf7f7] font-bold text-black">
               <Link href="/auth">start hiring</Link>
             </Button>
           )}

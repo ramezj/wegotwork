@@ -16,37 +16,37 @@ export default function LayoutNavigation({ children, session, organization }: { 
   const path = usePathname();
     return (
       <div className="grid min-h-screen w-full md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
-        <div className="hidden border-r border-white/20 md:block">
-          <div className="flex h-full max-h-screen flex-col gap-2 sticky top-0 z-50">
-            <div className="flex h-16 items-center border-b border-white/20 px-3 lg:h-16 text-center justify-center">
+        <div className="hidden border-r border-black bg-white md:block">
+          <div className="flex h-full max-h-screen flex-col gap-2 sticky top-0 z-50 bg-white">
+            <div className="flex h-16 items-center border-b border-black bg-white px-3 lg:h-16 text-center justify-center">
             <Link href="/" className="flex items-center z-50">
-            <span className="text-2xl font-bold tracking-tighter text-white">heliup</span>
+            <span className="text-2xl tracking-tighter text-black font-extrabold">heliup</span>
             </Link>
             </div>
             <div className="flex-1 ">
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4 gap-2 mt-1">
-                <Link href={`/${organization}/overview`} className={`${path.includes('/overview') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <Link href={`/${organization}/overview`} className={`${path.includes('/overview') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-extrabold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200 bg-black`}>
                  <Home className="size-4" />
                   Overview
                 </Link>
-                <Link href={`/${organization}/jobs`} className={`${path.includes('/jobs') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <Link href={`/${organization}/jobs`} className={`${path.includes('/jobs') ? 'bg-accent text-foreground' : ''} font-extrabold flex items-center gap-3 rounded-md px-3 py-2 text-black transition-all hover:text-primary hover:bg-accent duration-200`}>
                   <Briefcase className="h-4 w-4" />
                   Jobs
                 </Link>
-                <Link href={`/${organization}/applicants`} className={`${path.includes('/applicants') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <Link href={`/${organization}/applicants`} className={`${path.includes('/applicants') ? 'bg-accent text-foreground' : ''} font-extrabold flex items-center gap-3 rounded-md px-3 py-2 text-black transition-all hover:text-primary hover:bg-accent duration-200`}>
                 <Users className="h-4 w-4" />
                   Applicants
                 </Link>
-                <Link href={`/${organization}/billing`} className={`${path.includes('/billing')? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <Link href={`/${organization}/billing`} className={`${path.includes('/billing')? 'bg-accent text-foreground' : ''} font-extrabold flex items-center gap-3 rounded-md px-3 py-2 text-black transition-all hover:text-primary hover:bg-accent duration-200`}>
                 <Banknote className="h-4 w-4" />
                   Billing
                 </Link>
                 <Separator />
-                <Link href={`/${organization}/members`} className={`${path.includes('/members') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>   
+                <Link href={`/${organization}/members`} className={`${path.includes('/members') ? 'bg-accent text-foreground' : ''} font-extrabold flex items-center gap-3 rounded-md px-3 py-2 text-black transition-all hover:text-primary hover:bg-accent duration-200`}>   
                 <Users className="h-4 w-4" />
                   Members
                 </Link>
-                <Link href={`/${organization}/settings`} className={`${path.includes('/settings') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>   
+                <Link href={`/${organization}/settings`} className={`${path.includes('/settings') ? 'bg-accent text-foreground' : ''} font-extrabold flex items-center gap-3 rounded-md px-3 py-2 text-black transition-all hover:text-primary hover:bg-accent duration-200`}>   
                 <Settings className="h-4 w-4" />
                   Settings
                 </Link>
@@ -58,7 +58,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
           </div>
         </div>
         <div className="flex flex-col sticky">
-          <header className="z-50 flex h-16 items-center gap-4 border-b border-white/20 px-3 lg:h-16 sticky top-0 bg-background">
+          <header className="z-50 flex h-16 items-center gap-4 border-b border-black bg-white px-3 lg:h-16 sticky top-0 bg-background">
             <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="shrink-0 md:hidden">

@@ -28,8 +28,8 @@ export default async function Page({ params } : { params: Promise<{ organization
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-bold text-3xl tracking-tight">Overview</h1>
-        <Button asChild size={"sm"}>
+        <h1 className="font-extrabold text-3xl tracking-tight text-black">Overview</h1>
+        <Button asChild size={"sm"} className="rounded-sm font-extrabold border border-black">
             <Link target="_blank" href={`http://${userOrganization?.organization?.organization.slug}.${process.env.NEXT_PUBLIC_URL}`}>
             Preview
             <SquareArrowOutUpRight className="size-4" />
@@ -41,7 +41,6 @@ export default async function Page({ params } : { params: Promise<{ organization
         <TotalApplicants title="Total Applicants" amount={57}/>
         </div>
         <SettingsCard organization={userOrganization?.organization?.organization as Organization} />
-        {/* <SettingsCard workspace={userWorkspace?.workspace as Workspace}/> */}
         </>
     )
 }

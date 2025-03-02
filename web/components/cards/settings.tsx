@@ -21,25 +21,25 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         setLoading(false);
     }
     return (
-        <Card className="w-full bg-background">
+        <Card className="w-full bg-white rounded-sm">
             <CardHeader>
-                <CardTitle>
+                <CardTitle className="text-black font-extrabold">
                     Organization Information
                 </CardTitle>
             </CardHeader>
         <CardContent>
         <form onSubmit={editOrganization} className="space-y-4">
         <div className="space-y-2">
-        <Label>Organization Name</Label>
-        <Input required placeholder="Organization name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
+        <Label className='font-extrabold text-black'>Organization Name</Label>
+        <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required placeholder="Organization name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
-        <Label>Organization Slug</Label>
-        <Input required placeholder="Organization slug" value={current.slug} onChange={((e) => { setCurrent((previous) => ({...previous, slug: e.target.value}))})}></Input>
+        <Label className='font-extrabold text-black'>Organization Slug</Label>
+        <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required placeholder="Organization slug" value={current.slug} onChange={((e) => { setCurrent((previous) => ({...previous, slug: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
-        <Label>Organization Description</Label>
-        <Textarea placeholder="Organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
+        <Label className='font-extrabold text-black'>Organization Description</Label>
+        <Textarea className="bg-white border border-black rounded-sm text-black font-extrabold" placeholder="Organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
         <div className="space-y-2">
         {
@@ -53,7 +53,7 @@ export function SettingsCard({ organization } : { organization: Organization}) {
             </>
             :
             <>
-            <Button type="submit">
+            <Button type="submit" className="font-extrabold bg-black rounded-sm text-white">
             Save Changes
             </Button>
             </>

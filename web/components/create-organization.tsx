@@ -40,8 +40,8 @@ export function CreateOrganizationButton() {
         <>
         <Dialog>
         <DialogTrigger asChild>
-        <Button variant={"outline"} className="w-full">
-        Create Workspace
+        <Button variant={"outline"} className="w-full rounded-sm border-none hover:bg-black">
+        Create Organization
         </Button>    
         </DialogTrigger>
         <DialogContent className="w-[90%] rounded-lg">
