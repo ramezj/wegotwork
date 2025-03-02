@@ -8,6 +8,7 @@ import { redirect, usePathname } from "next/navigation"
 import { Session } from "@/lib/auth-client"
 import { Separator } from "./ui/separator"
 import { DropDownMenuUser } from "./dropdown-menu"
+import { Menu } from "lucide-react"
 
 export default function LayoutNavigation({ children, session, organization }: { children: React.ReactNode; session: Session, organization: string }) {
   if(!session.user) {
@@ -61,12 +62,8 @@ export default function LayoutNavigation({ children, session, organization }: { 
           <header className="z-50 flex h-16 items-center gap-4 border-b border-black bg-white px-3 lg:h-16 sticky top-0 bg-background">
             <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="shrink-0 md:hidden">
-              <svg strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5">
-              <path d="M3 5H11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-              <path d="M3 12H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-              <path d="M3 19H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-            </svg>
+              <Button variant="ghost" size="icon" className="shrink-0 md:hidden text-white hover:text-white p-8 bg-black hover:bg-black rounded-none -ml-4">
+                <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>

@@ -24,21 +24,21 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         <Card className="w-full bg-white rounded-sm">
             <CardHeader>
                 <CardTitle className="text-black font-extrabold">
-                    Organization Information
+                    organization information
                 </CardTitle>
             </CardHeader>
         <CardContent>
         <form onSubmit={editOrganization} className="space-y-4">
         <div className="space-y-2">
-        <Label className='font-extrabold text-black'>Organization Name</Label>
+        <Label className='font-extrabold text-black'>name</Label>
         <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required placeholder="Organization name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
-        <Label className='font-extrabold text-black'>Organization Slug</Label>
+        <Label className='font-extrabold text-black'>slug</Label>
         <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required placeholder="Organization slug" value={current.slug} onChange={((e) => { setCurrent((previous) => ({...previous, slug: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
-        <Label className='font-extrabold text-black'>Organization Description</Label>
+        <Label className='font-extrabold text-black'>description</Label>
         <Textarea className="bg-white border border-black rounded-sm text-black font-extrabold" placeholder="Organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
         <div className="space-y-2">
@@ -46,15 +46,15 @@ export function SettingsCard({ organization } : { organization: Organization}) {
             loading
             ? 
             <>
-            <Button type="submit" disabled>
+            <Button type="submit" disabled className="font-extrabold bg-black hover:bg-black rounded-sm text-white">
             <Loader2 className="animate-spin mr-2" />
-            Save Changes
+            save changes
             </Button>
             </>
             :
             <>
-            <Button type="submit" className="font-extrabold bg-black rounded-sm text-white">
-            Save Changes
+            <Button type="submit" className="font-extrabold bg-black hover:bg-black rounded-sm text-white">
+            save changes
             </Button>
             </>
         }
