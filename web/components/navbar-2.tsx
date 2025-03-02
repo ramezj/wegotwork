@@ -32,24 +32,34 @@ export function Navbar({ session } : { session: Session | null}) {
         </div>
         <div className="hidden md:block">
           {session?.user ? (
-            <Button variant="default" className="border-l py-8 rounded-none hover:bg-[#82f683] font-bold text-black">
+            <Button variant="default" asChild className="border-l py-8 rounded-none hover:bg-[#82f683] font-bold text-black">
               <Link href="/dashboard">dashboard</Link>
             </Button>
           ) : (
-            <Button variant="default">
+            <Button asChild variant="default" className="border-l py-8 rounded-none hover:bg-[#82f683] font-bold text-black">
               <Link href="/auth">start hiring</Link>
             </Button>
           )}
         </div>
-        <Button
+        {
+          isOpen
+          ?
+          <Button
           variant="ghost"
           size="icon"
-          className="md:hidden z-50 text-white hover:text-white/80 mr-4 bg-black hover:bg-black rounded-none"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          <span className="sr-only">Toggle menu</span>
-        </Button>
+          className="md:hidden z-50 text-white hover:text-white p-8 bg-black hover:bg-black rounded-none"
+          onClick={() => setIsOpen(!isOpen)}>
+          <X className="h-6 w-6" /> 
+          </Button>
+          :
+          <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden z-50 text-white hover:text-white border-l p-8 bg-black hover:bg-black rounded-none"
+          onClick={() => setIsOpen(!isOpen)}>
+          <Menu className="h-6 w-6" />
+          </Button>
+        }
         <div
           className={cn(
             "fixed inset-0 bg-black z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
