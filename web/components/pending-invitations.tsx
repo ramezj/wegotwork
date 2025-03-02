@@ -15,24 +15,24 @@ import { formatRole } from "@/lib/format-role";
 export function PendingInvitations({ OrganizationInvites } : { OrganizationInvites: OrganizationInvite[] }) {
     return (
       <>
-      <Card className="w-full bg-background">
+      <Card className="w-full bg-white rounded-sm">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">Pending Invitations</CardTitle>
+        <CardTitle className="text-2xl font-extrabold text-black">pending invitations</CardTitle>
       </CardHeader>
       <CardContent className="">
         {
           OrganizationInvites.length === 0 
           && 
           <>
-          <p className="text-sm text-muted-foreground">No pending invitations</p>
+          <p className="text-sm font-bold text-black">no pending invitations</p>
           </>
         }
         {
             OrganizationInvites.map((Invitation) => {
                 return (
                     <div className="flex items-center justify-between space-y-2" key={Invitation.id}>
-                    <h1>{Invitation.email}</h1>
-                    <p className="text-muted-foreground">{formatRole(Invitation.role)}</p>
+                    <h1 className="font-bold text-black">{Invitation.email}</h1>
+                    <p className="text-black font-medium">{formatRole(Invitation.role)}</p>
                     </div>
                 )
             })

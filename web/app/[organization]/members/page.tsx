@@ -39,7 +39,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         return (
             <>
              <div className="flex justify-between items-center w-full">
-            <h1 className="font-bold text-3xl tracking-tight">Team Members</h1>
+            <h1 className="font-extrabold text-black text-3xl tracking-tight">organization members</h1>
             <Button size={"sm"}>
                 <Users className="size-4" />
             </Button>
@@ -51,14 +51,14 @@ export default async function Page({ params } : { params: Promise<{ organization
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-bold text-3xl tracking-tight">Team Members</h1>
-        <Button size={"sm"}>
+        <h1 className="font-extrabold text-black text-4xl tracking-tight">organization members</h1>
+        <Button size={"sm"} className="border border-black rounded-sm">
             <Users className="size-4" />
         </Button>
         </div>
-        <Card className="bg-background">
+        <Card className="bg-white rounded-sm">
         <CardHeader>
-            <CardTitle>Members</CardTitle>
+            <CardTitle className='text-black font-bold'>members</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
             {
@@ -71,8 +71,8 @@ export default async function Page({ params } : { params: Promise<{ organization
                         <AvatarFallback>OM</AvatarFallback>
                         </Avatar>
                         <div>
-                        <p className="text-sm font-medium leading-none">{users.user.name}</p>
-                        <p className="text-sm text-muted-foreground">{formatRole(users.role)}</p>
+                        <p className="text-sm leading-none text-black font-extrabold">{users.user.name}</p>
+                        <p className="text-sm text-black font-medium">{formatRole(users.role)}</p>
                         </div>
                         </div>
                         {

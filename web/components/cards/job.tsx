@@ -65,7 +65,7 @@ export function LandingPageJobCard({ title, type, location, age }: { title: stri
        {title}     
       </p>
       <div className="mt-1 flex">
-        <p className="text-xs text-muted-foreground">{age}</p>
+        <p className="text-xs font-bold text-black">{age}</p>
       </div>
       </div>
       <div className="ml-auto mr-5">
