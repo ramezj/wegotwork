@@ -31,8 +31,8 @@ export default async function Page({ params } : { params: Promise<{ organization
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-bold text-3xl tracking-tight">Settings</h1>
-        <Button size={"sm"}>
+        <h1 className="font-extrabold text-4xl text-black tracking-tight">Settings</h1>
+        <Button size={"sm"} className="rounded-sm border border-black">
             <Settings className="size-4" />
         </Button>
         </div>
