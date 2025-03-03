@@ -22,7 +22,7 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
         <>
         <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                <Button variant={"outline"} className="w-full bg-inherit border border-black text-black font-extrabold hover:bg-white hover:text-black p-3">
+                <Button variant={"outline"} className="w-full bg-inherit rounded-sm border border-black text-black font-extrabold hover:bg-white hover:text-black p-3">
                     {session?.user?.name}
                     <ChevronsUpDown className="ml-auto size-4" />
                   </Button>
