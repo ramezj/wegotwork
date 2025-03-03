@@ -11,13 +11,13 @@ export default function Loading() {
     return (
         <> 
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-4xl text-black tracking-tight">Jobs</h1>
+        <h1 className="font-extrabold text-4xl text-black tracking-tight">jobs</h1>
         <Button disabled size={"sm"} variant={"default"} className="rounded-sm font-extrabold border border-black">
-        Create New Job
+        create new job
         </Button>
         </div>
         <div className="w-full h-full items-center flex flex-col justify-center">
-        <Loader2 className="size-8 animate-spin dark:text-white text-black" />
+        <Loader2 className="size-8 animate-spin text-black" />
         </div>
       </>
     )

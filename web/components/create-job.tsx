@@ -19,7 +19,7 @@ import { toast } from "sonner"
 
 type ButtonSize = "default" | "sm" | "default" | "lg" | "icon" | null
 
-export default function CreateJob({ id, buttonSize } : { id: string, buttonSize: ButtonSize}) {
+export default function CreateJob({ id, buttonSize, buttonColor } : { id: string, buttonSize: ButtonSize, buttonColor: "white" | "black"}) {
     const [ loading, setLoading ] = useState<boolean>(false);
     const [ name, setName ] = useState<string>("");
     const createjob = async (e: React.FormEvent) => {
@@ -36,12 +36,22 @@ export default function CreateJob({ id, buttonSize } : { id: string, buttonSize:
     }
     return (
         <>
-            <Dialog>
-      <DialogTrigger asChild>
-      <Button size={buttonSize} className="rounded-sm border font-extrabold" >
-        Create New Job
-      </Button>
-      </DialogTrigger>
+      <Dialog>
+        {
+          buttonColor === "white"
+          ? 
+          <DialogTrigger asChild>
+          <Button size={buttonSize} className="rounded-sm border font-extrabold" >
+            create new job
+          </Button>
+          </DialogTrigger>
+          :
+          <DialogTrigger asChild>
+          <Button size={buttonSize} className="rounded-sm border-none font-extrabold bg-black text-white hover:bg-black hover:text-white" >
+            create new job
+          </Button>
+          </DialogTrigger>
+        }
       <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] !rounded-sm bg-white border border-black">
         <DialogHeader>
           <DialogTitle className="text-left font-extrabold text-black">create job</DialogTitle>
@@ -52,7 +62,7 @@ export default function CreateJob({ id, buttonSize } : { id: string, buttonSize:
         <div className="grid py-2">
           <div className="grid items-center gap-4">
             <Label htmlFor="name" className="text-left font-extrabold text-black">
-              Job Title
+              job title
             </Label>
             <form id="form" onSubmit={createjob}>
             <Input
