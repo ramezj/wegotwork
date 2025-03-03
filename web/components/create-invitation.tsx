@@ -49,7 +49,7 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
           </>
           : 
           <>
-          <Button type="submit" className="font-extrabold bg-[#fff48e] hover:bg-[#fff48e] rounded-sm text-black border border-black">
+          <Button type="submit" className="font-extrabold bg-black text-white hover:bg-black rounded-sm border border-black">
           invite member
           </Button>
           </>

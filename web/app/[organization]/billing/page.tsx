@@ -25,14 +25,14 @@ export default async function Page({ params } : { params: Promise<{ organization
     if(userOrganization?.organization?.role === 'member') {
         return (
             <>
-            <h1 className="font-bold text-3xl tracking-tight">Billing</h1>
+            <h1 className="font-extrabold text-4xl text-black tracking-tight">Billing</h1>
             <p>Unauthorized</p>
             </>
         )
     }
     return (
         <>
-        <h1 className="font-bold text-3xl tracking-tight">Billing</h1>
+        <h1 className="font-extrabold text-4xl text-black tracking-tight">Billing</h1>
         <BillingCard />
         {/* {JSON.stringify(userOrganization?.organization)} */}
         </>

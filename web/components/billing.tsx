@@ -5,12 +5,12 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 export function BillingCard() {
     return (
         <>
-        <Card className="w-full bg-background">
+        <Card className="w-full bg-white rounded-sm">
         <CardHeader>
-        <CardTitle className="text-2xl font-bold">Subscription Plan</CardTitle>
+        <CardTitle className="text-2xl font-extrabold text-black">Subscription Plan</CardTitle>
         </CardHeader>
         <CardContent className="">
-        <p className="text-muted-foreground">
+        <p className="font-bold text-black">
           Premium Plan
         </p>
         </CardContent>

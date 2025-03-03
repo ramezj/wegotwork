@@ -21,7 +21,7 @@ export default async function Home() {
     <main className="">
       <Navbar session={session}/>
       <div>
-      <div className="flex flex-col items-center text-center mt-24">
+      <div className="flex flex-col items-center text-center mt-12">
       <h1 className="sm:text-7xl text-4xl font-black text-black">
         hiring just got easier.
       </h1>
@@ -42,7 +42,9 @@ export default async function Home() {
       <div className="not-prose my-8 lg:w-1/2 w-full overflow-hidden space-y-4">
             <LandingPageJobCard title="Operations Manager" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
             <LandingPageJobCard title="Backend Engineer" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
+            {/* <div className="hidden md:block">
             <LandingPageJobCard title="Software Engineer" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
+            </div> */}
           </div>
       </div>
       </div>
