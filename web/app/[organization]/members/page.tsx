@@ -39,7 +39,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         return (
             <>
              <div className="flex justify-between items-center w-full">
-            <h1 className="font-extrabold text-black text-3xl tracking-tight">organization members</h1>
+            <h1 className="font-extrabold text-black text-3xl tracking-tight">members</h1>
             <Button size={"sm"}>
                 <Users className="size-4" />
             </Button>
@@ -51,7 +51,7 @@ export default async function Page({ params } : { params: Promise<{ organization
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-black text-4xl tracking-tight">organization members</h1>
+        <h1 className="font-extrabold text-black text-4xl tracking-tight">members</h1>
         <Button size={"sm"} className="border border-black rounded-sm">
             <Users className="size-4" />
         </Button>
