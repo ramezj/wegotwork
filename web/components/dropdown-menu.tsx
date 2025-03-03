@@ -31,9 +31,9 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                   side="top"
                   className="w-[--radix-popper-anchor-width] bg-white border border-black text-black space-y-2 rounded-sm"
                 >
-                  <DropdownMenuItem className="cursor-pointer hover:!bg-black hover:text-white" asChild>
+                  <DropdownMenuItem className="cursor-pointer hover:!bg-black hover:text-white !rounded-sm" asChild>
                   <Link href={"/dashboard"} 
-                  className="flex align-middle items-center font-extrabold !hover:bg-black hover:text-white">
+                  className="flex align-middle items-center font-extrabold !hover:bg-black hover:text-white !rounded-sm">
                   <Settings2 className="size-4" />
                   switch organization
                   </Link>
@@ -42,7 +42,7 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                   <Separator className="-my-1"/>
                   </div>
                   <DropdownMenuItem onClick={signUserOut} 
-                  className="cursor-pointer flex align-middle items-center font-extrabold hover:!bg-black hover:text-white">
+                  className="cursor-pointer flex align-middle items-center font-extrabold hover:!bg-black hover:text-white !rounded-sm">
                   <LogOut className="size-4" />
                   logout
                   </DropdownMenuItem>
