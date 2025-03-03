@@ -9,6 +9,15 @@ import { Separator } from "./ui/separator"
 import { redirect } from "next/navigation"
 
 export function DropDownMenuUser({ session } : { session: Session | null }) {
+  const signUserOut = async () => {
+    await signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          redirect('/');
+        }
+      }
+     })
+  }
     return (
         <>
         <DropdownMenu>
@@ -32,7 +41,7 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                   <div>
                   <Separator className="-my-1"/>
                   </div>
-                  <DropdownMenuItem onClick={(() => { signOut({fetchOptions: redirect('/') })})} 
+                  <DropdownMenuItem onClick={signUserOut} 
                   className="cursor-pointer flex align-middle items-center font-extrabold hover:!bg-black hover:text-white">
                   <LogOut className="size-4" />
                   logout

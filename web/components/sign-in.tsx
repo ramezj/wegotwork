@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 export default function SignIn() {
 
   return (
-    <Card className="max-w-md">
+    <Card className="max-w-md rounded-sm bg-white">
       <CardHeader>
-        <CardTitle className="text-lg md:text-xl">Sign In</CardTitle>
-        <CardDescription className="text-xs md:text-sm">
+        <CardTitle className="text-lg md:text-xl text-black font-extrabold">Sign In</CardTitle>
+        <CardDescription className="text-xs md:text-sm text-black font-bold">
           Enter your email below to login to your account
         </CardDescription>
       </CardHeader>
@@ -24,7 +24,7 @@ export default function SignIn() {
               <Button
                   variant="outline"
                   className={cn(
-                    "w-full gap-2"
+                    "w-full gap-2 rounded-sm font-extrabold bg-black text-white hover:bg-black border-none"
                   )}
                   onClick={async () => {
                     await signIn.social({

@@ -32,10 +32,10 @@ export default async function Page({ params } : { params: Promise<{ organization
             <h1 className="font-extrabold text-4xl text-black tracking-tight">Jobs</h1>
             <CreateJob id={await((await (params)).organization)} buttonSize="sm" />
             </div>
-            <div className="w-full border border-white/20 h-full rounded-lg items-center flex flex-col gap-3 justify-center">
+            <div className="w-full border border-black bg-white h-full rounded-sm items-center flex flex-col gap-3 justify-center">
                 <div>
-                <h1 className="font-bold text-xl text-center">You dont have any jobs yet</h1>
-                <p className="text-muted-foreground text-md">Create some jobs & start hiring immediately</p>
+                <h1 className="font-extrabold text-black text-xl text-center">You dont have any jobs yet</h1>
+                <p className="text-black font-medium text-md">Create some jobs & start hiring immediately</p>
                 </div>
                 <CreateJob id={await((await (params)).organization)} buttonSize={"sm"} />
             </div>

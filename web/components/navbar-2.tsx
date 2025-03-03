@@ -40,7 +40,7 @@ export function Navbar({ session } : { session: Session | null}) {
             <Link href="/dashboard">dashboard</Link>
             </Button>
           ) : (
-            <Button asChild variant="default" className="border-l py-8 rounded-none hover:bg-[#7bf7f7] font-bold text-black">
+            <Button asChild variant="default" className="border-l py-8 rounded-none hover:bg-black bg-black font-bold text-white text-base">
               <Link href="/auth">start hiring</Link>
             </Button>
           )}

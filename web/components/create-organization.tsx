@@ -44,31 +44,29 @@ export function CreateOrganizationButton() {
         create organization
         </Button>    
         </DialogTrigger>
-        <DialogContent className="w-[90%] rounded-lg">
+        <DialogContent className="w-[90%] !rounded-sm bg-white border border-black">
         <DialogHeader>
-        <DialogTitle className="text-left text-xl">Create Organization</DialogTitle>
-        <p className="text-muted-foreground text-sm text-left">Create an organization, invite members & start hiring now.</p>
+        <DialogTitle className="text-left text-xl font-extrabold text-black">create organization</DialogTitle>
+        <p className="text-sm text-left font-bold text-black">create an organization, invite members & start hiring now.</p>
         </DialogHeader>
         <form className="grid items-center gap-3 text-left" onSubmit={create_organization}>
-        <Label className="text-left">
-        Name
-        </Label>
-        <Input placeholder="Workspace name" required value={name} onChange={((e) => {setName(e.target.value)})} className="flex w-full"/>
-        <Label className="text-left">
-        Slug
-        </Label>
-        <Input placeholder="Workspace slug" required value={slug} onChange={((e) => {setSlug(e.target.value)})} className="flex w-full"/>
+        <Label className='font-extrabold text-black text-left'>name</Label>
+        <Input placeholder="organization name" required value={name} onChange={((e) => {setName(e.target.value)})} className="bg-white border border-black rounded-sm text-black font-extrabold"/>
+        <Label className='font-extrabold text-black text-left'>slug</Label>
+        <Input placeholder="organization slug" required value={slug} onChange={((e) => {setSlug(e.target.value)})} className="bg-white border border-black rounded-sm text-black font-extrabold"/>
         <div>
-        <Button type="submit" disabled={loading}  className="w-full mt-2 font-semibold">
+        <Button type="submit" disabled={loading}  className="w-full mt-2 font-extrabold bg-black text-white hover:bg-black hover:text-white rounded-sm">
             {
                 loading
                 ? 
                 <>
                 <Loader2 className="animate-spin" />
-                Creating Organization
+                create organization
                 </>
                 : 
-                <>Create Organization</>
+                <>
+                create organization
+                </>
             }
         </Button>
         </div>    

@@ -42,16 +42,16 @@ export default function CreateJob({ id, buttonSize } : { id: string, buttonSize:
         Create New Job
       </Button>
       </DialogTrigger>
-      <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] rounded-md bg-black">
+      <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] !rounded-sm bg-white border border-black">
         <DialogHeader>
-          <DialogTitle className="text-left">Create Job</DialogTitle>
-          <DialogDescription className="text-left">
-          Create a job listing & start hiring immediately
+          <DialogTitle className="text-left font-extrabold text-black">create job</DialogTitle>
+          <DialogDescription className="text-left text-black font-bold">
+          create a job listing & start hiring immediately
           </DialogDescription>
         </DialogHeader>
         <div className="grid py-2">
           <div className="grid items-center gap-4">
-            <Label htmlFor="name" className="text-left">
+            <Label htmlFor="name" className="text-left font-extrabold text-black">
               Job Title
             </Label>
             <form id="form" onSubmit={createjob}>
@@ -62,7 +62,7 @@ export default function CreateJob({ id, buttonSize } : { id: string, buttonSize:
               value={name}
               onChange={((e) => {setName(e.target.value)})}
               placeholder="Name"
-              className="col-span-3 bg-black"
+              className="col-span-3 bg-white rounded-sm border border-black text-black font-extrabold"
             />
             </form>
           </div>
@@ -72,11 +72,14 @@ export default function CreateJob({ id, buttonSize } : { id: string, buttonSize:
             loading
             ? 
             <>
-            <Button size={"sm"} disabled form="form" type="submit" className="w-full"><Loader2 className="mr-1 h-4 w-4 animate-spin" />Creating Job</Button>
+            <Button size={"sm"} disabled form="form" type="submit" className="w-full bg-black text-white rounded-sm hover:bg-black hover:text-white">
+              <Loader2 className="mr-1 h-4 w-4 animate-spin" />
+              create job
+            </Button>
             </>
             : 
             <>
-            <Button form="form" type="submit" className="w-full" size={"sm"}>Create Job</Button>
+            <Button form="form" type="submit" className="w-full bg-black text-white rounded-sm hover:bg-black hover:text-white" size={"sm"}>create job</Button>
             </>
           }
         </DialogFooter>
