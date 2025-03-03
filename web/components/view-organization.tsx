@@ -31,7 +31,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
   };
     return (
     <div className="w-full flex flex-col items-center text-center p-4 space-y-1 overflow-hidden">
-    <h1 className="font-medium text-4xl pt-6">{organization?.name}</h1>
+    <h1 className="font-extrabold text-black text-4xl pt-6">{organization?.name}</h1>
     {
       organization.description 
       ? 
@@ -49,16 +49,16 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       setSelectedLocation(loc); 
       filterJobs(loc, selectedEmploymentType); 
       }}>
-        <SelectTrigger aria-label="Select Locations" className="bg-background border-foreground/20 w-full">
+        <SelectTrigger aria-label="Select Locations" className="bg-white rounded-sm border-black text-black font-extrabold w-full">
         <SelectValue placeholder="All Locations" />
         </SelectTrigger>
-        <SelectContent className="bg-background border-foreground/20">
+        <SelectContent className="bg-white border-black rounded-sm text-black font-bold">
           <SelectGroup>
-            <SelectItem key={"All"} value="All">All Locations</SelectItem>
+            <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" key={"All"} value="All">All Locations</SelectItem>
             {
               locations.map((location, index) => {
                 return (
-                  <SelectItem key={location} value={location}>{location}</SelectItem>
+                  <SelectItem key={location} value={location} className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white">{location}</SelectItem>
                 )
               })
             }
@@ -73,16 +73,16 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       filterJobs(selectedLocation, type);
     }}> 
     
-      <SelectTrigger aria-label="Select Employment" className="bg-background border-foreground/20 w-full">
+      <SelectTrigger aria-label="Select Employment" className="bg-white rounded-sm border-black text-black font-extrabold w-full">
       <SelectValue placeholder="All Employment" />
       </SelectTrigger>
-      <SelectContent className="bg-background border-foreground/20">
+      <SelectContent className="bg-white border-black rounded-sm text-black font-bold">
         <SelectGroup>
-          <SelectItem key={"All"} value="All">All Employment</SelectItem>
+          <SelectItem key={"All"} value="All" className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white">All Employment</SelectItem>
           {
               types.map((type, index) => {
                 return (
-                  <SelectItem key={index} value={type}>{formatJobType(type as Type)}</SelectItem>
+                  <SelectItem key={index} value={type} className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white">{formatJobType(type as Type)}</SelectItem>
                 )
               })
             }

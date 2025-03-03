@@ -36,10 +36,9 @@ export function JobCardForDashboard({ job }: { job: Job}) {
 export function JobCard({ job }: { job: Job }) {
     return (
       <Link href={`/${job.id}`} target="_blank">
-      <div 
-      className="w-full flex border border-foreground/20 hover:border-foreground/30 rounded-lg items-center duration-300 pt-3 pb-3">
+      <div className="w-full flex border border-black bg-white rounded-sm items-center duration-300 pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
-        <p className='sm:text-lg text-md font-bold text-left text-black dark:text-white'>
+        <p className='sm:text-lg text-md font-extrabold text-left text-black'>
          {job.title}     
         </p>
         <div className="mt-1 flex">
@@ -47,9 +46,9 @@ export function JobCard({ job }: { job: Job }) {
         </div>
         </div>
         <div className="ml-auto mr-5">
-          <Button size={"icon"} variant={"outline"} className="rounded-lg bg-inherit border border-foreground/20">
+        <Button className="rounded-sm bg-inherit bg-black hover:bg-black border-none" variant={"outline"} size={"icon"}>
             <ArrowRight className="size-4" />
-          </Button>
+        </Button>
         </div>
         </div>
         </Link>
