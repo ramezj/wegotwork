@@ -67,48 +67,48 @@ export default function LayoutNavigation({ children, session, organization }: { 
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
-              <SheetContent side="left" className="flex flex-col bg-background">
+              <SheetContent side="left" className="flex flex-col bg-white">
               <SheetTitle>
                 <SheetClose asChild>
-                  <Link href="/" className="px-2 flex items-center text-2xl font-bold tracking-tighter text-white justify-center">
+                  <Link href="/" className="px-2 flex items-center text-2xl tracking-tighter text-black font-extrabold justify-center">
                     heliup
                   </Link>
                   </SheetClose>
                 </SheetTitle>
                 <nav className="grid gap-3 text-lg font-medium mt-1">
                 <SheetClose asChild>
-                <Link href={`/${organization}/overview`} className={`${path.includes('/overview') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <Link href={`/${organization}/overview`} className={`${path.includes('/overview') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                  <Home className="size-4" />
                   Overview
                 </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href={`/${organization}/jobs`} className={`${path.includes('/jobs') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <Link href={`/${organization}/jobs`} className={`${path.includes('/jobs') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                   <Briefcase className="h-4 w-4" />
                   Jobs
                 </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href={`/${organization}/applicants`} className={`${path.includes('/applicants') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <Link href={`/${organization}/applicants`} className={`${path.includes('/applicants') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-md px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                   <Users className="h-4 w-4" />
                     Applicants
                   </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href={`/${organization}/billing`} className={`${path.includes('/billing')? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <Link href={`/${organization}/billing`} className={`${path.includes('/billing')? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-md px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                   <Banknote className="h-4 w-4" />
                     Billing
                   </Link>
                   </SheetClose>
                   <Separator />
                   <SheetClose asChild>
-                  <Link href={`/${organization}/members`} className={`${path.includes('/members') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <Link href={`/${organization}/members`} className={`${path.includes('/members') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-md px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                   <Users className="h-4 w-4" />
                     Members
                   </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href={`/${organization}/settings`} className={`${path.includes('/settings') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                  <Link href={`/${organization}/settings`} className={`${path.includes('/settings') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-md px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                   <Settings className="h-4 w-4" />
                     Settings
                   </Link>
