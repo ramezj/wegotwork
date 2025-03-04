@@ -25,7 +25,7 @@ export default async function Page({ params } : { params: Promise<{ organization
     if(userOrganization?.organization?.role === 'member') {
         return (
             <>
-            <h1 className="font-extrabold text-4xl text-black tracking-tight">Billing</h1>
+            <h1 className="font-extrabold text-4xl text-black tracking-tight">billing</h1>
             <p>Unauthorized</p>
             </>
         )

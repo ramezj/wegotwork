@@ -14,8 +14,8 @@ export default function Loading() {
         <>
         <div className="flex justify-between items-center w-full">
         <h1 className="font-extrabold text-4xl tracking-tight text-black">members</h1>
-        <Button size={"icon"} className="border border-black rounded-sm">
-        <Users className="size-4" />
+        <Button size={"sm"} className="border border-black rounded-sm">
+            <Users className="size-4" />
         </Button>
         </div>
         <div className="w-full h-full items-center flex flex-col justify-center">
