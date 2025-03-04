@@ -64,9 +64,7 @@ export function Navbar({ session } : { session: Session | null}) {
           <Menu className="h-6 w-6" />
           </Button>
         }
-        <div
-          className={cn(
-            "fixed inset-0 bg-white z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
+        <div className={cn("fixed inset-0 bg-white z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
             isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           )}
         >
