@@ -47,7 +47,6 @@ export function CreateOrganizationButton() {
         <DialogContent className="w-[90%] !rounded-sm bg-white border border-black">
         <DialogHeader>
         <DialogTitle className="text-left text-xl font-extrabold text-black">create organization</DialogTitle>
-        <p className="text-sm text-left font-bold text-black">create an organization, invite members & start hiring now.</p>
         </DialogHeader>
         <form className="grid items-center gap-3 text-left" onSubmit={create_organization}>
         <Label className='font-extrabold text-black text-left'>name</Label>

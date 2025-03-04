@@ -69,8 +69,8 @@ export default function LayoutNavigation({ children, session, organization }: { 
             </SheetTrigger>
               <SheetContent side="left" className="flex flex-col bg-white">
               <SheetTitle>
-                <SheetClose asChild>
-                  <Link href="/" className="px-2 flex items-center text-2xl tracking-tighter text-black font-extrabold justify-center">
+                <SheetClose asChild className="top-4">
+                  <Link href="/" className="px-2 text-2xl tracking-tighter text-black font-extrabold">
                     heliup
                   </Link>
                   </SheetClose>
