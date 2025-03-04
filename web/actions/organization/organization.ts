@@ -1,6 +1,6 @@
 
 "use server"
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Session } from "@/lib/auth-client";
