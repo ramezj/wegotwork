@@ -1,8 +1,8 @@
 import { Metadata } from "next"
 
 export const metadata:Metadata = {
-    title: "Applicants",
-    description: "Applicants"
+    title: "applicants",
+    description: "applicants"
 }
 
 export default function Page() {

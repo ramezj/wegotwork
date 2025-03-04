@@ -8,8 +8,8 @@ import { DeleteOrganizationCard } from "@/components/cards/delete-org";
 import { Metadata } from "next";
 
 export const metadata:Metadata = {
-    title: "Settings",
-    description: "Settings"
+    title: "settings",
+    description: "settings"
 }
 
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {

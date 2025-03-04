@@ -10,8 +10,8 @@ import { headers } from "next/headers";
 import { Metadata } from "next";
 
 export const metadata:Metadata = {
-    title: "Jobs",
-    description: "Jobs"
+    title: "jobs",
+    description: "jobs"
 }
 
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {

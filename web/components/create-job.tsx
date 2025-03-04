@@ -71,7 +71,7 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
               id="name"
               value={name}
               onChange={((e) => {setName(e.target.value)})}
-              placeholder="Name"
+              placeholder="name"
               className="bg-white rounded-sm border border-black text-black font-extrabold"
             />
             </form>
@@ -82,14 +82,14 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
             loading
             ? 
             <>
-            <Button disabled form="form" type="submit" className="w-full bg-black text-white rounded-sm hover:bg-black hover:text-white">
+            <Button disabled form="form" type="submit" className="w-full font-extrabold bg-black text-white rounded-sm hover:bg-black hover:text-white">
               <Loader2 className="mr-1 h-4 w-4 animate-spin" />
               create job
             </Button>
             </>
             : 
             <>
-            <Button form="form" type="submit" className="w-full bg-black text-white rounded-sm hover:bg-black hover:text-white">create job</Button>
+            <Button form="form" type="submit" className="w-full font-extrabold bg-black text-white rounded-sm hover:bg-black hover:text-white">create job</Button>
             </>
           }
         </DialogFooter>

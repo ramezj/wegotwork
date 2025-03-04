@@ -40,7 +40,7 @@ export function CreateOrganizationButton() {
         <>
         <Dialog>
         <DialogTrigger asChild>
-        <Button variant={"outline"} className="w-full rounded-sm border-none hover:bg-black">
+        <Button variant={"outline"} className="w-full font-extrabold rounded-sm border-none hover:bg-black">
         create organization
         </Button>    
         </DialogTrigger>

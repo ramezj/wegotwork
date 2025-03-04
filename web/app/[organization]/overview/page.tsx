@@ -12,8 +12,8 @@ import { SettingsCard } from "@/components/cards/settings"
 import { Organization } from "@prisma/client"
 
 export const metadata:Metadata = {
-    title: "Overview",
-    description: "Overview"
+    title: "overview",
+    description: "overview"
 }
 
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
