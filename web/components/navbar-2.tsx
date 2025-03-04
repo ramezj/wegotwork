@@ -51,7 +51,7 @@ export function Navbar({ session } : { session: Session | null}) {
           <Button
           variant="ghost"
           size="icon"
-          className="md:hidden z-50 text-white hover:text-white p-8 bg-black hover:bg-black rounded-none"
+          className="md:hidden z-50 text-white hover:text-white border-l p-8 bg-black hover:bg-black rounded-none"
           onClick={() => setIsOpen(!isOpen)}>
           <X className="h-6 w-6" /> 
           </Button>
@@ -66,21 +66,42 @@ export function Navbar({ session } : { session: Session | null}) {
         }
         <div
           className={cn(
-            "fixed inset-0 bg-black z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
+            "fixed inset-0 bg-white z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
             isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           )}
         >
           <nav className="flex flex-col items-center space-y-8 text-center">
-            {["Features", "Demo", "Pricing"].map((item) => (
+            {["features", "demo", "pricing"].map((item) => (
               <Link
                 key={item}
                 href={`/${item.toLowerCase()}`}
-                className="text-2xl font-medium text-white hover:text-white/80 transition-colors"
+                className="text-2xl text-black transition-colors font-extrabold"
                 onClick={() => setIsOpen(false)}
               >
                 {item}
               </Link>
             ))}
+            {
+              session?.user
+              ? 
+              <>
+              <Link
+              href={`/dashboard`}
+              className="text-2xl text-black transition-colors font-extrabold"
+              onClick={() => setIsOpen(false)}>
+              dashboard
+              </Link>
+              </>
+              :
+              <>
+              <Link
+              href={`/dashboard`}
+              className="text-2xl text-black transition-colors font-extrabold"
+              onClick={() => setIsOpen(false)}>
+              start hiring
+              </Link>
+              </>
+            }
           </nav>
         </div>
       </div>
