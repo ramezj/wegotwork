@@ -10,12 +10,18 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Prisma } from "@prisma/client";
 import { Navbar } from "@/components/navbar-2";
+import { Metadata } from "next";
 
 type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
     include: {
         organization: true
     }
 }>
+
+export const metadata:Metadata = {
+  title: "dashboard",
+  description: "dashboard"
+}
 
 export default async function Home() {
   const session = await auth.api.getSession({
