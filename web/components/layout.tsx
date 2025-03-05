@@ -26,28 +26,28 @@ export default function LayoutNavigation({ children, session, organization }: { 
             </div>
             <div className="flex-1 ">
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4 gap-2 mt-1">
-                <Link href={`/${organization}/overview`} className={`${path.includes('/overview') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black hover:bg-black hover:text-white transition-all duration-200`}>
+                <Link prefetch={true} href={`/${organization}/overview`} className={`${path.includes('/overview') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black hover:bg-black hover:text-white transition-all duration-200`}>
                  <Home className="size-4" />
                   overview
                 </Link>
-                <Link href={`/${organization}/jobs`} className={`${path.includes('/jobs') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                <Link prefetch={true} href={`/${organization}/jobs`} className={`${path.includes('/jobs') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                   <Briefcase className="h-4 w-4" />
                   jobs
                 </Link>
-                <Link href={`/${organization}/applicants`} className={`${path.includes('/applicants') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                <Link prefetch={true} href={`/${organization}/applicants`} className={`${path.includes('/applicants') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                 <Users className="h-4 w-4" />
                   applicants
                 </Link>
-                <Link href={`/${organization}/billing`} className={`${path.includes('/billing') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:bg-black hover:text-white duration-200`}>
+                <Link prefetch={true} href={`/${organization}/billing`} className={`${path.includes('/billing') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:bg-black hover:text-white duration-200`}>
                 <Banknote className="h-4 w-4" />
                   billing
                 </Link>
                 <Separator />
-                <Link href={`/${organization}/members`} className={`${path.includes('/members') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:bg-black hover:text-white duration-200`}>
+                <Link prefetch={true} href={`/${organization}/members`} className={`${path.includes('/members') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:bg-black hover:text-white duration-200`}>
                 <Users className="h-4 w-4" />
                   members
                 </Link>
-                <Link href={`/${organization}/settings`} className={`${path.includes('/settings') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:bg-black hover:text-white duration-200`}>
+                <Link prefetch={true} href={`/${organization}/settings`} className={`${path.includes('/settings') ? ' bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:bg-black hover:text-white duration-200`}>
                 <Settings className="h-4 w-4" />
                   settings
                 </Link>
@@ -70,45 +70,45 @@ export default function LayoutNavigation({ children, session, organization }: { 
               <SheetContent side="left" className="flex flex-col bg-white">
               <SheetTitle>
                 <SheetClose asChild className="top-4">
-                  <Link href="/" className="px-2 text-2xl tracking-tighter text-black font-extrabold">
+                  <Link prefetch={true} href="/" className="px-2 text-2xl tracking-tighter text-black font-extrabold">
                     heliup
                   </Link>
                   </SheetClose>
                 </SheetTitle>
                 <nav className="grid gap-3 text-lg font-medium mt-1">
                 <SheetClose asChild>
-                <Link href={`/${organization}/overview`} className={`${path.includes('/overview') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                <Link prefetch={true} href={`/${organization}/overview`} className={`${path.includes('/overview') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                  <Home className="size-4" />
                   Overview
                 </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href={`/${organization}/jobs`} className={`${path.includes('/jobs') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                  <Link prefetch={true} href={`/${organization}/jobs`} className={`${path.includes('/jobs') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                   <Briefcase className="h-4 w-4" />
                   Jobs
                 </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href={`/${organization}/applicants`} className={`${path.includes('/applicants') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                  <Link prefetch={true} href={`/${organization}/applicants`} className={`${path.includes('/applicants') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                   <Users className="h-4 w-4" />
                     Applicants
                   </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href={`/${organization}/billing`} className={`${path.includes('/billing')? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                  <Link prefetch={true} href={`/${organization}/billing`} className={`${path.includes('/billing')? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                   <Banknote className="h-4 w-4" />
                     Billing
                   </Link>
                   </SheetClose>
                   <Separator />
                   <SheetClose asChild>
-                  <Link href={`/${organization}/members`} className={`${path.includes('/members') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                  <Link prefetch={true} href={`/${organization}/members`} className={`${path.includes('/members') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                   <Users className="h-4 w-4" />
                     Members
                   </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href={`/${organization}/settings`} className={`${path.includes('/settings') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                  <Link prefetch={true} href={`/${organization}/settings`} className={`${path.includes('/settings') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-sm px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
                   <Settings className="h-4 w-4" />
                     Settings
                   </Link>
