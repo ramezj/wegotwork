@@ -19,19 +19,19 @@ export default async function Page({ params } : { params: Promise<{ organization
         return (
             <>
             <div className="flex justify-between items-center w-full">
-            <h1 className="font-extrabold text-4xl text-black tracking-tight">Settings</h1>
+            <h1 className="font-extrabold text-4xl text-black tracking-tight">settings</h1>
             <Button size={"sm"} className="rounded-sm border border-black">
                 <Settings className="size-4" />
             </Button>
             </div>
-            <p className="text-muted-foreground font-semibold">Restricted Access</p>
+            <p className="text-muted-foreground font-semibold">restricted access</p>
             </>
         )
     }
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-4xl text-black tracking-tight">Settings</h1>
+        <h1 className="font-extrabold text-4xl text-black tracking-tight">settings</h1>
         <Button size={"sm"} className="rounded-sm border border-black">
             <Settings className="size-4" />
         </Button>

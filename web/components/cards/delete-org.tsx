@@ -10,8 +10,8 @@ export function DeleteOrganizationCard() {
         </CardHeader>
         <CardContent className="flex justify-between items-center">
             <p className='font-bold text-black'>are you sure you want to delete this organization?</p>
-            <Button variant={"destructive"} className='font-bold rounded-sm border border-black'>
-                Delete Organization
+            <Button variant={"destructive"} className='font-bold rounded-sm'>
+                delete organization
             </Button>
         </CardContent>
         </Card>
