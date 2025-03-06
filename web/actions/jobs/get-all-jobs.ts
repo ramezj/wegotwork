@@ -16,8 +16,12 @@ export async function GetOrganizationJobs(organizationId: string) {
                 id: organizationId
             },
             select: {
-                jobs: true
-            }
+                jobs: { 
+                    orderBy: {
+                        createdAt: "desc"
+                    }
+                }
+            },
             
         })
         if(!jobs) {
