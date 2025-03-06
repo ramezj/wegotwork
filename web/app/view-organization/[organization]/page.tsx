@@ -14,11 +14,11 @@ export default async function Page({ params } : { params: Promise<{ organization
         notFound();
     }
     return (
-        <>
+        <body className="bg-white dark:bg-white" suppressHydrationWarning>
         <ViewOrganization 
         organization={organization.organization as OrganizationWithJobs} 
         locations={organization.locations as Array<string>} 
         types={organization.types as Array<string>} />
-        </>
+        </body>
     )
 }

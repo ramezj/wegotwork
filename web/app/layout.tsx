@@ -24,7 +24,12 @@ export default function RootLayout({
         className={`${bricolageGrotesque.className} antialiased bg-[#7bf7f7]`}
       >
          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-         <Toaster />
+         <Toaster toastOptions={{
+          className: 'bg-white text-black font-extrabold rounded-sm',
+          style: {
+            fontWeight: 'extrabold'
+          }
+         }} />
         {children}
           </ThemeProvider>
       </body>

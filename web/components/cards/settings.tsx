@@ -17,7 +17,11 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         e.preventDefault();
         setLoading(true)
         const res = await EditOrganization(current);
-        toast(res.message as string);
+        toast(
+            <div className="font-bold">
+                <h1 className="font-bold">{res.message as string}</h1>
+            </div>
+        );
         setLoading(false);
     }
     return (

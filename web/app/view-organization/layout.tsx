@@ -3,8 +3,8 @@ import { ReactNode } from "react"
 
 export default async function Layout({ children, params }: { children: ReactNode, params: Promise<{ organization: string}>}) {
     return (
-        <>
+        <body className="bg-white dark:bg-white" suppressHydrationWarning>
           {children}
-        </>
+        </body>
     )
 }
