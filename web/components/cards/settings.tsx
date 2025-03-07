@@ -35,15 +35,15 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         <form onSubmit={editOrganization} className="space-y-4">
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>name</Label>
-        <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required placeholder="Organization name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
+        <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required placeholder="name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>slug</Label>
-        <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required placeholder="Organization slug" value={current.slug} onChange={((e) => { setCurrent((previous) => ({...previous, slug: e.target.value}))})}></Input>
+        <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required placeholder="slug" value={current.slug} onChange={((e) => { setCurrent((previous) => ({...previous, slug: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>description</Label>
-        <Textarea className="bg-white border border-black rounded-sm text-black font-extrabold" placeholder="Organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
+        <Textarea className="bg-white border border-black rounded-sm text-black font-extrabold" placeholder="description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
         <div className="space-y-2">
         {
