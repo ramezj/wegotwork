@@ -7,6 +7,8 @@ import { Navbar } from "@/components/navbar-2";
 import Link from "next/link";
 import { Metadata } from "next";
 import { LandingPageJobCard } from "@/components/cards/job";
+import { FeatureCard } from "@/components/feature-card";
+import { Users } from "lucide-react";
 
 export const metadata:Metadata = {
   title: "heliup",
@@ -42,10 +44,23 @@ export default async function Home() {
       <div className="not-prose my-8 lg:w-1/2 w-full overflow-hidden space-y-4">
             <LandingPageJobCard title="Operations Manager" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
             <LandingPageJobCard title="Backend Engineer" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
-            {/* <div className="hidden md:block">
-            <LandingPageJobCard title="Software Engineer" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
-            </div> */}
           </div>
+      </div>
+      <div className='flex sm:flex-row flex-col w-full max-w-fit items-center justify-center content-center gap-4 mt-6 p-4'>
+      <FeatureCard
+        icon={<Users className="h-6 w-6 text-black" />}
+        title="Team Collaboration"
+        description="Work together seamlessly with your team. Share projects, communicate in real-time, and track progress all in one place."
+        ctaText="Explore collaboration"
+        ctaLink="#team-collaboration"
+      />
+      <FeatureCard
+        icon={<Users className="h-6 w-6 text-black" />}
+        title="Team Collaboration"
+        description="Work together seamlessly with your team. Share projects, communicate in real-time, and track progress all in one place."
+        ctaText="Explore collaboration"
+        ctaLink="#team-collaboration"
+      />
       </div>
       </div>
     </main>
