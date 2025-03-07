@@ -14,7 +14,7 @@ interface FeatureCardProps {
 
 export function FeatureCard({ icon, title, description, ctaText = "Learn more", ctaLink = "#" }: FeatureCardProps) {
   return (
-    <Card className="flex flex-col h-full rounded-sm bg-white border border-black">
+    <Card className="flex flex-col h-full w-[22rem] rounded-sm bg-white border border-black">
       <CardHeader>
         <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-4 text-black">
           {icon}

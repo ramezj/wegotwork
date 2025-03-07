@@ -1,9 +1,8 @@
 import { betterAuth } from "better-auth"
 import { prismaAdapter } from "better-auth/adapters/prisma"
 import { PrismaClient } from "@prisma/client"
+import prisma from "./prisma";
 
-const prisma = new PrismaClient();
- 
 export const auth = betterAuth({
     trustedOrigins: ['http://localhost:3000', 'https://heliup.xyz'],
     session: {

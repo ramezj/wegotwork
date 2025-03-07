@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { Navigation } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Navbar } from "@/components/navbar-2";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -38,7 +38,7 @@ export default async function Home() {
             </Button>
             <Button className="font-extrabold w-60 rounded-sm bg-white text-black border border-black hover:bg-white" variant={"default"}>
                 see demo
-                {/* <ArrowUpRight className="w-4 ml-2" /> */}
+                <ArrowRight className="w-4" />
             </Button>
       </div>
       <div className="not-prose my-8 lg:w-1/2 w-full overflow-hidden space-y-4">
