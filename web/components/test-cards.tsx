@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CardFooter } from "@/components/ui/card"
 import { Button } from "./ui/button"
 import Link from "next/link"
-import { ArrowRight, Users } from "lucide-react"
+import { ArrowRight, Users, Monitor } from "lucide-react"
 
 interface FeatureCardProps {
   icon: React.ReactNode
@@ -38,21 +38,10 @@ export default function FeatureCards() {
       <FeatureCard
         icon={<Users className='h-6 w-6 text-black' />}
         title="team collaboration"
-        description="work together seamlessly with your team. share projects, communicate in real-time, and track progress all in one place."
+        description="work together with team members, create jobs & receive applicants."
       />
       <FeatureCard
-        icon={
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M16 4H8C7.44772 4 7 4.44772 7 5V19C7 19.5523 7.44772 20 8 20H16C16.5523 20 17 19.5523 17 19V5C17 4.44772 16.5523 4 16 4Z"
-              stroke="black"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path d="M12 17H12.01" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        }
+        icon={<Monitor className="h-6 w-6 text-black" />}
         title="career pages"
         description="create career pages, post jobs & receive applicants, all in one place."
       />
