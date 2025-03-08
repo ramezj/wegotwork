@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 import { Session } from "@/lib/auth-client"
 import { NavigationMenuLink } from "@/components/ui/navigation-menu"
 
-export function CareerNavbar() {
+export function CareerNavbar({ organizationName } : { organizationName: string}) {
   const [isOpen, setIsOpen] = React.useState(false)
   React.useEffect(() => {
     if (isOpen) {
@@ -26,7 +26,7 @@ export function CareerNavbar() {
     <div className="border-b border-black bg-white sticky top-0">
       <div className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center z-50 pl-4">
-          <span className="text-2xl font-extrabold tracking-tighter text-black">lou careers</span>
+          <span className="text-2xl font-extrabold tracking-tighter text-black">{organizationName}</span>
         </Link>
         <div className="hidden md:block">
         <Button asChild variant="default" className="border-l py-8 rounded-none hover:bg-black bg-black font-bold text-white text-base">

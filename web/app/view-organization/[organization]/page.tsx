@@ -16,7 +16,7 @@ export default async function Page({ params } : { params: Promise<{ organization
     }
     return (
         <>
-        <CareerNavbar />
+        <CareerNavbar organizationName={organization.organization?.name as string} />
         <ViewOrganization 
         organization={organization.organization as OrganizationWithJobs} 
         locations={organization.locations as Array<string>} 

@@ -23,7 +23,7 @@ export async function FindOrganization(slug: string) {
         if(!organization) {
             return {
                 error:true,
-                workspace: null,
+                organization: null,
                 message:"Workspace Not Found"
             }
         }
@@ -61,7 +61,7 @@ export async function FindOrganization(slug: string) {
         console.error(error);
         return {
             error: true,
-            workspace:null,
+            organization:null,
             message: "Something went wrong"
         }
     }
