@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client"
 import prisma from "./prisma";
 
 export const auth = betterAuth({
-    trustedOrigins: ['http://localhost:3000', 'https://heliup.xyz'],
+    trustedOrigins: ['http://localhost:3000', 'https://heliup.xyz', 'https://www.heliup.xyz'],
     session: {
         cookieCache: {
             enabled: true,
