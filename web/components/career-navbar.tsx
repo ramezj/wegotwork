@@ -28,12 +28,12 @@ export function CareerNavbar({ organizationName } : { organizationName: string})
         <Link href="/" className="flex items-center z-50 pl-4">
           <span className="text-2xl font-extrabold tracking-tighter text-black">{organizationName}</span>
         </Link>
-        <div className="hidden md:block">
+        <div className="">
         <Button asChild variant="default" className="border-l py-8 rounded-none hover:bg-black bg-black font-bold text-white text-base">
               <Link href="/auth">visit website</Link>
             </Button>
         </div>
-        {
+        {/* {
           isOpen
           ?
           <Button
@@ -51,7 +51,8 @@ export function CareerNavbar({ organizationName } : { organizationName: string})
           onClick={() => setIsOpen(!isOpen)}>
           <Menu className="h-6 w-6" />
           </Button>
-        }
+        } */}
+        
         <div className={cn("fixed inset-0 bg-white z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
             isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           )}
