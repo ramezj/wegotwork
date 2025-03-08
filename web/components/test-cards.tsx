@@ -23,8 +23,8 @@ export function FeatureCard({ icon, title, description }: FeatureCardProps) {
       </CardContent>
       <CardFooter className="mt-auto">
         <Button variant={"default"} className="w-full font-medium bg-black text-white hover:bg-black hover:text-white rounded-sm">
-          <Link href={'/'} className="flex items-center gap-2 hover:gap-3 transition-all">
-            explore teams <ArrowRight className="h-4 w-4" />
+          <Link href={'/'} className="flex items-center">
+            explore teams
           </Link>
         </Button>
       </CardFooter>
