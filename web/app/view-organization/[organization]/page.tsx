@@ -2,6 +2,7 @@ import { FindOrganization } from "@/actions/organization/find-organization";
 import { notFound } from "next/navigation";
 import { ViewOrganization } from "@/components/view-organization";
 import { Prisma } from "@prisma/client";
+import { CareerNavbar } from "@/components/career-navbar";
 
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
     type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
@@ -14,11 +15,12 @@ export default async function Page({ params } : { params: Promise<{ organization
         notFound();
     }
     return (
-        <body className="bg-white dark:bg-white" suppressHydrationWarning>
+        <>
+        <CareerNavbar />
         <ViewOrganization 
         organization={organization.organization as OrganizationWithJobs} 
         locations={organization.locations as Array<string>} 
         types={organization.types as Array<string>} />
-        </body>
+        </>
     )
 }
