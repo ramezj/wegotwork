@@ -7,6 +7,7 @@ import { JobCard } from "./cards/job"
 // import { motion } from "framer-motion"
 import { formatJobType } from "@/lib/format-job"
 import Balancer from "react-wrap-balancer"
+import { Card } from "./ui/card"
  
 type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
     include: {
@@ -101,9 +102,9 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     })}
     {
       jobs.length === 0 &&
-      <>
-      <p className="text-muted-foreground">Nothing to show here.</p>
-      </>
+      <Card className="bg-white rounded-sm border border-black p-8">
+      <p className="text-black font-extrabold">We are currently not hiring.</p>
+      </Card>
     }
     </div>
 </div>

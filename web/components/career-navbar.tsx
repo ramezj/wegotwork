@@ -30,7 +30,7 @@ export function CareerNavbar({ organizationName } : { organizationName: string})
         </Link>
         <div className="hidden md:block">
         <Button asChild variant="default" className="border-l py-8 rounded-none hover:bg-black bg-black font-bold text-white text-base">
-              <Link href="/auth">start hiring</Link>
+              <Link href="/auth">visit website</Link>
             </Button>
         </div>
         {
