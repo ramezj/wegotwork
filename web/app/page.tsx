@@ -38,7 +38,9 @@ export default async function Home() {
                 start hiring
             </Button>
             <Button className="font-extrabold w-60 rounded-sm bg-white text-black border border-black hover:bg-white" variant={"default"}>
+                <Link target="_blank" href={"https://lou.heliup.xyz"}>
                 see demo
+                </Link>
                 <ArrowRight className="w-4" />
             </Button>
       </div>

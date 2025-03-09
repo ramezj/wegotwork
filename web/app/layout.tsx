@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={bricolageGrotesque.className} suppressHydrationWarning >
       <body
-        className={`${bricolageGrotesque.className} antialiased bg-[#CFEED0]`}
+        className={`${bricolageGrotesque.className} antialiased bg-[#F8D7C1]`}
       >
          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
          <Toaster toastOptions={{

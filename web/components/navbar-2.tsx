@@ -29,13 +29,10 @@ export function Navbar({ session } : { session: Session | null}) {
           <span className="text-2xl font-extrabold tracking-tighter text-black">lou careers</span>
         </Link>
         <div>
-          <NavigationMenuForNavbar />
+            <NavigationMenuForNavbar />
         </div>
         <div className="hidden md:block">
           {session?.user ? (
-            // <Button variant="default" asChild className="border-l py-8 rounded-none hover:bg-[#7bf7f7] font-bold text-black text-base">
-            //   <Link href="/dashboard">dashboard</Link>
-            // </Button>
             <Button variant="default" asChild className="border-l py-8 rounded-none hover:bg-black bg-black font-bold text-white text-base">
             <Link href="/dashboard">dashboard</Link>
             </Button>
