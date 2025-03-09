@@ -37,11 +37,11 @@ export default async function Home() {
             <Button variant={"default"} className="font-extrabold w-60 rounded-sm bg-white text-black border border-black hover:bg-white">
                 start hiring
             </Button>
-            <Button className="font-extrabold w-60 rounded-sm bg-white text-black border border-black hover:bg-white" variant={"default"}>
+            <Button asChild className="font-extrabold w-60 rounded-sm bg-white text-black border border-black hover:bg-white" variant={"default"}>
                 <Link target="_blank" href={"https://lou.heliup.xyz"}>
                 see demo
-                </Link>
                 <ArrowRight className="w-4" />
+                </Link>
             </Button>
       </div>
       <div className="not-prose my-8 lg:w-1/2 w-full overflow-hidden space-y-4">
