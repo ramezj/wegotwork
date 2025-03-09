@@ -53,12 +53,12 @@ export function EditJobCard({ job } : { job: Job}) {
                             {formatJobType(current.type)}
                         </SelectValue>
                         </SelectTrigger>
-                        <SelectContent className="bg-background">
+                        <SelectContent className="bg-white rounded-sm border border-black text-black font-bold">
                             <SelectGroup>
-                                <SelectItem value="fulltime">Full Time</SelectItem>
-                                <SelectItem value="parttime">Part Time</SelectItem>
-                                <SelectItem value="internship">Internship</SelectItem>
-                                <SelectItem value="contract">Contract</SelectItem>
+                                <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" value="fulltime">Full Time</SelectItem>
+                                <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" value="parttime">Part Time</SelectItem>
+                                <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" value="internship">Internship</SelectItem>
+                                <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" value="contract">Contract</SelectItem>
                             </SelectGroup>
                         </SelectContent>
                     </Select>
