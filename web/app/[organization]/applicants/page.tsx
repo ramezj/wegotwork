@@ -36,7 +36,7 @@ export default async function Page({ params } : { params: Promise<{ organization
                 </div>
                 <div className="w-full border border-black bg-white h-full rounded-sm items-center flex flex-col gap-3 justify-center">
                     <div>
-                    <h1 className="font-extrabold text-black text-xl text-center">you dont have any jobs yet</h1>
+                    <h1 className="font-extrabold text-black text-xl text-center">you don't have any jobs yet</h1>
                     <p className="text-black font-medium text-md">create some jobs & start hiring immediately</p>
                     </div>
                     <CreateJob id={await((await (params)).organization)} buttonSize={"sm"} buttonColor="black" />

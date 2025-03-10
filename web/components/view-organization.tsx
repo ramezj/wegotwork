@@ -50,7 +50,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       setSelectedLocation(loc); 
       filterJobs(loc, selectedEmploymentType); 
       }}>
-        <SelectTrigger aria-label="Select Locations" className="bg-white rounded-sm border-black text-black font-extrabold w-full">
+        <SelectTrigger aria-label="Select Locations" className="bg-white rounded-sm border-black text-black font-bold w-full">
         <SelectValue placeholder="All Locations" />
         </SelectTrigger>
         <SelectContent className="bg-white border-black rounded-sm text-black font-bold">
@@ -74,7 +74,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       filterJobs(selectedLocation, type);
     }}> 
     
-      <SelectTrigger aria-label="Select Employment" className="bg-white rounded-sm border-black text-black font-extrabold w-full">
+      <SelectTrigger aria-label="Select Employment" className="bg-white rounded-sm border-black text-black font-bold w-full">
       <SelectValue placeholder="All Employment" />
       </SelectTrigger>
       <SelectContent className="bg-white border-black rounded-sm text-black font-bold">
@@ -103,7 +103,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     {
       jobs.length === 0 &&
       <Card className="bg-white rounded-sm border border-black p-8">
-      <p className="text-black font-extrabold">We are currently not hiring.</p>
+      <p className="text-black font-bold">We are currently not hiring.</p>
       </Card>
     }
     </div>
