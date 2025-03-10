@@ -33,7 +33,7 @@ export function DeleteJobButton({ job } : { job: Job}) {
             are you absolutely sure?
             </DialogTitle>
         </DialogHeader>
-        <DialogFooter>
+        <DialogFooter className="mt-2">
           {
             loading
             ? 
