@@ -12,8 +12,8 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "./ui/card"
 import { SelectGroup } from "@radix-ui/react-select"
 import { EditJob } from "@/actions/jobs/edit-job"
 import { formatJobType } from "@/lib/format-job"
-// import { DeleteJob } from "@/actions/jobs/delete-job"
-// import { DeleteJobButton } from "../delete-job"
+import { DeleteJob } from "@/actions/jobs/delete-job"
+import { DeleteJobButton } from "./delete-job"
 
 export function EditJobCard({ job } : { job: Job}) {
     const [ current, setCurrent ] = useState<Job>(job);
@@ -27,18 +27,18 @@ export function EditJobCard({ job } : { job: Job}) {
     }
     const deletejob = async () => {
       setLoading(true);
-    //   const res = await DeleteJob(job.id);
+      const res = await DeleteJob(job.id);
       setLoading(false);
     }
     return (
         <>
         <Card className="w-full bg-white rounded-sm">
-                    <CardHeader>
-                        <CardTitle className="text-black font-extrabold">
-                            job information
-                        </CardTitle>
-                    </CardHeader>
-        {/* <DeleteJobButton job={current as Job}/> */}
+        <CardHeader className=''>
+        <div className="flex justify-between items-center w-full">
+        <h1 className="font-extrabold text-3xl tracking-tight text-black">job information</h1>
+        <DeleteJobButton job={current as Job}/>
+        </div>
+        </CardHeader>
         <CardContent>
         <form onSubmit={EditTheJob} className="space-y-4">
                 <div className="space-y-2">
