@@ -25,12 +25,28 @@ export function Navbar({ session } : { session: Session | null}) {
   return (
     <div className="border-b border-black bg-white sticky top-0">
       <div className="flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center z-50 pl-4">
+        <Link href="/" className="flex items-center z-50 pl-4 text-2xl font-extrabold tracking-tighter text-black">
           <span className="text-2xl font-extrabold tracking-tighter text-black">lou careers</span>
         </Link>
-        <div>
-            <NavigationMenuForNavbar />
+        <div className='justify-center items-center gap-4 hidden md:flex pl-4 align-middle'>
+            {/* <NavigationMenuForNavbar /> */}
+            <Link href={"/"} className="">
+            <span className="text-lg font-bold tracking-tighter text-black">
+            features
+            </span>
+            </Link>
+            <Link href={"/"} className="">
+            <span className="text-lg font-bold tracking-tighter text-black">
+            demo
+            </span>
+            </Link>
+            <Link href={"/"} className="">
+            <span className="text-lg font-bold tracking-tighter text-black">
+            pricing
+            </span>
+            </Link>
         </div>
+        <div className="flex-1"></div>
         <div className="hidden md:block">
           {session?.user ? (
             <Button variant="default" asChild className="border-l py-8 rounded-none hover:bg-black bg-black font-bold text-white text-base">
