@@ -40,7 +40,7 @@ export function DeleteJobButton({ job } : { job: Job}) {
             <>
             <Button size={"sm"} disabled className="w-full rounded-sm" variant={"destructive"}>
             <Loader2 className="mr-1 h-4 w-4 animate-spin" />
-            delete kob
+            delete job
             </Button>
             </>
             : 
