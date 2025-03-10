@@ -23,29 +23,29 @@ export function DeleteJobButton({ job } : { job: Job}) {
         <>
       <Dialog>
       <DialogTrigger asChild>
-      <Button size={"sm"} variant={"destructive"}>
+      <Button size={"sm"} variant={"destructive"} className='rounded-sm'>
             <Trash className="size-4" />
         </Button>
       </DialogTrigger>
-      <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] rounded-md bg-black">
+      <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] !rounded-sm bg-white border border-black">
         <DialogHeader>
-            <DialogTitle className="text-left">
-            Are you absolutely sure?
+            <DialogTitle className="text-left text-black">
+            are you absolutely sure?
             </DialogTitle>
-          <DialogDescription className="text-left">
-          This action cannot be undone. This will permanently delete your job.
-          </DialogDescription>
         </DialogHeader>
         <DialogFooter>
           {
             loading
             ? 
             <>
-            <Button size={"sm"} disabled className="w-full" variant={"destructive"}><Loader2 className="mr-1 h-4 w-4 animate-spin" />Delete Job</Button>
+            <Button size={"sm"} disabled className="w-full rounded-sm" variant={"destructive"}>
+            <Loader2 className="mr-1 h-4 w-4 animate-spin" />
+            delete kob
+            </Button>
             </>
             : 
             <>
-            <Button onClick={deletejob} className="w-full" size={"sm"} variant={"destructive"}>Delete Job</Button>
+            <Button onClick={deletejob} className="w-full rounded-sm" size={"sm"} variant={"destructive"}>delete job</Button>
             </>
           }
         </DialogFooter>

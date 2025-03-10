@@ -42,6 +42,7 @@ export async function DeleteJob(jobId: string) {
                 }
             });
             return {
+                error:false,
                 message: "Deleted Successfully"
             }
         } catch (error) {
