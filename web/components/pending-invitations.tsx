@@ -32,7 +32,6 @@ export function PendingInvitations({ OrganizationInvites } : { OrganizationInvit
                 return (
                     <div className="flex items-center justify-between space-y-2" key={Invitation.id}>
                     <h1 className="font-bold text-black">{Invitation.email}</h1>
-                    <p className="text-black font-medium">{formatRole(Invitation.role)}</p>
                     </div>
                 )
             })
