@@ -10,7 +10,7 @@ import { Textarea } from "./ui/textarea"
 import { Select, SelectContent,  SelectItem, SelectTrigger, SelectValue } from "./ui/select"
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "./ui/card"
 import { SelectGroup } from "@radix-ui/react-select"
-// import { EditJob } from "@/actions/jobs/edit-job"
+import { EditJob } from "@/actions/jobs/edit-job"
 import { formatJobType } from "@/lib/format-job"
 // import { DeleteJob } from "@/actions/jobs/delete-job"
 // import { DeleteJobButton } from "../delete-job"
@@ -21,8 +21,8 @@ export function EditJobCard({ job } : { job: Job}) {
     const EditTheJob = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        // const response = await EditJob(current);
-        // toast(response?.message as string)
+        const response = await EditJob(current);
+        toast(response?.message as string)
         setLoading(false);
     }
     const deletejob = async () => {
@@ -42,11 +42,11 @@ export function EditJobCard({ job } : { job: Job}) {
         <CardContent>
         <form onSubmit={EditTheJob} className="space-y-4">
                 <div className="space-y-2">
-                <Label className='font-extrabold text-black'>Job Title</Label>
-                    <Input className="bg-white border border-black rounded-sm text-black font-extrabold" placeholder="Job name" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>
+                <Label className='font-extrabold text-black'>title</Label>
+                    <Input className="bg-white border border-black rounded-sm text-black font-extrabold" placeholder="title" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>
                 </div>
                 <div className="space-y-2">
-                <Label className='font-extrabold text-black'>Employment Type</Label>
+                <Label className='font-extrabold text-black'>employment type</Label>
                     <Select value={current.type} defaultValue={current.type} onValueChange={((e) => { setCurrent((previous) => ({ ...previous, type: e as Type}))})}>
                         <SelectTrigger value={current.type} className="bg-white border border-black rounded-sm text-black font-extrabold" defaultValue={current.type}>
                         <SelectValue>
@@ -64,12 +64,12 @@ export function EditJobCard({ job } : { job: Job}) {
                     </Select>
                 </div>
                 <div className="space-y-2">
-                <Label className='font-extrabold text-black'>Job Location</Label>
-                <Input className="bg-white border border-black rounded-sm text-black font-extrabold" placeholder="Job Location" value={current.location == null ? '' : current.location} onChange={((e) => { setCurrent((previous) => ({...previous, location: e.target.value}))})}></Input>
+                <Label className='font-extrabold text-black'>location</Label>
+                <Input className="bg-white border border-black rounded-sm text-black font-extrabold" placeholder="location" value={current.location == null ? '' : current.location} onChange={((e) => { setCurrent((previous) => ({...previous, location: e.target.value}))})}></Input>
                 </div>
                 <div className="space-y-2">
-                <Label className='font-extrabold text-black'>Job Description</Label>
-                <Textarea className="bg-white border border-black rounded-sm text-black font-extrabold" placeholder="Job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
+                <Label className='font-extrabold text-black'>description</Label>
+                <Textarea className="bg-white border border-black rounded-sm text-black font-extrabold" placeholder="description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
                 </div>
                 <div className="gap-2">
                 {
