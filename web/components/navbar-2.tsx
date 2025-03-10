@@ -35,7 +35,7 @@ export function Navbar({ session } : { session: Session | null}) {
             features
             </span>
             </Link>
-            <Link href={"/"} className="">
+            <Link target="_blank" href={`http://lou.${process.env.NEXT_PUBLIC_URL}`} className="">
             <span className="text-lg font-bold tracking-tighter text-black">
             demo
             </span>
