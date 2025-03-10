@@ -54,7 +54,7 @@ export function EditJobCard({ job } : { job: Job}) {
                         </SelectValue>
                         </SelectTrigger>
                         <SelectContent className="bg-white rounded-sm border border-black text-black font-bold">
-                            <SelectGroup>
+                            <SelectGroup className="space-y-1">
                                 <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" value="fulltime">Full Time</SelectItem>
                                 <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" value="parttime">Part Time</SelectItem>
                                 <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" value="internship">Internship</SelectItem>
