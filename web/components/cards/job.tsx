@@ -42,7 +42,7 @@ export function JobCard({ job }: { job: Job }) {
          {job.title}     
         </p>
         <div className="mt-1 flex">
-        <p className="text-xs text-muted-foreground">{formatDistanceToNow(job.createdAt)} ago</p>
+        <p className="text-xs text-black font-bold">{formatDistanceToNow(job.createdAt)} ago</p>
         </div>
         </div>
         <div className="ml-auto mr-5">
