@@ -38,7 +38,7 @@ export default async function Page({ params } : { params: Promise<{ organization
     if(userOrganization?.organization?.role !== "owner") {
         return (
             <>
-             <div className="flex justify-between items-center w-full">
+            <div className="flex justify-between items-center w-full">
             <h1 className="font-extrabold text-black text-3xl tracking-tight">members</h1>
             <Button size={"sm"}>
                 <Users className="size-4" />
