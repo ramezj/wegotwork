@@ -3,7 +3,7 @@ import { ReactNode } from "react"
 
 export default async function Layout({ children, params }: { children: ReactNode, params: Promise<{ organization: string}>}) {
     return (
-        <div className="!bg-white dark:!bg-white min-h-screen" suppressHydrationWarning>
+        <div className="" suppressHydrationWarning>
           {children}
         </div>
     )

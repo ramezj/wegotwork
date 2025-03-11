@@ -49,7 +49,7 @@ export default async function Home() {
                 Organizations?.userOrganizations?.map((organization: OrganizationUserWithOrganization) => {
                     return (
                         <div key={organization.id}>
-                        <Button asChild variant={"outline"} className="my-2 flex flex-col items-start text-left rounded-sm bg-white hover:bg-white border border-black text-black hover:text-black font-extrabold">
+                        <Button asChild variant={"outline"} className="my-2 flex flex-col items-start text-left !rounded-sm bg-white hover:bg-white border border-black text-black hover:text-black font-extrabold">
                         <Link href={`${organization.organizationId}/overview`} className="" key={organization.id}>
                         {organization.organization.name}    
                         </Link> 
