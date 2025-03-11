@@ -79,7 +79,7 @@ export function LandingPageJobCard({ title, type, location, age }: { title: stri
 export function JobCardForApplicants({ job }: { job: Job}) {
   const router = useRouter();
   const handleCardClick = () => {
-    router.push(`jobs/${job.id}`);
+    router.push(`applicants/${job.id}`);
   };
   return (
     <div onClick={handleCardClick}>

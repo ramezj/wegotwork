@@ -48,3 +48,49 @@ export async function GetJobAsOwner(jobId: string) {
         }
     }
 }
+
+export async function GetJobAsOwnerWithApplicants(jobId: string) {
+    const session:Session | null = await auth.api.getSession({
+        headers: await headers()
+    });
+    if(!session) {
+        redirect('/')
+    }
+    try {
+        const job = await prisma.job.findFirst({
+            where: {
+                id: jobId
+            },
+            include: {
+                applicants: true
+            }
+        });
+        if(!job) {
+            return {
+                error: true,
+                message:"Job Not Found"
+            }
+        }
+        const permissions = await prisma.organizationUser.findFirst({
+            where: {
+                userId: session.user.id,
+                organizationId: job.organizationId
+            }
+        });
+        if(!permissions) {
+            return {
+                error: true,
+                message:"Not Allowed"
+            }
+        }
+        return { 
+            job
+        }
+    } catch (error) {
+        console.error(error);
+        return {
+            error: true,
+            message:"Internal Server Error"
+        }
+    }
+}
