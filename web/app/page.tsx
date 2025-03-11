@@ -29,7 +29,7 @@ export default async function Home() {
         hiring just got easier
       </h1>
       <h3 className="sm:text-lg text-sm mt-2 font-bold text-balance text-black">
-        build career pages, create jobs, receive applicants & start the hiring process. all in one place.
+        build career pages, create jobs, receive applicants, all in one place.
       </h3>
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
