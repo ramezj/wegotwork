@@ -19,32 +19,32 @@ export function FreeCard() {
           </h2>
           <Separator />
             <div className="flex flex-col space-y-1.5">
-                <h2 className="flex gap-2 text-muted-foreground">
-                    <CircleCheck className="text-muted-foreground"/>
+                <h2 className="flex gap-2 text-black font-medium">
+                    <CircleCheck className="text-black"/>
                     1 organization
                     </h2>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <h2 className="flex gap-2 text-muted-foreground">
-                    <CircleCheck className="text-muted-foreground"/>
+                <h2 className="flex gap-2 text-black font-medium">
+                    <CircleCheck className="text-black"/>
                     3 jobs
                     </h2>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <h2 className="flex gap-2 text-muted-foreground">
-                    <CircleCheck className="text-muted-foreground"/>
+                <h2 className="flex gap-2 text-black font-medium">
+                    <CircleCheck className="text-black"/>
                     25 total applicants
                     </h2>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <h2 className="flex gap-2 text-muted-foreground">
-                    <CircleCheck className="text-muted-foreground"/>
+                <h2 className="flex gap-2 text-black font-medium">
+                    <CircleCheck className="text-black"/>
                     lou Branding
                     </h2>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <h2 className="flex gap-2 text-muted-foreground">
-                <XIcon className="text-muted-foreground"/>
+                <h2 className="flex gap-2 text-black font-medium">
+                <XIcon className="text-black"/>
                     candidate cv upload
                     </h2>
             </div>
@@ -75,32 +75,32 @@ export function PaidCard() {
           </h2>
           <Separator />
             <div className="flex flex-col space-y-1.5">
-                <h2 className="flex gap-2 text-muted-foreground">
-                    <CircleCheck className="text-muted-foreground"/>
+                <h2 className="flex gap-2 text-black font-medium">
+                    <CircleCheck className="text-black"/>
                     3 organizations
                     </h2>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <h2 className="flex gap-2 text-muted-foreground">
-                    <CircleCheck className="text-muted-foreground"/>
+                <h2 className="flex gap-2 text-black font-medium">
+                    <CircleCheck className="text-black"/>
                     unlimited jobs
                     </h2>
             </div>
-            <div className="flex flex-col space-y-1.5">
-                <h2 className="flex gap-2 text-muted-foreground">
-                    <CircleCheck className="text-muted-foreground"/>
+            <div className="flex flex-col space-y-1.5 ">
+                <h2 className="flex gap-2 text-black font-medium">
+                    <CircleCheck className="text-black"/>
                     unlimited applicants
                     </h2>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <h2 className="flex gap-2 text-muted-foreground">
-                    <CircleCheck className="text-muted-foreground"/>
+                <h2 className="flex gap-2 text-black font-medium">
+                    <CircleCheck className="text-black"/>
                     candidate cv upload
                     </h2>
             </div>
             <div className="flex flex-col space-y-1.5">
-                <h2 className="flex gap-2 text-muted-foreground">
-                    <XIcon className="text-muted-foreground"/>
+                <h2 className="flex gap-2 text-black font-medium">
+                    <XIcon className="text-black"/>
                     lou branding
                     </h2>
             </div>
