@@ -14,7 +14,7 @@ export default async function Home() {
   return (
     <>
     <Navbar session={session} />
-    <div className="flex items-center justify-center py-16">
+    <div className="flex items-center justify-center p-8">
     <h1 className="font-extrabold text-4xl text-black">pricing</h1>
     </div>
     <div className="flex sm:flex-row flex-col gap-4 items-center justify-center">
