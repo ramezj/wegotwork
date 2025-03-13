@@ -32,6 +32,7 @@ export async function CreateJobAction(title: string, id: string) {
             }
         })
         revalidatePath(`/${id}/jobs`);
+        revalidatePath(`/${id}/applicants`);
         return {
             error:false,
             job:job

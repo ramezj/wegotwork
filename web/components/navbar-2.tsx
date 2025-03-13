@@ -40,7 +40,7 @@ export function Navbar({ session } : { session: Session | null}) {
             demo
             </span>
             </Link>
-            <Link href={"/"} className="">
+            <Link href={"/pricing"} className="">
             <span className="text-lg font-bold tracking-tighter text-black">
             pricing
             </span>
