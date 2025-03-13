@@ -6,6 +6,12 @@ import { Navbar } from "@/components/navbar-2";
 import SignIn from "@/components/sign-in";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FreeCard, PaidCard } from "@/components/pricing";
+import { Metadata } from "next";
+
+export const metadata:Metadata = {
+  title: "pricing",
+  description: "pricing"
+}
 
 export default async function Home() {
   const session = await auth.api.getSession({
