@@ -5,6 +5,8 @@ import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 import { BillingCard } from "@/components/billing"
 import { Metadata } from "next"
+import { Button } from "@/components/ui/button"
+import { Banknote } from "lucide-react"
 
 export const metadata:Metadata = {
     title: "billing",
@@ -25,14 +27,24 @@ export default async function Page({ params } : { params: Promise<{ organization
     if(userOrganization?.organization?.role === 'member') {
         return (
             <>
-            <h1 className="font-extrabold text-4xl text-black tracking-tight">billing</h1>
+            <div className="flex justify-between items-center w-full">
+            <h1 className="font-extrabold text-black text-4xl tracking-tight">billing</h1>
+            <Button size={"sm"} className="border border-black rounded-sm">
+                <Banknote className="size-4" />
+            </Button>
+            </div>
             <p>Unauthorized</p>
             </>
         )
     }
     return (
         <>
-        <h1 className="font-extrabold text-4xl text-black tracking-tight">billing</h1>
+        <div className="flex justify-between items-center w-full">
+        <h1 className="font-extrabold text-black text-4xl tracking-tight">billing</h1>
+        <Button size={"sm"} className="border border-black rounded-sm">
+            <Banknote className="size-4" />
+        </Button>
+        </div>
         <BillingCard />
         {/* {JSON.stringify(userOrganization?.organization)} */}
         </>

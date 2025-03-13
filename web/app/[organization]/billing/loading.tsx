@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import { Banknote } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Loading",
@@ -11,7 +12,10 @@ export default function Loading() {
     return (
         <> 
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-4xl text-black tracking-tight">billing</h1>
+        <h1 className="font-extrabold text-black text-4xl tracking-tight">billing</h1>
+        <Button size={"sm"} className="border border-black rounded-sm">
+        <Banknote className="size-4" />
+        </Button>
         </div>
         <div className="w-full h-full items-center flex flex-col justify-center">
         <Loader2 className="size-8 animate-spin text-black" />
