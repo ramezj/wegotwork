@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: { jobId: string } }
       title: job.job?.title
     };
 }
-export default async function Page({ params }: { params: { organization: string, jobId: string} }) {
+export default async function Page({ params } : { params: Promise<{ organization: string, jobId: string }>}) {
     // const organization = await getOrganizationBySlug(params.slug);
     // if(organization?.error) { 
     //     console.error("Not Found")
@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: { organization: string,
     if(organization.error) {
         notFound();
     }
-    const job = await getJobById(params.jobId);
+    const job = await getJobById((await params).jobId);
     if(job?.error) { redirect('/') }
     return (
         <main className="">
@@ -64,7 +64,7 @@ export default async function Page({ params }: { params: { organization: string,
                 <>
                 </>
             }
-            <ApplyCard jobId={params.jobId} />
+            <ApplyCard jobId={(await params).jobId} />
         </div>
         </main>
     )
