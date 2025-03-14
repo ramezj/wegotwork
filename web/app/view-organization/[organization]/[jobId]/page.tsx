@@ -18,8 +18,8 @@ import { Organization } from "@prisma/client";
 import { FindOrganization } from "@/actions/organization/find-organization";
 import { MapPin, Briefcase, Banknote } from "lucide-react";
 
-export async function generateMetadata({ params }: { params: { jobId: string } }): Promise<Metadata> {
-    const job = await getJobById(params.jobId)
+export async function generateMetadata({ params } : { params: Promise<{ organization: string, jobId: string }>}): Promise<Metadata> {
+    const job = await getJobById((await params).jobId)
     return {
       title: job.job?.title
     };
