@@ -35,7 +35,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
 
 export function JobCard({ job }: { job: Job }) {
     return (
-      <Link href={`/${job.id}`} target="_blank">
+      <Link href={`/${job.id}`}>
       <div className="w-full flex border border-black bg-white rounded-sm items-center duration-300 pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
         <p className='sm:text-lg text-md font-extrabold text-left text-black'>
