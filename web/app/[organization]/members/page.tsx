@@ -58,7 +58,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         </div>
         <Card className="bg-white rounded-sm">
         <CardHeader>
-            <CardTitle className='text-black font-bold'>members</CardTitle>
+            <CardTitle className="text-2xl font-extrabold text-black">members</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
             {
