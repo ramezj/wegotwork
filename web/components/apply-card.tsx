@@ -35,43 +35,43 @@ export default function ApplyCard({ jobId }: { jobId: string}) {
       };
     return (
         <>
-            <div className="lg:w-1/2 w-full rounded-lg border border-foreground/20 p-7 text-left">
+            <div className="lg:w-1/2 w-full rounded-sm bg-white border border-black p-7 text-left">
             <form onSubmit={apply} className="space-y-4">
             <div className="space-y-2">
-            <h1 className="text-2xl font-bold text-center">Apply to job</h1>
+            <h1 className="text-2xl font-extrabold text-black text-center">apply to job</h1>
             </div>
             <div className="space-y-2">
-            <Label htmlFor="name">Full Name</Label>
-            <Input className="bg-inherit" required placeholder="Enter your full name" value={name} onChange={((e) => {setName(e.target.value)})} />
+            <Label htmlFor="name" className="text-black font-extrabold">full name</Label>
+            <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required placeholder="Enter your full name" value={name} onChange={((e) => {setName(e.target.value)})} />
             </div>
             <div className="space-y-2">
-            <Label htmlFor="name">Email Address</Label>
-            <Input className="bg-inherit" required placeholder="Enter your email address" value={emailAddress} onChange={((e) => {setEmailAddress(e.target.value)})} />
+            <Label htmlFor="name" className="text-black font-extrabold">email address</Label>
+            <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required placeholder="Enter your email address" value={emailAddress} onChange={((e) => {setEmailAddress(e.target.value)})} />
             </div>
             <div className="space-y-2">
-            <Label htmlFor="name">Phone Number</Label>
-            <Input className="bg-inherit" required type="number" placeholder="Enter your phone number" value={phoneNumber} onChange={((e) => {setPhoneNumber(Number(e.target.value))})} />
+            <Label htmlFor="name" className="text-black font-extrabold">phone number</Label>
+            <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required type="number" placeholder="Enter your phone number" value={phoneNumber} onChange={((e) => {setPhoneNumber(Number(e.target.value))})} />
             </div>
             <div className="space-y-2">
-            <Label htmlFor="name">Resume</Label>
+            <Label htmlFor="name" className="text-black font-extrabold">resume</Label>
             <div>
-            <Input className="bg-inherit" required type="file" id="file" name="file" accept=".pdf" onChange={handleFileChange} />
+            <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required type="file" id="file" name="file" accept=".pdf" onChange={handleFileChange} />
             </div>
             </div>
             <div className="space-y-2"> 
-            <Label htmlFor="motivation">Motivation</Label>
-            <Textarea className="bg-inherit" required value={motivation} onChange={((e) => {setMotivation(e.target.value)})} placeholder="Tell us why you're the best candidate for this position" />
+            <Label htmlFor="motivation" className="text-black font-extrabold">motivation</Label>
+            <Textarea className="bg-white border border-black rounded-sm text-black font-extrabold" required value={motivation} onChange={((e) => {setMotivation(e.target.value)})} placeholder="Tell us why you're the best candidate for this position" />
             </div>
             {
                 loading 
                 ?  
-                <Button disabled className="w-full">
+                <Button disabled className="w-full bg-black text-white font-extrabold hover:bg-black hover:text-white">
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Apply Now
+                apply to job
                 </Button>
                 :
-                <Button type="submit" className="w-full">
-                Apply Now
+                <Button type="submit" className="w-full bg-black text-white font-extrabold hover:bg-black hover:text-white">
+                apply to job
                 </Button>
             }
             </form>
