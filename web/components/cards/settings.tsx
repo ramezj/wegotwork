@@ -25,7 +25,7 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         setLoading(false);
     }
     return (
-        <Card className="w-full bg-white rounded-sm">
+        <Card className="w-full bg-white rounded-none">
             <CardHeader>
                 <CardTitle className="text-black font-extrabold">
                     organization information
@@ -35,29 +35,29 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         <form onSubmit={editOrganization} className="space-y-4">
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>name</Label>
-        <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required placeholder="name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
+        <Input className="bg-white border border-black rounded-none text-black font-extrabold" required placeholder="name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>slug</Label>
-        <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required placeholder="slug" value={current.slug} onChange={((e) => { setCurrent((previous) => ({...previous, slug: e.target.value}))})}></Input>
+        <Input className="bg-white border border-black rounded-none text-black font-extrabold" required placeholder="slug" value={current.slug} onChange={((e) => { setCurrent((previous) => ({...previous, slug: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>description</Label>
-        <Textarea className="bg-white border border-black rounded-sm text-black font-extrabold" placeholder="description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
+        <Textarea className="bg-white border border-black rounded-none text-black font-extrabold" placeholder="description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
         <div className="space-y-2">
         {
             loading
             ? 
             <>
-            <Button type="submit" disabled className="font-extrabold bg-black hover:bg-black rounded-sm text-white">
+            <Button type="submit" disabled className="font-extrabold bg-black hover:bg-black rounded-none text-white">
             <Loader2 className="animate-spin mr-2" />
             save changes
             </Button>
             </>
             :
             <>
-            <Button type="submit" className="font-extrabold bg-black hover:bg-black rounded-sm text-white">
+            <Button type="submit" className="font-extrabold bg-black hover:bg-black rounded-none text-white">
             save changes
             </Button>
             </>

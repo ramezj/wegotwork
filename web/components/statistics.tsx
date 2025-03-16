@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 export function TotalJobs({title, amount} : { title: string, amount: number}) {
     return (
         <>
-        <Card className="w-full bg-white rounded-sm">
+        <Card className="w-full bg-white rounded-none">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-xl text-black font-extrabold">
                       {title}
@@ -22,7 +22,7 @@ export function TotalJobs({title, amount} : { title: string, amount: number}) {
 export function TotalApplicants({title, amount} : { title: string, amount: number}) {
   return (
       <>
-      <Card className="w-full bg-white rounded-sm">
+      <Card className="w-full bg-white rounded-none">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-xl font-extrabold text-black">
                     {title}

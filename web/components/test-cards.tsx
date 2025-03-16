@@ -13,7 +13,7 @@ interface FeatureCardProps {
 
 export function FeatureCard({ icon, title, description }: FeatureCardProps) {
   return (
-    <Card className="flex flex-col h-full bg-white rounded-sm transition-all duration-200">
+    <Card className="flex flex-col h-full bg-white rounded-none transition-all duration-200">
       <CardHeader className="pb-2">
         <div className="w-10 h-10 flex items-center justify-center mb-4">{icon}</div>
         <CardTitle className="text-xl font-extrabold text-black">{title}</CardTitle>
@@ -22,7 +22,7 @@ export function FeatureCard({ icon, title, description }: FeatureCardProps) {
         <CardDescription className="text-base text-black font-medium">{description}</CardDescription>
       </CardContent>
       <CardFooter className="mt-auto">
-        <Button variant={"default"} className="w-full font-medium bg-black text-white hover:bg-black hover:text-white rounded-sm">
+        <Button variant={"default"} className="w-full font-medium bg-black text-white hover:bg-black hover:text-white rounded-none">
           <Link href={'/'} className="flex items-center">
             explore teams
           </Link>

@@ -40,21 +40,21 @@ export function CreateOrganizationButton() {
         <>
         <Dialog>
         <DialogTrigger asChild>
-        <Button variant={"outline"} className="w-full font-extrabold rounded-sm border-none hover:bg-black">
+        <Button variant={"outline"} className="w-full font-extrabold rounded-none border-none hover:bg-black">
         create organization
         </Button>    
         </DialogTrigger>
-        <DialogContent className="w-[90%] !rounded-sm bg-white border border-black">
+        <DialogContent className="w-[90%] !rounded-none bg-white border border-black">
         <DialogHeader>
         <DialogTitle className="text-left text-xl font-extrabold text-black">create organization</DialogTitle>
         </DialogHeader>
         <form className="grid items-center gap-3 text-left" onSubmit={create_organization}>
         <Label className='font-extrabold text-black text-left'>name</Label>
-        <Input placeholder="organization name" required value={name} onChange={((e) => {setName(e.target.value)})} className="bg-white border border-black rounded-sm text-black font-extrabold"/>
+        <Input placeholder="organization name" required value={name} onChange={((e) => {setName(e.target.value)})} className="bg-white border border-black rounded-none text-black font-extrabold"/>
         <Label className='font-extrabold text-black text-left'>slug</Label>
-        <Input placeholder="organization slug" required value={slug} onChange={((e) => {setSlug(e.target.value)})} className="bg-white border border-black rounded-sm text-black font-extrabold"/>
+        <Input placeholder="organization slug" required value={slug} onChange={((e) => {setSlug(e.target.value)})} className="bg-white border border-black rounded-none text-black font-extrabold"/>
         <div>
-        <Button type="submit" disabled={loading}  className="w-full mt-2 font-extrabold bg-black text-white hover:bg-black hover:text-white rounded-sm">
+        <Button type="submit" disabled={loading}  className="w-full mt-2 font-extrabold bg-black text-white hover:bg-black hover:text-white rounded-none">
             {
                 loading
                 ? 

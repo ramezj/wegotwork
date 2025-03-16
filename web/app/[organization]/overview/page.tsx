@@ -29,7 +29,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         <>
         <div className="flex justify-between items-center w-full">
         <h1 className="font-extrabold text-4xl tracking-tight text-black">overview</h1>
-        <Button asChild size={"sm"} className="rounded-sm font-extrabold border border-black">
+        <Button asChild size={"sm"} className="rounded-none font-extrabold border border-black">
             <Link target="_blank" href={`http://${userOrganization?.organization?.organization.slug}.${process.env.NEXT_PUBLIC_URL}`}>
             preview
             <SquareArrowOutUpRight className="size-4" />

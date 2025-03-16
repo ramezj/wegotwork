@@ -36,7 +36,7 @@ export default async function Home() {
         <h1 className="font-extrabold text-3xl text-black">pick an organization</h1>
         </div>
         <div className="w-full flex items-center justify-center mt-8">
-        <Card className="w-[350px] bg-white border rounded-sm">
+        <Card className="w-[350px] bg-white border rounded-none">
         <CardHeader className="text-center">
         <CardTitle className="text-black font-extrabold">organizations</CardTitle>
         <CardDescription className="text-black font-bold">organizations you own or are a part of</CardDescription>
@@ -49,7 +49,7 @@ export default async function Home() {
                 Organizations?.userOrganizations?.map((organization: OrganizationUserWithOrganization) => {
                     return (
                         <div key={organization.id}>
-                        <Button asChild variant={"outline"} className="my-2 flex flex-col items-start text-left !rounded-sm bg-white hover:bg-white border border-black text-black hover:text-black font-extrabold">
+                        <Button asChild variant={"outline"} className="my-2 flex flex-col items-start text-left !rounded-none bg-white hover:bg-white border border-black text-black hover:text-black font-extrabold">
                         <Link href={`${organization.organizationId}/overview`} className="" key={organization.id}>
                         {organization.organization.name}    
                         </Link> 
