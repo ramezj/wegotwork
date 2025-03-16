@@ -55,11 +55,11 @@ export default function ApplyCard({ jobId }: { jobId: string}) {
             <div className="space-y-2">
             <Label htmlFor="name" className="text-black font-extrabold">resume</Label>
             <div>
-            <Input className="bg-white border border-black rounded-sm text-black font-extrabold" required type="file" id="file" name="file" accept=".pdf" onChange={handleFileChange} />
+            <Input className="bg-white file:text-black file:font-bold border border-black rounded-sm text-black font-extrabold" required type="file" id="file" name="file" accept=".pdf" onChange={handleFileChange} />
             </div>
             </div>
             <div className="space-y-2"> 
-            <Label htmlFor="motivation" className="text-black font-extrabold">motivation</Label>
+            <Label htmlFor="motivation" className="text-black font-extrabold">motivation letter</Label>
             <Textarea className="bg-white border border-black rounded-sm text-black font-extrabold" required value={motivation} onChange={((e) => {setMotivation(e.target.value)})} placeholder="Tell us why you're the best candidate for this position" />
             </div>
             {
