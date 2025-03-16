@@ -65,12 +65,12 @@ export default function ApplyCard({ jobId }: { jobId: string}) {
             {
                 loading 
                 ?  
-                <Button disabled className="w-full bg-black text-white font-extrabold hover:bg-black hover:text-white">
+                <Button disabled className="w-full bg-black text-white font-extrabold hover:bg-black hover:text-white rounded-sm">
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 apply to job
                 </Button>
                 :
-                <Button type="submit" className="w-full bg-black text-white font-extrabold hover:bg-black hover:text-white">
+                <Button type="submit" className="w-full bg-black text-white font-extrabold hover:bg-black hover:text-white rounded-sm">
                 apply to job
                 </Button>
             }
