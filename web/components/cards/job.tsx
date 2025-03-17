@@ -14,7 +14,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
     };
     return (
       <div onClick={handleCardClick}>
-      <div className="w-full flex border border-black bg-white rounded-sm items-center duration-300 pt-3 pb-3 cursor-pointer">
+      <div className="w-full flex border border-black bg-white rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
         <p className='sm:text-lg text-md font-extrabold text-left text-black'>
          {job.title}     
@@ -24,7 +24,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
           </div>
         </div>
         <div className="mr-5 ml-auto">
-        <Button size={"sm"} variant={"outline"} className="rounded-sm bg-black hover:bg-black border border-none text-white">
+        <Button size={"sm"} variant={"outline"} className="rounded-none bg-black hover:bg-black border border-none text-white">
           <Settings className="size-4"/>
         </Button>
         </div>
@@ -36,7 +36,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
 export function JobCard({ job }: { job: Job }) {
     return (
       <Link href={`/${job.id}`}>
-      <div className="w-full flex border border-black bg-white rounded-sm items-center duration-300 pt-3 pb-3 cursor-pointer">
+      <div className="w-full flex border border-black bg-white rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
         <p className='sm:text-lg text-md font-extrabold text-left text-black'>
          {job.title}     
@@ -46,7 +46,7 @@ export function JobCard({ job }: { job: Job }) {
         </div>
         </div>
         <div className="ml-auto mr-5">
-        <Button className="rounded-sm bg-inherit bg-black hover:bg-black border-none" variant={"outline"} size={"icon"}>
+        <Button className="rounded-none bg-inherit bg-black hover:bg-black border-none" variant={"outline"} size={"icon"}>
             <ArrowRight className="size-4" />
         </Button>
         </div>
@@ -83,7 +83,7 @@ export function JobCardForApplicants({ job }: { job: Job}) {
   };
   return (
     <div onClick={handleCardClick}>
-    <div className="w-full flex border border-black bg-white rounded-sm items-center duration-300 pt-3 pb-3 cursor-pointer">
+    <div className="w-full flex border border-black bg-white rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer">
     <div className="mx-5 my-3 flex flex-col items-start text-left">
       <p className='sm:text-lg text-md font-extrabold text-left text-black'>
        {job.title}     
@@ -93,7 +93,7 @@ export function JobCardForApplicants({ job }: { job: Job}) {
         </div>
       </div>
       <div className="mr-5 ml-auto">
-      <Button size={"sm"} variant={"outline"} className="rounded-sm bg-black hover:bg-black border border-none text-white">
+      <Button size={"sm"} variant={"outline"} className="rounded-none bg-black hover:bg-black border border-none text-white">
         0
         <Users className="size-4"/>
       </Button>

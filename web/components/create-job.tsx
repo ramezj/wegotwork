@@ -41,18 +41,18 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
           buttonColor === "white"
           ? 
           <DialogTrigger asChild>
-          <Button size={buttonSize} className="rounded-sm border font-extrabold" >
+          <Button size={buttonSize} className="rounded-none border font-extrabold" >
             create new job
           </Button>
           </DialogTrigger>
           :
           <DialogTrigger asChild>
-          <Button size={buttonSize} className="rounded-sm border-none font-extrabold bg-black text-white hover:bg-black hover:text-white" >
+          <Button size={buttonSize} className="rounded-none border-none font-extrabold bg-black text-white hover:bg-black hover:text-white" >
             create new job
           </Button>
           </DialogTrigger>
         }
-      <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] !rounded-sm bg-white border border-black">
+      <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] !rounded-none bg-white border border-black">
         <DialogHeader>
           <DialogTitle className="text-left font-extrabold text-black">create job</DialogTitle>
           <DialogDescription className="text-left text-black font-bold">
@@ -72,7 +72,7 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
               value={name}
               onChange={((e) => {setName(e.target.value)})}
               placeholder="name"
-              className="bg-white rounded-sm border border-black text-black font-extrabold"
+              className="bg-white rounded-none border border-black text-black font-extrabold"
             />
             </form>
           </div>
@@ -82,14 +82,14 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
             loading
             ? 
             <>
-            <Button disabled form="form" type="submit" className="w-full font-extrabold bg-black text-white rounded-sm hover:bg-black hover:text-white">
+            <Button disabled form="form" type="submit" className="w-full font-extrabold bg-black text-white rounded-none hover:bg-black hover:text-white">
               <Loader2 className="mr-1 h-4 w-4 animate-spin" />
               create job
             </Button>
             </>
             : 
             <>
-            <Button form="form" type="submit" className="w-full font-extrabold bg-black text-white rounded-sm hover:bg-black hover:text-white">create job</Button>
+            <Button form="form" type="submit" className="w-full font-extrabold bg-black text-white rounded-none hover:bg-black hover:text-white">create job</Button>
             </>
           }
         </DialogFooter>
