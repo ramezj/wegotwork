@@ -52,11 +52,11 @@ export default async function Page({ params } : { params: Promise<{ organization
         <>
         <div className="flex justify-between items-center w-full">
         <h1 className="font-extrabold text-black text-4xl tracking-tight">members</h1>
-        <Button size={"sm"} className="border border-black rounded-sm">
+        <Button size={"sm"} className="border border-black rounded-none">
             <Users className="size-4" />
         </Button>
         </div>
-        <Card className="bg-white rounded-sm">
+        <Card className="bg-white rounded-none">
         <CardHeader>
             <CardTitle className="text-2xl font-extrabold text-black">members</CardTitle>
         </CardHeader>

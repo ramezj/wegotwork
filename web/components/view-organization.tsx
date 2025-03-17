@@ -50,10 +50,10 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       setSelectedLocation(loc); 
       filterJobs(loc, selectedEmploymentType); 
       }}>
-        <SelectTrigger aria-label="Select Locations" className="bg-white rounded-sm border-black text-black font-bold w-full">
+        <SelectTrigger aria-label="Select Locations" className="bg-white rounded-none border-black text-black font-bold w-full">
         <SelectValue placeholder="All Locations" />
         </SelectTrigger>
-        <SelectContent className="bg-white border-black rounded-sm text-black font-bold">
+        <SelectContent className="bg-white border-black rounded-none text-black font-bold">
           <SelectGroup className="space-y-1">
             <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" key={"All"} value="All">All Locations</SelectItem>
             {
@@ -74,10 +74,10 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       filterJobs(selectedLocation, type);
     }}> 
     
-      <SelectTrigger aria-label="Select Employment" className="bg-white rounded-sm border-black text-black font-bold w-full">
+      <SelectTrigger aria-label="Select Employment" className="bg-white rounded-none border-black text-black font-bold w-full">
       <SelectValue placeholder="All Employment" />
       </SelectTrigger>
-      <SelectContent className="bg-white border-black rounded-sm text-black font-bold">
+      <SelectContent className="bg-white border-black rounded-none text-black font-bold">
         <SelectGroup className='space-y-1'>
           <SelectItem key={"All"} value="All" className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white">All Employment</SelectItem>
           {
@@ -102,7 +102,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     })}
     {
       jobs.length === 0 &&
-      <Card className="bg-white rounded-sm border border-black p-8">
+      <Card className="bg-white rounded-none border border-black p-8">
       <p className="text-black font-bold">We are currently not hiring.</p>
       </Card>
     }

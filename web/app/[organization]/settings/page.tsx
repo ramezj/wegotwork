@@ -20,7 +20,7 @@ export default async function Page({ params } : { params: Promise<{ organization
             <>
             <div className="flex justify-between items-center w-full">
             <h1 className="font-extrabold text-4xl text-black tracking-tight">settings</h1>
-            <Button size={"sm"} className="rounded-sm border border-black">
+            <Button size={"sm"} className="rounded-none border border-black">
                 <Settings className="size-4" />
             </Button>
             </div>
@@ -32,7 +32,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         <>
         <div className="flex justify-between items-center w-full">
         <h1 className="font-extrabold text-4xl text-black tracking-tight">settings</h1>
-        <Button size={"sm"} className="rounded-sm border border-black">
+        <Button size={"sm"} className="rounded-none border border-black">
             <Settings className="size-4" />
         </Button>
         </div>

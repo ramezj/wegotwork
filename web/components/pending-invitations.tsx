@@ -15,7 +15,7 @@ import { formatRole } from "@/lib/format-role";
 export function PendingInvitations({ OrganizationInvites } : { OrganizationInvites: OrganizationInvite[] }) {
     return (
       <>
-      <Card className="w-full bg-white rounded-sm">
+      <Card className="w-full bg-white rounded-none">
       <CardHeader>
         <CardTitle className="text-2xl font-extrabold text-black">pending invitations</CardTitle>
       </CardHeader>

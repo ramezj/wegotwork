@@ -31,25 +31,25 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
     }
     return (
       <>
-      <Card className="w-full bg-white rounded-sm">
+      <Card className="w-full bg-white rounded-none">
       <CardHeader>
         <CardTitle className="text-2xl font-extrabold text-black">invite members</CardTitle>
       </CardHeader>
       <CardContent className="">
         <form className="flex sm:flex-row flex-col gap-2" onSubmit={create_the_invitation}>
-        <Input className="bg-white border border-black rounded-sm text-black font-extrabold" type="email" required placeholder="john@heliup.xyz" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
+        <Input className="bg-white border border-black rounded-none text-black font-extrabold" type="email" required placeholder="john@heliup.xyz" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
         {
           loading
           ? 
           <>
-          <Button disabled onClick={create_the_invitation} className="font-extrabold bg-black hover:bg-black rounded-sm text-white">
+          <Button disabled onClick={create_the_invitation} className="font-extrabold bg-black hover:bg-black rounded-none text-white">
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           invite member 
           </Button>
           </>
           : 
           <>
-          <Button type="submit" className="font-extrabold bg-black text-white hover:bg-black rounded-sm border border-black">
+          <Button type="submit" className="font-extrabold bg-black text-white hover:bg-black rounded-none border border-black">
           invite member
           </Button>
           </>

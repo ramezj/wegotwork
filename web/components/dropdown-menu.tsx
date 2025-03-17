@@ -22,18 +22,18 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
         <>
         <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                <Button variant={"outline"} className="w-full bg-inherit rounded-sm border border-black text-black font-extrabold hover:bg-white hover:text-black p-3">
+                <Button variant={"outline"} className="w-full bg-inherit rounded-none border border-black text-black font-extrabold hover:bg-white hover:text-black p-3">
                     {session?.user?.name}
                     <ChevronsUpDown className="ml-auto size-4" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   side="top"
-                  className="w-[--radix-popper-anchor-width] bg-white border border-black text-black space-y-2 rounded-sm"
+                  className="w-[--radix-popper-anchor-width] bg-white border border-black text-black space-y-2 rounded-none"
                 >
-                  <DropdownMenuItem className="cursor-pointer hover:!bg-black hover:text-white !rounded-sm" asChild>
+                  <DropdownMenuItem className="cursor-pointer hover:!bg-black hover:text-white !rounded-none" asChild>
                   <Link href={"/dashboard"} 
-                  className="flex align-middle items-center font-extrabold !hover:bg-black hover:text-white !rounded-sm">
+                  className="flex align-middle items-center font-extrabold !hover:bg-black hover:text-white !rounded-none">
                   <Settings2 className="size-4" />
                   switch organization
                   </Link>
@@ -42,7 +42,7 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                   <Separator className="-my-1"/>
                   </div>
                   <DropdownMenuItem onClick={signUserOut} 
-                  className="cursor-pointer flex align-middle items-center font-extrabold hover:!bg-black hover:text-white !rounded-sm">
+                  className="cursor-pointer flex align-middle items-center font-extrabold hover:!bg-black hover:text-white !rounded-none">
                   <LogOut className="size-4" />
                   logout
                   </DropdownMenuItem>
