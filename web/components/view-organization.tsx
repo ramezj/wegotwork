@@ -55,11 +55,11 @@ export function ViewOrganization({ organization, locations, types } : { organiza
         </SelectTrigger>
         <SelectContent className="bg-white border-black rounded-none text-black font-bold">
           <SelectGroup className="space-y-1">
-            <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" key={"All"} value="All">All Locations</SelectItem>
+            <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none" key={"All"} value="All">All Locations</SelectItem>
             {
               locations.map((location, index) => {
                 return (
-                  <SelectItem key={location} value={location} className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white">{location}</SelectItem>
+                  <SelectItem key={location} value={location} className="hover:!bg-black rounded-none active:!bg-black focus:!bg-black hover:text-white">{location}</SelectItem>
                 )
               })
             }
@@ -79,11 +79,11 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       </SelectTrigger>
       <SelectContent className="bg-white border-black rounded-none text-black font-bold">
         <SelectGroup className='space-y-1'>
-          <SelectItem key={"All"} value="All" className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white">All Employment</SelectItem>
+          <SelectItem key={"All"} value="All" className="hover:!bg-black rounded-none active:!bg-black focus:!bg-black hover:text-white">All Employment</SelectItem>
           {
               types.map((type, index) => {
                 return (
-                  <SelectItem key={index} value={type} className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white">{formatJobType(type as Type)}</SelectItem>
+                  <SelectItem key={index} value={type} className="hover:!bg-black rounded-none active:!bg-black focus:!bg-black hover:text-white">{formatJobType(type as Type)}</SelectItem>
                 )
               })
             }
