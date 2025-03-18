@@ -7,7 +7,7 @@ import { Separator } from "./ui/separator";
 export function FreeCard() {
     return (
         <>
-        <Card className="w-[350px] bg-white rounded-sm">
+        <Card className="w-[350px] bg-white rounded-none">
       <CardHeader>
         <CardTitle className='flex gap-2 font-extrabold text-black tracking-normal'>free</CardTitle>
         <CardDescription className="text-left text-black">free forever.</CardDescription>
@@ -51,7 +51,7 @@ export function FreeCard() {
           </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button className='w-full font-extrabold bg-black text-white rounded-sm hover:bg-black hover:text-white' variant={"default"}>
+        <Button className='w-full font-extrabold bg-black text-white rounded-none hover:bg-black hover:text-white' variant={"default"}>
               start hiring
         </Button>
       </CardFooter>
@@ -63,7 +63,7 @@ export function FreeCard() {
 export function PaidCard() {
     return (
         <>
-        <Card className="w-[350px] bg-white rounded-sm">
+        <Card className="w-[350px] bg-white rounded-none">
       <CardHeader>
         <CardTitle className='flex gap-2 font-extrabold text-black tracking-normal'>professional</CardTitle>
         <CardDescription className="text-left text-black">monthly subscription</CardDescription>
@@ -107,7 +107,7 @@ export function PaidCard() {
           </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button className='w-full font-extrabold bg-black hover:bg-black text-white hover:text-white rounded-sm' variant={"default"}>
+        <Button className='w-full font-extrabold bg-black hover:bg-black text-white hover:text-white rounded-none' variant={"default"}>
               start hiring
         </Button>
       </CardFooter>
