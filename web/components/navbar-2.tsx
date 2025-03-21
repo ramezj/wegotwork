@@ -2,13 +2,10 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { ChevronDown, Menu, X } from "lucide-react"
-import { NavigationMenuForNavbar } from "./navgiation-menu"
-import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@/components/ui/navigation-menu"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Session } from "@/lib/auth-client"
-import { NavigationMenuLink } from "@/components/ui/navigation-menu"
 
 export function Navbar({ session } : { session: Session | null}) {
   const [isOpen, setIsOpen] = React.useState(false)
