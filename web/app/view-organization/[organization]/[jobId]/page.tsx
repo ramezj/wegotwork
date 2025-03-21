@@ -47,10 +47,10 @@ export default async function Page({ params } : { params: Promise<{ organization
             <p className="text-sm max-w-3xl text-black">{formatDistanceToNow(job.job?.createdAt!)} ago </p>
             </div>
             <div className="flex flex-row gap-2">
-            <Button size={"sm"} variant={"outline"} className="rounded-sm bg-white hover:bg-white hover:text-black border border-black text-black font-extrabold"><Briefcase className="size-4 mr-1"/>{formatJobType(job.job?.type as Type)}</Button>
+            <Button size={"sm"} variant={"outline"} className="rounded-none bg-white hover:bg-white hover:text-black border border-black text-black font-extrabold"><Briefcase className="size-4 mr-1"/>{formatJobType(job.job?.type as Type)}</Button>
             {
                 job?.job?.location
-                ? <Button size={"sm"} variant={"outline"} className="rounded-sm bg-white hover:bg-white hover:text-black border border-black text-black font-extrabold"><MapPin className="size-4 mr-1" />{job.job?.location}</Button>
+                ? <Button size={"sm"} variant={"outline"} className="rounded-none bg-white hover:bg-white hover:text-black border border-black text-black font-extrabold"><MapPin className="size-4 mr-1" />{job.job?.location}</Button>
                 : <></>
             }
             </div>
@@ -58,7 +58,7 @@ export default async function Page({ params } : { params: Promise<{ organization
                 job.job?.content
                 ?  
                 <>
-                <div className="lg:w-1/2 w-full rounded-sm text-black bg-white border border-black font-extrabold p-7 text-left" dangerouslySetInnerHTML={{__html: job.job?.content!}} />
+                <div className="lg:w-1/2 w-full rounded-none text-black bg-white border border-black font-extrabold p-7 text-left" dangerouslySetInnerHTML={{__html: job.job?.content!}} />
                 </>
                 :
                 <>
