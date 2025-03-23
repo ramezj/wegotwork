@@ -76,7 +76,7 @@ export function LandingPageJobCard({ title, type, location, age }: { title: stri
     )
 }
 
-export function JobCardForApplicants({ job }: { job: Job}) {
+export function JobCardForApplicants({ job, applicants }: { job: Job, applicants: number }) {
   const router = useRouter();
   const handleCardClick = () => {
     router.push(`applicants/${job.id}`);
@@ -94,7 +94,7 @@ export function JobCardForApplicants({ job }: { job: Job}) {
       </div>
       <div className="mr-5 ml-auto">
       <Button size={"sm"} variant={"outline"} className="rounded-none bg-black hover:bg-black border border-none text-white">
-        0
+        {applicants}
         <Users className="size-4"/>
       </Button>
       </div>

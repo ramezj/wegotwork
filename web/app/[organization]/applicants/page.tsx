@@ -8,6 +8,13 @@ import { GetOrganizationJobs } from "@/actions/jobs/get-all-jobs"
 import CreateJob from "@/components/create-job"
 import { Job } from "@prisma/client"
 import { JobCardForApplicants } from "@/components/cards/job"
+import { Prisma } from "@prisma/client"
+
+type JobWithApplicants = Prisma.JobGetPayload<{
+    include: {
+        applicants: true
+    }
+}>
 
 export const metadata:Metadata = {
     title: "applicants",
@@ -50,10 +57,10 @@ export default async function Page({ params } : { params: Promise<{ organization
                     </div>
                     <div className="gap-4 flex flex-col">
                     {
-                    jobs?.jobs?.jobs.map((job:Job) => {
+                    jobs?.jobs?.jobs.map((job:JobWithApplicants) => {
                         return (
                         <div className="relative" key={job.id}>
-                        <JobCardForApplicants job={job}/>
+                        <JobCardForApplicants job={job} applicants={job.applicants.length} />
                         </div>
                         )
                     })

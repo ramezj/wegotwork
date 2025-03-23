@@ -19,8 +19,15 @@ export async function GetOrganizationJobs(organizationId: string) {
                 jobs: { 
                     orderBy: {
                         createdAt: "desc"
+                    },
+                    include: {
+                        applicants: {
+                            orderBy: { 
+                                createdAt: "desc"
+                            }
+                        }
                     }
-                }
+                },
             },
             
         })
