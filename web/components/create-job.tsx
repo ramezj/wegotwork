@@ -42,13 +42,13 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
           ? 
           <DialogTrigger asChild>
           <Button size={buttonSize} className="rounded-none border font-extrabold" >
-            create new job
+            create a new job
           </Button>
           </DialogTrigger>
           :
           <DialogTrigger asChild>
           <Button size={buttonSize} className="rounded-none border-none font-extrabold bg-black text-white hover:bg-black hover:text-white" >
-            create new job
+            create a new job
           </Button>
           </DialogTrigger>
         }
