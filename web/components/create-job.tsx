@@ -54,10 +54,10 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
         }
       <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] !rounded-none bg-white border border-black">
         <DialogHeader>
-          <DialogTitle className="text-left font-extrabold text-black">create job</DialogTitle>
-          <DialogDescription className="text-left text-black font-bold">
+          <DialogTitle className="text-left font-extrabold text-black !text-xl">create a new job</DialogTitle>
+          {/* <DialogDescription className="text-left text-black font-bold">
           create a job listing & start hiring immediately
-          </DialogDescription>
+          </DialogDescription> */}
         </DialogHeader>
         <div className="grid py-2">
           <div className="grid items-center gap-4">
