@@ -19,7 +19,11 @@ export async function GetJobApplicants(jobId: string) {
                 id: jobId
             },
             include: {
-                applicants: true
+                applicants: {
+                    orderBy: {
+                        createdAt: "asc"
+                    }
+                }
             }
         });
         if(!job) {
