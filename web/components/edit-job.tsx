@@ -35,8 +35,10 @@ export function EditJobCard({ job } : { job: Job}) {
         <Card className="w-full bg-white rounded-none">
         <CardHeader className=''>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-3xl tracking-tight text-black">job information</h1>
-        <DeleteJobButton job={current as Job}/>
+        <CardTitle className="text-black font-extrabold">
+            job information
+        </CardTitle>
+        {/* <DeleteJobButton job={current as Job}/> */}
         </div>
         </CardHeader>
         <CardContent>

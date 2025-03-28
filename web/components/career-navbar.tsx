@@ -29,7 +29,7 @@ export function CareerNavbar({ organizationName } : { organizationName: string})
           <span className="text-2xl font-extrabold tracking-tighter text-black">{organizationName}</span>
         </Link>
         <div className="">
-        <Button asChild variant="default" className="border-l py-8 rounded-none hover:bg-black bg-black font-bold text-white text-base">
+        <Button asChild variant="default" className="border-l h-16 rounded-none hover:bg-black bg-black font-bold text-white text-base">
               <Link href="/auth">visit website</Link>
             </Button>
         </div>
