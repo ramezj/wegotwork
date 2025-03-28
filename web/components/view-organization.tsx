@@ -78,7 +78,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       <SelectValue placeholder="All Employment" />
       </SelectTrigger>
       <SelectContent className="bg-white border-black rounded-none text-black font-bold">
-        <SelectGroup className=''>
+        <SelectGroup className='space-y-1'>
           <SelectItem key={"All"} value="All" className="hover:!bg-black rounded-none active:!bg-black focus:!bg-black hover:text-white">All Employment</SelectItem>
           {
               types.map((type, index) => {
