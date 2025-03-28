@@ -47,10 +47,10 @@ export default async function Page({ params } : { params: Promise<{ organization
             <p className="text-sm max-w-3xl text-black">{formatDistanceToNow(job.job?.createdAt!)} ago </p>
             </div>
             <div className="flex flex-row gap-2">
-            <Button size={"sm"} variant={"outline"} className="rounded-none bg-white hover:bg-white hover:text-black border border-black text-black font-extrabold"><Briefcase className="size-4 mr-1"/>{formatJobType(job.job?.type as Type)}</Button>
+            <Button size={"sm"} variant={"outline"} className="rounded-none bg-white hover:bg-white hover:text-black border border-black text-black font-extrabold"><Briefcase className="size-4"/>{formatJobType(job.job?.type as Type)}</Button>
             {
-                job?.job?.location
-                ? <Button size={"sm"} variant={"outline"} className="rounded-none bg-white hover:bg-white hover:text-black border border-black text-black font-extrabold"><MapPin className="size-4 mr-1" />{job.job?.location}</Button>
+                job?.job?.country
+                ? <Button size={"sm"} variant={"outline"} className="rounded-none bg-white hover:bg-white hover:text-black border border-black text-black font-extrabold"><MapPin className="size-4" />{job.job?.city + ", " + job.job?.country}</Button>
                 : <></>
             }
             </div>
