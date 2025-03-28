@@ -38,29 +38,29 @@ export default function ApplyCard({ jobId }: { jobId: string}) {
             <div className="lg:w-1/2 w-full rounded-none bg-white border border-black p-7 text-left">
             <form onSubmit={apply} className="space-y-4">
             <div className="space-y-2">
-            <h1 className="text-2xl font-extrabold text-black text-center">apply to job</h1>
+            <h1 className="text-2xl font-extrabold text-black text-center">Apply to job</h1>
             </div>
             <div className="space-y-2">
-            <Label htmlFor="name" className="text-black font-extrabold">full name</Label>
-            <Input className="bg-white border border-black rounded-none text-black font-extrabold" required placeholder="enter your full name" value={name} onChange={((e) => {setName(e.target.value)})} />
+            <Label htmlFor="name" className="text-black font-extrabold">Full name</Label>
+            <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" required placeholder="Enter your full name" value={name} onChange={((e) => {setName(e.target.value)})} />
             </div>
             <div className="space-y-2">
-            <Label htmlFor="name" className="text-black font-extrabold">email address</Label>
-            <Input className="bg-white border border-black rounded-none text-black font-extrabold" required placeholder="enter your email address" value={emailAddress} onChange={((e) => {setEmailAddress(e.target.value)})} />
+            <Label htmlFor="name" className="text-black font-extrabold">Email address</Label>
+            <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" required placeholder="Enter your email address" value={emailAddress} onChange={((e) => {setEmailAddress(e.target.value)})} />
             </div>
             <div className="space-y-2">
-            <Label htmlFor="name" className="text-black font-extrabold">phone number</Label>
-            <Input className="bg-white border border-black rounded-none text-black font-extrabold" required type="number" placeholder="enter your phone number" value={phoneNumber ?? ""} onChange={((e) => {setPhoneNumber(Number(e.target.value))})} />
+            <Label htmlFor="name" className="text-black font-extrabold">Phone number</Label>
+            <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" required type="number" placeholder="Enter your phone number" value={phoneNumber ?? ""} onChange={((e) => {setPhoneNumber(Number(e.target.value))})} />
             </div>
             <div className="space-y-2">
-            <Label htmlFor="name" className="text-black font-extrabold">resume</Label>
+            <Label htmlFor="name" className="text-black font-extrabold">Resume</Label>
             <div>
-            <Input className="bg-white file:text-black file:font-bold border border-black rounded-none text-black font-extrabold" required type="file" id="file" name="file" accept=".pdf" onChange={handleFileChange} />
+            <Input className="bg-white file:text-black file:font-bold border border-black rounded-none text-black font-extrabold text-sm" required type="file" id="file" name="file" accept=".pdf" onChange={handleFileChange} />
             </div>
             </div>
             <div className="space-y-2"> 
-            <Label htmlFor="motivation" className="text-black font-extrabold">motivation letter</Label>
-            <Textarea className="bg-white border border-black rounded-none text-black font-extrabold" required value={motivation} onChange={((e) => {setMotivation(e.target.value)})} placeholder="tell us why you think you're the best candidate for this position" />
+            <Label htmlFor="motivation" className="text-black font-extrabold">Motivation letter</Label>
+            <Textarea className="bg-white border border-black rounded-none text-black font-extrabold text-sm" required value={motivation} onChange={((e) => {setMotivation(e.target.value)})} placeholder="Tell us why you think you're the best candidate for this position" />
             </div>
             {
                 loading 
