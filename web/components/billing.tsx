@@ -7,7 +7,7 @@ export function BillingCard() {
         <>
         <Card className="w-full bg-white rounded-none">
         <CardHeader>
-        <CardTitle className="text-2xl font-extrabold text-black">subscription plan</CardTitle>
+        <CardTitle className="text-2xl font-extrabold text-black">Subscription plan</CardTitle>
         </CardHeader>
         <CardContent className="">
         <p className="font-bold text-black">

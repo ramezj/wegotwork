@@ -17,7 +17,7 @@ export function PendingInvitations({ OrganizationInvites } : { OrganizationInvit
       <>
       <Card className="w-full bg-white rounded-none">
       <CardHeader>
-        <CardTitle className="text-2xl font-extrabold text-black">pending invitations</CardTitle>
+        <CardTitle className="text-2xl font-extrabold text-black">Pending invitations</CardTitle>
       </CardHeader>
       <CardContent className="">
         {

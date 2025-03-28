@@ -29,7 +29,7 @@ export default async function Page({ params } : { params: Promise<{ organization
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-4xl text-black tracking-tight">{job.job?.title.toLocaleLowerCase()}</h1>
+        <h1 className="font-extrabold text-4xl text-black tracking-tight">{job.job?.title}</h1>
         <DeleteJobButton job={job.job as Job} />
         </div>
         <EditJobCard job={job.job as Job} />

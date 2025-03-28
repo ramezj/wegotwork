@@ -29,12 +29,12 @@ export default async function Page({ params } : { params: Promise<{ organization
             ?
             <>
             <div className="flex items-center justify-between w-full">
-            <h1 className="font-extrabold text-4xl text-black tracking-tight">jobs</h1>
+            <h1 className="font-extrabold text-4xl text-black tracking-tight">Jobs</h1>
             <CreateJob id={await((await (params)).organization)} buttonSize="sm" buttonColor="white" />
             </div>
             <div className="w-full border border-black bg-white h-full rounded-none items-center flex flex-col gap-3 justify-center">
                 <div>
-                <h1 className="font-extrabold text-black text-xl text-center">you don't have any jobs yet</h1>
+                <h1 className="font-extrabold text-black text-xl text-center">You don't have any jobs yet</h1>
                 <p className="text-black font-medium text-md">create some jobs & start hiring immediately</p>
                 </div>
                 <CreateJob id={await((await (params)).organization)} buttonSize={"sm"} buttonColor="black" />
@@ -43,7 +43,7 @@ export default async function Page({ params } : { params: Promise<{ organization
             : 
             <>
              <div className="flex justify-between items-center w-full">
-                <h1 className="font-extrabold text-4xl text-black tracking-tight">jobs</h1>
+                <h1 className="font-extrabold text-4xl text-black tracking-tight">Jobs</h1>
                 <CreateJob id={await((await (params)).organization)} buttonSize={"sm"} buttonColor="white" />
                 </div>
                 <div className="gap-4 flex flex-col">

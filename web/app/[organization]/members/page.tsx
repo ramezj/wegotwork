@@ -39,7 +39,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         return (
             <>
             <div className="flex justify-between items-center w-full">
-            <h1 className="font-extrabold text-black text-3xl tracking-tight">members</h1>
+            <h1 className="font-extrabold text-black text-3xl tracking-tight">Members</h1>
             <Button size={"sm"}>
                 <Users className="size-4" />
             </Button>
@@ -51,14 +51,14 @@ export default async function Page({ params } : { params: Promise<{ organization
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-black text-4xl tracking-tight">members</h1>
+        <h1 className="font-extrabold text-black text-4xl tracking-tight">Members</h1>
         <Button size={"sm"} className="border border-black rounded-none">
             <Users className="size-4" />
         </Button>
         </div>
         <Card className="bg-white rounded-none">
         <CardHeader>
-            <CardTitle className="text-2xl font-extrabold text-black">members</CardTitle>
+            <CardTitle className="text-2xl font-extrabold text-black">Members</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
             {
@@ -68,7 +68,7 @@ export default async function Page({ params } : { params: Promise<{ organization
                         <div className="flex items-center space-x-4" key={users.user.id}>
                         <Avatar>
                         <AvatarImage src={users.user.image!} />
-                        <AvatarFallback>OM</AvatarFallback>
+                        <AvatarFallback>{users.user.name.charAt(0)}</AvatarFallback>
                         </Avatar>
                         <div>
                         <p className="text-sm leading-none text-black font-extrabold">{users.user.name}</p>

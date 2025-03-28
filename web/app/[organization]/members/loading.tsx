@@ -13,7 +13,7 @@ export default function Loading() {
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-4xl tracking-tight text-black">members</h1>
+        <h1 className="font-extrabold text-4xl tracking-tight text-black">Members</h1>
         <Button size={"sm"} className="border border-black rounded-none">
             <Users className="size-4" />
         </Button>

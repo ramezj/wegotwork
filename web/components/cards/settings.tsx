@@ -28,22 +28,22 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         <Card className="w-full bg-white rounded-none">
             <CardHeader>
                 <CardTitle className="text-black font-extrabold">
-                    organization information
+                    Organization Information
                 </CardTitle>
             </CardHeader>
         <CardContent>
         <form onSubmit={editOrganization} className="space-y-4">
         <div className="space-y-2">
-        <Label className='font-extrabold text-black'>name</Label>
-        <Input className="bg-white border border-black rounded-none text-black font-extrabold" required placeholder="name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
+        <Label className='font-extrabold text-black'>Name</Label>
+        <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" required placeholder="Enter name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
-        <Label className='font-extrabold text-black'>slug</Label>
-        <Input className="bg-white border border-black rounded-none text-black font-extrabold" required placeholder="slug" value={current.slug} onChange={((e) => { setCurrent((previous) => ({...previous, slug: e.target.value}))})}></Input>
+        <Label className='font-extrabold text-black'>Slug</Label>
+        <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" required placeholder="Enter slug" value={current.slug} onChange={((e) => { setCurrent((previous) => ({...previous, slug: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
-        <Label className='font-extrabold text-black'>description</Label>
-        <Textarea className="bg-white border border-black rounded-none text-black font-extrabold" placeholder="description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
+        <Label className='font-extrabold text-black'>Description</Label>
+        <Textarea className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Provide a detailed organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
         <div className="space-y-2">
         {

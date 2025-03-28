@@ -42,19 +42,19 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
           ? 
           <DialogTrigger asChild>
           <Button size={buttonSize} className="rounded-none border font-extrabold" >
-            create a new job
+            Create a new job
           </Button>
           </DialogTrigger>
           :
           <DialogTrigger asChild>
           <Button size={buttonSize} className="rounded-none border-none font-extrabold bg-black text-white hover:bg-black hover:text-white" >
-            create a new job
+            Create a new job
           </Button>
           </DialogTrigger>
         }
       <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] !rounded-none bg-white border border-black">
         <DialogHeader>
-          <DialogTitle className="text-left font-extrabold text-black !text-xl">create a new job</DialogTitle>
+          <DialogTitle className="text-left font-extrabold text-black !text-xl">Create a new job</DialogTitle>
           {/* <DialogDescription className="text-left text-black font-bold">
           create a job listing & start hiring immediately
           </DialogDescription> */}
@@ -62,7 +62,7 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
         <div className="grid py-2">
           <div className="grid items-center gap-4">
             <Label htmlFor="name" className="text-left font-extrabold text-black">
-              job title
+              Job Title
             </Label>
             <form id="form" onSubmit={createjob}>
             <Input
@@ -71,8 +71,8 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
               id="name"
               value={name}
               onChange={((e) => {setName(e.target.value)})}
-              placeholder="name"
-              className="bg-white rounded-none border border-black text-black font-extrabold"
+              placeholder="Enter job name"
+              className="bg-white rounded-none border border-black text-black font-extrabold text-sm"
             />
             </form>
           </div>

@@ -33,11 +33,11 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
       <>
       <Card className="w-full bg-white rounded-none">
       <CardHeader>
-        <CardTitle className="text-2xl font-extrabold text-black">invite members</CardTitle>
+        <CardTitle className="text-2xl font-extrabold text-black">Invite members</CardTitle>
       </CardHeader>
       <CardContent className="">
-        <form className="flex sm:flex-row flex-col gap-2" onSubmit={create_the_invitation}>
-        <Input className="bg-white border border-black rounded-none text-black font-extrabold" type="email" required placeholder="john@heliup.xyz" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
+        <form className="flex sm:flex-row flex-col gap-4" onSubmit={create_the_invitation}>
+        <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" type="email" required placeholder="Enter member's email address" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
         {
           loading
           ? 

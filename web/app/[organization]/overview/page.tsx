@@ -28,17 +28,17 @@ export default async function Page({ params } : { params: Promise<{ organization
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-4xl tracking-tight text-black">overview</h1>
+        <h1 className="font-extrabold text-4xl tracking-tight text-black">Overview</h1>
         <Button asChild size={"sm"} className="rounded-none font-extrabold border border-black">
             <Link target="_blank" href={`http://${userOrganization?.organization?.organization.slug}.${process.env.NEXT_PUBLIC_URL}`}>
-            preview
+            Preview
             <SquareArrowOutUpRight className="size-4" />
             </Link>
         </Button>
         </div>
         <div className="flex sm:flex-row flex-col gap-2 w-full">
-        <TotalJobs title="jobs" amount={userOrganization?.organization?.organization.jobs.length as number}/>
-        <TotalApplicants title="applicants" amount={57}/>
+        <TotalJobs title="Jobs" amount={userOrganization?.organization?.organization.jobs.length as number}/>
+        <TotalApplicants title="Applicants" amount={57}/>
         </div>
         <SettingsCard organization={userOrganization?.organization?.organization as Organization} />
         </>

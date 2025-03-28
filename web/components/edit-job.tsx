@@ -36,7 +36,7 @@ export function EditJobCard({ job } : { job: Job}) {
         <CardHeader className=''>
         <div className="flex justify-between items-center w-full">
         <CardTitle className="text-black font-extrabold">
-            job information
+            Job Information
         </CardTitle>
         {/* <DeleteJobButton job={current as Job}/> */}
         </div>
@@ -44,34 +44,38 @@ export function EditJobCard({ job } : { job: Job}) {
         <CardContent>
         <form onSubmit={EditTheJob} className="space-y-4">
                 <div className="space-y-2">
-                <Label className='font-extrabold text-black'>title</Label>
-                    <Input className="bg-white border border-black rounded-none text-black font-extrabold" placeholder="title" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>
+                <Label className='font-extrabold text-black'>Title</Label>
+                    <Input required className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Enter job title" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>
                 </div>
                 <div className="space-y-2">
-                <Label className='font-extrabold text-black'>employment type</Label>
+                <Label className='font-extrabold text-black'>Employment Type</Label>
                     <Select value={current.type} defaultValue={current.type} onValueChange={((e) => { setCurrent((previous) => ({ ...previous, type: e as Type}))})}>
-                        <SelectTrigger value={current.type} className="bg-white border border-black rounded-none text-black font-extrabold" defaultValue={current.type}>
+                        <SelectTrigger value={current.type} className="bg-white border border-black rounded-none text-black font-extrabold text-sm" defaultValue={current.type}>
                         <SelectValue>
                             {formatJobType(current.type)}
                         </SelectValue>
                         </SelectTrigger>
                         <SelectContent className="bg-white rounded-none border border-black text-black font-bold">
                             <SelectGroup className="space-y-1">
-                                <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" value="fulltime">Full Time</SelectItem>
-                                <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" value="parttime">Part Time</SelectItem>
-                                <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" value="internship">Internship</SelectItem>
-                                <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white" value="contract">Contract</SelectItem>
+                                <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none" value="fulltime">Full Time</SelectItem>
+                                <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none" value="parttime">Part Time</SelectItem>
+                                <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none" value="internship">Internship</SelectItem>
+                                <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none" value="contract">Contract</SelectItem>
                             </SelectGroup>
                         </SelectContent>
                     </Select>
                 </div>
                 <div className="space-y-2">
-                <Label className='font-extrabold text-black'>location</Label>
-                <Input className="bg-white border border-black rounded-none text-black font-extrabold" placeholder="location" value={current.location == null ? '' : current.location} onChange={((e) => { setCurrent((previous) => ({...previous, location: e.target.value}))})}></Input>
+                <Label className='font-extrabold text-black'>Country</Label>
+                <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Enter country" value={current.country == null ? '' : current.country} onChange={((e) => { setCurrent((previous) => ({...previous, location: e.target.value}))})}></Input>
                 </div>
                 <div className="space-y-2">
-                <Label className='font-extrabold text-black'>description</Label>
-                <Textarea className="bg-white border border-black rounded-none text-black font-extrabold" placeholder="description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
+                <Label className='font-extrabold text-black'>City</Label>
+                <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Enter city" value={current.country == null ? '' : current.country} onChange={((e) => { setCurrent((previous) => ({...previous, location: e.target.value}))})}></Input>
+                </div>
+                <div className="space-y-2">
+                <Label className='font-extrabold text-black'>Description</Label>
+                <Textarea className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
                 </div>
                 <div className="gap-2">
                 {

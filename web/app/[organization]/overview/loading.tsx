@@ -12,9 +12,9 @@ export default function Loading() {
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-4xl tracking-tight text-black">overview</h1>
+        <h1 className="font-extrabold text-4xl tracking-tight text-black">Overview</h1>
         <Button size={"sm"} className="rounded-none font-extrabold border border-black">
-            preview
+            Preview
         <SquareArrowOutUpRight className="size-4" />
         </Button>
         </div>

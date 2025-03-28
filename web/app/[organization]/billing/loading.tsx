@@ -12,7 +12,7 @@ export default function Loading() {
     return (
         <> 
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-black text-4xl tracking-tight">billing</h1>
+        <h1 className="font-extrabold text-black text-4xl tracking-tight">Billing</h1>
         <Button size={"sm"} className="border border-black rounded-none">
         <Banknote className="size-4" />
         </Button>

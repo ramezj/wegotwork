@@ -110,8 +110,9 @@ model Job {
   id String @id @default(cuid())
   title String
   type Type @default(fulltime)
-  location String?
-  content String
+  country String?
+  city String?
+  content String?
   createdAt DateTime @default(now())
   organizationId String
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
