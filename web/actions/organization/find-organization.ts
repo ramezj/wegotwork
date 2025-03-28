@@ -30,16 +30,16 @@ export async function FindOrganization(slug: string) {
         const uniqueLocations = await prisma.job.findMany({
             where: {
                 organizationId: organization.id,
-                location: {
+                country: {
                     not: null
                 }
             },
             select: {
-                location: true
+                country: true
             },
-            distinct: ['location']
+            distinct: ['country']
         })
-        const locations = uniqueLocations.map(job => job.location);
+        const locations = uniqueLocations.map(job => job.country);
         const uniqueEmploymentTypes = await prisma.job.findMany({
             where: {
                 organizationId: organization.id
@@ -50,6 +50,7 @@ export async function FindOrganization(slug: string) {
             distinct: ['type']
         })
         const types = uniqueEmploymentTypes.map(job => job.type);
+        console.log(locations);
         return {
             error: false,
             organization: organization,

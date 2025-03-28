@@ -67,11 +67,11 @@ export function EditJobCard({ job } : { job: Job}) {
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Country</Label>
-                <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Enter country" value={current.country == null ? '' : current.country} onChange={((e) => { setCurrent((previous) => ({...previous, location: e.target.value}))})}></Input>
+                <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Enter country" value={current.country == null ? '' : current.country} onChange={((e) => { setCurrent((previous) => ({...previous, country: e.target.value}))})}></Input>
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>City</Label>
-                <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Enter city" value={current.country == null ? '' : current.country} onChange={((e) => { setCurrent((previous) => ({...previous, location: e.target.value}))})}></Input>
+                <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Enter city" value={current.city == null ? '' : current.city} onChange={((e) => { setCurrent((previous) => ({...previous, city: e.target.value}))})}></Input>
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Description</Label>

@@ -18,12 +18,12 @@ type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
 export function ViewOrganization({ organization, locations, types } : { organization:OrganizationWithJobs, locations: Array<string>, types: Array<string> }) {
     const [ originalJobs, setOriginalJobs ] = useState<Array<Job>>(organization.jobs);
     const [ jobs, setJobs ] = useState<Array<Job>>(organization.jobs);
-    const [ selectedLocation, setSelectedLocation ] = useState<string>("All");
+    const [ selectedCountry, setSelectedCountry ] = useState<string>("All");
     const [ selectedEmploymentType, setSelectedEmploymentType ] = useState<string>("All");
     const filterJobs = (location: string, employmentType: string) => {
       let filteredJobs = originalJobs;
       if (location !== "All") {
-          filteredJobs = filteredJobs.filter((job) => job.location === location);
+          filteredJobs = filteredJobs.filter((job) => job.country === location);
       }
       if (employmentType !== "All") {
           filteredJobs = filteredJobs.filter((job) => job.type === employmentType);
@@ -46,20 +46,20 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     <div className="flex sm:flex-row flex-col gap-4 lg:w-1/2 w-full pt-2 justify-center">
     <div className="w-full">
     <Select
-      onValueChange={(loc) => {
-      setSelectedLocation(loc); 
-      filterJobs(loc, selectedEmploymentType); 
+      onValueChange={(country) => {
+        setSelectedCountry(country); 
+      filterJobs(country, selectedEmploymentType); 
       }}>
         <SelectTrigger aria-label="Select Locations" className="bg-white rounded-none border-black text-black font-bold w-full">
         <SelectValue placeholder="All Locations" />
         </SelectTrigger>
         <SelectContent className="bg-white border-black rounded-none text-black font-bold">
-          <SelectGroup className="space-y-1">
+          <SelectGroup className="">
             <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none" key={"All"} value="All">All Locations</SelectItem>
             {
-              locations.map((location, index) => {
+              locations.map((country, index) => {
                 return (
-                  <SelectItem key={location} value={location} className="hover:!bg-black rounded-none active:!bg-black focus:!bg-black hover:text-white">{location}</SelectItem>
+                  <SelectItem key={country} value={country} className="hover:!bg-black rounded-none active:!bg-black focus:!bg-black hover:text-white">{country}</SelectItem>
                 )
               })
             }
@@ -71,14 +71,14 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     <Select 
       onValueChange={(type) => {
       setSelectedEmploymentType(type); 
-      filterJobs(selectedLocation, type);
+      filterJobs(selectedCountry, type);
     }}> 
     
       <SelectTrigger aria-label="Select Employment" className="bg-white rounded-none border-black text-black font-bold w-full">
       <SelectValue placeholder="All Employment" />
       </SelectTrigger>
       <SelectContent className="bg-white border-black rounded-none text-black font-bold">
-        <SelectGroup className='space-y-1'>
+        <SelectGroup className=''>
           <SelectItem key={"All"} value="All" className="hover:!bg-black rounded-none active:!bg-black focus:!bg-black hover:text-white">All Employment</SelectItem>
           {
               types.map((type, index) => {
