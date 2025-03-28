@@ -46,11 +46,11 @@ export function Navbar({ session } : { session: Session | null}) {
         <div className="flex-1"></div>
         <div className="hidden md:block">
           {session?.user ? (
-            <Button variant="default" asChild className="border-l py-8 rounded-none hover:bg-black bg-black font-bold text-white text-base">
+            <Button variant="default" asChild className="border-l border-b border-black h-16 rounded-none hover:bg-black bg-background font-bold text-white text-base">
             <Link href="/dashboard">dashboard</Link>
             </Button>
           ) : (
-            <Button asChild variant="default" className="border-l py-8 rounded-none hover:bg-black bg-black font-bold text-white text-base">
+            <Button asChild variant="default" className="border-l border-b border-black h-16 rounded-none hover:bg-black bg-background font-bold text-white text-base">
               <Link href="/auth">start hiring</Link>
             </Button>
           )}
@@ -61,7 +61,7 @@ export function Navbar({ session } : { session: Session | null}) {
           <Button
           variant="ghost"
           size="icon"
-          className="md:hidden z-50 text-white hover:text-white border-l p-8 bg-black hover:bg-black rounded-none"
+          className="md:hidden z-50 text-white hover:text-white border-l border-b border-black px-8 h-16 bg-background hover:bg-black rounded-none"
           onClick={() => setIsOpen(!isOpen)}>
           <X className="h-6 w-6" /> 
           </Button>
@@ -69,7 +69,7 @@ export function Navbar({ session } : { session: Session | null}) {
           <Button
           variant="ghost"
           size="icon"
-          className="md:hidden z-50 text-white hover:text-white border-l p-8 bg-black hover:bg-black rounded-none"
+          className="md:hidden z-50 text-white hover:text-white border-l border-b border-black px-8 h-16 bg-background hover:bg-black rounded-none"
           onClick={() => setIsOpen(!isOpen)}>
           <Menu className="h-6 w-6" />
           </Button>
