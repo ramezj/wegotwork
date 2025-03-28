@@ -33,13 +33,13 @@ export default async function Home() {
     <>
     <Navbar session={session} />
     <div className="flex items-center justify-center mt-12">
-        <h1 className="font-extrabold text-3xl text-black">pick an organization</h1>
+        <h1 className="font-extrabold text-3xl text-black">Pick an organization</h1>
         </div>
         <div className="w-full flex items-center justify-center mt-8">
         <Card className="w-[350px] bg-white border rounded-none">
         <CardHeader className="text-center">
-        <CardTitle className="text-black font-extrabold">organizations</CardTitle>
-        <CardDescription className="text-black font-bold">organizations you own or are a part of</CardDescription>
+        <CardTitle className="text-black font-extrabold">Organizations</CardTitle>
+        <CardDescription className="text-black font-bold">Organizations you own or are a part of</CardDescription>
         </CardHeader>
         <CardContent>
         <form>

@@ -37,13 +37,13 @@ export default function FeatureCards() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
        <FeatureCard
         icon={<Monitor className="h-6 w-6 text-black" />}
-        title="career pages"
-        description="create career pages, post jobs & receive applicants, all in one place."
+        title="Career pages"
+        description="Create career pages, post jobs & receive applicants, all in one place."
       />
       <FeatureCard
         icon={<Users className='h-6 w-6 text-black' />}
-        title="team collaboration"
-        description="work together with team members, create jobs & receive applicants."
+        title="Team collaboration"
+        description="Work together with team members, create jobs & receive applicants."
       />
     </div>
   )

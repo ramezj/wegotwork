@@ -13,7 +13,7 @@ export default function Loading() {
         <>
         <div className="flex justify-between items-center w-full">
         <h1 className="font-extrabold text-4xl tracking-tight text-black">Overview</h1>
-        <Button size={"sm"} className="rounded-none font-extrabold border border-black">
+        <Button disabled size={"sm"} className="rounded-none font-extrabold border border-black">
             Preview
         <SquareArrowOutUpRight className="size-4" />
         </Button>
