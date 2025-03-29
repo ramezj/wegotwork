@@ -8,6 +8,8 @@ import { JobCard } from "./cards/job"
 import { formatJobType } from "@/lib/format-job"
 import Balancer from "react-wrap-balancer"
 import { Card } from "./ui/card"
+import { Input } from "./ui/input"
+import { Button } from "./ui/button"
  
 type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
     include: {
@@ -106,7 +108,14 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       <p className="text-black font-bold">We are currently not hiring.</p>
       </Card>
     }
+    <Card className="bg-white rounded-none border border-black p-8">
+      <p className="text-black font-bold">Signup to receive new job postings.</p>
+      <div className='flex sm:flex-row flex-col gap-4 mt-4'>
+      <Input className='bg-white rounded-none text-black font-bold text-base border border-black' placeholder="Enter email"></Input>
+      <Button className='bg-black hover:bg-black text-white hover:text-white rounded-none font-extrabold'>Get Notified</Button>
+      </div>
+    </Card>
     </div>
-</div>
+    </div>
     )
 }

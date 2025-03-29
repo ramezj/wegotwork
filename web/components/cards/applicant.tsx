@@ -41,7 +41,7 @@ export default function ApplicantCard({ applicant } : { applicant:Applicant}) {
         </div>
 
         {applicant.resumeKey && (
-            <Button 
+            <Button
             variant="ghost" 
             size="sm" 
             className="rounded-none bg-black hover:bg-black text-white hover:text-white w-full sm:w-auto"

@@ -24,7 +24,6 @@ export default async function Page({ params } : { params: Promise<{ organization
     });
     if(!session) { redirect('/')}
     const job = await GetJobApplicants((await params).jobId)
-    console.log(job);
     if(job.error) {
         redirect('/')
     }

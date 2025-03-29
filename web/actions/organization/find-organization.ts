@@ -50,7 +50,6 @@ export async function FindOrganization(slug: string) {
             distinct: ['type']
         })
         const types = uniqueEmploymentTypes.map(job => job.type);
-        console.log(locations);
         return {
             error: false,
             organization: organization,
