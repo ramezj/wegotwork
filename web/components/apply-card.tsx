@@ -42,25 +42,25 @@ export default function ApplyCard({ jobId }: { jobId: string}) {
             </div>
             <div className="space-y-2">
             <Label htmlFor="name" className="text-black font-extrabold">Full name</Label>
-            <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" required placeholder="Enter your full name" value={name} onChange={((e) => {setName(e.target.value)})} />
+            <Input className="bg-white border border-black rounded-none text-black font-extrabold text-base" required placeholder="Enter your full name" value={name} onChange={((e) => {setName(e.target.value)})} />
             </div>
             <div className="space-y-2">
             <Label htmlFor="name" className="text-black font-extrabold">Email address</Label>
-            <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" required placeholder="Enter your email address" value={emailAddress} onChange={((e) => {setEmailAddress(e.target.value)})} />
+            <Input className="bg-white border border-black rounded-none text-black font-extrabold text-base" required placeholder="Enter your email address" value={emailAddress} onChange={((e) => {setEmailAddress(e.target.value)})} />
             </div>
             <div className="space-y-2">
             <Label htmlFor="name" className="text-black font-extrabold">Phone number</Label>
-            <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" required type="number" placeholder="Enter your phone number" value={phoneNumber ?? ""} onChange={((e) => {setPhoneNumber(Number(e.target.value))})} />
+            <Input className="bg-white border border-black rounded-none text-black font-extrabold text-base" required type="number" placeholder="Enter your phone number" value={phoneNumber ?? ""} onChange={((e) => {setPhoneNumber(Number(e.target.value))})} />
             </div>
             <div className="space-y-2">
             <Label htmlFor="name" className="text-black font-extrabold">Resume</Label>
             <div>
-            <Input className="bg-white file:text-black file:font-bold border border-black rounded-none text-black font-extrabold text-sm" required type="file" id="file" name="file" accept=".pdf" onChange={handleFileChange} />
+            <Input className="bg-white file:text-black file:font-bold border border-black rounded-none text-black font-extrabold text-base" required type="file" id="file" name="file" accept=".pdf" onChange={handleFileChange} />
             </div>
             </div>
             <div className="space-y-2"> 
             <Label htmlFor="motivation" className="text-black font-extrabold">Motivation letter</Label>
-            <Textarea className="bg-white border border-black rounded-none text-black font-extrabold text-sm" required value={motivation} onChange={((e) => {setMotivation(e.target.value)})} placeholder="Tell us why you think you're the best candidate for this position" />
+            <Textarea className="bg-white border border-black rounded-none text-black font-extrabold text-base" required value={motivation} onChange={((e) => {setMotivation(e.target.value)})} placeholder="Share why you're a great fit." />
             </div>
             {
                 loading 
