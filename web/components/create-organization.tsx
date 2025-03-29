@@ -50,9 +50,9 @@ export function CreateOrganizationButton() {
         </DialogHeader>
         <form className="grid items-center gap-3 text-left" onSubmit={create_organization}>
         <Label className='font-extrabold text-black text-left'>Name</Label>
-        <Input placeholder="Enter name" required value={name} onChange={((e) => {setName(e.target.value)})} className="bg-white text-sm border border-black rounded-none text-black font-extrabold"/>
+        <Input placeholder="Enter name" required value={name} onChange={((e) => {setName(e.target.value)})} className="bg-white text-base border border-black rounded-none text-black font-bold"/>
         <Label className='font-extrabold text-black text-left'>Slug</Label>
-        <Input placeholder="Enter slug" required value={slug} onChange={((e) => {setSlug(e.target.value)})} className="bg-white text-sm border border-black rounded-none text-black font-extrabold"/>
+        <Input placeholder="Enter slug" required value={slug} onChange={((e) => {setSlug(e.target.value)})} className="bg-white text-base border border-black rounded-none text-black font-bold"/>
         <div>
         <Button type="submit" disabled={loading}  className="w-full mt-2 font-extrabold bg-black text-white hover:bg-black hover:text-white rounded-none">
             {

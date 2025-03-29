@@ -72,7 +72,7 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
               value={name}
               onChange={((e) => {setName(e.target.value)})}
               placeholder="Enter job name"
-              className="bg-white rounded-none border border-black text-black font-extrabold text-sm"
+              className="bg-white rounded-none border border-black text-black font-bold text-base"
             />
             </form>
           </div>

@@ -35,15 +35,15 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         <form onSubmit={editOrganization} className="space-y-4">
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>Name</Label>
-        <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" required placeholder="Enter name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
+        <Input className="bg-white border border-black rounded-none text-black font-bold text-base" required placeholder="Enter name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>Slug</Label>
-        <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" required placeholder="Enter slug" value={current.slug} onChange={((e) => { setCurrent((previous) => ({...previous, slug: e.target.value}))})}></Input>
+        <Input className="bg-white border border-black rounded-none text-black font-bold text-base" required placeholder="Enter slug" value={current.slug} onChange={((e) => { setCurrent((previous) => ({...previous, slug: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>Description</Label>
-        <Textarea className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Provide a detailed organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
+        <Textarea className="bg-white border border-black rounded-none text-black font-bold text-base" placeholder="Provide a detailed organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
         <div className="space-y-2">
         {

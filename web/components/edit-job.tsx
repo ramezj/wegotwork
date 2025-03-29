@@ -45,12 +45,12 @@ export function EditJobCard({ job } : { job: Job}) {
         <form onSubmit={EditTheJob} className="space-y-4">
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Title</Label>
-                    <Input required className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Enter job title" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>
+                    <Input required className="bg-white border border-black rounded-none text-black font-bold text-base" placeholder="Enter job title" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Employment Type</Label>
                     <Select value={current.type} defaultValue={current.type} onValueChange={((e) => { setCurrent((previous) => ({ ...previous, type: e as Type}))})}>
-                        <SelectTrigger value={current.type} className="bg-white border border-black rounded-none text-black font-extrabold text-sm" defaultValue={current.type}>
+                        <SelectTrigger value={current.type} className="bg-white border border-black rounded-none text-black font-bold text-base" defaultValue={current.type}>
                         <SelectValue>
                             {formatJobType(current.type)}
                         </SelectValue>
@@ -67,15 +67,15 @@ export function EditJobCard({ job } : { job: Job}) {
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Country</Label>
-                <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Enter country" value={current.country == null ? '' : current.country} onChange={((e) => { setCurrent((previous) => ({...previous, country: e.target.value}))})}></Input>
+                <Input className="bg-white border border-black rounded-none text-black font-bold text-base" placeholder="Enter country" value={current.country == null ? '' : current.country} onChange={((e) => { setCurrent((previous) => ({...previous, country: e.target.value}))})}></Input>
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>City</Label>
-                <Input className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Enter city" value={current.city == null ? '' : current.city} onChange={((e) => { setCurrent((previous) => ({...previous, city: e.target.value}))})}></Input>
+                <Input className="bg-white border border-black rounded-none text-black font-bold text-base" placeholder="Enter city" value={current.city == null ? '' : current.city} onChange={((e) => { setCurrent((previous) => ({...previous, city: e.target.value}))})}></Input>
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Description</Label>
-                <Textarea className="bg-white border border-black rounded-none text-black font-extrabold text-sm" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
+                <Textarea className="bg-white border border-black rounded-none text-black font-bold text-base" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
                 </div>
                 <div className="gap-2">
                 {
