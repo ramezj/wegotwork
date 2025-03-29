@@ -37,7 +37,13 @@ export async function CreateJobAction(title: string, id: string) {
             error:false,
             job:job
         }
-    } catch (error) {
+    } catch (error: unknown) {
+        if(error instanceof Error) {
+            return {
+                error:true,
+                message: error.message
+            }
+        }
         console.error(error);
         return { 
             error:true,

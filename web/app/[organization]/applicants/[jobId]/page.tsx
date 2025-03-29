@@ -5,12 +5,13 @@ import { redirect } from "next/navigation";
 import { GetOrganizationJobs } from "@/actions/jobs/get-all-jobs";
 import CreateJob from "@/components/create-job";
 import { JobCardForDashboard } from "@/components/cards/job";
-import { Job } from "@prisma/client";
+import { Applicant, Job } from "@prisma/client";
 import { headers } from "next/headers";
 import { Metadata } from "next";
 import { GetJobAsOwnerWithApplicants } from "@/actions/jobs/get-job-owner";
 import { EditJobCard } from "@/components/edit-job";
 import { GetJobApplicants } from "@/actions/applicants/get-job-applicants";
+import ApplicantCard from "@/components/cards/applicant";
 
 export const metadata:Metadata = {
     title: "applicants",
@@ -29,9 +30,17 @@ export default async function Page({ params } : { params: Promise<{ organization
     }
     return (
         <>
-        {JSON.stringify(job?.applicants, (_, value) =>
-            typeof value === "bigint" ? value.toString() : value
-        )}
+        <div className="flex items-center justify-between w-full">
+        <h1 className="font-extrabold text-4xl text-black tracking-tight">View Applicants</h1>
+        {/* <CreateJob id={await((await (params)).organization)} buttonSize="sm" buttonColor="white" /> */}
+        </div>
+        {job.applicants?.map((applicant: Applicant) => {
+            return (
+                <div key={applicant.id}>
+                    <ApplicantCard applicant={applicant} />
+                </div>
+            )
+        })}
         </>
     )
 }
