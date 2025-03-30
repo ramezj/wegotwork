@@ -23,7 +23,7 @@ export function Navbar({ session } : { session: Session | null}) {
     <div className="border-b border-black bg-white sticky top-0 h-16">
       <div className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center z-50 pl-4 text-2xl font-extrabold tracking-tighter text-black">
-          <span className="text-2xl font-extrabold tracking-tighter text-black">lou careers</span>
+          <span className="text-2xl font-extrabold tracking-tighter text-black">wegotwork</span>
         </Link>
         <div className='justify-center items-center gap-4 hidden md:flex pl-4 align-middle'>
             {/* <NavigationMenuForNavbar /> */}

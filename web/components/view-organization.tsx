@@ -40,7 +40,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       ? 
       <>
       <Balancer>
-      <p className="text-muted-foreground max-w-3xl text-sm pt-3 pb-3">{organization?.description}</p>
+      <p className="max-w-3xl text-sm pt-3 pb-3 text-black font-bold">{organization?.description}</p>
       </Balancer>
       </>
       :  <div className="p-3"></div>
@@ -108,13 +108,13 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       <p className="text-black font-bold">We are currently not hiring.</p>
       </Card>
     }
-    <Card className="bg-white rounded-none border border-black p-8">
+    {/* <Card className="bg-white rounded-none border border-black p-8">
       <p className="text-black font-bold">Signup to receive new job postings.</p>
       <div className='flex sm:flex-row flex-col gap-4 mt-4'>
       <Input className='bg-white rounded-none text-black font-bold text-base border border-black' placeholder="Enter email"></Input>
       <Button className='bg-black hover:bg-black text-white hover:text-white rounded-none font-extrabold'>Get Notified</Button>
       </div>
-    </Card>
+    </Card> */}
     </div>
     </div>
     )
