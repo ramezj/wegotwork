@@ -12,7 +12,7 @@ import { Users } from "lucide-react";
 import FeatureCards from "@/components/test-cards";
 
 export const metadata:Metadata = {
-  title: "heliup",
+  title: "wegotwork",
   description: "hiring just got easier."
 }
 
