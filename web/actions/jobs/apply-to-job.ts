@@ -35,7 +35,7 @@ export async function applyToJob(jobId: string, name: string, emailAddress: stri
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
         const key = Date.now() + file.name
-        const bucketName = "hirehollo";
+        const bucketName = "wegotwork";
         const putobject = await new PutObjectCommand({
             Bucket: bucketName,
             Key: key,

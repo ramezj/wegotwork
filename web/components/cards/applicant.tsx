@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Calendar, Mail, FileText, ArrowRight } from "lucide-react"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
+import Link from "next/link"
 
 export default function ApplicantCard({ applicant } : { applicant:Applicant}) {
   // Format the date to show how long ago the application was submitted
@@ -47,7 +48,7 @@ export default function ApplicantCard({ applicant } : { applicant:Applicant}) {
             className="rounded-none bg-black hover:bg-black text-white hover:text-white w-full sm:w-auto"
             >
             <FileText className="h-4 w-4 mr-1.5 text-white" />
-            Resume
+            View Details
             </Button>
         )}
         </CardFooter>
