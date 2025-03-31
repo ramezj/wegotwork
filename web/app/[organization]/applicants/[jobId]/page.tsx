@@ -19,6 +19,8 @@ export const metadata:Metadata = {
 }
 
 export default async function Page({ params } : { params: Promise<{ organization: string, jobId: string }>}) {
+    const organization = (await params).organization;
+    const jobId = (await params).jobId;
     const session:Session | null = await auth.api.getSession({
         headers: await headers()
     });
@@ -36,7 +38,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         {job.applicants?.map((applicant: Applicant) => {
             return (
                 <div key={applicant.id}>
-                    <ApplicantCard applicant={applicant} />
+                    <ApplicantCard applicant={applicant} organization={organization} jobId={jobId} />
                 </div>
             )
         })}

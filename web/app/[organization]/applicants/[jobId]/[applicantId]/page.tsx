@@ -13,6 +13,8 @@ import { EditJobCard } from "@/components/edit-job";
 import { GetJobApplicants } from "@/actions/applicants/get-job-applicants";
 import ApplicantCard from "@/components/cards/applicant";
 import { getApplicantById } from "@/actions/applicants/get-applicant";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export const metadata:Metadata = {
     title: "applicants",
@@ -25,9 +27,10 @@ export default async function Page({ params } : { params: Promise<{ organization
     });
     if(!session) { redirect('/')}
     const applicant = await getApplicantById((await params).applicantId)
-    if(applicant?.error) {
-        redirect('/')
-    }
+    console.log(applicant);
+    // if(applicant?.error) {
+    //     redirect('/')
+    // }
     return (
         <>
         <div className="flex items-center justify-between w-full">
@@ -35,6 +38,11 @@ export default async function Page({ params } : { params: Promise<{ organization
         {/* <CreateJob id={await((await (params)).organization)} buttonSize="sm" buttonColor="white" /> */}
         </div>
         {JSON.stringify(applicant)}
+        <Button asChild>
+            <Link href={applicant?.url!}>
+            CV
+            </Link>
+            </Button>
         </>
     )
 }

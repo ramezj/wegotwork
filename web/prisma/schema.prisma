@@ -135,7 +135,6 @@ enum Status {
 model Applicant {
   id String @id @default(cuid())
   name String
-  number BigInt
   motivation String @default("")
   email String
   linkedIn String?

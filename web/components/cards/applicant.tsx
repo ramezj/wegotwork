@@ -6,7 +6,7 @@ import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import Link from "next/link"
 
-export default function ApplicantCard({ applicant } : { applicant:Applicant}) {
+export default function ApplicantCard({ applicant, organization, jobId } : { applicant:Applicant, organization: string, jobId: string }) {
   // Format the date to show how long ago the application was submitted
   const formattedDate = formatDistanceToNow(new Date(applicant.createdAt), { addSuffix: true })
   return (
@@ -40,15 +40,18 @@ export default function ApplicantCard({ applicant } : { applicant:Applicant}) {
             {applicant.email}
             </a>
         </div>
-
+        {applicant.id}
         {applicant.resumeKey && (
             <Button
+            asChild
             variant="ghost" 
             size="sm" 
             className="rounded-none bg-black hover:bg-black text-white hover:text-white w-full sm:w-auto"
             >
+            <Link href={`/${organization}/applicants/${jobId}/${applicant.id}`}>
             <FileText className="h-4 w-4 mr-1.5 text-white" />
             View Details
+            </Link>
             </Button>
         )}
         </CardFooter>

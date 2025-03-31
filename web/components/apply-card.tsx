@@ -21,7 +21,7 @@ export default function ApplyCard({ jobId }: { jobId: string}) {
         const formData = new FormData();
         formData.append('file', file!);
         setLoading(true);
-        const res = await applyToJob(jobId, name!, emailAddress!, phoneNumber!, motivation!, formData);
+        const res = await applyToJob(jobId, name!, emailAddress!, motivation!, formData);
         setLoading(false);
         if(res.ok) {
             toast.success(res.message);
@@ -48,10 +48,10 @@ export default function ApplyCard({ jobId }: { jobId: string}) {
             <Label htmlFor="name" className="text-black font-extrabold">Email address</Label>
             <Input className="bg-white border border-black rounded-none text-black font-bold text-base" required placeholder="Enter your email address" value={emailAddress} onChange={((e) => {setEmailAddress(e.target.value)})} />
             </div>
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
             <Label htmlFor="name" className="text-black font-extrabold">Phone number</Label>
             <Input className="bg-white border border-black rounded-none text-black font-bold text-base" required type="number" placeholder="Enter your phone number" value={phoneNumber ?? ""} onChange={((e) => {setPhoneNumber(Number(e.target.value))})} />
-            </div>
+            </div> */}
             <div className="space-y-2">
             <Label htmlFor="name" className="text-black font-extrabold">Resume</Label>
             <div>

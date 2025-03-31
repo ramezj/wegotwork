@@ -7,9 +7,10 @@ import { GetObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { Session } from "@/lib/auth-client";
 
 export async function getApplicantById(applicantId: string) {
-    const session = await auth.api.getSession({
+    const session:Session | null = await auth.api.getSession({
         headers: await headers()
     });
     if(!session) {
@@ -38,7 +39,7 @@ export async function getApplicantById(applicantId: string) {
             applicant,
             url
         }
-    } catch (error) {
-        
+    } catch (error: unknown) {
+        console.error(error);
     }
 }
