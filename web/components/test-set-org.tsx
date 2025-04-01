@@ -38,7 +38,7 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
             return (
                 <div key={organization.organizationId}>
                 <Button onClick={(() => {setUserOrg(organization.organizationId)})} asChild variant={"outline"} className="my-2 flex flex-col items-start text-left !rounded-none bg-white hover:bg-white border border-black text-black hover:text-black font-extrabold">
-                <Link href={`${organization.organizationId}/overview`} className="" key={organization.id}>
+                <Link href={"/overview"} className="" key={organization.id}>
                 {organization.organization.name}    
                 </Link> 
                 </Button>
