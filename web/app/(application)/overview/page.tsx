@@ -7,6 +7,9 @@ export default async function Page() {
     const session:Session | null = await auth.api.getSession({
         headers: await headers()
     })
+    if(!session) {
+        redirect('/')
+    }
     if(session?.user.currentOrganizationId === null) {
         redirect('/dashboard')
     }

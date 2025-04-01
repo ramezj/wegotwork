@@ -9,12 +9,15 @@ export default async function DashboardLayout({ children, params }: { children: 
     const session:Session | null = await auth.api.getSession({
         headers: await headers()
     })
-    if(!session?.user) {
+    if(!session) {
         redirect('/');
+    }
+    if(session.user.currentOrganizationId === null) {
+        redirect('/dashboard')
     }
     return (
         <>
-        <LayoutNavigation session={session!} organization={(await params).organization!}>
+        <LayoutNavigation session={session!} organization={session.user.currentOrganizationId!}>
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
           {children}
         </main>
