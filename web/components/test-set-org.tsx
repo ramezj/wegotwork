@@ -7,6 +7,8 @@ import { Button } from "./ui/button"
 import Link from "next/link"
 import { useState } from "react"
 import { CreateOrganizationButton } from "./create-organization"
+import { toast } from "sonner"
+import { redirect } from "next/navigation"
 
 type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
     include: {
@@ -18,7 +20,11 @@ type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
 export function TestSetOrganizationCard({ userOrganizations }: { userOrganizations : OrganizationUserWithOrganization[] }) {
     const setUserOrg = async (organizationId: string) => {
         const res = await SetCurrentOrganization(organizationId);
-        console.log(res);
+        if(res?.error ) {
+            toast(res.message);
+        } else {
+            redirect('/overview')
+        }
     }
     return (
     <Card className="w-[350px] bg-white border rounded-none">
@@ -37,10 +43,8 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
             userOrganizations.map((organization: OrganizationUserWithOrganization) => {
             return (
                 <div key={organization.organizationId}>
-                <Button onClick={(() => {setUserOrg(organization.organizationId)})} asChild variant={"outline"} className="my-2 flex flex-col items-start text-left !rounded-none bg-white hover:bg-white border border-black text-black hover:text-black font-extrabold">
-                <Link href={"/overview"} className="" key={organization.id}>
+                <Button onClick={(() => {setUserOrg(organization.organizationId)})} variant={"outline"} className="my-2 w-full flex flex-col items-start text-left !rounded-none bg-white hover:bg-white border border-black text-black hover:text-black font-extrabold">           
                 {organization.organization.name}    
-                </Link> 
                 </Button>
                 </div>
                     )
