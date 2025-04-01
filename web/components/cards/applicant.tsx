@@ -45,7 +45,7 @@ export default function ApplicantCard({ applicant, organization, jobId } : { app
             size="sm" 
             className="rounded-none bg-black hover:bg-black text-white hover:text-white w-full sm:w-auto"
             >
-            <Link href={`${applicant.id}`}>
+            <Link href={`/applicants/${jobId}/${applicant.id}`}>
             <FileText className="h-4 w-4 mr-1.5 text-white" />
             View Details
             </Link>
