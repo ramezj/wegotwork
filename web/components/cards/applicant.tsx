@@ -22,9 +22,6 @@ export default function ApplicantCard({ applicant, organization, jobId } : { app
               </div>
             </div>
           </div>
-          {/* <Badge variant={"default"} className='bg-white rounded-none text-black hover:bg-white hover:text-black border border-black'>
-            {applicant.status}
-          </Badge> */}
         </div>
       </CardHeader>
       
@@ -48,7 +45,7 @@ export default function ApplicantCard({ applicant, organization, jobId } : { app
             size="sm" 
             className="rounded-none bg-black hover:bg-black text-white hover:text-white w-full sm:w-auto"
             >
-            <Link href={`/${organization}/applicants/${jobId}/${applicant.id}`}>
+            <Link href={`${applicant.id}`}>
             <FileText className="h-4 w-4 mr-1.5 text-white" />
             View Details
             </Link>

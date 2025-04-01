@@ -21,7 +21,12 @@ export default async function Page({ params } : { params: Promise<{ organization
     const session:Session | null = await auth.api.getSession({
         headers: await headers()
     });
-    if(!session) { redirect('/')}
+    if(!session) { 
+        redirect('/')
+    }
+    if(session.user.currentOrganizationId === null) {
+        redirect('/dashboard');
+    }
     const job = await GetJobAsOwner((await params).jobId)
     if(job.error) {
         redirect('/')
