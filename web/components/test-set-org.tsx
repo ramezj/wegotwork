@@ -23,9 +23,7 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
         if(res?.error ) {
             toast(res.message);
         } else {
-            setTimeout(() => {
-                redirect('/overview')
-            }, 1000);
+            redirect('/overview');
         }
     }
     return (

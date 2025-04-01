@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth"
 import { Session } from "@/lib/auth-client"
 import { headers } from "next/headers"
 import prisma from "@/lib/prisma"
+import { revalidatePath } from "next/cache"
 
 export async function SetCurrentOrganization(organizationId: string) {
     const session:Session | null = await auth.api.getSession({
@@ -36,7 +37,7 @@ export async function SetCurrentOrganization(organizationId: string) {
                 currentOrganizationId:organizationId
             }
         })
-        console.log(setCurrentOrganization);
+        revalidatePath('/overview');
     } catch (error: unknown) {
         if(error instanceof Error) {
             console.log(error.message)
