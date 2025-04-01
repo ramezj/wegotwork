@@ -35,6 +35,20 @@ export async function CreateOrganization(name: string, slug: string) {
                 }
             }
         })
+        const setUserOrganizationId = await prisma.user.update({
+            where: {
+                id: session.user.id
+            },
+            data: {
+                currentOrganizationId: organization.id
+            }
+        })
+        if(!setUserOrganizationId) {
+            return {
+                error: true,
+                message:"Couldnt set organizationId."
+            }
+        }
         revalidatePath('/dashboard')
         return {
             error:false,

@@ -11,6 +11,7 @@ import Link from "next/link";
 import { Prisma } from "@prisma/client";
 import { Navbar } from "@/components/navbar-2";
 import { Metadata } from "next";
+import { TestSetOrganizationCard } from "@/components/test-set-org";
 
 type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
     include: {
@@ -36,7 +37,7 @@ export default async function Home() {
         <h1 className="font-extrabold text-3xl text-black">Pick an organization</h1>
         </div>
         <div className="w-full flex items-center justify-center mt-8">
-        <Card className="w-[350px] bg-white border rounded-none">
+        {/* <Card className="w-[350px] bg-white border rounded-none">
         <CardHeader className="text-center">
         <CardTitle className="text-black font-extrabold">Organizations</CardTitle>
         <CardDescription className="text-black font-bold">Organizations you own or are a part of</CardDescription>
@@ -65,7 +66,8 @@ export default async function Home() {
         <CardFooter className="flex flex-col space-y-2 justify-between">
           <CreateOrganizationButton />
         </CardFooter>
-        </Card>
+        </Card> */}
+        <TestSetOrganizationCard userOrganizations={Organizations?.userOrganizations as OrganizationUserWithOrganization[]} />
         </div>
     </>
   );

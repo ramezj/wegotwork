@@ -9,23 +9,26 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id            String    @id
-  name          String
-  email         String
-  emailVerified Boolean
-  image         String?
-  createdAt     DateTime
-  updatedAt     DateTime
-  isPremium     Boolean @default(false)
-  sessions      Session[]
-  accounts      Account[]
-  userOrganizations OrganizationUser[]
+  id                    String             @id
+  name                  String
+  email                 String
+  emailVerified         Boolean
+  image                 String?
+  createdAt             DateTime
+  updatedAt             DateTime
+  isPremium             Boolean            @default(false)
+  sessions              Session[]
+  accounts              Account[]
+  userOrganizations     OrganizationUser[]
+  currentOrganizationId String?
+  currentOrganization   Organization?      @relation(fields: [currentOrganizationId], references: [id], onDelete: SetNull)
+
   @@unique([email])
   @@map("user")
 }
@@ -76,54 +79,60 @@ model Verification {
 }
 
 model Organization {
-  id String @id @default(cuid())
-  name String
-  slug String @unique
-  description String @default("")
-  premium Boolean @default(false)
-  jobs Job[]
-  users OrganizationUser[]
+  id          String               @id @default(cuid())
+  name        String
+  slug        String               @unique
+  description String               @default("")
+  premium     Boolean              @default(false)
+  jobs        Job[]
+  users       OrganizationUser[]
   invitations OrganizationInvite[]
+  User        User[]
 }
 
 model OrganizationUser {
-  id String @id @default(cuid())
-  userId String
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  role Role @default(member)
+  id             String       @id @default(cuid())
+  userId         String
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role           Role         @default(member)
   organizationId String
-  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 }
+
 model OrganizationInvite {
-  id String @id @default(cuid())
-  role Role @default(member)
-  email String @unique
+  id             String       @id @default(cuid())
+  role           Role         @default(member)
+  email          String       @unique
   organizationId String
-  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
 }
+
 enum Role {
   owner
   member
 }
+
 model Job {
-  id String @id @default(cuid())
-  title String
-  type Type @default(fulltime)
-  country String?
-  city String?
-  content String?
-  createdAt DateTime @default(now())
+  id             String       @id @default(cuid())
+  title          String
+  type           Type         @default(fulltime)
+  country        String?
+  city           String?
+  content        String?
+  createdAt      DateTime     @default(now())
   organizationId String
-  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  applicants Applicant[]
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  applicants     Applicant[]
 }
+
 enum Type {
   fulltime
   parttime
   internship
   contract
 }
+
 enum Status {
   SUBMITTED
   UNDERREVIEW
@@ -132,17 +141,18 @@ enum Status {
   REJECTED
   HIRED
 }
+
 model Applicant {
-  id String @id @default(cuid())
-  name String
-  motivation String @default("")
-  email String
-  linkedIn String?
-  twitter String?
-  github String?
-  createdAt DateTime @default(now())
-  status Status @default(SUBMITTED)
-  resumeKey String
-  jobId String
-  job Job @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  id         String   @id @default(cuid())
+  name       String
+  motivation String   @default("")
+  email      String
+  linkedIn   String?
+  twitter    String?
+  github     String?
+  createdAt  DateTime @default(now())
+  status     Status   @default(SUBMITTED)
+  resumeKey  String
+  jobId      String
+  job        Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
 }

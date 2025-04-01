@@ -34,10 +34,9 @@ export default async function Page({ params } : { params: Promise<{ organization
     return (
         <>
         <div className="flex items-center justify-between w-full">
-        <h1 className="font-extrabold text-4xl text-black tracking-tight">View Applicants</h1>
+        <h1 className="font-extrabold text-4xl text-black tracking-tight">{applicant?.applicant?.name}</h1>
         {/* <CreateJob id={await((await (params)).organization)} buttonSize="sm" buttonColor="white" /> */}
         </div>
-        {JSON.stringify(applicant)}
         <Button asChild>
             <Link href={applicant?.url!}>
             CV

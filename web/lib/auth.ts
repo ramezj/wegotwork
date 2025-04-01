@@ -1,7 +1,8 @@
-import { betterAuth } from "better-auth"
+import { betterAuth, string } from "better-auth"
 import { prismaAdapter } from "better-auth/adapters/prisma"
 import { PrismaClient } from "@prisma/client"
 import prisma from "./prisma";
+import { customSession } from "better-auth/plugins"
 
 export const auth = betterAuth({
     trustedOrigins: ['http://localhost:3000', 'https://heliup.xyz', 'https://www.heliup.xyz'],
@@ -24,5 +25,21 @@ export const auth = betterAuth({
     },
     emailAndPassword: {
         enabled: true
-    }
+    },
+    plugins: [
+        customSession(async ({user, session}) => {
+            const currentOrganizationId = await prisma.user.findFirst({
+                where: {
+                    id: user.id
+                }
+            })
+            return { 
+                user: {
+                    ...user,
+                    currentOrganizationId: currentOrganizationId?.currentOrganizationId
+                },
+                session: session
+            }
+        })
+    ]
 })
