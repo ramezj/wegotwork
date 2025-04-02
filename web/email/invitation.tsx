@@ -41,15 +41,8 @@ export function InviteUserEmail({OrganizationInvite, inviter, email } : {Organiz
 							Hello there,
 						</Text>
 						<Text className="text-black text-[14px] leading-[24px]">
-							<strong>{inviter}</strong> (
-							<Link
-								href={`${email}`}
-								className="text-blue-600 no-underline"
-							>
-								{inviter}
-							</Link>
-							) has invited you to the <strong>{OrganizationInvite.organization.name}</strong> team on{" "}
-							<strong>wegotwork</strong>.
+							<strong>{inviter}</strong> has invited you to the <strong>{OrganizationInvite.organization.name}</strong> team on{" "}
+							<strong>wegotwork.co</strong>.
 						</Text>
 						<Section className="text-center mt-[32px] mb-[32px]">
 							<Button
