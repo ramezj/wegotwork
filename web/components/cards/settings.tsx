@@ -39,7 +39,11 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         </div>
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>Slug</Label>
-        <Input className="bg-white border border-black rounded-none text-black font-bold text-base" required placeholder="Enter slug" value={current.slug} onChange={((e) => { setCurrent((previous) => ({...previous, slug: e.target.value}))})}></Input>
+        <Input className="bg-white border border-black rounded-none text-black font-bold text-base" required placeholder="Enter slug" value={current.slug} onChange={
+            ((e) => { 
+                const newSlug = e.target.value.replace(/\s+/g, '-');
+                setCurrent((previous) => ({...previous, slug: newSlug }))})
+        }></Input>
         </div>
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>Description</Label>
