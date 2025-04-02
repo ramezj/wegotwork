@@ -78,7 +78,7 @@ export function Navbar({ session } : { session: Session | null}) {
             isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           )}
         >
-          <nav className="flex flex-col items-center space-y-8 text-center">
+          <nav className="flex flex-col items-center space-y-6 text-center">
             {["features", "demo", "pricing"].map((item) => (
               <Link
                 key={item}
@@ -92,14 +92,12 @@ export function Navbar({ session } : { session: Session | null}) {
             {
               session?.user
               ? 
-              <>
               <Link
               href={`/dashboard`}
               className="text-2xl text-black transition-colors font-extrabold"
               onClick={() => setIsOpen(false)}>
               dashboard
               </Link>
-              </>
               :
               <>
               <Link
