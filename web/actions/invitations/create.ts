@@ -27,7 +27,6 @@ export async function CreateInvitation(organizationId: string, email: string) {
             }
         })
         if(InvitationExists) {
-            console.log(`Invitation for ${email} already exists.`)
             return {
                 error: true,
                 message:"User already Invited"
@@ -67,10 +66,10 @@ export async function CreateInvitation(organizationId: string, email: string) {
                 from: "noreply@heliup.xyz",
                 to:email,
                 subject:"You've Been Invited to an Organization",
-                react: InviteUserEmail({OrganizationInvite: InvitationWithOrganization as OrganizationInviteWithOrganization})
+                react: InviteUserEmail({OrganizationInvite: InvitationWithOrganization as OrganizationInviteWithOrganization, inviter:  session.user.name as string, email: session.user.email})
             })
         }
-        revalidatePath(`/${organizationId}/members`)
+        revalidatePath(`/members`)
         return {
             error: false,
             message:"Invited Successfully",
