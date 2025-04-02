@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CardFooter } from "@/components/ui/card"
 import { Button } from "./ui/button"
 import Link from "next/link"
-import { ArrowRight, Users, Monitor } from "lucide-react"
+import { ArrowRight, Users, Monitor, Tablet, UserCheck } from "lucide-react"
 
 interface FeatureCardProps {
   icon: React.ReactNode
@@ -34,6 +34,7 @@ export function FeatureCard({ icon, title, description }: FeatureCardProps) {
 
 export default function FeatureCards() {
   return (
+    <>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
        <FeatureCard
         icon={<Monitor className="h-6 w-6 text-black" />}
@@ -46,6 +47,19 @@ export default function FeatureCards() {
         description="Work together with team members, create jobs & receive applicants."
       />
     </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+      <FeatureCard
+        icon={<UserCheck className='h-6 w-6 text-black' />}
+        title="Easy Applications"
+        description="Simplified application process for a seamless experience."
+      />
+      <FeatureCard
+      icon={<Tablet className="h-6 w-6 text-black" />}
+      title="Mobile First"
+      description="Responsive by design, wegotwork is built for mobile first."
+      />
+  </div>
+ </>
   )
 }
 
