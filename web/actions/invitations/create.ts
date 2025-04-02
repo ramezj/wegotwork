@@ -75,8 +75,15 @@ export async function CreateInvitation(organizationId: string, email: string) {
             message:"Invited Successfully",
             invitation
         }
-    } catch (error) {
-        console.log(error);
+    } catch (error: unknown) {
+        if(error instanceof Error) {
+            console.error(error.message);
+            return {
+                error: true,
+                message: error.message,
+                invitation:null
+            }
+        }
         return {
             error: true,
             message: "Internal Server Error",
