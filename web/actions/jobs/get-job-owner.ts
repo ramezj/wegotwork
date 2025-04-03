@@ -17,6 +17,9 @@ export async function GetJobAsOwner(jobId: string) {
         const job = await prisma.job.findFirst({
             where: {
                 id: jobId
+            },
+            include: {
+                applicants: true
             }
         });
         if(!job) {

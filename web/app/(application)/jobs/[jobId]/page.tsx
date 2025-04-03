@@ -38,7 +38,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         <h1 className="font-extrabold text-4xl text-black tracking-tight">{job.job?.title}</h1>
         <DeleteJobButton job={job.job as Job} />
         </div>
-        <TotalApplicants title="Applicants" amount={0} />
+        <TotalApplicants title="Applicants" amount={job.job?.applicants.length as number} />
         <EditJobCard job={job.job as Job} />
         </>
     )
