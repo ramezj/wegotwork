@@ -9,6 +9,7 @@ import { Input } from "./ui/input";
 import { Loader2, CheckCircle, Link, Copy, Check } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "./ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Select, SelectTrigger } from "./ui/select";
 
 export function CreateUserInvitation({ organizationId} : { organizationId: string}) {
     const [ loading, setLoading ] = useState<boolean>(false);
@@ -33,11 +34,16 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
       <>
       <Card className="w-full bg-white rounded-none">
       <CardHeader>
-        <CardTitle className="text-2xl font-extrabold text-black">Invite members</CardTitle>
+        <CardTitle className="text-2xl font-extrabold text-black">Invite member</CardTitle>
       </CardHeader>
       <CardContent className="">
         <form className="flex sm:flex-row flex-col gap-4" onSubmit={create_the_invitation}>
         <Input className="bg-white border border-black rounded-none text-black font-bold text-base" type="email" required placeholder="Enter member's email address" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
+       {/* <Select>
+       <SelectTrigger className='rounded-none bg-white text-black font-bold border border-black'>
+          Role
+        </SelectTrigger>
+        </Select> */}
         {
           loading
           ? 
