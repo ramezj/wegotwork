@@ -46,9 +46,23 @@ export function Navbar({ session } : { session: Session | null}) {
         <div className="flex-1"></div>
         <div className="hidden md:block">
           {session?.user ? (
-            <Button variant="default" asChild className="border-l border-b border-black h-16 rounded-none hover:bg-black bg-background font-bold text-white text-base">
-            <Link href="/dashboard">dashboard</Link>
-            </Button>
+            <>
+            {
+              session?.user.currentOrganizationId === null
+              ? 
+              <>
+              <Button variant="default" asChild className="border-l border-b border-black h-16 rounded-none hover:bg-black bg-background font-bold text-white text-base">
+              <Link href="/dashboard">dashboard</Link>
+              </Button>
+              </>
+              :
+              <>
+              <Button variant="default" asChild className="border-l border-b border-black h-16 rounded-none hover:bg-black bg-background font-bold text-white text-base">
+              <Link href="/overview">dashboard</Link>
+              </Button>
+              </>
+            }
+            </>
           ) : (
             <Button asChild variant="default" className="border-l border-b border-black h-16 rounded-none hover:bg-black bg-background font-bold text-white text-base">
               <Link href="/auth">start hiring</Link>
@@ -92,16 +106,33 @@ export function Navbar({ session } : { session: Session | null}) {
             {
               session?.user
               ? 
-              <Link
-              href={`/dashboard`}
-              className="text-2xl text-black transition-colors font-extrabold"
-              onClick={() => setIsOpen(false)}>
-              dashboard
-              </Link>
+              <>
+              {
+                session?.user.currentOrganizationId === null 
+                ? 
+                <>
+                <Link
+                href={`/dashboard`}
+                className="text-2xl text-black transition-colors font-extrabold"
+                onClick={() => setIsOpen(false)}>
+                dashboard
+                </Link>
+                </>
+                :
+                <>
+                <Link
+                href={`/overview`}
+                className="text-2xl text-black transition-colors font-extrabold"
+                onClick={() => setIsOpen(false)}>
+                dashboard
+                </Link>
+                </>
+              }
+              </>
               :
               <>
               <Link
-              href={`/dashboard`}
+              href={`/auth`}
               className="text-2xl text-black transition-colors font-extrabold"
               onClick={() => setIsOpen(false)}>
               start hiring
