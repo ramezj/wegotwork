@@ -11,7 +11,7 @@ import { Metadata } from "next";
 import { GetJobAsOwner } from "@/actions/jobs/get-job-owner";
 import { EditJobCard } from "@/components/edit-job";
 import { DeleteJobButton } from "@/components/delete-job";
-import { TotalApplicants } from "@/components/statistics";
+import { Applicants, TotalApplicants } from "@/components/statistics";
 
 export const metadata:Metadata = {
     title: "jobs",
@@ -38,7 +38,10 @@ export default async function Page({ params } : { params: Promise<{ organization
         <h1 className="font-extrabold text-4xl text-black tracking-tight">{job.job?.title}</h1>
         <DeleteJobButton job={job.job as Job} />
         </div>
-        <TotalApplicants title="Applicants" amount={job.job?.applicants.length as number} />
+        <div className="flex flex-col gap-4 sm:flex-row">
+        <Applicants title="Applicants" amount={job.job?.applicants.length as number} />
+        <Applicants title="Applicants" amount={job.job?.applicants.length as number} />
+        </div>
         <EditJobCard job={job.job as Job} />
         </>
     )
