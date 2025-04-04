@@ -33,13 +33,13 @@ export default async function Home() {
       </h3>
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
-      <div className="flex flex-row w-full max-w-fit items-center justify-center content-center gap-4 mt-6">
-            <Button asChild variant={"default"} className="font-extrabold w-60 rounded-none bg-white text-black border border-black hover:bg-white">
+      <div className="flex flex-row w-full sm:w-1/2 items-center justify-center content-center gap-4 mt-6">
+            <Button asChild variant={"default"} className="font-extrabold w-full rounded-none bg-white text-black border border-black hover:bg-white">
                 <Link href='/auth'>
                 start hiring
                 </Link>
             </Button>
-            <Button asChild className="font-extrabold w-60 rounded-none bg-white text-black border border-black hover:bg-white" variant={"default"}>
+            <Button asChild className="font-extrabold w-full rounded-none bg-white text-black border border-black hover:bg-white" variant={"default"}>
                 <Link target="_blank" href={`http://wegotwork.${process.env.NEXT_PUBLIC_URL}`}>
                 see demo
                 {/* <ArrowRight className="w-4" /> */}
