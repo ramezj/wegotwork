@@ -59,8 +59,8 @@ export default function ApplyCard({ jobId }: { jobId: string}) {
             </div>
             </div>
             <div className="space-y-2"> 
-            <Label htmlFor="motivation" className="text-black font-extrabold">Motivation letter</Label>
-            <Textarea className="bg-white border border-black rounded-none text-black font-bold text-base" required value={motivation} onChange={((e) => {setMotivation(e.target.value)})} placeholder="Share why you're a great fit." />
+            <Label htmlFor="motivation" className="text-black font-extrabold">Cover letter</Label>
+            <Textarea rows={6} className="bg-white border border-black rounded-none text-black font-bold text-base" required value={motivation} onChange={((e) => {setMotivation(e.target.value)})} placeholder="Share why you're a great fit." />
             </div>
             {
                 loading 
