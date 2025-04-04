@@ -77,38 +77,38 @@ export default function LayoutNavigation({ children, session, organization }: { 
                 </SheetTitle>
                 <nav className="grid gap-3 text-lg font-medium mt-1">
                 <SheetClose asChild>
-                <Link href="/overview" className={`${path.includes('/overview') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                <Link href="/overview" className={`${path.includes('/overview') ? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                  <Home className="size-4" />
                   overview
                 </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href="/jobs" className={`${path.includes('/jobs') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                  <Link href="/jobs" className={`${path.includes('/jobs') ? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                   <Briefcase className="h-4 w-4" />
                   jobs
                 </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href="/applicants" className={`${path.includes('/applicants') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                  <Link href="/applicants" className={`${path.includes('/applicants') ? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                   <Users className="h-4 w-4" />
                     applicants
                   </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href="/billing" className={`${path.includes('/billing')? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                  <Link href="/billing" className={`${path.includes('/billing')? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                   <Banknote className="h-4 w-4" />
                     billing
                   </Link>
                   </SheetClose>
                   <Separator />
                   <SheetClose asChild>
-                  <Link href="/members" className={`${path.includes('/members') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                  <Link href="/members" className={`${path.includes('/members') ? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                   <Users className="h-4 w-4" />
                     members
                   </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href="/settings" className={`${path.includes('/settings') ? 'bg-black text-white' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black transition-all hover:text-white hover:bg-black duration-200`}>
+                  <Link href="/settings" className={`${path.includes('/settings') ? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                   <Settings className="h-4 w-4" />
                     settings
                   </Link>

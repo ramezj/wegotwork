@@ -107,7 +107,7 @@ export function PaidCard() {
           </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button className='w-full font-extrabold bg-black hover:bg-black text-white hover:text-white rounded-none' variant={"default"}>
+        <Button className='w-full font-extrabold bg-black text-white rounded-none hover:bg-black hover:text-white' variant={"default"}>
               start hiring
         </Button>
       </CardFooter>
