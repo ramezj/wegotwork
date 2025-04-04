@@ -46,9 +46,22 @@ export function JobCard({ job }: { job: Job }) {
         </div>
         </div>
         <div className="ml-auto mr-5">
-        <Button className="rounded-none bg-inherit bg-black hover:bg-black border-none" variant={"outline"} size={"icon"}>
+        {/* <Button className="rounded-none bg-inherit bg-black hover:bg-black border-none" variant={"outline"} size={"icon"}>
             <ArrowRight className="size-4" />
-        </Button>
+        </Button> */}
+        <p className="text-black font-bold">
+          {
+            job.city === null && job.country === null
+            ?
+            <>
+            Remote
+            </>
+            :
+            <>
+            {job.city}, {job.country}
+            </>
+          }
+        </p>
         </div>
         </div>
         </Link>
