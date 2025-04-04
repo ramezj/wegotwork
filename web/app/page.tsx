@@ -40,7 +40,7 @@ export default async function Home() {
                 </Link>
             </Button>
             <Button asChild className="font-extrabold w-full rounded-none bg-white text-black border border-black hover:bg-white" variant={"default"}>
-                <Link target="_blank" href={`http://wegotwork.${process.env.NEXT_PUBLIC_URL}`}>
+                <Link target="_blank" href={`http://demo.${process.env.NEXT_PUBLIC_URL}`}>
                 see demo
                 {/* <ArrowRight className="w-4" /> */}
                 </Link>

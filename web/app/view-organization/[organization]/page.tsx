@@ -5,9 +5,16 @@ import { Prisma } from "@prisma/client";
 import { CareerNavbar } from "@/components/career-navbar";
 import { Metadata } from "next";
 
-export const metadata:Metadata = {
-    title: "We are hiring!",
-    description: "We are hiring!"
+export async function generateMetadata({ params } : { params: Promise<{ organization: string }>}): Promise<Metadata> {
+    const organization = await FindOrganization((await params).organization);
+    if(organization.error) {
+        return {
+            title: "404 Not Found"
+        }
+    } 
+    return {
+        title: organization.organization?.name
+    }
 }
 
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
