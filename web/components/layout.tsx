@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { Home, Users, Banknote, Briefcase, Settings } from "lucide-react"
+import { HomeIcon } from "./icons/Home-Icon"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from "@/components/ui/sheet"
 import { redirect, usePathname } from "next/navigation"
