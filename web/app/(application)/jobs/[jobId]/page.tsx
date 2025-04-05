@@ -39,8 +39,8 @@ export default async function Page({ params } : { params: Promise<{ organization
         <DeleteJobButton job={job.job as Job} />
         </div>
         <div className="flex flex-col gap-4 sm:flex-row">
-        <Applicants title="Applicants" amount={job.job?.applicants.length as number} />
-        <Applicants title="Applicants" amount={job.job?.applicants.length as number} />
+        <TotalApplicants title="Applicants" amount={job.job?.applicants.length as number} />
+        <TotalApplicants title="Applicants" amount={job.job?.applicants.length as number} />
         </div>
         <EditJobCard job={job.job as Job} />
         </>
