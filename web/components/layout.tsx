@@ -29,28 +29,28 @@ export default function LayoutNavigation({ children, session, organization }: { 
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4 gap-2 mt-1">
                 <Link href="/overview" className={`${path.includes('/overview') ? ' bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                  <Home className="size-4" />
-                  overview
+                  Overview
                 </Link>
                 <Link href="/jobs" className={`${path.includes('/jobs') ? ' bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                   <Briefcase className="h-4 w-4" />
-                  jobs
+                  Jobs
                 </Link>
                 <Link href="/applicants" className={`${path.includes('/applicants') ? ' bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                 <Users className="h-4 w-4" />
-                  applicants
+                  Applicants
                 </Link>
                 <Link href="/billing" className={`${path.includes('/billing') ? ' bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                 <Banknote className="h-4 w-4" />
-                  billing
+                  Billing
                 </Link>
                 <Separator />
                 <Link href="/members" className={`${path.includes('/members') ? ' bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                 <Users className="h-4 w-4" />
-                  members
+                  Members
                 </Link>
                 <Link href="/settings" className={`${path.includes('/settings') ? ' bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                 <Settings className="h-4 w-4" />
-                  settings
+                  Settings
                 </Link>
               </nav>
             </div>
@@ -72,7 +72,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
               <SheetTitle>
                 <SheetClose asChild className="top-4">
                   <Link href="/" className="px-2 text-2xl tracking-tighter text-black font-extrabold">
-                  lou careers
+                  <span className="text-2xl tracking-tighter text-black font-extrabold">wegotwork</span>
                   </Link>
                   </SheetClose>
                 </SheetTitle>
@@ -80,38 +80,38 @@ export default function LayoutNavigation({ children, session, organization }: { 
                 <SheetClose asChild>
                 <Link href="/overview" className={`${path.includes('/overview') ? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                  <Home className="size-4" />
-                  overview
+                  Overview
                 </Link>
                   </SheetClose>
                   <SheetClose asChild>
                   <Link href="/jobs" className={`${path.includes('/jobs') ? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                   <Briefcase className="h-4 w-4" />
-                  jobs
-                </Link>
+                  Jobs
+                  </Link>
                   </SheetClose>
                   <SheetClose asChild>
                   <Link href="/applicants" className={`${path.includes('/applicants') ? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                   <Users className="h-4 w-4" />
-                    applicants
+                  Applicants
                   </Link>
                   </SheetClose>
                   <SheetClose asChild>
                   <Link href="/billing" className={`${path.includes('/billing')? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                   <Banknote className="h-4 w-4" />
-                    billing
+                    Billing
                   </Link>
                   </SheetClose>
                   <Separator />
                   <SheetClose asChild>
                   <Link href="/members" className={`${path.includes('/members') ? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                   <Users className="h-4 w-4" />
-                    members
+                    Members
                   </Link>
                   </SheetClose>
                   <SheetClose asChild>
                   <Link href="/settings" className={`${path.includes('/settings') ? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black transition-all`}>
                   <Settings className="h-4 w-4" />
-                    settings
+                    Settings
                   </Link>
                   </SheetClose>
                 </nav>
