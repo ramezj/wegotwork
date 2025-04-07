@@ -37,9 +37,17 @@ export async function GetOrganization(organizationId: string) {
                 message:"Organization Not Found"
             }
         }
+        const applicantCount = await prisma.applicant.count({
+            where: {
+                job: {
+                    organizationId:organizationId
+                }
+            }
+        });
         return {
             error:false,
             organization,
+            applicants: applicantCount
         }
     } catch (error) {
         console.error(error);

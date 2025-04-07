@@ -43,7 +43,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         </div>
         <div className="flex sm:flex-row flex-col gap-4 w-full">
         <TotalJobs title="Jobs" amount={userOrganization?.organization?.organization.jobs.length as number}/>
-        <TotalApplicants title="Applicants" amount={57}/>
+        <TotalApplicants title="Applicants" amount={userOrganization?.applicants as number}/>
         </div>
         <SettingsCard organization={userOrganization?.organization?.organization as Organization} />
         </>
