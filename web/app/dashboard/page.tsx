@@ -12,6 +12,7 @@ import { Prisma } from "@prisma/client";
 import { Navbar } from "@/components/navbar-2";
 import { Metadata } from "next";
 import { TestSetOrganizationCard } from "@/components/test-set-org";
+import { OrganizationSelector } from "@/components/organization-selector";
 
 type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
     include: {
@@ -36,7 +37,8 @@ export default async function Home() {
     <div className="flex items-center justify-center mt-12">
     <h1 className="font-extrabold text-3xl text-black">Pick an organization</h1>
     </div>
-    <TestSetOrganizationCard userOrganizations={Organizations?.userOrganizations as OrganizationUserWithOrganization[]} />
+    {/* <TestSetOrganizationCard userOrganizations={Organizations?.userOrganizations as OrganizationUserWithOrganization[]} /> */}
+    <OrganizationSelector userOrganizations={Organizations?.userOrganizations as OrganizationUserWithOrganization[]} />
     </>
   );
 }
