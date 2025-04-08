@@ -15,6 +15,7 @@ import { Loader2 } from "lucide-react"
 // import { redirect } from "next/navigation"
 import { toast } from "sonner"
 import { useEffect } from "react"
+import { DialogDescription } from "@radix-ui/react-dialog"
   
 
 export function CreateOrganizationButton() {
@@ -44,6 +45,9 @@ export function CreateOrganizationButton() {
         create organization
         </Button>    
         </DialogTrigger>
+        <DialogDescription>
+            
+        </DialogDescription>
         <DialogContent className="w-[90%] !rounded-none bg-white border border-black">
         <DialogHeader>
         <DialogTitle className="text-left text-xl font-extrabold text-black">Create organization</DialogTitle>
