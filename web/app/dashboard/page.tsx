@@ -34,11 +34,14 @@ export default async function Home() {
   return (
     <>
     <Navbar session={session} />
-    {/* <div className="flex items-center justify-center mt-12">
+    <div className="flex items-center justify-center mt-12">
     <h1 className="font-extrabold text-3xl text-black">Pick an organization</h1>
-    </div> */}
+    </div>
     {/* <TestSetOrganizationCard userOrganizations={Organizations?.userOrganizations as OrganizationUserWithOrganization[]} /> */}
+    <div className="mt-8">
     <OrganizationSelector userOrganizations={Organizations?.userOrganizations as OrganizationUserWithOrganization[]} />
+    <CreateOrganizationButton />
+    </div>
     </>
   );
 }
