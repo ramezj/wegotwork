@@ -18,6 +18,9 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
       }
      })
   }
+  const redirectToDashboard = async () => {
+    redirect("/dashboard");
+  }
     return (
         <>
         <DropdownMenu>
@@ -31,12 +34,9 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                   side="top"
                   className="w-[--radix-popper-anchor-width] bg-white border border-black text-black space-y-2 rounded-none"
                 >
-                  <DropdownMenuItem className="cursor-pointer hover:!bg-[#F2EFE8] hover:!text-black border border-white hover:border-black !rounded-none" asChild>
-                  <Link href={"/dashboard"} 
-                  className="flex align-middle items-center font-extrabold hover:!bg-[#F2EFE8] hover:!text-black !rounded-none">
+                  <DropdownMenuItem onSelect={redirectToDashboard} className="font-extrabold cursor-pointer hover:!bg-[#F2EFE8] hover:!text-black border border-white hover:border-black !rounded-none">
                   <Settings2 className="size-4" />
                   switch organization
-                  </Link>
                   </DropdownMenuItem>
                   <div>
                   <Separator className="-my-1"/>
