@@ -26,7 +26,6 @@ export function OrganizationSelector({ userOrganizations }: { userOrganizations 
 
     try {
       await SetCurrentOrganization(organizationId)
-      toast("Selected");
     } catch (error) {
       console.error("Failed to select organization:", error)
     } finally {
@@ -40,7 +39,7 @@ export function OrganizationSelector({ userOrganizations }: { userOrganizations 
       {userOrganizations.map((userOrg) => (
         <Card
           key={userOrg.id}
-          className={`transition-all hover:shadow-md ${
+          className={`transition-all rounded-none bg-white text-black ${
             selectedOrgId === userOrg.organizationId ? "ring-2 ring-primary" : ""
           }`}
         >
@@ -51,7 +50,7 @@ export function OrganizationSelector({ userOrganizations }: { userOrganizations 
             </div>
             <div className="flex items-center space-x-2">
               {userOrg.role === "owner" && (
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="outline" className="text-xs rounded-none bg-white text-black border border-black">
                   Owner
                 </Badge>
               )}
@@ -77,8 +76,8 @@ export function OrganizationSelector({ userOrganizations }: { userOrganizations 
           </CardContent>
           <CardFooter>
             <Button
-              className="w-full"
-              variant={selectedOrgId === userOrg.organizationId ? "default" : "outline"}
+              className="w-full rounded-none text-white bg-black hover:bg-black"
+              variant={"default"}
               onClick={() => handleSelectOrganization(userOrg.organizationId)}
               disabled={isSelecting}
             >
