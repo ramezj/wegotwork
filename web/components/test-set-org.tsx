@@ -6,6 +6,8 @@ import { Button } from "./ui/button"
 import { CreateOrganizationButton } from "./create-organization"
 import { toast } from "sonner"
 import { redirect } from "next/navigation"
+import { useState } from "react"
+import { Loader2 } from "lucide-react"
 
 type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
     include: {
@@ -15,12 +17,18 @@ type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
 
 
 export function TestSetOrganizationCard({ userOrganizations }: { userOrganizations : OrganizationUserWithOrganization[] }) {
+    const [selectedOrgId, setSelectedOrgId] = useState<string | null>(null)
+    const [isSelecting, setIsSelecting] = useState(false)
     const setUserOrg = async (e:React.FormEvent, organizationId: string) => {
         e.preventDefault();
+        setSelectedOrgId(organizationId)
+        setIsSelecting(true)
         const res = await SetCurrentOrganization(organizationId);
         if(res?.error ) {
             toast(res.message);
+            setIsSelecting(false);
         } else {
+            setIsSelecting(false);
             redirect('/overview');
         }
     }
@@ -41,8 +49,19 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
             userOrganizations.map((organization: OrganizationUserWithOrganization) => {
             return (
                 <form onSubmit={((e) => {setUserOrg(e, organization.organizationId)})} key={organization.organizationId}>
-                <Button type="submit" variant={"outline"} className="my-2 w-full flex flex-col items-start text-left !rounded-none bg-white hover:bg-white border border-black text-black hover:text-black font-extrabold">           
-                {organization.organization.name}   
+                <Button type="submit" variant={"outline"} className="my-2 w-full align-middle text-start flex items-start text-left !rounded-none bg-white hover:bg-white border border-black text-black hover:text-black font-extrabold">           
+                {
+                    (organization.organizationId === selectedOrgId && isSelecting)
+                    ? 
+                    <>
+                    <Loader2 className="animate-spin" />
+                    {organization.organization.name}  
+                    </>
+                    :
+                    <>
+                    {organization.organization.name}  
+                    </>
+                } 
                 </Button>
                 </form>
                     )
