@@ -1,11 +1,8 @@
 "use client"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "./ui/card"
 import { SetCurrentOrganization } from "@/actions/organization/set-current-org"
-import { Organization, OrganizationUser } from "@prisma/client"
 import { Prisma } from "@prisma/client"
 import { Button } from "./ui/button"
-import Link from "next/link"
-import { useState } from "react"
 import { CreateOrganizationButton } from "./create-organization"
 import { toast } from "sonner"
 import { redirect } from "next/navigation"
@@ -19,6 +16,7 @@ type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
 
 export function TestSetOrganizationCard({ userOrganizations }: { userOrganizations : OrganizationUserWithOrganization[] }) {
     const setUserOrg = async (organizationId: string) => {
+        console.log("Clicked!");
         const res = await SetCurrentOrganization(organizationId);
         if(res?.error ) {
             toast(res.message);
