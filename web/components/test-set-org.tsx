@@ -17,7 +17,6 @@ type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
 export function TestSetOrganizationCard({ userOrganizations }: { userOrganizations : OrganizationUserWithOrganization[] }) {
     const setUserOrg = async (e:React.FormEvent, organizationId: string) => {
         e.preventDefault();
-        console.log("Clicked!");
         const res = await SetCurrentOrganization(organizationId);
         if(res?.error ) {
             toast(res.message);
@@ -43,7 +42,7 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
             return (
                 <form onSubmit={((e) => {setUserOrg(e, organization.organizationId)})} key={organization.organizationId}>
                 <Button type="submit" variant={"outline"} className="my-2 w-full flex flex-col items-start text-left !rounded-none bg-white hover:bg-white border border-black text-black hover:text-black font-extrabold">           
-                {organization.organization.name}    
+                {organization.organization.name}   
                 </Button>
                 </form>
                     )

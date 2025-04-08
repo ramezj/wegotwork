@@ -28,7 +28,7 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         <Card className="w-full bg-white rounded-none">
             <CardHeader>
                 <CardTitle className="text-black font-extrabold">
-                    Organization Information
+                    Organization
                 </CardTitle>
             </CardHeader>
         <CardContent>
