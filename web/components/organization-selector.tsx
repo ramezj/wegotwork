@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Building2, Check, ChevronRight, Crown } from "lucide-react"
+import { Building2, Check, ChevronRight, Crown, Loader2 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -35,14 +35,9 @@ export function OrganizationSelector({ userOrganizations }: { userOrganizations 
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-4">
       {userOrganizations.map((userOrg) => (
-        <Card
-          key={userOrg.id}
-          className={`transition-all rounded-none bg-white text-black ${
-            selectedOrgId === userOrg.organizationId ? "ring-2 ring-primary" : ""
-          }`}
-        >
+        <Card key={userOrg.id} className={`transition-all rounded-none bg-white text-black ${selectedOrgId === userOrg.organizationId ? "ring-2 ring-primary" : ""}`}>
           <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
             <div className="flex flex-col space-y-1.5">
               <CardTitle className="text-xl">{userOrg.organization.name}</CardTitle>
@@ -54,15 +49,15 @@ export function OrganizationSelector({ userOrganizations }: { userOrganizations 
                   Owner
                 </Badge>
               )}
-              {userOrg.organization.premium && (
+              {/* {userOrg.organization.premium && (
                 <Badge className="bg-amber-500 hover:bg-amber-600">
                   <Crown className="h-3 w-3 mr-1" />
                   Premium
                 </Badge>
-              )}
+              )} */}
             </div>
           </CardHeader>
-          <CardContent>
+          {/* <CardContent>
             <div className="flex items-start space-x-3">
               <div className="bg-muted rounded-md p-2 flex items-center justify-center">
                 <Building2 className="h-5 w-5 text-muted-foreground" />
@@ -73,7 +68,7 @@ export function OrganizationSelector({ userOrganizations }: { userOrganizations 
                 </p>
               </div>
             </div>
-          </CardContent>
+          </CardContent> */}
           <CardFooter>
             <Button
               className="w-full rounded-none text-white bg-black hover:bg-black"
@@ -83,13 +78,21 @@ export function OrganizationSelector({ userOrganizations }: { userOrganizations 
             >
               {selectedOrgId === userOrg.organizationId ? (
                 <>
-                  <Check className="mr-2 h-4 w-4" />
+                {
+                        isSelecting
+                        ?
+                        <>
+                        <Loader2 className="text-white animate-spin" />
+                        </>
+                        :
+                        <>
+                        </>
+                    }
                   Selected
                 </>
               ) : (
                 <>
                   Select
-                  <ChevronRight className="ml-2 h-4 w-4" />
                 </>
               )}
             </Button>
