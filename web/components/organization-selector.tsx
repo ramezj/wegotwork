@@ -74,7 +74,6 @@ export function OrganizationSelector({ userOrganizations }: { userOrganizations 
               className="w-full rounded-none text-white bg-black hover:bg-black"
               variant={"default"}
               onClick={() => handleSelectOrganization(userOrg.organizationId)}
-              disabled={isSelecting}
             >
               {selectedOrgId === userOrg.organizationId ? (
                 <>
@@ -88,7 +87,7 @@ export function OrganizationSelector({ userOrganizations }: { userOrganizations 
                         <>
                         </>
                     }
-                  Selected
+                  Select
                 </>
               ) : (
                 <>
