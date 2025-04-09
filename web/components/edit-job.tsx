@@ -14,6 +14,7 @@ import { EditJob } from "@/actions/jobs/edit-job"
 import { formatJobType } from "@/lib/format-job"
 import { DeleteJob } from "@/actions/jobs/delete-job"
 import { DeleteJobButton } from "./delete-job"
+import { CountryDropdown } from "./ui/country-dropdown"
 
 export function EditJobCard({ job } : { job: Job}) {
     const [ current, setCurrent ] = useState<Job>(job);
@@ -70,6 +71,10 @@ export function EditJobCard({ job } : { job: Job}) {
                 <Input className="bg-white border border-black rounded-none text-black font-bold text-base" placeholder="Enter city" value={current.city == null ? '' : current.city} onChange={((e) => { setCurrent((previous) => ({...previous, city: e.target.value}))})}></Input>
                 </div>
                 <div className="space-y-2">
+                    {/* <CountryDropdown 
+                    placeholder={current.country!}
+                    defaultValue={current.country!}
+                    onChange={((e) => { setCurrent((previous) => ({...previous, country: e.name}))})} /> */}
                 <Label className='font-extrabold text-black'>Country</Label>
                 <Input className="bg-white border border-black rounded-none text-black font-bold text-base" placeholder="Enter country" value={current.country == null ? '' : current.country} onChange={((e) => { setCurrent((previous) => ({...previous, country: e.target.value}))})}></Input>
                 </div>
