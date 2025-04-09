@@ -28,7 +28,6 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
             toast(res.message);
             setIsSelecting(false);
         } else {
-            setIsSelecting(false);
             redirect('/overview');
         }
     }
