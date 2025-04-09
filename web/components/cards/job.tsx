@@ -49,19 +49,16 @@ export function JobCard({ job }: { job: Job }) {
         {/* <Button className="rounded-none bg-inherit bg-black hover:bg-black border-none" variant={"outline"} size={"icon"}>
             <ArrowRight className="size-4" />
         </Button> */}
-        <p className="text-black font-bold">
           {
             job.city === null && job.country === null
             ?
             <>
-            Remote
             </>
             :
             <>
-            {job.city}, {job.country}
+            <p className="text-sm text-black font-bold sm:block hidden">{job.country}</p>
             </>
           }
-        </p>
         </div>
         </div>
         </Link>
