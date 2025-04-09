@@ -30,7 +30,7 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
         if(res.error) {
           toast(res.message as string)
         } else {
-          redirect(`/${id}/jobs/${res.job?.id}`)
+          redirect(`/jobs/${res.job?.id}`)
         }
         setLoading(false);
     }
@@ -71,7 +71,7 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
               id="name"
               value={name}
               onChange={((e) => {setName(e.target.value)})}
-              placeholder="Enter job name"
+              placeholder="Enter Job title"
               className="bg-white rounded-none border border-black text-black font-bold text-base"
             />
             </form>
@@ -89,7 +89,9 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
             </>
             : 
             <>
-            <Button form="form" type="submit" className="w-full font-extrabold bg-black text-white rounded-none hover:bg-black hover:text-white">create job</Button>
+            <Button form="form" type="submit" className="w-full font-extrabold bg-black text-white rounded-none hover:bg-black hover:text-white">
+              create job
+            </Button>
             </>
           }
         </DialogFooter>

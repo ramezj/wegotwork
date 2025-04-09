@@ -15,7 +15,7 @@ export function DeleteJobButton({ job } : { job: Job}) {
         setLoading(true);
         const res = await DeleteJob(job.id);
         if(res.error === false) {
-          redirect(`/${job.organizationId}/jobs`)
+          redirect(`/jobs`)
         }
         setLoading(false);
       }
