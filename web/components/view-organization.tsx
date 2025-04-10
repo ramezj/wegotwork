@@ -10,6 +10,7 @@ import Balancer from "react-wrap-balancer"
 import { Card } from "./ui/card"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
+import { motion } from "framer-motion"
  
 type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
     include: {
@@ -97,9 +98,13 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     <div className="flex flex-col gap-4 lg:w-1/2 w-full pt-6">
     {jobs.map((job:Job, index) => {
         return (
-            <div key={job.id} aria-label="Job">
+            <motion.div
+            initial={{ opacity: 0}}
+            animate={{ opacity: 1}}
+            transition={{ duration: index + 0.0001}}
+            key={job.id} aria-label="Job">
             <JobCard key={index} job={job}/>
-            </div>
+            </motion.div>
         )
     })}
     {
