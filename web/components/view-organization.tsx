@@ -101,7 +101,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
             <motion.div
             initial={{ opacity: 0}}
             animate={{ opacity: 1}}
-            transition={{ duration: index + 0.0001}}
+            transition={{ duration: 0.3, delay: index * 0.1}}
             key={job.id} aria-label="Job">
             <JobCard key={index} job={job}/>
             </motion.div>
