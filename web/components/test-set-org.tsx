@@ -48,12 +48,14 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
             userOrganizations.map((organization: OrganizationUserWithOrganization) => {
             return (
                 <form className="" onSubmit={((e) => {setUserOrg(e, organization.organizationId)})} key={organization.organizationId}>
-                <Button type="submit" variant={"outline"} className="my-2 w-full !rounded-none bg-white hover:bg-white border border-black text-black hover:text-black font-extrabold">           
+                <Button type="submit" variant={"outline"} 
+                className={`my-2 w-full !rounded-none ${selectedOrgId === organization.organizationId ? "bg-black text-white hover:bg-black duration-200" : "bg-white hover:bg-white border border-black text-black hover:text-black"} font-extrabold duration-200 transition-all`}
+                >           
                 {
                     (organization.organizationId === selectedOrgId && isSelecting)
                     ? 
                     <>
-                    <Loader2 className="animate-spin text-black flex" />
+                    <Loader2 className={`animate-spin ${selectedOrgId === organization.organizationId ? "text-white" : "text-black"} flex`} />
                     {organization.organization.name}  
                     </>
                     :
