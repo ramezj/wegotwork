@@ -20,13 +20,14 @@ export async function GetOrganization(organizationId: string) {
             include: {
                 organization: {
                     include: {
+                        categories: true,
                         invitations: true,
                         users: {
                             include: {
                                 user: true
                             }
                         },
-                        jobs:true
+                        jobs:true,
                     }
                 }
             }
