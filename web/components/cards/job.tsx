@@ -44,7 +44,6 @@ export function JobCardForDashboard({ job }: { job: Job}) {
 }
 
 export function JobCard({ job }: { job: JobWithCategories }) {
-  console.log(job);
     return (
       <Link href={`/${job.id}`}>
       <div className="w-full flex border border-black bg-white rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer">
@@ -64,7 +63,7 @@ export function JobCard({ job }: { job: JobWithCategories }) {
             <Badge className="rounded-none bg-white border border-black font-bold hover:bg-white">{formatJobType(job.type as Type)}</Badge>
         </div>
         </div>
-        <div className="ml-auto mr-5">
+        <div className="ml-auto mr-5 sm:block hidden">
         <Button className="rounded-none bg-inherit bg-black hover:bg-black border-none" variant={"outline"} size={"icon"}>
             <ArrowRight className="size-4" />
         </Button>
