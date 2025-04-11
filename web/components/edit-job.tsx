@@ -26,7 +26,7 @@ type JobWithCategory = Prisma.JobGetPayload<{
 export function EditJobCard({ job, categories } : { job: JobWithCategory, categories: JobCategory[]}) {
     const [ current, setCurrent ] = useState<JobWithCategory>(job);
     const [ loading, setLoading ] = useState<boolean>(false);
-    const selectedCategoryName = categories.find((c) => c.id === current.categoryId)?.name ?? "No Category";
+    const selectedCategoryName = categories.find((c) => c.id === current.categoryId)?.name ?? "Select Category";
 
     const EditTheJob = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -78,7 +78,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Category</Label>
                     <Select
-                        value={current.categoryId ?? ""}
+                        value={current.categoryId ?? "Select Category"}
                         onValueChange={((e) => { 
                         setCurrent((previous) => ({...previous, categoryId: e as string}))})}>
                         <SelectTrigger className="bg-white border border-black rounded-none text-black font-bold text-base">
