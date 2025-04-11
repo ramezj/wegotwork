@@ -26,6 +26,8 @@ type JobWithCategory = Prisma.JobGetPayload<{
 export function EditJobCard({ job, categories } : { job: JobWithCategory, categories: JobCategory[]}) {
     const [ current, setCurrent ] = useState<JobWithCategory>(job);
     const [ loading, setLoading ] = useState<boolean>(false);
+    const selectedCategoryName = categories.find((c) => c.id === current.categoryId)?.name ?? "No Category";
+
     const EditTheJob = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
@@ -57,7 +59,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Employment Type</Label>
-                    <Select value={current.type} defaultValue={current.type} onValueChange={((e) => { setCurrent((previous) => ({ ...previous, type: e as Type}))})}>
+                    <Select value={current.type} onValueChange={((e) => { setCurrent((previous) => ({ ...previous, type: e as Type}))})}>
                         <SelectTrigger value={current.type} className="bg-white border border-black rounded-none text-black font-bold text-base" defaultValue={current.type}>
                         <SelectValue>
                             {formatJobType(current.type)}
@@ -75,10 +77,13 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Category</Label>
-                    <Select value={current.category?.name === null ? "No Category" : current.category?.name} defaultValue={current.category?.name === null ? "No Category" : current.category?.name} onValueChange={((e) => { setCurrent((previous) => ({ ...previous, categoryId: e as string}))})}>
-                        <SelectTrigger value={current.category?.name === null ? "No Category" : current.category?.name} className="bg-white border border-black rounded-none text-black font-bold text-base" defaultValue={current.category?.name === null ? "No Category" : current.category?.name}>
+                    <Select
+                        value={current.categoryId ?? ""}
+                        onValueChange={((e) => { 
+                        setCurrent((previous) => ({...previous, categoryId: e as string}))})}>
+                        <SelectTrigger className="bg-white border border-black rounded-none text-black font-bold text-base">
                         <SelectValue>
-                            {current.category?.name === null ? "No Category" : current.category?.name}
+                            {selectedCategoryName}
                         </SelectValue>
                         </SelectTrigger>
                         <SelectContent className="bg-white rounded-none border border-black text-black font-bold">
@@ -86,24 +91,21 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                                 {
                                     categories.map((category: JobCategory) => {
                                         return (
-                                            <SelectItem key={category.id} value={category.id}>
+                                            <SelectItem 
+                                            className={`hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none`} 
+                                            key={category.id} 
+                                            value={category.id}>
                                             {category.name}
                                             </SelectItem>
                                         )
                                     })
                                 }
-                                <Button
-                                variant={"default"}
-                                type="button"
-                                onClick={() => {
-                                    // Open modal or inline input for new category creation
-                                    console.log('Open category creation modal')
-                                }}
-                                className="w-full !text-left font-bold text-sm"
-                                >
+                                {/* <div className="p-1 border-t border-black">
+                                <Button className="bg-black text-white rounded-none w-full" variant={"default"} type="button">
                                 <Plus className="w-4 h-4 mr-2" />
                                 Create New Category
                                 </Button>
+                                </div> */}
                             </SelectGroup>
                         </SelectContent>
                     </Select>
