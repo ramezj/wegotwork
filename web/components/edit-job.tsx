@@ -1,5 +1,5 @@
 "use client"
-import { Loader2, Plus, Trash } from "lucide-react"
+import { Loader2, Plus, Trash, X } from "lucide-react"
 import { Label } from "./ui/label"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
@@ -116,7 +116,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                     className="bg-black rounded-none text-white hover:bg-black"
                     onClick={() => setCurrentCategoryId("none")}
                     >
-                    ×
+                    <X className="size-4 text-white" />
                     </Button>
                 </div>
                 </div>
