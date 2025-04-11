@@ -6,7 +6,10 @@ import { Session } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 
-export async function EditJob(job: Job) {
+export async function EditJob(job: Job, categoryId: string | null) {
+    if(categoryId === "none") {
+        categoryId = null;
+    }
     const session:Session | null = await auth.api.getSession({
         headers: await headers()
     });
@@ -46,7 +49,7 @@ export async function EditJob(job: Job) {
                 content: job.content,
                 country: job.country === "" ? null : job.country,
                 city: job.city === "" ? null : job.city,
-                categoryId: job.categoryId
+                categoryId: categoryId ?? null
             }
         })
         return { 

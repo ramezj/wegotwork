@@ -25,13 +25,13 @@ type JobWithCategory = Prisma.JobGetPayload<{
 
 export function EditJobCard({ job, categories } : { job: JobWithCategory, categories: JobCategory[]}) {
     const [ current, setCurrent ] = useState<JobWithCategory>(job);
+    const [ currentCategoryId, setCurrentCategoryId ] = useState<null | string>(job.categoryId === null ? "none" : job.categoryId);
     const [ loading, setLoading ] = useState<boolean>(false);
-    const selectedCategoryName = categories.find((c) => c.id === current.categoryId)?.name ?? "Select Category";
-
+    const selectedCategoryName = categories.find((c) => c.id === currentCategoryId)?.name ?? "Select Category";
     const EditTheJob = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        const response = await EditJob(current);
+        const response = await EditJob(current, currentCategoryId);
         toast(response?.message as string)
         setLoading(false);
     }
@@ -77,10 +77,12 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Category</Label>
+                <div className="flex flex-row gap-2">
                     <Select
-                        value={current.categoryId ?? "Select Category"}
+                        value={currentCategoryId ?? "Select Category"}
                         onValueChange={((e) => { 
-                        setCurrent((previous) => ({...previous, categoryId: e as string}))})}>
+                        setCurrentCategoryId(e as string);
+                        })}>
                         <SelectTrigger className="bg-white border border-black rounded-none text-black font-bold text-base">
                         <SelectValue>
                             {selectedCategoryName}
@@ -88,6 +90,9 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                         </SelectTrigger>
                         <SelectContent className="bg-white rounded-none border border-black text-black font-bold">
                             <SelectGroup className="space-y-1">
+                            <SelectItem value="none" className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none">
+                                No Category
+                            </SelectItem>
                                 {
                                     categories.map((category: JobCategory) => {
                                         return (
@@ -100,15 +105,20 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                                         )
                                     })
                                 }
-                                {/* <div className="p-1 border-t border-black">
-                                <Button className="bg-black text-white rounded-none w-full" variant={"default"} type="button">
-                                <Plus className="w-4 h-4 mr-2" />
-                                Create New Category
-                                </Button>
-                                </div> */}
                             </SelectGroup>
                         </SelectContent>
                     </Select>
+                    <Button
+                    disabled={currentCategoryId === "none"}
+                    size={"icon"}
+                    variant={"secondary"}
+                    type="button"
+                    className="bg-black rounded-none text-white hover:bg-black"
+                    onClick={() => setCurrentCategoryId("none")}
+                    >
+                    ×
+                    </Button>
+                </div>
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Country</Label>
