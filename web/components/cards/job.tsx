@@ -6,6 +6,16 @@ import { Settings, ArrowRight, Users } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns" 
+import { Prisma } from "@prisma/client";
+import { Badge } from "../ui/badge";
+import { formatJobType } from "@/lib/format-job";
+import { Type } from "@prisma/client";
+
+type JobWithCategories = Prisma.JobGetPayload<{
+  include: {
+    category: true
+  }
+}>
 
 export function JobCardForDashboard({ job }: { job: Job}) {
     const router = useRouter();
@@ -33,7 +43,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
       )
 }
 
-export function JobCard({ job }: { job: Job }) {
+export function JobCard({ job }: { job: JobWithCategories }) {
     return (
       <Link href={`/${job.id}`}>
       <div className="w-full flex border border-black bg-white rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer">
@@ -41,14 +51,22 @@ export function JobCard({ job }: { job: Job }) {
         <p className='sm:text-lg text-md font-extrabold text-left text-black'>
          {job.title}     
         </p>
-        <div className="mt-1 flex">
-        <p className="text-xs text-black font-bold">{formatDistanceToNow(job.createdAt)} ago</p>
+        <div className="mt-2 flex gap-2">
+        {
+            job.category === null 
+            ?
+            <>
+            </>
+            :
+            <Badge className="rounded-none bg-white border border-black font-bold hover:bg-white">{job.category.name}</Badge>
+          }
+            <Badge className="rounded-none bg-white border border-black font-bold hover:bg-white">{formatJobType(job.type as Type)}</Badge>
         </div>
         </div>
         <div className="ml-auto mr-5">
-        {/* <Button className="rounded-none bg-inherit bg-black hover:bg-black border-none" variant={"outline"} size={"icon"}>
+        <Button className="rounded-none bg-inherit bg-black hover:bg-black border-none" variant={"outline"} size={"icon"}>
             <ArrowRight className="size-4" />
-        </Button> */}
+        </Button>
           {
             job.city === null && job.country === null
             ?

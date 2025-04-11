@@ -14,6 +14,9 @@ export async function FindOrganization(slug: string) {
                 slug: true,
                 description: true,
                 jobs: {
+                    include: {
+                        category: true
+                    },
                     orderBy: {
                         createdAt: 'desc'
                     }

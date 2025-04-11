@@ -14,8 +14,18 @@ import { motion } from "framer-motion"
  
 type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
     include: {
-        jobs: true
+        jobs: {
+          include: {
+            category: true
+          }
+        }
     }
+}>
+
+type JobWithCategories = Prisma.JobGetPayload<{
+  include: {
+    category: true
+  }
 }>
 
 export function ViewOrganization({ organization, locations, types } : { organization:OrganizationWithJobs, locations: Array<string>, types: Array<string> }) {
@@ -104,7 +114,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
             animate={{ opacity: 1}}
             transition={{ duration: 0.3, delay: index * 0.1}}
             key={job.id} aria-label="Job">
-            <JobCard key={index} job={job}/>
+            <JobCard key={index} job={job as JobWithCategories}/>
             </motion.div>
         )
     })}

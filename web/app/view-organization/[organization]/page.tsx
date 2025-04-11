@@ -5,6 +5,12 @@ import { Prisma } from "@prisma/client";
 import { CareerNavbar } from "@/components/career-navbar";
 import { Metadata } from "next";
 
+type JobWithCategories = Prisma.JobGetPayload<{
+  include: {
+    category: true
+  }
+}>
+
 export async function generateMetadata({ params } : { params: Promise<{ organization: string }>}): Promise<Metadata> {
     const organization = await FindOrganization((await params).organization);
     if(organization.error) {
@@ -20,7 +26,11 @@ export async function generateMetadata({ params } : { params: Promise<{ organiza
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
     type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
         include: {
-            jobs: true
+            jobs: {
+                include: {
+                    category: true
+                }
+            }
         }
     }>
     const organization = await FindOrganization((await params).organization);
