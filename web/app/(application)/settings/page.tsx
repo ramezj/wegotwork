@@ -50,7 +50,7 @@ export default async function Page() {
         </div>
         <div className="space-y-4">
         <SettingsCard organization={userOrganization.organization.organization} />
-        <DeleteOrganizationCard />
+        <DeleteOrganizationCard organizationId={session.user.currentOrganizationId!} />
         </div>
         </>
     )
