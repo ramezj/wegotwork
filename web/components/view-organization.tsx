@@ -96,6 +96,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     </div>
     </div>
     <div className="flex flex-col gap-4 lg:w-1/2 w-full pt-6">
+    <p className="text-left font-bold text-black text-lg">Open Positions ({jobs.length})</p>
     {jobs.map((job:Job, index) => {
         return (
             <motion.div
