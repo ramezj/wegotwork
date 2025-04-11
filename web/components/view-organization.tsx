@@ -135,7 +135,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     {
       organization.categories.filter((category) => category.jobs.length > 0).map((category:CategoryWithJobs, index) => {
         return (
-          <div className="text-left" key={category.id}>
+          <div className="text-left flex flex-col gap-2" key={category.id}>
           <motion.h1
           className="font-bold text-black text-xl pb-2">{category.name}</motion.h1>
           {category.jobs.map((job:Job, index) => {
