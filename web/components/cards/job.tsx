@@ -44,6 +44,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
 }
 
 export function JobCard({ job }: { job: JobWithCategories }) {
+  console.log(job);
     return (
       <Link href={`/${job.id}`}>
       <div className="w-full flex border border-black bg-white rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer">
@@ -53,12 +54,12 @@ export function JobCard({ job }: { job: JobWithCategories }) {
         </p>
         <div className="mt-2 flex gap-2">
         {
-            job.category === null 
+            job.categoryId === null 
             ?
             <>
             </>
             :
-            <Badge className="rounded-none bg-white border border-black font-bold hover:bg-white">{job.category.name}</Badge>
+            <Badge className="rounded-none bg-white border border-black font-bold hover:bg-white">{job.category?.name}</Badge>
           }
             <Badge className="rounded-none bg-white border border-black font-bold hover:bg-white">{formatJobType(job.type as Type)}</Badge>
         </div>

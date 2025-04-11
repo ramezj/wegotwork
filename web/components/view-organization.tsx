@@ -11,15 +11,21 @@ import { Card } from "./ui/card"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import { motion } from "framer-motion"
+import { Separator } from "./ui/separator"
  
 type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
-    include: {
-        jobs: {
-          include: {
-            category: true
+        include: {
+          categories: {
+            include: {
+                jobs: true
+            }
+          },
+          jobs: {
+            include: {
+                category: true
+            }
           }
         }
-    }
 }>
 
 type JobWithCategories = Prisma.JobGetPayload<{
@@ -28,7 +34,13 @@ type JobWithCategories = Prisma.JobGetPayload<{
   }
 }>
 
-export function ViewOrganization({ organization, locations, types } : { organization:OrganizationWithJobs, locations: Array<string>, types: Array<string> }) {
+type CategoryWithJobs = Prisma.JobCategoryGetPayload<{
+  include: {
+    jobs: true
+  }
+}>
+
+export function ViewOrganization({ organization, locations, types } : { organization:OrganizationWithJobs, locations: Array<string>, types: Array<string>}) {
     const [ originalJobs, setOriginalJobs ] = useState<Array<Job>>(organization.jobs);
     const [ jobs, setJobs ] = useState<Array<Job>>(organization.jobs);
     const [ selectedCountry, setSelectedCountry ] = useState<string>("All");
@@ -60,11 +72,13 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     <div className="w-full">
     <Select
       onValueChange={(country) => {
-        setSelectedCountry(country); 
+      setSelectedCountry(country); 
       filterJobs(country, selectedEmploymentType); 
       }}>
         <SelectTrigger aria-label="Select Locations" className="bg-white rounded-none border-black text-black font-bold w-full">
-        <SelectValue placeholder="All Locations" />
+        <SelectValue placeholder="All Locations">
+          All Locations
+        </SelectValue>
         </SelectTrigger>
         <SelectContent className="bg-white border-black rounded-none text-black font-bold">
           <SelectGroup className="space-y-1">
@@ -106,8 +120,8 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     </div>
     </div>
     <div className="flex flex-col gap-4 lg:w-1/2 w-full pt-6">
-    <p className="text-left font-bold text-black text-lg">Open Positions ({jobs.length})</p>
-    {jobs.map((job:Job, index) => {
+    {/* <p className="text-left font-bold text-black text-lg">Open Positions ({jobs.length})</p> */}
+    {jobs.filter((job) => job.categoryId === null).map((job:Job, index) => {
         return (
             <motion.div
             initial={{ opacity: 0}}
@@ -119,18 +133,43 @@ export function ViewOrganization({ organization, locations, types } : { organiza
         )
     })}
     {
+      organization.categories.filter((category) => category.jobs.length > 0).map((category:CategoryWithJobs, index) => {
+        return (
+          <div className="text-left" key={category.id}>
+          <motion.h1
+          className="font-bold text-black text-xl pb-2">{category.name}</motion.h1>
+          {category.jobs.map((job:Job, index) => {
+            return (
+            <motion.div
+            // initial={{ opacity: 0}}
+            // animate={{ opacity: 1}}
+            // transition={{ duration: 0.3, delay: index * 0.1}}
+            key={job.id} aria-label="Job">
+            <JobCard key={index} job={job as JobWithCategories}/>
+            </motion.div>
+            )
+          })}
+          </div>
+        )
+      })
+    }
+    {/* {jobs.map((job:Job, index) => {
+        return (
+            <motion.div
+            initial={{ opacity: 0}}
+            animate={{ opacity: 1}}
+            transition={{ duration: 0.3, delay: index * 0.1}}
+            key={job.id} aria-label="Job">
+            <JobCard key={index} job={job as JobWithCategories}/>
+            </motion.div>
+        )
+    })} */}
+    {
       jobs.length === 0 &&
       <Card className="bg-white rounded-none border border-black p-8">
       <p className="text-black font-bold">We are currently not hiring.</p>
       </Card>
     }
-    {/* <Card className="bg-white rounded-none border border-black p-8">
-      <p className="text-black font-bold">Signup to receive new job postings.</p>
-      <div className='flex sm:flex-row flex-col gap-4 mt-4'>
-      <Input className='bg-white rounded-none text-black font-bold text-base border border-black' placeholder="Enter email"></Input>
-      <Button className='bg-black hover:bg-black text-white hover:text-white rounded-none font-extrabold'>Get Notified</Button>
-      </div>
-    </Card> */}
     </div>
     </div>
     )

@@ -26,11 +26,20 @@ export async function generateMetadata({ params } : { params: Promise<{ organiza
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
     type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
         include: {
-            jobs: {
-                include: {
-                    category: true
+          categories: {
+            include: {
+                jobs: {
+                    include: {
+                        category: true
+                    }
                 }
             }
+          },
+          jobs: {
+            include: {
+                category: true
+            }
+          }
         }
     }>
     const organization = await FindOrganization((await params).organization);

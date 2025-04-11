@@ -13,12 +13,24 @@ export async function FindOrganization(slug: string) {
                 name: true,
                 slug: true,
                 description: true,
-                jobs: {
-                    include: {
-                        category: true
-                    },
+                categories: {
                     orderBy: {
-                        createdAt: 'desc'
+                        order: 'asc'
+                    },
+                    include: {
+                        jobs: {
+                            include: {
+                                category: true
+                            },
+                            orderBy: {
+                                createdAt: 'desc'
+                            }
+                        }
+                    }
+                },
+                jobs: {
+                    orderBy: {
+                        createdAt: "desc"
                     }
                 }
             }
