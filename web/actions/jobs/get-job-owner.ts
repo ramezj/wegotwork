@@ -19,7 +19,8 @@ export async function GetJobAsOwner(jobId: string) {
                 id: jobId
             },
             include: {
-                applicants: true
+                applicants: true,
+                category: true
             }
         });
         if(!job) {
@@ -28,6 +29,14 @@ export async function GetJobAsOwner(jobId: string) {
                 message:"Job Not Found"
             }
         }
+        const categories = await prisma.jobCategory.findMany({
+            where: {
+                organizationId:session.user.currentOrganizationId!
+            },
+            orderBy: {
+                name: "asc"
+            }
+        })
         const permissions = await prisma.organizationUser.findFirst({
             where: {
                 userId: session.user.id,
@@ -41,7 +50,8 @@ export async function GetJobAsOwner(jobId: string) {
             }
         }
         return { 
-            job
+            job: job,
+            categories: categories
         }
     } catch (error) {
         console.error(error);

@@ -16,6 +16,7 @@ import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { useEffect } from "react"
 import { DialogDescription } from "@radix-ui/react-dialog"
+import { redirect } from "next/navigation"
   
 
 export function CreateOrganizationButton() {
@@ -32,6 +33,7 @@ export function CreateOrganizationButton() {
         const create = await CreateOrganization(name, slug);
         if(create?.organization) {
             toast(create.message)
+            redirect('/overview')
         } else {
             toast(create?.message);
         }

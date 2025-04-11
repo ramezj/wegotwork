@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link"
-import { Home, Users, Banknote, Briefcase, Settings } from "lucide-react"
+import { Home, Users, Banknote, Briefcase, Settings, Tags } from "lucide-react"
 import { HomeIcon } from "./icons/Home-Icon"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from "@/components/ui/sheet"
@@ -38,6 +38,10 @@ export default function LayoutNavigation({ children, session, organization }: { 
                 <Link href="/applicants" className={`${path.includes('/applicants') ? ' bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black`}>
                 <Users className="h-4 w-4" />
                   Applicants
+                </Link>
+                <Link href="/categories" className={`${path.includes('/categories') ? ' bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black`}>
+                <Tags className="h-4 w-4" />
+                  Categories
                 </Link>
                 <Link href="/billing" className={`${path.includes('/billing') ? ' bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black`}>
                 <Banknote className="h-4 w-4" />
@@ -93,6 +97,12 @@ export default function LayoutNavigation({ children, session, organization }: { 
                   <Link href="/applicants" className={`${path.includes('/applicants') ? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black`}>
                   <Users className="h-4 w-4" />
                   Applicants
+                  </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                  <Link href="/categories" className={`${path.includes('/categories') ? 'bg-[#F2EFE8] text-black border !border-black' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-[#F2EFE8] border border-white hover:border-black hover:text-black`}>
+                  <Tags className="h-4 w-4" />
+                  Categories
                   </Link>
                   </SheetClose>
                   <SheetClose asChild>

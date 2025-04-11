@@ -88,6 +88,7 @@ model Organization {
   users       OrganizationUser[]
   invitations OrganizationInvite[]
   User        User[]
+  categories JobCategory[]
 }
 
 model OrganizationUser {
@@ -113,6 +114,16 @@ enum Role {
   member
 }
 
+model JobCategory {
+  id             String       @id @default(cuid())
+  name           String
+  order          Int          @default(0)
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  jobs           Job[]
+}
+
+
 model Job {
   id             String       @id @default(cuid())
   title          String
@@ -124,6 +135,8 @@ model Job {
   organizationId String
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   applicants     Applicant[]
+  categoryId     String?
+  category       JobCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
 }
 
 enum Type {

@@ -35,6 +35,35 @@ export async function CreateOrganization(name: string, slug: string) {
                 }
             }
         })
+        const categories = await prisma.jobCategory.createMany({
+            data: [
+                {
+                    organizationId: organization.id,
+                    name: "Software Development",
+                    order:1
+                },
+                {
+                    organizationId: organization.id,
+                    name: "Finance",
+                    order:2
+                },
+                {
+                    organizationId: organization.id,
+                    name: "Operations",
+                    order:3
+                },
+                {
+                    organizationId: organization.id,
+                    name:"HR & Recruiting",
+                    order:4
+                },
+                {
+                    organizationId: organization.id,
+                    name:"Security",
+                    order:5
+                }
+            ]
+        })
         const setUserOrganizationId = await prisma.user.update({
             where: {
                 id: session.user.id

@@ -5,18 +5,25 @@ import { redirect } from "next/navigation";
 import { GetOrganizationJobs } from "@/actions/jobs/get-all-jobs";
 import CreateJob from "@/components/create-job";
 import { JobCardForDashboard } from "@/components/cards/job";
-import { Job } from "@prisma/client";
+import { Job, JobCategory } from "@prisma/client";
 import { headers } from "next/headers";
 import { Metadata } from "next";
 import { GetJobAsOwner } from "@/actions/jobs/get-job-owner";
 import { EditJobCard } from "@/components/edit-job";
 import { DeleteJobButton } from "@/components/delete-job";
 import { Applicants, TotalApplicants } from "@/components/statistics";
+import { Prisma } from "@prisma/client";
 
 export const metadata:Metadata = {
     title: "jobs",
     description: "jobs"
 }
+
+type JobWithCategory = Prisma.JobGetPayload<{
+    include: {
+        category: true
+    }
+}>;
 
 export default async function Page({ params } : { params: Promise<{ organization: string, jobId: string }>}) {
     const session:Session | null = await auth.api.getSession({
@@ -42,7 +49,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         <TotalApplicants title="Applicants" amount={job.job?.applicants.length as number} />
         <TotalApplicants title="Applicants" amount={job.job?.applicants.length as number} />
         </div>
-        <EditJobCard job={job.job as Job} />
+        <EditJobCard job={job.job as JobWithCategory} categories={job.categories as JobCategory[]} />
         </>
     )
 }

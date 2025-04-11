@@ -1,9 +1,9 @@
 "use client"
-import { Loader2, Trash } from "lucide-react"
+import { Loader2, Plus, Trash } from "lucide-react"
 import { Label } from "./ui/label"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
-import { Job, Type } from "@prisma/client"
+import { Job, JobCategory, Type } from "@prisma/client"
 import { useState } from "react"
 import { toast } from "sonner"
 import { Textarea } from "./ui/textarea"
@@ -15,9 +15,16 @@ import { formatJobType } from "@/lib/format-job"
 import { DeleteJob } from "@/actions/jobs/delete-job"
 import { DeleteJobButton } from "./delete-job"
 import { CountryDropdown } from "./ui/country-dropdown"
+import { Prisma } from "@prisma/client"
 
-export function EditJobCard({ job } : { job: Job}) {
-    const [ current, setCurrent ] = useState<Job>(job);
+type JobWithCategory = Prisma.JobGetPayload<{
+    include: {
+        category: true
+    }
+}>;
+
+export function EditJobCard({ job, categories } : { job: JobWithCategory, categories: JobCategory[]}) {
+    const [ current, setCurrent ] = useState<JobWithCategory>(job);
     const [ loading, setLoading ] = useState<boolean>(false);
     const EditTheJob = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -67,10 +74,41 @@ export function EditJobCard({ job } : { job: Job}) {
                     </Select>
                 </div>
                 <div className="space-y-2">
-                    {/* <CountryDropdown 
-                    placeholder={current.country!}
-                    defaultValue={current.country!}
-                    onChange={((e) => { setCurrent((previous) => ({...previous, country: e.name}))})} /> */}
+                <Label className='font-extrabold text-black'>Category</Label>
+                    <Select value={current.category?.name === null ? "No Category" : current.category?.name} defaultValue={current.category?.name === null ? "No Category" : current.category?.name} onValueChange={((e) => { setCurrent((previous) => ({ ...previous, categoryId: e as string}))})}>
+                        <SelectTrigger value={current.category?.name === null ? "No Category" : current.category?.name} className="bg-white border border-black rounded-none text-black font-bold text-base" defaultValue={current.category?.name === null ? "No Category" : current.category?.name}>
+                        <SelectValue>
+                            {current.category?.name === null ? "No Category" : current.category?.name}
+                        </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent className="bg-white rounded-none border border-black text-black font-bold">
+                            <SelectGroup className="space-y-1">
+                                {
+                                    categories.map((category: JobCategory) => {
+                                        return (
+                                            <SelectItem key={category.id} value={category.id}>
+                                            {category.name}
+                                            </SelectItem>
+                                        )
+                                    })
+                                }
+                                <Button
+                                variant={"default"}
+                                type="button"
+                                onClick={() => {
+                                    // Open modal or inline input for new category creation
+                                    console.log('Open category creation modal')
+                                }}
+                                className="w-full !text-left font-bold text-sm"
+                                >
+                                <Plus className="w-4 h-4 mr-2" />
+                                Create New Category
+                                </Button>
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Country</Label>
                 <Input className="bg-white border border-black rounded-none text-black font-bold text-base" placeholder="Enter country" value={current.country == null ? '' : current.country} onChange={((e) => { setCurrent((previous) => ({...previous, country: e.target.value}))})}></Input>
                 </div>

@@ -19,7 +19,7 @@ import { toast } from "sonner"
 
 type ButtonSize = "default" | "sm" | "default" | "lg" | "icon" | null
 
-export default function CreateJob({ id, buttonSize, buttonColor } : { id: string, buttonSize: ButtonSize, buttonColor: "white" | "black"}) {
+export default function CreateCategoryButton({ id, buttonSize, buttonColor } : { id: string, buttonSize: ButtonSize, buttonColor: "white" | "black"}) {
     const [ loading, setLoading ] = useState<boolean>(false);
     const [ name, setName ] = useState<string>("");
     const createjob = async (e: React.FormEvent) => {
@@ -42,13 +42,13 @@ export default function CreateJob({ id, buttonSize, buttonColor } : { id: string
           ? 
           <DialogTrigger asChild>
           <Button size={buttonSize} className="rounded-none border font-extrabold" >
-            Create job
+            Create category
           </Button>
           </DialogTrigger>
           :
           <DialogTrigger asChild>
           <Button size={buttonSize} className="rounded-none border-none font-extrabold bg-black text-white hover:bg-black hover:text-white" >
-            Create job
+            Create category
           </Button>
           </DialogTrigger>
         }
