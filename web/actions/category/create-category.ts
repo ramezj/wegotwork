@@ -7,19 +7,32 @@ import { Session } from "@/lib/auth-client";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 
-export async function CreateCategoryAction(categoryName: string, order: number) {
+export async function CreateCategoryAction(categoryName: string) {
     const session:Session | null = await auth.api.getSession({
         headers: await headers()
     });
     if(!session) { redirect('/') }
     try {
+        const maxOrderCategory = await prisma.jobCategory.findFirst({
+            where: {
+                organizationId: session.user.currentOrganizationId!
+            },
+            orderBy: {
+                order: "desc"
+            },
+            select: {
+                order: true
+            }
+        })
+        const newOrder = maxOrderCategory?.order ? maxOrderCategory.order + 1 : 1;
         const category = await prisma.jobCategory.create({
             data: {
                 organizationId: session.user.currentOrganizationId!,
                 name:categoryName,
-                order: order
+                order: newOrder
             }
         })
+        revalidatePath("/categories");
         return {
             error:false,
             category: category

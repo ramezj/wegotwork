@@ -13,7 +13,7 @@ import {
   import { Input } from "@/components/ui/input"
   import { Label } from "@/components/ui/label"
   import { Loader2 } from "lucide-react"
-import { CreateJobAction } from "@/actions/jobs/create-job"
+import { CreateCategoryAction } from "@/actions/category/create-category"
 import { redirect } from "next/navigation"
 import { toast } from "sonner"
 
@@ -25,13 +25,8 @@ export default function CreateCategoryButton({ id, buttonSize, buttonColor } : {
     const createjob = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        const res = await CreateJobAction(name, id);
-        console.log(res);
-        if(res.error) {
-          toast(res.message as string)
-        } else {
-          redirect(`/jobs/${res.job?.id}`)
-        }
+        const res = await CreateCategoryAction(name);
+        toast(JSON.stringify(res));
         setLoading(false);
     }
     return (
@@ -54,7 +49,7 @@ export default function CreateCategoryButton({ id, buttonSize, buttonColor } : {
         }
       <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] !rounded-none bg-white border border-black">
         <DialogHeader>
-          <DialogTitle className="text-left font-extrabold text-black !text-xl">Create a new job</DialogTitle>
+          <DialogTitle className="text-left font-extrabold text-black !text-xl">Create a new category</DialogTitle>
           {/* <DialogDescription className="text-left text-black font-bold">
           create a job listing & start hiring immediately
           </DialogDescription> */}
@@ -62,7 +57,7 @@ export default function CreateCategoryButton({ id, buttonSize, buttonColor } : {
         <div className="grid py-2">
           <div className="grid items-center gap-4">
             <Label htmlFor="name" className="text-left font-extrabold text-black">
-              Job Title
+              Category name
             </Label>
             <form id="form" onSubmit={createjob}>
             <Input
@@ -71,7 +66,7 @@ export default function CreateCategoryButton({ id, buttonSize, buttonColor } : {
               id="name"
               value={name}
               onChange={((e) => {setName(e.target.value)})}
-              placeholder="Enter Job title"
+              placeholder="Enter category name"
               className="bg-white rounded-none border border-black text-black font-bold text-base"
             />
             </form>
@@ -84,13 +79,13 @@ export default function CreateCategoryButton({ id, buttonSize, buttonColor } : {
             <>
             <Button disabled form="form" type="submit" className="w-full font-extrabold bg-black text-white rounded-none hover:bg-black hover:text-white">
               <Loader2 className="mr-1 h-4 w-4 animate-spin" />
-              create job
+              create category
             </Button>
             </>
             : 
             <>
             <Button form="form" type="submit" className="w-full font-extrabold bg-black text-white rounded-none hover:bg-black hover:text-white">
-              create job
+              create category
             </Button>
             </>
           }
