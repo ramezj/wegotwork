@@ -16,16 +16,21 @@ import {
 import { CreateCategoryAction } from "@/actions/category/create-category"
 import { redirect } from "next/navigation"
 import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 type ButtonSize = "default" | "sm" | "default" | "lg" | "icon" | null
 
-export default function CreateCategoryButton({ id, buttonSize, buttonColor } : { id: string, buttonSize: ButtonSize, buttonColor: "white" | "black"}) {
-    const [ loading, setLoading ] = useState<boolean>(false);
+export default function CreateCategoryButton({ buttonSize, buttonColor } : { buttonSize: ButtonSize, buttonColor: "white" | "black"}) {
+  const router = useRouter();  
+  const [ loading, setLoading ] = useState<boolean>(false);
     const [ name, setName ] = useState<string>("");
     const createjob = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         const res = await CreateCategoryAction(name);
+        if(!res.error) {
+          router.refresh();
+        }
         toast(JSON.stringify(res));
         setLoading(false);
     }

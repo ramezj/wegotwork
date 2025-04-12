@@ -32,7 +32,7 @@ export async function CreateCategoryAction(categoryName: string) {
                 order: newOrder
             }
         })
-        revalidatePath("/categories");
+        revalidatePath("/categories", 'page');
         return {
             error:false,
             category: category
@@ -44,7 +44,6 @@ export async function CreateCategoryAction(categoryName: string) {
                 message: error.message
             }
         }
-        console.error(error);
         return { 
             error:true,
             message:error

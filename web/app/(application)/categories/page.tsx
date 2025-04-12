@@ -34,7 +34,7 @@ export default async function Page() {
         <>
         <div className="flex justify-between items-center w-full">
         <h1 className="font-extrabold text-4xl text-black tracking-tight">Categories</h1>
-        <CreateCategoryButton id={session.user.currentOrganizationId!} buttonSize={"sm"} buttonColor="white" />
+        <CreateCategoryButton buttonSize={"sm"} buttonColor="white" />
         </div>
         <div>
             <SortableCategories categories={categories?.categories as JobCategory[]} />

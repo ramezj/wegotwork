@@ -137,7 +137,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
         return (
           <div className="text-left flex flex-col gap-2" key={category.id}>
           <motion.h1
-          className="font-bold text-black text-xl pb-2">{category.name}</motion.h1>
+          className="font-extrabold text-black text-xl pb-2">{category.name}</motion.h1>
           {category.jobs.map((job:Job, index) => {
             return (
             <motion.div
