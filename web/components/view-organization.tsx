@@ -124,9 +124,9 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     {jobs.filter((job) => job.categoryId === null).map((job:Job, index) => {
         return (
             <motion.div
-            initial={{ opacity: 0}}
-            animate={{ opacity: 1}}
-            transition={{ duration: 0.3, delay: index * 0.1}}
+            // initial={{ opacity: 0}}
+            // animate={{ opacity: 1}}
+            // transition={{ duration: 0.3, delay: index * 0.1}}
             key={job.id} aria-label="Job">
             <JobCard key={index} job={job as JobWithCategories}/>
             </motion.div>
