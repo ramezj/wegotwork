@@ -17,7 +17,7 @@ import { updateCategoryOrder } from "@/actions/category/sort-categories";
 import { Button } from "@/components/ui/button";
 import { JobCategory } from "@prisma/client";
 import { toast } from "sonner";
-import { Trash } from "lucide-react";
+import { Loader2, Trash } from "lucide-react";
 
 function SortableCategoryItem({ id, name }: { id: string; name: string }) {
   const {
@@ -99,7 +99,17 @@ export default function SortableCategories({ categories }: { categories: JobCate
         disabled={saving}
         className="mt-4 bg-black text-white hover:bg-black rounded-none"
       >
-        {saving ? "Saving..." : "Save Changes"}
+        {
+          saving
+          ?
+          <>
+          <Loader2 className="animate-spin text-white" />
+          </>
+          :
+          <>
+          </>
+        }
+        save changes
       </Button>
     </>
   );

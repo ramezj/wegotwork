@@ -7,7 +7,6 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 export async function updateCategoryOrder( organizationId: string, newOrder: { id: string; order: number }[] ) {
-    console.log(newOrder)
     const session:Session | null = await auth.api.getSession({
             headers: await headers()
         });
