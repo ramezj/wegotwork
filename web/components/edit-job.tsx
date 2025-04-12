@@ -110,13 +110,12 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                     </Select>
                     <Button
                     disabled={currentCategoryId === "none"}
-                    size={"icon"}
                     variant={"secondary"}
                     type="button"
                     className="bg-black rounded-none text-white hover:bg-black"
                     onClick={() => setCurrentCategoryId("none")}
                     >
-                    <X className="size-4 text-white" />
+                    <X className="w-4 h-4 text-white" />
                     </Button>
                 </div>
                 </div>
