@@ -36,15 +36,6 @@ export default async function Page() {
         <h1 className="font-extrabold text-4xl text-black tracking-tight">Categories</h1>
         <CreateCategoryButton id={session.user.currentOrganizationId!} buttonSize={"sm"} buttonColor="white" />
         </div>
-        {
-            categories?.categories?.map((category) => {
-                return (
-                    <>
-                    <p className='text-black font-bold' key={category.id}>{category.name}</p>
-                    </>
-                )
-            })
-        }
         <div>
             <SortableCategories categories={categories?.categories as JobCategory[]} />
         </div>
