@@ -17,6 +17,7 @@ import { updateCategoryOrder } from "@/actions/category/sort-categories";
 import { Button } from "@/components/ui/button";
 import { JobCategory } from "@prisma/client";
 import { toast } from "sonner";
+import { Trash } from "lucide-react";
 
 function SortableCategoryItem({ id, name }: { id: string; name: string }) {
   const {
@@ -38,10 +39,14 @@ function SortableCategoryItem({ id, name }: { id: string; name: string }) {
       {...attributes}
       {...listeners}
       style={style}
-      className="border border-black p-4 cursor-move bg-white text-black font-bold mb-2"
+      className="border border-black p-4 cursor-move bg-white text-black font-bold mb-2 flex justify-between items-center"
     >
-      {name}
+      <p className="select-none">{name}</p>
+      <Button className="rounded-none bg-black hover:bg-black">
+        <Trash className="w-4 h-4 text-white" />
+      </Button>
     </div>
+
   );
 }
 
