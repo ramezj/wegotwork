@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Session } from "@/lib/auth-client";
 import { headers } from "next/headers";
+import { revalidatePath } from "next/cache";
 
 export async function GetOrganizationCategories() {
     const session:Session | null = await auth.api.getSession({
@@ -19,6 +20,7 @@ export async function GetOrganizationCategories() {
                 order: "asc"
             }
         })
+        revalidatePath('/categories');
         return {
             categories: categories
         }
