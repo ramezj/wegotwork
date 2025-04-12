@@ -20,7 +20,6 @@ export async function GetOrganizationCategories() {
                 order: "asc"
             }
         })
-        revalidatePath('/categories');
         return {
             categories: categories
         }

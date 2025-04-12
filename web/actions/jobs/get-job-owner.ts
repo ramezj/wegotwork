@@ -34,7 +34,7 @@ export async function GetJobAsOwner(jobId: string) {
                 organizationId:session.user.currentOrganizationId!
             },
             orderBy: {
-                name: "asc"
+                order: "asc"
             }
         })
         const permissions = await prisma.organizationUser.findFirst({

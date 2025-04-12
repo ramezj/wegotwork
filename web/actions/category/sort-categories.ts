@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { Session } from "@/lib/auth-client";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export async function updateCategoryOrder( organizationId: string, newOrder: { id: string; order: number }[] ) {
     console.log(newOrder)
@@ -24,6 +25,7 @@ export async function updateCategoryOrder( organizationId: string, newOrder: { i
                 })
             )   
         )
+        revalidatePath('/categories');
           return {
             error:false,
             message:"updated successfully"
