@@ -4,11 +4,12 @@ import { redirect } from "next/navigation";
 // import { Job } from "@prisma/client";
 import CreateJob from "@/components/create-job";
 import { JobCardForDashboard } from "@/components/cards/job";
-import { Job } from "@prisma/client";
+import { Job, JobCategory } from "@prisma/client";
 import { headers } from "next/headers";
 import { Metadata } from "next";
 import CreateCategoryButton from "@/components/create-category";
 import { GetOrganizationCategories } from "@/actions/category/get-all-categories";
+import SortableCategories from "@/components/sortable-categories";
 
 export const metadata:Metadata = {
     title: "Categories",
@@ -44,6 +45,9 @@ export default async function Page() {
                 )
             })
         }
+        <div>
+            <SortableCategories categories={categories?.categories as JobCategory[]} />
+        </div>
         </>
     )
 }

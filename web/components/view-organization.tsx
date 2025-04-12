@@ -75,7 +75,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       setSelectedCountry(country); 
       filterJobs(country, selectedEmploymentType); 
       }}>
-        <SelectTrigger aria-label="Select Locations" className="bg-white rounded-none border-black text-black font-bold w-full">
+        <SelectTrigger value={"All Locations"} aria-label="Select Locations" className="bg-white rounded-none border-black text-black font-bold w-full">
         <SelectValue placeholder="All Locations">
           All Locations
         </SelectValue>
