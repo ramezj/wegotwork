@@ -17,6 +17,7 @@ import { CareerNavbar } from "@/components/career-navbar";
 import { Organization } from "@prisma/client";
 import { FindOrganization } from "@/actions/organization/find-organization";
 import { MapPin, Briefcase, Banknote } from "lucide-react";
+import { Prisma } from "@prisma/client";
 
 export async function generateMetadata({ params } : { params: Promise<{ organization: string, jobId: string }>}): Promise<Metadata> {
     const job = await getJobById((await params).jobId)
@@ -24,6 +25,26 @@ export async function generateMetadata({ params } : { params: Promise<{ organiza
       title: job.job?.title
     };
 }
+
+type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
+          include: {
+            categories: {
+              include: {
+                  jobs: {
+                      include: {
+                          category: true
+                      }
+                  }
+              }
+            },
+            jobs: {
+              include: {
+                  category: true
+              }
+            }
+          }
+}>
+
 export default async function Page({ params } : { params: Promise<{ organization: string, jobId: string }>}) {
     // const organization = await getOrganizationBySlug(params.slug);
     // if(organization?.error) { 
@@ -39,7 +60,7 @@ export default async function Page({ params } : { params: Promise<{ organization
     return (
         <main className="">
         <div className="top-0 z-10 sticky">
-        <CareerNavbar organizationName={organization.organization?.name as string} />
+        <CareerNavbar organization={organization.organization as OrganizationWithJobs} />
         </div>
             <div className="w-full flex flex-col items-center text-center py-8 px-4 gap-y-4">
             <div>
