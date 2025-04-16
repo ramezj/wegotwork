@@ -49,6 +49,7 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         <Label className='font-extrabold text-black'>Website</Label>
         <Input className="bg-white border border-black rounded-none text-black font-bold text-base" 
         required 
+        type="url"
         placeholder="Enter organization's website" 
         value={current.website === null ? "" : current.website } 
         onChange={((e) => { setCurrent((previous) => ({...previous, website: e.target.value}))})} />
