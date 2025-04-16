@@ -13,6 +13,7 @@ export async function FindOrganization(slug: string) {
                 name: true,
                 slug: true,
                 description: true,
+                website: true,
                 categories: {
                     orderBy: {
                         order: 'asc'

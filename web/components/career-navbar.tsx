@@ -10,8 +10,28 @@ import { cn } from "@/lib/utils"
 import { Session } from "@/lib/auth-client"
 import { NavigationMenuLink } from "@/components/ui/navigation-menu"
 import { Organization } from "@prisma/client"
+import { Prisma } from "@prisma/client"
 
-export function CareerNavbar({ organization } : { organization: Organization}) {
+type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
+  include: {
+    categories: {
+      include: {
+          jobs: {
+              include: {
+                  category: true
+              }
+          }
+      }
+    },
+    jobs: {
+      include: {
+          category: true
+      }
+    }
+  }
+}>
+
+export function CareerNavbar({ organization } : { organization: OrganizationWithJobs}) {
   const [isOpen, setIsOpen] = React.useState(false)
   React.useEffect(() => {
     if (isOpen) {

@@ -48,7 +48,6 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>Website</Label>
         <Input className="bg-white border border-black rounded-none text-black font-bold text-base" 
-        required 
         type="url"
         placeholder="Enter organization's website" 
         value={current.website === null ? "" : current.website } 
