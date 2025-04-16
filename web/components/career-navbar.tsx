@@ -9,8 +9,9 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Session } from "@/lib/auth-client"
 import { NavigationMenuLink } from "@/components/ui/navigation-menu"
+import { Organization } from "@prisma/client"
 
-export function CareerNavbar({ organizationName } : { organizationName: string}) {
+export function CareerNavbar({ organization } : { organization: Organization}) {
   const [isOpen, setIsOpen] = React.useState(false)
   React.useEffect(() => {
     if (isOpen) {
@@ -26,11 +27,11 @@ export function CareerNavbar({ organizationName } : { organizationName: string})
     <div className="border-b h-16 border-black bg-white sticky top-0">
       <div className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center z-50 pl-4">
-          <span className="text-2xl font-extrabold tracking-tighter text-black">{organizationName}</span>
+          <span className="text-2xl font-extrabold tracking-tighter text-black">{organization.name}</span>
         </Link>
         <div className="">
         <Button asChild variant="default" className="border-l h-16 rounded-none hover:bg-black bg-black font-bold text-white text-base">
-              <Link href="/auth">visit website</Link>
+              <Link href={`${organization.website === null ? "https://wegotwork.co" : organization.website}`}>visit website</Link>
             </Button>
         </div>
         {/* {

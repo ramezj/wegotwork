@@ -83,6 +83,7 @@ model Organization {
   name        String
   slug        String               @unique
   description String               @default("")
+  website     String?
   premium     Boolean              @default(false)
   jobs        Job[]
   users       OrganizationUser[]

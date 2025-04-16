@@ -1,7 +1,7 @@
 import { FindOrganization } from "@/actions/organization/find-organization";
 import { notFound } from "next/navigation";
 import { ViewOrganization } from "@/components/view-organization";
-import { Prisma } from "@prisma/client";
+import { Organization, Prisma } from "@prisma/client";
 import { CareerNavbar } from "@/components/career-navbar";
 import { Metadata } from "next";
 
@@ -48,7 +48,7 @@ export default async function Page({ params } : { params: Promise<{ organization
     }
     return (
         <>
-        <CareerNavbar organizationName={organization.organization?.name as string} />
+        <CareerNavbar organization={organization.organization as OrganizationWithJobs} />
         <ViewOrganization 
         organization={organization.organization as OrganizationWithJobs} 
         locations={organization.locations as Array<string>} 

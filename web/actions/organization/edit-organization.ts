@@ -44,7 +44,8 @@ export async function EditOrganization(organization: Organization) {
             data: {
                 name: organization.name,
                 slug: organization.slug,
-                description: organization.description
+                description: organization.description,
+                website: organization.website
             }
         })
         revalidatePath(`/${organization.id}/overview`)

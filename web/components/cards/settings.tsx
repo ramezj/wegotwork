@@ -46,6 +46,14 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         }></Input>
         </div>
         <div className="space-y-2">
+        <Label className='font-extrabold text-black'>Website</Label>
+        <Input className="bg-white border border-black rounded-none text-black font-bold text-base" 
+        required 
+        placeholder="Enter organization's website" 
+        value={current.website === null ? "" : current.website } 
+        onChange={((e) => { setCurrent((previous) => ({...previous, website: e.target.value}))})} />
+        </div>
+        <div className="space-y-2">
         <Label className='font-extrabold text-black'>Description</Label>
         <Textarea className="bg-white border border-black rounded-none text-black font-bold text-base" placeholder="Provide a detailed organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
