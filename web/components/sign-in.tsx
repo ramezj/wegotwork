@@ -12,7 +12,7 @@ export default function SignIn() {
       <CardHeader>
         <CardTitle className="text-lg md:text-xl text-black font-extrabold">Sign In</CardTitle>
         <CardDescription className="text-xs md:text-sm text-black font-bold">
-          use your preferred method to login to lou careers
+          use your preferred method to login to wegotwork.
         </CardDescription>
       </CardHeader>
       <CardContent>
