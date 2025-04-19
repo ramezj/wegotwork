@@ -10,6 +10,7 @@ export async function EditJob(job: Job, categoryId: string | null) {
     if(categoryId === "none") {
         categoryId = null;
     }
+    console.log(job);
     const session:Session | null = await auth.api.getSession({
         headers: await headers()
     });

@@ -121,11 +121,56 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Country</Label>
-                <Input className="bg-white border border-black rounded-none text-black font-bold text-base" placeholder="Enter country" value={current.country == null ? '' : current.country} onChange={((e) => { setCurrent((previous) => ({...previous, country: e.target.value}))})}></Input>
+                <div className="flex flex-row gap-2">
+                <Input className="bg-white border border-black rounded-none text-black font-bold text-base" 
+                placeholder="Enter country" value={current.country == null ? '' : current.country} 
+                onChange={((e) => { 
+                    setCurrent((previous) => ({
+                        ...previous, 
+                        country: e.target.value === '' ? null : e.target.value
+                }))})} />
+                <Button
+                    disabled={current.country === null}
+                    variant={"secondary"}
+                    type="button"
+                    className="bg-black rounded-none text-white hover:bg-black"
+                    onClick={() => {
+                        setCurrent((previous) => ({
+                            ...previous, 
+                            country: null
+                    }))
+                    }}
+                    >
+                <X className="w-4 h-4 text-white" />
+                </Button>
+                </div>
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>City</Label>
-                <Input className="bg-white border border-black rounded-none text-black font-bold text-base" placeholder="Enter city" value={current.city == null ? '' : current.city} onChange={((e) => { setCurrent((previous) => ({...previous, city: e.target.value}))})}></Input>
+                <div className="flex flex-row gap-2">
+                <Input className="bg-white border border-black rounded-none text-black font-bold text-base" 
+                placeholder="Enter city" 
+                value={current.city == null ? '' : current.city} 
+                onChange={((e) => { 
+                    setCurrent((previous) => ({
+                        ...previous, 
+                        city: e.target.value === '' ? null : e.target.value
+                }))})}/>
+                <Button
+                    disabled={current.city === null}
+                    variant={"secondary"}
+                    type="button"
+                    className="bg-black rounded-none text-white hover:bg-black"
+                    onClick={() => {
+                        setCurrent((previous) => ({
+                            ...previous, 
+                            city: null
+                    }))
+                    }}
+                    >
+                <X className="w-4 h-4 text-white" />
+                </Button>
+                </div>
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Description</Label>
