@@ -7,8 +7,8 @@ import SignIn from "@/components/sign-in";
 import { Metadata } from "next";
 
 export const metadata:Metadata = {
-  title: "Login to wegotwork",
-  description: "Login to wegotwork."
+  title: "Sign In to wegotwork",
+  description: "Sign In to wegotwork."
 }
 
 export default async function Home() {
