@@ -5,7 +5,7 @@ import prisma from "./prisma";
 import { customSession } from "better-auth/plugins"
 
 export const auth = betterAuth({
-    trustedOrigins: ['http://localhost:3000', 'https://heliup.xyz', 'https://www.heliup.xyz'],
+    trustedOrigins: ['http://localhost:3000', 'https://wegotwork.co', 'https://www.wegotwork.co'],
     session: {
         cookieCache: {
             enabled: true,
