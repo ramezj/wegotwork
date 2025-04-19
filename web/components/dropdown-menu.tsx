@@ -12,6 +12,9 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
   const signUserOut = async () => {
     await signOut({
       fetchOptions: {
+        onError: (error) => {
+          console.log(error);
+        },
         onSuccess: () => {
           redirect('/');
         }

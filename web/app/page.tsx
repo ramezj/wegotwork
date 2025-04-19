@@ -10,6 +10,8 @@ import { LandingPageJobCard } from "@/components/cards/job";
 import { FeatureCard } from "@/components/feature-card";
 import { Users } from "lucide-react";
 import FeatureCards from "@/components/test-cards";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import Image from "next/image";
 
 export const metadata:Metadata = {
   title: "wegotwork",
@@ -56,6 +58,14 @@ export default async function Home() {
       <FeatureCards />
       </div>
       </div>
+      {/* <div className="w-full sm:w-1/2">
+      <Image
+        src="/screenshot.png"
+        alt="Photo by Drew Beamer"
+        width={500}
+        height={500}
+      />
+      </div> */}
       </div>
     </main>
   );
