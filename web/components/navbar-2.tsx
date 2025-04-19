@@ -51,7 +51,7 @@ export function Navbar({ session } : { session: Session | null}) {
               session?.user.currentOrganizationId === null
               ? 
               <>
-              <Button variant="default" asChild className="border-l border-b border-black h-16 rounded-none hover:bg-black bg-background font-bold text-white text-base">
+              <Button variant="default" asChild className="border-l border-b border-black h-16 px-6 rounded-none hover:bg-black bg-background font-bold text-white text-base">
               <Link href="/dashboard">dashboard</Link>
               </Button>
               </>
