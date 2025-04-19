@@ -57,14 +57,14 @@ export function Navbar({ session } : { session: Session | null}) {
               </>
               :
               <>
-              <Button variant="default" asChild className="border-l border-b border-black h-16 rounded-none hover:bg-black bg-background font-bold text-white text-base">
+              <Button variant="default" asChild className="border-l border-b border-black h-16 px-6 rounded-none hover:bg-black bg-background font-bold text-white text-base">
               <Link href="/overview">dashboard</Link>
               </Button>
               </>
             }
             </>
           ) : (
-            <Button asChild variant="default" className="border-l border-b border-black h-16 rounded-none hover:bg-black bg-background font-bold text-white text-base">
+            <Button asChild variant="default" className="border-l border-b border-black h-16 px-6 rounded-none hover:bg-black bg-background font-bold text-white text-base">
               <Link href="/auth">start hiring</Link>
             </Button>
           )}
