@@ -24,7 +24,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
     };
     return (
       <div onClick={handleCardClick}>
-      <div className="w-full flex border border-black bg-white rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer">
+      <div className="w-full flex border-2 border-black bg-white rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
         <p className='sm:text-lg text-md font-extrabold text-left text-black'>
          {job.title}     

@@ -51,7 +51,7 @@ export default async function Page() {
                 <h1 className="font-extrabold text-4xl text-black tracking-tight">Jobs</h1>
                 <CreateJob id={session.user.currentOrganizationId!} buttonSize={"sm"} buttonColor="white" />
                 </div>
-                <div className="gap-4 flex flex-col">
+                <div className="gap-5 flex flex-col">
                 {
                 jobs?.jobs?.jobs.map((job:Job) => {
                     return (

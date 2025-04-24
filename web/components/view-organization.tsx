@@ -75,12 +75,13 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       setSelectedCountry(country); 
       filterJobs(country, selectedEmploymentType); 
       }}>
-        <SelectTrigger value={"All Locations"} aria-label="Select Locations" className="bg-white rounded-none border-black text-black font-bold w-full">
+        <SelectTrigger value={"All Locations"} aria-label="Select Locations" 
+        className="bg-white rounded-none border-black border-2 text-black font-bold w-full shadow-[0_4px_0_0_rgba(0,0,0,1)]">
         <SelectValue placeholder="All Locations">
           All Locations
         </SelectValue>
         </SelectTrigger>
-        <SelectContent className="bg-white border-black rounded-none text-black font-bold">
+        <SelectContent className="bg-white border-black border-2 rounded-none text-black font-bold mt-1">
           <SelectGroup className="space-y-1">
             <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none" key={"All"} value="All">All Locations</SelectItem>
             {
@@ -101,10 +102,11 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       filterJobs(selectedCountry, type);
     }}> 
     
-      <SelectTrigger aria-label="Select Employment" className="bg-white rounded-none border-black text-black font-bold w-full">
+      <SelectTrigger aria-label="Select Employment" 
+      className="bg-white rounded-none border-black border-2 text-black font-bold w-full shadow-[0_4px_0_0_rgba(0,0,0,1)]">
       <SelectValue placeholder="All Employment" />
       </SelectTrigger>
-      <SelectContent className="bg-white border-black rounded-none text-black font-bold">
+      <SelectContent className="bg-white border-black border-2 rounded-none text-black font-bold mt-1">
         <SelectGroup className='space-y-1'>
           <SelectItem key={"All"} value="All" className="hover:!bg-black rounded-none active:!bg-black focus:!bg-black hover:text-white">All Employment</SelectItem>
           {
@@ -120,13 +122,9 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     </div>
     </div>
     <div className="flex flex-col gap-4 lg:w-1/2 w-full pt-6">
-    {/* <p className="text-left font-bold text-black text-lg">Open Positions ({jobs.length})</p> */}
     {jobs.filter((job) => job.categoryId === null).map((job:Job, index) => {
         return (
             <motion.div
-            // initial={{ opacity: 0}}
-            // animate={{ opacity: 1}}
-            // transition={{ duration: 0.3, delay: index * 0.1}}
             key={job.id} aria-label="Job">
             <JobCard key={index} job={job as JobWithCategories}/>
             </motion.div>
@@ -135,15 +133,12 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     {
       organization.categories.filter((category) => category.jobs.length > 0).map((category:CategoryWithJobs, index) => {
         return (
-          <div className="text-left flex flex-col gap-2" key={category.id}>
+          <div className="text-left flex flex-col gap-4" key={category.id}>
           <motion.h1
-          className="font-extrabold text-black text-xl pb-2">{category.name}</motion.h1>
+          className="font-extrabold text-black text-2xl pb-2">{category.name}</motion.h1>
           {category.jobs.map((job:Job, index) => {
             return (
             <motion.div
-            // initial={{ opacity: 0}}
-            // animate={{ opacity: 1}}
-            // transition={{ duration: 0.3, delay: index * 0.1}}
             key={job.id} aria-label="Job">
             <JobCard key={index} job={job as JobWithCategories}/>
             </motion.div>
@@ -153,17 +148,6 @@ export function ViewOrganization({ organization, locations, types } : { organiza
         )
       })
     }
-    {/* {jobs.map((job:Job, index) => {
-        return (
-            <motion.div
-            initial={{ opacity: 0}}
-            animate={{ opacity: 1}}
-            transition={{ duration: 0.3, delay: index * 0.1}}
-            key={job.id} aria-label="Job">
-            <JobCard key={index} job={job as JobWithCategories}/>
-            </motion.div>
-        )
-    })} */}
     {
       jobs.length === 0 &&
       <Card className="bg-white rounded-none border border-black p-8">
