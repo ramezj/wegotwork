@@ -46,7 +46,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
 export function JobCard({ job }: { job: JobWithCategories }) {
     return (
       <Link href={`/${job.id}`}>
-      <div className="w-full flex border border-black bg-white rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer">
+      <div className="w-full bg-white flex border-2 border-black rounded-none items-center pt-3 pb-3 cursor-pointer shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
         <p className='sm:text-lg text-md font-extrabold text-left text-black'>
          {job.title}     
@@ -86,7 +86,7 @@ export function JobCard({ job }: { job: JobWithCategories }) {
 export function LandingPageJobCard({ title, type, location, age }: { title: string, type: string, location: string, age:string }) {
   return (
       <div color={"white"}
-      className="w-full bg-white flex border border-black rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer">
+      className="w-full bg-white flex border-2 border-black rounded-none items-center pt-3 pb-3 cursor-pointer shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
       <p className='sm:text-lg text-md font-extrabold text-left text-black'>
        {title}     

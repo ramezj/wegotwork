@@ -12,6 +12,7 @@ import { Users } from "lucide-react";
 import FeatureCards from "@/components/test-cards";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
+import { CustomButton } from "@/components/ui/custom-buttons";
 
 export const metadata:Metadata = {
   title: "wegotwork",
@@ -36,19 +37,19 @@ export default async function Home() {
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
       <div className="flex flex-row w-full sm:w-1/2 items-center justify-center content-center gap-4 mt-6">
-            <Button asChild variant={"default"} className="font-extrabold w-full rounded-none bg-white text-black border border-black hover:bg-white">
+            <CustomButton asChild variant={"default"} className="font-extrabold w-full rounded-none bg-white text-black border-2 border-black hover:bg-white ">
                 <Link href='/auth'>
                 start hiring
                 </Link>
-            </Button>
-            <Button asChild className="font-extrabold w-full rounded-none bg-white text-black border border-black hover:bg-white" variant={"default"}>
+            </CustomButton>
+            <CustomButton asChild className="font-extrabold w-full rounded-none bg-white text-black border-2 border-black hover:bg-white" variant={"default"}>
                 <Link target="_blank" href={`http://demo.${process.env.NEXT_PUBLIC_URL}`}>
                 see demo
                 {/* <ArrowRight className="w-4" /> */}
                 </Link>
-            </Button>
+            </CustomButton>
       </div>
-      <div className="not-prose my-8 lg:w-1/2 w-full overflow-hidden space-y-4">
+      <div className="not-prose my-8 lg:w-1/2 w-full space-y-4">
             <LandingPageJobCard title="Operations Manager" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
             <LandingPageJobCard title="Backend Engineer" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
       </div>
