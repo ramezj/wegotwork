@@ -18,9 +18,9 @@ export default function LayoutNavigation({ children, session, organization }: { 
   const path = usePathname();
     return (
       <div className="grid min-h-screen w-full md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
-        <div className="hidden border-r border-black bg-white md:block">
+        <div className="hidden border-r-2 border-black bg-white md:block">
           <div className="flex h-full max-h-screen flex-col gap-2 sticky top-0 z-50 bg-white">
-            <div className="flex h-16 items-center border-b border-black bg-white px-3 lg:h-16 text-center justify-center">
+            <div className="flex h-16 items-center border-b-2 border-black bg-white px-3 lg:h-16 text-center justify-center">
             <Link href="/" className="flex items-center z-50">
             <span className="text-2xl tracking-tighter text-black font-extrabold">wegotwork</span>
             </Link>
@@ -64,7 +64,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
           </div>
         </div>
         <div className="flex flex-col sticky">
-          <header className="z-50 flex h-16 items-center gap-4 border-b border-black bg-white px-3 lg:h-16 sticky top-0 bg-background">
+          <header className="z-50 flex h-16 items-center gap-4 border-b-2 border-black bg-white px-3 lg:h-16 sticky top-0 bg-background">
             <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="shrink-0 md:hidden text-white hover:text-white p-8 bg-black hover:bg-black rounded-none -ml-4">

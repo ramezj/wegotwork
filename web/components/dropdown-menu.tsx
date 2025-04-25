@@ -28,14 +28,14 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
         <>
         <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                <Button variant={"outline"} className="w-full bg-inherit rounded-none border border-black text-black font-extrabold hover:bg-white hover:text-black p-3">
+                <Button variant={"outline"} className="w-full bg-inherit rounded-none border-2 border-black text-black font-extrabold hover:bg-white hover:text-black p-3 shadow-[0_4px_0_0_rgba(0,0,0,1)]">
                     {session?.user?.name}
                     <ChevronsUpDown className="ml-auto size-4" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   side="top"
-                  className="w-[--radix-popper-anchor-width] bg-white border border-black text-black space-y-2 rounded-none"
+                  className="w-[--radix-popper-anchor-width] bg-white border-2 border-black text-black space-y-2 rounded-none"
                 >
                   <DropdownMenuItem onSelect={redirectToDashboard} className="font-extrabold cursor-pointer hover:!bg-[#F2EFE8] hover:!text-black border border-white hover:border-black !rounded-none">
                   <Settings2 className="size-4" />

@@ -58,9 +58,9 @@ export function JobCard({ job }: { job: JobWithCategories }) {
             <>
             </>
             :
-            <Badge className="rounded-none bg-white border border-black font-bold hover:bg-white">{job.category?.name}</Badge>
+            <Badge className="rounded-none bg-white border-2 border-black font-bold hover:bg-white">{job.category?.name}</Badge>
           }
-            <Badge className="rounded-none bg-white border border-black font-bold hover:bg-white">{formatJobType(job.type as Type)}</Badge>
+            <Badge className="rounded-none bg-white border-2 border-black font-bold hover:bg-white">{formatJobType(job.type as Type)}</Badge>
         </div>
         </div>
         <div className="ml-auto mr-5 sm:block hidden">
