@@ -32,13 +32,13 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
     }
     return (
       <>
-      <Card className="w-full bg-white rounded-none">
+      <Card className="w-full bg-white rounded-none border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)]">
       <CardHeader>
         <CardTitle className="text-2xl font-extrabold text-black">Invite member</CardTitle>
       </CardHeader>
       <CardContent className="">
         <form className="flex sm:flex-row flex-col gap-4" onSubmit={create_the_invitation}>
-        <Input className="bg-white border border-black rounded-none text-black font-bold text-base" type="email" required placeholder="Enter member's email address" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
+        <Input className="bg-white border-2 border-black rounded-none text-black font-bold text-base" type="email" required placeholder="Enter member's email address" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
        {/* <Select>
        <SelectTrigger className='rounded-none bg-white text-black font-bold border border-black'>
           Role

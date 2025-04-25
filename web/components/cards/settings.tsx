@@ -62,14 +62,14 @@ export function SettingsCard({ organization } : { organization: Organization}) {
             loading
             ? 
             <>
-            <Button type="submit" disabled className="font-extrabold bg-black hover:bg-black rounded-none text-white">
+            <Button type="submit" className="pointer-events-none font-extrabold !bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1">
             <Loader2 className="animate-spin mr-2" />
             save changes
             </Button>
             </>
             :
             <>
-            <Button type="submit" className="font-extrabold bg-black hover:bg-black rounded-none text-white">
+            <Button type="submit" className="font-extrabold bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1">
             save changes
             </Button>
             </>
