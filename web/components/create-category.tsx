@@ -41,7 +41,7 @@ export default function CreateCategoryButton({ buttonSize, buttonColor } : { but
           buttonColor === "white"
           ? 
           <DialogTrigger asChild>
-          <Button size={buttonSize} className="rounded-none border font-extrabold" >
+          <Button size={buttonSize} className="rounded-none font-extrabold border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
             Create category
           </Button>
           </DialogTrigger>
