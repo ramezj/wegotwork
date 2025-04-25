@@ -25,7 +25,7 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         setLoading(false);
     }
     return (
-        <Card className="w-full bg-white rounded-none">
+        <Card className="w-full bg-white rounded-none border-black border-2 shadow-[0_4px_0_0_rgba(0,0,0,1)]">
             <CardHeader>
                 <CardTitle className="text-black font-extrabold">
                     Organization
@@ -35,11 +35,11 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         <form onSubmit={editOrganization} className="space-y-4">
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>Name</Label>
-        <Input className="bg-white border border-black rounded-none text-black font-bold text-base" required placeholder="Enter name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
+        <Input className="bg-white border-2 border-black rounded-none text-black font-bold text-base" required placeholder="Enter name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>Slug</Label>
-        <Input className="bg-white border border-black rounded-none text-black font-bold text-base" required placeholder="Enter slug" value={current.slug} onChange={
+        <Input className="bg-white border-2 border-black rounded-none text-black font-bold text-base" required placeholder="Enter slug" value={current.slug} onChange={
             ((e) => { 
                 const newSlug = e.target.value.replace(/\s+/g, '-');
                 setCurrent((previous) => ({...previous, slug: newSlug }))})
@@ -47,7 +47,7 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         </div>
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>Website</Label>
-        <Input className="bg-white border border-black rounded-none text-black font-bold text-base" 
+        <Input className="bg-white border-2 border-black rounded-none text-black font-bold text-base" 
         type="url"
         placeholder="Enter organization's website" 
         value={current.website === null ? "" : current.website } 
@@ -55,7 +55,7 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         </div>
         <div className="space-y-2">
         <Label className='font-extrabold text-black'>Description</Label>
-        <Textarea className="bg-white border border-black rounded-none text-black font-bold text-base" placeholder="Provide a detailed organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
+        <Textarea className="bg-white border-2 border-black rounded-none text-black font-bold text-base" placeholder="Provide a detailed organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
         <div className="space-y-2">
         {

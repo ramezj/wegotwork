@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 export function TotalJobs({title, amount} : { title: string, amount: number}) {
     return (
         <>
-        <Card className="w-full bg-white rounded-none">
+        <Card className="w-full bg-white rounded-none border-black border-2 shadow-[0_4px_0_0_rgba(0,0,0,1)]">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-black font-extrabold">
                       {title}
@@ -23,7 +23,7 @@ export function TotalJobs({title, amount} : { title: string, amount: number}) {
 export function TotalApplicants({title, amount} : { title: string, amount: number}) {
   return (
       <>
-      <Card className="w-full bg-white rounded-none">
+      <Card className="w-full bg-white rounded-none  border-black border-2 shadow-[0_4px_0_0_rgba(0,0,0,1)]">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="font-extrabold text-black">
                     {title}
@@ -41,7 +41,7 @@ export function TotalApplicants({title, amount} : { title: string, amount: numbe
 export function Applicants({title, amount} : { title: string, amount: number}) {
   return (
       <>
-      <Card className="w-full bg-white rounded-none">
+      <Card className="w-full bg-white rounded-none  border-black border-2 shadow-[0_4px_0_0_rgba(0,0,0,1)]" >
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardTitle className='text-black font-extrabold'>{title}</CardTitle>
