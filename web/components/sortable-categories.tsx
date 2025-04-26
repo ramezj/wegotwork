@@ -54,7 +54,7 @@ export default function SortableCategories({ categories }: { categories: JobCate
   const [items, setItems] = useState<JobCategory[]>(
     [...categories].sort((a, b) => a.order - b.order)
   );
-  const [saving, setSaving] = useState(false);
+  const [saving, setSaving] = useState<boolean>(false);
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -96,8 +96,9 @@ export default function SortableCategories({ categories }: { categories: JobCate
       </DndContext>
       <Button
       onClick={handleSave}
-      disabled={saving}
-      className="font-extrabold mt-2 bg-white hover:bg-white rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1"
+      className={`font-extrabold mt-2 bg-white hover:bg-white rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1
+        ${saving ? "pointer-events-none" : ""}
+      `}
       >
         {
           saving

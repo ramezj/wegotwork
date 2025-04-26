@@ -22,7 +22,7 @@ export function DeleteOrganizationCard({ organizationId } : { organizationId: st
         }
     }
     return (
-        <Card className="w-full bg-white rounded-none border">
+        <Card className="w-full bg-white rounded-none border-2 shadow-[0_4px_0_0_rgba(0,0,0,1)]">
         <CardHeader>
             <CardTitle className='font-extrabold text-black'>delete organization</CardTitle>
         </CardHeader>
@@ -39,7 +39,7 @@ export function DeleteOrganizationCard({ organizationId } : { organizationId: st
                 </Button>
                 :
                 <>
-                <Button variant={"destructive"} className='font-bold rounded-none' onClick={((e) => {deleteOrg(e, organizationId)})}>
+                <Button variant={"destructive"} className='font-bold rounded-none shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1' onClick={((e) => {deleteOrg(e, organizationId)})}>
                 delete organization
                 </Button>
                 </>

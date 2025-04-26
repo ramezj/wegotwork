@@ -106,7 +106,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       className="bg-white rounded-none border-black border-2 text-black font-bold w-full shadow-[0_4px_0_0_rgba(0,0,0,1)]">
       <SelectValue placeholder="All Employment" />
       </SelectTrigger>
-      <SelectContent className="bg-white border-black border-2 rounded-none text-black font-bold mt-1">
+      <SelectContent className="bg-white border-black rounded-none text-black font-bold mt-1">
         <SelectGroup className='space-y-1'>
           <SelectItem key={"All"} value="All" className="hover:!bg-black rounded-none active:!bg-black focus:!bg-black hover:text-white">All Employment</SelectItem>
           {
