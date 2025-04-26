@@ -37,7 +37,7 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                   side="top"
                   className="w-[--radix-popper-anchor-width] bg-white border-2 border-black text-black space-y-2 rounded-none"
                 >
-                  <DropdownMenuItem onSelect={redirectToDashboard} className="font-extrabold cursor-pointer hover:!bg-[#F2EFE8] hover:!text-black border border-white hover:border-black !rounded-none">
+                  <DropdownMenuItem onSelect={redirectToDashboard} className="font-extrabold cursor-pointer hover:!bg-[#F2EFE8] hover:!text-black border-2 border-white hover:border-black !rounded-none">
                   <Settings2 className="size-4" />
                   switch organization
                   </DropdownMenuItem>
@@ -45,7 +45,7 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                   <Separator className="-my-1"/>
                   </div>
                   <DropdownMenuItem onClick={signUserOut} 
-                  className="cursor-pointer hover:!bg-[#F2EFE8] hover:!text-black font-extrabold border border-white hover:border-black !rounded-none">
+                  className="cursor-pointer hover:!bg-[#F2EFE8] hover:!text-black font-extrabold border-2 border-white hover:border-black !rounded-none">
                   <LogOut className="size-4" />
                   logout
                   </DropdownMenuItem>
