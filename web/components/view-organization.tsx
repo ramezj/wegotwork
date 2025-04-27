@@ -150,7 +150,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     }
     {
       jobs.length === 0 &&
-      <Card className="bg-white rounded-none border border-black p-8">
+      <Card className="bg-white rounded-none border-2 border-black p-8  shadow-[0_4px_0_0_rgba(0,0,0,1)]">
       <p className="text-black font-bold">We are currently not hiring.</p>
       </Card>
     }

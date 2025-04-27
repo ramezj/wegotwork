@@ -110,7 +110,7 @@ export default function SortableCategories({ categories }: { categories: JobCate
           <>
           </>
         }
-        save changes
+        Save Changes
       </Button>
     </>
   );
