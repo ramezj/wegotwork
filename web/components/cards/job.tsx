@@ -52,6 +52,7 @@ export function JobCard({ job }: { job: JobWithCategories }) {
          {job.title}     
         </p>
         <div className="mt-2 flex gap-2">
+        <Badge className="rounded-none bg-white border-2 border-black font-bold hover:bg-white shadow-[0_2px_0_0_rgba(0,0,0,1)]">{formatJobType(job.type as Type)}</Badge>
         {
             job.categoryId === null 
             ?
@@ -60,7 +61,6 @@ export function JobCard({ job }: { job: JobWithCategories }) {
             :
             <Badge className="rounded-none bg-white border-2 border-black font-bold hover:bg-white shadow-[0_2px_0_0_rgba(0,0,0,1)]">{job.category?.name}</Badge>
           }
-            <Badge className="rounded-none bg-white border-2 border-black font-bold hover:bg-white shadow-[0_2px_0_0_rgba(0,0,0,1)]">{formatJobType(job.type as Type)}</Badge>
         </div>
         </div>
         <div className="ml-auto mr-5 sm:block hidden">
