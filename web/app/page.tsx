@@ -1,17 +1,10 @@
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { Navigation } from "@/components/navbar";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Navbar } from "@/components/navbar-2";
 import Link from "next/link";
 import { Metadata } from "next";
 import { LandingPageJobCard } from "@/components/cards/job";
-import { FeatureCard } from "@/components/feature-card";
-import { Users } from "lucide-react";
 import FeatureCards from "@/components/test-cards";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import Image from "next/image";
 import { CustomButton } from "@/components/ui/custom-buttons";
 
 export const metadata:Metadata = {
