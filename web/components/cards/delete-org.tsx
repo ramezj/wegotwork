@@ -24,23 +24,23 @@ export function DeleteOrganizationCard({ organizationId } : { organizationId: st
     return (
         <Card className="w-full bg-white rounded-none border-2 shadow-[0_4px_0_0_rgba(0,0,0,1)]">
         <CardHeader>
-            <CardTitle className='font-extrabold text-black'>delete organization</CardTitle>
+            <CardTitle className='font-extrabold text-black'>Delete Organization</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
             <h1 className='font-bold text-black w-fit sm:text-base text-sm'>
-                are you sure you want to delete this organization?
+                Are you sure you want to delete this organization?
             </h1>
             {
                 loading
                 ? 
-                <Button variant={"destructive"} disabled className='font-bold rounded-none' onClick={((e) => {deleteOrg(e, organizationId)})}>
+                <Button variant={"destructive"} className='font-bold border-2 border-black rounded-none shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1 pointer-events-none' onClick={((e) => {deleteOrg(e, organizationId)})}>
                 <Loader2 className="size-4 mr-2 animate-spin" />
-                delete organization
+                Delete Organization
                 </Button>
                 :
                 <>
-                <Button variant={"destructive"} className='font-bold rounded-none shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1' onClick={((e) => {deleteOrg(e, organizationId)})}>
-                delete organization
+                <Button variant={"destructive"} className='font-bold border-2 border-black rounded-none shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1' onClick={((e) => {deleteOrg(e, organizationId)})}>
+                Delete Organization
                 </Button>
                 </>
             }

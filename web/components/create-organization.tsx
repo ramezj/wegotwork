@@ -44,7 +44,7 @@ export function CreateOrganizationButton() {
         <Dialog>
         <DialogTrigger asChild>
         <Button variant={"default"} className="font-extrabold w-full bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1">
-        Create organization
+        Create Organization
         </Button>    
         </DialogTrigger>
         <DialogDescription>
@@ -52,7 +52,7 @@ export function CreateOrganizationButton() {
         </DialogDescription>
         <DialogContent className="w-[90%] !rounded-none bg-white border border-black">
         <DialogHeader>
-        <DialogTitle className="text-left text-xl font-extrabold text-black">Create organization</DialogTitle>
+        <DialogTitle className="text-left text-xl font-extrabold text-black">Create Organization</DialogTitle>
         </DialogHeader>
         <form className="grid items-center gap-3 text-left" onSubmit={create_organization}>
         <Label className='font-extrabold text-black text-left'>Name</Label>
@@ -61,17 +61,17 @@ export function CreateOrganizationButton() {
         <Input placeholder="Enter slug" required value={slug} onChange={((e) => {setSlug(e.target.value)})} className="bg-white text-base border-2 border-black rounded-none text-black font-bold"/>
         <div>
         <Button type="submit" 
-        className={`w-full font-extrabold bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1`}>
+        className={`w-full mt-4 font-extrabold bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1`}>
             {
                 loading
                 ? 
                 <>
                 <Loader2 className="animate-spin" />
-                create organization
+                Create Organization
                 </>
                 : 
                 <>
-                create organization
+                Create Organization
                 </>
             }
         </Button>
