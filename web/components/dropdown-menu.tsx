@@ -39,7 +39,7 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                 >
                   <DropdownMenuItem onSelect={redirectToDashboard} className="font-extrabold cursor-pointer hover:!bg-[#F2EFE8] hover:!text-black border-2 border-white hover:border-black !rounded-none">
                   <Settings2 className="size-4" />
-                  switch organization
+                  Switch Organization
                   </DropdownMenuItem>
                   <div>
                   <Separator className="-my-1"/>
@@ -47,7 +47,7 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                   <DropdownMenuItem onClick={signUserOut} 
                   className="cursor-pointer hover:!bg-[#F2EFE8] hover:!text-black font-extrabold border-2 border-white hover:border-black !rounded-none">
                   <LogOut className="size-4" />
-                  logout
+                  Logout
                   </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
