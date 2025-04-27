@@ -23,14 +23,14 @@ export function DeleteJobButton({ job } : { job: Job}) {
         <>
       <Dialog>
       <DialogTrigger asChild>
-      <Button size={"sm"} variant={"destructive"} className='rounded-none'>
+      <Button size={"sm"} variant={"destructive"} className='rounded-none border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1'>
             <Trash className="size-4" />
         </Button>
       </DialogTrigger>
       <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] !rounded-none bg-white border border-black">
         <DialogHeader>
             <DialogTitle className="text-left text-black">
-            are you absolutely sure?
+            Are you absolutely sure?
             </DialogTitle>
         </DialogHeader>
         <DialogFooter className="mt-2">
@@ -38,14 +38,16 @@ export function DeleteJobButton({ job } : { job: Job}) {
             loading
             ? 
             <>
-            <Button size={"sm"} disabled className="w-full rounded-none" variant={"destructive"}>
+            <Button size={"sm"} className="pointer-events-none mt-2 w-full rounded-none border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1" variant={"destructive"}>
             <Loader2 className="mr-1 h-4 w-4 animate-spin" />
-            delete job
+            Delete Job
             </Button>
             </>
             : 
             <>
-            <Button onClick={deletejob} className="w-full rounded-none" size={"sm"} variant={"destructive"}>delete job</Button>
+            <Button onClick={deletejob} className="mt-2 w-full rounded-none border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1" size={"sm"} variant={"destructive"}>
+            Delete Job
+            </Button>
             </>
           }
         </DialogFooter>
