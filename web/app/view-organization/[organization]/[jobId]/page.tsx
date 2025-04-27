@@ -46,11 +46,6 @@ type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
 }>
 
 export default async function Page({ params } : { params: Promise<{ organization: string, jobId: string }>}) {
-    // const organization = await getOrganizationBySlug(params.slug);
-    // if(organization?.error) { 
-    //     console.error("Not Found")
-    //     notFound() 
-    // }
     const organization = await FindOrganization((await params).organization);
     if(organization.error) {
         notFound();
@@ -68,10 +63,10 @@ export default async function Page({ params } : { params: Promise<{ organization
             <p className="text-sm max-w-3xl text-black">{formatDistanceToNow(job.job?.createdAt!)} ago </p>
             </div>
             <div className="flex flex-row gap-2">
-            <Button size={"sm"} variant={"outline"} className="rounded-none bg-white hover:bg-white hover:text-black border border-black text-black font-extrabold"><Briefcase className="size-4"/>{formatJobType(job.job?.type as Type)}</Button>
+            <Button size={"sm"} variant={"outline"} className="rounded-none bg-white hover:bg-white hover:text-black border-2 border-black text-black font-extrabold shadow-[0_4px_0_0_rgba(0,0,0,1)]"><Briefcase className="size-4"/>{formatJobType(job.job?.type as Type)}</Button>
             {
                 job?.job?.country
-                ? <Button size={"sm"} variant={"outline"} className="rounded-none bg-white hover:bg-white hover:text-black border border-black text-black font-extrabold"><MapPin className="size-4" />{job.job?.city + ", " + job.job?.country}</Button>
+                ? <Button size={"sm"} variant={"outline"} className="rounded-none bg-white hover:bg-white hover:text-black border-2 border-black text-black font-extrabold shadow-[0_4px_0_0_rgba(0,0,0,1)]"><MapPin className="size-4" />{job.job?.city + ", " + job.job?.country}</Button>
                 : <></>
             }
             </div>
@@ -79,7 +74,7 @@ export default async function Page({ params } : { params: Promise<{ organization
                 job.job?.content
                 ?  
                 <>
-                <div className="lg:w-1/2 w-full rounded-none text-black bg-white border border-black font-extrabold p-7 text-left" dangerouslySetInnerHTML={{__html: job.job?.content!}} />
+                <div className="lg:w-1/2 w-full rounded-none text-black bg-white border-2 border-black font-extrabold p-7 text-left shadow-[0_4px_0_0_rgba(0,0,0,1)]" dangerouslySetInnerHTML={{__html: job.job?.content!}} />
                 </>
                 :
                 <>
