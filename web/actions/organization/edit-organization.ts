@@ -51,7 +51,7 @@ export async function EditOrganization(organization: Organization) {
         revalidatePath(`/${organization.id}/overview`)
         return { 
             error: false,
-            message: "Updated Organization"
+            message: "Successfully Updated Organization!"
         }
     } catch (error) {
         console.log(error);

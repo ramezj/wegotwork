@@ -55,7 +55,7 @@ export async function EditJob(job: Job, categoryId: string | null) {
         })
         return { 
             ok:true,
-            message: "Updated Job"
+            message: "Job Updated Successfully!"
         }
     } catch (error) {
         console.error(error);

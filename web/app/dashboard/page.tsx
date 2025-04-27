@@ -37,11 +37,8 @@ export default async function Home() {
     <div className="flex items-center justify-center mt-12">
     <h1 className="font-extrabold text-3xl text-black">Pick an organization</h1>
     </div>
-    {/* <TestSetOrganizationCard userOrganizations={Organizations?.userOrganizations as OrganizationUserWithOrganization[]} /> */}
     <div className="mt-8 flex justify-center items-center content-center">
-    {/* <OrganizationSelector userOrganizations={Organizations?.userOrganizations as OrganizationUserWithOrganization[]} /> */}
     <TestSetOrganizationCard userOrganizations={Organizations?.userOrganizations as OrganizationUserWithOrganization[]} />
-    {/* <CreateOrganizationButton /> */}
     </div>
     </>
   );

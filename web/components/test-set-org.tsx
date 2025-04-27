@@ -32,7 +32,7 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
         }
     }
     return (
-    <Card className="w-[350px] bg-white border rounded-none">
+    <Card className="w-[350px] bg-white rounded-none border-black border-2 shadow-[0_4px_0_0_rgba(0,0,0,1)]">
     <CardHeader className="text-center">
             <CardTitle className="text-black font-extrabold">
                 Organizations
@@ -49,13 +49,18 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
             return (
                 <form className="" onSubmit={((e) => {setUserOrg(e, organization.organizationId)})} key={organization.organizationId}>
                 <Button type="submit" variant={"outline"} 
-                className={`my-2 w-full !rounded-none ${selectedOrgId === organization.organizationId ? "bg-black text-white hover:bg-black duration-200" : "bg-white hover:bg-white border border-black text-black hover:text-black"} font-extrabold duration-200 transition-all`}
+                className={`my-2 w-full !rounded-none ${selectedOrgId === organization.organizationId 
+                    ? 
+                    "bg-white text-black hover:bg-white hover:text-black" 
+                    : 
+                    "bg-white hover:bg-white text-black hover:text-black"} 
+                    font-extrabold border-2 border-black duration-200 transition-all shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1`}
                 >           
                 {
                     (organization.organizationId === selectedOrgId && isSelecting)
                     ? 
                     <>
-                    <Loader2 className={`animate-spin ${selectedOrgId === organization.organizationId ? "text-white" : "text-black"} flex`} />
+                    <Loader2 className={`animate-spin ${selectedOrgId === organization.organizationId ? "text-black" : "text-black"} flex`} />
                     {organization.organization.name}  
                     </>
                     :
@@ -71,7 +76,7 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
             </div>
         </div>
     </CardContent>
-    <CardFooter className="flex flex-col space-y-2 justify-between">
+    <CardFooter className="flex flex-col space-y-2 -mt-2 justify-between">
               <CreateOrganizationButton />
     </CardFooter>
     </Card>
