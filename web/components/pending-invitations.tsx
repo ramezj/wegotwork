@@ -16,7 +16,7 @@ import { Mail } from "lucide-react";
 export function PendingInvitations({ OrganizationInvites } : { OrganizationInvites: OrganizationInvite[] }) {
     return (
       <>
-      <Card className="w-full bg-white rounded-none border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)]">
+      <Card className="w-full bg-white rounded-none border-[3px] border-black shadow-[0_4px_0_0_rgba(0,0,0,1)]">
       <CardHeader>
         <CardTitle className="text-2xl font-extrabold text-black">Pending invitations</CardTitle>
         {

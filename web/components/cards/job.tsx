@@ -24,7 +24,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
     };
     return (
       <div onClick={handleCardClick}>
-      <div className="w-full flex border-2 border-black bg-white rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
+      <div className="w-full flex border-[3px] border-black bg-white rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
         <p className='sm:text-lg text-md font-extrabold text-left text-black'>
          {job.title}     
@@ -46,20 +46,20 @@ export function JobCardForDashboard({ job }: { job: Job}) {
 export function JobCard({ job }: { job: JobWithCategories }) {
     return (
       <Link href={`/${job.id}`}>
-      <div className="w-full bg-white flex border-2 border-black rounded-none items-center pt-3 pb-3 cursor-pointer shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
+      <div className="w-full bg-white flex border-[3px] border-black rounded-none items-center pt-3 pb-3 cursor-pointer shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
         <p className='sm:text-lg text-md font-extrabold text-left text-black'>
          {job.title}     
         </p>
         <div className="mt-2 flex gap-2">
-        <Badge className="rounded-none bg-white border-2 border-black font-bold hover:bg-white shadow-[0_2px_0_0_rgba(0,0,0,1)]">{formatJobType(job.type as Type)}</Badge>
+        <Badge className="rounded-none bg-white border-[3px] border-black font-bold hover:bg-white shadow-[0_2px_0_0_rgba(0,0,0,1)]">{formatJobType(job.type as Type)}</Badge>
         {
             job.categoryId === null 
             ?
             <>
             </>
             :
-            <Badge className="rounded-none bg-white border-2 border-black font-bold hover:bg-white shadow-[0_2px_0_0_rgba(0,0,0,1)]">{job.category?.name}</Badge>
+            <Badge className="rounded-none bg-white border-[3px] border-black font-bold hover:bg-white shadow-[0_2px_0_0_rgba(0,0,0,1)]">{job.category?.name}</Badge>
           }
         </div>
         </div>
@@ -86,7 +86,7 @@ export function JobCard({ job }: { job: JobWithCategories }) {
 export function LandingPageJobCard({ title, type, location, age }: { title: string, type: string, location: string, age:string }) {
   return (
       <div color={"white"}
-      className="w-full bg-white flex border-2 border-black rounded-none items-center pt-3 pb-3 cursor-pointer shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
+      className="w-full bg-white flex border-[3px] border-black rounded-none items-center pt-3 pb-3 cursor-pointer shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all hover:shadow-[0_0px_0_0_rgba(0,0,0,1)] hover:translate-y-1">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
       <p className='sm:text-lg text-md font-extrabold text-left text-black'>
        {title}     
@@ -111,7 +111,7 @@ export function JobCardForApplicants({ job, applicants }: { job: Job, applicants
   };
   return (
     <div onClick={handleCardClick}>
-    <div className="w-full flex border-2 border-black bg-white rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
+    <div className="w-full flex border-[3px] border-black bg-white rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
     <div className="mx-5 my-3 flex flex-col items-start text-left">
       <p className='sm:text-lg text-md font-extrabold text-left text-black'>
        {job.title}     

@@ -42,7 +42,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
     }
     return (
         <>
-        <Card className="w-full bg-white rounded-none border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)]">
+        <Card className="w-full bg-white rounded-none border-[3px] border-black shadow-[0_4px_0_0_rgba(0,0,0,1)]">
         <CardHeader className=''>
         <div className="flex justify-between items-center w-full">
         <CardTitle className="text-black font-extrabold">
@@ -55,17 +55,17 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
         <form onSubmit={EditTheJob} className="space-y-4">
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Title</Label>
-                    <Input required className="bg-white border-2 border-2-black rounded-none text-black font-bold text-base" placeholder="Enter job title" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>
+                    <Input required className="bg-white border-[3px] border-[3px]-black rounded-none text-black font-bold text-base" placeholder="Enter job title" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Employment Type</Label>
                     <Select value={current.type} onValueChange={((e) => { setCurrent((previous) => ({ ...previous, type: e as Type}))})}>
-                        <SelectTrigger value={current.type} className="bg-white border-2 border-2-black rounded-none text-black font-bold text-base" defaultValue={current.type}>
+                        <SelectTrigger value={current.type} className="bg-white border-[3px] border-[3px]-black rounded-none text-black font-bold text-base" defaultValue={current.type}>
                         <SelectValue>
                             {formatJobType(current.type)}
                         </SelectValue>
                         </SelectTrigger>
-                        <SelectContent className="bg-white rounded-none border-2 border-2-black text-black font-bold">
+                        <SelectContent className="bg-white rounded-none border-[3px] border-[3px]-black text-black font-bold">
                             <SelectGroup className="space-y-1">
                                 <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none" value="fulltime">Full Time</SelectItem>
                                 <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none" value="parttime">Part Time</SelectItem>
@@ -83,12 +83,12 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                         onValueChange={((e) => { 
                         setCurrentCategoryId(e as string);
                         })}>
-                        <SelectTrigger className="bg-white border-2 border-2-black rounded-none text-black font-bold text-base">
+                        <SelectTrigger className="bg-white border-[3px] border-[3px]-black rounded-none text-black font-bold text-base">
                         <SelectValue>
                             {selectedCategoryName}
                         </SelectValue>
                         </SelectTrigger>
-                        <SelectContent className="bg-white rounded-none border-2 border-2-black text-black font-bold">
+                        <SelectContent className="bg-white rounded-none border-[3px] border-[3px]-black text-black font-bold">
                             <SelectGroup className="space-y-1">
                             <SelectItem value="none" className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none">
                                 No Category
@@ -122,7 +122,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Country</Label>
                 <div className="flex flex-row gap-2">
-                <Input className="bg-white border-2 border-2-black rounded-none text-black font-bold text-base" 
+                <Input className="bg-white border-[3px] border-[3px]-black rounded-none text-black font-bold text-base" 
                 placeholder="Enter country" value={current.country == null ? '' : current.country} 
                 onChange={((e) => { 
                     setCurrent((previous) => ({
@@ -148,7 +148,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>City</Label>
                 <div className="flex flex-row gap-2">
-                <Input className="bg-white border-2 border-2-black rounded-none text-black font-bold text-base" 
+                <Input className="bg-white border-[3px] border-[3px]-black rounded-none text-black font-bold text-base" 
                 placeholder="Enter city" 
                 value={current.city == null ? '' : current.city} 
                 onChange={((e) => { 
@@ -174,7 +174,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-black'>Description</Label>
-                <Textarea className="bg-white border-2 border-2-black rounded-none text-black font-bold text-base" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
+                <Textarea className="bg-white border-[3px] border-[3px]-black rounded-none text-black font-bold text-base" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
                 </div>
                 <div className="gap-2">
                 {
@@ -182,14 +182,14 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                     ? 
                     <>
                     <Button type="submit"
-                    className="pointer-events-none font-extrabold !bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1">
+                    className="pointer-events-none font-extrabold !bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-[3px] border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1">
                     <Loader2 className="animate-spin mr-2 text-black" />
                     Save Changes
                     </Button>
                     </>
                     :
                     <>
-                    <Button type="submit" className="font-extrabold bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1">
+                    <Button type="submit" className="font-extrabold bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-[3px] border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1">
                     Save Changes
                     </Button>
                     </>

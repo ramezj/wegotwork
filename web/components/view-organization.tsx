@@ -76,12 +76,12 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       filterJobs(country, selectedEmploymentType); 
       }}>
         <SelectTrigger value={"All Locations"} aria-label="Select Locations" 
-        className="bg-white rounded-none border-black border-2 text-black font-bold w-full shadow-[0_4px_0_0_rgba(0,0,0,1)]">
+        className="bg-white rounded-none border-black border-[3px] text-black font-bold w-full shadow-[0_4px_0_0_rgba(0,0,0,1)]">
         <SelectValue placeholder="All Locations">
           All Locations
         </SelectValue>
         </SelectTrigger>
-        <SelectContent className="bg-white border-black border-2 rounded-none text-black font-bold mt-1">
+        <SelectContent className="bg-white border-black border-[3px] rounded-none text-black font-bold mt-1">
           <SelectGroup className="space-y-1">
             <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none" key={"All"} value="All">All Locations</SelectItem>
             {
@@ -103,10 +103,10 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     }}> 
     
       <SelectTrigger aria-label="Select Employment" 
-      className="bg-white rounded-none border-black border-2 text-black font-bold w-full shadow-[0_4px_0_0_rgba(0,0,0,1)]">
+      className="bg-white rounded-none border-black border-[3px] text-black font-bold w-full shadow-[0_4px_0_0_rgba(0,0,0,1)]">
       <SelectValue placeholder="All Employment" />
       </SelectTrigger>
-      <SelectContent className="bg-white border-black border-2 rounded-none text-black font-bold mt-1">
+      <SelectContent className="bg-white border-black border-[3px] rounded-none text-black font-bold mt-1">
         <SelectGroup className='space-y-1'>
           <SelectItem key={"All"} value="All" className="hover:!bg-black rounded-none active:!bg-black focus:!bg-black hover:text-white">All Employment</SelectItem>
           {
@@ -150,7 +150,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     }
     {
       jobs.length === 0 &&
-      <Card className="bg-white rounded-none border-2 border-black p-8  shadow-[0_4px_0_0_rgba(0,0,0,1)]">
+      <Card className="bg-white rounded-none border-[3px] border-black p-8  shadow-[0_4px_0_0_rgba(0,0,0,1)]">
       <p className="text-black font-bold">We are currently not hiring.</p>
       </Card>
     }

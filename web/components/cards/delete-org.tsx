@@ -22,7 +22,7 @@ export function DeleteOrganizationCard({ organizationId } : { organizationId: st
         }
     }
     return (
-        <Card className="w-full bg-white rounded-none border-2 shadow-[0_4px_0_0_rgba(0,0,0,1)]">
+        <Card className="w-full bg-white rounded-none border-[3px] shadow-[0_4px_0_0_rgba(0,0,0,1)]">
         <CardHeader>
             <CardTitle className='font-extrabold text-black'>Delete Organization</CardTitle>
         </CardHeader>
@@ -33,13 +33,13 @@ export function DeleteOrganizationCard({ organizationId } : { organizationId: st
             {
                 loading
                 ? 
-                <Button variant={"destructive"} className='font-bold border-2 border-black rounded-none shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1 pointer-events-none' onClick={((e) => {deleteOrg(e, organizationId)})}>
+                <Button variant={"destructive"} className='font-bold border-[3px] border-black rounded-none shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1 pointer-events-none' onClick={((e) => {deleteOrg(e, organizationId)})}>
                 <Loader2 className="size-4 mr-2 animate-spin" />
                 Delete Organization
                 </Button>
                 :
                 <>
-                <Button variant={"destructive"} className='font-bold border-2 border-black rounded-none shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1' onClick={((e) => {deleteOrg(e, organizationId)})}>
+                <Button variant={"destructive"} className='font-bold border-[3px] border-black rounded-none shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1' onClick={((e) => {deleteOrg(e, organizationId)})}>
                 Delete Organization
                 </Button>
                 </>
