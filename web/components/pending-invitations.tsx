@@ -30,7 +30,7 @@ export function PendingInvitations({ OrganizationInvites } : { OrganizationInvit
           OrganizationInvites.length === 0 
           && 
           <>
-          <p className="text-sm font-bold text-black">no pending invitations</p>
+          <p className="text-sm font-bold text-black">0 pending invitations</p>
           </>
         }
         {

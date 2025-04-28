@@ -38,12 +38,7 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
       </CardHeader>
       <CardContent className="">
         <form className="flex sm:flex-row flex-col gap-4" onSubmit={create_the_invitation}>
-        <Input className="bg-white border-2 border-black rounded-none text-black font-bold text-base" type="email" required placeholder="Enter member's email address" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
-       {/* <Select>
-       <SelectTrigger className='rounded-none bg-white text-black font-bold border border-black'>
-          Role
-        </SelectTrigger>
-        </Select> */}
+        <Input className="bg-white border-2 border-black rounded-none text-black font-medium text-base" type="email" required placeholder="Enter member's email address" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
         {
           loading
           ? 
