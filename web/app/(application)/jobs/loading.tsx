@@ -12,7 +12,7 @@ export default function Loading() {
         <> 
         <div className="flex justify-between items-center w-full">
         <h1 className="font-extrabold text-4xl text-black tracking-tight">Jobs</h1>
-        <Button disabled size={"sm"} variant={"default"} className="rounded-none font-extrabold border-[3px] border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
+        <Button disabled size={"sm"} variant={"default"} className="rounded-none font-extrabold border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
         Create Job
         </Button>
         </div>

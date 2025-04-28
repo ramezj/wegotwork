@@ -32,7 +32,7 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
         }
     }
     return (
-    <Card className="w-[350px] bg-white rounded-none border-black border-[3px] shadow-[0_4px_0_0_rgba(0,0,0,1)]">
+    <Card className="w-[350px] bg-white rounded-none border-black border-2 shadow-[0_4px_0_0_rgba(0,0,0,1)]">
     <CardHeader className="text-center">
             <CardTitle className="text-black font-extrabold">
                 Organizations
@@ -54,7 +54,7 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
                     "bg-white text-black hover:bg-white hover:text-black" 
                     : 
                     "bg-white hover:bg-white text-black hover:text-black"} 
-                    font-extrabold border-[3px] border-black duration-200 transition-all shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1`}
+                    font-extrabold border-2 border-black duration-200 transition-all shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1`}
                 >           
                 {
                     (organization.organizationId === selectedOrgId && isSelecting)
