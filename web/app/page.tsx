@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { LandingPageJobCard } from "@/components/cards/job";
 import FeatureCards from "@/components/test-cards";
 import { CustomButton } from "@/components/ui/custom-buttons";
+import Marquee from "@/components/ui/marquee";
 
 export const metadata:Metadata = {
   title: "wegotwork",
@@ -16,6 +17,7 @@ export default async function Home() {
   const session = await auth.api.getSession({
     headers: await headers()
   })
+  const items = ['wegotwork', 'wegotwork', 'wegotwork', 'wegotwork', 'wegotwork', 'wegotwork', 'wegotwork', 'wegotwork', 'wegotwork']
   return (
     <main className="">
       <Navbar session={session}/>
@@ -48,7 +50,10 @@ export default async function Home() {
             <LandingPageJobCard title="Backend Engineer" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
       </div>
       </div>
-      <div className="content-center items-center justify-center flex px-4 -mt-3">
+      <div>
+      <Marquee items={items} />
+      </div>
+      <div className="content-center items-center justify-center flex px-4 mt-8">
       <div className="not-prose lg:w-1/2 w-full overflow-hidden space-y-4">
       <FeatureCards />
       </div>
