@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={bricolageGrotesque.className} suppressHydrationWarning >
-      <body
+      <body suppressHydrationWarning
         className={`${bricolageGrotesque.className} antialiased bg-[#F2EFE8]`}
       >
          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
