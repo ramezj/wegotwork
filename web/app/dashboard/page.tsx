@@ -1,13 +1,7 @@
-
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { Navigation } from "@/components/navbar";
 import { UserOrganizations } from "@/actions/organization/user-organizations";
 import { redirect } from "next/navigation";
-import { CreateOrganizationButton } from "@/components/create-organization";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { Prisma } from "@prisma/client";
 import { Navbar } from "@/components/navbar-2";
 import { Metadata } from "next";

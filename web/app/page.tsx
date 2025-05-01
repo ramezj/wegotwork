@@ -48,7 +48,7 @@ export default async function Home() {
       <div className="not-prose my-8 lg:w-1/2 w-full space-y-4">
       <img
         className="border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)]"
-        src="/screenshot.png"
+        src="/image.png"
         alt="Photo by Drew Beamer"
         />
             {/* <LandingPageJobCard title="Operations Manager" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
