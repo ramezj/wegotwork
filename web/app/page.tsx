@@ -55,14 +55,14 @@ export default async function Home() {
             <LandingPageJobCard title="Backend Engineer" type="Full-Time" location="Cairo, EG" age="about 1 month ago" /> */}
       </div>
       </div>
-      <div>
+      {/* <div>
       <Marquee items={items} />
       </div>
       <div className="content-center items-center justify-center flex px-4 mt-8">
       <div className="not-prose lg:w-1/2 w-full overflow-hidden space-y-4">
       <FeatureCards />
       </div>
-      </div>
+      </div> */}
       </div>
     </main>
   );
