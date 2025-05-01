@@ -24,7 +24,7 @@ export default {
 			marquee2: 'marquee2 15s linear infinite',
 		  },
   		colors: {
-			theme: '#F2EFE8',
+			theme: '#F5F2EA',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
