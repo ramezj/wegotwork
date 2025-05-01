@@ -17,7 +17,7 @@ export default async function Home() {
   const session = await auth.api.getSession({
     headers: await headers()
   })
-  const items = ['wegotwork', 'wegotwork', 'wegotwork', 'wegotwork', 'wegotwork', 'wegotwork', 'wegotwork', 'wegotwork', 'wegotwork']
+  const items = ['wegotwork', 'start hiring', 'wegotwork', 'start hiring', 'wegotwork', 'start hiring', 'wegotwork', 'start hiring', 'wegotwork']
   return (
     <main className="">
       <Navbar session={session}/>
@@ -46,8 +46,13 @@ export default async function Home() {
             </CustomButton>
       </div>
       <div className="not-prose my-8 lg:w-1/2 w-full space-y-4">
-            <LandingPageJobCard title="Operations Manager" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
-            <LandingPageJobCard title="Backend Engineer" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
+      <img
+        className="border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)]"
+        src="/screenshot.png"
+        alt="Photo by Drew Beamer"
+        />
+            {/* <LandingPageJobCard title="Operations Manager" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
+            <LandingPageJobCard title="Backend Engineer" type="Full-Time" location="Cairo, EG" age="about 1 month ago" /> */}
       </div>
       </div>
       <div>
@@ -58,14 +63,6 @@ export default async function Home() {
       <FeatureCards />
       </div>
       </div>
-      {/* <div className="w-full sm:w-1/2">
-      <Image
-        src="/screenshot.png"
-        alt="Photo by Drew Beamer"
-        width={500}
-        height={500}
-      />
-      </div> */}
       </div>
     </main>
   );

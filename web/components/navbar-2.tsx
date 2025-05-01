@@ -20,7 +20,7 @@ export function Navbar({ session } : { session: Session | null}) {
     }
   }, [isOpen])
   return (
-    <div className="border-b-2 border-black bg-white sticky top-0 h-16">
+    <div className="border-b-2 border-black bg-white sticky top-0 h-16 z-50">
       <div className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center z-50 pl-4 text-2xl font-extrabold tracking-tighter text-black">
           <span className="text-2xl font-extrabold tracking-tighter text-black ">wegotwork</span>

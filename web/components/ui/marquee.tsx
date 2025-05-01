@@ -1,6 +1,6 @@
 export default function Marquee({ items }: { items: string[] }) {
   return (
-    <div className="relative bg-white flex w-full overflow-x-hidden border-b-4 border-t-4 border-border bg-secondary-background text-foreground font-base">
+    <div className="relative bg-white flex w-full overflow-x-hidden border-b-4 border-t-4 border-black bg-secondary-background text-foreground font-base">
       <div className="animate-marquee whitespace-nowrap py-12">
         {items.map((item, index) => {
           return (
