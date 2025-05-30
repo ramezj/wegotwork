@@ -29,7 +29,7 @@ import {
   SidebarMenuButton,
   SidebarRail,
 } from "@/components/ui/sidebar"
-
+import { Session } from "@/lib/auth-client"
 // This is sample data.
 const data = {
   user: {
@@ -160,7 +160,7 @@ const data = {
   ],
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({ session, ...props }: React.ComponentProps<typeof Sidebar> & { session: Session }) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -170,7 +170,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser session={session}/>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
