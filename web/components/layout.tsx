@@ -10,7 +10,7 @@ import { Session } from "@/lib/auth-client"
 import { Separator } from "./ui/separator"
 import { DropDownMenuUser } from "./dropdown-menu"
 import { Menu } from "lucide-react"
-
+import { NavUser } from "./testing/nav-user"
 export default function LayoutNavigation({ children, session, organization }: { children: React.ReactNode; session: Session, organization: string }) {
   if(!session.user) {
     redirect('/');
@@ -59,6 +59,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
               </nav>
             </div>
             <div className="p-4 w-full flex gap-2">
+              {/* <NavUser session={session} /> */}
               <DropDownMenuUser session={session} />
             </div>
           </div>
