@@ -15,7 +15,6 @@ import {
 } from "lucide-react"
 
 import { NavMain } from "./nav-main"
-import { NavProjects } from "./nav-projects"
 import { NavUser } from "./nav-user"
 import Link from "next/link"
 import { TeamSwitcher } from "./team-switcher"
@@ -167,30 +166,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
-      <SidebarContent className="mt-2">
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuButton asChild>
-                <Link href='/'>
-                Overview
-                </Link>
-              </SidebarMenuButton>
-              <SidebarMenuButton asChild>
-                <Link href='/'>
-                Jobs
-                </Link>
-              </SidebarMenuButton>
-              <SidebarMenuButton asChild>
-                <Link href='/'>
-                Applicants
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-        {/* <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} /> */}
+      <SidebarContent>
+        <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

@@ -14,6 +14,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { ReactNode } from "react"
+import { Button } from "@/components/ui/button"
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
@@ -21,8 +22,13 @@ export default function Layout({ children }: { children: ReactNode }) {
       <AppSidebar/>
       <SidebarInset>
         <header className="flex border-b border-white/20 h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-          <div className="flex items-center gap-2 px-4">
+          <div className="items-center gap-2 px-4 sm:hidden block">
             <SidebarTrigger className="-ml-1" />
+          </div>
+          <div className="flex gap-2 ml-auto mr-2">
+            <Button className="" variant="default">
+              Feedback
+            </Button>
           </div>
         </header>
         <div className="p-4">
