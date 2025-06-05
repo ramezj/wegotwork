@@ -11,51 +11,66 @@ import { Separator } from "./ui/separator"
 import { DropDownMenuUser } from "./dropdown-menu"
 import { Menu } from "lucide-react"
 import { NavUser } from "./testing/nav-user"
+import { CustomSidebarItem } from "./sidebar-item"
 export default function LayoutNavigation({ children, session, organization }: { children: React.ReactNode; session: Session, organization: string }) {
   if(!session.user) {
     redirect('/');
   } 
   const path = usePathname();
     return (
-      <div className="grid min-h-screen w-full md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
-        <div className="hidden border-r-2 border-black bg-white md:block">
-          <div className="flex h-full max-h-screen flex-col gap-2 sticky top-0 z-50 bg-white">
-            <div className="flex h-16 items-center border-b-2 border-black bg-white px-3 lg:h-16 text-center justify-center">
+      <div className="grid min-h-screen w-full md:grid-cols-[200px_1fr] lg:grid-cols-[260px_1fr]">
+        <div className="hidden border-r border-white/20 bg-black md:block">
+          <div className="flex h-full max-h-screen flex-col gap-2 sticky top-0 z-50 bg-black">
+            <div className="flex h-16 items-center border-b border-white/20 bg-black px-3 lg:h-16 text-center justify-center">
             <Link href="/" className="flex items-center z-50">
-            <span className="text-2xl tracking-tighter text-black font-extrabold">wegotwork</span>
+            <span className="text-2xl tracking-tighter text-white font-extrabold">wegotwork</span>
             </Link>
             </div>
             <div className="flex-1 ">
-              <nav className="grid items-start px-2 text-sm font-medium lg:px-4 gap-3 mt-1">
-                <Link href="/overview" className={`${path.includes('/overview') ? ' bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme border-2 border-white hover:border-black hover:text-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
-                 <Home className="size-4" />
+              <nav className="grid items-start px-3 text-sm font-medium gap-2 mt-1">
+                <Button asChild variant="ghost" className={` ${path.includes('/overview') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                  <Link href='/overview'>
+                  <Home className="size-4" />
                   Overview
-                </Link>
-                <Link href="/jobs" className={`${path.includes('/jobs') ? ' bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme border-2 border-white hover:border-black hover:text-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
-                  <Briefcase className="h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild variant="ghost" className={` ${path.includes('/jobs') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                  <Link href='/jobs'>
+                  <Briefcase className="size-4" />
                   Jobs
-                </Link>
-                <Link href="/applicants" className={`${path.includes('/applicants') ? ' bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme border-2 border-white hover:border-black hover:text-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
+                  </Link>
+                </Button>
+                <Button asChild variant="ghost" className={` ${path.includes('/applicants') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                <Link href='/applicants'>
                 <Users className="h-4 w-4" />
                   Applicants
                 </Link>
-                <Link href="/categories" className={`${path.includes('/categories') ? ' bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme border-2 border-white hover:border-black hover:text-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
+                </Button>
+                <Button asChild variant="ghost" className={` ${path.includes('/categories') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                <Link href='/categories'>
                 <Tags className="h-4 w-4" />
                   Categories
                 </Link>
-                <Link href="/billing" className={`${path.includes('/billing') ? ' bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme border-2 border-white hover:border-black hover:text-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
+                </Button>
+                <Button asChild variant="ghost" className={` ${path.includes('/billing') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                <Link href='/billing'>
                 <Banknote className="h-4 w-4" />
                   Billing
                 </Link>
+                </Button>
                 <Separator />
-                <Link href="/members" className={`${path.includes('/members') ? ' bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme border-2 border-white hover:border-black hover:text-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/members') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                <Link href='/members'>
                 <Users className="h-4 w-4" />
                   Members
                 </Link>
-                <Link href="/settings" className={`${path.includes('/settings') ? ' bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme border-2 border-white hover:border-black hover:text-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
+                </Button>
+                <Button asChild variant="ghost" className={` ${path.includes('/settings') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                <Link href='/settings'>
                 <Settings className="h-4 w-4" />
                   Settings
                 </Link>
+                </Button>
               </nav>
             </div>
             <div className="p-4 w-full flex gap-2">
@@ -65,7 +80,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
           </div>
         </div>
         <div className="flex flex-col sticky">
-          <header className="z-50 flex h-16 items-center gap-4 border-b-2 border-black bg-white px-3 lg:h-16 sticky top-0 bg-background">
+          <header className="z-50 flex h-16 items-center gap-4 border-b border-white/20 bg-black px-3 lg:h-16 sticky top-0 bg-black">
             <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="shrink-0 md:hidden text-white hover:text-white p-8 bg-black hover:bg-black rounded-none -ml-4">

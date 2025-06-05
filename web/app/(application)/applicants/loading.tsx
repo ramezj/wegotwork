@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import CreateJob from "@/components/create-job";
 
 export const metadata: Metadata = {
     title: "Loading",
@@ -11,13 +12,11 @@ export default function Loading() {
     return (
         <> 
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-4xl text-black tracking-tight">Applicants</h1>
-        <Button disabled size={"sm"} variant={"default"} className="rounded-none font-extrabold border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
-        Create Job
-        </Button>
+        <h1 className="font-extrabold text-4xl text-white tracking-tight">Applicants</h1>
+        <CreateJob disabled id="1" />
         </div>
         <div className="w-full h-full items-center flex flex-col justify-center">
-        <Loader2 className="size-8 animate-spin text-black" />
+        <Loader2 className="size-8 animate-spin text-white" />
         </div>
       </>
     )

@@ -16,13 +16,13 @@ import { Mail } from "lucide-react";
 export function PendingInvitations({ OrganizationInvites } : { OrganizationInvites: OrganizationInvite[] }) {
     return (
       <>
-      <Card className="w-full bg-white rounded-none border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)]">
+      <Card className="w-full bg-black border border-white/20">
       <CardHeader>
-        <CardTitle className="text-2xl font-extrabold text-black">Pending invitations</CardTitle>
+        <CardTitle className="text-2xl font-extrabold text-white">Pending invitations</CardTitle>
         {
           OrganizationInvites.length > 0
           &&
-          <CardDescription className="text-gray-800 font-bold">{OrganizationInvites.length} invitations awaiting response </CardDescription>
+          <CardDescription className="text-white font-bold">{OrganizationInvites.length} invitations awaiting response </CardDescription>
         }
       </CardHeader>
       <CardContent className="">
@@ -30,7 +30,7 @@ export function PendingInvitations({ OrganizationInvites } : { OrganizationInvit
           OrganizationInvites.length === 0 
           && 
           <>
-          <p className="text-sm font-bold text-black">0 pending invitations</p>
+          <p className="text-sm font-bold text-white">0 pending invitations</p>
           </>
         }
         {
@@ -38,11 +38,11 @@ export function PendingInvitations({ OrganizationInvites } : { OrganizationInvit
                 return (
                     <div className="flex items-center justify-between space-y-2" key={Invitation.id}>
                     <div className='flex items-center gap-2'>
-                    <Mail className="size-4 text-black" />
-                    <h1 className="font-bold text-black">{Invitation.email}</h1>
+                    <Mail className="size-4 text-white" />
+                    <h1 className="font-bold text-white">{Invitation.email}</h1>
                     </div>
                     <div>
-                      <Button size={"icon"} className=''><MoreHorizontal className="text-black size-4" /></Button>
+                      <Button size={"icon"} variant={"outline"} className='bg-theme'><MoreHorizontal className="text-white size-4" /></Button>
                     </div>
                     </div>
                 )

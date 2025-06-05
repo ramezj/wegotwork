@@ -39,7 +39,7 @@ function SortableCategoryItem({ id, name }: { id: string; name: string }) {
       {...attributes}
       {...listeners}
       style={style}
-      className="border-2 border-black p-4 cursor-move bg-white text-black font-bold mb-2 flex justify-between items-center shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all"
+      className="border rounded-md border-white/20 p-4 cursor-move bg-theme text-white font-bold mb-2 flex justify-between items-center"
     >
       <p className="select-none">{name}</p>
       <Button className="rounded-none bg-black hover:bg-black">
@@ -96,7 +96,8 @@ export default function SortableCategories({ categories }: { categories: JobCate
       </DndContext>
       <Button
       onClick={handleSave}
-      className={`font-extrabold mt-2 bg-white hover:bg-white rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1
+      variant={"outline"}
+      className={`font-extrabold mt-2 bg-theme hover:bg-theme text-white border border-white/20 px-4
         ${saving ? "pointer-events-none" : ""}
       `}
       >
@@ -104,7 +105,7 @@ export default function SortableCategories({ categories }: { categories: JobCate
           saving
           ?
           <>
-          <Loader2 className="animate-spin text-black" />
+          <Loader2 className="animate-spin text-white" />
           </>
           :
           <>

@@ -32,7 +32,7 @@ export default async function Page({ params } : { params: Promise<{ organization
     return (
         <>
         <div className="flex items-center justify-between w-full">
-        <h1 className="font-extrabold text-4xl text-black tracking-tight">View Applicants</h1>
+        <h1 className="font-extrabold text-4xl text-white tracking-tight">View Applicants</h1>
         {/* <CreateJob id={await((await (params)).organization)} buttonSize="sm" buttonColor="white" /> */}
         </div>
         {job.applicants?.map((applicant: Applicant) => {

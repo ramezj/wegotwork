@@ -23,33 +23,21 @@ export function DeleteJobButton({ job } : { job: Job}) {
         <>
       <Dialog>
       <DialogTrigger asChild>
-      <Button size={"sm"} variant={"destructive"} className='rounded-none border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1'>
+      <Button size={"sm"} variant={"destructive"} className='border border-white/20'>
             <Trash className="size-4" />
         </Button>
       </DialogTrigger>
-      <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] !rounded-none bg-white border border-black">
+      <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] bg-black border border-white/20">
         <DialogHeader>
-            <DialogTitle className="text-left text-black">
+            <DialogTitle className="text-left text-white">
             Are you absolutely sure?
             </DialogTitle>
         </DialogHeader>
         <DialogFooter className="mt-2">
-          {
-            loading
-            ? 
-            <>
-            <Button size={"sm"} className="pointer-events-none mt-2 w-full rounded-none border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1" variant={"destructive"}>
-            <Loader2 className="mr-1 h-4 w-4 animate-spin" />
+          <Button onClick={deletejob} variant={"destructive"} disabled={loading} className="w-full border border-white/20">
+            {loading ? <Loader2 className="mr-1 h-4 w-4 animate-spin" /> : <></>}
             Delete Job
-            </Button>
-            </>
-            : 
-            <>
-            <Button onClick={deletejob} className="mt-2 w-full rounded-none border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1" size={"sm"} variant={"destructive"}>
-            Delete Job
-            </Button>
-            </>
-          }
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

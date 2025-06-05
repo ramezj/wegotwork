@@ -17,63 +17,51 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         e.preventDefault();
         setLoading(true)
         const res = await EditOrganization(current);
-        toast(
-            <div className="font-bold">
-                <h1 className="font-bold">{res.message as string}</h1>
-            </div>
-        );
+        toast(res.message as string, {
+            style: {
+                background: 'black',
+            }
+        });
         setLoading(false);
     }
     return (
-        <Card className="w-full bg-white rounded-none border-black border-2 shadow-[0_4px_0_0_rgba(0,0,0,1)]">
+        <Card className="w-full bg-black rounded-md border-white/20 border shadow-[0_4px_0_0_rgba(0,0,0,1)]">
             <CardHeader>
-                <CardTitle className="text-black font-extrabold">
+                <CardTitle className="text-white font-extrabold">
                     Organization
                 </CardTitle>
             </CardHeader>
         <CardContent>
         <form onSubmit={editOrganization} className="space-y-4">
         <div className="space-y-2">
-        <Label className='font-extrabold text-black'>Name</Label>
-        <Input className="bg-white border-2 border-black rounded-none font-medium text-black text-base" required placeholder="Enter name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
+        <Label className='font-extrabold text-white'>Name</Label>
+        <Input className="bg-[#0A0A0A] border border-white/20 rounded-md font-medium text-white text-base" required placeholder="Enter name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
-        <Label className='font-extrabold text-black'>Slug</Label>
-        <Input className="bg-white border-2 border-black rounded-none font-medium text-black text-base" required placeholder="Enter slug" value={current.slug} onChange={
+        <Label className='font-extrabold text-white'>Slug</Label>
+        <Input className="bg-[#0A0A0A] border border-white/20 rounded-md font-medium text-white text-base" required placeholder="Enter slug" value={current.slug} onChange={
             ((e) => { 
                 const newSlug = e.target.value.replace(/\s+/g, '-');
                 setCurrent((previous) => ({...previous, slug: newSlug }))})
         }></Input>
         </div>
         <div className="space-y-2">
-        <Label className='font-extrabold text-black'>Website</Label>
-        <Input className="bg-white border-2 border-black rounded-none font-medium text-black text-base" 
+        <Label className='font-extrabold text-white'>Website</Label>
+        <Input className="bg-[#0A0A0A] border border-white/20 rounded-md font-medium text-white text-base" 
         type="url"
         placeholder="Enter organization's website" 
         value={current.website === null ? "" : current.website } 
         onChange={((e) => { setCurrent((previous) => ({...previous, website: e.target.value}))})} />
         </div>
         <div className="space-y-2">
-        <Label className='font-extrabold text-black'>Description</Label>
-        <Textarea className="bg-white border-2 border-black rounded-none font-medium text-black text-base" placeholder="Provide a detailed organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
+        <Label className='font-extrabold text-white'>Description</Label>
+        <Textarea className="bg-[#0A0A0A] border border-white/20 rounded-md font-medium text-white text-base" placeholder="Provide a detailed organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
         <div className="space-y-2">
-        {
-            loading
-            ? 
-            <>
-            <Button type="submit" className="pointer-events-none font-extrabold !bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1">
-            <Loader2 className="animate-spin mr-2" />
-            Save Changes
-            </Button>
-            </>
-            :
-            <>
-            <Button type="submit" className="font-extrabold bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1">
-            Save Changes
-            </Button>
-            </>
-        }
+        <Button disabled={loading} type="submit" variant={"outline"} className="font-extrabold px-4">
+        { loading ? <Loader2 className="animate-spin mr-2" /> : <></> }
+        Save Changes
+        </Button>
         </div>
         </form>
         </CardContent>

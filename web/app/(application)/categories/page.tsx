@@ -33,11 +33,11 @@ export default async function Page() {
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-4xl text-black tracking-tight">Categories</h1>
-        <CreateCategoryButton buttonSize={"sm"} buttonColor="white" />
+        <h1 className="font-extrabold text-4xl text-white tracking-tight">Categories</h1>
+        <CreateCategoryButton/>
         </div>
         <div>
-            <SortableCategories categories={categories?.categories as JobCategory[]} />
+        <SortableCategories categories={categories?.categories as JobCategory[]} />
         </div>
         </>
     )

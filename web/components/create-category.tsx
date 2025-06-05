@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation"
 
 type ButtonSize = "default" | "sm" | "default" | "lg" | "icon" | null
 
-export default function CreateCategoryButton({ buttonSize, buttonColor } : { buttonSize: ButtonSize, buttonColor: "white" | "black"}) {
+export default function CreateCategoryButton() {
   const router = useRouter();  
   const [ loading, setLoading ] = useState<boolean>(false);
     const [ name, setName ] = useState<string>("");
@@ -37,21 +37,11 @@ export default function CreateCategoryButton({ buttonSize, buttonColor } : { but
     return (
         <>
       <Dialog>
-        {
-          buttonColor === "white"
-          ? 
-          <DialogTrigger asChild>
-          <Button size={buttonSize} className="rounded-none font-extrabold border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
-            Create Category
-          </Button>
-          </DialogTrigger>
-          :
-          <DialogTrigger asChild>
-          <Button size={buttonSize} className="rounded-none border-none font-extrabold bg-black text-white hover:bg-black hover:text-white" >
-            Create Category
-          </Button>
-          </DialogTrigger>
-        }
+        <DialogTrigger asChild>
+        <Button className="px-4 border border-white/20 bg-theme font-extrabold" variant={"outline"}>
+        Create Category
+        </Button>
+        </DialogTrigger>
       <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] !rounded-none bg-white border border-black">
         <DialogHeader>
           <DialogTitle className="text-left font-extrabold text-black !text-xl">Create a new category</DialogTitle>

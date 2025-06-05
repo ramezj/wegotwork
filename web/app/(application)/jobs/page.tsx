@@ -34,22 +34,22 @@ export default async function Page() {
             ?
             <>
             <div className="flex items-center justify-between w-full">
-            <h1 className="font-extrabold text-4xl text-black tracking-tight">Jobs</h1>
-            <CreateJob id={session.user.currentOrganizationId!} buttonSize="sm" buttonColor="white" />
+            <h1 className="font-extrabold text-4xl text-white tracking-tight">Jobs</h1>
+            <CreateJob id={session.user.currentOrganizationId!}/>
             </div>
-            <div className="w-full border-2 border-black bg-white h-full rounded-none items-center flex flex-col gap-3 justify-center shadow-[0_4px_0_0_rgba(0,0,0,1)]">
+            <div className="w-full border border-white/20 bg-black h-full rounded-md items-center flex flex-col gap-3 justify-center shadow-[0_4px_0_0_rgba(0,0,0,1)]">
                 <div>
-                <h1 className="font-extrabold text-black text-xl text-center">You don't have any jobs yet</h1>
-                <p className="text-black font-medium text-md">create some jobs & start hiring immediately</p>
+                <h1 className="font-extrabold text-white text-xl text-center">You don't have any jobs yet</h1>
+                <p className="text-white font-medium text-md">create some jobs & start hiring immediately</p>
                 </div>
-                <CreateJob id={session.user.currentOrganizationId!} buttonSize={"sm"} buttonColor="black" />
+                <CreateJob id={session.user.currentOrganizationId!}/>
             </div>
             </>
             : 
             <>
              <div className="flex justify-between items-center w-full">
-                <h1 className="font-extrabold text-4xl text-black tracking-tight">Jobs</h1>
-                <CreateJob id={session.user.currentOrganizationId!} buttonSize={"sm"} buttonColor="white" />
+                <h1 className="font-extrabold text-4xl text-white tracking-tight">Jobs</h1>
+                <CreateJob id={session.user.currentOrganizationId!}/>
                 </div>
                 <div className="gap-5 flex flex-col">
                 {

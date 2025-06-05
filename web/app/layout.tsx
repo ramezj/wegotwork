@@ -21,11 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={bricolageGrotesque.className} suppressHydrationWarning >
       <body suppressHydrationWarning
-        className={`${bricolageGrotesque.className} antialiased bg-theme`}
+        className={`${bricolageGrotesque.className} antialiased bg-black`}
       >
          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
          <Toaster toastOptions={{
-          className: 'bg-white text-black font-extrabold rounded-sm',
+          className: '',
           style: {
             fontWeight: 'extrabold'
           }

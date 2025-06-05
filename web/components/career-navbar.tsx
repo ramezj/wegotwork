@@ -44,13 +44,13 @@ export function CareerNavbar({ organization } : { organization: OrganizationWith
     }
   }, [isOpen])
   return (
-    <div className="border-b-2 h-16 border-black bg-white sticky top-0">
+    <div className="border-b h-16 border-white/20 bg-black sticky top-0">
       <div className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center z-50 pl-4">
-          <span className="text-2xl font-extrabold tracking-tighter text-black">{organization.name}</span>
+          <span className="text-2xl font-extrabold tracking-tighter text-white">{organization.name}</span>
         </Link>
         <div className="">
-        <Button asChild variant="default" className="border-l h-16 rounded-none hover:bg-black bg-black font-bold text-white text-base">
+        <Button asChild variant="default" className="border-l border-b border-white/20 h-16 rounded-none hover:bg-black bg-black font-bold text-white text-base">
               <Link href={`${organization.website === null ? "https://wegotwork.co" : organization.website}`}>visit website</Link>
             </Button>
         </div>
