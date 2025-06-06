@@ -42,7 +42,7 @@ function SortableCategoryItem({ id, name }: { id: string; name: string }) {
       className="border rounded-md border-white/20 p-4 cursor-move bg-theme text-white font-bold mb-2 flex justify-between items-center"
     >
       <p className="select-none">{name}</p>
-      <Button className="rounded-none bg-black hover:bg-black">
+      <Button className="rounded-md bg-accent hover:bg-accent border border-white/20 text-white">
         <Trash className="w-4 h-4 text-white" />
       </Button>
     </div>

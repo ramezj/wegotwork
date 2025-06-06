@@ -61,7 +61,7 @@ export default async function Page({ params } : { params: Promise<{ organization
             <Users className="size-4" />
         </Button>
         </div>
-        <Card className="bg-black border border-white/20">
+        <Card className="bg-theme border border-white/20">
         <CardHeader>
             <CardTitle className="text-2xl font-extrabold text-white">Members</CardTitle>
         </CardHeader>

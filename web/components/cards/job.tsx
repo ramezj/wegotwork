@@ -34,7 +34,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
           </div>
         </div>
         <div className="mr-5 ml-auto">
-        <Button size={"sm"} variant={"outline"} className="rounded-none bg-theme hover:bg-theme border border-none text-white">
+        <Button size={"sm"} variant={"outline"} className="rounded-md bg-accent hover:bg-accent border border-white/20 text-white">
           <Settings className="size-4"/>
         </Button>
         </div>
@@ -64,7 +64,7 @@ export function JobCard({ job }: { job: JobWithCategories }) {
         </div>
         </div>
         <div className="ml-auto mr-5 sm:block hidden">
-        <Button className="rounded-none  bg-transparent border-none" variant={"outline"} size={"icon"}>
+        <Button className="rounded-none bg-transparent border-none" variant={"outline"} size={"icon"}>
             <ArrowRight className="size-4" />
         </Button>
           {/* {
@@ -121,7 +121,7 @@ export function JobCardForApplicants({ job, applicants }: { job: Job, applicants
         </div>
       </div>
       <div className="mr-5 ml-auto">
-      <Button size={"sm"} variant={"outline"} className="rounded-none bg-inherit hover:bg-inherit border border-none text-white">
+      <Button size={"sm"} variant={"outline"} className="rounded-md bg-accent hover:bg-accent border border-white/20 text-white">
         {applicants}
         <Users className="size-4"/>
       </Button>

@@ -12,13 +12,13 @@ export default function Loading() {
     return (
         <> 
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-4xl text-black tracking-tight">Settings</h1>
-        <Button size={"sm"} className="rounded-none font-extrabold border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
-        <Settings className="size-4" />
+        <h1 className="font-extrabold text-4xl text-white tracking-tight">Settings</h1>
+        <Button size={"sm"} variant={"outline"} className="bg-theme font-extrabold border border-white/20">
+        <Settings className="size-4 text-white" />
         </Button>
         </div>
         <div className="w-full h-full items-center flex flex-col justify-center">
-        <Loader2 className="size-8 animate-spin text-black" />
+        <Loader2 className="size-8 animate-spin text-white" />
         </div>
       </>
     )
