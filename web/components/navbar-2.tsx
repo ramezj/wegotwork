@@ -20,25 +20,25 @@ export function Navbar({ session } : { session: Session | null}) {
     }
   }, [isOpen])
   return (
-    <div className="border-b-2 border-black bg-white sticky top-0 h-16 z-50">
+    <div className="border-b border-white/20 bg-black sticky top-0 h-16 z-50">
       <div className="flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center z-50 pl-4 text-2xl font-extrabold tracking-tighter text-black">
-          <span className="text-2xl font-extrabold tracking-tighter text-black ">wegotwork</span>
+        <Link href="/" className="flex items-center z-50 pl-4 text-2xl font-extrabold tracking-tighter text-white">
+          <span className="text-2xl font-extrabold tracking-tighter text-white">wegotwork</span>
         </Link>
         <div className='justify-center items-center gap-4 hidden md:flex pl-4 align-middle'>
             {/* <NavigationMenuForNavbar /> */}
             <Link href={"/"} className="">
-            <span className="text-lg font-bold tracking-tighter text-black">
+            <span className="text-lg font-bold tracking-tighter text-white">
             features
             </span>
             </Link>
             <Link target="_blank" href={`http://wegotwork.${process.env.NEXT_PUBLIC_URL}`} className="">
-            <span className="text-lg font-bold tracking-tighter text-black">
+            <span className="text-lg font-bold tracking-tighter text-white">
             demo
             </span>
             </Link>
             <Link href={"/pricing"} className="">
-            <span className="text-lg font-bold tracking-tighter text-black">
+            <span className="text-lg font-bold tracking-tighter text-white">
             pricing
             </span>
             </Link>
@@ -51,13 +51,13 @@ export function Navbar({ session } : { session: Session | null}) {
               session?.user.currentOrganizationId === null
               ? 
               <>
-              <Button variant="default" asChild className="border-l border-b border-black h-16 px-6 rounded-none hover:bg-black bg-background font-bold text-white text-base">
+              <Button variant="default" asChild className="border-l border-b border-white/20 h-16 px-6 rounded-none hover:bg-black bg-background font-bold text-white text-base">
               <Link href="/dashboard">dashboard</Link>
               </Button>
               </>
               :
               <>
-              <Button variant="default" asChild className="border-l border-b border-black h-16 px-6 rounded-none hover:bg-black bg-background font-bold text-white text-base">
+              <Button variant="default" asChild className="border-l border-b border-white/20 h-16 px-6 rounded-none hover:bg-black bg-black font-bold text-white text-base">
               <Link href="/overview">dashboard</Link>
               </Button>
               </>

@@ -46,25 +46,25 @@ export function JobCardForDashboard({ job }: { job: Job}) {
 export function JobCard({ job }: { job: JobWithCategories }) {
     return (
       <Link href={`/${job.id}`}>
-      <div className="w-full bg-[#0A0A0A] flex border border-white/20 rounded-md items-center pt-3 pb-3 cursor-pointer shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all">
+      <div className="w-full bg-theme flex border border-white/20 rounded-md items-center pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
         <p className='sm:text-lg text-md font-extrabold text-left text-white'>
          {job.title}     
         </p>
         <div className="mt-2 flex gap-2">
-        <Badge className="rounded-sm bg-black text-white border border-white/20 font-bold hover:bg-black">{formatJobType(job.type as Type)}</Badge>
+        <Badge className="rounded-sm bg-accent text-white border border-white/20 font-bold hover:bg-accent">{formatJobType(job.type as Type)}</Badge>
         {
             job.categoryId === null 
             ?
             <>
             </>
             :
-            <Badge className="rounded-sm bg-black text-white border border-white/20 font-bold hover:bg-black">{job.category?.name}</Badge>
+            <Badge className="rounded-sm bg-accent text-white border border-white/20 font-bold hover:bg-accent">{job.category?.name}</Badge>
           }
         </div>
         </div>
         <div className="ml-auto mr-5 sm:block hidden">
-        <Button className="rounded-none bg-transparent border-none" variant={"outline"} size={"icon"}>
+        <Button className="rounded-md bg-accent border border-white/20" variant={"outline"} size={"icon"}>
             <ArrowRight className="size-4" />
         </Button>
           {/* {

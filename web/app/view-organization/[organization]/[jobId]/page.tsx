@@ -59,14 +59,14 @@ export default async function Page({ params } : { params: Promise<{ organization
         </div>
             <div className="w-full flex flex-col items-center text-center py-8 px-4 gap-y-4">
             <div>
-            <h1 className="font-extrabold text-black text-2xl">{job.job?.title}</h1>
-            <p className="text-sm max-w-3xl text-black">{formatDistanceToNow(job.job?.createdAt!)} ago </p>
+            <h1 className="font-extrabold text-white text-2xl">{job.job?.title}</h1>
+            <p className="text-sm max-w-3xl text-white">{formatDistanceToNow(job.job?.createdAt!)} ago </p>
             </div>
             <div className="flex flex-row gap-2">
-            <Button size={"sm"} variant={"outline"} className="rounded-none bg-white hover:bg-white hover:text-black border-2 border-black text-black font-extrabold shadow-[0_4px_0_0_rgba(0,0,0,1)]"><Briefcase className="size-4"/>{formatJobType(job.job?.type as Type)}</Button>
+            <Button size={"sm"} variant={"outline"} className="rounded-md bg-theme hover:bg-theme border border-white/20"><Briefcase className="size-4"/>{formatJobType(job.job?.type as Type)}</Button>
             {
                 job?.job?.country
-                ? <Button size={"sm"} variant={"outline"} className="rounded-none bg-white hover:bg-white hover:text-black border-2 border-black text-black font-extrabold shadow-[0_4px_0_0_rgba(0,0,0,1)]"><MapPin className="size-4" />{job.job?.city + ", " + job.job?.country}</Button>
+                ? <Button size={"sm"} variant={"outline"} className="rounded-md bg-theme hover:bg-theme border border-white/20"><MapPin className="size-4" />{job.job?.city + ", " + job.job?.country}</Button>
                 : <></>
             }
             </div>
@@ -74,7 +74,7 @@ export default async function Page({ params } : { params: Promise<{ organization
                 job.job?.content
                 ?  
                 <>
-                <div className="lg:w-1/2 w-full rounded-none text-black bg-white border-2 border-black font-extrabold p-7 text-left shadow-[0_4px_0_0_rgba(0,0,0,1)]" dangerouslySetInnerHTML={{__html: job.job?.content!}} />
+                <div className="lg:w-1/2 w-full rounded-md text-white bg-theme border border-white/20 font-bold p-7 text-left" dangerouslySetInnerHTML={{__html: job.job?.content!}} />
                 </>
                 :
                 <>

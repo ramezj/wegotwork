@@ -76,18 +76,18 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       filterJobs(country, selectedEmploymentType); 
       }}>
         <SelectTrigger value={"All Locations"} aria-label="Select Locations" 
-        className="bg-[#0A0A0A] text-white border-white/20 border font-bold w-full">
+        className="bg-theme text-white border-white/20 border font-bold w-full">
         <SelectValue placeholder="All Locations">
           All Locations
         </SelectValue>
         </SelectTrigger>
-        <SelectContent className="bg-white border-black border-2 rounded-none text-black font-bold mt-1">
+        <SelectContent className="bg-theme border-white/20 border rounded-md text-white font-bold mt-1">
           <SelectGroup className="space-y-1">
-            <SelectItem className="hover:!bg-black active:!bg-black focus:!bg-black hover:text-white rounded-none" key={"All"} value="All">All Locations</SelectItem>
+            <SelectItem key={"All"} value="All">All Locations</SelectItem>
             {
               locations.map((country, index) => {
                 return (
-                  <SelectItem key={country} value={country} className="hover:!bg-black rounded-none active:!bg-black focus:!bg-black hover:text-white">{country}</SelectItem>
+                  <SelectItem key={country} value={country}>{country}</SelectItem>
                 )
               })
             }
@@ -106,13 +106,13 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       className="bg-[#0A0A0A] text-white border-white/20 border font-bold w-full">
       <SelectValue placeholder="All Employment" />
       </SelectTrigger>
-      <SelectContent className="bg-white border-black border-2 rounded-none text-black font-bold mt-1">
+      <SelectContent className="bg-theme border-white/20 border rounded-md text-white font-bold mt-1">
         <SelectGroup className='space-y-1'>
-          <SelectItem key={"All"} value="All" className="hover:!bg-black rounded-none active:!bg-black focus:!bg-black hover:text-white">All Employment</SelectItem>
+          <SelectItem key={"All"} value="All">All Employment</SelectItem>
           {
               types.map((type, index) => {
                 return (
-                  <SelectItem key={index} value={type} className="hover:!bg-black rounded-none active:!bg-black focus:!bg-black hover:text-white">{formatJobType(type as Type)}</SelectItem>
+                  <SelectItem key={index} value={type}>{formatJobType(type as Type)}</SelectItem>
                 )
               })
             }
