@@ -44,7 +44,7 @@ export function Navbar({ session } : { session: Session | null}) {
             </Link>
         </div>
         <div className="flex-1"></div>
-        <div className="hidden md:block">
+        <div className="hidden md:block mr-4">
           {session?.user ? (
             <>
             {
@@ -57,8 +57,13 @@ export function Navbar({ session } : { session: Session | null}) {
               </>
               :
               <>
-              <Button variant="default" asChild className="border-l border-b border-white/20 h-16 px-6 rounded-none hover:bg-black bg-black font-bold text-white text-base">
+              {/* <Button variant="default" asChild className="border-l border-b border-white/20 h-16 px-6 rounded-none hover:bg-black bg-black font-bold text-white text-base">
               <Link href="/overview">dashboard</Link>
+              </Button> */}
+              <Button asChild variant={"outline"} className="bg-theme px-8">
+                <Link href='/overview'>
+                Dashboard
+                </Link>
               </Button>
               </>
             }

@@ -17,11 +17,7 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         e.preventDefault();
         setLoading(true)
         const res = await EditOrganization(current);
-        toast(res.message as string, {
-            style: {
-                background: 'theme',
-            }
-        });
+        toast(res.message as string);
         setLoading(false);
     }
     return (

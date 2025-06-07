@@ -111,7 +111,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                     disabled={currentCategoryId === "none"}
                     variant={"outline"}
                     type="button"
-                    className="bg-accent text-white hover:bg-theme duration-300"
+                    className="bg-accent text-white hover:bg-accent duration-300"
                     onClick={() => setCurrentCategoryId("none")}
                     >
                     <X className="w-4 h-4 text-white" />
@@ -132,7 +132,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                     disabled={current.country === null}
                     variant={"outline"}
                     type="button"
-                    className="bg-accent text-white hover:bg-theme duration-300"
+                    className="bg-accent text-white hover:bg-accent duration-300"
                     onClick={() => {
                         setCurrent((previous) => ({
                             ...previous, 
@@ -159,7 +159,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                     disabled={current.city === null}
                     variant={"outline"}
                     type="button"
-                    className="bg-accent text-white hover:bg-theme duration-300"
+                    className="bg-accent text-white hover:bg-accent  duration-300"
                     onClick={() => {
                         setCurrent((previous) => ({
                             ...previous, 

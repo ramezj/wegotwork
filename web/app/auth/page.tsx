@@ -18,7 +18,10 @@ export default async function Home() {
   return (
     <>
     <Navbar session={session} />
-    <div className="flex items-center justify-center py-24">
+    <div className="text-center">
+      <h1 className="font-bold text-white text-4xl py-8">wegotwork</h1>
+    </div>
+    <div className="flex items-center justify-center">
         <SignIn />
     </div>
     </>

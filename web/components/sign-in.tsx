@@ -8,11 +8,11 @@ import { cn } from "@/lib/utils";
 export default function SignIn() {
 
   return (
-    <Card className="max-w-md rounded-none bg-white border-2 shadow-[0_4px_0_0_rgba(0,0,0,1)]">
+    <Card className="max-w-md bg-theme border border-white/20">
       <CardHeader>
-        <CardTitle className="text-lg md:text-xl text-black text-left font-extrabold">Sign In to wegotwork</CardTitle>
-        <CardDescription className="text-xs md:text-sm text-black font-bold">
-          use your preferred method to sign in to wegotwork.
+        <CardTitle className="text-lg md:text-xl text-white text-center font-extrabold">Sign In to wegotwork</CardTitle>
+        <CardDescription className="text-xs md:text-sm text-white text-center font-bold p-2">
+          Use your preferred method to sign in to wegotwork.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -22,8 +22,8 @@ export default function SignIn() {
               "justify-between flex-col"
             )}>
               <Button
-                  variant="default"
-                  className="font-extrabold w-full bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1"
+                  variant="outline"
+                  className="font-bold w-full bg-accent"
                   onClick={async () => {
                     await signIn.social({
                       provider: "google",
@@ -40,8 +40,8 @@ export default function SignIn() {
                   Sign in with Google
                 </Button>
                 <Button
-                  variant="default"
-                  className="font-extrabold w-full bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1"
+                  variant="outline"
+                  className="font-bold w-full bg-accent"
                   onClick={async () => {
                     await signIn.social({
                       provider: "google",
