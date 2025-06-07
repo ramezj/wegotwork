@@ -74,11 +74,12 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       onValueChange={(country) => {
       setSelectedCountry(country); 
       filterJobs(country, selectedEmploymentType); 
-      }}>
-        <SelectTrigger value={"All Locations"} aria-label="Select Locations" 
+      }}
+      defaultValue="All">
+        <SelectTrigger value={selectedCountry} aria-label="Select Locations" 
         className="bg-theme text-white border-white/20 border font-bold w-full">
         <SelectValue placeholder="All Locations">
-          All Locations
+          {selectedCountry === "All" ? "All Locations" : selectedCountry}
         </SelectValue>
         </SelectTrigger>
         <SelectContent className="bg-theme border-white/20 border rounded-md text-white font-bold mt-1">
@@ -100,11 +101,13 @@ export function ViewOrganization({ organization, locations, types } : { organiza
       onValueChange={(type) => {
       setSelectedEmploymentType(type); 
       filterJobs(selectedCountry, type);
-    }}> 
-    
-      <SelectTrigger aria-label="Select Employment" 
+    }}
+    defaultValue="All"> 
+      <SelectTrigger value={selectedEmploymentType} aria-label="Select Employment" 
       className="bg-[#0A0A0A] text-white border-white/20 border font-bold w-full">
-      <SelectValue placeholder="All Employment" />
+      <SelectValue placeholder="All Employment">
+        {selectedEmploymentType === "All" ? "All Employment" : formatJobType(selectedEmploymentType as Type)}
+      </SelectValue>
       </SelectTrigger>
       <SelectContent className="bg-theme border-white/20 border rounded-md text-white font-bold mt-1">
         <SelectGroup className='space-y-1'>
