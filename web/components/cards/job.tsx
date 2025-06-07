@@ -85,18 +85,17 @@ export function JobCard({ job }: { job: JobWithCategories }) {
 
 export function LandingPageJobCard({ title, type, location, age }: { title: string, type: string, location: string, age:string }) {
   return (
-      <div color={"white"}
-      className="w-full bg-white flex border-2 border-black rounded-none items-center pt-3 pb-3 cursor-pointer shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all hover:shadow-[0_0px_0_0_rgba(0,0,0,1)] hover:translate-y-1">
+      <div className="w-full bg-theme flex border border-white/20 rounded-md items-center pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
-      <p className='sm:text-lg text-md font-extrabold text-left text-black'>
+      <p className='sm:text-lg text-md font-extrabold text-left text-white'>
        {title}     
       </p>
       <div className="mt-1 flex">
-        <p className="text-xs font-bold text-black">{age}</p>
+        <p className="text-xs font-bold text-white">{age}</p>
       </div>
       </div>
       <div className="ml-auto mr-5">
-      <Button className="rounded-none bg-inherit bg-black hover:bg-black border-none" variant={"outline"} size={"icon"}>
+      <Button className="rounded-md bg-accent hover:bg-accent border-white/20 border" variant={"outline"} size={"icon"}>
         <ArrowRight className="size-4" />
       </Button>
       </div>

@@ -75,7 +75,7 @@ export function Navbar({ session } : { session: Session | null}) {
           <Button
           variant="ghost"
           size="icon"
-          className="md:hidden z-50 text-white hover:text-white border-l border-b border-black px-8 h-16 bg-background hover:bg-black rounded-none"
+          className="md:hidden z-50 text-white hover:text-white border-l border-b border-white/20 px-8 h-16 bg-background hover:bg-black rounded-none"
           onClick={() => setIsOpen(!isOpen)}>
           <X className="h-6 w-6" /> 
           </Button>
@@ -83,12 +83,12 @@ export function Navbar({ session } : { session: Session | null}) {
           <Button
           variant="ghost"
           size="icon"
-          className="md:hidden z-50 text-white hover:text-white border-l border-b border-black px-8 h-16 bg-background hover:bg-black rounded-none"
+          className="md:hidden z-50 text-white hover:text-white border-l border-b border-white/20 px-8 h-16 bg-background hover:bg-black rounded-none"
           onClick={() => setIsOpen(!isOpen)}>
           <Menu className="h-6 w-6" />
           </Button>
         }
-        <div className={cn("fixed inset-0 bg-white z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
+        <div className={cn("fixed inset-0 bg-black z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
             isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           )}
         >
@@ -97,7 +97,7 @@ export function Navbar({ session } : { session: Session | null}) {
               <Link
                 key={item}
                 href={`/${item.toLowerCase()}`}
-                className="text-2xl text-black transition-colors font-extrabold"
+                className="text-2xl text-white transition-colors font-extrabold"
                 onClick={() => setIsOpen(false)}
               >
                 {item}
@@ -113,7 +113,7 @@ export function Navbar({ session } : { session: Session | null}) {
                 <>
                 <Link
                 href={`/dashboard`}
-                className="text-2xl text-black transition-colors font-extrabold"
+                className="text-2xl text-white transition-colors font-extrabold"
                 onClick={() => setIsOpen(false)}>
                 dashboard
                 </Link>
@@ -122,7 +122,7 @@ export function Navbar({ session } : { session: Session | null}) {
                 <>
                 <Link
                 href={`/overview`}
-                className="text-2xl text-black transition-colors font-extrabold"
+                className="text-2xl text-white transition-colors font-extrabold"
                 onClick={() => setIsOpen(false)}>
                 dashboard
                 </Link>
