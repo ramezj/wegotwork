@@ -44,7 +44,7 @@ export function Navbar({ session } : { session: Session | null}) {
             </Link>
         </div>
         <div className="flex-1"></div>
-        <div className="hidden md:block mr-4">
+        <div className="hidden md:block">
           {session?.user ? (
             <>
             {
@@ -52,25 +52,20 @@ export function Navbar({ session } : { session: Session | null}) {
               ? 
               <>
               <Button variant="default" asChild className="border-l border-b border-white/20 h-16 px-6 rounded-none hover:bg-black bg-background font-bold text-white text-base">
-              <Link href="/dashboard">dashboard</Link>
+              <Link href="/dashboard">Dashboard</Link>
               </Button>
               </>
               :
               <>
-              {/* <Button variant="default" asChild className="border-l border-b border-white/20 h-16 px-6 rounded-none hover:bg-black bg-black font-bold text-white text-base">
-              <Link href="/overview">dashboard</Link>
-              </Button> */}
-              <Button asChild variant={"outline"} className="bg-theme px-8">
-                <Link href='/overview'>
-                Dashboard
-                </Link>
+              <Button variant="default" asChild className="border-l border-b border-white/20 h-16 px-6 rounded-none hover:bg-black bg-black font-bold text-white text-base">
+              <Link href="/overview">Dashboard</Link>
               </Button>
               </>
             }
             </>
           ) : (
             <Button asChild variant="default" className="border-l border-b border-black h-16 px-6 rounded-none hover:bg-black bg-background font-bold text-white text-base">
-              <Link href="/auth">start hiring</Link>
+              <Link href="/auth">Start Hiring</Link>
             </Button>
           )}
         </div>
