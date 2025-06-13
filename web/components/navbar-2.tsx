@@ -20,7 +20,7 @@ export function Navbar({ session } : { session: Session | null}) {
     }
   }, [isOpen])
   return (
-    <div className="border-b border-white/20 bg-theme sticky top-0 h-16 z-50 overflow-hidden">
+    <div className="border-b border-white/20 bg-black sticky top-0 h-16 z-50 overflow-hidden">
       <div className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center z-50 pl-4 text-2xl font-extrabold tracking-tighter text-white">
           <span className="text-2xl font-extrabold tracking-tighter text-white">wegotwork</span>
@@ -75,7 +75,7 @@ export function Navbar({ session } : { session: Session | null}) {
           <Button
           variant="ghost"
           size="icon"
-          className="md:hidden z-50 text-white hover:text-white border-l border-b border-white/20 px-8 h-16 bg-background hover:bg-black rounded-none"
+          className="md:hidden z-50 text-black hover:text-black border-l border-b border-white/20 px-8 h-16 bg-white hover:bg-white rounded-none"
           onClick={() => setIsOpen(!isOpen)}>
           <X className="h-6 w-6" /> 
           </Button>
