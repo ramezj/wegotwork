@@ -29,7 +29,7 @@ export default async function Home() {
     <>
     <Navbar session={session} />
     <div className="flex items-center justify-center mt-12">
-    <h1 className="font-extrabold text-3xl text-black">Pick an organization</h1>
+    <h1 className="font-extrabold text-3xl text-white">Pick an organization</h1>
     </div>
     <div className="mt-8 flex justify-center items-center content-center">
     <TestSetOrganizationCard userOrganizations={Organizations?.userOrganizations as OrganizationUserWithOrganization[]} />

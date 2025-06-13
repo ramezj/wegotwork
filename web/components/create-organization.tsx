@@ -11,7 +11,7 @@ import {
     DialogTrigger,
   } from "@/components/ui/dialog"
   import { Label } from "./ui/label"
-import { Loader2 } from "lucide-react"
+import { Loader2, Plus } from "lucide-react"
 // import { redirect } from "next/navigation"
 import { toast } from "sonner"
 import { useEffect } from "react"
@@ -43,30 +43,34 @@ export function CreateOrganizationButton() {
         <>
         <Dialog>
         <DialogTrigger asChild>
-        <Button variant={"default"} className="font-extrabold w-full bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1">
-        Create Organization
+        <Button variant={"outline"} className="font-extrabold w-full bg-accent border border-white/20 ">
+        <Plus className="text-white"/>
         </Button>    
         </DialogTrigger>
         <DialogDescription>
             
         </DialogDescription>
-        <DialogContent className="w-[90%] !rounded-none bg-white border border-black">
+        <DialogContent className="w-[90%] bg-theme border border-white/20">
         <DialogHeader>
-        <DialogTitle className="text-left text-xl font-extrabold text-black">Create Organization</DialogTitle>
+        <DialogTitle className="text-left text-xl font-extrabold text-white">Create Organization</DialogTitle>
         </DialogHeader>
         <form className="grid items-center gap-3 text-left" onSubmit={create_organization}>
-        <Label className='font-extrabold text-black text-left'>Name</Label>
-        <Input placeholder="Enter name" required value={name} onChange={((e) => {setName(e.target.value)})} className="bg-white text-base border-2 border-black rounded-none font-medium text-black"/>
-        <Label className='font-extrabold text-black text-left'>Slug</Label>
-        <Input placeholder="Enter slug" required value={slug} onChange={((e) => {setSlug(e.target.value)})} className="bg-white text-base border-2 border-black rounded-none font-medium text-black"/>
+        <Label className='font-extrabold text-white text-left'>Name</Label>
+        <Input placeholder="Enter name" required value={name} onChange={((e) => {setName(e.target.value)})} 
+        className="bg-accent text-base border border-white/20 font-bold text-white"/>
+        <Label className='font-extrabold text-white text-left'>Slug</Label>
+        <Input placeholder="Enter slug" required value={slug} onChange={((e) => {setSlug(e.target.value)})} 
+        className="bg-accent text-base border border-white/20 font-bold text-white"/>
         <div>
         <Button type="submit" 
-        className={`w-full mt-4 font-extrabold bg-[#F2EFE8] hover:bg-[#F2EFE8] active:bg-[#F2EFE8] rounded-none text-black border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] transition-all active:translate-y-1`}>
+        disabled={loading}
+        variant={"outline"}
+        className="w-full bg-accent mt-4 font-extrabold border border-white/20">
             {
                 loading
                 ? 
                 <>
-                <Loader2 className="animate-spin" />
+                <Loader2 className="animate-spin text-white" />
                 Create Organization
                 </>
                 : 

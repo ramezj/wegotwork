@@ -49,7 +49,7 @@ export default function CreateJob({ id, className, children, ...buttonProps }: C
           </Button>
           </DialogTrigger>
       <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} 
-      className="text-left w-[90%] bg-black border border-white/20 rounded-md ">
+      className="text-left w-[90%] bg-theme border border-white/20 rounded-md ">
         <DialogHeader>
           <DialogTitle className="text-left font-extrabold text-white !text-xl">Create a new job</DialogTitle>
         </DialogHeader>
@@ -66,13 +66,13 @@ export default function CreateJob({ id, className, children, ...buttonProps }: C
               value={name}
               onChange={((e) => {setName(e.target.value)})}
               placeholder="Enter Job title"
-              className="bg-theme border border-white/20 text-white font-medium text-base"
+              className="bg-accent border border-white/20 text-white font-medium text-base"
             />
             </form>
           </div>
         </div>
         <DialogFooter>
-          <Button disabled={loading} form="form" type="submit" variant={"outline"} className="px-4 bg-theme w-full font-extrabold">
+          <Button disabled={loading} form="form" type="submit" variant={"outline"} className="px-4 bg-accent w-full font-extrabold">
             { loading ? <Loader2 className="mr-1 h-4 w-4 animate-spin text-white" /> : <></> }
             Create Job
           </Button>

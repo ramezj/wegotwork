@@ -32,12 +32,12 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
         }
     }
     return (
-    <Card className="w-[350px] bg-white rounded-none border-black border-2 shadow-[0_4px_0_0_rgba(0,0,0,1)]">
+    <Card className="w-[350px] bg-theme border border-white/20">
     <CardHeader className="text-center">
-            <CardTitle className="text-black font-extrabold">
+            <CardTitle className="text-white font-extrabold">
                 Organizations
             </CardTitle>
-        <CardDescription className="text-black font-bold">
+        <CardDescription className="text-white font-bold">
             Organizations you own or are a part of
         </CardDescription>
     </CardHeader>
@@ -49,18 +49,18 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
             return (
                 <form className="" onSubmit={((e) => {setUserOrg(e, organization.organizationId)})} key={organization.organizationId}>
                 <Button type="submit" variant={"outline"} 
-                className={`my-2 w-full !rounded-none ${selectedOrgId === organization.organizationId 
+                className={`my-2 w-full ${selectedOrgId === organization.organizationId 
                     ? 
-                    "bg-white text-black hover:bg-white hover:text-black" 
+                    "bg-accent text-white" 
                     : 
-                    "bg-white hover:bg-white text-black hover:text-black"} 
-                    font-extrabold border-2 border-black duration-200 transition-all shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1`}
+                    "bg-accent text-white"} 
+                    font-extrabold border border-white/20 `}
                 >           
                 {
                     (organization.organizationId === selectedOrgId && isSelecting)
                     ? 
                     <>
-                    <Loader2 className={`animate-spin ${selectedOrgId === organization.organizationId ? "text-black" : "text-black"} flex`} />
+                    <Loader2 className={`animate-spin ${selectedOrgId === organization.organizationId ? "text-white" : "text-white"} flex`} />
                     {organization.organization.name}  
                     </>
                     :
