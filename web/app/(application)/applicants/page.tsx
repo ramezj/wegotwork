@@ -17,8 +17,8 @@ type JobWithApplicants = Prisma.JobGetPayload<{
 }>
 
 export const metadata:Metadata = {
-    title: "applicants",
-    description: "applicants"
+    title: "Applicants",
+    description: "Applicants"
 }
 
 export default async function Page() {

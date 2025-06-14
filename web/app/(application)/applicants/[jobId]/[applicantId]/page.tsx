@@ -17,8 +17,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export const metadata:Metadata = {
-    title: "applicants",
-    description: "applicants"
+    title: "Applicants",
+    description: "Applicants"
 }
 
 export default async function Page({ params } : { params: Promise<{ organization: string, jobId: string, applicantId: string }>}) {

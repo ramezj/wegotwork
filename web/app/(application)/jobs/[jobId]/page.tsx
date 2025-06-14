@@ -15,8 +15,8 @@ import { Applicants, TotalApplicants } from "@/components/statistics";
 import { Prisma } from "@prisma/client";
 
 export const metadata:Metadata = {
-    title: "jobs",
-    description: "jobs"
+    title: "Jobs",
+    description: "Jobs"
 }
 
 type JobWithCategory = Prisma.JobGetPayload<{

@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button"
 import { Banknote } from "lucide-react"
 
 export const metadata:Metadata = {
-    title: "billing",
-    description: "billing"
+    title: "Billing",
+    description: "Billing"
 }
 
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {

@@ -11,8 +11,8 @@ import { Session } from "@/lib/auth-client";
 import { headers } from "next/headers";
 
 export const metadata:Metadata = {
-    title: "settings",
-    description: "settings"
+    title: "Settings",
+    description: "Settings"
 }
 
 export default async function Page() {

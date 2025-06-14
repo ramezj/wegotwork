@@ -24,8 +24,8 @@ type OrganizationWithUser = Prisma.OrganizationUserGetPayload<{
 }>
 
 export const metadata:Metadata = {
-    title: "members",
-    description: "members"
+    title: "Members",
+    description: "Members"
 }
 
 export default async function Page({ params } : { params: Promise<{ organization: string }>}) {

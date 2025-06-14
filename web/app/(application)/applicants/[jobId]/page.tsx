@@ -14,8 +14,8 @@ import { GetJobApplicants } from "@/actions/applicants/get-job-applicants";
 import ApplicantCard from "@/components/cards/applicant";
 
 export const metadata:Metadata = {
-    title: "applicants",
-    description: "applicants"
+    title: "Applicants",
+    description: "Applicants"
 }
 
 export default async function Page({ params } : { params: Promise<{ organization: string, jobId: string }>}) {
