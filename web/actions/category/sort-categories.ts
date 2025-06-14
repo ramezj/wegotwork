@@ -27,7 +27,7 @@ export async function updateCategoryOrder( organizationId: string, newOrder: { i
         revalidatePath('/categories');
           return {
             error:false,
-            message:"updated successfully"
+            message:"Updated Successfully"
           }
     } catch (error: unknown) {
         console.error(error);

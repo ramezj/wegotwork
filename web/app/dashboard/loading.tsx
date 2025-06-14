@@ -21,7 +21,7 @@ export default async function Loading() {
       <>
       <Navbar session={session} />
       <div className="w-full h-full items-center flex flex-col justify-center mt-36">
-        <Loader2 className="size-8 animate-spin text-black" />
+        <Loader2 className="size-8 animate-spin text-white" />
         </div>
       </>
     );

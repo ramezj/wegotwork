@@ -54,7 +54,7 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         <Textarea className="bg-accent border border-white/20 rounded-md font-medium text-white text-base" placeholder="Provide a detailed organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
         <div className="space-y-2">
-        <Button disabled={loading} type="submit" variant={"outline"} className="bg-accent font-extrabold px-4">
+        <Button disabled={loading} type="submit" variant={"default"} className="font-extrabold px-4">
         { loading ? <Loader2 className="animate-spin mr-2" /> : <></> }
         Save Changes
         </Button>

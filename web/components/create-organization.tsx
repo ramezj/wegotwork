@@ -43,14 +43,14 @@ export function CreateOrganizationButton() {
         <>
         <Dialog>
         <DialogTrigger asChild>
-        <Button variant={"outline"} className="font-extrabold w-full bg-accent border border-white/20 ">
+        <Button variant={"outline"} className="font-extrabold w-full bg-theme border border-white/20 ">
         <Plus className="text-white"/>
         </Button>    
         </DialogTrigger>
         <DialogDescription>
             
         </DialogDescription>
-        <DialogContent className="w-[90%] bg-theme border border-white/20">
+        <DialogContent className="w-[90%] bg-theme border border-white/20 rounded-md">
         <DialogHeader>
         <DialogTitle className="text-left text-xl font-extrabold text-white">Create Organization</DialogTitle>
         </DialogHeader>

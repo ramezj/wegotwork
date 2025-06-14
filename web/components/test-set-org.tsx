@@ -32,7 +32,8 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
         }
     }
     return (
-    <Card className="w-[350px] bg-theme border border-white/20">
+    <div className="sm:w-[35%]">
+    <Card className="bg-theme w-full border border-white/20">
     <CardHeader className="text-center">
             <CardTitle className="text-white font-extrabold">
                 Organizations
@@ -42,33 +43,25 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
         </CardDescription>
     </CardHeader>
     <CardContent>
-        <div className="grid w-full items-center">
+        <div className="">
         <div className="flex flex-col">
         {
             userOrganizations.map((organization: OrganizationUserWithOrganization) => {
             return (
-                <form className="" onSubmit={((e) => {setUserOrg(e, organization.organizationId)})} key={organization.organizationId}>
-                <Button type="submit" variant={"outline"} 
-                className={`my-2 w-full ${selectedOrgId === organization.organizationId 
-                    ? 
-                    "bg-accent text-white" 
-                    : 
-                    "bg-accent text-white"} 
-                    font-extrabold border border-white/20 `}
-                >           
-                {
-                    (organization.organizationId === selectedOrgId && isSelecting)
-                    ? 
-                    <>
-                    <Loader2 className={`animate-spin ${selectedOrgId === organization.organizationId ? "text-white" : "text-white"} flex`} />
-                    {organization.organization.name}  
-                    </>
-                    :
-                    <>
-                    {organization.organization.name}  
-                    </>
-                } 
-                </Button>
+                <form className="my-2" onSubmit={((e) => {setUserOrg(e, organization.organizationId)})} key={organization.organizationId}>
+                  <div className="flex justify-between w-full">
+                    <Button type="submit" variant="outline" className={`${selectedOrgId === organization.organizationId ? "bg-accent text-white" : "bg-accent text-white"} font-extrabold border border-white/20 flex-1`}>
+                      {organization.organizationId === selectedOrgId && isSelecting ? (
+                        <>
+                          <Loader2 className="animate-spin text-white flex mr-2" />
+                          {organization.organization.name}
+                        </>
+                      ) : (
+                        <>{organization.organization.name}</>
+                      )}
+                    </Button>
+                    <Button type="button" variant="secondary" className="ml-2 px-4 font-bold">View</Button>
+                  </div>
                 </form>
                     )
                 })
@@ -80,21 +73,6 @@ export function TestSetOrganizationCard({ userOrganizations }: { userOrganizatio
               <CreateOrganizationButton />
     </CardFooter>
     </Card>
-    // <div className="flex gap-4">
-    // {
-    //     userOrganizations.map((organization: OrganizationUserWithOrganization) => {
-    //         return (
-    //             <Card onClick={(() => {setUserOrg(organization.organizationId)})} key={organization.organizationId} className="rounded-none bg-white text-black border border-black cursor-pointer">
-    //                 <CardHeader>
-    //                     <CardTitle>{organization.organization.name}</CardTitle>
-    //                 </CardHeader>
-    //                 <CardContent>
-    //                     {organization.organization.description}
-    //                 </CardContent>
-    //             </Card>
-    //         )
-    //     })
-    // }
-    // </div>
+    </div>
     )
 }

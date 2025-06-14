@@ -96,8 +96,8 @@ export default function SortableCategories({ categories }: { categories: JobCate
       </DndContext>
       <Button
       onClick={handleSave}
-      variant={"outline"}
-      className={`font-extrabold mt-2 bg-theme hover:bg-theme text-white border border-white/20 px-4
+      variant={"default"}
+      className={`font-extrabold mt-2 border border-white/20 px-4
         ${saving ? "pointer-events-none" : ""}
       `}
       >
@@ -105,7 +105,7 @@ export default function SortableCategories({ categories }: { categories: JobCate
           saving
           ?
           <>
-          <Loader2 className="animate-spin text-white" />
+          <Loader2 className="animate-spin text-black" />
           </>
           :
           <>
