@@ -64,8 +64,8 @@ export function CreateOrganizationButton() {
         <div>
         <Button type="submit" 
         disabled={loading}
-        variant={"outline"}
-        className="w-full bg-accent mt-4 font-extrabold border border-white/20">
+        variant={"default"}
+        className="w-full mt-4 font-extrabold">
             {
                 loading
                 ? 

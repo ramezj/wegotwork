@@ -75,6 +75,13 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                         </SelectContent>
                     </Select>
                 </div>
+                {/* <div className="space-y-2">
+                <Label className="font-extrabold text-white">Country</Label>
+                <CountryDropdown
+                placeholder="Select country"
+                defaultValue="USA"
+                />
+                </div> */}
                 <div className="space-y-2">
                 <Label className='font-extrabold text-white'>Category</Label>
                 <div className="flex flex-row gap-2">
