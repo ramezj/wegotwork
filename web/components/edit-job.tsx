@@ -183,8 +183,8 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 <Textarea className="bg-accent border border-white/20 text-white font-bold text-base" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
                 </div>
                 <div className="gap-2">
-                <Button type="submit" variant={"outline"} disabled={loading} className="px-4 bg-accent">
-                {loading ? <Loader2 className="animate-spin mr-2 text-white" /> : <></>}
+                <Button type="submit" variant={"default"} disabled={loading} className="px-4 font-extrabold">
+                {loading ? <Loader2 className="animate-spin mr-2 text-black" /> : <></>}
                 Save Changes
                 </Button>
                 </div>

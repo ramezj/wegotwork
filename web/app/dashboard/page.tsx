@@ -7,7 +7,7 @@ import { Navbar } from "@/components/navbar-2";
 import { Metadata } from "next";
 import { TestSetOrganizationCard } from "@/components/test-set-org";
 import { OrganizationSelector } from "@/components/organization-selector";
-import { PickOrganizationCard } from "@/components/test";
+import { PickOrganizationCard } from "@/components/pick-organization";
 
 type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
     include: {
@@ -16,8 +16,8 @@ type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
 }>
 
 export const metadata:Metadata = {
-  title: "dashboard",
-  description: "dashboard"
+  title: "Choose Organization",
+  description: "Choose Organization"
 }
 
 export default async function Home() {
@@ -33,7 +33,6 @@ export default async function Home() {
     {/* <h1 className="font-extrabold text-3xl text-white">Pick an organization</h1> */}
     </div>
     <div className="mt-8 flex justify-center items-center content-center">
-    {/* <TestSetOrganizationCard userOrganizations={Organizations?.userOrganizations as OrganizationUserWithOrganization[]} /> */}
     <PickOrganizationCard userOrganizations={Organizations?.userOrganizations as OrganizationUserWithOrganization[]} />
     </div>
     </>

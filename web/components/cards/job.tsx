@@ -63,8 +63,8 @@ export function JobCard({ job }: { job: JobWithCategories }) {
           }
         </div>
         </div>
-        <div className="ml-auto mr-5 sm:block hidden">
-        <Button className="rounded-md bg-accent border border-white/20" variant={"outline"} size={"icon"}>
+        <div className="ml-auto mr-5">
+        <Button className="border border-white/20" variant={"default"} size={"icon"}>
             <ArrowRight className="size-4" />
         </Button>
           {/* {
