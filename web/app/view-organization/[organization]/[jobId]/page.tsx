@@ -63,10 +63,10 @@ export default async function Page({ params } : { params: Promise<{ organization
             <p className="text-sm max-w-3xl text-white">{formatDistanceToNow(job.job?.createdAt!)} ago </p>
             </div>
             <div className="flex flex-row gap-2">
-            <Button size={"sm"} variant={"outline"} className="rounded-md bg-theme hover:bg-theme border border-white/20"><Briefcase className="size-4"/>{formatJobType(job.job?.type as Type)}</Button>
+            <Button size={"sm"} variant={"outline"} className="rounded-none bg-theme hover:bg-theme border border-white/20"><Briefcase className="size-4"/>{formatJobType(job.job?.type as Type)}</Button>
             {
                 job?.job?.country
-                ? <Button size={"sm"} variant={"outline"} className="rounded-md bg-theme hover:bg-theme border border-white/20"><MapPin className="size-4" />{job.job?.city + ", " + job.job?.country}</Button>
+                ? <Button size={"sm"} variant={"outline"} className="rounded-none bg-theme hover:bg-theme border border-white/20"><MapPin className="size-4" />{job.job?.city + ", " + job.job?.country}</Button>
                 : <></>
             }
             </div>
@@ -74,7 +74,7 @@ export default async function Page({ params } : { params: Promise<{ organization
                 job.job?.content
                 ?  
                 <>
-                <div className="lg:w-1/2 w-full rounded-md text-white bg-theme border border-white/20 font-bold p-7 text-left" dangerouslySetInnerHTML={{__html: job.job?.content!}} />
+                <div className="lg:w-1/2 w-full rounded-none text-white bg-theme border border-white/20 font-bold p-7 text-left" dangerouslySetInnerHTML={{__html: job.job?.content!}} />
                 </>
                 :
                 <>

@@ -23,7 +23,7 @@ export function DeleteJobButton({ job } : { job: Job}) {
         <>
       <Dialog>
       <DialogTrigger asChild>
-      <Button size={"sm"} variant={"destructive"} className='border border-white/20'>
+      <Button size={"sm"} variant={"destructive"} className='border border-white/20 rounded-none'>
             <Trash className="size-4" />
         </Button>
       </DialogTrigger>

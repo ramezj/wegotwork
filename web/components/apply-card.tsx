@@ -35,18 +35,18 @@ export default function ApplyCard({ jobId }: { jobId: string}) {
       };
     return (
         <>
-            <div className="lg:w-1/2 w-full rounded-md bg-theme border border-white/20 p-7 text-left">
+            <div className="lg:w-1/2 w-full rounded-none bg-theme border border-white/20 p-7 text-left">
             <form onSubmit={apply} className="space-y-4">
             <div className="space-y-2">
             <h1 className="text-2xl font-extrabold text-white text-center">Apply to job</h1>
             </div>
             <div className="space-y-2">
             <Label htmlFor="name" className="text-white font-extrabold">Full name</Label>
-            <Input className="bg-white bg-accent border border-white/20 rounded-md text-white font-bold text-base" required placeholder="Enter your full name" value={name} onChange={((e) => {setName(e.target.value)})} />
+            <Input className="bg-white bg-accent border border-white/20 rounded-none text-white font-bold text-base" required placeholder="Enter your full name" value={name} onChange={((e) => {setName(e.target.value)})} />
             </div>
             <div className="space-y-2">
             <Label htmlFor="name" className="text-white font-extrabold">Email address</Label>
-            <Input className="bg-white bg-accent border border-white/20 rounded-md text-white font-bold text-base" required placeholder="Enter your email address" value={emailAddress} onChange={((e) => {setEmailAddress(e.target.value)})} />
+            <Input className="bg-white bg-accent border border-white/20 rounded-none text-white font-bold text-base" required placeholder="Enter your email address" value={emailAddress} onChange={((e) => {setEmailAddress(e.target.value)})} />
             </div>
             {/* <div className="space-y-2">
             <Label htmlFor="name" className="text-black font-extrabold">Phone number</Label>
@@ -55,18 +55,18 @@ export default function ApplyCard({ jobId }: { jobId: string}) {
             <div className="space-y-2">
             <Label htmlFor="name" className="text-white font-extrabold">Resume</Label>
             <div>
-            <Input className="bg-accent file:text-white file:font-bold border border-white/20 rounded-md text-white font-bold text-base" required type="file" id="file" name="file" accept=".pdf" onChange={handleFileChange} />
+            <Input className="bg-accent file:text-white file:font-bold border border-white/20 rounded-none text-white font-bold text-base" required type="file" id="file" name="file" accept=".pdf" onChange={handleFileChange} />
             </div>
             </div>
             <div className="space-y-2"> 
             <Label htmlFor="motivation" className="text-white font-extrabold">Cover letter</Label>
-            <Textarea rows={6} className="bg-accent border border-white/20 rounded-md text-white font-bold text-base" required value={motivation} onChange={((e) => {setMotivation(e.target.value)})} placeholder="Share why you're a great fit." />
+            <Textarea rows={6} className="bg-accent border border-white/20 rounded-none text-white font-bold text-base" required value={motivation} onChange={((e) => {setMotivation(e.target.value)})} placeholder="Share why you're a great fit." />
             </div>
-            <Button variant={"outline"}
+            <Button variant={"default"}
             type="submit"
-            className="bg-accent w-full font-bold"
+            className="w-full font-bold rounded-none"
             disabled={loading}>
-            {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin text-white" /> : <></>}
+            {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin text-black" /> : <></>}
             Apply to Job
             </Button>
             </form>

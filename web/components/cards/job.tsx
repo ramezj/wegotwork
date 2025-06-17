@@ -24,7 +24,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
     };
     return (
       <div onClick={handleCardClick}>
-      <div className="w-full flex border border-white/20 bg-theme rounded-md items-center duration-300 pt-3 pb-3 cursor-pointer">
+      <div className="w-full flex border border-white/20 bg-theme rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
         <p className='sm:text-lg text-md font-extrabold text-left text-white'>
          {job.title}     
@@ -34,7 +34,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
           </div>
         </div>
         <div className="mr-5 ml-auto">
-        <Button size={"sm"} variant={"outline"} className="rounded-md bg-accent hover:bg-accent border border-white/20 text-white">
+        <Button size={"sm"} variant={"outline"} className="rounded-none bg-accent hover:bg-accent border border-white/20 text-white">
           <Settings className="size-4"/>
         </Button>
         </div>
@@ -46,25 +46,25 @@ export function JobCardForDashboard({ job }: { job: Job}) {
 export function JobCard({ job }: { job: JobWithCategories }) {
     return (
       <Link href={`/${job.id}`}>
-      <div className="w-full bg-theme flex border border-white/20 rounded-md items-center pt-3 pb-3 cursor-pointer">
+      <div className="w-full bg-theme flex border border-white/20 rounded-none items-center pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
         <p className='sm:text-lg text-md font-extrabold text-left text-white'>
          {job.title}     
         </p>
         <div className="mt-2 flex gap-2">
-        <Badge className="rounded-sm bg-accent text-white border border-white/20 font-bold hover:bg-accent">{formatJobType(job.type as Type)}</Badge>
+        <Badge className="rounded-none bg-accent text-white border border-white/20 font-bold hover:bg-accent">{formatJobType(job.type as Type)}</Badge>
         {
             job.categoryId === null 
             ?
             <>
             </>
             :
-            <Badge className="rounded-sm bg-accent text-white border border-white/20 font-bold hover:bg-accent">{job.category?.name}</Badge>
+            <Badge className="rounded-none bg-accent text-white border border-white/20 font-bold hover:bg-accent">{job.category?.name}</Badge>
           }
         </div>
         </div>
         <div className="ml-auto mr-5">
-        <Button className="border border-white/20" variant={"default"} size={"icon"}>
+        <Button className="border border-white/20 rounded-none" variant={"default"} size={"icon"}>
             <ArrowRight className="size-4" />
         </Button>
           {/* {
