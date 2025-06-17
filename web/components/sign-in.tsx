@@ -22,8 +22,8 @@ export default function SignIn() {
               "justify-between flex-col"
             )}>
               <Button
-                  variant="outline"
-                  className="font-bold w-full bg-accent rounded-none"
+                  variant="default"
+                  className="font-bold w-full rounded-none"
                   onClick={async () => {
                     await signIn.social({
                       provider: "google",
@@ -40,8 +40,8 @@ export default function SignIn() {
                   Sign in with Google
                 </Button>
                 <Button
-                  variant="outline"
-                  className="font-bold w-full bg-accent rounded-none"
+                  variant="default"
+                  className="font-bold w-full rounded-none"
                   onClick={async () => {
                     await signIn.social({
                       provider: "google",
