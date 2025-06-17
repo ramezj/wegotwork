@@ -33,7 +33,7 @@ export function PickOrganizationCard({ userOrganizations }: { userOrganizations 
     }
   return (
     <div className="sm:w-[30%]">
-    <Card className="bg-theme w-full">
+    <Card className="bg-theme w-full rounded-none">
       <CardHeader>
         <CardTitle>Your Organizations</CardTitle>
         <CardDescription>
@@ -46,16 +46,16 @@ export function PickOrganizationCard({ userOrganizations }: { userOrganizations 
                 return (
                 <form onSubmit={((e) => {setUserOrg(e, organization.organizationId)})} key={organization.organizationId} className="flex items-center justify-between space-x-4">
                 <div className="flex items-center space-x-4">
-                    <Avatar className="rounded-sm">
+                    <Avatar className="rounded-none">
                     <AvatarImage src="/avatars/01.png" />
-                    <AvatarFallback className="rounded-sm">{organization.organization.name.charAt(0)}</AvatarFallback>
+                    <AvatarFallback className="rounded-none">{organization.organization.name.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <div>
                     <p className="text-sm font-medium leading-none">{organization.organization.name}</p>
                     <p className="text-sm text-muted-foreground">0 Member</p>
                     </div>
                 </div>
-                <Button type="submit" variant="default" className="">
+                <Button type="submit" variant="default" className="rounded-none">
                       {organization.organizationId === selectedOrgId && isSelecting ? (
                         <>
                           <Loader2 className="animate-spin text-black flex mr-2" />

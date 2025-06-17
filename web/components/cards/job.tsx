@@ -85,7 +85,7 @@ export function JobCard({ job }: { job: JobWithCategories }) {
 
 export function LandingPageJobCard({ title, type, location, age }: { title: string, type: string, location: string, age:string }) {
   return (
-      <div className="w-full bg-theme flex border border-white/20 rounded-md items-center pt-3 pb-3 cursor-pointer">
+      <div className="w-full bg-theme flex border border-white/20 rounded-none items-center pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
       <p className='sm:text-lg text-md font-extrabold text-left text-white'>
        {title}     
@@ -95,7 +95,7 @@ export function LandingPageJobCard({ title, type, location, age }: { title: stri
       </div>
       </div>
       <div className="ml-auto mr-5">
-      <Button className="rounded-md bg-accent hover:bg-accent border-white/20 border" variant={"outline"} size={"icon"}>
+      <Button className="rounded-none bg-accent hover:bg-accent border-white/20 border" variant={"outline"} size={"icon"}>
         <ArrowRight className="size-4" />
       </Button>
       </div>

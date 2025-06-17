@@ -13,7 +13,7 @@ interface FeatureCardProps {
 
 export function FeatureCard({ icon, title, description }: FeatureCardProps) {
   return (
-    <Card className="flex flex-col h-full bg-theme border border-white/20 rounded-md">
+    <Card className="flex flex-col h-full bg-theme border border-white/20 rounded-sm">
       <CardHeader className="pb-2">
         <div className="w-10 h-10 flex items-center justify-center mb-4">{icon}</div>
         <CardTitle className="text-xl font-extrabold text-white">{title}</CardTitle>

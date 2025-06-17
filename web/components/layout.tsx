@@ -28,44 +28,44 @@ export default function LayoutNavigation({ children, session, organization }: { 
             </div>
             <div className="flex-1 ">
               <nav className="grid items-start px-3 text-sm font-medium gap-2 mt-1">
-                <Button asChild variant="ghost" className={` ${path.includes('/overview') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/overview') ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
                   <Link href='/overview'>
                   <Home className="size-4" />
                   Overview
                   </Link>
                 </Button>
-                <Button asChild variant="ghost" className={` ${path.includes('/jobs') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/jobs') ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
                   <Link href='/jobs'>
                   <Briefcase className="size-4" />
                   Jobs
                   </Link>
                 </Button>
-                <Button asChild variant="ghost" className={` ${path.includes('/applicants') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/applicants') ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
                 <Link href='/applicants'>
                 <Users className="h-4 w-4" />
                   Applicants
                 </Link>
                 </Button>
-                <Button asChild variant="ghost" className={` ${path.includes('/categories') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/categories') ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
                 <Link href='/categories'>
                 <Tags className="h-4 w-4" />
                   Categories
                 </Link>
                 </Button>
-                <Button asChild variant="ghost" className={` ${path.includes('/billing') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/billing') ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
                 <Link href='/billing'>
                 <Banknote className="h-4 w-4" />
                   Billing
                 </Link>
                 </Button>
                 <Separator />
-                <Button asChild variant="ghost" className={` ${path.includes('/members') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/members') ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
                 <Link href='/members'>
                 <Users className="h-4 w-4" />
                   Members
                 </Link>
                 </Button>
-                <Button asChild variant="ghost" className={` ${path.includes('/settings') ? "bg-accent" : ""} !text-start justify-start w-full`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/settings') ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
                 <Link href='/settings'>
                 <Settings className="h-4 w-4" />
                   Settings

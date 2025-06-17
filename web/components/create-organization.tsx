@@ -43,34 +43,34 @@ export function CreateOrganizationButton() {
         <>
         <Dialog>
         <DialogTrigger asChild>
-        <Button variant={"outline"} className="font-extrabold w-full bg-theme border border-white/20 ">
+        <Button variant={"outline"} className="font-extrabold w-full bg-theme border border-white/20 rounded-none">
         <Plus className="text-white"/>
         </Button>    
         </DialogTrigger>
         <DialogDescription>
             
         </DialogDescription>
-        <DialogContent className="w-[90%] bg-theme border border-white/20 rounded-md">
+        <DialogContent className="w-[90%] bg-theme border border-white/20 !rounded-none">
         <DialogHeader>
         <DialogTitle className="text-left text-xl font-extrabold text-white">Create Organization</DialogTitle>
         </DialogHeader>
         <form className="grid items-center gap-3 text-left" onSubmit={create_organization}>
         <Label className='font-extrabold text-white text-left'>Name</Label>
         <Input placeholder="Enter name" required value={name} onChange={((e) => {setName(e.target.value)})} 
-        className="bg-accent text-base border border-white/20 font-bold text-white"/>
+        className="bg-accent text-base border border-white/20 font-bold text-white rounded-none"/>
         <Label className='font-extrabold text-white text-left'>Slug</Label>
         <Input placeholder="Enter slug" required value={slug} onChange={((e) => {setSlug(e.target.value)})} 
-        className="bg-accent text-base border border-white/20 font-bold text-white"/>
+        className="bg-accent text-base border border-white/20 font-bold text-white rounded-none"/>
         <div>
         <Button type="submit" 
         disabled={loading}
         variant={"default"}
-        className="w-full mt-4 font-extrabold">
+        className="w-full mt-4 font-extrabold rounded-none">
             {
                 loading
                 ? 
                 <>
-                <Loader2 className="animate-spin text-white" />
+                <Loader2 className="animate-spin text-black" />
                 Create Organization
                 </>
                 : 

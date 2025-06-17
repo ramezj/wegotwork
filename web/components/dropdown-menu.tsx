@@ -28,16 +28,16 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
         <>
         <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                <Button variant={"outline"} className="w-full bg-theme">
+                <Button variant={"outline"} className="w-full bg-theme rounded-none">
                     {session?.user?.name}
                     <ChevronsUpDown className="ml-auto size-4" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   side="top"
-                  className="w-[--radix-popper-anchor-width] space-y-2 bg-theme mb-1"
+                  className="w-[--radix-popper-anchor-width] space-y-2 bg-theme mb-1 rounded-none"
                 >
-                  <DropdownMenuItem onSelect={redirectToDashboard} className="font-extrabold cursor-pointer">
+                  <DropdownMenuItem onSelect={redirectToDashboard} className="font-extrabold cursor-pointer rounded-none">
                   <Settings2 className="size-4" />
                   Switch Organization
                   </DropdownMenuItem>
@@ -45,7 +45,7 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                   <Separator className="-my-1"/>
                   </div>
                   <DropdownMenuItem onClick={signUserOut} 
-                  className="cursor-pointer font-extrabold">
+                  className="cursor-pointer font-extrabold rounded-none">
                   <LogOut className="size-4" />
                   Log out
                   </DropdownMenuItem>

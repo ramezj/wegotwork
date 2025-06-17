@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 export default function SignIn() {
 
   return (
-    <Card className="max-w-md bg-theme border border-white/20">
+    <Card className="max-w-md rounded-sm bg-theme border border-white/20">
       <CardHeader>
         <CardTitle className="text-lg md:text-xl text-white text-center font-extrabold">Sign In to wegotwork</CardTitle>
         <CardDescription className="text-xs md:text-sm text-white text-center font-bold p-2">
@@ -23,7 +23,7 @@ export default function SignIn() {
             )}>
               <Button
                   variant="outline"
-                  className="font-bold w-full bg-accent"
+                  className="font-bold w-full bg-accent rounded-sm"
                   onClick={async () => {
                     await signIn.social({
                       provider: "google",
@@ -41,7 +41,7 @@ export default function SignIn() {
                 </Button>
                 <Button
                   variant="outline"
-                  className="font-bold w-full bg-accent"
+                  className="font-bold w-full bg-accent rounded-sm"
                   onClick={async () => {
                     await signIn.social({
                       provider: "google",

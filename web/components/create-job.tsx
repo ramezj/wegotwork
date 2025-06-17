@@ -44,7 +44,7 @@ export default function CreateJob({ id, className, children, ...buttonProps }: C
         <>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="bg-theme px-4" variant={"outline"} {...buttonProps}>
+          <Button className="bg-theme px-4 font-bold rounded-none" variant={"outline"} {...buttonProps}>
             Create Job
           </Button>
           </DialogTrigger>

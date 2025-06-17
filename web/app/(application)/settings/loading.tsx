@@ -13,7 +13,7 @@ export default function Loading() {
         <> 
         <div className="flex justify-between items-center w-full">
         <h1 className="font-extrabold text-4xl text-white tracking-tight">Settings</h1>
-        <Button size={"sm"} variant={"outline"} className="bg-theme font-extrabold border border-white/20">
+        <Button size={"sm"} variant={"outline"} className="rounded-none bg-theme font-extrabold border border-white/20">
         <Settings className="size-4 text-white" />
         </Button>
         </div>
