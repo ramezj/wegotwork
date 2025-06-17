@@ -56,23 +56,26 @@ export default async function Home() {
             </CustomButton> */}
       </div>
       <div className="not-prose my-8 lg:w-1/2 w-full space-y-4">
-      {/* <img
-        className="border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)]"
-        src="/image.png"
-        alt="Photo by Drew Beamer"
-        /> */}
             <LandingPageJobCard title="Operations Manager" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
             <LandingPageJobCard title="Backend Engineer" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
       </div>
       </div>
-      <div className="pb-5">
+      {/* <div className="not-prose my-8 lg:w-1/2 w-full space-y-4 border border-white/20 flex items-center content-center">
+        <img
+        className="border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)]"
+        src="/dashboard.png"
+        alt="Photo by Drew Beamer"
+        />
+      </div> */}
+      {/* <div className="pb-5">
       <Marquee items={items} />
-      </div>
-      <div className="content-center items-center justify-center flex px-4 mt-8">
+      </div> */}
+
+      {/* <div className="content-center items-center justify-center flex px-4">
       <div className="not-prose lg:w-1/2 w-full overflow-hidden space-y-4">
       <FeatureCards />
       </div>
-      </div>
+      </div> */}
       </div>
     </main>
   );
