@@ -80,7 +80,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
           </div>
         </div>
         <div className="flex flex-col sticky">
-          <header className="z-50 flex h-16 items-center gap-4 border-b border-white/20 bg-black px-3 lg:h-16 sticky top-0 bg-black">
+          <header className="z-50 flex h-16 items-center gap-4 border-b border-white/20 bg-black px-3 lg:h-16 sticky top-0">
             <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="shrink-0 md:hidden text-white hover:text-white p-8 bg-black hover:bg-black rounded-none -ml-4">
