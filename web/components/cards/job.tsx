@@ -95,7 +95,7 @@ export function LandingPageJobCard({ title, type, location, age }: { title: stri
       </div>
       </div>
       <div className="ml-auto mr-5">
-      <Button className="rounded-none bg-accent hover:bg-accent border-white/20 border" variant={"outline"} size={"icon"}>
+      <Button className="rounded-none" variant={"default"} size={"icon"}>
         <ArrowRight className="size-4" />
       </Button>
       </div>

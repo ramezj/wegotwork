@@ -20,7 +20,8 @@ export function Navbar({ session } : { session: Session | null}) {
     }
   }, [isOpen])
   return (
-    <div className="border-b border-white/20 bg-black sticky top-0 h-16 z-50 overflow-hidden">
+    // add overflow-hidden if not the white button.
+    <div className="border-b border-white/20 bg-black sticky top-0 h-16 z-50">
       <div className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center z-50 pl-4 text-2xl font-extrabold tracking-tighter text-white">
           <span className="text-2xl font-extrabold tracking-tighter text-white">wegotwork</span>
@@ -51,20 +52,29 @@ export function Navbar({ session } : { session: Session | null}) {
               session?.user.currentOrganizationId === null
               ? 
               <>
-              <Button variant="default" asChild className="border-l border-b border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-bold text-white text-base">
+              {/* <Button variant="default" asChild className="border-l border-b border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-bold text-white text-base">
+              <Link href="/dashboard">Dashboard</Link>
+              </Button> */}
+              <Button variant="default" asChild className="h-16 px-6 rounded-none font-bold text-base">
               <Link href="/dashboard">Dashboard</Link>
               </Button>
               </>
               :
               <>
-              <Button variant="default" asChild className="border-l border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-bold text-white text-base">
+              {/* <Button variant="default" asChild className="border-l border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-bold text-white text-base">
+              <Link href="/overview">Dashboard</Link>
+              </Button> */}
+              <Button variant="default" asChild className="h-16 px-6 rounded-none font-bold text-base">
               <Link href="/overview">Dashboard</Link>
               </Button>
               </>
             }
             </>
           ) : (
-            <Button asChild variant="default" className="border-l border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-bold text-white text-base">
+            // <Button asChild variant="default" className="border-l border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-bold text-white text-base">
+            //   <Link href="/auth">Start Hiring</Link>
+            // </Button>
+            <Button asChild variant="default" className="h-16 px-6 rounded-none font-bold text-base">
               <Link href="/auth">Start Hiring</Link>
             </Button>
           )}

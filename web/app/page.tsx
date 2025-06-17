@@ -39,12 +39,12 @@ export default async function Home() {
                 Start Hiring
                 </Link>
             </CustomButton> */}
-            <Button asChild variant={"outline"} className="px-4 w-full bg-theme rounded-none">
+            <Button asChild variant={"default"} className="px-4 w-full rounded-none font-bold">
               <Link href='/auth'>
               Start Hiring
               </Link>
               </Button>
-            <Button variant={"outline"} asChild className="px-4 w-full bg-theme rounded-none">
+            <Button variant={"default"} asChild className="px-4 w-full rounded-none font-bold">
               <Link href={`http://demo.${process.env.NEXT_PUBLIC_URL}`} target="_blank">
               See Demo
               </Link>
