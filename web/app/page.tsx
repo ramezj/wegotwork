@@ -39,7 +39,7 @@ export default async function Home() {
                 Start Hiring
                 </Link>
             </CustomButton> */}
-            <Button asChild variant={"default"} className="px-4 w-full rounded-none font-bold">
+            <Button asChild variant={"outline"} className="px-4 bg-theme w-full rounded-none font-bold">
               <Link href='/auth'>
               Start Hiring
               </Link>
