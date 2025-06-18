@@ -32,7 +32,7 @@ export function PickOrganizationCard({ userOrganizations }: { userOrganizations 
         }
     }
   return (
-    <div className="sm:w-[30%]">
+    <div className="xl:w-[30%] 2xl:w-[30%] md:w-[50%] w-full sm:px-0 px-6">
     <Card className="bg-theme w-full rounded-none">
       <CardHeader>
         <CardTitle>Your Organizations</CardTitle>

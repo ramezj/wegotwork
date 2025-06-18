@@ -29,10 +29,7 @@ export default async function Home() {
   return (
     <>
     <Navbar session={session} />
-    <div className="flex items-center justify-center mt-12">
-    {/* <h1 className="font-extrabold text-3xl text-white">Pick an organization</h1> */}
-    </div>
-    <div className="mt-8 flex justify-center items-center content-center">
+    <div className="mt-20 flex justify-center items-center content-center">
     <PickOrganizationCard userOrganizations={Organizations?.userOrganizations as OrganizationUserWithOrganization[]} />
     </div>
     </>
