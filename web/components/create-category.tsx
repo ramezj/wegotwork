@@ -38,7 +38,7 @@ export default function CreateCategoryButton() {
         <>
       <Dialog>
         <DialogTrigger asChild>
-        <Button className="px-4 border border-white/20 bg-theme font-extrabold" variant={"outline"}>
+        <Button className="px-4 border border-white/20 bg-theme font-extrabold rounded-none" variant={"outline"}>
         Create Category
         </Button>
         </DialogTrigger>

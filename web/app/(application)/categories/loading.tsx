@@ -12,7 +12,7 @@ export default function Loading() {
         <> 
         <div className="flex justify-between items-center w-full">
         <h1 className="font-extrabold text-4xl text-white tracking-tight">Categories</h1>
-        <Button disabled variant={"outline"} className="font-extrabold border border-white/20 px-4 bg-theme">
+        <Button disabled variant={"outline"} className="font-extrabold border border-white/20 px-4 bg-theme rounded-none">
         Create Category
         </Button>
         </div>

@@ -39,11 +39,11 @@ function SortableCategoryItem({ id, name }: { id: string; name: string }) {
       {...attributes}
       {...listeners}
       style={style}
-      className="border rounded-md border-white/20 p-4 cursor-move bg-theme text-white font-bold mb-2 flex justify-between items-center"
+      className="border rounded-none border-white/20 p-4 cursor-move bg-theme text-white font-bold mb-2 flex justify-between items-center"
     >
       <p className="select-none">{name}</p>
-      <Button className="rounded-md bg-accent hover:bg-accent border border-white/20 text-white">
-        <Trash className="w-4 h-4 text-white" />
+      <Button variant={"default"} className="rounded-none">
+        <Trash className="w-4 h-4 text-black" />
       </Button>
     </div>
 
@@ -97,7 +97,7 @@ export default function SortableCategories({ categories }: { categories: JobCate
       <Button
       onClick={handleSave}
       variant={"default"}
-      className={`font-extrabold mt-2 border border-white/20 px-4
+      className={`font-extrabold mt-2 border border-white/20 px-4 rounded-none
         ${saving ? "pointer-events-none" : ""}
       `}
       >
