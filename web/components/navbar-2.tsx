@@ -93,7 +93,7 @@ export function Navbar({ session } : { session: Session | null}) {
           <Button
           variant="ghost"
           size="icon"
-          className="md:hidden z-50 text-white hover:text-white border-l border-b border-white/20 px-8 h-16 bg-inherit hover:bg-inherit rounded-none"
+          className="md:hidden z-50 text-white hover:text-white px-8 h-full bg-inherit hover:bg-inherit rounded-none"
           onClick={() => setIsOpen(!isOpen)}>
           <Menu className="h-6 w-6" />
           </Button>
