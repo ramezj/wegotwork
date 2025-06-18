@@ -83,7 +83,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
           <header className="z-50 flex h-16 items-center gap-4 border-b border-white/20 bg-black px-3 lg:h-16 sticky top-0">
             <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="shrink-0 md:hidden text-white hover:text-white p-8 bg-inherit border-b border-r border-white/20 hover:bg-black rounded-none -ml-4">
+              <Button variant="ghost" size="icon" className="shrink-0 md:hidden text-white hover:text-white p-8 bg-inherit border-b border-white/20 hover:bg-black rounded-none -ml-4">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
