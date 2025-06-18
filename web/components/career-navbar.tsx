@@ -50,8 +50,8 @@ export function CareerNavbar({ organization } : { organization: OrganizationWith
           <span className="text-2xl font-extrabold tracking-tighter text-white">{organization.name}</span>
         </Link>
         <div className="">
-        <Button asChild variant="default" className="border-l border-b border-white/20 h-16 rounded-none hover:bg-black bg-black font-bold text-white text-base">
-              <Link href={`${organization.website === null ? "https://wegotwork.co" : organization.website}`}>visit website</Link>
+        <Button asChild variant="default" className="border-l border-b border-white/20 h-16 rounded-none text-base">
+              <Link href={`${organization.website === null ? "https://wegotwork.co" : organization.website}`}>Visit Website</Link>
             </Button>
         </div>
         {/* {

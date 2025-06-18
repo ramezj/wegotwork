@@ -88,57 +88,71 @@ export default function LayoutNavigation({ children, session, organization }: { 
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
-              <SheetContent side="left" className="flex flex-col bg-white">
+              <SheetContent side="left" className="flex flex-col bg-black">
               <SheetTitle>
                 <SheetClose asChild className="top-4">
                   <Link href="/" className="px-2 text-2xl tracking-tighter text-black font-extrabold">
-                  <span className="text-2xl tracking-tighter text-black font-extrabold">wegotwork</span>
+                  <span className="text-2xl tracking-tighter text-white font-extrabold">wegotwork</span>
                   </Link>
                   </SheetClose>
                 </SheetTitle>
                 <nav className="grid gap-3 text-lg font-medium mt-1">
-                <SheetClose asChild>
-                <Link href="/overview" className={`${path.includes('/overview') ? 'bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme hover:border-black hover:text-black border-2 border-white active:border-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
-                 <Home className="size-4" />
+                  <SheetClose asChild>
+                  <Button className="w-full justify-start text-left px-3 py-4" variant={"ghost"} asChild>
+                  <Link href="/overview" className={` ${path.includes('/overview') ? "bg-accent" : ""} w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
+                  <Home className="size-4" />
                   Overview
-                </Link>
+                  </Link>
+                  </Button>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href="/jobs" className={`${path.includes('/jobs') ? 'bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme hover:border-black hover:text-black border-2 border-white active:border-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
+                  <Button className="w-full justify-start text-left px-3 py-2" variant={"ghost"} asChild>
+                  <Link href="/jobs" className={` ${path.includes('/jobs') ? "bg-accent" : ""} w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
                   <Briefcase className="h-4 w-4" />
                   Jobs
                   </Link>
+                  </Button>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href="/applicants" className={`${path.includes('/applicants') ? 'bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme hover:border-black hover:text-black border-2 border-white active:border-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
+                  <Button className="w-full justify-start text-left px-3 py-2" variant={"ghost"} asChild>
+                  <Link href="/applicants" className={` ${path.includes('/applicants') ? "bg-accent" : ""} w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
                   <Users className="h-4 w-4" />
                   Applicants
                   </Link>
+                  </Button>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href="/categories" className={`${path.includes('/categories') ? 'bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme hover:border-black hover:text-black border-2 border-white active:border-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
+                  <Button className="w-full justify-start text-left px-3 py-2" variant={"ghost"} asChild>
+                  <Link href="/categories" className={` ${path.includes('/categories') ? "bg-accent" : ""} w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
                   <Tags className="h-4 w-4" />
                   Categories
                   </Link>
+                  </Button>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href="/billing" className={`${path.includes('/billing') ? 'bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme hover:border-black hover:text-black border-2 border-white active:border-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
+                  <Button className="w-full justify-start text-left px-3 py-2" variant={"ghost"} asChild>
+                  <Link href="/billing" className={` ${path.includes('/billing') ? "bg-accent" : ""} w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
                   <Banknote className="h-4 w-4" />
                     Billing
                   </Link>
+                  </Button>
                   </SheetClose>
                   <Separator />
                   <SheetClose asChild>
-                  <Link href="/members" className={`${path.includes('/members') ? 'bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme hover:border-black hover:text-black border-2 border-white active:border-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
+                  <Button className="w-full justify-start text-left px-3 py-2" variant={"ghost"} asChild>
+                  <Link href="/members" className={` ${path.includes('/members') ? "bg-accent" : ""} w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
                   <Users className="h-4 w-4" />
                     Members
                   </Link>
+                  </Button>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Link href="/settings" className={`${path.includes('/settings') ? 'bg-theme text-black border-2 !border-black shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all' : ''} font-extrabold flex items-center gap-3 rounded-none px-3 py-2 text-black hover:bg-theme hover:border-black hover:text-black border-2 border-white active:border-black hover:shadow-[0_4px_0_0_rgba(0,0,0,1)] active:shadow-[0_0px_0_0_rgba(0,0,0,1)] active:translate-y-1 transition-all`}>
+                  <Button className="w-full justify-start text-left px-3 py-2" variant={"ghost"} asChild>
+                  <Link href="/settings" className={` ${path.includes('/settings') ? "bg-accent" : ""} w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
                   <Settings className="h-4 w-4" />
                     Settings
                   </Link>
+                  </Button>
                   </SheetClose>
                 </nav>
                 <div className="w-full flex gap-2 pt-4 bottom-0 mt-auto">
