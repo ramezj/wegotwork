@@ -85,7 +85,7 @@ export function Navbar({ session } : { session: Session | null}) {
           <Button
           variant="ghost"
           size="icon"
-          className="md:hidden z-50 text-black hover:text-black border-l border-b border-white/20 px-8 h-16 bg-white hover:bg-white rounded-none"
+          className="md:hidden z-50 text-black hover:text-black px-8 h-16 bg-white hover:bg-white rounded-none"
           onClick={() => setIsOpen(!isOpen)}>
           <X className="h-6 w-6" /> 
           </Button>
