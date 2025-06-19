@@ -9,8 +9,8 @@ import { FreeCard, PaidCard } from "@/components/pricing";
 import { Metadata } from "next";
 
 export const metadata:Metadata = {
-  title: "pricing",
-  description: "pricing"
+  title: "Pricing",
+  description: "Pricing"
 }
 
 export default async function Home() {
@@ -21,7 +21,7 @@ export default async function Home() {
     <>
     <Navbar session={session} />
     <div className="flex items-center justify-center p-8">
-    <h1 className="font-extrabold text-4xl text-black">pricing</h1>
+    <h1 className="font-extrabold text-4xl text-white">Pricing</h1>
     </div>
     <div className="flex sm:flex-row flex-col gap-4 items-center justify-center">
         <FreeCard />
