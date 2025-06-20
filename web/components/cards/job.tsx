@@ -24,7 +24,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
     };
     return (
       <div onClick={handleCardClick}>
-      <div className="w-full flex border border-white/20 bg-theme rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer">
+      <div className="w-full flex border   bg-theme rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
         <p className='sm:text-lg text-md font-extrabold text-left text-white'>
          {job.title}     
@@ -46,25 +46,25 @@ export function JobCardForDashboard({ job }: { job: Job}) {
 export function JobCard({ job }: { job: JobWithCategories }) {
     return (
       <Link href={`/${job.id}`}>
-      <div className="w-full bg-theme flex border-b rounded-none items-center pt-3 pb-3 cursor-pointer">
+      <div className="w-full bg-theme flex border rounded-none items-center pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
         <p className='sm:text-lg text-md font-medium text-left text-white'>
          {job.title}     
         </p>
         <div className="mt-2 flex gap-2">
-        <Badge className="rounded-none bg-accent text-white border border-white/20 font-medium hover:bg-accent">{formatJobType(job.type as Type)}</Badge>
+        <Badge className="rounded-none bg-accent text-white border font-medium hover:bg-accent">{formatJobType(job.type as Type)}</Badge>
         {
             job.categoryId === null 
             ?
             <>
             </>
             :
-            <Badge className="rounded-none bg-accent text-white border border-white/20 font-medium hover:bg-accent">{job.category?.name}</Badge>
+            <Badge className="rounded-none bg-accent text-white border font-medium hover:bg-accent">{job.category?.name}</Badge>
           }
         </div>
         </div>
         <div className="ml-auto mr-5">
-        <Button className="border border-white/20 rounded-none" variant={"default"} size={"icon"}>
+        <Button className="border   rounded-none" variant={"default"} size={"icon"}>
             <ArrowRight className="size-4" />
         </Button>
           {/* {
@@ -85,7 +85,7 @@ export function JobCard({ job }: { job: JobWithCategories }) {
 
 export function LandingPageJobCard({ title, type, location, age }: { title: string, type: string, location: string, age:string }) {
   return (
-      <div className="w-full bg-theme flex border border-white/20 rounded-none items-center pt-3 pb-3 cursor-pointer">
+      <div className="w-full bg-theme flex border   rounded-none items-center pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
       <p className='sm:text-lg text-md font-extrabold text-left text-white'>
        {title}     
@@ -110,7 +110,7 @@ export function JobCardForApplicants({ job, applicants }: { job: Job, applicants
   };
   return (
     <div onClick={handleCardClick}>
-    <div className="w-full bg-theme flex border border-white/20 rounded-none items-center pt-3 pb-3 cursor-pointer">
+    <div className="w-full bg-theme flex border   rounded-none items-center pt-3 pb-3 cursor-pointer">
     <div className="mx-5 my-3 flex flex-col items-start text-left">
       <p className='sm:text-lg text-md font-extrabold text-left text-white'>
        {job.title}     
