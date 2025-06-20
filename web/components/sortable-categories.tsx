@@ -39,7 +39,7 @@ function SortableCategoryItem({ id, name }: { id: string; name: string }) {
       {...attributes}
       {...listeners}
       style={style}
-      className="border rounded-none border-white/20 p-4 cursor-move bg-theme text-white font-bold mb-2 flex justify-between items-center"
+      className="border rounded-none p-4 cursor-move bg-theme text-white font-bold mb-2 flex justify-between items-center"
     >
       <p className="select-none">{name}</p>
       <Button variant={"default"} className="rounded-none">

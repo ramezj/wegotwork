@@ -49,7 +49,7 @@ export default function CreateJob({ id, className, children, ...buttonProps }: C
           </Button>
           </DialogTrigger>
       <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} 
-      className="text-left w-[90%] bg-theme border border-white/20 !rounded-none ">
+      className="text-left w-[90%] bg-theme border !rounded-none ">
         <DialogHeader>
           <DialogTitle className="text-left font-extrabold text-white !text-xl">Create a new job</DialogTitle>
         </DialogHeader>
@@ -66,7 +66,7 @@ export default function CreateJob({ id, className, children, ...buttonProps }: C
               value={name}
               onChange={((e) => {setName(e.target.value)})}
               placeholder="Enter Job title"
-              className="bg-accent rounded-none border border-white/20 text-white font-medium text-base"
+              className="bg-accent rounded-none border text-white font-medium text-base"
             />
             </form>
           </div>

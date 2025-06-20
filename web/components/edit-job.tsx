@@ -42,7 +42,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
     }
     return (
         <>
-        <Card className="w-full rounded-none bg-theme border border-white/20">
+        <Card className="w-full rounded-none bg-theme border ">
         <CardHeader className=''>
         <div className="flex justify-between items-center w-full">
         <CardTitle className="text-white font-extrabold">
@@ -55,7 +55,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
         <form onSubmit={EditTheJob} className="space-y-4">
                 <div className="space-y-2">
                 <Label className='font-extrabold text-white'>Title</Label>
-                <Input required className="bg-accent border border-white/20 text-white font-bold text-base rounded-none" placeholder="Enter job title" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>
+                <Input required className="bg-accent border  text-white font-bold text-base rounded-none" placeholder="Enter job title" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-white'>Employment Type</Label>
@@ -65,7 +65,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                             {formatJobType(current.type)}
                         </SelectValue>
                         </SelectTrigger>
-                        <SelectContent className="bg-theme rounded-none border border-white/20 text-white font-bold">
+                        <SelectContent className="bg-theme rounded-none border  text-white font-bold">
                             <SelectGroup className="space-y-1">
                                 <SelectItem className="rounded-none" value="fulltime">Full Time</SelectItem>
                                 <SelectItem className="rounded-none" value="parttime">Part Time</SelectItem>
@@ -90,12 +90,12 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                         onValueChange={((e) => { 
                         setCurrentCategoryId(e as string);
                         })}>
-                        <SelectTrigger className="bg-accent rounded-none border border-white/20 text-white font-bold text-base">
+                        <SelectTrigger className="bg-accent rounded-none border border-white/20  text-white font-bold text-base">
                         <SelectValue>
                             {selectedCategoryName}
                         </SelectValue>
                         </SelectTrigger>
-                        <SelectContent className="bg-accent rounded-none border border-white/20 text-white font-bold">
+                        <SelectContent className="bg-accent rounded-none border  text-white font-bold">
                             <SelectGroup className="space-y-1">
                             <SelectItem value="none">
                                 No Category
@@ -128,7 +128,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 <div className="space-y-2">
                 <Label className='font-extrabold text-white'>Country</Label>
                 <div className="flex flex-row gap-2">
-                <Input className="bg-accent border border-white/20 text-white font-bold text-base rounded-none"
+                <Input className="bg-accent border  text-white font-bold text-base rounded-none"
                 placeholder="Enter country" value={current.country == null ? '' : current.country} 
                 onChange={((e) => { 
                     setCurrent((previous) => ({
@@ -154,7 +154,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 <div className="space-y-2">
                 <Label className='font-extrabold text-white'>City</Label>
                 <div className="flex flex-row gap-2">
-                <Input className="bg-accent border border-white/20 text-white font-bold text-base rounded-none"
+                <Input className="bg-accent border  text-white font-bold text-base rounded-none"
                 placeholder="Enter city" 
                 value={current.city == null ? '' : current.city} 
                 onChange={((e) => { 
@@ -180,7 +180,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 </div>
                 <div className="space-y-2">
                 <Label className='font-extrabold text-white'>Description</Label>
-                <Textarea className="bg-accent border border-white/20 text-white font-bold text-base rounded-none" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
+                <Textarea className="bg-accent border  text-white font-bold text-base rounded-none" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
                 </div>
                 <div className="gap-2">
                 <Button type="submit" variant={"default"} disabled={loading} className="px-4 font-extrabold rounded-none">
