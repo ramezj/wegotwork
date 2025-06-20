@@ -23,7 +23,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
           <div className="flex h-full max-h-screen flex-col gap-2 sticky top-0 z-50 bg-black">
             <div className="flex h-16 items-center border-b   bg-black px-3 lg:h-16 text-center justify-center">
             <Link href="/" className="flex items-center z-50">
-            <span className="text-2xl tracking-tighter text-white font-extrabold">wegotwork</span>
+            <span className="text-2xl tracking-tighter text-white font-bold">wegotwork</span>
             </Link>
             </div>
             <div className="flex-1 ">
@@ -92,7 +92,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
               <SheetTitle>
                 <SheetClose asChild className="top-4">
                   <Link href="/" className="px-2 text-2xl tracking-tighter text-black font-extrabold">
-                  <span className="text-2xl tracking-tighter text-white font-extrabold">wegotwork</span>
+                  <span className="text-2xl tracking-tighter text-white font-bold">wegotwork</span>
                   </Link>
                   </SheetClose>
                 </SheetTitle>
