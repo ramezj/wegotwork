@@ -13,7 +13,7 @@ export default function Loading() {
         <> 
         <div className="flex justify-between items-center w-full">
         <h1 className="font-extrabold text-white text-4xl tracking-tight">Billing</h1>
-        <Button size={"sm"} variant={"outline"} className=" bg-theme font-extrabold border border-white/20 rounded-none">
+        <Button size={"sm"} variant={"outline"} className=" bg-theme font-extrabold border rounded-none">
         <Banknote className="size-4" />
         </Button>
         </div>
