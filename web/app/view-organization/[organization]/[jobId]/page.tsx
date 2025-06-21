@@ -59,7 +59,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         </div>
             <div className="w-full flex flex-col items-center text-center py-8 px-4 gap-y-4">
             <div>
-            <h1 className="font-extrabold text-white text-2xl">{job.job?.title}</h1>
+            <h1 className="font-medium text-white text-2xl">{job.job?.title}</h1>
             <p className="text-sm max-w-3xl text-white">{formatDistanceToNow(job.job?.createdAt!)} ago </p>
             </div>
             <div className="flex flex-row gap-2">
@@ -78,7 +78,7 @@ export default async function Page({ params } : { params: Promise<{ organization
                 job.job?.content
                 ?  
                 <>
-                <div className="lg:w-1/2 w-full rounded-none text-white bg-theme border border-white/20 font-bold p-7 text-left" dangerouslySetInnerHTML={{__html: job.job?.content!}} />
+                <div className="lg:w-1/2 w-full rounded-none text-white bg-theme border border-white/20 font-medium p-7 text-left" dangerouslySetInnerHTML={{__html: job.job?.content!}} />
                 </>
                 :
                 <>

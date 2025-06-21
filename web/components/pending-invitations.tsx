@@ -18,11 +18,11 @@ export function PendingInvitations({ OrganizationInvites } : { OrganizationInvit
       <>
       <Card className="w-full rounded-none bg-theme border">
       <CardHeader>
-        <CardTitle className="text-2xl font-extrabold text-white">Pending invitations</CardTitle>
+        <CardTitle className="text-2xl font-medium text-white">Pending invitations</CardTitle>
         {
           OrganizationInvites.length > 0
           &&
-          <CardDescription className="text-white font-bold">{OrganizationInvites.length} invitations awaiting response </CardDescription>
+          <CardDescription className="text-white font-medium">{OrganizationInvites.length} invitations awaiting response </CardDescription>
         }
       </CardHeader>
       <CardContent className="">
@@ -30,7 +30,7 @@ export function PendingInvitations({ OrganizationInvites } : { OrganizationInvit
           OrganizationInvites.length === 0 
           && 
           <>
-          <p className="text-sm font-bold text-white">0 pending invitations</p>
+          <p className="text-sm font-medium text-white">0 pending invitations</p>
           </>
         }
         {
@@ -39,7 +39,7 @@ export function PendingInvitations({ OrganizationInvites } : { OrganizationInvit
                     <div className="flex items-center justify-between space-y-2" key={Invitation.id}>
                     <div className='flex items-center gap-2'>
                     <Mail className="size-4 text-white" />
-                    <h1 className="font-bold text-white">{Invitation.email}</h1>
+                    <h1 className="font-medium text-white">{Invitation.email}</h1>
                     </div>
                     <div>
                       <Button size={"icon"} variant={"outline"} className='bg-accent rounded-none'><MoreHorizontal className="text-white size-4" /></Button>

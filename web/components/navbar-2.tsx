@@ -23,23 +23,23 @@ export function Navbar({ session } : { session: Session | null}) {
     // add overflow-hidden if not the white button.
     <div className="border-b bg-black sticky top-0 h-16 z-50">
       <div className="flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center z-50 pl-4 text-2xl font-extrabold tracking-tighter text-white">
-          <span className="text-2xl font-bold tracking-tighter text-white">wegotwork</span>
+        <Link href="/" className="flex items-center z-50 pl-4 text-2xl font-medium tracking-tighter text-white">
+          <span className="text-2xl font-medium tracking-tighter text-white">wegotwork</span>
         </Link>
         <div className='justify-center items-center gap-4 hidden md:flex pl-4 align-middle'>
             {/* <NavigationMenuForNavbar /> */}
             <Link href={"/"} className="">
-            <span className="text-lg font-bold tracking-tighter text-white">
+            <span className="text-lg font-medium tracking-tighter text-white">
             features
             </span>
             </Link>
             <Link target="_blank" href={`http://wegotwork.${process.env.NEXT_PUBLIC_URL}`} className="">
-            <span className="text-lg font-bold tracking-tighter text-white">
+            <span className="text-lg font-medium tracking-tighter text-white">
             demo
             </span>
             </Link>
             <Link href={"/pricing"} className="">
-            <span className="text-lg font-bold tracking-tighter text-white">
+            <span className="text-lg font-medium tracking-tighter text-white">
             pricing
             </span>
             </Link>
@@ -52,29 +52,29 @@ export function Navbar({ session } : { session: Session | null}) {
               session?.user.currentOrganizationId === null
               ? 
               <>
-              {/* <Button variant="default" asChild className="border-l border-b border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-bold text-white text-base">
+              {/* <Button variant="default" asChild className="border-l border-b border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-medium text-white text-base">
               <Link href="/dashboard">Dashboard</Link>
               </Button> */}
-              <Button variant="default" asChild className="h-16 px-6 rounded-none font-bold text-base">
+              <Button variant="default" asChild className="h-16 px-6 rounded-none font-medium text-base">
               <Link href="/dashboard">Dashboard</Link>
               </Button>
               </>
               :
               <>
-              {/* <Button variant="default" asChild className="border-l border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-bold text-white text-base">
+              {/* <Button variant="default" asChild className="border-l border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-medium text-white text-base">
               <Link href="/overview">Dashboard</Link>
               </Button> */}
-              <Button variant="default" asChild className="h-16 px-6 rounded-none font-bold text-base">
+              <Button variant="default" asChild className="h-16 px-6 rounded-none font-medium text-base">
               <Link href="/overview">Dashboard</Link>
               </Button>
               </>
             }
             </>
           ) : (
-            // <Button asChild variant="default" className="border-l border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-bold text-white text-base">
+            // <Button asChild variant="default" className="border-l border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-medium text-white text-base">
             //   <Link href="/auth">Start Hiring</Link>
             // </Button>
-            <Button asChild variant="default" className="h-16 px-6 rounded-none font-bold text-base">
+            <Button asChild variant="default" className="h-16 px-6 rounded-none font-medium text-base">
               <Link href="/auth">Start Hiring</Link>
             </Button>
           )}
@@ -107,7 +107,7 @@ export function Navbar({ session } : { session: Session | null}) {
               <Link
                 key={item}
                 href={`/${item.toLowerCase()}`}
-                className="text-2xl text-white transition-colors font-extrabold"
+                className="text-2xl text-white transition-colors font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 {item}
@@ -123,7 +123,7 @@ export function Navbar({ session } : { session: Session | null}) {
                 <>
                 <Link
                 href={`/dashboard`}
-                className="text-2xl text-white transition-colors font-extrabold"
+                className="text-2xl text-white transition-colors font-medium"
                 onClick={() => setIsOpen(false)}>
                 dashboard
                 </Link>
@@ -132,7 +132,7 @@ export function Navbar({ session } : { session: Session | null}) {
                 <>
                 <Link
                 href={`/overview`}
-                className="text-2xl text-white transition-colors font-extrabold"
+                className="text-2xl text-white transition-colors font-medium"
                 onClick={() => setIsOpen(false)}>
                 dashboard
                 </Link>
@@ -143,7 +143,7 @@ export function Navbar({ session } : { session: Session | null}) {
               <>
               <Link
               href={`/auth`}
-              className="text-2xl text-black transition-colors font-extrabold"
+              className="text-2xl text-black transition-colors font-medium"
               onClick={() => setIsOpen(false)}>
               start hiring
               </Link>

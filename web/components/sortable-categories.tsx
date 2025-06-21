@@ -39,7 +39,7 @@ function SortableCategoryItem({ id, name }: { id: string; name: string }) {
       {...attributes}
       {...listeners}
       style={style}
-      className="border rounded-none p-4 cursor-move bg-theme text-white font-bold mb-2 flex justify-between items-center"
+      className="border rounded-none p-4 cursor-move bg-theme text-white font-medium mb-2 flex justify-between items-center"
     >
       <p className="select-none">{name}</p>
       <Button variant={"default"} className="rounded-none">
@@ -97,7 +97,7 @@ export default function SortableCategories({ categories }: { categories: JobCate
       <Button
       onClick={handleSave}
       variant={"default"}
-      className={`font-extrabold mt-2 border border-white/20 px-4 rounded-none
+      className={`font-medium mt-2 border border-white/20 px-4 rounded-none
         ${saving ? "pointer-events-none" : ""}
       `}
       >

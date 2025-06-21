@@ -27,14 +27,14 @@ export function DeleteJobButton({ job } : { job: Job}) {
             <Trash className="size-4" />
         </Button>
       </DialogTrigger>
-      <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] bg-black border border-white/20">
+      <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] bg-theme border !rounded-none">
         <DialogHeader>
             <DialogTitle className="text-left text-white">
             Are you absolutely sure?
             </DialogTitle>
         </DialogHeader>
-        <DialogFooter className="mt-2">
-          <Button onClick={deletejob} variant={"destructive"} disabled={loading} className="w-full border border-white/20">
+        <DialogFooter className="mt-4">
+          <Button onClick={deletejob} variant={"destructive"} disabled={loading} className="w-full border rounded-none">
             {loading ? <Loader2 className="mr-1 h-4 w-4 animate-spin" /> : <></>}
             Delete Job
           </Button>

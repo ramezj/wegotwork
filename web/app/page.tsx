@@ -24,32 +24,32 @@ export default async function Home() {
       <Navbar session={session}/>
       <div>
       <div className="flex flex-col items-center text-center mt-12 px-2">
-      <h1 className="sm:text-7xl text-5xl font-black text-white">
+      <h1 className="sm:text-7xl text-5xl font-medium text-white">
         {/* Hiring just got easier. */}
         Build Beautiful Career Pages
       </h1>
-      <h3 className="sm:text-lg text-sm mt-2 font-bold text-balance text-white">
+      <h3 className="sm:text-lg text-sm mt-2 font-medium text-balance text-white">
         Build beautiful career pages, create jobs, receive applicants, all in one place.
       </h3>
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
       <div className="flex flex-row w-full sm:w-1/2 items-center justify-center content-center gap-4 mt-6">
-            {/* <CustomButton asChild variant={"default"} className="font-extrabold w-full rounded-none bg-white text-black border-2 border-black hover:bg-white transition-all hover:shadow-[0_0px_0_0_rgba(0,0,0,1)] hover:translate-y-1">
+            {/* <CustomButton asChild variant={"default"} className="font-medium w-full rounded-none bg-white text-black border-2 border-black hover:bg-white transition-all hover:shadow-[0_0px_0_0_rgba(0,0,0,1)] hover:translate-y-1">
                 <Link href='/auth'>
                 Start Hiring
                 </Link>
             </CustomButton> */}
-            <Button asChild variant={"outline"} className="px-4 bg-theme w-full rounded-none font-bold">
+            <Button asChild variant={"outline"} className="px-4 bg-theme w-full rounded-none font-medium">
               <Link href='/auth'>
               Start Hiring
               </Link>
               </Button>
-            <Button variant={"default"} asChild className="px-4 w-full rounded-none font-bold">
+            <Button variant={"default"} asChild className="px-4 w-full rounded-none font-medium">
               <Link href={`http://demo.${process.env.NEXT_PUBLIC_URL}`} target="_blank">
               See Demo
               </Link>
             </Button>
-            {/* <CustomButton asChild className="font-extrabold w-full rounded-none bg-white text-black border-2 border-black hover:bg-white transition-all hover:shadow-[0_0px_0_0_rgba(0,0,0,1)] hover:translate-y-1" variant={"default"}>
+            {/* <CustomButton asChild className="font-medium w-full rounded-none bg-white text-black border-2 border-black hover:bg-white transition-all hover:shadow-[0_0px_0_0_rgba(0,0,0,1)] hover:translate-y-1" variant={"default"}>
                 <Link target="_blank" href={`http://demo.${process.env.NEXT_PUBLIC_URL}`}>
                 See Demo
                 </Link>

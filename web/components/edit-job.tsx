@@ -45,7 +45,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
         <Card className="w-full rounded-none bg-theme border ">
         <CardHeader className=''>
         <div className="flex justify-between items-center w-full">
-        <CardTitle className="text-white font-extrabold">
+        <CardTitle className="text-white font-medium">
             Job Information
         </CardTitle>
         {/* <DeleteJobButton job={current as Job}/> */}
@@ -54,18 +54,18 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
         <CardContent>
         <form onSubmit={EditTheJob} className="space-y-4">
                 <div className="space-y-2">
-                <Label className='font-extrabold text-white'>Title</Label>
-                <Input required className="bg-accent border  text-white font-bold text-base rounded-none" placeholder="Enter job title" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>
+                <Label className='font-medium text-white'>Title</Label>
+                <Input required className="bg-accent border  text-white font-medium text-base rounded-none" placeholder="Enter job title" value={current.title} onChange={((e) => { setCurrent((previous) => ({...previous, title: e.target.value}))})}></Input>
                 </div>
                 <div className="space-y-2">
-                <Label className='font-extrabold text-white'>Employment Type</Label>
+                <Label className='font-medium text-white'>Employment Type</Label>
                     <Select value={current.type} onValueChange={((e) => { setCurrent((previous) => ({ ...previous, type: e as Type}))})} >
-                        <SelectTrigger value={current.type} className="bg-accent rounded-none border border-white/20 text-white font-bold text-base" defaultValue={current.type}>
+                        <SelectTrigger value={current.type} className="bg-accent rounded-none border border-white/20 text-white font-medium text-base" defaultValue={current.type}>
                         <SelectValue>
                             {formatJobType(current.type)}
                         </SelectValue>
                         </SelectTrigger>
-                        <SelectContent className="bg-theme rounded-none border  text-white font-bold">
+                        <SelectContent className="bg-theme rounded-none border  text-white font-medium">
                             <SelectGroup className="space-y-1">
                                 <SelectItem className="rounded-none" value="fulltime">Full Time</SelectItem>
                                 <SelectItem className="rounded-none" value="parttime">Part Time</SelectItem>
@@ -76,26 +76,26 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                     </Select>
                 </div>
                 {/* <div className="space-y-2">
-                <Label className="font-extrabold text-white">Country</Label>
+                <Label className="font-medium text-white">Country</Label>
                 <CountryDropdown
                 placeholder="Select country"
                 defaultValue="USA"
                 />
                 </div> */}
                 <div className="space-y-2">
-                <Label className='font-extrabold text-white'>Category</Label>
+                <Label className='font-medium text-white'>Category</Label>
                 <div className="flex flex-row gap-2">
                     <Select
                         value={currentCategoryId ?? "Select Category"}
                         onValueChange={((e) => { 
                         setCurrentCategoryId(e as string);
                         })}>
-                        <SelectTrigger className="bg-accent rounded-none border border-white/20  text-white font-bold text-base">
+                        <SelectTrigger className="bg-accent rounded-none border border-white/20  text-white font-medium text-base">
                         <SelectValue>
                             {selectedCategoryName}
                         </SelectValue>
                         </SelectTrigger>
-                        <SelectContent className="bg-accent rounded-none border  text-white font-bold">
+                        <SelectContent className="bg-accent rounded-none border  text-white font-medium">
                             <SelectGroup className="space-y-1">
                             <SelectItem value="none">
                                 No Category
@@ -126,9 +126,9 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 </div>
                 </div>
                 <div className="space-y-2">
-                <Label className='font-extrabold text-white'>Country</Label>
+                <Label className='font-medium text-white'>Country</Label>
                 <div className="flex flex-row gap-2">
-                <Input className="bg-accent border  text-white font-bold text-base rounded-none"
+                <Input className="bg-accent border  text-white font-medium text-base rounded-none"
                 placeholder="Enter country" value={current.country == null ? '' : current.country} 
                 onChange={((e) => { 
                     setCurrent((previous) => ({
@@ -152,9 +152,9 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 </div>
                 </div>
                 <div className="space-y-2">
-                <Label className='font-extrabold text-white'>City</Label>
+                <Label className='font-medium text-white'>City</Label>
                 <div className="flex flex-row gap-2">
-                <Input className="bg-accent border  text-white font-bold text-base rounded-none"
+                <Input className="bg-accent border  text-white font-medium text-base rounded-none"
                 placeholder="Enter city" 
                 value={current.city == null ? '' : current.city} 
                 onChange={((e) => { 
@@ -179,11 +179,11 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 </div>
                 </div>
                 <div className="space-y-2">
-                <Label className='font-extrabold text-white'>Description</Label>
-                <Textarea className="bg-accent border  text-white font-bold text-base rounded-none" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
+                <Label className='font-medium text-white'>Description</Label>
+                <Textarea className="bg-accent border  text-white font-medium text-base rounded-none" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
                 </div>
                 <div className="gap-2">
-                <Button type="submit" variant={"default"} disabled={loading} className="px-4 font-extrabold rounded-none">
+                <Button type="submit" variant={"default"} disabled={loading} className="px-4 font-medium rounded-none">
                 {loading ? <Loader2 className="animate-spin mr-2 text-black" /> : <></>}
                 Save Changes
                 </Button>

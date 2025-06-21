@@ -38,20 +38,20 @@ export default function CreateCategoryButton() {
         <>
       <Dialog>
         <DialogTrigger asChild>
-        <Button className="px-4 border bg-theme font-bold rounded-none" variant={"outline"}>
+        <Button className="px-4 border bg-theme font-medium rounded-none" variant={"outline"}>
         Create Category
         </Button>
         </DialogTrigger>
       <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] bg-theme !rounded-none border">
         <DialogHeader>
-          <DialogTitle className="text-left font-extrabold text-white !text-xl">Create a new category</DialogTitle>
-          {/* <DialogDescription className="text-left text-black font-bold">
+          <DialogTitle className="text-left font-medium text-white !text-xl">Create a new category</DialogTitle>
+          {/* <DialogDescription className="text-left text-black font-medium">
           create a job listing & start hiring immediately
           </DialogDescription> */}
         </DialogHeader>
         <div className="grid">
           <div className="grid items-center gap-4">
-            <Label htmlFor="name" className="text-left font-extrabold text-white">
+            <Label htmlFor="name" className="text-left font-medium text-white">
               Category name
             </Label>
             <form id="form" onSubmit={createjob}>
@@ -68,7 +68,7 @@ export default function CreateCategoryButton() {
           </div>
         </div>
         <DialogFooter>
-          <Button disabled={loading} form="form" variant={"default"} className="w-full font-extrabold rounded-none">
+          <Button disabled={loading} form="form" variant={"default"} className="w-full font-medium rounded-none">
             {loading ? <Loader2 className="mr-1 h-4 w-4 animate-spin text-black" /> : <></>}
             Create Category
           </Button>

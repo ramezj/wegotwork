@@ -26,11 +26,11 @@ export function JobCardForDashboard({ job }: { job: Job}) {
       <div onClick={handleCardClick}>
       <div className="w-full flex border   bg-theme rounded-none items-center duration-300 pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
-        <p className='sm:text-lg text-md font-extrabold text-left text-white'>
+        <p className='sm:text-lg text-md font-medium text-left text-white'>
          {job.title}     
         </p>
         <div className="mt-1 flex">
-          <p className="text-xs text-white font-bold">{formatDistanceToNow(job.createdAt)} ago</p>
+          <p className="text-xs text-white font-medium">{formatDistanceToNow(job.createdAt)} ago</p>
           </div>
         </div>
         <div className="mr-5 ml-auto">
@@ -74,7 +74,7 @@ export function JobCard({ job }: { job: JobWithCategories }) {
             </>
             :
             <>
-            <p className="text-sm text-black font-bold sm:block hidden">{job.country}</p>
+            <p className="text-sm text-black font-medium sm:block hidden">{job.country}</p>
             </>
           } */}
         </div>
@@ -87,7 +87,7 @@ export function LandingPageJobCard({ title, type, location, age, category }: { t
   return (
       <div className="w-full bg-theme flex border rounded-none items-center pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
-      <p className='sm:text-lg text-md font-extrabold text-left text-white'>
+      <p className='sm:text-lg text-md font-medium text-left text-white'>
        {title}     
       </p>
       <div className="mt-2 flex gap-2">
@@ -113,11 +113,11 @@ export function JobCardForApplicants({ job, applicants }: { job: Job, applicants
     <div onClick={handleCardClick}>
     <div className="w-full bg-theme flex border   rounded-none items-center pt-3 pb-3 cursor-pointer">
     <div className="mx-5 my-3 flex flex-col items-start text-left">
-      <p className='sm:text-lg text-md font-extrabold text-left text-white'>
+      <p className='sm:text-lg text-md font-medium text-left text-white'>
        {job.title}     
       </p>
       <div className="mt-1 flex">
-        <p className="text-xs text-white font-bold">{formatDistanceToNow(job.createdAt)} ago</p>
+        <p className="text-xs text-white font-medium">{formatDistanceToNow(job.createdAt)} ago</p>
         </div>
       </div>
       <div className="mr-5 ml-auto">

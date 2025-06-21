@@ -51,11 +51,11 @@ export default function CreateJob({ id, className, children, ...buttonProps }: C
       <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} 
       className="text-left w-[90%] bg-theme border !rounded-none ">
         <DialogHeader>
-          <DialogTitle className="text-left font-extrabold text-white !text-xl">Create a new job</DialogTitle>
+          <DialogTitle className="text-left font-medium text-white !text-xl">Create a new job</DialogTitle>
         </DialogHeader>
         <div className="grid">
           <div className="grid items-center gap-4">
-            <Label htmlFor="name" className="text-left font-extrabold text-white">
+            <Label htmlFor="name" className="text-left font-medium text-white">
               Job Title
             </Label>
             <form id="form" onSubmit={createjob}>
@@ -72,7 +72,7 @@ export default function CreateJob({ id, className, children, ...buttonProps }: C
           </div>
         </div>
         <DialogFooter>
-          <Button disabled={loading} form="form" type="submit" variant={"default"} className="px-4 w-full font-extrabold rounded-none">
+          <Button disabled={loading} form="form" type="submit" variant={"default"} className="px-4 w-full font-medium rounded-none">
             { loading ? <Loader2 className="mr-1 h-4 w-4 animate-spin text-black" /> : <></> }
             Create Job
           </Button>

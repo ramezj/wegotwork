@@ -47,13 +47,14 @@ export function CareerNavbar({ organization } : { organization: OrganizationWith
     <div className="border-b h-16 bg-black sticky top-0">
       <div className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center z-50 pl-4">
-          <span className="text-2xl font-bold tracking-tighter text-white">{organization.name}</span>
+          <span className="text-2xl font-medium tracking-tighter text-white">{organization.name}</span>
         </Link>
-        <div className="">
+        {/* <div className="">
         <Button asChild variant="default" className="border-l border-b border-white/20 h-16 rounded-none text-base">
               <Link href={`${organization.website === null ? "https://wegotwork.co" : organization.website}`}>Visit Website</Link>
             </Button>
-        </div>
+        </div> */}
+
         {/* {
           isOpen
           ?

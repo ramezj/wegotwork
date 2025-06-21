@@ -9,8 +9,9 @@ import { SquareArrowOutUpRight } from "lucide-react"
 import { TotalJobs, TotalApplicants } from "@/components/statistics"
 import { Metadata } from "next"
 import { SettingsCard } from "@/components/cards/settings"
-import { Organization } from "@prisma/client"
+import { Job, Organization } from "@prisma/client"
 import { CustomButton } from "@/components/ui/custom-buttons"
+import { JobCardForDashboard } from "@/components/cards/job"
 
 export const metadata:Metadata = {
     title: "Overview",
@@ -34,8 +35,8 @@ export default async function Page({ params } : { params: Promise<{ organization
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-4xl tracking-tight text-white">Overview</h1>
-        <Button asChild variant={"outline"} className="bg-theme px-4 rounded-none !border font-bold">
+        <h1 className="font-medium text-4xl tracking-tight text-white">Overview</h1>
+        <Button asChild variant={"outline"} className="bg-theme px-4 rounded-none !border font-medium">
             <Link target="_blank" href={`http://${userOrganization?.organization?.organization.slug}.${process.env.NEXT_PUBLIC_URL}`}>
             Preview
             <SquareArrowOutUpRight className="size-4" />
@@ -48,6 +49,17 @@ export default async function Page({ params } : { params: Promise<{ organization
         <TotalApplicants title="Categories" amount={userOrganization?.organization?.organization.categories.length as number}/>
         </div>
         <SettingsCard organization={userOrganization?.organization?.organization as Organization} />
+        <div className="gap-5 flex flex-col">
+        {
+        userOrganization?.organization?.organization.jobs.map((job:Job) => {
+        return (
+        <div className="relative" key={job.id}>
+        <JobCardForDashboard job={job}/>
+        </div>
+        )
+        })
+        }
+        </div>
         </>
     )
 }

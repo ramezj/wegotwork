@@ -24,10 +24,10 @@ export function DeleteOrganizationCard({ organizationId } : { organizationId: st
     return (
         <Card className="w-full rounded-none bg-theme border">
         <CardHeader>
-            <CardTitle className='font-extrabold text-white'>Delete Organization</CardTitle>
+            <CardTitle className='font-medium text-white'>Delete Organization</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-            <h1 className='font-bold text-white w-fit sm:text-base text-sm'>
+            <h1 className='font-medium text-white w-fit sm:text-base text-sm'>
                 Are you sure you want to delete this organization?
             </h1>
             <Button variant={"destructive"} className="border border-white/20 rounded-none" 
