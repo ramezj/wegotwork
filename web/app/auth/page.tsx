@@ -19,7 +19,7 @@ export default async function Home() {
     <>
     <Navbar session={session} />
     <div className="text-center">
-      <h1 className="font-bold text-white text-4xl py-8">wegotwork</h1>
+      <h1 className="font-medium text-white text-4xl py-8">wegotwork</h1>
     </div>
     <div className="flex items-center justify-center">
         <SignIn />

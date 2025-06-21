@@ -9,12 +9,12 @@ export function FreeCard() {
         <>
         <Card className="w-[350px] bg-theme rounded-none border">
         <CardHeader>
-          <CardTitle className='flex gap-2 font-extrabold text-white tracking-normal'>Free</CardTitle>
+          <CardTitle className='flex gap-2 font-medium text-white tracking-normal'>Free</CardTitle>
           <CardDescription className="text-left text-white">Free Forever</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid w-full items-center gap-4">
-          <h2 className="flex text-2xl font-extrabold -mt-3 text-white">
+          <h2 className="flex text-2xl font-medium -mt-3 text-white">
             $0/month
           </h2>
           <Separator />
@@ -51,7 +51,7 @@ export function FreeCard() {
           </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-      <Button variant={"default"} className="w-full font-extrabold rounded-none">
+      <Button variant={"default"} className="w-full font-medium rounded-none">
                 Start Hiring
         </Button>
       </CardFooter>
@@ -65,12 +65,12 @@ export function PaidCard() {
         <>
         <Card className="w-[350px] bg-theme rounded-none border">
         <CardHeader>
-          <CardTitle className='flex gap-2 font-extrabold text-white tracking-normal'>Professional</CardTitle>
+          <CardTitle className='flex gap-2 font-medium text-white tracking-normal'>Professional</CardTitle>
           <CardDescription className="text-left text-white">Monthly Subscription</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid w-full items-center gap-4">
-          <h2 className="flex text-2xl font-extrabold text-white -mt-3">
+          <h2 className="flex text-2xl font-medium text-white -mt-3">
             $75/month
           </h2>
           <Separator />
@@ -107,7 +107,7 @@ export function PaidCard() {
           </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant={"default"} className="w-full font-extrabold rounded-none">
+        <Button variant={"default"} className="w-full font-medium rounded-none">
               Start Hiring
         </Button>
       </CardFooter>
