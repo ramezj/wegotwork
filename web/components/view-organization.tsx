@@ -135,7 +135,13 @@ export function ViewOrganization({ organization, locations, types } : { organiza
             )
         })}
         {
-          organization.categories.filter((category) => category.jobs.length > 0).map((category:CategoryWithJobs, index) => {
+          organization.categories
+            .map(category => ({
+              ...category,
+              jobs: category.jobs.filter(job => jobs.some(filteredJob => filteredJob.id === job.id))
+            }))
+            .filter((category) => category.jobs.length > 0)
+            .map((category:CategoryWithJobs, index) => {
             return (
               <div className="text-left flex flex-col gap-4" key={category.id}>
               <motion.h1
@@ -154,7 +160,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
         }
         {
           jobs.length === 0 &&
-          <Card className="bg-theme border rounded-none border-white/20 p-8">
+          <Card className="bg-theme border rounded-none border-white/20 p-8 text-center">
           <p className="text-white font-bold">We are currently not hiring</p>
           </Card>
         }
