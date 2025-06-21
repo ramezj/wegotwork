@@ -56,8 +56,8 @@ export default async function Home() {
             </CustomButton> */}
       </div>
       <div className="not-prose my-8 lg:w-1/2 w-full space-y-4">
-            <LandingPageJobCard title="Operations Manager" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
-            <LandingPageJobCard title="Backend Engineer" type="Full-Time" location="Cairo, EG" age="about 1 month ago" />
+            <LandingPageJobCard title="Operations Manager" type="Full-Time" location="Cairo, EG" age="about 1 month ago" category="Operations" />
+            <LandingPageJobCard title="Financial Advisor" type="Part-Time" location="Cairo, EG" age="about 1 month ago" category="Finance" />
       </div>
       </div>
       {/* <div className="not-prose my-8 lg:w-1/2 w-full space-y-4 border border-white/20 flex items-center content-center">

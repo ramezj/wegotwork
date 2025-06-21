@@ -52,14 +52,14 @@ export function JobCard({ job }: { job: JobWithCategories }) {
          {job.title}     
         </p>
         <div className="mt-2 flex gap-2">
-        <Badge className="rounded-none bg-accent text-white border font-medium hover:bg-accent">{formatJobType(job.type as Type)}</Badge>
+        <Badge variant={"outline"} className="rounded-none bg-accent text-white border font-medium hover:bg-accent">{formatJobType(job.type as Type)}</Badge>
         {
             job.categoryId === null 
             ?
             <>
             </>
             :
-            <Badge className="rounded-none bg-accent text-white border font-medium hover:bg-accent">{job.category?.name}</Badge>
+            <Badge variant={"outline"} className="rounded-none bg-accent text-white border font-medium hover:bg-accent">{job.category?.name}</Badge>
           }
         </div>
         </div>
@@ -83,15 +83,16 @@ export function JobCard({ job }: { job: JobWithCategories }) {
       )
 }
 
-export function LandingPageJobCard({ title, type, location, age }: { title: string, type: string, location: string, age:string }) {
+export function LandingPageJobCard({ title, type, location, age, category }: { title: string, type: string, location: string, age:string, category: string }) {
   return (
-      <div className="w-full bg-theme flex border   rounded-none items-center pt-3 pb-3 cursor-pointer">
+      <div className="w-full bg-theme flex border rounded-none items-center pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
       <p className='sm:text-lg text-md font-extrabold text-left text-white'>
        {title}     
       </p>
-      <div className="mt-1 flex">
-        <p className="text-xs font-bold text-white">{age}</p>
+      <div className="mt-2 flex gap-2">
+        <Badge variant={"outline"} className="rounded-none bg-accent text-white border font-medium hover:bg-accent">{formatJobType(type as Type)}</Badge>
+        <Badge variant={"outline"} className="rounded-none bg-accent text-white border font-medium hover:bg-accent">{category}</Badge>
       </div>
       </div>
       <div className="ml-auto mr-5">
