@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 
 export const metadata:Metadata = {
   title: "wegotwork",
-  description: "hiring just got easier."
+  description: "Build Beautiful Career Pages, Post Job Openings, Receive Applicants, All in one place."
 }
 
 export default async function Home() {
