@@ -49,17 +49,6 @@ export default async function Page({ params } : { params: Promise<{ organization
         <TotalApplicants title="Categories" amount={userOrganization?.organization?.organization.categories.length as number}/>
         </div>
         <SettingsCard organization={userOrganization?.organization?.organization as Organization} />
-        <div className="gap-5 flex flex-col">
-        {
-        userOrganization?.organization?.organization.jobs.map((job:Job) => {
-        return (
-        <div className="relative" key={job.id}>
-        <JobCardForDashboard job={job}/>
-        </div>
-        )
-        })
-        }
-        </div>
         </>
     )
 }
