@@ -80,11 +80,11 @@ export default async function Home() {
       </div> */}
       </div>
             <section className="py-[1.20rem] px-4">
-        <div className="container mx-auto">
+        <div className="w-full lg:w-1/2 mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-medium">Everything you need to start hiring</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             <Card className="bg-theme border rounded-none">
               <CardHeader>
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
@@ -130,30 +130,6 @@ export default async function Home() {
                 <CardTitle className="text-white font-medium">Analytics & Insights</CardTitle>
                 <CardDescription className="text-gray-400 font-medium">
                   Get detailed analytics on job performance, application rates, and hiring metrics.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="bg-theme border rounded-none">
-              <CardHeader>
-                <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
-                  <Zap className="h-6 w-6 text-black" />
-                </div>
-                <CardTitle className="text-white font-medium">Fast Setup</CardTitle>
-                <CardDescription className="text-gray-400 font-medium">
-                  Get your career page live in under 5 minutes. No technical knowledge required.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="bg-theme border rounded-none">
-              <CardHeader>
-                <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
-                  <Shield className="h-6 w-6 text-black" />
-                </div>
-                <CardTitle className="text-white font-medium">Secure & Compliant</CardTitle>
-                <CardDescription className="text-gray-400 font-medium">
-                  GDPR compliant with enterprise-grade security to protect your data and candidates' privacy.
                 </CardDescription>
               </CardHeader>
             </Card>
