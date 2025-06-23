@@ -8,6 +8,8 @@ import FeatureCards from "@/components/test-cards";
 import { CustomButton } from "@/components/ui/custom-buttons";
 import Marquee from "@/components/ui/marquee";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { BarChart3, Zap, FileText, Building2, Users, Shield } from "lucide-react";
 
 export const metadata:Metadata = {
   title: "wegotwork",
@@ -77,6 +79,87 @@ export default async function Home() {
       </div>
       </div> */}
       </div>
+            <section className="py-[1.20rem] px-4">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-medium">Everything you need to start hiring</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="bg-theme border rounded-none">
+              <CardHeader>
+                <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <Building2 className="h-6 w-6 text-black" />
+                </div>
+                <CardTitle className="text-white">Beautiful Career Pages</CardTitle>
+                <CardDescription className="text-gray-400">
+                  Create stunning, branded career pages that showcase your company culture and attract top talent.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="bg-theme border rounded-none">
+              <CardHeader>
+                <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <FileText className="h-6 w-6 text-black" />
+                </div>
+                <CardTitle className="text-white">Easy Job Posting</CardTitle>
+                <CardDescription className="text-gray-400">
+                  Post jobs in minutes with our intuitive editor. Add requirements, benefits, and company info
+                  effortlessly.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="bg-theme border rounded-none">
+              <CardHeader>
+                <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <Users className="h-6 w-6 text-black" />
+                </div>
+                <CardTitle className="text-white">Applicant Management</CardTitle>
+                <CardDescription className="text-white">
+                  Track, review, and manage all applications in one place. Collaborate with your team seamlessly.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="bg-theme border rounded-none">
+              <CardHeader>
+                <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <BarChart3 className="h-6 w-6 text-black" />
+                </div>
+                <CardTitle className="text-white">Analytics & Insights</CardTitle>
+                <CardDescription className="text-gray-400">
+                  Get detailed analytics on job performance, application rates, and hiring metrics.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="bg-theme border rounded-none">
+              <CardHeader>
+                <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <Zap className="h-6 w-6 text-black" />
+                </div>
+                <CardTitle className="text-white">Fast Setup</CardTitle>
+                <CardDescription className="text-gray-400">
+                  Get your career page live in under 5 minutes. No technical knowledge required.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="bg-theme border rounded-none">
+              <CardHeader>
+                <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <Shield className="h-6 w-6 text-black" />
+                </div>
+                <CardTitle className="text-white">Secure & Compliant</CardTitle>
+                <CardDescription className="text-gray-400">
+                  GDPR compliant with enterprise-grade security to protect your data and candidates' privacy.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
