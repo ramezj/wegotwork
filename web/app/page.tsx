@@ -90,7 +90,7 @@ export default async function Home() {
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <Building2 className="h-6 w-6 text-black" />
                 </div>
-                <CardTitle className="text-white font-medium">Beautiful Career Pages</CardTitle>
+                <CardTitle className="text-white font-medium !mb-2">Beautiful Career Pages</CardTitle>
                 <CardDescription className="text-gray-400 font-medium">
                   Create stunning, branded career pages that showcase your company culture and attract top talent.
                 </CardDescription>
@@ -102,7 +102,7 @@ export default async function Home() {
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <FileText className="h-6 w-6 text-black" />
                 </div>
-                <CardTitle className="text-white font-medium">Easy Job Posting</CardTitle>
+                <CardTitle className="text-white font-medium !mb-2">Easy Job Posting</CardTitle>
                 <CardDescription className="text-gray-400 font-medium">
                   Post jobs in minutes with our intuitive editor. Add requirements, benefits, and company info
                   effortlessly.
@@ -115,7 +115,7 @@ export default async function Home() {
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <Users className="h-6 w-6 text-black" />
                 </div>
-                <CardTitle className="text-white font-medium">Applicant Management</CardTitle>
+                <CardTitle className="text-white font-medium !mb-2">Applicant Management</CardTitle>
                 <CardDescription className="text-white font-medium">
                   Track, review, and manage all applications in one place. Collaborate with your team seamlessly.
                 </CardDescription>
@@ -127,7 +127,7 @@ export default async function Home() {
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <BarChart3 className="h-6 w-6 text-black" />
                 </div>
-                <CardTitle className="text-white font-medium">Analytics & Insights</CardTitle>
+                <CardTitle className="text-white font-medium !mb-2">Analytics & Insights</CardTitle>
                 <CardDescription className="text-gray-400 font-medium">
                   Get detailed analytics on job performance, application rates, and hiring metrics.
                 </CardDescription>
