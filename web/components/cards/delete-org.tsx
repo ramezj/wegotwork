@@ -30,7 +30,7 @@ export function DeleteOrganizationCard({ organizationId } : { organizationId: st
             <h1 className='font-medium text-white w-fit sm:text-base text-sm'>
                 Are you sure you want to delete this organization?
             </h1>
-            <Button variant={"destructive"} className="border border-white/20 rounded-none" 
+            <Button variant={"destructive"} className="rounded-none" 
             onClick={((e) => {deleteOrg(e, organizationId)})} 
             disabled={loading}>
             {loading ? <Loader2 className="size-4 mr-2 animate-spin text-white" /> : <></>}
