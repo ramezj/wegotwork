@@ -33,7 +33,7 @@ export function Navbar({ session } : { session: Session | null}) {
             features
             </span>
             </Link>
-            <Link target="_blank" href={`http://wegotwork.${process.env.NEXT_PUBLIC_URL}`} className="">
+            <Link target="_blank" href={`http://demo.${process.env.NEXT_PUBLIC_URL}`} className="">
             <span className="text-lg font-medium tracking-tighter text-white">
             demo
             </span>

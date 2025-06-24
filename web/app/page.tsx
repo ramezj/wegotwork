@@ -35,7 +35,7 @@ export default async function Home() {
       </h3>
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
-      <div className="flex flex-row w-full sm:w-1/2 items-center justify-center content-center gap-4 mt-6">
+      <div className="flex flex-row w-full lg:w-[60%] items-center justify-center content-center gap-4 mt-6">
             {/* <CustomButton asChild variant={"default"} className="font-medium w-full rounded-none bg-white text-black border-2 border-black hover:bg-white transition-all hover:shadow-[0_0px_0_0_rgba(0,0,0,1)] hover:translate-y-1">
                 <Link href='/auth'>
                 Start Hiring
@@ -57,7 +57,7 @@ export default async function Home() {
                 </Link>
             </CustomButton> */}
       </div>
-      <div className="not-prose my-8 lg:w-1/2 w-full space-y-4">
+      <div className="not-prose my-8 lg:w-[60%] w-full space-y-4">
             <LandingPageJobCard title="Operations Manager" type="Full-Time" location="Cairo, EG" age="about 1 month ago" category="Operations" />
             <LandingPageJobCard title="Financial Advisor" type="Part-Time" location="Cairo, EG" age="about 1 month ago" category="Finance" />
       </div>
@@ -80,7 +80,7 @@ export default async function Home() {
       </div> */}
       </div>
             <section className="py-[1.20rem] px-4">
-        <div className="w-full lg:w-1/2 mx-auto">
+        <div className="w-full lg:w-[60%] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-medium">Everything you need to start hiring</h2>
           </div>
