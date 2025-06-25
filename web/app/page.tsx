@@ -12,7 +12,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { BarChart3, FileText, Building2, Users, ArrowRight } from "lucide-react";
 
 export const metadata:Metadata = {
-  title: "wegotwork",
+  title: "WeGotWork — Build Beautiful Career Pages",
   description: "Build Beautiful Career Pages, Post Job Openings, Receive Applicants, All in one place."
 }
 

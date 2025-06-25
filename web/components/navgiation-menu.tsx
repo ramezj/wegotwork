@@ -56,7 +56,6 @@ const components: { title: string; href: string; description: string }[] = [
 export function NavigationMenuDemo() {
   return (
     <NavigationMenu>
-    <NavigationMenuViewport>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Home</NavigationMenuTrigger>
@@ -189,7 +188,6 @@ export function NavigationMenuDemo() {
           </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
-      </NavigationMenuViewport>
     </NavigationMenu>
   )
 }
