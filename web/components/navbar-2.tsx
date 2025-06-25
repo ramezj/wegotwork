@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Session } from "@/lib/auth-client"
+import { NavigationMenuDemo } from "./navgiation-menu"
 
 export function Navbar({ session } : { session: Session | null}) {
   const [isOpen, setIsOpen] = React.useState(false)
@@ -27,7 +28,6 @@ export function Navbar({ session } : { session: Session | null}) {
           <span className="text-2xl font-medium tracking-tighter text-white">wegotwork</span>
         </Link>
         <div className='justify-center items-center gap-4 hidden md:flex pl-4 align-middle'>
-            {/* <NavigationMenuForNavbar /> */}
             <Link href={"/"} className="">
             <span className="text-lg font-medium tracking-tighter text-white">
             features

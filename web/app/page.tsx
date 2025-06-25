@@ -26,7 +26,7 @@ export default async function Home() {
       <Navbar session={session}/>
       <div>
       <div className="flex flex-col items-center text-center mt-12 px-2">
-      <h1 className="sm:text-7xl text-5xl font-medium text-white">
+      <h1 className="md:text-7xl text-5xl font-medium text-white">
         {/* Hiring just got easier. */}
         Build Beautiful Career Pages
       </h1>
