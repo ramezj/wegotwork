@@ -6,7 +6,6 @@ import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Session } from "@/lib/auth-client"
-import { NavigationMenuDemo } from "./navgiation-menu"
 
 export function Navbar({ session } : { session: Session | null}) {
   const [isOpen, setIsOpen] = React.useState(false)
@@ -46,24 +45,29 @@ export function Navbar({ session } : { session: Session | null}) {
         </div>
         <div className="flex-1"></div>
         <div className="hidden md:block">
-          {session?.user ? (
+            <Button variant="default" asChild className="h-16 px-6 rounded-none font-medium text-base">
+            {session?.user ? (
+              session.user.currentOrganizationId === null ? (
+                <Link href="/dashboard">Dashboard</Link>
+              ) : (
+                <Link href="/overview">Dashboard</Link>
+              )
+            ) : (
+              <Link href="/auth">Start Hiring</Link>
+            )}
+          </Button>
+          {/* {session?.user ? (
             <>
             {
               session?.user.currentOrganizationId === null
               ? 
               <>
-              {/* <Button variant="default" asChild className="border-l border-b border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-medium text-white text-base">
-              <Link href="/dashboard">Dashboard</Link>
-              </Button> */}
               <Button variant="default" asChild className="h-16 px-6 rounded-none font-medium text-base">
               <Link href="/dashboard">Dashboard</Link>
               </Button>
               </>
               :
               <>
-              {/* <Button variant="default" asChild className="border-l border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-medium text-white text-base">
-              <Link href="/overview">Dashboard</Link>
-              </Button> */}
               <Button variant="default" asChild className="h-16 px-6 rounded-none font-medium text-base">
               <Link href="/overview">Dashboard</Link>
               </Button>
@@ -71,13 +75,10 @@ export function Navbar({ session } : { session: Session | null}) {
             }
             </>
           ) : (
-            // <Button asChild variant="default" className="border-l border-white/20 h-16 px-6 rounded-none bg-inherit hover:bg-inherit font-medium text-white text-base">
-            //   <Link href="/auth">Start Hiring</Link>
-            // </Button>
             <Button asChild variant="default" className="h-16 px-6 rounded-none font-medium text-base">
               <Link href="/auth">Start Hiring</Link>
             </Button>
-          )}
+          )} */}
         </div>
         {
           isOpen
