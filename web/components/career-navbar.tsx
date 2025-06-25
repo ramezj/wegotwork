@@ -3,7 +3,6 @@
 import * as React from "react"
 import Link from "next/link"
 import { ChevronDown, Menu, X } from "lucide-react"
-import { NavigationMenuForNavbar } from "./navgiation-menu"
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@/components/ui/navigation-menu"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
