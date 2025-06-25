@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation"
 import { DollarSignIcon, Laptop } from "lucide-react"
 // import { Organization } from "@prisma/client"
 // import { TwitterLogoIcon } from "@radix-ui/react-icons"
-import { NavigationMenuForNavbar } from "./navgiation-menu"
 import { Session } from "@/lib/auth-client"
 import { SignOutButton } from "./auth-buttons"
 
@@ -112,7 +111,7 @@ export function Navigation({ session } : { session: Session | null}) {
           <Link href="/" className="flex items-center text-lg font-bold italic px-2">
           heliup
           </Link>
-         <NavigationMenuForNavbar />
+         {/* <NavigationMenuForNavbar /> */}
         </nav>
         <Sheet>
           <SheetTrigger asChild>
