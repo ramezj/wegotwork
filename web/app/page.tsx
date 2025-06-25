@@ -9,7 +9,7 @@ import { CustomButton } from "@/components/ui/custom-buttons";
 import Marquee from "@/components/ui/marquee";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart3, Zap, FileText, Building2, Users, Shield } from "lucide-react";
+import { BarChart3, FileText, Building2, Users, ArrowRight } from "lucide-react";
 
 export const metadata:Metadata = {
   title: "wegotwork",
