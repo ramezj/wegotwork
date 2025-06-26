@@ -36,7 +36,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         <>
         <div className="flex justify-between items-center w-full">
         <h1 className="font-medium text-4xl tracking-tight text-white">Overview</h1>
-        <Button asChild variant={"outline"} className="bg-theme px-4 rounded-none !border font-medium">
+        <Button asChild variant={"outline"} className="bg-theme px-4 rounded-none !border border-dashed font-medium">
             <Link target="_blank" href={`http://${userOrganization?.organization?.organization.slug}.${process.env.NEXT_PUBLIC_URL}`}>
             Preview
             <SquareArrowOutUpRight className="size-4" />

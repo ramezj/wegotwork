@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 export function TotalJobs({title, amount} : { title: string, amount: number}) {
     return (
         <>
-        <Card className="w-full bg-theme rounded-none border">
+        <Card className="w-full bg-theme rounded-none border border-dashed">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-white font-medium">
                       {title}
@@ -23,7 +23,7 @@ export function TotalJobs({title, amount} : { title: string, amount: number}) {
 export function TotalApplicants({title, amount} : { title: string, amount: number}) {
   return (
       <>
-      <Card className="w-full bg-theme rounded-none border">
+      <Card className="w-full bg-theme rounded-none border border-dashed">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="font-medium text-white">
                     {title}
