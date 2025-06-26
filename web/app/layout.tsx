@@ -40,9 +40,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={recursive.className} suppressHydrationWarning >
+    <html lang="en" className={jetBrainsMono.className} suppressHydrationWarning >
       <body suppressHydrationWarning
-        className={`${recursive.className} antialiased bg-black`}
+        className={`${jetBrainsMono.className} antialiased bg-black`}
       >
          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
          <Toaster/>
