@@ -28,14 +28,14 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
         <>
         <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                <Button variant={"outline"} className="w-full bg-theme rounded-none">
+                <Button variant={"outline"} className="w-full bg-theme rounded-none border border-dashed">
                     {session?.user?.name}
                     <ChevronsUpDown className="ml-auto size-4" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   side="top"
-                  className="w-[--radix-popper-anchor-width] space-y-2 bg-theme mb-1 rounded-none"
+                  className="w-[--radix-popper-anchor-width] space-y-2 bg-theme mb-1 rounded-none border-dashed"
                 >
                   <DropdownMenuItem onSelect={redirectToDashboard} className="cursor-pointer rounded-none">
                   <Settings2 className="size-4" />
