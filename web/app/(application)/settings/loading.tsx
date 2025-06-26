@@ -12,7 +12,7 @@ export default function Loading() {
     return (
         <> 
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-medium text-4xl text-white tracking-tight">Settings</h1>
+        <h1 className="font-medium text-3xl text-white tracking-tight">Settings</h1>
         <Button size={"sm"} variant={"outline"} className="rounded-none bg-theme font-medium border">
         <Settings className="size-4 text-white" />
         </Button>

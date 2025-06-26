@@ -33,7 +33,7 @@ export default async function Page() {
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-medium text-4xl text-white tracking-tight">Categories</h1>
+        <h1 className="font-medium text-3xl text-white tracking-tight">Categories</h1>
         <CreateCategoryButton/>
         </div>
         <div>

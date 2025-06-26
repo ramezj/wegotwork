@@ -12,7 +12,7 @@ export default function Loading() {
     return (
         <> 
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-medium text-4xl text-white tracking-tight">Jobs</h1>
+        <h1 className="font-medium text-3xl text-white tracking-tight">Jobs</h1>
         <CreateJob id="123" disabled/>
         </div>
         <div className="w-full h-full items-center flex flex-col justify-center">
