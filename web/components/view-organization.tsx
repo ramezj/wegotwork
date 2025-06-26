@@ -78,12 +78,12 @@ export function ViewOrganization({ organization, locations, types } : { organiza
               }}
               defaultValue="All">
                 <SelectTrigger value={selectedCountry} aria-label="Select Locations" 
-                className="bg-theme text-white border font-medium w-full rounded-none">
+                className="bg-theme text-white border border-dashed font-medium w-full rounded-none">
                 <SelectValue placeholder="All Locations">
                   {selectedCountry === "All" ? "All Locations" : selectedCountry}
                 </SelectValue>
                 </SelectTrigger>
-                <SelectContent className="bg-theme border rounded-none text-white font-medium mt-1">
+                <SelectContent className="bg-theme border border-dashed rounded-none text-white font-medium mt-1">
                   <SelectGroup className="space-y-1">
                     <SelectItem className="rounded-none font-medium" key={"All"} value="All">All Locations</SelectItem>
                     {
@@ -105,12 +105,12 @@ export function ViewOrganization({ organization, locations, types } : { organiza
             }}
             defaultValue="All"> 
               <SelectTrigger value={selectedEmploymentType} aria-label="Select Employment" 
-              className="bg-[#0A0A0A] text-white border font-medium w-full rounded-none">
+              className="bg-[#0A0A0A] text-white border border-dashed font-medium w-full rounded-none">
               <SelectValue placeholder="All Employment">
                 {selectedEmploymentType === "All" ? "All Employment" : formatJobType(selectedEmploymentType as Type)}
               </SelectValue>
               </SelectTrigger>
-              <SelectContent className="bg-theme border rounded-none text-white font-medium mt-1">
+              <SelectContent className="bg-theme border border-dashed rounded-none text-white font-medium mt-1">
                 <SelectGroup className='space-y-1'>
                   <SelectItem className="rounded-none font-medium" key={"All"} value="All">All Employment</SelectItem>
                   {
