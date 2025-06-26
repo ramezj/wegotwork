@@ -85,7 +85,7 @@ export function JobCard({ job }: { job: JobWithCategories }) {
 
 export function LandingPageJobCard({ title, type, location, age, category }: { title: string, type: string, location: string, age:string, category: string }) {
   return (
-      <div className="w-full bg-theme flex border rounded-none items-center pt-3 pb-3 cursor-pointer">
+      <div className="w-full bg-theme flex border border-dashed rounded-none items-center pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
       <p className='sm:text-lg text-md font-medium text-left text-white'>
        {title}     

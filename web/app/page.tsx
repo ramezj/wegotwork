@@ -43,7 +43,7 @@ export default async function Home() {
                 Start Hiring
                 </Link>
             </CustomButton> */}
-            <Button asChild variant={"outline"} className="px-4 bg-theme w-full rounded-none font-medium">
+            <Button asChild variant={"outline"} className="px-4 border-dashed bg-theme w-full rounded-none font-medium">
               <Link href='/auth'>
               Start Hiring
               </Link>
@@ -87,7 +87,7 @@ export default async function Home() {
             <h2 className="text-3xl md:text-4xl font-medium">Everything you need to start hiring</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-theme border rounded-none">
+            <Card className="bg-theme border border-dashed rounded-none">
               <CardHeader>
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <Building2 className="h-6 w-6 text-black" />
@@ -99,7 +99,7 @@ export default async function Home() {
               </CardHeader>
             </Card>
 
-            <Card className="bg-theme border rounded-none">
+            <Card className="bg-theme border border-dashed rounded-none">
               <CardHeader>
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <FileText className="h-6 w-6 text-black" />
@@ -112,7 +112,7 @@ export default async function Home() {
               </CardHeader>
             </Card>
 
-            <Card className="bg-theme border rounded-none">
+            <Card className="bg-theme border border-dashed rounded-none">
               <CardHeader>
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <Users className="h-6 w-6 text-black" />
@@ -124,7 +124,7 @@ export default async function Home() {
               </CardHeader>
             </Card>
 
-            <Card className="bg-theme border rounded-none">
+            <Card className="bg-theme border border-dashed rounded-none">
               <CardHeader>
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <BarChart3 className="h-6 w-6 text-black" />
