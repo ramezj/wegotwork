@@ -38,11 +38,11 @@ export default function CreateCategoryButton() {
         <>
       <Dialog>
         <DialogTrigger asChild>
-        <Button className="px-4 border bg-theme font-medium rounded-none" variant={"outline"}>
+        <Button className="px-4 border border-dashed bg-theme font-medium rounded-none" variant={"outline"}>
         Create Category
         </Button>
         </DialogTrigger>
-      <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] bg-theme !rounded-none border">
+      <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left border-dashed w-[90%] bg-theme !rounded-none border">
         <DialogHeader>
           <DialogTitle className="text-left font-medium text-white !text-xl">Create a new category</DialogTitle>
           {/* <DialogDescription className="text-left text-black font-medium">
@@ -62,7 +62,7 @@ export default function CreateCategoryButton() {
               value={name}
               onChange={((e) => {setName(e.target.value)})}
               placeholder="Enter category name"
-              className="bg-accent rounded-none border font-medium text-base"
+              className="bg-accent border-dashed rounded-none border font-medium text-base"
             />
             </form>
           </div>

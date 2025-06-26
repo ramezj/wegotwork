@@ -22,7 +22,7 @@ export function DeleteOrganizationCard({ organizationId } : { organizationId: st
         }
     }
     return (
-        <Card className="w-full rounded-none bg-theme border">
+        <Card className="w-full rounded-none bg-theme border border-dashed">
         <CardHeader>
             <CardTitle className='font-medium text-white'>Delete Organization</CardTitle>
         </CardHeader>
