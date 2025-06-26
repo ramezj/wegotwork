@@ -43,24 +43,24 @@ export function CreateOrganizationButton() {
         <>
         <Dialog>
         <DialogTrigger asChild>
-        <Button variant={"outline"} className="font-medium w-full bg-theme border rounded-none">
+        <Button variant={"outline"} className="font-medium w-full bg-theme border border-dashed rounded-none">
         <Plus className="text-white"/>
         </Button>    
         </DialogTrigger>
         <DialogDescription>
             
         </DialogDescription>
-        <DialogContent className="w-[90%] bg-theme border border-white/20 !rounded-none">
+        <DialogContent className="w-[90%] bg-theme border border-dashed !rounded-none">
         <DialogHeader>
         <DialogTitle className="text-left text-xl font-medium text-white">Create Organization</DialogTitle>
         </DialogHeader>
         <form className="grid items-center gap-3 text-left" onSubmit={create_organization}>
         <Label className='font-medium text-white text-left'>Name</Label>
         <Input placeholder="Enter name" required value={name} onChange={((e) => {setName(e.target.value)})} 
-        className="bg-accent text-base border border-white/20 font-medium text-white rounded-none"/>
+        className="bg-accent text-base border border-dashed hover:border-white/50 active:border-white/50 focus:border-white/50 font-medium text-white rounded-none"/>
         <Label className='font-medium text-white text-left'>Slug</Label>
         <Input placeholder="Enter slug" required value={slug} onChange={((e) => {setSlug(e.target.value)})} 
-        className="bg-accent text-base border border-white/20 font-medium text-white rounded-none"/>
+        className="bg-accent text-base border border-dashed hover:border-white/50 active:border-white/50 focus:border-white/50 font-medium text-white rounded-none"/>
         <div>
         <Button type="submit" 
         disabled={loading}

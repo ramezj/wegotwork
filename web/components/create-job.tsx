@@ -66,7 +66,7 @@ export default function CreateJob({ id, className, children, ...buttonProps }: C
               value={name}
               onChange={((e) => {setName(e.target.value)})}
               placeholder="Enter Job title"
-              className="bg-accent border-dashed rounded-none border text-white font-medium text-base"
+              className="bg-accent border-dashed  rounded-none border text-white font-medium text-base"
             />
             </form>
           </div>
