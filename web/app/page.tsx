@@ -27,7 +27,7 @@ export default async function Home() {
       <div>
       <div className="flex flex-col items-center text-center mt-12 px-2">
       <div className="lg:w-[60%] w-full">
-        <h1 className="lg:text-5xl 2xl:text-7xl text-5xl font-medium text-white">
+        <h1 className="lg:text-5xl 2xl:text-6xl text-5xl font-medium text-white">
         {/* Hiring just got easier. */}
         Build Beautiful Career Pages
       </h1>
