@@ -26,13 +26,15 @@ export default async function Home() {
       <Navbar session={session}/>
       <div>
       <div className="flex flex-col items-center text-center mt-12 px-2">
-      <h1 className="md:text-7xl text-5xl font-medium text-white">
+      <div className="lg:w-[60%] w-full">
+        <h1 className="lg:text-5xl 2xl:text-7xl text-5xl font-medium text-white">
         {/* Hiring just got easier. */}
         Build Beautiful Career Pages
       </h1>
-      <h3 className="sm:text-lg text-sm mt-2 font-medium text-balance text-white">
-        Build beautiful career pages, create jobs, receive applicants, all in one place.
+      <h3 className="lg:text-lg text-sm mt-2 font-medium text-balance text-muted-foreground">
+        Create stunning career pages, post jobs, manage applicants, and streamline hiring — all from one powerful, easy-to-use platform.
       </h3>
+      </div>
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
       <div className="flex flex-row w-full lg:w-[60%] items-center justify-center content-center gap-4 mt-6">
