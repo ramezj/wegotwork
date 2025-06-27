@@ -25,24 +25,18 @@ export default async function Home() {
     <main className="">
       <Navbar session={session}/>
       <div>
-      <div className="flex flex-col items-center text-center mt-12 px-2">
+      <div className="flex flex-col items-center text-center mt-12 px-2 ">
       <div className="lg:w-[60%] w-full">
-        <h1 className="lg:text-5xl 2xl:text-6xl text-5xl font-medium text-white">
-        {/* Hiring just got easier. */}
+        <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-medium leading-tight text-white">
         Build Beautiful Career Pages
       </h1>
-      <h3 className="lg:text-lg text-sm mt-2 font-medium text-balance text-muted-foreground">
-        Create stunning career pages, post jobs, manage applicants, and streamline hiring — all from one powerful, easy-to-use platform.
+      <h3 className="text-[1rem] mt-2 font-medium text-balance text-muted-foreground">
+        Create stunning career pages, post jobs, manage applicants — all from one, easy-to-use platform.
       </h3>
       </div>
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
       <div className="flex flex-row w-full lg:w-[60%] items-center justify-center content-center gap-4 mt-6">
-            {/* <CustomButton asChild variant={"default"} className="font-medium w-full rounded-none bg-white text-black border-2 border-black hover:bg-white transition-all hover:shadow-[0_0px_0_0_rgba(0,0,0,1)] hover:translate-y-1">
-                <Link href='/auth'>
-                Start Hiring
-                </Link>
-            </CustomButton> */}
             <Button asChild variant={"outline"} className="px-4 border-dashed bg-theme w-full rounded-none font-medium">
               <Link href='/auth'>
               Start Hiring
@@ -53,24 +47,12 @@ export default async function Home() {
               See Demo
               </Link>
             </Button>
-            {/* <CustomButton asChild className="font-medium w-full rounded-none bg-white text-black border-2 border-black hover:bg-white transition-all hover:shadow-[0_0px_0_0_rgba(0,0,0,1)] hover:translate-y-1" variant={"default"}>
-                <Link target="_blank" href={`http://demo.${process.env.NEXT_PUBLIC_URL}`}>
-                See Demo
-                </Link>
-            </CustomButton> */}
       </div>
       <div className="not-prose my-8 lg:w-[60%] w-full space-y-4">
             <LandingPageJobCard title="Operations Manager" type="Full-Time" location="Cairo, EG" age="about 1 month ago" category="Operations" />
             <LandingPageJobCard title="Financial Advisor" type="Part-Time" location="Cairo, EG" age="about 1 month ago" category="Finance" />
       </div>
       </div>
-      {/* <div className="not-prose my-8 lg:w-1/2 w-full space-y-4 border border-white/20 flex items-center content-center">
-        <img
-        className="border-2 border-black shadow-[0_4px_0_0_rgba(0,0,0,1)]"
-        src="/dashboard.png"
-        alt="Photo by Drew Beamer"
-        />
-      </div> */}
       {/* <div className="pb-5">
       <Marquee items={items} />
       </div> */}
