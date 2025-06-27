@@ -63,10 +63,10 @@ export default async function Page({ params } : { params: Promise<{ organization
             <p className="text-sm max-w-3xl text-white text-center mx-auto">{formatDistanceToNow(job.job?.createdAt!)} ago </p>
             </div>
             <div className="flex flex-row gap-2">
-            <Button size={"sm"} variant={"outline"} className="rounded-none bg-theme hover:bg-theme border"><Briefcase className="size-4"/>{formatJobType(job.job?.type as Type)}</Button>
+            <Button size={"sm"} variant={"outline"} className="rounded-none bg-theme hover:bg-theme border border-dashed"><Briefcase className="size-4"/>{formatJobType(job.job?.type as Type)}</Button>
             {
                 job?.job?.country
-                ? <Button size={"sm"} variant={"outline"} className="rounded-none bg-theme hover:bg-theme border">
+                ? <Button size={"sm"} variant={"outline"} className="rounded-none bg-theme hover:bg-theme border border-dashed">
                     <MapPin className="size-4" />
                     {job.job?.city === null ? "" : job.job.city + ", " }
                     {job.job.country}
@@ -84,7 +84,9 @@ export default async function Page({ params } : { params: Promise<{ organization
                 <>
                 </>
             }
+            <div className="px-4 w-full flex flex-col items-center content-center">
             <ApplyCard jobId={(await params).jobId} />
+            </div>
         </div>
         </main>
     )
