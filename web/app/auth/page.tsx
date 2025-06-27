@@ -21,7 +21,7 @@ export default async function Home() {
     <div className="text-center">
       <h1 className="font-medium text-white text-4xl py-8">wegotwork</h1>
     </div>
-    <div className="flex items-center justify-center">
+    <div className="px-4 lg:w-[30%] w-full mx-auto">
         <SignIn />
     </div>
     </>

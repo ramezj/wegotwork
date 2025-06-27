@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Menu, X } from "lucide-react"
+import { ArrowRight, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Session } from "@/lib/auth-client"
@@ -45,15 +45,24 @@ export function Navbar({ session } : { session: Session | null}) {
         </div>
         <div className="flex-1"></div>
         <div className="hidden md:block">
-            <Button variant="default" asChild className="h-16 px-6 rounded-none font-medium text-base">
+            <Button variant="default" asChild className="mr-4 rounded-none font-medium text-base align-middle">
             {session?.user ? (
               session.user.currentOrganizationId === null ? (
-                <Link href="/dashboard">Dashboard</Link>
+                <Link href="/dashboard">
+                Dashboard
+                <ArrowRight className="text-black size-4" />
+                </Link>
               ) : (
-                <Link href="/overview">Dashboard</Link>
+                <Link href="/overview">
+                Dashboard
+                <ArrowRight className="text-black size-4" />
+                </Link>
               )
             ) : (
-              <Link href="/auth">Start Hiring</Link>
+              <Link href="/auth">
+               Get Started
+              <ArrowRight className="text-black size-4" />
+              </Link>
             )}
           </Button>
           {/* {session?.user ? (
