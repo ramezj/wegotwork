@@ -9,7 +9,7 @@ import { CustomButton } from "@/components/ui/custom-buttons";
 import Marquee from "@/components/ui/marquee";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart3, FileText, Building2, Users, ArrowRight } from "lucide-react";
+import { BarChart3, FileText, Building2, Users, ArrowRight, ArrowUpRight } from "lucide-react";
 
 export const metadata:Metadata = {
   title: "WeGotWork — Build Beautiful Career Pages",
@@ -25,7 +25,13 @@ export default async function Home() {
     <main className="">
       <Navbar session={session}/>
       <div>
-      <div className="flex flex-col items-center text-center mt-12 px-2 ">
+      <div className="flex flex-col items-center text-center mt-12 px-2">
+        {/* <div className="mb-8">
+          <Button variant={"outline"} className="border border-dashed rounded-none bg-theme w-full">
+          WeGotWork is now live on ProductHunt
+          <ArrowUpRight className="size-4 text-white" />
+          </Button>
+        </div> */}
       <div className="lg:w-[60%] w-full">
         <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-medium leading-tight text-white">
         Build Beautiful Career Pages
@@ -40,6 +46,7 @@ export default async function Home() {
             <Button asChild variant={"outline"} className="px-4 border-dashed bg-theme w-full rounded-none font-medium">
               <Link href='/auth'>
               Start Hiring
+              <ArrowRight className="size-4 text-white" />
               </Link>
               </Button>
             <Button variant={"default"} asChild className="px-4 w-full rounded-none font-medium">
