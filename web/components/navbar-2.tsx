@@ -153,7 +153,7 @@ export function Navbar({ session } : { session: Session | null}) {
               <>
               <Link
               href={`/auth`}
-              className="text-2xl text-black transition-colors font-medium"
+              className="text-2xl text-white transition-colors font-medium"
               onClick={() => setIsOpen(false)}>
               start hiring
               </Link>
