@@ -57,10 +57,10 @@ export default async function Page({ params } : { params: Promise<{ organization
         <div className="top-0 z-10 sticky">
         <CareerNavbar organization={organization.organization as OrganizationWithJobs} />
         </div>
-            <div className="w-full flex flex-col items-center text-center py-8 px-4 gap-y-4">
-            <div>
+            <div className="w-full flex flex-col items-center text-center py-8 gap-y-4">
+            <div className="text-center w-full flex flex-col">
             <h1 className="font-medium text-white text-2xl">{job.job?.title}</h1>
-            <p className="text-sm max-w-3xl text-white">{formatDistanceToNow(job.job?.createdAt!)} ago </p>
+            <p className="text-sm max-w-3xl text-white text-center mx-auto">{formatDistanceToNow(job.job?.createdAt!)} ago </p>
             </div>
             <div className="flex flex-row gap-2">
             <Button size={"sm"} variant={"outline"} className="rounded-none bg-theme hover:bg-theme border"><Briefcase className="size-4"/>{formatJobType(job.job?.type as Type)}</Button>
