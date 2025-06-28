@@ -132,6 +132,7 @@ model Job {
   country        String?
   city           String?
   content        String?
+  remote         Boolean      @default(false)
   createdAt      DateTime     @default(now())
   organizationId String
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
