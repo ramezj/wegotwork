@@ -25,6 +25,7 @@ export default {
 		  },
   		colors: {
 			theme: '#0A0A0A',
+			blueColor:'#104DEB',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

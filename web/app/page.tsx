@@ -43,7 +43,7 @@ export default async function Home() {
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
       <div className="flex flex-row w-full lg:w-[60%] items-center justify-center content-center gap-4 mt-6">
-            <Button asChild variant={"default"} className="px-4 bg-[#104DEB] text-white hover:bg-[#104DEB] w-full rounded-none font-medium">
+            <Button asChild variant={"default"} className="px-4 bg-blueColor text-white hover:bg-blueColor w-full rounded-none font-medium">
               <Link href='/auth'>
               Start Hiring
               <ArrowRight className="size-4 text-white" />

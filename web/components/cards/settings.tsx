@@ -54,7 +54,7 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         <Textarea className="bg-accent border border-dashed rounded-none hover:border-white/50 active:border-white/50 focus:border-white/50 font-medium text-white text-sm" placeholder="Provide a detailed organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
         <div className="space-y-2">
-        <Button disabled={loading} type="submit" variant={"default"} className="font-medium px-4 rounded-none">
+        <Button disabled={loading} type="submit" variant={"default"} className="bg-blueColor text-white hover:bg-blueColor font-medium px-4 rounded-none">
         { loading ? <Loader2 className="animate-spin mr-2" /> : <></> }
         Save Changes
         </Button>

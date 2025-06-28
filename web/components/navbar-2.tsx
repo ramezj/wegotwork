@@ -50,18 +50,15 @@ export function Navbar({ session } : { session: Session | null}) {
               session.user.currentOrganizationId === null ? (
                 <Link href="/dashboard">
                 Dashboard
-                <ArrowRight className="text-black size-4" />
                 </Link>
               ) : (
                 <Link href="/overview">
                 Dashboard
-                <ArrowRight className="text-black size-4" />
                 </Link>
               )
             ) : (
               <Link href="/auth">
                Get Started
-              <ArrowRight className="text-black size-4" />
               </Link>
             )}
           </Button>
