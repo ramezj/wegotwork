@@ -52,14 +52,14 @@ export function JobCard({ job }: { job: JobWithCategories }) {
          {job.title}     
         </p>
         <div className="mt-2 flex gap-2">
-        <Badge variant={"outline"} className="rounded-none bg-accent text-white border font-medium hover:bg-accent">{formatJobType(job.type as Type)}</Badge>
+        <Badge variant={"outline"} className="rounded-none border-dashed border-white/20 bg-accent text-white border font-medium hover:bg-accent">{formatJobType(job.type as Type)}</Badge>
         {
             job.categoryId === null 
             ?
             <>
             </>
             :
-            <Badge variant={"outline"} className="rounded-none bg-accent text-white border font-medium hover:bg-accent">{job.category?.name}</Badge>
+            <Badge variant={"outline"} className="rounded-none border-dashed border-white/20 bg-accent text-white border font-medium hover:bg-accent">{job.category?.name}</Badge>
           }
         </div>
         </div>
@@ -91,8 +91,8 @@ export function LandingPageJobCard({ title, type, location, age, category }: { t
        {title}     
       </p>
       <div className="mt-2 flex gap-2">
-        <Badge variant={"outline"} className="rounded-none bg-accent text-white border font-medium hover:bg-accent">{formatJobType(type as Type)}</Badge>
-        <Badge variant={"outline"} className="rounded-none bg-accent text-white border font-medium hover:bg-accent">{category}</Badge>
+        <Badge variant={"outline"} className="rounded-none border-dashed border-white/20 bg-accent text-white border font-medium hover:bg-accent">{formatJobType(type as Type)}</Badge>
+        <Badge variant={"outline"} className="rounded-none border-dashed border-white/20 bg-accent text-white border font-medium hover:bg-accent">{category}</Badge>
       </div>
       </div>
       <div className="ml-auto mr-5">
