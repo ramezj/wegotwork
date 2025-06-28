@@ -65,7 +65,7 @@ export function CreateOrganizationButton() {
         <Button type="submit" 
         disabled={loading}
         variant={"default"}
-        className="w-full mt-4 font-medium rounded-none">
+        className="w-full text-white bg-blueColor hover:bg-blueColor mt-4 font-medium rounded-none">
             {
                 loading
                 ? 
