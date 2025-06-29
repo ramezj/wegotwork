@@ -73,7 +73,7 @@ export default function CreateJob({ id, className, children, ...buttonProps }: C
         </div>
         <DialogFooter>
           <Button disabled={loading} form="form" type="submit" variant={"default"} className="px-4 text-white bg-blueColor hover:bg-blueColor w-full font-medium rounded-none">
-            { loading ? <Loader2 className="mr-1 h-4 w-4 animate-spin text-black" /> : <></> }
+            { loading ? <Loader2 className="mr-1 h-4 w-4 animate-spin text-white" /> : <></> }
             Create Job
           </Button>
         </DialogFooter>

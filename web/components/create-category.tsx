@@ -69,7 +69,7 @@ export default function CreateCategoryButton() {
         </div>
         <DialogFooter>
           <Button disabled={loading} form="form" variant={"default"} className="w-full text-white bg-blueColor hover:bg-blueColor font-medium rounded-none">
-            {loading ? <Loader2 className="mr-1 h-4 w-4 animate-spin text-black" /> : <></>}
+            {loading ? <Loader2 className="mr-1 h-4 w-4 animate-spin text-white" /> : <></>}
             Create Category
           </Button>
         </DialogFooter>

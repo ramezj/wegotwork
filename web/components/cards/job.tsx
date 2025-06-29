@@ -2,7 +2,7 @@
 // import { formatJobType } from "@/lib/format-job";
 import { Job } from "@prisma/client";
 import { Button } from "../ui/button";
-import { Settings, ArrowRight, Users } from "lucide-react";
+import { Settings, ArrowRight, Users, ArrowUpRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns" 
@@ -45,7 +45,7 @@ export function JobCardForDashboard({ job }: { job: Job}) {
 
 export function JobCard({ job }: { job: JobWithCategories }) {
     return (
-      <Link href={`/${job.id}`}>
+      <Link target="_blank" href={`/${job.id}`}>
       <div className="w-full bg-theme flex border border-dashed rounded-none items-center pt-3 pb-3 cursor-pointer">
       <div className="mx-5 my-3 flex flex-col items-start text-left">
         <p className='sm:text-lg text-md font-medium text-left text-white'>
@@ -64,9 +64,17 @@ export function JobCard({ job }: { job: JobWithCategories }) {
         </div>
         </div>
         <div className="ml-auto mr-5">
-        <Button className="border   rounded-none" variant={"default"} size={"icon"}>
-            <ArrowRight className="size-4" />
+        <div className="sm:hidden block">
+        <Button className="border rounded-none" variant={"default"} size={"icon"}>
+        <ArrowUpRight className="size-4" />
         </Button>
+        </div>
+        <div className="sm:block hidden">
+        <Button className="border rounded-none" variant={"default"}>
+            View
+            <ArrowUpRight className="size-4" />
+        </Button>
+        </div>
           {/* {
             job.city === null && job.country === null
             ?

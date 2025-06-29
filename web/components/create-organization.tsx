@@ -70,7 +70,7 @@ export function CreateOrganizationButton() {
                 loading
                 ? 
                 <>
-                <Loader2 className="animate-spin text-black" />
+                <Loader2 className="animate-spin text-white" />
                 Create Organization
                 </>
                 : 
