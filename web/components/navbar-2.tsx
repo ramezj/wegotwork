@@ -45,7 +45,7 @@ export function Navbar({ session } : { session: Session | null}) {
         </div>
         <div className="flex-1"></div>
         <div className="hidden md:block">
-            <Button variant="default" asChild className="mr-4 px-8 rounded-none font-medium text-base align-middle">
+            <Button variant="default" asChild className="h-16 px-8 rounded-none font-medium text-base align-middle">
             {session?.user ? (
               session.user.currentOrganizationId === null ? (
                 <Link href="/dashboard">
