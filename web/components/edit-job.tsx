@@ -16,6 +16,7 @@ import { DeleteJob } from "@/actions/jobs/delete-job"
 import { DeleteJobButton } from "./delete-job"
 import { CountryDropdown } from "./ui/country-dropdown"
 import { Prisma } from "@prisma/client"
+import { redirect } from "next/navigation"
 
 type JobWithCategory = Prisma.JobGetPayload<{
     include: {
@@ -27,6 +28,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
     const [ current, setCurrent ] = useState<JobWithCategory>(job);
     const [ currentCategoryId, setCurrentCategoryId ] = useState<null | string>(job.categoryId === null ? "none" : job.categoryId);
     const [ loading, setLoading ] = useState<boolean>(false);
+    const [ deleteLoading, setDeleteLoading ] = useState<boolean>(false);
     const selectedCategoryName = categories.find((c) => c.id === currentCategoryId)?.name ?? "Select Category";
     const EditTheJob = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -35,12 +37,18 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
         toast(response?.message as string)
         setLoading(false);
     }
-    const deletejob = async () => {
-      setLoading(true);
+    const deletejob = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setDeleteLoading(true);
       const res = await DeleteJob(job.id);
-      setLoading(false);
+      toast(res.message);
+      if(res.error === false) {
+        redirect('/jobs');
+      }
+      setDeleteLoading(false);
     }
     return (
+        <>
         <div className="flex lg:flex-row flex-col gap-4">
         <Card className="w-full rounded-none bg-theme border border-dashed">
         <CardHeader className=''>
@@ -161,7 +169,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                             country: null
                     }))
                     }}
-                    >
+                >
                 <X className="w-4 h-4 text-white" />
                 </Button>
                 </div>
@@ -219,5 +227,51 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
         </CardContent>
         </Card>
         </div>
+        <div className="flex flex-col !gap-4">
+        <Card className="w-full rounded-none bg-theme border border-dashed">
+        <CardHeader className=''>
+        <div className="flex justify-between items-center w-full">
+        <CardTitle className="text-white font-medium">
+        Description
+        </CardTitle>
+        </div>
+        </CardHeader>
+        <CardContent>
+        <form onSubmit={EditTheJob} className="space-y-4">
+        <div className="space-y-2">
+        <Label className='font-medium text-white'>Description</Label>
+        <Textarea className="bg-accent border border-dashed text-white font-medium text-sm rounded-none" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
+        </div> 
+        <Button type="submit" variant={"default"} disabled={loading} className="px-4 font-medium rounded-none">
+        {loading ? <Loader2 className="animate-spin mr-2 text-black" /> : <></>}
+        Save Changes
+        </Button>
+        </form>
+        </CardContent>
+        </Card>
+        <Card className="w-full rounded-none bg-theme border border-dashed">
+        <CardHeader>
+        <CardTitle className='font-medium text-white'>Delete Job</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+        <h1 className='font-medium text-white w-fit sm:text-base text-sm'>
+        Are you sure you want to delete this job?
+        </h1>
+        <Button variant={"destructive"} className="rounded-none" 
+        onClick={((e) => {deletejob(e)})}
+        disabled={deleteLoading}>
+        {deleteLoading ? <Loader2 className="size-4 mr-2 animate-spin text-white" /> : <></>}
+        Delete Job
+        </Button>
+        </CardContent>
+        </Card>
+        </div>
+        </>
     )
-}
+}                
+
+
+{/* <div className="space-y-2">
+                <Label className='font-medium text-white'>Description</Label>
+                <Textarea className="bg-accent border border-dashed text-white font-medium text-sm rounded-none" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
+                </div> */}
