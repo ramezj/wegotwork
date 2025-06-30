@@ -49,7 +49,8 @@ export async function EditJob(job: Job, categoryId: string | null) {
                 content: job.content,
                 country: job.country === "" ? null : job.country,
                 city: job.city === "" ? null : job.city,
-                categoryId: categoryId ?? null
+                categoryId: categoryId ?? null,
+                remote: job.remote
             }
         })
         return { 

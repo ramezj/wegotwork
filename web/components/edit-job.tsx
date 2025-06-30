@@ -41,14 +41,13 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
       setLoading(false);
     }
     return (
-        <>
+        <div className="flex lg:flex-row flex-col gap-4">
         <Card className="w-full rounded-none bg-theme border border-dashed">
         <CardHeader className=''>
         <div className="flex justify-between items-center w-full">
         <CardTitle className="text-white font-medium">
-            Job Information
+        Information
         </CardTitle>
-        {/* <DeleteJobButton job={current as Job}/> */}
         </div>
         </CardHeader>
         <CardContent>
@@ -75,13 +74,6 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                         </SelectContent>
                     </Select>
                 </div>
-                {/* <div className="space-y-2">
-                <Label className="font-medium text-white">Country</Label>
-                <CountryDropdown
-                placeholder="Select country"
-                defaultValue="USA"
-                />
-                </div> */}
                 <div className="space-y-2">
                 <Label className='font-medium text-white'>Category</Label>
                 <div className="flex flex-row gap-2">
@@ -125,6 +117,29 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                     </Button>
                 </div>
                 </div>
+                {/* <div className="space-y-2">
+                <Label className='font-medium text-white'>Description</Label>
+                <Textarea className="bg-accent border border-dashed text-white font-medium text-sm rounded-none" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
+                </div> */}
+                <div className="gap-2">
+                <Button type="submit" variant={"default"} disabled={loading} className="px-4 font-medium rounded-none">
+                {loading ? <Loader2 className="animate-spin mr-2 text-black" /> : <></>}
+                Save Changes
+                </Button>
+                </div>
+        </form>
+        </CardContent>
+        </Card>
+        <Card className="w-full rounded-none bg-theme border border-dashed">
+        <CardHeader className=''>
+        <div className="flex justify-between items-center w-full">
+        <CardTitle className="text-white font-medium">
+        Location
+        </CardTitle>
+        </div>
+        </CardHeader>
+        <CardContent>
+        <form onSubmit={EditTheJob} className="space-y-4">
                 <div className="space-y-2">
                 <Label className='font-medium text-white'>Country</Label>
                 <div className="flex flex-row gap-2">
@@ -179,8 +194,20 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
                 </div>
                 </div>
                 <div className="space-y-2">
-                <Label className='font-medium text-white'>Description</Label>
-                <Textarea className="bg-accent border border-dashed text-white font-medium text-sm rounded-none" placeholder="Provide a detailed job description" value={current.content as string} onChange={((e) => { setCurrent((previous) => ({...previous, content: e.target.value}))})}></Textarea>
+                <Label className='font-medium text-white'>Remote Friendly</Label>
+                    <Select value={current.remote === true ? "true" : "false"} onValueChange={((e) => { setCurrent((previous) => ({ ...previous, remote: e === "true"}))})} >
+                        <SelectTrigger value={current.remote === true ? "true" : "false"} className="bg-accent rounded-none border border-dashed border-white/20 text-white font-medium text-sm" defaultValue={current.remote === true ? "true" : "false"}>
+                        <SelectValue>
+                            {current.remote === true ? "Remote Friendly" : "No Remote"}
+                        </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent className="bg-theme rounded-none border border-dashed text-white font-medium">
+                            <SelectGroup className="space-y-1">
+                                <SelectItem className="rounded-none" value="false">No Remote</SelectItem>
+                                <SelectItem className="rounded-none" value="true">Remote Friendly</SelectItem>
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
                 </div>
                 <div className="gap-2">
                 <Button type="submit" variant={"default"} disabled={loading} className="px-4 font-medium rounded-none">
@@ -191,6 +218,6 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
         </form>
         </CardContent>
         </Card>
-        </>
+        </div>
     )
 }
