@@ -44,11 +44,13 @@ export default async function Page({ params } : { params: Promise<{ organization
         <div className="flex justify-between items-center w-full">
         <h1 className="font-medium text-3xl text-white tracking-tight">{job.job?.title}</h1>
         </div>
-        <div className="flex flex-col gap-4 sm:flex-row">
+        <div className="flex flex-col gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
         <TotalApplicants title="Applicants" amount={job.job?.applicants.length as number} />
         <TotalApplicants title="Applicants" amount={job.job?.applicants.length as number} />
         </div>
         <EditJobCard job={job.job as JobWithCategory} categories={job.categories as JobCategory[]} />
+        </div>
         </>
     )
 }

@@ -227,7 +227,7 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
         </CardContent>
         </Card>
         </div>
-        <div className="flex flex-col !gap-4">
+        <div className="flex flex-col gap-4">
         <Card className="w-full rounded-none bg-theme border border-dashed">
         <CardHeader className=''>
         <div className="flex justify-between items-center w-full">
