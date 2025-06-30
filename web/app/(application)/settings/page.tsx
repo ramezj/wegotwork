@@ -48,7 +48,7 @@ export default async function Page() {
             <Settings className="size-4" />
         </Button>
         </div>
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4">
         <SettingsCard organization={userOrganization.organization.organization} />
         <DeleteOrganizationCard organizationId={session.user.currentOrganizationId!} />
         </div>

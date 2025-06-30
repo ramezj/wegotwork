@@ -16,6 +16,7 @@ import { Prisma } from "@prisma/client";
 import { headers } from "next/headers";
 import { PendingInvitations } from "@/components/pending-invitations";
 import { Metadata } from "next";
+import { MembersCard } from "@/components/members";
 
 type OrganizationWithUser = Prisma.OrganizationUserGetPayload<{
     include: {
@@ -61,45 +62,9 @@ export default async function Page({ params } : { params: Promise<{ organization
             <Users className="size-4" />
         </Button>
         </div>
-        <Card className="bg-theme rounded-none border border-dashed">
-        <CardHeader>
-            <CardTitle className="text-2xl font-medium text-white">Members</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-            {
-                userOrganization?.organization?.organization?.users.map((users: OrganizationWithUser) => {
-                    return (
-                        <div className="flex items-center justify-between" key={users.user.id}>
-                        <div className="flex items-center space-x-4" key={users.user.id}>
-                        <Avatar>
-                        <AvatarImage src={users.user.image!} />
-                        <AvatarFallback>{users.user.name.charAt(0)}</AvatarFallback>
-                        </Avatar>
-                        <div>
-                        <p className="text-sm leading-none text-white font-medium">{users.user.name}</p>
-                        <p className="text-sm text-white font-medium">{formatRole(users.role)}</p>
-                        </div>
-                        </div>
-                        {
-                            session.user?.id === users.userId 
-                            ? 
-                            <>
-                            </>
-                            :
-                            <>
-                            <ManageMember OrganizationUser={users} />
-                            </>
-                        }
-                        </div>
-                    )
-                })
-            }
-        </CardContent>
-        </Card>
-        <div>
+        <div className="flex flex-col gap-4">
+        <MembersCard users={userOrganization.organization.organization.users} session={session} />
         <CreateUserInvitation organizationId={userOrganization?.organization.organizationId} />
-        </div> 
-        <div>
         <PendingInvitations OrganizationInvites={userOrganization.organization.organization.invitations} />
         </div>
         </>

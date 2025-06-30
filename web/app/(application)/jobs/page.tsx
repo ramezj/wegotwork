@@ -50,7 +50,7 @@ export default async function Page() {
                 <h1 className="font-medium text-3xl text-white tracking-tight">Jobs</h1>
                 <CreateJob id={session.user.currentOrganizationId!}/>
                 </div>
-                <div className="gap-5 flex flex-col">
+                <div className="gap-4 flex flex-col">
                 {
                 jobs?.jobs?.jobs.map((job:Job) => {
                     return (

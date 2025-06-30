@@ -43,12 +43,14 @@ export default async function Page({ params } : { params: Promise<{ organization
             </Link>
         </Button>
         </div>
-        <div className="flex sm:flex-row flex-col gap-4 w-full">
+        <div className="flex flex-col gap-4">
+        <div className="flex sm:flex-row flex-col w-full gap-4">
         <TotalJobs title="Jobs" amount={userOrganization?.organization?.organization.jobs.length as number}/>
         <TotalApplicants title="Applicants" amount={userOrganization?.applicants as number}/>
         <TotalApplicants title="Categories" amount={userOrganization?.organization?.organization.categories.length as number}/>
         </div>
         <SettingsCard organization={userOrganization?.organization?.organization as Organization} />
+        </div>
         </>
     )
 }
