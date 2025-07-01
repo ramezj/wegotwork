@@ -63,12 +63,14 @@ export async function CreateInvitation(organizationId: string, email: string) {
         })
         if(invitation) {
             const sendEmail = await resend.emails.send({
-                from: "noreply@heliup.xyz",
+                from: "noreply@wegotwork.co",
                 to:email,
                 subject:"You've Been Invited to an Organization",
                 react: InviteUserEmail({OrganizationInvite: InvitationWithOrganization as OrganizationInviteWithOrganization, inviter:  session.user.name as string, email: session.user.email})
             })
+            console.log(sendEmail);
         }
+        console.log(invitation);
         revalidatePath(`/members`)
         return {
             error: false,
