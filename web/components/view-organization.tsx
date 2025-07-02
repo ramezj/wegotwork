@@ -71,6 +71,9 @@ export function ViewOrganization({ organization, locations, types } : { organiza
         }
         <div className="flex sm:flex-row flex-col gap-4 w-full pt-2 justify-center">
           <div className="w-full">
+            <Input placeholder="Search" className="bg-theme rounded-none border-dashed border" />
+          </div>
+          <div className="w-full">
             <Select
               onValueChange={(country) => {
               setSelectedCountry(country); 
