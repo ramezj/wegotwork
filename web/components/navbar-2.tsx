@@ -21,7 +21,7 @@ export function Navbar({ session } : { session: Session | null}) {
   }, [isOpen])
   return (
     // add overflow-hidden if not the white button.
-    <div className="border-b border-dashed bg-black sticky top-0 h-16 z-50">
+    <div className="border-b border-foreground/20 border-dashed bg-black sticky top-0 h-16 z-50">
       <div className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center z-50 pl-4 text-2xl font-medium tracking-tighter text-white">
           <span className="text-2xl font-medium tracking-tighter text-white">wegotwork</span>

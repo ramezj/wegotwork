@@ -43,7 +43,7 @@ export function CareerNavbar({ organization } : { organization: OrganizationWith
     }
   }, [isOpen])
   return (
-    <div className="border-b border-dashed h-16 bg-black sticky top-0">
+    <div className="border-b border-foreground/20 border-dashed h-16 bg-black sticky top-0">
       <div className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center z-50 pl-4">
           <span className="text-2xl font-medium tracking-tighter text-white">{organization.name}</span>
