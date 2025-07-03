@@ -57,10 +57,10 @@ export function CreateOrganizationButton() {
         <form className="grid items-center gap-3 text-left" onSubmit={create_organization}>
         <Label className='font-medium text-white text-left'>Name</Label>
         <Input placeholder="Enter name" required value={name} onChange={((e) => {setName(e.target.value)})} 
-        className="bg-accent text-base border border-dashed hover:border-white/50 active:border-white/50 focus:border-white/50 font-medium text-white rounded-none"/>
+        className="bg-accent text-base border border-dashed font-medium text-white rounded-none"/>
         <Label className='font-medium text-white text-left'>Slug</Label>
         <Input placeholder="Enter slug" required value={slug} onChange={((e) => {setSlug(e.target.value)})} 
-        className="bg-accent text-base border border-dashed hover:border-white/50 active:border-white/50 focus:border-white/50 font-medium text-white rounded-none"/>
+        className="bg-accent text-base border border-dashed font-medium text-white rounded-none"/>
         <div>
         <Button type="submit" 
         disabled={loading}
