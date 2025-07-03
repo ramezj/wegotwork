@@ -35,7 +35,7 @@ export default function ApplyCard({ jobId }: { jobId: string}) {
       };
     return (
         <>
-            <div className="lg:w-1/2 w-full rounded-none bg-theme border border-dashed p-7 text-left">
+            <div className="lg:w-1/2 w-full rounded-none bg-theme border border-foreground/20 border-dashed p-7 text-left">
             <form onSubmit={apply} className="space-y-4">
             <div className="space-y-2">
             <h1 className="text-2xl font-medium text-white text-center">Apply to job</h1>
