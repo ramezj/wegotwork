@@ -60,7 +60,7 @@ export function DeleteJobButton({ job } : { job: Job}) {
                       variant={"destructive"} 
                       className="px-4 w-full font-medium rounded-none">
                         { loading ? <Loader2 className="mr-1 h-4 w-4 animate-spin text-white" /> : <></> }
-                        Delete Organization
+                        Delete Job
                       </Button>
                     </DialogFooter>
                   </DialogContent>
