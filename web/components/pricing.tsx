@@ -3,6 +3,7 @@ import { ArrowRightIcon, SquareArrowOutUpRight, CheckIcon, XIcon, CircleCheck } 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
+import Link from "next/link";
 
 export function FreeCard() {
     return (
@@ -51,8 +52,10 @@ export function FreeCard() {
           </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-      <Button variant={"default"} className="w-full font-medium rounded-none">
-                Start Hiring
+      <Button variant={"default"} className="w-full font-medium rounded-none" asChild>
+          <Link href={'/auth'}>
+              Start Hiring
+          </Link>
         </Button>
       </CardFooter>
     </Card>
@@ -71,7 +74,7 @@ export function PaidCard() {
         <CardContent>
           <div className="grid w-full items-center gap-4">
           <h2 className="flex text-2xl font-medium text-white -mt-3">
-            $75/month
+            $50/month
           </h2>
           <Separator />
             <div className="flex flex-col space-y-1.5">
@@ -107,8 +110,10 @@ export function PaidCard() {
           </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant={"default"} className="w-full font-medium rounded-none">
+        <Button variant={"default"} className="w-full font-medium rounded-none" asChild>
+          <Link href={'/auth'}>
               Start Hiring
+          </Link>
         </Button>
       </CardFooter>
     </Card>
