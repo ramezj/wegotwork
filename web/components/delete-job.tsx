@@ -8,9 +8,11 @@ import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, Dialog
 import { Label } from "./ui/label"
 import { Loader2 } from "lucide-react"
 import { redirect } from "next/navigation"
+import { Input } from "./ui/input"
 
 export function DeleteJobButton({ job } : { job: Job}) {
     const [ loading, setLoading ] = useState<boolean>(false);
+    const [ jobTitle, setJobTitle ] = useState<string>("");
     const deletejob = async () => {
         setLoading(true);
         const res = await DeleteJob(job.id);
@@ -21,26 +23,48 @@ export function DeleteJobButton({ job } : { job: Job}) {
       }
     return (
         <>
-      <Dialog>
+        <Dialog>
       <DialogTrigger asChild>
-      <Button size={"sm"} variant={"destructive"} className='border border-white/20 rounded-none'>
-            <Trash className="size-4" />
-        </Button>
-      </DialogTrigger>
-      <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} className="text-left w-[90%] bg-theme border !rounded-none">
-        <DialogHeader>
-            <DialogTitle className="text-left text-white">
-            Are you absolutely sure?
-            </DialogTitle>
-        </DialogHeader>
-        <DialogFooter className="mt-4">
-          <Button onClick={deletejob} variant={"destructive"} disabled={loading} className="w-full border rounded-none">
-            {loading ? <Loader2 className="mr-1 h-4 w-4 animate-spin" /> : <></>}
-            Delete Job
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+                      <Button className="rounded-none" variant={"destructive"}>
+                        Delete Job
+                      </Button>
+                      </DialogTrigger>
+                  <DialogContent onOpenAutoFocus={((e) => {e.preventDefault()})} 
+                  className="text-left w-[90%] bg-theme border border-dashed !rounded-none ">
+                    <DialogHeader>
+                      <DialogTitle className="text-left font-medium text-white !text-xl">DANGER ZONE</DialogTitle>
+                    </DialogHeader>
+                    <div className="grid">
+                      <div className="grid items-center gap-4">
+                        <Label htmlFor="name" className="text-left font-medium text-white">
+                        Job Name
+                        </Label>
+                        <form id="form">
+                        <Input
+                          type="text"
+                          id="name"
+                          onChange={((e) => {
+                            setJobTitle(e.target.value)
+                          })}
+                          value={jobTitle}
+                          required
+                          placeholder={`${job.title}`}
+                          className="bg-accent border-dashed  rounded-none border text-white font-medium text-base"
+                        />
+                        </form>
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <Button disabled={jobTitle !== job.title}  
+                      onClick={((e) => {deletejob()})}  
+                      variant={"destructive"} 
+                      className="px-4 w-full font-medium rounded-none">
+                        { loading ? <Loader2 className="mr-1 h-4 w-4 animate-spin text-white" /> : <></> }
+                        Delete Organization
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+          </Dialog>
         </>
     )
 }

@@ -257,12 +257,13 @@ export function EditJobCard({ job, categories } : { job: JobWithCategory, catego
         <h1 className='font-medium text-white w-fit sm:text-base text-sm'>
         Are you sure you want to delete this job?
         </h1>
-        <Button variant={"destructive"} className="rounded-none" 
+        <DeleteJobButton job={job} />
+        {/* <Button variant={"destructive"} className="rounded-none" 
         onClick={((e) => {deletejob(e)})}
         disabled={deleteLoading}>
         {deleteLoading ? <Loader2 className="size-4 mr-2 animate-spin text-white" /> : <></>}
         Delete Job
-        </Button>
+        </Button> */}
         </CardContent>
         </Card>
         </div>
