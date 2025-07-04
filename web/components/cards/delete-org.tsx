@@ -33,7 +33,7 @@ export function DeleteOrganizationCard({ organization } : { organization: Organi
         </CardHeader>
         <CardContent className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
             <h1 className='font-medium text-white w-fit sm:text-base text-sm'>
-                Are you sure you want to delete this organization?
+                This will permanently delete <b>{organization.name}</b>
             </h1>
             <Dialog>
                     <DialogTrigger asChild>
