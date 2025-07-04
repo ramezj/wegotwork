@@ -50,7 +50,7 @@ export default async function Page() {
         </div>
         <div className="flex flex-col gap-4">
         <SettingsCard organization={userOrganization.organization.organization} />
-        <DeleteOrganizationCard organizationId={session.user.currentOrganizationId!} />
+        <DeleteOrganizationCard organization={userOrganization.organization.organization} />
         </div>
         </>
     )
