@@ -31,12 +31,19 @@ export const auth = betterAuth({
             const currentOrganizationId = await prisma.user.findFirst({
                 where: {
                     id: user.id
+                },
+                select: {
+                    isPremium: true,
+                    currentOrganizationId: true,
+                    currentOrganization: true
                 }
             })
             return { 
                 user: {
                     ...user,
-                    currentOrganizationId: currentOrganizationId?.currentOrganizationId
+                    currentOrganizationId: currentOrganizationId?.currentOrganizationId,
+                    currentOrganization: currentOrganizationId?.currentOrganization,
+                    isPremium: currentOrganizationId?.isPremium
                 },
                 session: session
             }

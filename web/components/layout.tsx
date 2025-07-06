@@ -21,9 +21,9 @@ export default function LayoutNavigation({ children, session, organization }: { 
       <div className="grid min-h-screen w-full md:grid-cols-[200px_1fr] lg:grid-cols-[260px_1fr]">
         <div className="hidden border-r border-foreground/20 border-dashed bg-black md:block">
           <div className="flex h-full max-h-screen flex-col gap-2 sticky top-0 z-50 bg-black">
-            <div className="flex h-16 items-center border-b border-foreground/20 border-dashed bg-black px-3 lg:h-16 text-center justify-center">
+            <div className="flex h-16 items-center border-b border-foreground/20 border-dashed bg-black lg:h-16 text-center justify-center">
             <Link href="/" className="flex items-center z-50">
-            <span className="text-2xl tracking-tighter text-white font-medium">wegotwork</span>
+            <span className="text-2xl tracking-tighter text-white font-medium">{session.user.currentOrganization?.name}</span>
             </Link>
             </div>
             <div className="flex-1 ">
@@ -80,10 +80,10 @@ export default function LayoutNavigation({ children, session, organization }: { 
           </div>
         </div>
         <div className="flex flex-col sticky">
-          <header className="z-50 flex h-16 items-center gap-4 border-b border-foreground/20 border-dashed bg-black px-3 lg:h-16 sticky top-0">
+          <header className="z-50 flex h-16 items-center gap-4 border-b border-foreground/20 border-dashed bg-black lg:h-16 sticky top-0">
             <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="shrink-0 md:hidden text-white hover:text-white p-8 hover:bg-transparent rounded-none -ml-4">
+              <Button variant="ghost" size="icon" className="shrink-0 md:hidden text-white hover:text-white p-11 hover:bg-transparent rounded-none -ml-4">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
@@ -160,9 +160,13 @@ export default function LayoutNavigation({ children, session, organization }: { 
               </div>
               </SheetContent>
             </Sheet>
-            <div className="w-full flex-1">
-            </div>
-            <div className="flex-1"></div> 
+            <div className="ml-auto pr-4 lg:pr-6">
+              {session.user.isPremium === false && 
+              <>
+              <Button className="rounded-none">Upgrade to Premium</Button>  
+              </>
+              }
+            </div> 
           </header>
             {children}
         </div>
