@@ -39,7 +39,7 @@ export function DropdownAvatar({ session } : { session: Session | null }) {
                   side="bottom"
                   align="end"
                   sideOffset={8}
-                  className="space-y-2 mt-3 bg-theme mb-1 !rounded-none border-dashed border-foreground/20"
+                  className="space-y-2 mt-4 bg-theme !rounded-none border-dashed border-foreground/20"
                 >
                   <DropdownMenuItem onSelect={redirectToDashboard} className="cursor-pointer rounded-none">
                   <Settings2 className="size-4" />

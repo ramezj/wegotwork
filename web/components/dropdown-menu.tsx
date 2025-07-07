@@ -35,7 +35,7 @@ export function DropDownMenuUser({ session } : { session: Session | null }) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   side="top"
-                  className="w-[--radix-popper-anchor-width] space-y-2 bg-theme mb-1 rounded-none border-dashed"
+                  className="w-[--radix-popper-anchor-width] space-y-2 bg-theme mb-2 rounded-none border-dashed border-foreground/20"
                 >
                   <DropdownMenuItem onSelect={redirectToDashboard} className="cursor-pointer rounded-none">
                   <Settings2 className="size-4" />

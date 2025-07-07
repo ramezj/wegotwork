@@ -49,7 +49,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         <TotalApplicants title="Applicants" amount={userOrganization?.applicants as number}/>
         <TotalApplicants title="Categories" amount={userOrganization?.organization?.organization.categories.length as number}/>
         </div>
-        <SettingsCard organization={userOrganization?.organization?.organization as Organization} />
+        <SettingsCard organization={session.user.currentOrganization as Organization} />
         </div>
         </>
     )
