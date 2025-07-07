@@ -24,9 +24,9 @@ export function MembersCard({ users, session } : { users: OrganizationWithUser[]
                     return (
                         <div className="flex items-center justify-between" key={users.user.id}>
                         <div className="flex items-center space-x-4" key={users.user.id}>
-                        <Avatar>
-                        <AvatarImage src={users.user.image!} />
-                        <AvatarFallback>{users.user.name.charAt(0)}</AvatarFallback>
+                        <Avatar className="cursor-pointer !rounded-none !bg-white text-black">
+                        <AvatarImage src={undefined} />
+                        <AvatarFallback className="rounded-none bg-white">{session?.user.name?.charAt(0) ?? "?"}</AvatarFallback>
                         </Avatar>
                         <div>
                         <p className="text-sm leading-none text-white font-medium">{users.user.name}</p>
