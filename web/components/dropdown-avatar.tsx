@@ -1,0 +1,60 @@
+"use client"
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "./ui/dropdown-menu"
+import Link from "next/link"
+import { Button } from "./ui/button"
+import { ChevronsUpDown, Settings2, LogOut} from "lucide-react"
+import { signOut } from "@/lib/auth-client"
+import { Session } from "@/lib/auth-client"
+import { Separator } from "./ui/separator"
+import { redirect } from "next/navigation"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+
+export function DropdownAvatar({ session } : { session: Session | null }) {
+  const signUserOut = async () => {
+    await signOut({
+      fetchOptions: {
+        onError: (error) => {
+          console.log(error);
+        },
+        onSuccess: () => {
+          redirect('/');
+        }
+      }
+     })
+  }
+  const redirectToDashboard = async () => {
+    redirect("/dashboard");
+  }
+    return (
+        <>
+        <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Avatar className="cursor-pointer !rounded-none !bg-white text-black">
+                        <AvatarImage src={undefined} />
+                        <AvatarFallback className="rounded-none bg-white">{session?.user.name?.charAt(0) ?? "?"}</AvatarFallback>
+                    </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  // By default, Radix DropdownMenuContent uses a portal to avoid clipping. If you override this, set portalled={true}.
+                  side="bottom"
+                  align="end"
+                  sideOffset={8}
+                  className="space-y-2 bg-theme mb-1 rounded-none border-dashed"
+                >
+                  <DropdownMenuItem onSelect={redirectToDashboard} className="cursor-pointer rounded-none">
+                  <Settings2 className="size-4" />
+                  Switch Organization
+                  </DropdownMenuItem>
+                  <div>
+                  <Separator className="-my-1"/>
+                  </div>
+                  <DropdownMenuItem onClick={signUserOut} 
+                  className="cursor-pointer rounded-none">
+                  <LogOut className="size-4" />
+                  Log out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+        </>
+    )
+}

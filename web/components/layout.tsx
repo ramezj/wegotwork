@@ -12,6 +12,10 @@ import { DropDownMenuUser } from "./dropdown-menu"
 import { Menu } from "lucide-react"
 import { NavUser } from "./testing/nav-user"
 import { CustomSidebarItem } from "./sidebar-item"
+import { OrganizationsDropdown } from "./dropdown-organizations"
+import { DropdownAvatar } from "./dropdown-avatar"
+
+
 export default function LayoutNavigation({ children, session, organization }: { children: React.ReactNode; session: Session, organization: string }) {
   if(!session.user) {
     redirect('/');
@@ -161,11 +165,12 @@ export default function LayoutNavigation({ children, session, organization }: { 
               </SheetContent>
             </Sheet>
             <div className="ml-auto pr-4 lg:pr-6">
-              {session.user.isPremium === false && 
+              {/* {session.user.isPremium === false && 
               <>
               <Button className="rounded-none">Upgrade to Premium</Button>  
               </>
-              }
+              } */}
+              <DropdownAvatar session={session} />
             </div> 
           </header>
             {children}

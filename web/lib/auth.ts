@@ -38,11 +38,20 @@ export const auth = betterAuth({
                     currentOrganization: true
                 }
             })
+            const userOrganizations = await prisma.organizationUser.findMany({
+                where: {
+                    userId: user.id
+                },
+                include: {
+                    organization: true
+                }
+            })
             return { 
                 user: {
                     ...user,
                     currentOrganizationId: currentOrganizationId?.currentOrganizationId,
                     currentOrganization: currentOrganizationId?.currentOrganization,
+                    organizations: userOrganizations,
                     isPremium: currentOrganizationId?.isPremium
                 },
                 session: session
