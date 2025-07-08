@@ -10,6 +10,7 @@ import Marquee from "@/components/ui/marquee";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart3, FileText, Building2, Users, ArrowRight, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 export const metadata:Metadata = {
   title: "WeGotWork — Build Beautiful Career Pages",
@@ -59,6 +60,19 @@ export default async function Home() {
             <LandingPageJobCard title="Operations Manager" type="Full-Time" location="Cairo, EG" age="about 1 month ago" category="Operations" />
             <LandingPageJobCard title="Financial Advisor" type="Part-Time" location="Cairo, EG" age="about 1 month ago" category="Finance" />
       </div>
+      
+      {/* <div className="flex justify-center my-8 w-full">
+        <div className="lg:w-[60%] w-full">
+          <Image
+            src="/demo.png"
+            alt="Dashboard Preview"
+            width={1200}
+            height={800}
+            className="w-full h-auto shadow-lg border border-dashed rounded-none border-foreground/20"
+            priority
+          />
+        </div>
+      </div> */}
       </div>
       {/* <div className="pb-5">
       <Marquee items={items} />
