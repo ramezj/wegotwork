@@ -104,10 +104,18 @@ export function LandingPageJobCard({ title, type, location, age, category }: { t
       </div>
       </div>
       <div className="ml-auto mr-5">
-      <Button size={"sm"} variant={"default"} className="rounded-none">
-        <ArrowRight className="size-4" />
-      </Button>
-      </div>
+        <div className="sm:hidden block">
+        <Button className="border rounded-none" variant={"default"} size={"icon"}>
+        <ArrowUpRight className="size-4" />
+        </Button>
+        </div>
+        <div className="sm:block hidden">
+        <Button className="border rounded-none" variant={"default"}>
+            View
+            <ArrowUpRight className="size-4" />
+        </Button>
+        </div>
+        </div>
       </div>
     )
 }

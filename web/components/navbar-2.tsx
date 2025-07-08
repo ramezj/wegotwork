@@ -62,29 +62,6 @@ export function Navbar({ session } : { session: Session | null}) {
               </Link>
             )}
           </Button>
-          {/* {session?.user ? (
-            <>
-            {
-              session?.user.currentOrganizationId === null
-              ? 
-              <>
-              <Button variant="default" asChild className="h-16 px-6 rounded-none font-medium text-base">
-              <Link href="/dashboard">Dashboard</Link>
-              </Button>
-              </>
-              :
-              <>
-              <Button variant="default" asChild className="h-16 px-6 rounded-none font-medium text-base">
-              <Link href="/overview">Dashboard</Link>
-              </Button>
-              </>
-            }
-            </>
-          ) : (
-            <Button asChild variant="default" className="h-16 px-6 rounded-none font-medium text-base">
-              <Link href="/auth">Start Hiring</Link>
-            </Button>
-          )} */}
         </div>
         {
           isOpen
@@ -110,7 +87,7 @@ export function Navbar({ session } : { session: Session | null}) {
           )}
         >
           <nav className="flex flex-col items-center space-y-6 text-center">
-            {["features", "demo", "pricing"].map((item) => (
+            {["Features", "Demo", "Pricing"].map((item) => (
               <Link
                 key={item}
                 href={`/${item.toLowerCase()}`}
@@ -132,7 +109,7 @@ export function Navbar({ session } : { session: Session | null}) {
                 href={`/dashboard`}
                 className="text-2xl text-white transition-colors font-medium"
                 onClick={() => setIsOpen(false)}>
-                dashboard
+                Dashboard
                 </Link>
                 </>
                 :
@@ -141,7 +118,7 @@ export function Navbar({ session } : { session: Session | null}) {
                 href={`/overview`}
                 className="text-2xl text-white transition-colors font-medium"
                 onClick={() => setIsOpen(false)}>
-                dashboard
+                Dashboard
                 </Link>
                 </>
               }
@@ -152,7 +129,7 @@ export function Navbar({ session } : { session: Session | null}) {
               href={`/auth`}
               className="text-2xl text-white transition-colors font-medium"
               onClick={() => setIsOpen(false)}>
-              start hiring
+              Start Hiring
               </Link>
               </>
             }
