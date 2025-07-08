@@ -55,7 +55,7 @@ export function PickOrganizationCard({ userOrganizations }: { userOrganizations 
                     <p className="text-sm text-muted-foreground">0 Member</p>
                     </div>
                 </div>
-                <Button type="submit" variant="default" className="rounded-none">
+                <Button disabled={organization.organizationId === selectedOrgId && isSelecting} type="submit" variant="default" className="rounded-none">
                       {organization.organizationId === selectedOrgId && isSelecting ? (
                         <>
                           <Loader2 className="animate-spin text-black flex mr-2" />
