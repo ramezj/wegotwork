@@ -62,7 +62,6 @@ export default function LayoutNavigation({ children, session, organization }: { 
                   Billing
                 </Link>
                 </Button>
-                <Separator />
                 <Button asChild variant="ghost" className={` ${path.includes('/members') ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
                 <Link href='/members'>
                 <Users className="h-4 w-4" />
@@ -72,7 +71,14 @@ export default function LayoutNavigation({ children, session, organization }: { 
                 <Button asChild variant="ghost" className={` ${path.includes('/settings') ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
                 <Link href='/settings'>
                 <Settings className="h-4 w-4" />
-                  Settings
+                  Organization
+                </Link>
+                </Button>
+                <Separator />
+                <Button asChild variant="ghost" className={` ${path.includes('/me') ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
+                <Link href='/settings'>
+                <Settings className="h-4 w-4" />
+                  Account
                 </Link>
                 </Button>
               </nav>
