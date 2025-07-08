@@ -90,7 +90,7 @@ export default async function Home() {
             <section className="py-[1.20rem] px-4">
         <div className="w-full lg:w-[60%] mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-medium">Everything you need to start hiring</h2>
+            <h2 className="text-3xl md:text-4xl font-medium">Everything you need to start hiring.</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="bg-theme border border-dashed rounded-none">
@@ -99,7 +99,7 @@ export default async function Home() {
                   <Building2 className="h-6 w-6 text-black" />
                 </div>
                 <CardTitle className="text-white font-medium !mb-2">Beautiful Career Pages</CardTitle>
-                <CardDescription className="text-gray-400 font-medium">
+                <CardDescription className="text-muted-foreground font-medium">
                   Create stunning, branded career pages that showcase your company culture and attract top talent.
                 </CardDescription>
               </CardHeader>
@@ -124,7 +124,7 @@ export default async function Home() {
                   <Users className="h-6 w-6 text-black" />
                 </div>
                 <CardTitle className="text-white font-medium !mb-2">Applicant Management</CardTitle>
-                <CardDescription className="text-white font-medium">
+                <CardDescription className="text-muted-foreground font-medium">
                   Track, review, and manage all applications in one place. Collaborate with your team seamlessly.
                 </CardDescription>
               </CardHeader>
@@ -136,7 +136,7 @@ export default async function Home() {
                   <BarChart3 className="h-6 w-6 text-black" />
                 </div>
                 <CardTitle className="text-white font-medium !mb-2">Analytics & Insights</CardTitle>
-                <CardDescription className="text-gray-400 font-medium">
+                <CardDescription className="text-muted-foreground font-medium">
                   Get detailed analytics on job performance, application rates, and hiring metrics.
                 </CardDescription>
               </CardHeader>
