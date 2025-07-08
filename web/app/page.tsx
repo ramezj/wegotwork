@@ -58,9 +58,12 @@ export default async function Home() {
       </div>
       <div className="not-prose my-8 lg:w-[60%] w-full space-y-4">
             <LandingPageJobCard title="Operations Manager" type="Full-Time" location="Cairo, EG" age="about 1 month ago" category="Operations" />
-            <LandingPageJobCard title="Financial Advisor" type="Part-Time" location="Cairo, EG" age="about 1 month ago" category="Finance" />
+            <LandingPageJobCard title="Financial Advisor" type="Part-Time" location="Brussels, EG" age="about 1 month ago" category="Finance" />
+            <div className="hidden 2xl:block">
+            <LandingPageJobCard title="Software Engineer" type="Full-Time" location="Berlin, Germany" age="about 1 month ago" category="Finance" />
+            </div>
       </div>
-      
+
       {/* <div className="flex justify-center my-8 w-full">
         <div className="lg:w-[60%] w-full">
           <Image
