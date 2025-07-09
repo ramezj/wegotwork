@@ -10,6 +10,7 @@ import { redirect } from "next/navigation"
 import { OrganizationUser } from "@prisma/client"
 import { Prisma } from "@prisma/client"
 import { SetCurrentOrganization } from "@/actions/organization/set-current-org"
+import { useRouter } from "next/navigation"
 
 type OrganizationUserWithUser = Prisma.OrganizationUserGetPayload<{
     include: {
@@ -18,11 +19,11 @@ type OrganizationUserWithUser = Prisma.OrganizationUserGetPayload<{
 }>
 
 export function OrganizationsDropdown({ session }: { session: Session}) {
-
+    const router = useRouter();
     const SetCurrentOrg = async (e: React.FormEvent, organizationId: string) => {
       e.preventDefault();
       const response = await SetCurrentOrganization(organizationId);
-      console.log(response);
+      router.refresh();
     }
     return (
         <>
