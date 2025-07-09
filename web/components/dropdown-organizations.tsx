@@ -1,8 +1,8 @@
 "use client"
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "./ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuGroup } from "./ui/dropdown-menu"
 import Link from "next/link"
 import { Button } from "./ui/button"
-import { ChevronsUpDown, Settings2, LogOut, Plus} from "lucide-react"
+import { ChevronsUpDown, Settings2, LogOut, Plus, Check} from "lucide-react"
 import { signOut } from "@/lib/auth-client"
 import { Session } from "@/lib/auth-client"
 import { Separator } from "./ui/separator"
@@ -16,7 +16,7 @@ type OrganizationUserWithUser = Prisma.OrganizationUserGetPayload<{
     }
 }>
 
-export function OrganizationsDropdown({ organizations, session }: { organizations: OrganizationUserWithUser[], session: Session}) {
+export function OrganizationsDropdown({ session }: { session: Session}) {
     return (
         <>
         <DropdownMenu>
@@ -30,27 +30,25 @@ export function OrganizationsDropdown({ organizations, session }: { organization
                   side="top"
                   className="w-[--radix-popper-anchor-width] space-y-2 bg-theme mb-1 rounded-none border-dashed"
                 >
-                    
-                  {organizations.map((organization) => {
+                  <DropdownMenuGroup>
+                  {session.user.organizations.map((organization) => {
                     return (
-                      <div key={organization.organizationId}>
-                      {organization.organizationId !== session.user.currentOrganizationId &&
-                      <>
-                      <DropdownMenuItem key={organization.organizationId} onClick={(() => {
-
-                      })} className="cursor-pointer rounded-none">
+                      <DropdownMenuItem disabled={organization.organizationId === session.user.currentOrganizationId} key={organization.organizationId} onClick={(() => {})} className="cursor-pointer rounded-none">
                       {organization.organization.name}
+                      {organization.organizationId === session.user.currentOrganizationId &&
+                      <Check className="ml-auto" />
+                      }
                       </DropdownMenuItem>
-                      </>}
-                      </div>
                     )
                   })}
-                      <DropdownMenuItem onClick={(() => {
-
+                  </DropdownMenuGroup>
+                      <DropdownMenuItem asChild onClick={(() => {
                       })} 
                       className="cursor-pointer rounded-none w-full">
+                      <Link href={'/dashboard'}>
                       <Plus className="size-4" />
                       Create Organization
+                      </Link>
                       </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>

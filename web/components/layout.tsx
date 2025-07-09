@@ -75,7 +75,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
                 </Link>
                 </Button>
                 <Separator />
-                <Button asChild variant="ghost" className={` ${path.includes('/me') ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
+                <Button asChild variant="ghost" className={` ${path === '/me' ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
                 <Link href='/settings'>
                 <Settings className="h-4 w-4" />
                   Account
@@ -85,7 +85,8 @@ export default function LayoutNavigation({ children, session, organization }: { 
             </div>
             <div className="p-4 w-full flex gap-2">
               {/* <NavUser session={session} /> */}
-              <DropDownMenuUser session={session} />
+              <OrganizationsDropdown session={session} />
+              {/* <DropDownMenuUser session={session} /> */}
             </div>
           </div>
         </div>
