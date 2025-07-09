@@ -9,6 +9,7 @@ import { Separator } from "./ui/separator"
 import { redirect } from "next/navigation"
 import { OrganizationUser } from "@prisma/client"
 import { Prisma } from "@prisma/client"
+import { SetCurrentOrganization } from "@/actions/organization/set-current-org"
 
 type OrganizationUserWithUser = Prisma.OrganizationUserGetPayload<{
     include: {
@@ -17,6 +18,12 @@ type OrganizationUserWithUser = Prisma.OrganizationUserGetPayload<{
 }>
 
 export function OrganizationsDropdown({ session }: { session: Session}) {
+
+    const SetCurrentOrg = async (e: React.FormEvent, organizationId: string) => {
+      e.preventDefault();
+      const response = await SetCurrentOrganization(organizationId);
+      console.log(response);
+    }
     return (
         <>
         <DropdownMenu>
@@ -33,7 +40,12 @@ export function OrganizationsDropdown({ session }: { session: Session}) {
                   <DropdownMenuGroup>
                   {session.user.organizations.map((organization) => {
                     return (
-                      <DropdownMenuItem disabled={organization.organizationId === session.user.currentOrganizationId} key={organization.organizationId} onClick={(() => {})} className="cursor-pointer rounded-none">
+                      <DropdownMenuItem 
+                      disabled={organization.organizationId === session.user.currentOrganizationId} 
+                      key={organization.organizationId} 
+                      onClick={((e:React.FormEvent) => {
+                        SetCurrentOrg(e, organization.organizationId)
+                      })} className="cursor-pointer rounded-none">
                       {organization.organization.name}
                       {organization.organizationId === session.user.currentOrganizationId &&
                       <Check className="ml-auto" />
@@ -42,8 +54,8 @@ export function OrganizationsDropdown({ session }: { session: Session}) {
                     )
                   })}
                   </DropdownMenuGroup>
-                      <DropdownMenuItem asChild onClick={(() => {
-                      })} 
+                      <DropdownMenuItem 
+                      asChild 
                       className="cursor-pointer rounded-none w-full">
                       <Link href={'/dashboard'}>
                       <Plus className="size-4" />

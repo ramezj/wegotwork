@@ -23,7 +23,6 @@ export async function SetCurrentOrganization(organizationId: string) {
             }
         })
         if(!isMember) {
-            console.log(isMember);
             return {
                 error: true,
                 message:"user not member of organization"
