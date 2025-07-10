@@ -18,7 +18,7 @@ export const metadata:Metadata = {
     description: "overview"
 }
 
-export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
+export default async function Page() {
     const session:Session | null = await auth.api.getSession({
         headers: await headers()
     })
@@ -49,7 +49,7 @@ export default async function Page({ params } : { params: Promise<{ organization
         <TotalApplicants title="Applicants" amount={userOrganization?.applicants as number}/>
         <TotalApplicants title="Categories" amount={userOrganization?.organization?.organization.categories.length as number}/>
         </div>
-        <SettingsCard organization={session.user.currentOrganization as Organization} />
+        <SettingsCard organization={userOrganization?.organization?.organization as Organization} />
         </div>
         </>
     )

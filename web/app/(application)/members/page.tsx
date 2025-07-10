@@ -29,7 +29,7 @@ export const metadata:Metadata = {
     description: "Members"
 }
 
-export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
+export default async function Page() {
     const session:Session | null = await auth.api.getSession({
         headers: await headers()
     });

@@ -13,7 +13,7 @@ export const metadata:Metadata = {
     description: "Billing"
 }
 
-export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
+export default async function Page() {
     const session:Session | null = await auth.api.getSession({
         headers: await headers()
     })
