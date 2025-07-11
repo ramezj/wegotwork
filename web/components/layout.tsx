@@ -14,6 +14,7 @@ import { NavUser } from "./testing/nav-user"
 import { CustomSidebarItem } from "./sidebar-item"
 import { OrganizationsDropdown } from "./dropdown-organizations"
 import { DropdownAvatar } from "./dropdown-avatar"
+import { ModeToggle } from "./mode-toggle"
 
 
 export default function LayoutNavigation({ children, session, organization }: { children: React.ReactNode; session: Session, organization: string }) {
@@ -171,12 +172,13 @@ export default function LayoutNavigation({ children, session, organization }: { 
               </div>
               </SheetContent>
             </Sheet>
-            <div className="ml-auto pr-4 lg:pr-6">
+            <div className="ml-auto pr-4 lg:pr-6 flex gap-4">
               {/* {session.user.isPremium === false && 
               <>
               <Button className="rounded-none">Upgrade to Premium</Button>  
               </>
               } */}
+              <ModeToggle />
               <DropdownAvatar session={session} />
             </div> 
           </header>

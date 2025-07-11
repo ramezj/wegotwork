@@ -42,12 +42,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={ibmPlexMono.className} suppressHydrationWarning >
       <body suppressHydrationWarning
-        className={`${ibmPlexMono.className} antialiased bg-black`}
+        className={`${ibmPlexMono.className} antialiased dark:bg-black bg-white`}
       >
-         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
          <Toaster/>
         {children}
-          </ThemeProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
