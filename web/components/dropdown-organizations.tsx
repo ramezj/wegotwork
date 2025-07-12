@@ -28,7 +28,9 @@ export function OrganizationsDropdown({ session }: { session: Session}) {
       setSelectedOrgId(organizationId)
       setIsSelecting(true)
       const response = await SetCurrentOrganization(organizationId);
-      setIsSelecting(false);
+      if(response?.error === false) {
+        setIsSelecting(false);
+      }
       router.refresh();
     }
     return (
