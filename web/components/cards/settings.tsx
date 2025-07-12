@@ -4,7 +4,7 @@ import { Label } from "../ui/label"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { Organization } from "@prisma/client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { EditOrganization } from "@/actions/organization/edit-organization"
 import { toast } from "sonner"
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../ui/card"
@@ -13,6 +13,12 @@ import { Textarea } from "../ui/textarea"
 export function SettingsCard({ organization } : { organization: Organization}) {
     const [ current, setCurrent ] = useState<Organization>(organization);
     const [ loading, setLoading ] = useState<boolean>(false);
+    
+    // Update current state when organization prop changes
+    useEffect(() => {
+        setCurrent(organization);
+    }, [organization]);
+    
     const editOrganization = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true)
