@@ -27,41 +27,41 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         setLoading(false);
     }
     return (
-        <Card className="w-full bg-theme rounded-none border border-dashed">
+        <Card className="w-full dark:bg-theme bg-gray-200 rounded-none border border-dashed">
             <CardHeader>
-                <CardTitle className="text-white font-medium">
+                <CardTitle className="text-foreground font-medium">
                     Organization
                 </CardTitle>
             </CardHeader>
         <CardContent>
         <form onSubmit={editOrganization} className="space-y-4">
         <div className="space-y-2">
-        <Label className='font-medium text-white'>Name</Label>
+        <Label className='font-medium text-foreground'>Name</Label>
         {/* hover:border-white/50 active:border-white/50 focus:border-white/50 */}
-        <Input className="bg-accent border border-dashed rounded-none font-medium text-white text-sm" required placeholder="Enter name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
+        <Input className="bg-accent border border-dashed rounded-none font-medium text-foreground text-sm" required placeholder="Enter name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
-        <Label className='font-medium text-white'>Slug</Label>
+        <Label className='font-medium text-foreground'>Slug</Label>
         {/* hover:border-white/50 active:border-white/50 focus:border-white/50 */}
-        <Input className="bg-accent border border-dashed rounded-none font-medium text-white text-sm" required placeholder="Enter slug" value={current.slug} onChange={
+        <Input className="bg-accent border border-dashed rounded-none font-medium text-foreground text-sm" required placeholder="Enter slug" value={current.slug} onChange={
             ((e) => { 
                 const newSlug = e.target.value.replace(/\s+/g, '-');
                 setCurrent((previous) => ({...previous, slug: newSlug }))})
         }></Input>
         </div>
         <div className="space-y-2">
-        <Label className='font-medium text-white'>Website</Label>
+        <Label className='font-medium text-foreground'>Website</Label>
         {/* hover:border-white/50 active:border-white/50 focus:border-white/50 */}
-        <Input className="bg-accent border border-dashed rounded-none font-medium text-white text-sm" 
+        <Input className="bg-accent border border-dashed rounded-none font-medium text-foreground text-sm" 
         type="url"
         placeholder="Enter organization's website" 
         value={current.website === null ? "" : current.website } 
         onChange={((e) => { setCurrent((previous) => ({...previous, website: e.target.value}))})} />
         </div>
         <div className="space-y-2">
-        <Label className='font-medium text-white'>Description</Label>
+        <Label className='font-medium text-foreground'>Description</Label>
         {/* hover:border-white/50 active:border-white/50 focus:border-white/50 */}
-        <Textarea className="bg-accent border border-dashed rounded-none font-medium text-white text-sm" placeholder="Provide a detailed organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
+        <Textarea className="bg-accent border border-dashed rounded-none font-medium text-foreground text-sm" placeholder="Provide a detailed organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
         <div className="space-y-2">
         <Button disabled={loading} type="submit" variant={"default"} className="bg-blueColor text-white hover:bg-blueColor font-medium px-4 rounded-none">

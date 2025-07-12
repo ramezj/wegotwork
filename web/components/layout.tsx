@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link"
-import { Home, Users, Banknote, Briefcase, Settings, Tags } from "lucide-react"
+import { Home, Users, Banknote, Briefcase, Settings, Tags, User } from "lucide-react"
 import { HomeIcon } from "./icons/Home-Icon"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from "@/components/ui/sheet"
@@ -33,7 +33,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
             </div>
             <div className="flex-1 ">
               <nav className="grid items-start px-3 text-sm font-medium gap-2 mt-1">
-                <Button asChild variant="ghost" className={` ${path.includes('/overview') ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/overview') ? "dark:bg-accent bg-gray-200" : ""} !text-start justify-start w-full rounded-none`}>
                   <Link href='/overview'>
                   <Home className="size-4" />
                   Overview
@@ -78,7 +78,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
                 <Separator />
                 <Button asChild variant="ghost" className={` ${path === '/me' ? "bg-accent" : ""} !text-start justify-start w-full rounded-none`}>
                 <Link href='/settings'>
-                <Settings className="h-4 w-4" />
+                <User className="h-4 w-4" />
                   Account
                 </Link>
                 </Button>

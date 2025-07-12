@@ -35,7 +35,7 @@ export function OrganizationsDropdown({ session }: { session: Session}) {
         <>
         <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                <Button variant={"outline"} className="w-full bg-theme rounded-none border border-dashed">
+                <Button variant={"outline"} className="w-full dark:bg-theme bg-gray-200 hover:bg-gray-200 rounded-none border border-dashed">
                     {session.user.currentOrganization?.name}
                     <ChevronsUpDown className="ml-auto size-4" />
                   </Button>

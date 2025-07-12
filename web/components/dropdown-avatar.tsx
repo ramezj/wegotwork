@@ -29,9 +29,9 @@ export function DropdownAvatar({ session } : { session: Session | null }) {
         <>
         <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Avatar className="cursor-pointer !rounded-none !bg-white text-black">
+                    <Avatar className="cursor-pointer !rounded-none dark:!bg-white bg-gray-200 text-black">
                         <AvatarImage src={undefined} />
-                        <AvatarFallback className="rounded-none bg-white">{session?.user.name?.charAt(0) ?? "?"}</AvatarFallback>
+                        <AvatarFallback className="rounded-none dark:bg-white bg-gray-200 text-black border border-foreground/20 border-dashed">{session?.user.name?.charAt(0) ?? "?"}</AvatarFallback>
                     </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
