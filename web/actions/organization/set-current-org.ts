@@ -37,6 +37,10 @@ export async function SetCurrentOrganization(organizationId: string) {
             }
         })
         revalidatePath('/overview');
+        return {
+            error:false,
+            message:"Updated Organization Successfully"
+        }
     } catch (error: unknown) {
         if(error instanceof Error) {
             console.log(error.message)
