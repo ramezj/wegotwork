@@ -2,7 +2,7 @@
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuGroup } from "./ui/dropdown-menu"
 import Link from "next/link"
 import { Button } from "./ui/button"
-import { ChevronsUpDown, Settings2, LogOut, Plus, Check, Loader} from "lucide-react"
+import { ChevronsUpDown, Settings2, LogOut, Plus, Check, Loader, Loader2} from "lucide-react"
 import { signOut } from "@/lib/auth-client"
 import { Session } from "@/lib/auth-client"
 import { Separator } from "./ui/separator"
@@ -57,7 +57,7 @@ export function OrganizationsDropdown({ session }: { session: Session}) {
                       {
                         organization.organizationId === selectedOrgId && isSelecting &&
                         <>
-                        <Loader className="text-white ml-auto animate-spin" />
+                        <Loader2 className="text-white ml-auto animate-spin" />
                         </>
                       }
                       {organization.organizationId === session.user.currentOrganizationId &&
