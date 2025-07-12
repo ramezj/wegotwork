@@ -23,16 +23,23 @@ export function OrganizationsDropdown({ session }: { session: Session}) {
     const router = useRouter();
     const [selectedOrgId, setSelectedOrgId] = useState<string | null>(null)
     const [isSelecting, setIsSelecting] = useState(false)
+    const [optimisticCurrentOrgId, setOptimisticCurrentOrgId] = useState<string | null>(session.user.currentOrganizationId || null)
+    
     const SetCurrentOrg = async (e: React.FormEvent, organizationId: string) => {
       e.preventDefault();
       setSelectedOrgId(organizationId)
       setIsSelecting(true)
       const response = await SetCurrentOrganization(organizationId);
       if(response?.error === false) {
+        setOptimisticCurrentOrgId(organizationId)
         setIsSelecting(false);
+        setSelectedOrgId(null);
+      } else {
+        setIsSelecting(false);
+        setSelectedOrgId(null);
       }
-      router.refresh();
     }
+    const currentOrgId = optimisticCurrentOrgId || session.user.currentOrganizationId;
     return (
         <>
         <DropdownMenu>
@@ -50,7 +57,7 @@ export function OrganizationsDropdown({ session }: { session: Session}) {
                   {session.user.organizations.map((organization) => {
                     return (
                       <DropdownMenuItem 
-                      disabled={organization.organizationId === session.user.currentOrganizationId} 
+                      disabled={organization.organizationId === currentOrgId} 
                       key={organization.organizationId} 
                       onClick={((e:React.FormEvent) => {
                         SetCurrentOrg(e, organization.organizationId)
@@ -62,7 +69,7 @@ export function OrganizationsDropdown({ session }: { session: Session}) {
                         <Loader2 className="text-white ml-auto animate-spin" />
                         </>
                       }
-                      {organization.organizationId === session.user.currentOrganizationId &&
+                      {organization.organizationId === currentOrgId &&
                       <Check className="ml-auto" />
                       }
                       </DropdownMenuItem>
