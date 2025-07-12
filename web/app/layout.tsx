@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 // import { Bricolage_Grotesque } from "next/font/google";
 import { JetBrains_Mono, IBM_Plex_Mono, Recursive } from "next/font/google"
+import localFont from "next/font/local"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,6 +14,33 @@ export const metadata: Metadata = {
 // const bricolageGrotesque = Bricolage_Grotesque({
 //   subsets: ['latin']
 // })
+
+const chirp = localFont({
+  src: [
+    {
+      path: "../public/fonts/Chirp-Regular.woff",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Chirp-Medium.woff",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Chirp-Bold.woff",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Chirp-Heavy.woff",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-chirp",
+  display: "swap",
+});
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ['latin'],
@@ -40,9 +68,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={ibmPlexMono.className} suppressHydrationWarning >
+    <html lang="en" className={chirp.className} suppressHydrationWarning >
       <body suppressHydrationWarning
-        className={`${ibmPlexMono.className} antialiased dark:bg-black bg-white`}
+        className={`${chirp.className} antialiased dark:bg-black bg-white`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
          <Toaster/>
