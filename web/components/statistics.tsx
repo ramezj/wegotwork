@@ -7,13 +7,13 @@ export function TotalJobs({title, amount} : { title: string, amount: number}) {
         <>
         <Card className="w-full dark:bg-theme bg-gray-200 rounded-none border border-dashed">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-foreground font-medium">
+                    <CardTitle className="text-foreground font-extrabold">
                       {title}
                     </CardTitle>
                     <Briefcase className="size-4" />
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-medium text-foreground">{amount}</div>
+                    <div className="text-2xl font-bold text-foreground">{amount}</div>
                   </CardContent>
                 </Card>
         </>
@@ -25,13 +25,13 @@ export function TotalApplicants({title, amount} : { title: string, amount: numbe
       <>
       <Card className="w-full dark:bg-theme bg-gray-200 rounded-none border border-dashed">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="font-medium text-foreground">
+                  <CardTitle className="font-extrabold text-foreground">
                     {title}
                   </CardTitle>
                   <Users className="size-4" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-medium text-foreground">{amount}</div>
+                  <div className="text-2xl font-bold text-foreground">{amount}</div>
                 </CardContent>
               </Card>
       </>
@@ -52,7 +52,7 @@ export function Applicants({title, amount} : { title: string, amount: number}) {
           </div>
         </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-medium text-black">{amount}</div>
+                  <div className="text-2xl font-bold text-black">{amount}</div>
                 </CardContent>
               </Card>
       </>

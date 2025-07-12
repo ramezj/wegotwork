@@ -35,7 +35,7 @@ export default async function Page() {
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-medium text-3xl tracking-tight text-foreground">Overview</h1>
+        <h1 className="font-extrabold text-3xl tracking-tight text-foreground">Overview</h1>
         <Button asChild variant={"outline"} className="dark:bg-theme bg-gray-200 hover:bg-gray-200 px-4 rounded-none !border border-dashed font-medium text-foreground">
             <Link target="_blank" href={`http://${userOrganization?.organization?.organization.slug}.${process.env.NEXT_PUBLIC_URL}`}>
             Preview
