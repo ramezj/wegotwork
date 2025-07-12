@@ -62,7 +62,9 @@ export function PickOrganizationCard({ userOrganizations }: { userOrganizations 
                           View
                         </>
                       ) : (
-                        <>View</>
+                        <>
+                        View
+                        </>
                       )}
                     </Button>
                 </form>

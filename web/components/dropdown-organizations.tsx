@@ -2,7 +2,7 @@
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuGroup } from "./ui/dropdown-menu"
 import Link from "next/link"
 import { Button } from "./ui/button"
-import { ChevronsUpDown, Settings2, LogOut, Plus, Check} from "lucide-react"
+import { ChevronsUpDown, Settings2, LogOut, Plus, Check, Loader} from "lucide-react"
 import { signOut } from "@/lib/auth-client"
 import { Session } from "@/lib/auth-client"
 import { Separator } from "./ui/separator"
@@ -11,6 +11,7 @@ import { OrganizationUser } from "@prisma/client"
 import { Prisma } from "@prisma/client"
 import { SetCurrentOrganization } from "@/actions/organization/set-current-org"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 type OrganizationUserWithUser = Prisma.OrganizationUserGetPayload<{
     include: {
@@ -20,9 +21,14 @@ type OrganizationUserWithUser = Prisma.OrganizationUserGetPayload<{
 
 export function OrganizationsDropdown({ session }: { session: Session}) {
     const router = useRouter();
+    const [selectedOrgId, setSelectedOrgId] = useState<string | null>(null)
+    const [isSelecting, setIsSelecting] = useState(false)
     const SetCurrentOrg = async (e: React.FormEvent, organizationId: string) => {
       e.preventDefault();
+      setSelectedOrgId(organizationId)
+      setIsSelecting(true)
       const response = await SetCurrentOrganization(organizationId);
+      setIsSelecting(false);
       router.refresh();
     }
     return (
@@ -48,6 +54,12 @@ export function OrganizationsDropdown({ session }: { session: Session}) {
                         SetCurrentOrg(e, organization.organizationId)
                       })} className="cursor-pointer rounded-none">
                       {organization.organization.name}
+                      {
+                        organization.organizationId === selectedOrgId && isSelecting &&
+                        <>
+                        <Loader className="text-white ml-auto animate-spin" />
+                        </>
+                      }
                       {organization.organizationId === session.user.currentOrganizationId &&
                       <Check className="ml-auto" />
                       }
