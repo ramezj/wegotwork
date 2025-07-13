@@ -12,8 +12,8 @@ export default function Loading() {
     return (
         <> 
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-medium text-3xl text-white tracking-tight">Jobs</h1>
-        <CreateJob id="123" disabled/>
+        <h1 className="font-extrabold text-3xl text-white tracking-tight">Jobs</h1>
+        <CreateJob id="123" className="!cursor-default"/>
         </div>
         <div className="w-full h-full items-center flex flex-col justify-center">
         <Loader2 className="size-8 animate-spin text-white" />

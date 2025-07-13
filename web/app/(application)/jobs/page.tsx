@@ -34,7 +34,7 @@ export default async function Page() {
             ?
             <>
             <div className="flex items-center justify-between w-full">
-            <h1 className="font-medium text-3xl text-white tracking-tight">Jobs</h1>
+            <h1 className="font-extrabold text-3xl text-white tracking-tight">Jobs</h1>
             <CreateJob id={session.user.currentOrganizationId!}/>
             </div>
             <div className="w-full border border-dashed border-white/20 bg-black h-full rounded-none items-center flex flex-col gap-3 justify-center text-center">

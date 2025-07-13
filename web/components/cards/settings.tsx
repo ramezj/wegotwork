@@ -36,12 +36,12 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         <CardContent>
         <form onSubmit={editOrganization} className="space-y-4">
         <div className="space-y-2">
-        <Label className='font-medium text-foreground'>Name</Label>
+        <Label className='font-bold text-foreground'>Name</Label>
         {/* hover:border-white/50 active:border-white/50 focus:border-white/50 */}
         <Input className="bg-accent border border-dashed rounded-none font-bold text-foreground text-sm" required placeholder="Enter name" value={current.name} onChange={((e) => { setCurrent((previous) => ({...previous, name: e.target.value}))})}></Input>
         </div>
         <div className="space-y-2">
-        <Label className='font-medium text-foreground'>Slug</Label>
+        <Label className='font-bold text-foreground'>Slug</Label>
         {/* hover:border-white/50 active:border-white/50 focus:border-white/50 */}
         <Input className="bg-accent border border-dashed rounded-none font-bold text-foreground text-sm" required placeholder="Enter slug" value={current.slug} onChange={
             ((e) => { 
@@ -64,7 +64,7 @@ export function SettingsCard({ organization } : { organization: Organization}) {
         <Textarea className="bg-accent border border-dashed rounded-none font-bold text-foreground text-sm" placeholder="Provide a detailed organization description" value={current.description as string} onChange={((e) => { setCurrent((previous) => ({...previous, description: e.target.value}))})}></Textarea>
         </div>
         <div className="space-y-2">
-        <Button disabled={loading} type="submit" variant={"default"} className="bg-blueColor text-white hover:bg-blueColor font-medium px-4 rounded-none">
+        <Button disabled={loading} type="submit" variant={"default"} className="bg-blueColor text-white hover:bg-blueColor font-bold px-4 rounded-none">
         { loading ? <Loader2 className="animate-spin mr-2" /> : <></> }
         Save Changes
         </Button>

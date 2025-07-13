@@ -42,7 +42,7 @@ export default async function Page({ params } : { params: Promise<{ organization
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-medium text-3xl text-white tracking-tight">{job.job?.title}</h1>
+        <h1 className="font-extrabold text-3xl text-white tracking-tight">{job.job?.title}</h1>
         </div>
         <div className="flex flex-col gap-4">
         <div className="flex flex-col sm:flex-row gap-4">
