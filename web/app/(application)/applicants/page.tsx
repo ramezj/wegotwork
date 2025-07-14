@@ -41,12 +41,12 @@ export default async function Page() {
                 ?
                 <>
                 <div className="flex items-center justify-between w-full">
-                <h1 className="font-medium text-3xl text-white tracking-tight">Applicants</h1>
+                <h1 className="font-extrabold text-3xl text-white tracking-tight">Applicants</h1>
                 <CreateJob id={session.user.currentOrganizationId!}/>
                 </div>
                 <div className="w-full border border-dashed border-white/20 bg-black h-full rounded-none items-center flex flex-col gap-3 justify-center text-center">
                 <div>
-                <h1 className="font-medium text-white text-xl text-center px-2">No Jobs Found</h1>
+                <h1 className="font-bold text-white text-xl text-center px-2">No Jobs Found</h1>
                 </div>
                 {/* <CreateJob id={session.user.currentOrganizationId!}/> */}
                 </div>

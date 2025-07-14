@@ -33,50 +33,50 @@ export default function LayoutNavigation({ children, session, organization }: { 
             </div>
             <div className="flex-1 ">
               <nav className="grid items-start px-3 text-sm font-bold gap-2 mt-1">
-                <Button asChild variant="ghost" className={` ${path.includes('/overview') ? "dark:bg-accent bg-gray-200" : ""} font-bold !text-start justify-start w-full rounded-none`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/overview') ? "dark:bg-accent bg-gray-200" : ""} hover:bg-gray-200 font-bold !text-start justify-start w-full rounded-none`}>
                   <Link href='/overview'>
                   <Home className="size-4" />
                   Overview
                   </Link>
                 </Button>
-                <Button asChild variant="ghost" className={` ${path.includes('/jobs') ? "bg-accent" : ""} font-bold !text-start justify-start w-full rounded-none`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/jobs') ? "dark:bg-accent bg-gray-200" : ""} hover:bg-gray-200 font-bold !text-start justify-start w-full rounded-none`}>
                   <Link href='/jobs'>
                   <Briefcase className="size-4" />
                   Jobs
                   </Link>
                 </Button>
-                <Button asChild variant="ghost" className={` ${path.includes('/applicants') ? "bg-accent" : ""} font-bold !text-start justify-start w-full rounded-none`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/applicants') ? "dark:bg-accent bg-gray-200" : ""} hover:bg-gray-200 font-bold !text-start justify-start w-full rounded-none`}>
                 <Link href='/applicants'>
                 <Users className="h-4 w-4" />
                   Applicants
                 </Link>
                 </Button>
-                <Button asChild variant="ghost" className={` ${path.includes('/categories') ? "bg-accent" : ""} font-bold !text-start justify-start w-full rounded-none`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/categories') ? "dark:bg-accent bg-gray-200" : ""} hover:bg-gray-200 font-bold !text-start justify-start w-full rounded-none`}>
                 <Link href='/categories'>
                 <Tags className="h-4 w-4" />
                   Categories
                 </Link>
                 </Button>
-                <Button asChild variant="ghost" className={` ${path.includes('/billing') ? "bg-accent" : ""} font-bold !text-start justify-start w-full rounded-none`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/billing') ? "dark:bg-accent bg-gray-200" : ""} hover:bg-gray-200 font-bold !text-start justify-start w-full rounded-none`}>
                 <Link href='/billing'>
                 <Banknote className="h-4 w-4" />
                   Billing
                 </Link>
                 </Button>
-                <Button asChild variant="ghost" className={` ${path.includes('/members') ? "bg-accent" : ""} font-bold !text-start justify-start w-full rounded-none`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/members') ? "dark:bg-accent bg-gray-200" : ""} hover:bg-gray-200 font-bold !text-start justify-start w-full rounded-none`}>
                 <Link href='/members'>
                 <Users className="h-4 w-4" />
                   Members
                 </Link>
                 </Button>
-                <Button asChild variant="ghost" className={` ${path.includes('/settings') ? "bg-accent" : ""} font-bold !text-start justify-start w-full rounded-none`}>
+                <Button asChild variant="ghost" className={` ${path.includes('/settings') ? "dark:bg-accent bg-gray-200" : ""} hover:bg-gray-200 font-bold !text-start justify-start w-full rounded-none`}>
                 <Link href='/settings'>
                 <Settings className="h-4 w-4" />
                   Organization
                 </Link>
                 </Button>
                 <Separator />
-                <Button asChild variant="ghost" className={` ${path === '/me' ? "bg-accent" : ""} font-bold !text-start justify-start w-full rounded-none`}>
+                <Button asChild variant="ghost" className={` ${path === '/me' ? "dark:bg-accent bg-gray-200" : ""} hover:bg-gray-200 font-bold !text-start justify-start w-full rounded-none`}>
                 <Link href='/settings'>
                 <User className="h-4 w-4" />
                   Account
