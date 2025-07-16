@@ -16,13 +16,13 @@ import { Mail } from "lucide-react";
 export function PendingInvitations({ OrganizationInvites } : { OrganizationInvites: OrganizationInvite[] }) {
     return (
       <>
-      <Card className="w-full rounded-none bg-theme border border-dashed">
+      <Card className="w-full rounded-none dark:bg-theme bg-gray-200 border border-dashed">
       <CardHeader>
-        <CardTitle className="text-2xl font-medium text-white">Pending invitations</CardTitle>
+        <CardTitle className="text-2xl font-extrabold text-foreground">Pending invitations</CardTitle>
         {
           OrganizationInvites.length > 0
           &&
-          <CardDescription className="text-white font-medium">{OrganizationInvites.length} invitations awaiting response </CardDescription>
+          <CardDescription className="text-foreground font-medium">{OrganizationInvites.length} invitations awaiting response </CardDescription>
         }
       </CardHeader>
       <CardContent className="">
@@ -30,7 +30,7 @@ export function PendingInvitations({ OrganizationInvites } : { OrganizationInvit
           OrganizationInvites.length === 0 
           && 
           <>
-          <p className="text-sm font-medium text-white">0 pending invitations</p>
+          <p className="text-sm font-bold text-foreground">0 pending invitations</p>
           </>
         }
         {

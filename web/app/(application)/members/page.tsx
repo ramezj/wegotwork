@@ -45,8 +45,8 @@ export default async function Page() {
         return (
             <>
             <div className="flex justify-between items-center w-full">
-            <h1 className="font-medium text-white text-3xl tracking-tight">Members</h1>
-            <Button size={"sm"} variant={"outline"} className="rounded-none bg-theme font-medium border border-dashed border-foreground/20">
+            <h1 className="font-extrabold text-foreground text-3xl tracking-tight">Members</h1>
+            <Button size={"sm"} variant={"outline"} className="rounded-none dark:bg-theme bg-gray-200 font-medium border border-dashed border-foreground/20">
                 <Users className="size-4" />
             </Button>
             </div>
@@ -57,8 +57,8 @@ export default async function Page() {
     return (
         <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-medium text-white text-3xl tracking-tight">Members</h1>
-        <Button size={"sm"} variant={"outline"} className="rounded-none bg-theme font-medium border border-dashed border-foreground/20">
+        <h1 className="font-extrabold text-foreground text-3xl tracking-tight">Members</h1>
+        <Button size={"sm"} variant={"outline"} className="rounded-none dark:bg-theme bg-gray-200 font-medium border border-dashed border-foreground/20">
             <Users className="size-4" />
         </Button>
         </div>

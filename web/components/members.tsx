@@ -14,9 +14,9 @@ type OrganizationWithUser = Prisma.OrganizationUserGetPayload<{
 
 export function MembersCard({ users, session } : { users: OrganizationWithUser[], session: Session}) {
     return (
-        <Card className="bg-theme rounded-none border border-dashed">
+        <Card className="dark:bg-theme bg-gray-200 rounded-none border border-dashed">
         <CardHeader>
-        <CardTitle className="text-2xl font-medium text-white">Members</CardTitle>
+        <CardTitle className="text-2xl font-extrabold text-foreground">Members</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
             {
@@ -29,8 +29,8 @@ export function MembersCard({ users, session } : { users: OrganizationWithUser[]
                         <AvatarFallback className="rounded-none bg-white">{session?.user.name?.charAt(0) ?? "?"}</AvatarFallback>
                         </Avatar>
                         <div>
-                        <p className="text-sm leading-none text-white font-medium">{users.user.name}</p>
-                        <p className="text-sm text-white font-medium">{formatRole(users.role)}</p>
+                        <p className="text-sm leading-none text-foreground font-bold">{users.user.name}</p>
+                        <p className="text-sm text-foreground font-bold">{formatRole(users.role)}</p>
                         </div>
                         </div>
                         {

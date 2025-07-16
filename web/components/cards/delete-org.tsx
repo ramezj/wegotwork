@@ -27,12 +27,12 @@ export function DeleteOrganizationCard({ organization } : { organization: Organi
         }
     }
     return (
-        <Card className="w-full rounded-none bg-theme border border-dashed">
+        <Card className="w-full rounded-none dark:bg-theme bg-gray-200 border border-dashed">
         <CardHeader>
-            <CardTitle className='font-medium text-white'>Delete Organization</CardTitle>
+            <CardTitle className='font-extrabold text-foreground'>Delete Organization</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-            <h1 className='font-medium text-white w-fit sm:text-base text-sm'>
+            <h1 className='font-bold text-foreground w-fit sm:text-base text-sm'>
                 This will permanently delete <b>{organization.name}</b>
             </h1>
             <Dialog>

@@ -17,7 +17,7 @@ export default function Loading() {
         </Button>
         </div>
         <div className="w-full h-full items-center flex flex-col justify-center">
-        <Loader2 className="size-8 animate-spin text-white" />
+        <Loader2 className="size-8 animate-spin text-foreground" />
         </div>
       </>
     )

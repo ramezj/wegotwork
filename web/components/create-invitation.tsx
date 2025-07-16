@@ -32,22 +32,22 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
     }
     return (
       <>
-      <Card className="w-full bg-theme rounded-none border border-dashed">
+      <Card className="w-full dark:bg-theme bg-gray-200 rounded-none border border-dashed">
       <CardHeader>
-        <CardTitle className="text-2xl font-medium text-white">Invite member</CardTitle>
+        <CardTitle className="text-2xl font-extrabold text-foreground">Invite Member</CardTitle>
       </CardHeader>
       <CardContent className="">
         <form className="flex sm:flex-row flex-col gap-4" onSubmit={create_the_invitation}>
           {/* hover:border-white/50 active:border-white/50 focus:border-white/50 */}
-        <Input className="rounded-none bg-accent border border-dashed text-white font-medium text-base" type="email" required placeholder="Enter member's email address" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
-        <Button type="submit" variant={"default"} disabled={loading} className="rounded-none text-white bg-blueColor hover:bg-blueColor font-medium">
+        <Input className="rounded-none bg-accent border border-dashed text-foreground font-bold text-base" type="email" required placeholder="Enter member's email address" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
+        <Button type="submit" variant={"default"} disabled={loading} className="rounded-none text-white bg-blueColor hover:bg-blueColor font-bold">
           {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin text-white" /> : <></>}
           Invite Member
         </Button>
         </form>
       </CardContent>
       <CardFooter>
-        <p className="text-sm text-white font-medium">
+        <p className="text-sm text-foreground font-bold">
           Add team members to join your organization & help you recruit.
         </p>
       </CardFooter>
