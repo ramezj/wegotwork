@@ -28,7 +28,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
           <div className="flex h-full max-h-screen flex-col gap-2 sticky top-0 z-50 dark:bg-black bg-white">
             <div className="flex h-16 items-center border-b border-foreground/20 border-dashed dark:bg-black bg-white lg:h-16 text-center justify-center">
             <Link href="/" className="flex items-center z-50">
-            <span className="text-2xl tracking-tighter dark:text-white text-black font-bold">{session.user.currentOrganization?.name}</span>
+            <span className="text-2xl tracking-tight dark:text-white text-black font-extrabold">{session.user.currentOrganization?.name}</span>
             </Link>
             </div>
             <div className="flex-1 ">
@@ -95,31 +95,31 @@ export default function LayoutNavigation({ children, session, organization }: { 
           <header className="z-50 flex h-16 items-center gap-4 border-b border-foreground/20 border-dashed dark:bg-black bg-white lg:h-16 sticky top-0">
             <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="shrink-0 md:hidden text-white hover:text-white p-11 hover:bg-transparent rounded-none -ml-4">
+              <Button variant="ghost" size="icon" className="shrink-0 md:hidden text-foreground p-11 hover:bg-transparent rounded-none -ml-4">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
-              <SheetContent side="left" className="flex flex-col bg-black">
+              <SheetContent side="left" className="flex flex-col dark:bg-black bg-white">
               <SheetTitle>
                 <SheetClose asChild className="top-4">
-                  <Link href="/" className="px-2 text-2xl tracking-tighter text-black font-bold">
-                  <span className="text-2xl tracking-tighter text-white font-bold">wegotwork</span>
+                  <Link href="/" className="px-2 text-2xl tracking-tight text-black font-extrabold">
+                  <span className="text-2xl tracking-tight text-foreground font-extrabold">wegotwork</span>
                   </Link>
                   </SheetClose>
                 </SheetTitle>
                 <nav className="grid gap-3 text-lg font-bold mt-1">
                   <SheetClose asChild>
                   <Button className="w-full justify-start text-left px-3 py-4" variant={"ghost"} asChild>
-                  <Link href="/overview" className={` ${path.includes('/overview') ? "bg-accent" : ""} font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
+                  <Link href="/overview" className={` ${path.includes('/overview') ? "dark:bg-accent bg-gray-200" : ""} dark:hover:bg-accent hover:bg-gray-200 !font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
                   <Home className="size-4" />
                   Overview
                   </Link>
                   </Button>
                   </SheetClose>
                   <SheetClose asChild>
-                  <Button className="w-full justify-start text-left px-3 py-2" variant={"ghost"} asChild>
-                  <Link href="/jobs" className={` ${path.includes('/jobs') ? "bg-accent" : ""} font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
+                  <Button className="w-full justify-start text-left px-3 py-2" variant={"ghost"} asChild> 
+                  <Link href="/jobs" className={` ${path.includes('/jobs') ? "dark:bg-accent bg-gray-200" : ""} dark:hover:bg-accent hover:bg-gray-200 !font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
                   <Briefcase className="h-4 w-4" />
                   Jobs
                   </Link>
@@ -127,7 +127,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
                   </SheetClose>
                   <SheetClose asChild>
                   <Button className="w-full justify-start text-left px-3 py-2" variant={"ghost"} asChild>
-                  <Link href="/applicants" className={` ${path.includes('/applicants') ? "bg-accent" : ""} font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
+                  <Link href="/applicants" className={` ${path.includes('/applicants') ? "dark:bg-accent bg-gray-200" : ""} dark:hover:bg-accent hover:bg-gray-200 !font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
                   <Users className="h-4 w-4" />
                   Applicants
                   </Link>
@@ -135,7 +135,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
                   </SheetClose>
                   <SheetClose asChild>
                   <Button className="w-full justify-start text-left px-3 py-2" variant={"ghost"} asChild>
-                  <Link href="/categories" className={` ${path.includes('/categories') ? "bg-accent" : ""} font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
+                  <Link href="/categories" className={` ${path.includes('/categories') ? "dark:bg-accent bg-gray-200" : ""} dark:hover:bg-accent hover:bg-gray-200 !font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
                   <Tags className="h-4 w-4" />
                   Categories
                   </Link>
@@ -143,7 +143,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
                   </SheetClose>
                   <SheetClose asChild>
                   <Button className="w-full justify-start text-left px-3 py-2" variant={"ghost"} asChild>
-                  <Link href="/billing" className={` ${path.includes('/billing') ? "bg-accent" : ""} font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
+                  <Link href="/billing" className={` ${path.includes('/billing') ? "dark:bg-accent bg-gray-200" : ""} dark:hover:bg-accent hover:bg-gray-200 !font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
                   <Banknote className="h-4 w-4" />
                     Billing
                   </Link>
@@ -152,7 +152,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
                   <Separator />
                   <SheetClose asChild>
                   <Button className="w-full justify-start text-left px-3 py-2" variant={"ghost"} asChild>
-                  <Link href="/members" className={` ${path.includes('/members') ? "bg-accent" : ""} font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
+                  <Link href="/members" className={` ${path.includes('/members') ? "dark:bg-accent bg-gray-200" : ""} dark:hover:bg-accent hover:bg-gray-200 !font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
                   <Users className="h-4 w-4" />
                     Members
                   </Link>
@@ -160,7 +160,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
                   </SheetClose>
                   <SheetClose asChild>
                   <Button className="w-full justify-start text-left px-3 py-2" variant={"ghost"} asChild>
-                  <Link href="/settings" className={` ${path.includes('/settings') ? "bg-accent" : ""} font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
+                  <Link href="/settings" className={` ${path.includes('/settings') ? "dark:bg-accent bg-gray-200" : ""} dark:hover:bg-accent hover:bg-gray-200 !font-bold w-full justify-start items-center gap-3 px-3 py-2 flex text-left rounded-none`}>
                   <Settings className="h-4 w-4" />
                     Settings
                   </Link>
@@ -168,7 +168,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
                   </SheetClose>
                 </nav>
                 <div className="w-full flex gap-2 pt-4 bottom-0 mt-auto">
-                <DropDownMenuUser session={session} />
+                <OrganizationsDropdown session={session} />
               </div>
               </SheetContent>
             </Sheet>
