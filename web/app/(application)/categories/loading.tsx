@@ -11,7 +11,7 @@ export default function Loading() {
     return (
         <> 
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-medium text-3xl text-white tracking-tight">Categories</h1>
+        <h1 className="font-extrabold text-3xl text-white tracking-tight">Categories</h1>
         <Button disabled variant={"outline"} className="font-medium border border-dashed px-4 bg-theme rounded-none">
         Create Category
         </Button>
