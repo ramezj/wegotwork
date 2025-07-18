@@ -70,7 +70,7 @@ export function JobCard({ job }: { job: JobWithCategories }) {
         </Button>
         </div>
         <div className="sm:block hidden">
-        <Button className="border rounded-none" variant={"default"}>
+        <Button className="border rounded-none font-bold" variant={"default"}>
             View
             <ArrowUpRight className="size-4" />
         </Button>
