@@ -35,22 +35,22 @@ export default async function Home() {
           </Button>
         </div> */}
       <div className="lg:w-[60%] w-full">
-        <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-medium leading-tight text-white">
+        <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-extrabold leading-tight text-white">
         Build Beautiful Career Pages
       </h1>
-      <h3 className="text-[1rem] mt-2 font-medium text-balance text-muted-foreground">
+      <h3 className="text-[1rem] mt-2 font-extrabold text-balance text-muted-foreground">
         Create stunning career pages, post jobs, manage applicants — all from one, easy-to-use platform.
       </h3>
       </div>
       </div>
       <div className="flex flex-col items-center p-4 -mt-4">
       <div className="flex flex-row w-full lg:w-[60%] items-center justify-center content-center gap-4 mt-6">
-            <Button variant={"outline"} asChild className="px-4 w-full rounded-none font-medium border-dashed bg-theme">
+            <Button variant={"outline"} asChild className="px-4 w-full rounded-none font-bold border-dashed bg-theme">
               <Link href={`http://demo.${process.env.NEXT_PUBLIC_URL}`} target="_blank">
               See Demo
               </Link>
             </Button>
-            <Button asChild variant={"default"} className="px-4 bg-blueColor text-white hover:bg-blueColor w-full rounded-none font-medium">
+            <Button asChild variant={"default"} className="px-4 bg-blueColor text-white hover:bg-blueColor w-full rounded-none font-bold">
               <Link href='/auth'>
               Start Hiring
               <ArrowRight className="size-4 text-white" />
