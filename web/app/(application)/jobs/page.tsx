@@ -47,7 +47,7 @@ export default async function Page() {
             : 
             <>
              <div className="flex justify-between items-center w-full">
-                <h1 className="font-medium text-3xl text-foreground tracking-tight">Jobs</h1>
+                <h1 className="font-extrabold text-3xl text-foreground tracking-tight">Jobs</h1>
                 <CreateJob id={session.user.currentOrganizationId!}/>
                 </div>
                 <div className="gap-4 flex flex-col">
