@@ -42,7 +42,7 @@ export function OrganizationsDropdown({ session }: { session: Session}) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   side="top"
-                  className="w-[--radix-popper-anchor-width] space-y-2 bg-theme mb-1 rounded-none border-dashed"
+                  className="w-[--radix-popper-anchor-width] space-y-2 dark:bg-theme bg-gray-200 mb-1 rounded-none border-dashed"
                 >
                   <DropdownMenuGroup>
                   {session.user.organizations.map((organization) => {
@@ -52,12 +52,12 @@ export function OrganizationsDropdown({ session }: { session: Session}) {
                       key={organization.organizationId} 
                       onClick={((e:React.FormEvent) => {
                         SetCurrentOrg(e, organization.organizationId)
-                      })} className="cursor-pointer rounded-none">
+                      })} className="cursor-pointer rounded-none font-bold">
                       {organization.organization.name}
                       {
                         organization.organizationId === selectedOrgId && isSelecting &&
                         <>
-                        <Loader2 className="text-white ml-auto animate-spin" />
+                        <Loader2 className="text-foreground ml-auto animate-spin" />
                         </>
                       }
                       {organization.organizationId === session.user.currentOrganizationId &&
@@ -69,7 +69,7 @@ export function OrganizationsDropdown({ session }: { session: Session}) {
                   </DropdownMenuGroup>
                       <DropdownMenuItem 
                       asChild 
-                      className="cursor-pointer rounded-none w-full">
+                      className="cursor-pointer rounded-none w-full font-bold">
                       <Link href={'/dashboard'}>
                       <Plus className="size-4" />
                       Create Organization

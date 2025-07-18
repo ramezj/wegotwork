@@ -58,7 +58,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     return (
     <div className="w-full flex flex-col items-center text-left p-4 space-y-1 overflow-hidden">
       <div className="flex flex-col w-full lg:w-[60%] items-start">
-        <h1 className="font-medium text-white text-4xl pt-6">Job Openings</h1>
+        <h1 className="font-bold text-foreground text-4xl pt-6">Job Openings</h1>
         {
           organization.description 
           ? 
@@ -71,7 +71,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
         }
         <div className="flex sm:flex-row flex-col gap-4 w-full pt-2 justify-center">
           <div className="w-full">
-            <Input placeholder="Search" className="bg-theme rounded-none border-dashed border" />
+            <Input placeholder="Search" className="bg-theme font-bold rounded-none border-dashed border" />
           </div>
           <div className="w-full">
             <Select
@@ -81,18 +81,18 @@ export function ViewOrganization({ organization, locations, types } : { organiza
               }}
               defaultValue="All">
                 <SelectTrigger value={selectedCountry} aria-label="Select Locations" 
-                className="bg-theme text-white border border-dashed font-medium w-full rounded-none">
+                className="bg-theme text-white border border-dashed font-bold w-full rounded-none">
                 <SelectValue placeholder="All Locations">
                   {selectedCountry === "All" ? "All Locations" : selectedCountry}
                 </SelectValue>
                 </SelectTrigger>
-                <SelectContent className="bg-theme border border-dashed rounded-none text-white font-medium mt-1">
+                <SelectContent className="bg-theme border border-dashed rounded-none text-white font-bold mt-1">
                   <SelectGroup className="space-y-1">
-                    <SelectItem className="rounded-none font-medium" key={"All"} value="All">All Locations</SelectItem>
+                    <SelectItem className="rounded-none font-bold" key={"All"} value="All">All Locations</SelectItem>
                     {
                       locations.map((country, index) => {
                         return (
-                          <SelectItem className="rounded-none font-medium" key={country} value={country}>{country}</SelectItem>
+                          <SelectItem className="rounded-none font-bold" key={country} value={country}>{country}</SelectItem>
                         )
                       })
                     }
@@ -108,18 +108,18 @@ export function ViewOrganization({ organization, locations, types } : { organiza
             }}
             defaultValue="All"> 
               <SelectTrigger value={selectedEmploymentType} aria-label="Select Employment" 
-              className="bg-[#0A0A0A] text-white border border-dashed font-medium w-full rounded-none">
+              className="bg-[#0A0A0A] text-white border border-dashed font-bold w-full rounded-none">
               <SelectValue placeholder="All Employment">
                 {selectedEmploymentType === "All" ? "All Employment" : formatJobType(selectedEmploymentType as Type)}
               </SelectValue>
               </SelectTrigger>
-              <SelectContent className="bg-theme border border-dashed rounded-none text-white font-medium mt-1">
+              <SelectContent className="bg-theme border border-dashed rounded-none text-white font-bold mt-1">
                 <SelectGroup className='space-y-1'>
-                  <SelectItem className="rounded-none font-medium" key={"All"} value="All">All Employment</SelectItem>
+                  <SelectItem className="rounded-none font-bold" key={"All"} value="All">All Employment</SelectItem>
                   {
                       types.map((type, index) => {
                         return (
-                          <SelectItem className="rounded-none font-medium" key={index} value={type}>{formatJobType(type as Type)}</SelectItem>
+                          <SelectItem className="rounded-none font-bold" key={index} value={type}>{formatJobType(type as Type)}</SelectItem>
                         )
                       })
                     }
@@ -164,7 +164,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
         {
           jobs.length === 0 &&
           <Card className="bg-theme border border-dashed rounded-none p-8 text-center">
-          <p className="text-white font-medium">We are currently not hiring</p>
+          <p className="text-white font-bold">We are currently not hiring</p>
           </Card>
         }
         </div>

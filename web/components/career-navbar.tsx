@@ -46,7 +46,7 @@ export function CareerNavbar({ organization } : { organization: OrganizationWith
     <div className="border-b border-foreground/20 border-dashed h-16 bg-black sticky top-0">
       <div className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center z-50 pl-4">
-          <span className="text-2xl font-medium tracking-tighter text-white">{organization.name}</span>
+          <span className="text-2xl font-extrabold tracking-tight text-white">{organization.name}</span>
         </Link>
         {/* <div className="">
         <Button asChild variant="default" className="border-l border-b border-white/20 h-16 rounded-none text-base">
