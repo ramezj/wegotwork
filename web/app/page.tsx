@@ -14,7 +14,7 @@ import Image from "next/image";
 import { HeroHeader } from "@/components/header";
 
 export const metadata:Metadata = {
-  title: "WeGotWork — Build Beautiful Career Pages",
+  title: "Shaghalny",
   description: "Build Beautiful Career Pages, Post Job Openings, Receive Applicants, All in one place."
 }
 
