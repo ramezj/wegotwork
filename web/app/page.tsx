@@ -14,7 +14,24 @@ import Image from "next/image";
 import { HeroHeader } from "@/components/header";
 
 export const metadata:Metadata = {
-  title: "Shaghalny",
+  title: "WeGotWork - Build Beautiful Career Pages",
+  keywords: ["WeGotWork", "Career Pages", "Job Openings", "Applicant Tracking", "Hiring Platform"],
+  openGraph: {
+    title: "WeGotWork - Build Beautiful Career Pages",
+    description: "Build Beautiful Career Pages, Post Job Openings, Receive Applicants, All in one place.",
+    url: "https://wegotwork.com",
+    siteName: "WeGotWork",
+    images: [
+      {
+        url: "https://wegotwork.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "WeGotWork - Build Beautiful Career Pages"
+      }
+    ],
+    type: "website",
+    locale: "en_US"
+  },
   description: "Build Beautiful Career Pages, Post Job Openings, Receive Applicants, All in one place."
 }
 
@@ -91,7 +108,7 @@ export default async function Home() {
             <section className="py-[1.20rem] px-4">
         <div className="w-full lg:w-[60%] mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-medium">Everything you need to start hiring.</h2>
+            <h2 className="text-3xl md:text-4xl font-medium text-foreground">Everything you need to start hiring.</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="bg-theme border border-dashed rounded-none">
@@ -99,8 +116,8 @@ export default async function Home() {
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <Building2 className="h-6 w-6 text-black" />
                 </div>
-                <CardTitle className="text-white font-medium !mb-2">Beautiful Career Pages</CardTitle>
-                <CardDescription className="text-muted-foreground font-medium">
+                <CardTitle className="text-white font-medium !mb-2 text-foreground">Beautiful Career Pages</CardTitle>
+                <CardDescription className="text-muted-foreground font-medium text-foreground">
                   Create stunning, branded career pages that showcase your company culture and attract top talent.
                 </CardDescription>
               </CardHeader>
