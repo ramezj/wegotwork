@@ -58,7 +58,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     return (
     <div className="w-full flex flex-col items-center text-left p-4 space-y-1 overflow-hidden">
       <div className="flex flex-col w-full lg:w-[60%] items-start">
-        <h1 className="font-bold text-foreground text-4xl pt-6">Job Openings</h1>
+        <h1 className="font-medium text-foreground text-4xl pt-6">Open Roles</h1>
         {
           organization.description 
           ? 
