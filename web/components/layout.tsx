@@ -178,7 +178,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
               <Button className="rounded-none">Upgrade to Premium</Button>  
               </>
               } */}
-              <ModeToggle />
+              {/* <ModeToggle /> */}
               <DropdownAvatar session={session} />
             </div> 
           </header>
