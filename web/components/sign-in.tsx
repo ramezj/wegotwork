@@ -10,8 +10,8 @@ export default function SignIn() {
   return (
     <Card className="w-full rounded-none bg-theme border border-dashed">
       <CardHeader>
-        <CardTitle className="text-lg md:text-xl text-white text-center font-medium">Sign In to wegotwork</CardTitle>
-        <CardDescription className="text-xs md:text-sm text-white text-center font-medium p-2">
+        <CardTitle className="text-lg md:text-xl text-white text-center font-bold">Sign In to wegotwork</CardTitle>
+        <CardDescription className="text-xs md:text-sm text-white text-center font-bold p-2">
           Use your preferred method to sign in
         </CardDescription>
       </CardHeader>
@@ -23,7 +23,7 @@ export default function SignIn() {
             )}>
               <Button
                   variant="default"
-                  className="font-medium w-full rounded-none border-dashed border-white/20"
+                  className="font-bold w-full rounded-none border-dashed border-white/20"
                   onClick={async () => {
                     await signIn.social({
                       provider: "google",
@@ -41,7 +41,7 @@ export default function SignIn() {
                 </Button>
                 <Button
                   variant="default"
-                  className="font-medium w-full rounded-none border-dashed border-white/20"
+                  className="font-bold w-full rounded-none border-dashed border-white/20"
                   onClick={async () => {
                     await signIn.social({
                       provider: "google",

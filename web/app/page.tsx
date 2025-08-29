@@ -13,26 +13,57 @@ import { BarChart3, FileText, Building2, Users, ArrowRight, ArrowUpRight } from 
 import Image from "next/image";
 import { HeroHeader } from "@/components/header";
 
-export const metadata:Metadata = {
-  title: "WeGotWork - Build Beautiful Career Pages",
-  keywords: ["WeGotWork", "Career Pages", "Job Openings", "Applicant Tracking", "Hiring Platform"],
+export const metadata: Metadata = {
+  title: "WeGotWork - Build Beautiful Career Pages & Hire Top Talent",
+  description: "Create stunning career pages, post job openings, and manage applicants with WeGotWork's all-in-one hiring platform. Start hiring top talent today with our easy-to-use recruitment tools.",
+  keywords: [
+    "career pages", "job posting platform", "applicant tracking system", "hiring software", 
+    "recruitment platform", "talent acquisition", "HR tools", "job board", "hiring manager",
+    "candidate management", "employment platform", "recruiting software", "WeGotWork"
+  ],
+  authors: [{ name: "WeGotWork Team" }],
+  creator: "WeGotWork",
+  publisher: "WeGotWork",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: "https://wegotwork.co",
+  },
   openGraph: {
-    title: "WeGotWork - Build Beautiful Career Pages",
-    description: "Build Beautiful Career Pages, Post Job Openings, Receive Applicants, All in one place.",
-    url: "https://wegotwork.com",
+    title: "WeGotWork - Build Beautiful Career Pages & Hire Top Talent",
+    description: "Create stunning career pages, post job openings, and manage applicants with WeGotWork's all-in-one hiring platform. Start hiring top talent today.",
+    url: "https://wegotwork.co",
     siteName: "WeGotWork",
     images: [
       {
-        url: "https://wegotwork.com/og-image.png",
+        url: "https://wegotwork.co/homepage.png",
         width: 1200,
         height: 630,
-        alt: "WeGotWork - Build Beautiful Career Pages"
+        alt: "WeGotWork - Build Beautiful Career Pages & Hire Top Talent"
       }
     ],
     type: "website",
     locale: "en_US"
   },
-  description: "Build Beautiful Career Pages, Post Job Openings, Receive Applicants, All in one place."
+  twitter: {
+    card: "summary_large_image",
+    title: "WeGotWork - Build Beautiful Career Pages & Hire Top Talent",
+    description: "Create stunning career pages, post job openings, and manage applicants with WeGotWork's all-in-one hiring platform.",
+    images: ["https://wegotwork.co/homepage.png"],
+    creator: "@wegotwork",
+    site: "@wegotwork"
+  },
+  category: "Business Software",
+  classification: "Hiring Platform",
 }
 
 export default async function Home() {
@@ -40,26 +71,64 @@ export default async function Home() {
     headers: await headers()
   })
   const items = ['wegotwork', 'start hiring', 'wegotwork', 'start hiring', 'wegotwork', 'start hiring', 'wegotwork', 'start hiring', 'wegotwork']
+  
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "WeGotWork",
+    "description": "Create stunning career pages, post job openings, and manage applicants with WeGotWork's all-in-one hiring platform.",
+    "url": "https://wegotwork.co",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Free trial available"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "WeGotWork",
+      "url": "https://wegotwork.co",
+      "logo": "https://wegotwork.co/logo.png",
+      "sameAs": [
+        "https://twitter.co/wegotwork",
+        "https://linkedin.co/company/wegotwork"
+      ]
+    },
+    "featureList": [
+      "Beautiful Career Pages",
+      "Easy Job Posting",
+      "Applicant Management", 
+      "Analytics & Insights"
+    ],
+    "screenshot": "https://wegotwork.co/demo.png"
+  }
+
   return (
     <main className="">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <Navbar session={session}/>
-      <div>
-      <div className="flex flex-col items-center text-center mt-12 px-2">
+      <header>
+      <section className="flex flex-col items-center text-center mt-12 px-2">
         {/* <div className="mb-8">
           <Button variant={"outline"} className="border border-dashed rounded-none bg-theme w-full">
-          WeGotWork is now live on ProductHunt
+          Wegotwork is now LIVE on ProductHunt
           <ArrowUpRight className="size-4 text-white" />
           </Button>
         </div> */}
       <div className="lg:w-[60%] w-full">
-        <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-extrabold leading-tight text-white">
+        <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-bold leading-tight text-white">
         Build Beautiful Career Pages
       </h1>
-      <h3 className="text-[1rem] mt-2 font-extrabold text-balance text-muted-foreground">
+        <p className="text-[1rem] mt-2 font-extrabold text-balance text-muted-foreground">
         Create stunning career pages, post jobs, manage applicants — all from one, easy-to-use platform.
-      </h3>
+        </p>
       </div>
-      </div>
+      </section>
       <div className="flex flex-col items-center p-4 -mt-4">
       <div className="flex flex-row w-full lg:w-[60%] items-center justify-center content-center gap-4 mt-6">
             <Button variant={"outline"} asChild className="px-4 w-full rounded-none font-bold border-dashed bg-theme">
@@ -93,7 +162,7 @@ export default async function Home() {
             priority
           />
         </div>
-      </div> */}
+      </div>
       </div>
       {/* <div className="pb-5">
       <Marquee items={items} />
@@ -105,10 +174,11 @@ export default async function Home() {
       </div>
       </div> */}
       </div>
+      </header>
             <section className="py-[1.20rem] px-4">
         <div className="w-full lg:w-[60%] mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-medium text-foreground">Everything you need to start hiring.</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Everything you need to start hiring.</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="bg-theme border border-dashed rounded-none">

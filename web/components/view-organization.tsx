@@ -58,7 +58,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
     return (
     <div className="w-full flex flex-col items-center text-left p-4 space-y-1 overflow-hidden">
       <div className="flex flex-col w-full lg:w-[60%] items-start">
-        <h1 className="font-medium text-foreground text-4xl pt-6">Open Roles</h1>
+        <h1 className="font-bold text-foreground text-4xl pt-6">Open Roles</h1>
         {
           organization.description 
           ? 
@@ -148,7 +148,7 @@ export function ViewOrganization({ organization, locations, types } : { organiza
             return (
               <div className="text-left flex flex-col gap-4" key={category.id}>
               <motion.h1
-              className="font-medium text-white text-2xl pb-2 pt-2">{category.name}</motion.h1>
+              className="font-bold text-white text-2xl pb-2 pt-2">{category.name}</motion.h1>
               {category.jobs.map((job:Job, index) => {
                 return (
                 <motion.div

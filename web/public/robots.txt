@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://wegotwork.co/sitemap.xml
+
+# Block access to admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /auth/callback/
+
+# Allow important pages
+Allow: /auth
+Allow: /view-organization/
+Allow: /demo/
+
+# Crawl delay (optional - helps prevent server overload)
+Crawl-delay: 1
