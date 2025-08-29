@@ -97,7 +97,7 @@ export default function SortableCategories({ categories }: { categories: JobCate
       <Button
       onClick={handleSave}
       variant={"default"}
-      className={`font-medium mt-2 px-4 rounded-none text-white bg-blueColor hover:bg-blueColor
+      className={`font-medium mt-2 px-4 rounded-none text-white bg-white hover:bg-white text-black
         ${saving ? "pointer-events-none" : ""}
       `}
       >
@@ -105,7 +105,7 @@ export default function SortableCategories({ categories }: { categories: JobCate
           saving
           ?
           <>
-          <Loader2 className="animate-spin text-white" />
+          <Loader2 className="animate-spin text-black" />
           </>
           :
           <>

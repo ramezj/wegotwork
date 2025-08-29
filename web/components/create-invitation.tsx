@@ -40,8 +40,12 @@ export function CreateUserInvitation({ organizationId} : { organizationId: strin
         <form className="flex sm:flex-row flex-col gap-4" onSubmit={create_the_invitation}>
           {/* hover:border-white/50 active:border-white/50 focus:border-white/50 */}
         <Input className="rounded-none bg-accent border border-dashed text-foreground font-bold text-base" type="email" required placeholder="Enter member's email address" value={email as string} onChange={((e) => {setEmail(e.target.value)})} />
-        <Button type="submit" variant={"default"} disabled={loading} className="rounded-none text-white bg-blueColor hover:bg-blueColor font-bold">
-          {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin text-white" /> : <></>}
+        <Button 
+        type="submit" 
+        variant={"default"} 
+        disabled={loading} 
+        className="rounded-none bg-white hover:bg-white text-black font-bold">
+          {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin text-black" /> : <></>}
           Invite Member
         </Button>
         </form>

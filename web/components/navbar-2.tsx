@@ -47,7 +47,7 @@ export function Navbar({ session } : { session: Session | null}) {
         <div className="flex-1"></div>
         <div className="hidden md:block">
             {/* <ModeToggle /> */}
-            <Button variant="default" asChild className="h-16 px-8 bg-blueColor hover:bg-blueColor text-white rounded-none border-b font-bold text-base align-middle">
+            <Button variant="default" asChild className="h-16 px-8 bg-white hover:bg-white text-black rounded-none border-b font-bold text-base align-middle">
             {session?.user ? (
               session.user.currentOrganizationId === null ? (
                 <Link href="/dashboard">

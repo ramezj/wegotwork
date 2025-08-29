@@ -67,10 +67,10 @@ export default async function Home() {
               See Demo
               </Link>
             </Button>
-            <Button asChild variant={"default"} className="px-4 bg-blueColor text-white hover:bg-blueColor w-full rounded-none font-bold">
+            <Button asChild variant={"default"} className="px-4 bg-white text-black hover:bg-white w-full rounded-none font-bold">
               <Link href='/auth'>
               Start Hiring
-              <ArrowRight className="size-4 text-white" />
+              {/* <ArrowUpRight className="size-4 text-black" /> */}
               </Link>
             </Button>
       </div>
