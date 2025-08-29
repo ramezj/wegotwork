@@ -28,7 +28,7 @@ export default function LayoutNavigation({ children, session, organization }: { 
           <div className="flex h-full max-h-screen flex-col gap-2 sticky top-0 z-50 dark:bg-black bg-white">
             <div className="flex h-16 items-center border-b border-foreground/20 border-dashed dark:bg-black bg-white lg:h-16 text-center justify-center">
             <Link href="/" className="flex items-center z-50">
-            <span className="text-2xl tracking-tight dark:text-white text-black font-extrabold">{session.user.currentOrganization?.name}</span>
+            <span className="text-2xl tracking-tight dark:text-white text-black font-extrabold">wegotwork</span>
             </Link>
             </div>
             <div className="flex-1 ">
