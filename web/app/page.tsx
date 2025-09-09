@@ -114,12 +114,6 @@ export default async function Home() {
       <Navbar session={session}/>
       <header>
       <section className="flex flex-col items-center text-center mt-12 px-2">
-        {/* <div className="mb-8">
-          <Button variant={"outline"} className="border border-dashed rounded-none bg-theme w-full">
-          Wegotwork is now LIVE on ProductHunt
-          <ArrowUpRight className="size-4 text-white" />
-          </Button>
-        </div> */}
       <div className="lg:w-[60%] w-full">
         <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-bold leading-tight text-white">
         Build Beautiful Career Pages
@@ -150,29 +144,6 @@ export default async function Home() {
             <LandingPageJobCard title="Software Engineer" type="Full-Time" location="Berlin, Germany" age="about 1 month ago" category="Finance" />
             </div>
       </div>
-
-      {/* <div className="flex justify-center my-8 w-full">
-        <div className="lg:w-[60%] w-full">
-          <Image
-            src="/demo.png"
-            alt="Dashboard Preview"
-            width={1200}
-            height={800}
-            className="w-full h-auto shadow-lg border border-dashed rounded-none border-foreground/20"
-            priority
-          />
-        </div>
-      </div>
-      </div>
-      {/* <div className="pb-5">
-      <Marquee items={items} />
-      </div> */}
-
-      {/* <div className="content-center items-center justify-center flex px-4">
-      <div className="not-prose lg:w-1/2 w-full overflow-hidden space-y-4">
-      <FeatureCards />
-      </div>
-      </div> */}
       </div>
       </header>
             <section className="py-[1.20rem] px-4">
