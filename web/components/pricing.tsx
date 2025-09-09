@@ -10,7 +10,7 @@ export function FreeCard() {
         <>
         <Card className="w-[350px] bg-theme rounded-none border border-dashed">
         <CardHeader>
-          <CardTitle className='flex gap-2 font-medium text-white tracking-normal'>Free</CardTitle>
+          <CardTitle className='flex gap-2 font-bold text-white tracking-normal'>Free</CardTitle>
           <CardDescription className="text-left text-white">Free Forever</CardDescription>
         </CardHeader>
         <CardContent>
@@ -52,7 +52,7 @@ export function FreeCard() {
           </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-      <Button variant={"default"} className="w-full font-medium rounded-none" asChild>
+      <Button variant={"default"} className="w-full font-bold rounded-none" asChild>
           <Link href={'/auth'}>
               Start Hiring
           </Link>
@@ -68,7 +68,7 @@ export function PaidCard() {
         <>
         <Card className="w-[350px] bg-theme rounded-none border border-dashed">
         <CardHeader>
-          <CardTitle className='flex gap-2 font-medium text-white tracking-normal'>Professional</CardTitle>
+          <CardTitle className='flex gap-2 font-bold text-white tracking-normal'>Teams</CardTitle>
           <CardDescription className="text-left text-white">Monthly Subscription</CardDescription>
         </CardHeader>
         <CardContent>
@@ -110,7 +110,7 @@ export function PaidCard() {
           </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant={"default"} className="w-full font-medium rounded-none" asChild>
+        <Button variant={"default"} className="w-full font-bold rounded-none" asChild>
           <Link href={'/auth'}>
               Start Hiring
           </Link>
