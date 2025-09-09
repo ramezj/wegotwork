@@ -4,14 +4,10 @@ import { Navbar } from "@/components/navbar-2";
 import Link from "next/link";
 import { Metadata } from "next";
 import { LandingPageJobCard } from "@/components/cards/job";
-import FeatureCards from "@/components/test-cards";
-import { CustomButton } from "@/components/ui/custom-buttons";
 import Marquee from "@/components/ui/marquee";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart3, FileText, Building2, Users, ArrowRight, ArrowUpRight } from "lucide-react";
-import Image from "next/image";
-import { HeroHeader } from "@/components/header";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { BarChart3, FileText, Building2, Users } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "WeGotWork - Build Beautiful Career Pages & Hire Top Talent",
