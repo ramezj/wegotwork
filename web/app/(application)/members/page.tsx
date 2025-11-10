@@ -19,54 +19,79 @@ import { Metadata } from "next";
 import { MembersCard } from "@/components/members";
 
 type OrganizationWithUser = Prisma.OrganizationUserGetPayload<{
-    include: {
-        user: true
-    }
-}>
+  include: {
+    user: true;
+  };
+}>;
 
-export const metadata:Metadata = {
-    title: "Members",
-    description: "Members"
-}
+export const metadata: Metadata = {
+  title: "Members",
+  description: "Members",
+};
 
 export default async function Page() {
-    const session:Session | null = await auth.api.getSession({
-        headers: await headers()
-    });
-    if(!session?.user) { 
-        redirect('/') 
-    }
-    if(session.user.currentOrganizationId === null) {
-        redirect('/dashboard')
-    }
-    const userOrganization = await GetOrganization(session.user.currentOrganizationId!);
-    if(userOrganization?.error) { redirect('/') }
-    if(userOrganization?.organization?.role !== "owner") {
-        return (
-            <>
-            <div className="flex justify-between items-center w-full">
-            <h1 className="font-extrabold text-foreground text-3xl tracking-tight">Members</h1>
-            <Button size={"sm"} variant={"outline"} className="rounded-none dark:bg-theme bg-gray-200 font-medium border border-dashed border-foreground/20">
-                <Users className="size-4" />
-            </Button>
-            </div>
-            <p className="text-muted-foreground font-semibold">Restricted Access</p>
-            </>
-        )
-    }
+  const session: Session | null = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session?.user) {
+    redirect("/");
+  }
+  if (session.user.currentOrganizationId === null) {
+    redirect("/dashboard");
+  }
+  const userOrganization = await GetOrganization(
+    session.user.currentOrganizationId!,
+  );
+  if (userOrganization?.error) {
+    redirect("/");
+  }
+  if (userOrganization?.organization?.role !== "owner") {
     return (
-        <>
+      <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-foreground text-3xl tracking-tight">Members</h1>
-        <Button size={"sm"} variant={"outline"} className="rounded-none dark:bg-theme bg-gray-200 font-medium border border-dashed border-foreground/20">
+          <h1 className="font-extrabold text-foreground text-3xl tracking-tight">
+            Members
+          </h1>
+          <Button
+            size={"sm"}
+            variant={"outline"}
+            className="rounded-none dark:bg-theme bg-gray-200 font-medium border border-dashed border-foreground/20"
+          >
             <Users className="size-4" />
+          </Button>
+        </div>
+        <p className="text-muted-foreground font-semibold">Restricted Access</p>
+      </>
+    );
+  }
+  return (
+    <>
+      <div className="flex justify-between items-center w-full">
+        <h1 className="font-extrabold text-foreground text-3xl tracking-tight">
+          Members
+        </h1>
+        <Button
+          size={"sm"}
+          variant={"outline"}
+          className="rounded-none dark:bg-theme bg-gray-200 font-medium border border-dashed border-foreground/20"
+        >
+          <Users className="size-4" />
         </Button>
-        </div>
-        <div className="flex flex-col gap-4">
-        <MembersCard users={userOrganization.organization.organization.users} session={session} />
-        <CreateUserInvitation organizationId={userOrganization?.organization.organizationId} />
-        <PendingInvitations OrganizationInvites={userOrganization.organization.organization.invitations} />
-        </div>
-        </>
-    )
+      </div>
+      <div className="flex flex-col gap-4">
+        <MembersCard
+          users={userOrganization.organization.organization.users}
+          session={session}
+        />
+        <CreateUserInvitation
+          organizationId={userOrganization?.organization.organizationId}
+        />
+        <PendingInvitations
+          OrganizationInvites={
+            userOrganization.organization.organization.invitations
+          }
+        />
+      </div>
+    </>
+  );
 }

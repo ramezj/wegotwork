@@ -1,45 +1,44 @@
-
-"use server"
-import prisma from "@/lib/prisma"
-import { auth } from "@/lib/auth"
-import { r2 } from "@/lib/r2"
-import { GetObjectCommand } from '@aws-sdk/client-s3';
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
+"use server";
+import prisma from "@/lib/prisma";
+import { auth } from "@/lib/auth";
+import { r2 } from "@/lib/r2";
+import { GetObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Session } from "@/lib/auth-client";
 
 export async function getApplicantById(applicantId: string) {
-    const session:Session | null = await auth.api.getSession({
-        headers: await headers()
+  const session: Session | null = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session) {
+    redirect("/");
+  }
+  try {
+    const applicant = await prisma.applicant.findFirst({
+      where: {
+        id: applicantId,
+      },
     });
-    if(!session) {
-        redirect('/')
+    if (!applicant) {
+      return {
+        error: true,
+        applicant: null,
+      };
     }
-    try {
-        const applicant = await prisma.applicant.findFirst({
-            where: {
-                id: applicantId
-            }
-        })
-        if(!applicant) {
-            return {
-                error:true,
-                applicant:null
-            }
-        }
-        const command = await new GetObjectCommand({
-            Bucket:'wegotwork',
-            Key: applicant.resumeKey
-        })
-        console.log("Command : ", command);
-        const url = await getSignedUrl(r2, command);
-        console.log("URL : ", url);
-        return { 
-            applicant,
-            url
-        }
-    } catch (error: unknown) {
-        console.error(error);
-    }
+    const command = await new GetObjectCommand({
+      Bucket: "wegotwork",
+      Key: applicant.resumeKey,
+    });
+    console.log("Command : ", command);
+    const url = await getSignedUrl(r2, command);
+    console.log("URL : ", url);
+    return {
+      applicant,
+      url,
+    };
+  } catch (error: unknown) {
+    console.error(error);
+  }
 }

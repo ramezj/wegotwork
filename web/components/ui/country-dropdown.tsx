@@ -53,7 +53,7 @@ const CountryDropdownComponent = (
   {
     options = countries.all.filter(
       (country: Country) =>
-        country.emoji && country.status !== "deleted" && country.ioc !== "PRK"
+        country.emoji && country.status !== "deleted" && country.ioc !== "PRK",
     ),
     onChange,
     defaultValue,
@@ -62,17 +62,17 @@ const CountryDropdownComponent = (
     slim = false,
     ...props
   }: CountryDropdownProps,
-  ref: React.ForwardedRef<HTMLButtonElement>
+  ref: React.ForwardedRef<HTMLButtonElement>,
 ) => {
   const [open, setOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<Country | undefined>(
-    undefined
+    undefined,
   );
 
   useEffect(() => {
     if (defaultValue) {
       const initialCountry = options.find(
-        (country) => country.alpha3 === defaultValue
+        (country) => country.alpha3 === defaultValue,
       );
       if (initialCountry) {
         setSelectedCountry(initialCountry);
@@ -93,12 +93,12 @@ const CountryDropdownComponent = (
       onChange?.(country);
       setOpen(false);
     },
-    [onChange]
+    [onChange],
   );
 
   const triggerClasses = cn(
     "flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
-    slim === true && "w-20"
+    slim === true && "w-20",
   );
 
   return (
@@ -170,7 +170,7 @@ const CountryDropdownComponent = (
                         "ml-auto h-4 w-4 shrink-0",
                         option.name === selectedCountry?.name
                           ? "opacity-100"
-                          : "opacity-0"
+                          : "opacity-0",
                       )}
                     />
                   </CommandItem>

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   AudioWaveform,
   BookOpen,
@@ -12,12 +12,12 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
-} from "lucide-react"
+} from "lucide-react";
 
-import { NavMain } from "./nav-main"
-import { NavUser } from "./nav-user"
-import Link from "next/link"
-import { TeamSwitcher } from "./team-switcher"
+import { NavMain } from "./nav-main";
+import { NavUser } from "./nav-user";
+import Link from "next/link";
+import { TeamSwitcher } from "./team-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -28,8 +28,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarRail,
-} from "@/components/ui/sidebar"
-import { Session } from "@/lib/auth-client"
+} from "@/components/ui/sidebar";
+import { Session } from "@/lib/auth-client";
 // This is sample data.
 const data = {
   user: {
@@ -158,9 +158,12 @@ const data = {
       icon: Map,
     },
   ],
-}
+};
 
-export function AppSidebar({ session, ...props }: React.ComponentProps<typeof Sidebar> & { session: Session }) {
+export function AppSidebar({
+  session,
+  ...props
+}: React.ComponentProps<typeof Sidebar> & { session: Session }) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -170,9 +173,9 @@ export function AppSidebar({ session, ...props }: React.ComponentProps<typeof Si
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser session={session}/>
+        <NavUser session={session} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

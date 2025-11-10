@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import { Prisma, Type, Job } from "@prisma/client";
 import { Button } from "@/components/ui/button";
@@ -34,7 +34,8 @@ const Careers4 = ({
   const [originalJobs] = useState<Array<Job>>(organization.jobs);
   const [jobs, setJobs] = useState<Array<Job>>(organization.jobs);
   const [selectedCountry, setSelectedCountry] = useState<string>("All");
-  const [selectedEmploymentType, setSelectedEmploymentType] = useState<string>("All");
+  const [selectedEmploymentType, setSelectedEmploymentType] =
+    useState<string>("All");
 
   const filterJobs = (location: string, employmentType: string) => {
     let filteredJobs = originalJobs;
@@ -47,14 +48,18 @@ const Careers4 = ({
     setJobs(filteredJobs);
   };
 
-  const jobsByCategory = organization.categories.map((category) => ({
-    category: category.name,
-    openings: jobs.filter((job) => job.categoryId === category.id).map((job) => ({
-      title: job.title,
-      location: job.country || "",
-      url: `/view/${organization.slug}/${job.id}`,
-    })),
-  })).filter((cat) => cat.openings.length > 0);
+  const jobsByCategory = organization.categories
+    .map((category) => ({
+      category: category.name,
+      openings: jobs
+        .filter((job) => job.categoryId === category.id)
+        .map((job) => ({
+          title: job.title,
+          location: job.country || "",
+          url: `/view/${organization.slug}/${job.id}`,
+        })),
+    }))
+    .filter((cat) => cat.openings.length > 0);
 
   return (
     <section className="py-12">

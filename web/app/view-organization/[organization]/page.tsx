@@ -7,52 +7,63 @@ import { Metadata } from "next";
 
 type JobWithCategories = Prisma.JobGetPayload<{
   include: {
-    category: true
-  }
-}>
+    category: true;
+  };
+}>;
 
-export async function generateMetadata({ params } : { params: Promise<{ organization: string }>}): Promise<Metadata> {
-    const organization = await FindOrganization((await params).organization);
-    if(organization.error) {
-        return {
-            title: "404 Not Found"
-        }
-    } 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ organization: string }>;
+}): Promise<Metadata> {
+  const organization = await FindOrganization((await params).organization);
+  if (organization.error) {
     return {
-        title: organization.organization?.name
-    }
+      title: "404 Not Found",
+    };
+  }
+  return {
+    title: organization.organization?.name,
+  };
 }
 
-export default async function Page({ params } : { params: Promise<{ organization: string }>}) {
-    type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ organization: string }>;
+}) {
+  type OrganizationWithJobs = Prisma.OrganizationGetPayload<{
+    include: {
+      categories: {
         include: {
-          categories: {
-            include: {
-                jobs: {
-                    include: {
-                        category: true
-                    }
-                }
-            }
-          },
           jobs: {
             include: {
-                category: true
-            }
-          }
-        }
-    }>
-    const organization = await FindOrganization((await params).organization);
-    if(organization.error) {
-        notFound();
-    }
-    return (
-        <>
-        <CareerNavbar organization={organization.organization as OrganizationWithJobs} />
-        <ViewOrganization 
-        organization={organization.organization as OrganizationWithJobs} 
-        locations={organization.locations as Array<string>} 
-        types={organization.types as Array<string>} />
-        </>
-    )
+              category: true;
+            };
+          };
+        };
+      };
+      jobs: {
+        include: {
+          category: true;
+        };
+      };
+    };
+  }>;
+  const organization = await FindOrganization((await params).organization);
+  if (organization.error) {
+    notFound();
+  }
+  return (
+    <>
+      <CareerNavbar
+        organization={organization.organization as OrganizationWithJobs}
+      />
+      <ViewOrganization
+        organization={organization.organization as OrganizationWithJobs}
+        locations={organization.locations as Array<string>}
+        types={organization.types as Array<string>}
+      />
+    </>
+  );
 }

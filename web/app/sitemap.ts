@@ -1,26 +1,26 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://wegotwork.co'
-  
+  const baseUrl = "https://wegotwork.co";
+
   return [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${baseUrl}/auth`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `http://demo.wegotwork.co`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.6,
     },
-  ]
+  ];
 }

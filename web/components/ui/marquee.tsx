@@ -1,4 +1,3 @@
-
 export default function Marquee({ items }: { items: string[] }) {
   return (
     <div className="relative bg-theme flex w-full overflow-x-hidden border-b border-t border-white/20 bg-secondary-background text-foreground font-base">
@@ -8,7 +7,7 @@ export default function Marquee({ items }: { items: string[] }) {
             <span key={index} className="mx-4 text-4xl text-white font-bold">
               {item}
             </span>
-          )
+          );
         })}
       </div>
 
@@ -18,9 +17,9 @@ export default function Marquee({ items }: { items: string[] }) {
             <span key={index} className="mx-4 text-4xl text-white font-bold">
               {item}
             </span>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }

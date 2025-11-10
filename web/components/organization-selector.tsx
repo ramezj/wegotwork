@@ -1,51 +1,70 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Building2, Check, ChevronRight, Crown, Loader2 } from "lucide-react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { SetCurrentOrganization } from "@/actions/organization/set-current-org"
-import { Prisma } from "@prisma/client"
-import { toast } from "sonner"
-import { redirect } from "next/navigation"
+import { useState } from "react";
+import { Building2, Check, ChevronRight, Crown, Loader2 } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { SetCurrentOrganization } from "@/actions/organization/set-current-org";
+import { Prisma } from "@prisma/client";
+import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 type OrganizationUserWithOrganization = Prisma.OrganizationUserGetPayload<{
-    include: {
-        organization: true
-    }
-}>
+  include: {
+    organization: true;
+  };
+}>;
 
-export function OrganizationSelector({ userOrganizations }: { userOrganizations : OrganizationUserWithOrganization[] }) {
-  const [selectedOrgId, setSelectedOrgId] = useState<string | null>(null)
-  const [isSelecting, setIsSelecting] = useState(false)
+export function OrganizationSelector({
+  userOrganizations,
+}: {
+  userOrganizations: OrganizationUserWithOrganization[];
+}) {
+  const [selectedOrgId, setSelectedOrgId] = useState<string | null>(null);
+  const [isSelecting, setIsSelecting] = useState(false);
 
   const handleSelectOrganization = async (organizationId: string) => {
-    setSelectedOrgId(organizationId)
-    setIsSelecting(true)
+    setSelectedOrgId(organizationId);
+    setIsSelecting(true);
 
     try {
-      await SetCurrentOrganization(organizationId)
+      await SetCurrentOrganization(organizationId);
     } catch (error) {
-      console.error("Failed to select organization:", error)
+      console.error("Failed to select organization:", error);
     } finally {
-      setIsSelecting(false)
+      setIsSelecting(false);
       redirect("/overview");
     }
-  }
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-4">
       {userOrganizations.map((userOrg) => (
-        <Card key={userOrg.id} className={`transition-all rounded-none bg-white text-black ${selectedOrgId === userOrg.organizationId ? "ring-2 ring-primary" : ""}`}>
+        <Card
+          key={userOrg.id}
+          className={`transition-all rounded-none bg-white text-black ${selectedOrgId === userOrg.organizationId ? "ring-2 ring-primary" : ""}`}
+        >
           <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
             <div className="flex flex-col space-y-1.5">
-              <CardTitle className="text-xl">{userOrg.organization.name}</CardTitle>
+              <CardTitle className="text-xl">
+                {userOrg.organization.name}
+              </CardTitle>
               <CardDescription>{userOrg.organization.slug}</CardDescription>
             </div>
             <div className="flex items-center space-x-2">
               {userOrg.role === "owner" && (
-                <Badge variant="outline" className="text-xs rounded-none bg-white text-black border border-black">
+                <Badge
+                  variant="outline"
+                  className="text-xs rounded-none bg-white text-black border border-black"
+                >
                   Owner
                 </Badge>
               )}
@@ -77,27 +96,22 @@ export function OrganizationSelector({ userOrganizations }: { userOrganizations 
             >
               {selectedOrgId === userOrg.organizationId ? (
                 <>
-                {
-                        isSelecting
-                        ?
-                        <>
-                        <Loader2 className="text-white animate-spin" />
-                        </>
-                        :
-                        <>
-                        </>
-                    }
+                  {isSelecting ? (
+                    <>
+                      <Loader2 className="text-white animate-spin" />
+                    </>
+                  ) : (
+                    <></>
+                  )}
                   Select
                 </>
               ) : (
-                <>
-                  Select
-                </>
+                <>Select</>
               )}
             </Button>
           </CardFooter>
         </Card>
       ))}
     </div>
-  )
+  );
 }

@@ -1,11 +1,7 @@
-'use client';
+"use client";
 
 import { useState } from "react";
-import {
-  DndContext,
-  closestCenter,
-  DragEndEvent,
-} from "@dnd-kit/core";
+import { DndContext, closestCenter, DragEndEvent } from "@dnd-kit/core";
 import {
   SortableContext,
   useSortable,
@@ -20,13 +16,8 @@ import { toast } from "sonner";
 import { Loader2, Trash } from "lucide-react";
 
 function SortableCategoryItem({ id, name }: { id: string; name: string }) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-  } = useSortable({ id });
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -46,13 +37,16 @@ function SortableCategoryItem({ id, name }: { id: string; name: string }) {
         <Trash className="w-4 h-4 text-black" />
       </Button>
     </div>
-
   );
 }
 
-export default function SortableCategories({ categories }: { categories: JobCategory[] }) {
+export default function SortableCategories({
+  categories,
+}: {
+  categories: JobCategory[];
+}) {
   const [items, setItems] = useState<JobCategory[]>(
-    [...categories].sort((a, b) => a.order - b.order)
+    [...categories].sort((a, b) => a.order - b.order),
   );
   const [saving, setSaving] = useState<boolean>(false);
 
@@ -60,8 +54,8 @@ export default function SortableCategories({ categories }: { categories: JobCate
     const { active, over } = event;
     if (!over || active.id === over.id) return;
 
-    const oldIndex = items.findIndex(item => item.id === active.id);
-    const newIndex = items.findIndex(item => item.id === over.id);
+    const oldIndex = items.findIndex((item) => item.id === active.id);
+    const newIndex = items.findIndex((item) => item.id === over.id);
     const newItems = arrayMove(items, oldIndex, newIndex);
 
     // Update local order (just UI)
@@ -76,8 +70,11 @@ export default function SortableCategories({ categories }: { categories: JobCate
   const handleSave = async () => {
     setSaving(true);
     try {
-      const res = await updateCategoryOrder(items[0].organizationId, items.map(({ id, order }) => ({ id, order })));
-      toast(res?.message)
+      const res = await updateCategoryOrder(
+        items[0].organizationId,
+        items.map(({ id, order }) => ({ id, order })),
+      );
+      toast(res?.message);
     } catch (e) {
       console.error("Failed to save order", e);
     } finally {
@@ -88,29 +85,33 @@ export default function SortableCategories({ categories }: { categories: JobCate
   return (
     <>
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-        <SortableContext items={items.map((item) => item.id)} strategy={verticalListSortingStrategy}>
+        <SortableContext
+          items={items.map((item) => item.id)}
+          strategy={verticalListSortingStrategy}
+        >
           {items.map((category) => (
-            <SortableCategoryItem key={category.id} id={category.id} name={category.name} />
+            <SortableCategoryItem
+              key={category.id}
+              id={category.id}
+              name={category.name}
+            />
           ))}
         </SortableContext>
       </DndContext>
       <Button
-      onClick={handleSave}
-      variant={"default"}
-      className={`font-medium mt-2 px-4 rounded-none text-white bg-white hover:bg-white text-black
+        onClick={handleSave}
+        variant={"default"}
+        className={`font-medium mt-2 px-4 rounded-none text-white bg-white hover:bg-white text-black
         ${saving ? "pointer-events-none" : ""}
       `}
       >
-        {
-          saving
-          ?
+        {saving ? (
           <>
-          <Loader2 className="animate-spin text-black" />
+            <Loader2 className="animate-spin text-black" />
           </>
-          :
-          <>
-          </>
-        }
+        ) : (
+          <></>
+        )}
         Save Changes
       </Button>
     </>

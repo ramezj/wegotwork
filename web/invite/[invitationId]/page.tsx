@@ -1,4 +1,4 @@
-"use server"
+"use server";
 // import { GetInvitation } from "@/actions/invitations/get-invitation"
 // import { Session } from "@/lib/auth-client";
 // import { auth } from "@/lib/auth";

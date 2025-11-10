@@ -11,34 +11,38 @@ import CreateCategoryButton from "@/components/create-category";
 import { GetOrganizationCategories } from "@/actions/category/get-all-categories";
 import SortableCategories from "@/components/sortable-categories";
 
-export const metadata:Metadata = {
-    title: "Categories",
-    description: "Categories"
-}
+export const metadata: Metadata = {
+  title: "Categories",
+  description: "Categories",
+};
 
 export default async function Page() {
-    const session:Session | null = await auth.api.getSession({
-        headers: await headers()
-    });
-    if(!session) { 
-        redirect('/')
-    }
-    if(session.user.currentOrganizationId === null) {
-        redirect('/dashboard');
-    }
-    const categories = await GetOrganizationCategories();
-    if(categories?.error) {
-        redirect('/');
-    }
-    return (
-        <>
-        <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-3xl text-foreground tracking-tight">Categories</h1>
-        <CreateCategoryButton/>
-        </div>
-        <div>
-        <SortableCategories categories={categories?.categories as JobCategory[]} />
-        </div>
-        </>
-    )
+  const session: Session | null = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session) {
+    redirect("/");
+  }
+  if (session.user.currentOrganizationId === null) {
+    redirect("/dashboard");
+  }
+  const categories = await GetOrganizationCategories();
+  if (categories?.error) {
+    redirect("/");
+  }
+  return (
+    <>
+      <div className="flex justify-between items-center w-full">
+        <h1 className="font-extrabold text-3xl text-foreground tracking-tight">
+          Categories
+        </h1>
+        <CreateCategoryButton />
+      </div>
+      <div>
+        <SortableCategories
+          categories={categories?.categories as JobCategory[]}
+        />
+      </div>
+    </>
+  );
 }

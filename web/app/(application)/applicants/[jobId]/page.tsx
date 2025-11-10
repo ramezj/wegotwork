@@ -13,35 +13,47 @@ import { EditJobCard } from "@/components/edit-job";
 import { GetJobApplicants } from "@/actions/applicants/get-job-applicants";
 import ApplicantCard from "@/components/cards/applicant";
 
-export const metadata:Metadata = {
-    title: "Applicants",
-    description: "Applicants"
-}
+export const metadata: Metadata = {
+  title: "Applicants",
+  description: "Applicants",
+};
 
-export default async function Page({ params } : { params: Promise<{ organization: string, jobId: string }>}) {
-    const organization = (await params).organization;
-    const jobId = (await params).jobId;
-    const session:Session | null = await auth.api.getSession({
-        headers: await headers()
-    });
-    if(!session) { redirect('/')}
-    const job = await GetJobApplicants((await params).jobId)
-    if(job.error) {
-        redirect('/')
-    }
-    return (
-        <>
-        <div className="flex items-center justify-between w-full">
-        <h1 className="font-medium text-3xl text-white tracking-tight">View Applicants</h1>
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ organization: string; jobId: string }>;
+}) {
+  const organization = (await params).organization;
+  const jobId = (await params).jobId;
+  const session: Session | null = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session) {
+    redirect("/");
+  }
+  const job = await GetJobApplicants((await params).jobId);
+  if (job.error) {
+    redirect("/");
+  }
+  return (
+    <>
+      <div className="flex items-center justify-between w-full">
+        <h1 className="font-medium text-3xl text-white tracking-tight">
+          View Applicants
+        </h1>
         {/* <CreateJob id={await((await (params)).organization)} buttonSize="sm" buttonColor="white" /> */}
-        </div>
-        {job.applicants?.map((applicant: Applicant) => {
-            return (
-                <div key={applicant.id}>
-                    <ApplicantCard applicant={applicant} organization={organization} jobId={jobId} />
-                </div>
-            )
-        })}
-        </>
-    )
+      </div>
+      {job.applicants?.map((applicant: Applicant) => {
+        return (
+          <div key={applicant.id}>
+            <ApplicantCard
+              applicant={applicant}
+              organization={organization}
+              jobId={jobId}
+            />
+          </div>
+        );
+      })}
+    </>
+  );
 }

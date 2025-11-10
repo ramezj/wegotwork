@@ -10,48 +10,68 @@ import { auth } from "@/lib/auth";
 import { Session } from "@/lib/auth-client";
 import { headers } from "next/headers";
 
-export const metadata:Metadata = {
-    title: "Settings",
-    description: "Settings"
-}
+export const metadata: Metadata = {
+  title: "Settings",
+  description: "Settings",
+};
 
 export default async function Page() {
-    const session:Session | null = await auth.api.getSession({
-        headers: await headers()
-    })
-    if(!session?.user) { 
-        redirect('/')
-    }
-    if(session.user.currentOrganizationId === null) {
-        redirect('/dashboard')
-    }
-    const userOrganization = await GetOrganization(session.user.currentOrganizationId!);
-    if(userOrganization === null) { redirect('/') }
-    if(userOrganization?.organization?.role !== "owner") {
-        return (
-            <>
-            <div className="flex justify-between items-center w-full">
-            <h1 className="font-extrabold text-3xl text-foreground tracking-tight">Settings</h1>
-            <Button size={"sm"} variant={"outline"} className="rounded-none dark:bg-theme bg-gray-200 font-medium border border-dashed border-foreground/20">
-                <Settings className="size-4" />
-            </Button>
-            </div>
-            <p className="text-muted-foreground font-semibold">Restricted access</p>
-            </>
-        )
-    }
+  const session: Session | null = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session?.user) {
+    redirect("/");
+  }
+  if (session.user.currentOrganizationId === null) {
+    redirect("/dashboard");
+  }
+  const userOrganization = await GetOrganization(
+    session.user.currentOrganizationId!,
+  );
+  if (userOrganization === null) {
+    redirect("/");
+  }
+  if (userOrganization?.organization?.role !== "owner") {
     return (
-        <>
+      <>
         <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-3xl text-foreground tracking-tight">Settings</h1>
-        <Button size={"sm"} variant={"outline"} className="rounded-none dark:bg-theme bg-gray-200 font-medium border border-dashed border-foreground/20">
+          <h1 className="font-extrabold text-3xl text-foreground tracking-tight">
+            Settings
+          </h1>
+          <Button
+            size={"sm"}
+            variant={"outline"}
+            className="rounded-none dark:bg-theme bg-gray-200 font-medium border border-dashed border-foreground/20"
+          >
             <Settings className="size-4" />
+          </Button>
+        </div>
+        <p className="text-muted-foreground font-semibold">Restricted access</p>
+      </>
+    );
+  }
+  return (
+    <>
+      <div className="flex justify-between items-center w-full">
+        <h1 className="font-extrabold text-3xl text-foreground tracking-tight">
+          Settings
+        </h1>
+        <Button
+          size={"sm"}
+          variant={"outline"}
+          className="rounded-none dark:bg-theme bg-gray-200 font-medium border border-dashed border-foreground/20"
+        >
+          <Settings className="size-4" />
         </Button>
-        </div>
-        <div className="flex flex-col gap-4">
-        <SettingsCard organization={userOrganization.organization.organization} />
-        <DeleteOrganizationCard organization={userOrganization.organization.organization} />
-        </div>
-        </>
-    )
+      </div>
+      <div className="flex flex-col gap-4">
+        <SettingsCard
+          organization={userOrganization.organization.organization}
+        />
+        <DeleteOrganizationCard
+          organization={userOrganization.organization.organization}
+        />
+      </div>
+    </>
+  );
 }

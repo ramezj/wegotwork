@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/sonner"
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 // import { Bricolage_Grotesque } from "next/font/google";
-import { JetBrains_Mono, IBM_Plex_Mono, Recursive } from "next/font/google"
-import localFont from "next/font/local"
+import { JetBrains_Mono, IBM_Plex_Mono, Recursive } from "next/font/google";
+import localFont from "next/font/local";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -43,24 +43,24 @@ const chirp = localFont({
 });
 
 const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-ibm-mono',
-  display: 'swap',
-})
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-ibm-mono",
+  display: "swap",
+});
 
 const recursive = Recursive({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
-  variable: '--font-recursive',
-  display: 'swap',
-})
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-recursive",
+  display: "swap",
+});
 
 const jetBrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'], // You can include other weights too
-  variable: '--font-jetbrains-mono',
-})
+  subsets: ["latin"],
+  weight: ["400", "500", "700"], // You can include other weights too
+  variable: "--font-jetbrains-mono",
+});
 
 export default function RootLayout({
   children,
@@ -68,13 +68,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={chirp.className} suppressHydrationWarning >
-      <body suppressHydrationWarning
+    <html lang="en" className={chirp.className} suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
         className={`${chirp.className} antialiased dark:bg-black bg-white`}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-         <Toaster/>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Toaster />
+          {children}
         </ThemeProvider>
       </body>
     </html>
