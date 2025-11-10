@@ -12,6 +12,7 @@ import { SettingsCard } from "@/components/cards/settings";
 import { Job, Organization } from "@prisma/client";
 import { CustomButton } from "@/components/ui/custom-buttons";
 import { JobCardForDashboard } from "@/components/cards/job";
+import { BaseLayout } from "@/components/base-layout";
 
 export const metadata: Metadata = {
   title: "Overview",
@@ -29,32 +30,31 @@ export default async function Page() {
     redirect("/dashboard");
   }
   const userOrganization = await GetOrganization(
-    session.user.currentOrganizationId!,
+    session.user.currentOrganizationId!
   );
   if (userOrganization?.error) {
     redirect("/");
   }
   return (
     <>
-      <div className="flex justify-between items-center w-full">
-        <h1 className="font-extrabold text-3xl tracking-tight text-foreground">
-          Overview
-        </h1>
-        <Button
-          asChild
-          variant={"outline"}
-          className="dark:bg-theme bg-gray-200 hover:bg-gray-200 px-4 rounded-none !border border-dashed font-bold text-foreground"
-        >
-          <Link
-            target="_blank"
-            href={`http://${userOrganization?.organization?.organization.slug}.${process.env.NEXT_PUBLIC_URL}`}
+      <BaseLayout
+        title={"Overview"}
+        button={
+          <Button
+            asChild
+            variant={"outline"}
+            className="dark:bg-theme bg-gray-200 hover:bg-gray-200 px-4 rounded-none !border border-dashed font-bold text-foreground"
           >
-            Preview
-            <SquareArrowOutUpRight className="size-4" />
-          </Link>
-        </Button>
-      </div>
-      <div className="flex flex-col gap-4">
+            <Link
+              target="_blank"
+              href={`http://${userOrganization?.organization?.organization.slug}.${process.env.NEXT_PUBLIC_URL}`}
+            >
+              Preview
+              <SquareArrowOutUpRight className="size-4" />
+            </Link>
+          </Button>
+        }
+      >
         <div className="flex sm:flex-row flex-col w-full gap-4">
           <TotalJobs
             title="Jobs"
@@ -79,7 +79,7 @@ export default async function Page() {
             userOrganization?.organization?.organization as Organization
           }
         />
-      </div>
+      </BaseLayout>
     </>
   );
 }
