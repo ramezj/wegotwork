@@ -15,7 +15,7 @@ export function BaseLayout(props: baseLayoutProps) {
         </div>
         <div>{props.button}</div>
       </div>
-      <div className="flex flex-col gap-4">{props.children}</div>
+      <div className="flex flex-col gap-4 h-full w-full">{props.children}</div>
     </>
   );
 }

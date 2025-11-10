@@ -8,6 +8,7 @@ import { JobCardForDashboard } from "@/components/cards/job";
 import { Job } from "@prisma/client";
 import { headers } from "next/headers";
 import { Metadata } from "next";
+import { BaseLayout } from "@/components/base-layout";
 
 export const metadata: Metadata = {
   title: "Jobs",
@@ -32,38 +33,35 @@ export default async function Page() {
     <>
       {jobs?.jobs?.jobs.length === 0 ? (
         <>
-          <div className="flex items-center justify-between w-full">
-            <h1 className="font-extrabold text-3xl text-foreground tracking-tight">
-              Jobs
-            </h1>
-            <CreateJob id={session.user.currentOrganizationId!} />
-          </div>
-          <div className="w-full border border-dashed border-foreground/20 dark:bg-black bg-gray-200 h-full rounded-none items-center flex flex-col gap-3 justify-center text-center">
-            <div>
-              <h1 className="font-bold text-foreground text-xl text-center px-2">
-                No Jobs Found
-              </h1>
+          <BaseLayout
+            title={"Jobs"}
+            button={<CreateJob id={session.user.currentOrganizationId!} />}
+          >
+            <div className="w-full border border-dashed border-foreground/20 dark:bg-black bg-gray-200 h-full rounded-none items-center flex flex-col gap-3 justify-center text-center">
+              <div>
+                <h1 className="font-bold text-foreground text-xl text-center px-2">
+                  No Jobs Found
+                </h1>
+              </div>
             </div>
-            {/* <CreateJob id={session.user.currentOrganizationId!}/> */}
-          </div>
+          </BaseLayout>
         </>
       ) : (
         <>
-          <div className="flex justify-between items-center w-full">
-            <h1 className="font-extrabold text-3xl text-foreground tracking-tight">
-              Jobs
-            </h1>
-            <CreateJob id={session.user.currentOrganizationId!} />
-          </div>
-          <div className="gap-4 flex flex-col">
-            {jobs?.jobs?.jobs.map((job: Job) => {
-              return (
-                <div className="relative" key={job.id}>
-                  <JobCardForDashboard job={job} />
-                </div>
-              );
-            })}
-          </div>
+          <BaseLayout
+            title={"Jobs"}
+            button={<CreateJob id={session.user.currentOrganizationId!} />}
+          >
+            <div className="gap-4 flex flex-col">
+              {jobs?.jobs?.jobs.map((job: Job) => {
+                return (
+                  <div className="relative" key={job.id}>
+                    <JobCardForDashboard job={job} />
+                  </div>
+                );
+              })}
+            </div>
+          </BaseLayout>
         </>
       )}
     </>
