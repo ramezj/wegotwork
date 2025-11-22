@@ -15,8 +15,59 @@ import {
   CardFooter,
 } from "../ui/card";
 import { Textarea } from "../ui/textarea";
+import { organizationSettings } from "@/schemas/organization-settings";
+import { Form, useForm } from "react-hook-form";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  FieldContent,
+  FieldError,
+  FieldGroup,
+  FieldLegend,
+  FieldLabel,
+  FieldSet,
+  Field,
+} from "../ui/field";
+import { Controller } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function SettingsCard({ organization }: { organization: Organization }) {
+  const queryClient = useQueryClient();
+
+  const form = useForm({
+    resolver: zodResolver(organizationSettings),
+    defaultValues: {
+      name: organization.name,
+      slug: organization.slug,
+      website: organization.website || "",
+      description: organization.description,
+    },
+    mode: "onChange",
+  });
+
+  const mutation = useMutation({
+    mutationFn: async (data: z.infer<typeof organizationSettings>) => {
+      return await EditOrganization(organization, data);
+    },
+    onSuccess: (response) => {
+      if (response?.error) {
+        toast.error(response.message as string);
+      } else {
+        toast.success(response?.message as string);
+        // Invalidate and refetch organization data
+        queryClient.invalidateQueries({ queryKey: ["user-organization"] });
+      }
+    },
+    onError: (error) => {
+      toast.error("Failed to update organization");
+      console.error(error);
+    },
+  });
+
+  const onSubmit = async (data: z.infer<typeof organizationSettings>) => {
+    mutation.mutate(data);
+  };
+
   const [current, setCurrent] = useState<Organization>(organization);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -24,14 +75,6 @@ export function SettingsCard({ organization }: { organization: Organization }) {
   useEffect(() => {
     setCurrent(organization);
   }, [organization]);
-
-  const editOrganization = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    const res = await EditOrganization(current);
-    toast(res.message as string);
-    setLoading(false);
-  };
   return (
     <Card className="w-full dark:bg-theme bg-gray-200 rounded-none border border-dashed">
       <CardHeader>
@@ -40,83 +83,91 @@ export function SettingsCard({ organization }: { organization: Organization }) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={editOrganization} className="space-y-4">
-          <div className="space-y-2">
-            <Label className="font-bold text-foreground">Name</Label>
-            {/* hover:border-white/50 active:border-white/50 focus:border-white/50 */}
-            <Input
-              className="bg-accent border border-dashed rounded-none font-bold text-foreground text-sm"
-              required
-              placeholder="Enter name"
-              value={current.name}
-              onChange={(e) => {
-                setCurrent((previous) => ({
-                  ...previous,
-                  name: e.target.value,
-                }));
-              }}
-            ></Input>
-          </div>
-          <div className="space-y-2">
-            <Label className="font-bold text-foreground">Slug</Label>
-            {/* hover:border-white/50 active:border-white/50 focus:border-white/50 */}
-            <Input
-              className="bg-accent border border-dashed rounded-none font-bold text-foreground text-sm"
-              required
-              placeholder="Enter slug"
-              value={current.slug}
-              onChange={(e) => {
-                const newSlug = e.target.value.replace(/\s+/g, "-");
-                setCurrent((previous) => ({ ...previous, slug: newSlug }));
-              }}
-            ></Input>
-          </div>
-          <div className="space-y-2">
-            <Label className="font-bold text-foreground">Website</Label>
-            {/* hover:border-white/50 active:border-white/50 focus:border-white/50 */}
-            <Input
-              className="bg-accent border border-dashed rounded-none font-bold text-foreground text-sm"
-              type="url"
-              placeholder="Enter organization's website"
-              value={current.website === null ? "" : current.website}
-              onChange={(e) => {
-                setCurrent((previous) => ({
-                  ...previous,
-                  website: e.target.value,
-                }));
-              }}
-            />
-          </div>
-          <div className="space-y-2">
-            <Label className="font-bold text-foreground">Description</Label>
-            {/* hover:border-white/50 active:border-white/50 focus:border-white/50 */}
-            <Textarea
-              className="bg-accent border border-dashed rounded-none font-bold text-foreground text-sm"
-              placeholder="Provide a detailed organization description"
-              value={current.description as string}
-              onChange={(e) => {
-                setCurrent((previous) => ({
-                  ...previous,
-                  description: e.target.value,
-                }));
-              }}
-            ></Textarea>
-          </div>
-          <div className="space-y-2">
-            <Button
-              disabled={loading}
-              type="submit"
-              variant={"default"}
-              className="bg-white text-black hover:bg-white font-bold px-4 rounded-none"
-            >
-              {loading ? (
-                <Loader2 className="animate-spin mr-2 text-black" />
-              ) : (
-                <></>
-              )}
-              Save Changes
-            </Button>
-          </div>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <FieldSet>
+            <FieldGroup>
+              <Controller
+                control={form.control}
+                name="name"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor="name">Name</FieldLabel>
+                    <Input
+                      {...field}
+                      placeholder="Enter organization name"
+                      aria-invalid={fieldState.invalid}
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+            </FieldGroup>
+            <FieldGroup>
+              <Controller
+                control={form.control}
+                name="slug"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor="slug">Slug</FieldLabel>
+                    <Input
+                      {...field}
+                      placeholder="Enter organization slug"
+                      aria-invalid={fieldState.invalid}
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+            </FieldGroup>
+            <FieldGroup>
+              <Controller
+                control={form.control}
+                name="description"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor="description">Description</FieldLabel>
+                    <Textarea
+                      {...field}
+                      placeholder="Enter organization description"
+                      aria-invalid={fieldState.invalid}
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+            </FieldGroup>
+            <FieldGroup>
+              <Controller
+                control={form.control}
+                name="website"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor="website">Website</FieldLabel>
+                    <Input
+                      {...field}
+                      placeholder="Enter organization website"
+                      aria-invalid={fieldState.invalid}
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+            </FieldGroup>
+          </FieldSet>
+          <Button disabled={mutation.isPending} type="submit">
+            Submit
+            {mutation.isPending && (
+              <Loader2 className="size-4 animate-spin ml-2" />
+            )}
+          </Button>
         </form>
       </CardContent>
     </Card>

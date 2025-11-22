@@ -5,8 +5,13 @@ import { Organization } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
+import z from "zod";
+import { organizationSettings } from "@/schemas/organization-settings";
 
-export async function EditOrganization(organization: Organization) {
+export async function EditOrganization(
+  organization: Organization,
+  settings: z.infer<typeof organizationSettings>
+) {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -28,12 +33,12 @@ export async function EditOrganization(organization: Organization) {
     const checkSlug = await prisma.organization.findFirst({
       where: {
         slug: {
-          equals: organization.slug,
+          equals: settings.slug,
           mode: "insensitive",
         },
       },
     });
-    if (checkSlug && organization.slug != organizationExists.slug) {
+    if (checkSlug && settings.slug !== organizationExists.slug) {
       return {
         error: true,
         message: "Slug Already In Use",
@@ -44,10 +49,10 @@ export async function EditOrganization(organization: Organization) {
         id: organization.id,
       },
       data: {
-        name: organization.name,
-        slug: organization.slug,
-        description: organization.description,
-        website: organization.website,
+        name: settings.name,
+        slug: settings.slug,
+        description: settings.description,
+        website: settings.website,
       },
     });
     revalidatePath(`/${organization.id}/overview`);

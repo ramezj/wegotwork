@@ -1,40 +1,52 @@
+"use client";
+
 import { GetOrganization } from "@/actions/organization/organization";
-import { auth } from "@/lib/auth";
-import { Session } from "@/lib/auth-client";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { useSession } from "@/lib/auth-client";
+import { redirect, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { SquareArrowOutUpRight } from "lucide-react";
+import { SquareArrowOutUpRight, Loader2 } from "lucide-react";
 import { TotalJobs, TotalApplicants } from "@/components/statistics";
-import { Metadata } from "next";
 import { SettingsCard } from "@/components/cards/settings";
-import { Job, Organization } from "@prisma/client";
-import { CustomButton } from "@/components/ui/custom-buttons";
-import { JobCardForDashboard } from "@/components/cards/job";
+import { Organization } from "@prisma/client";
 import { BaseLayout } from "@/components/base-layout";
+import { useQuery } from "@tanstack/react-query";
 
-export const metadata: Metadata = {
-  title: "Overview",
-  description: "overview",
-};
-
-export default async function Page() {
-  const session: Session | null = await auth.api.getSession({
-    headers: await headers(),
+export default function Page() {
+  const { data: session, isPending: sessionLoading } = useSession();
+  const {
+    data: userOrganization,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["user-organization", session?.user?.currentOrganizationId],
+    queryFn: () => GetOrganization(session!.user!.currentOrganizationId!),
+    enabled: !!session?.user?.currentOrganizationId,
   });
-  if (!session?.user) {
-    redirect("/");
+  if (sessionLoading || isLoading) {
+    return (
+      <BaseLayout title="Overview">
+        <div className="flex items-center justify-center h-64">
+          <Loader2 className="size-8 animate-spin text-foreground" />
+        </div>
+      </BaseLayout>
+    );
   }
-  if (session.user.currentOrganizationId === null) {
-    redirect("/dashboard");
+
+  if (!session?.user || !session.user.currentOrganizationId) {
+    return null;
   }
-  const userOrganization = await GetOrganization(
-    session.user.currentOrganizationId!
-  );
-  if (userOrganization?.error) {
-    redirect("/");
+
+  if (error || userOrganization?.error) {
+    return (
+      <BaseLayout title="Overview">
+        <div className="flex items-center justify-center h-64">
+          <p className="text-red-500">Error loading organization data</p>
+        </div>
+      </BaseLayout>
+    );
   }
+
   return (
     <>
       <BaseLayout
