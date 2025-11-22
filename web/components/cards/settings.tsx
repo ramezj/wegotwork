@@ -161,13 +161,17 @@ export function SettingsCard({ organization }: { organization: Organization }) {
                 )}
               />
             </FieldGroup>
+            <Button
+              disabled={mutation.isPending}
+              type="submit"
+              className="w-36"
+            >
+              Submit
+              {mutation.isPending && (
+                <Loader2 className="size-4 animate-spin ml-2" />
+              )}
+            </Button>
           </FieldSet>
-          <Button disabled={mutation.isPending} type="submit">
-            Submit
-            {mutation.isPending && (
-              <Loader2 className="size-4 animate-spin ml-2" />
-            )}
-          </Button>
         </form>
       </CardContent>
     </Card>
