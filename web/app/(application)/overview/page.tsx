@@ -1,52 +1,32 @@
-"use client";
-
 import { GetOrganization } from "@/actions/organization/organization";
-import { useSession } from "@/lib/auth-client";
-import { redirect, useRouter } from "next/navigation";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { Session } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { SquareArrowOutUpRight, Loader2 } from "lucide-react";
+import { SquareArrowOutUpRight } from "lucide-react";
 import { TotalJobs, TotalApplicants } from "@/components/statistics";
 import { SettingsCard } from "@/components/cards/settings";
 import { Organization } from "@prisma/client";
 import { BaseLayout } from "@/components/base-layout";
-import { useQuery } from "@tanstack/react-query";
+import { redirect } from "next/navigation";
 
-export default function Page() {
-  const { data: session, isPending: sessionLoading } = useSession();
-  const {
-    data: userOrganization,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["user-organization", session?.user?.currentOrganizationId],
-    queryFn: () => GetOrganization(session!.user!.currentOrganizationId!),
-    enabled: !!session?.user?.currentOrganizationId,
+export default async function Page() {
+  const session: Session | null = await auth.api.getSession({
+    headers: await headers(),
   });
-  if (sessionLoading || isLoading) {
-    return (
-      <BaseLayout title="Overview">
-        <div className="flex items-center justify-center h-64">
-          <Loader2 className="size-8 animate-spin text-foreground" />
-        </div>
-      </BaseLayout>
-    );
+  if (!session?.user) {
+    redirect("/");
   }
-
-  if (!session?.user || !session.user.currentOrganizationId) {
-    return null;
+  if (session.user.currentOrganizationId === null) {
+    redirect("/dashboard");
   }
-
-  if (error || userOrganization?.error) {
-    return (
-      <BaseLayout title="Overview">
-        <div className="flex items-center justify-center h-64">
-          <p className="text-red-500">Error loading organization data</p>
-        </div>
-      </BaseLayout>
-    );
+  const userOrganization = await GetOrganization(
+    session.user.currentOrganizationId!
+  );
+  if (userOrganization?.error) {
+    redirect("/");
   }
-
   return (
     <>
       <BaseLayout

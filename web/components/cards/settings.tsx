@@ -1,38 +1,30 @@
 "use client";
 import { Loader2 } from "lucide-react";
-import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Organization } from "@prisma/client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { EditOrganization } from "@/actions/organization/edit-organization";
 import { toast } from "sonner";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardFooter,
-} from "../ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 import { Textarea } from "../ui/textarea";
 import { organizationSettings } from "@/schemas/organization-settings";
-import { Form, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  FieldContent,
   FieldError,
   FieldGroup,
-  FieldLegend,
   FieldLabel,
   FieldSet,
   Field,
 } from "../ui/field";
 import { Controller } from "react-hook-form";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 export function SettingsCard({ organization }: { organization: Organization }) {
-  const queryClient = useQueryClient();
+  const router = useRouter();
+  const [isPending, setIsPending] = useState(false);
 
   const form = useForm({
     resolver: zodResolver(organizationSettings),
@@ -45,36 +37,20 @@ export function SettingsCard({ organization }: { organization: Organization }) {
     mode: "onChange",
   });
 
-  const mutation = useMutation({
-    mutationFn: async (data: z.infer<typeof organizationSettings>) => {
-      return await EditOrganization(organization, data);
-    },
-    onSuccess: (response) => {
+  const onSubmit = async (data: z.infer<typeof organizationSettings>) => {
+    setIsPending(true);
+    try {
+      const response = await EditOrganization(organization, data);
+
       if (response?.error) {
         toast.error(response.message as string);
       } else {
         toast.success(response?.message as string);
-        // Invalidate and refetch organization data
-        queryClient.invalidateQueries({ queryKey: ["user-organization"] });
       }
-    },
-    onError: (error) => {
-      toast.error("Failed to update organization");
-      console.error(error);
-    },
-  });
-
-  const onSubmit = async (data: z.infer<typeof organizationSettings>) => {
-    mutation.mutate(data);
+    } finally {
+      setIsPending(false);
+    }
   };
-
-  const [current, setCurrent] = useState<Organization>(organization);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  // Update current state when organization prop changes
-  useEffect(() => {
-    setCurrent(organization);
-  }, [organization]);
   return (
     <Card className="w-full dark:bg-theme bg-gray-200 rounded-none border border-dashed">
       <CardHeader>
@@ -161,15 +137,9 @@ export function SettingsCard({ organization }: { organization: Organization }) {
                 )}
               />
             </FieldGroup>
-            <Button
-              disabled={mutation.isPending}
-              type="submit"
-              className="w-36"
-            >
+            <Button disabled={isPending} type="submit" className="w-36">
               Submit
-              {mutation.isPending && (
-                <Loader2 className="size-4 animate-spin ml-2" />
-              )}
+              {isPending && <Loader2 className="size-4 animate-spin ml-2" />}
             </Button>
           </FieldSet>
         </form>
