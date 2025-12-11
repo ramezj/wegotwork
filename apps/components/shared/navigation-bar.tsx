@@ -24,21 +24,20 @@ export function NavigationBar() {
   };
 
   return (
-    // add overflow-hidden if not the white button.
-    <div className="border-b border-foreground/20 border-dashed dark:bg-black bg-white sticky top-0 h-16 z-50">
+    <div className="border-b border-foreground/15  dark:bg-black bg-white sticky top-0 h-16 z-50">
       <div className="flex h-16 items-center justify-between">
         <Link
           href="/"
           className="flex items-center z-50 pl-4 text-2xl font-medium tracking-tighter dark:text-white text-black"
           onClick={closeMenu}
         >
-          <span className="text-2xl font-extrabold tracking-tight dark:text-white text-black">
+          <span className="text-2xl font-medium tracking-tight dark:text-white text-black">
             wegotwork
           </span>
         </Link>
         <div className="justify-center items-center gap-4 hidden md:flex pl-4 align-middle">
           <Link href={"/"} className="">
-            <span className="text-lg font-bold tracking-tight dark:text-white text-black">
+            <span className="text-lg font-medium tracking-tight dark:text-white text-black">
               features
             </span>
           </Link>
@@ -47,12 +46,12 @@ export function NavigationBar() {
             href={`http://demo.${process.env.NEXT_PUBLIC_URL}`}
             className=""
           >
-            <span className="text-lg font-bold tracking-tight dark:text-white text-black">
+            <span className="text-lg font-medium tracking-tight dark:text-white text-black">
               demo
             </span>
           </Link>
           <Link href={"/pricing"} className="">
-            <span className="text-lg font-bold tracking-tight dark:text-white text-black">
+            <span className="text-lg font-medium tracking-tight dark:text-white text-black">
               pricing
             </span>
           </Link>
@@ -74,7 +73,9 @@ export function NavigationBar() {
             ) : (
               <Link href="/auth">Get Started</Link>
             )} */}
-            <Link href="/auth">Get Started</Link>
+            <Link href="/auth" className="font-medium">
+              Get Started
+            </Link>
           </Button>
         </div>
         {isOpen ? (
