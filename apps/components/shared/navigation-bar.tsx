@@ -5,8 +5,9 @@ import Link from "next/link";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Session } from "better-auth";
 
-export function NavigationBar() {
+export function NavigationBar({ session }: { session: Session | null }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const toggleMenu = () => {
