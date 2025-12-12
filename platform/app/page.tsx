@@ -13,7 +13,7 @@ export default async function Home() {
         <NavigationBar session={session?.session || null} />
         <div className="flex-1 flex flex-col items-center relative">
           <h1 className="text-5xl font-bold text-center">
-            BUILD BEAUTIFUL CAREER PAGES
+            BUILD BEAUTIFUL CAREER PAGESa
           </h1>
           <div className="absolute 2xl:bottom-16 xl:bottom-12 lg:bottom-10 bottom-8">
             <Button>Get Started</Button>
