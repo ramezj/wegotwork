@@ -1,10 +1,6 @@
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/shared/sidebar/app-sidebar";
-import { DashHeader } from "@/components/shared/sidebar/dash-header";
+import { DashHeader } from "@/components/shared/sidebar/app-header";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -13,6 +9,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       style={
         {
           "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--header-height": "3.5rem",
+          "--footer-height": "3.5rem",
         } as React.CSSProperties
       }
     >

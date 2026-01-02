@@ -24,7 +24,7 @@ import { Button } from "@/components/ui/button";
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
@@ -49,7 +49,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent></SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="h-(--footer-height) border-t flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem>
             <UserDropdown />
