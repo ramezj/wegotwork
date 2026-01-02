@@ -1,6 +1,5 @@
 "use client";
-
-import { TestAction } from "../../../../next-app/actions/test";
+import { TestAction } from "@/actions/test";
 export function DashboardContent({ data }: { data: string }) {
   return (
     <div className="p-8">
