@@ -1,7 +1,5 @@
-import { TestAction } from "@/actions/test";
-import { DashboardContent } from "./dashboard-content";
-// import { getServerSession } from "@/hooks/get-server-session";
 import { Metadata } from "next";
+import { getServerSession } from "@/lib/get-server-session";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -9,11 +7,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  // const session = await getServerSession();
-  const data = await TestAction();
+  const session = await getServerSession();
   return (
     <>
-      <p>hello world!</p>
+      <p>Hello from /dash</p>
+      <p>{session?.user?.email}</p>
     </>
   );
 }
