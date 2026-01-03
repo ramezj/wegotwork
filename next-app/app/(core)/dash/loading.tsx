@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="p-8">
+    <div className="">
       <div className="text-xl font-bold text-blue-500 mb-4 animate-pulse">
         🔄 Loading Dashboard...
       </div>

@@ -9,15 +9,15 @@ import { SidebarMenuButton } from "@/components/ui/sidebar";
 // import { getServerSession } from "@/hooks/get-server-session";
 import { ChevronUp, User2 } from "lucide-react";
 
-export default async function UserDropdown() {
+export default function UserDropdown() {
   // const session = await getServerSession();
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <SidebarMenuButton asChild>
-            <Button variant={"secondary"}>
-              <User2 /> Ramez Joseph
+            <Button variant={"outline"}>
+              <User2 /> Username
               <ChevronUp className="ml-auto" />
             </Button>
           </SidebarMenuButton>

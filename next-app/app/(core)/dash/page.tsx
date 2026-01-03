@@ -13,7 +13,7 @@ export default async function Page() {
   const data = await TestAction();
   return (
     <>
-      <DashboardContent data={data} />
+      <p>hello world!</p>
     </>
   );
 }

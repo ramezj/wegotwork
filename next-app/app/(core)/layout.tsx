@@ -1,6 +1,6 @@
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/shared/sidebar/app-sidebar";
-import { DashHeader } from "@/components/shared/sidebar/app-header";
+import { AppSidebar } from "@/app/(core)/components/sidebar/app-sidebar";
+import { AppHeader } from "@/app/(core)/components/sidebar/app-header";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,8 +16,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     >
       <AppSidebar />
       <SidebarInset>
-        <DashHeader />
-        <div className="flex flex-1 flex-col">{children}</div>
+        <AppHeader />
+        <div className="flex flex-1 flex-col p-4">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );

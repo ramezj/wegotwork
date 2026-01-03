@@ -1,3 +1,4 @@
+"use client";
 import {
   Sidebar,
   SidebarContent,
@@ -10,6 +11,8 @@ import {
   SidebarGroupAction,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarMenuAction,
+  SidebarSeparator,
 } from "@/components/ui/sidebar";
 import {
   DropdownMenu,
@@ -17,11 +20,48 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, ChevronUp, Plus, User2 } from "lucide-react";
+import {
+  Briefcase,
+  ChevronDown,
+  ChevronsUpDownIcon,
+  ChevronUp,
+  HomeIcon,
+  Plus,
+  User2,
+  Users,
+} from "lucide-react";
 import UserDropdown from "./user-dropdown";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+type menuItem = {
+  label: string;
+  icon: React.ReactNode;
+  href: string;
+};
+
+const menuItems: menuItem[] = [
+  {
+    label: "Dashboard",
+    icon: <HomeIcon />,
+    href: "/dash",
+  },
+  {
+    label: "Jobs",
+    icon: <Briefcase />,
+    href: "/jobs",
+  },
+  {
+    label: "Applicants",
+    icon: <Users />,
+    href: "/applicants",
+  },
+];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const pathname = usePathname();
+  console.log(pathname);
   return (
     <Sidebar {...props}>
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
@@ -32,7 +72,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenuButton asChild>
                   <Button variant={"outline"}>
                     Select Workspace
-                    <ChevronDown className="ml-auto" />
+                    <ChevronsUpDownIcon className="ml-auto" />
                   </Button>
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -48,7 +88,25 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent></SidebarContent>
+      <SidebarContent>
+        <SidebarGroup className="space-y-2">
+          {menuItems.map((item, index) => {
+            return (
+              <SidebarMenuButton
+                isActive={item.href === pathname}
+                className="flex items-center gap-2 cursor-pointer"
+                key={index}
+                asChild
+              >
+                <Link href={item.href}>
+                  {item.icon}
+                  {item.label}
+                </Link>
+              </SidebarMenuButton>
+            );
+          })}
+        </SidebarGroup>
+      </SidebarContent>
       <SidebarFooter className="h-(--footer-height) border-t flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem>
