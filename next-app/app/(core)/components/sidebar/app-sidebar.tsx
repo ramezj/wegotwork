@@ -59,9 +59,11 @@ const menuItems: menuItem[] = [
   },
 ];
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  session,
+  ...props
+}: React.ComponentProps<typeof Sidebar> & { session: any }) {
   const pathname = usePathname();
-  console.log(pathname);
   return (
     <Sidebar {...props}>
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
@@ -110,7 +112,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarFooter className="h-(--footer-height) border-t flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem>
-            <UserDropdown />
+            <UserDropdown session={session} />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>

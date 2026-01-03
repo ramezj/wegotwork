@@ -6,18 +6,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { SidebarMenuButton } from "@/components/ui/sidebar";
-// import { getServerSession } from "@/hooks/get-server-session";
-import { ChevronUp, User2 } from "lucide-react";
+import { ChevronUp, Users2 } from "lucide-react";
 
-export default function UserDropdown() {
-  // const session = await getServerSession();
+export default function UserDropdown({ session }: { session: any }) {
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <SidebarMenuButton asChild>
             <Button variant={"outline"}>
-              <User2 /> Username
+              <Users2 /> {session?.user?.name}
               <ChevronUp className="ml-auto" />
             </Button>
           </SidebarMenuButton>

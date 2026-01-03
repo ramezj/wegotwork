@@ -1,8 +1,14 @@
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/app/(core)/components/sidebar/app-sidebar";
 import { AppHeader } from "@/app/(core)/components/sidebar/app-header";
+import { getServerSession } from "@/lib/get-server-session";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const session = await getServerSession();
   return (
     <SidebarProvider
       defaultOpen={true}
@@ -14,7 +20,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         } as React.CSSProperties
       }
     >
-      <AppSidebar />
+      <AppSidebar session={session} />
       <SidebarInset>
         <AppHeader />
         <div className="flex flex-1 flex-col p-4">{children}</div>
