@@ -9,6 +9,7 @@ export default async function Page() {
   return (
     <>
       <p>Hello from /dash</p>
+      Current Active Organization ID : {session.session.activeOrganizationId}
     </>
   );
 }
