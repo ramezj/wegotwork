@@ -8,11 +8,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarGroupAction,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenuAction,
-  SidebarSeparator,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import {
   DropdownMenu,
@@ -20,16 +16,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  Briefcase,
-  ChevronDown,
-  ChevronsUpDownIcon,
-  ChevronUp,
-  HomeIcon,
-  Plus,
-  User2,
-  Users,
-} from "lucide-react";
+import { Briefcase, ChevronsUpDownIcon, HomeIcon, Users } from "lucide-react";
 import UserDropdown from "./user-dropdown";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -64,6 +51,14 @@ export function AppSidebar({
   ...props
 }: React.ComponentProps<typeof Sidebar> & { session: any }) {
   const pathname = usePathname();
+  const { isMobile, setOpenMobile } = useSidebar();
+
+  const handleMenuClick = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
+
   return (
     <Sidebar {...props}>
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
@@ -99,6 +94,7 @@ export function AppSidebar({
                 className="flex items-center gap-2 cursor-pointer"
                 key={index}
                 asChild
+                onClick={handleMenuClick}
               >
                 <Link href={item.href}>
                   {item.icon}
