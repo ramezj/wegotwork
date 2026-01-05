@@ -1,14 +1,18 @@
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/app/(core)/components/sidebar/app-sidebar";
 import { AppHeader } from "@/app/(core)/components/sidebar/app-header";
-import { getServerSession } from "@/lib/get-server-session";
+import { useUser } from "@/lib/use-user";
+import { redirect } from "next/navigation";
 
 export default async function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
+  const session = await useUser();
+  if (!session) {
+    redirect("/");
+  }
   return (
     <SidebarProvider
       defaultOpen={true}

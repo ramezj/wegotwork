@@ -1,17 +1,14 @@
-import { Metadata } from "next";
-import { getServerSession } from "@/lib/get-server-session";
-
-export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Dashboard",
-};
+import { useUser } from "@/lib/use-user";
+import { redirect } from "next/navigation";
 
 export default async function Page() {
-  const session = await getServerSession();
+  const session = await useUser();
+  if (!session) {
+    redirect("/");
+  }
   return (
     <>
       <p>Hello from /dash</p>
-      <p>{session?.user?.email}</p>
     </>
   );
 }
