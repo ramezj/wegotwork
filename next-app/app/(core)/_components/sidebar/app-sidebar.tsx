@@ -50,11 +50,9 @@ const menuItems: menuItem[] = [
 
 export function AppSidebar({
   session,
-  organization,
   ...props
 }: React.ComponentProps<typeof Sidebar> & {
   session: any;
-  organization: Organization | null;
 }) {
   const pathname = usePathname();
   const { isMobile, setOpenMobile } = useSidebar();
@@ -70,10 +68,7 @@ export function AppSidebar({
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem>
-            <OrganizationSelector
-              session={session}
-              organization={organization}
-            />
+            <OrganizationSelector />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

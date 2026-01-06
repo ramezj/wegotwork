@@ -1,16 +1,18 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { cache } from "react";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
-export const getCurrentOrganizationAction = cache(
-  async (organizationId: string) => {
-    console.log("fetching organization");
-    const organization = await prisma.organization.findUnique({
-      where: {
-        id: organizationId,
-      },
-    });
-    return organization;
-  }
-);
+export const getCurrentOrganizationAction = async () => {
+  console.log("fetching organization");
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const organization = await prisma.organization.findUnique({
+    where: {
+      id: session?.session.activeOrganizationId!,
+    },
+  });
+  return organization;
+};

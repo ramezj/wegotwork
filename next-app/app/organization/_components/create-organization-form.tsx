@@ -14,13 +14,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useState } from "react";
 import { createOrganizationAction } from "@/actions/organization/create-organization";
 import { Loader2 } from "lucide-react";
 import { redirect } from "next/navigation";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function CreateOrganizationForm() {
-  const [loading, setLoading] = useState(false);
+  const queryClient = useQueryClient();
+
   const form = useForm({
     resolver: zodResolver(createOrganizationSchema),
     defaultValues: {
@@ -28,14 +29,23 @@ export default function CreateOrganizationForm() {
       slug: "",
     },
   });
-  const onSubmit = async (data: z.infer<typeof createOrganizationSchema>) => {
-    setLoading(true);
-    const result = await createOrganizationAction(data);
-    if (result.error) {
-      console.error(result.message);
-    }
-    setLoading(false);
-    redirect("/dash");
+
+  const mutation = useMutation({
+    mutationFn: createOrganizationAction,
+    onSuccess: (result) => {
+      if (result.error) {
+        console.error(result.message);
+        return;
+      }
+      queryClient.invalidateQueries({ queryKey: ["activeOrganization"] });
+    },
+    onError: (error) => {
+      console.error("Mutation error:", error);
+    },
+  });
+
+  const onSubmit = (data: z.infer<typeof createOrganizationSchema>) => {
+    mutation.mutate(data);
   };
   return (
     <Card className="w-[400px] p-4">
@@ -66,8 +76,10 @@ export default function CreateOrganizationForm() {
               )}
             />
           </FieldGroup>
-          <Button type="submit" disabled={loading}>
-            {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          <Button type="submit" disabled={mutation.isPending}>
+            {mutation.isPending && (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            )}
             Create Organization
           </Button>
         </FieldSet>

@@ -1,8 +1,16 @@
 import { getCurrentOrganizationAction } from "@/actions/organization/get-current-organization";
 import { useUser } from "@/lib/use-user";
 import { redirect } from "next/navigation";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+  useQuery,
+} from "@tanstack/react-query";
+import DisplayCurrentOrganization from "../_components/ui/display-current-org";
 
 export default async function Page() {
+  const queryClient = new QueryClient();
   const session = await useUser();
   if (!session) {
     redirect("/");
@@ -10,14 +18,15 @@ export default async function Page() {
   if (session.session.activeOrganizationId === null) {
     redirect("/dashboard");
   }
-  const organization = await getCurrentOrganizationAction(
-    session.session.activeOrganizationId!
-  );
+  await queryClient.prefetchQuery({
+    queryKey: ["activeOrganization"],
+    queryFn: () => getCurrentOrganizationAction(),
+  });
   return (
     <>
-      <p>Hello from /dash</p>
-      <p>{organization?.name}</p>
-      <p>{organization?.slug}</p>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <DisplayCurrentOrganization />
+      </HydrationBoundary>
     </>
   );
 }
