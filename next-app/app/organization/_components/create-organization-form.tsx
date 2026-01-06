@@ -17,6 +17,7 @@ import { Card } from "@/components/ui/card";
 import { useState } from "react";
 import { createOrganizationAction } from "@/actions/organization/create-organization";
 import { Loader2 } from "lucide-react";
+import { redirect } from "next/navigation";
 
 export default function CreateOrganizationForm() {
   const [loading, setLoading] = useState(false);
@@ -30,8 +31,11 @@ export default function CreateOrganizationForm() {
   const onSubmit = async (data: z.infer<typeof createOrganizationSchema>) => {
     setLoading(true);
     const result = await createOrganizationAction(data);
-    console.log(result);
+    if (result.error) {
+      console.error(result.message);
+    }
     setLoading(false);
+    redirect("/dash");
   };
   return (
     <Card className="w-[400px] p-4">

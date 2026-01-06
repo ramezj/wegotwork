@@ -13,7 +13,10 @@ export async function createOrganizationAction(
     headers: await headers(),
   });
   if (!session) {
-    throw new Error("Unauthorized");
+    return {
+      error: true,
+      message: "Unauthorized",
+    };
   }
   const organization = await auth.api.createOrganization({
     body: {
@@ -23,7 +26,10 @@ export async function createOrganizationAction(
     },
   });
   if (!organization) {
-    throw new Error("Failed to create organization");
+    return {
+      error: true,
+      message: "Failed to create organization",
+    };
   } else {
     const setActiveOrganization = await auth.api.setActiveOrganization({
       body: {
@@ -33,9 +39,13 @@ export async function createOrganizationAction(
       headers: await headers(),
     });
     if (!setActiveOrganization) {
-      throw new Error("Failed to set active organization");
+      return {
+        error: true,
+        message: "Failed to set active organization",
+      };
     }
-    revalidateTag("organization-" + organization.id, "max");
   }
-  return organization;
+  return {
+    organization,
+  };
 }

@@ -4,6 +4,7 @@ import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 export function AppHeader() {
   return (
@@ -14,9 +15,11 @@ export function AppHeader() {
           <SidebarTrigger />
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <Button size="sm" className="hidden sm:flex">
-            <Plus />
-            <span>Quick Create</span>
+          <Button asChild className="hidden sm:flex">
+            <Link href="/organization/create">
+              <Plus />
+              Create Organization
+            </Link>
           </Button>
         </div>
       </div>

@@ -21,6 +21,8 @@ import UserDropdown from "./user-dropdown";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { OrganizationSelector } from "./organization-selector";
+import { Organization } from "@/src/generated/prisma/client";
 
 type menuItem = {
   label: string;
@@ -48,8 +50,12 @@ const menuItems: menuItem[] = [
 
 export function AppSidebar({
   session,
+  organization,
   ...props
-}: React.ComponentProps<typeof Sidebar> & { session: any }) {
+}: React.ComponentProps<typeof Sidebar> & {
+  session: any;
+  organization: Organization | null;
+}) {
   const pathname = usePathname();
   const { isMobile, setOpenMobile } = useSidebar();
 
@@ -64,24 +70,10 @@ export function AppSidebar({
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton asChild>
-                  <Button variant={"outline"}>
-                    Select Workspace
-                    <ChevronsUpDownIcon className="ml-auto" />
-                  </Button>
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[--radix-dropdown-menu-trigger-width]">
-                <DropdownMenuItem>
-                  <span>Acme Inc</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Acme Corp.</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <OrganizationSelector
+              session={session}
+              organization={organization}
+            />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

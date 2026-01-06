@@ -7,7 +7,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { SidebarMenuButton } from "@/components/ui/sidebar";
 import { ChevronUp, Users2 } from "lucide-react";
 
 export default function UserDropdown({ session }: { session: any }) {
@@ -15,12 +14,10 @@ export default function UserDropdown({ session }: { session: any }) {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <SidebarMenuButton asChild>
-            <Button variant={"outline"}>
-              <Users2 /> {session?.user?.name}
-              <ChevronUp className="ml-auto" />
-            </Button>
-          </SidebarMenuButton>
+          <Button variant={"outline"} className="w-full">
+            <Users2 /> {session?.user?.name}
+            <ChevronUp className="ml-auto" />
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
           side="top"

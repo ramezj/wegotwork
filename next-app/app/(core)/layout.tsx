@@ -3,6 +3,7 @@ import { AppSidebar } from "@/app/(core)/_components/sidebar/app-sidebar";
 import { AppHeader } from "@/app/(core)/_components/sidebar/app-header";
 import { useUser } from "@/lib/use-user";
 import { redirect } from "next/navigation";
+import { getCurrentOrganizationAction } from "@/actions/organization/get-current-organization";
 
 export default async function Layout({
   children,
@@ -13,6 +14,12 @@ export default async function Layout({
   if (!session) {
     redirect("/");
   }
+  if (!session.session.activeOrganizationId) {
+    redirect("/organization/create");
+  }
+  const organization = await getCurrentOrganizationAction(
+    session.session.activeOrganizationId!!
+  );
   return (
     <SidebarProvider
       defaultOpen={true}
@@ -24,7 +31,7 @@ export default async function Layout({
         } as React.CSSProperties
       }
     >
-      <AppSidebar session={session} />
+      <AppSidebar session={session} organization={organization} />
       <SidebarInset>
         <AppHeader />
         <div className="flex flex-1 flex-col p-4">{children}</div>
