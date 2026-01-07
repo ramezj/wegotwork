@@ -43,7 +43,7 @@ export function OrganizationSelector() {
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger asChild suppressHydrationWarning>
           <Button variant={"outline"} className="w-full justify-between">
             {organizationData?.name || "Select Organization"}
             <ChevronsUpDown />

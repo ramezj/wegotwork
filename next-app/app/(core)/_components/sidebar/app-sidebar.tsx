@@ -9,6 +9,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   useSidebar,
+  SidebarGroupLabel,
 } from "@/components/ui/sidebar";
 import {
   DropdownMenu,
@@ -48,6 +49,19 @@ const menuItems: menuItem[] = [
   },
 ];
 
+const teamMenuItems: menuItem[] = [
+  {
+    label: "Team",
+    icon: <Users />,
+    href: "/team",
+  },
+  {
+    label: "Members",
+    icon: <Users />,
+    href: "/members",
+  },
+];
+
 export function AppSidebar({
   session,
   ...props
@@ -74,7 +88,27 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup className="space-y-2">
+          <SidebarGroupLabel>Main</SidebarGroupLabel>
           {menuItems.map((item, index) => {
+            return (
+              <SidebarMenuButton
+                isActive={item.href === pathname}
+                className="flex items-center gap-2 cursor-pointer"
+                key={index}
+                asChild
+                onClick={handleMenuClick}
+              >
+                <Link href={item.href}>
+                  {item.icon}
+                  {item.label}
+                </Link>
+              </SidebarMenuButton>
+            );
+          })}
+        </SidebarGroup>
+        <SidebarGroup className="space-y-2">
+          <SidebarGroupLabel>Organization</SidebarGroupLabel>
+          {teamMenuItems.map((item, index) => {
             return (
               <SidebarMenuButton
                 isActive={item.href === pathname}

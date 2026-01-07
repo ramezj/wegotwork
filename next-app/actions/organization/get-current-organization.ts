@@ -3,8 +3,9 @@
 import prisma from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { cache } from "react";
 
-export const getCurrentOrganizationAction = async () => {
+export const getCurrentOrganizationAction = cache(async () => {
   console.log("fetching organization");
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -15,4 +16,4 @@ export const getCurrentOrganizationAction = async () => {
     },
   });
   return organization;
-};
+});

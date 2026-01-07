@@ -13,7 +13,7 @@ export default function UserDropdown({ session }: { session: any }) {
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger asChild suppressHydrationWarning>
           <Button variant={"outline"} className="w-full">
             <Users2 /> {session?.user?.name}
             <ChevronUp className="ml-auto" />
