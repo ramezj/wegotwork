@@ -9,6 +9,7 @@ export default async function Page() {
   return (
     <>
       <SignInButton />
+      {JSON.stringify(session)}
       {session?.user && (
         <>
           <p>hello, {session.user.name}</p>

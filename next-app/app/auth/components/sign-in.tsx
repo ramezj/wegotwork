@@ -6,7 +6,7 @@ export function SignInButton() {
   const login = async () => {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: "/dash",
+      callbackURL: "/auth",
     });
   };
   return (
