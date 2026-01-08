@@ -24,6 +24,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { OrganizationSelector } from "./organization-selector";
 import { Organization } from "@/src/generated/prisma/client";
+import { useQuery } from "@tanstack/react-query";
+import { getCurrentOrganizationAction } from "@/actions/organization/get-current-organization";
 
 type menuItem = {
   label: string;
@@ -76,13 +78,16 @@ export function AppSidebar({
       setOpenMobile(false);
     }
   };
-
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["activeOrganization"],
+    queryFn: getCurrentOrganizationAction,
+  });
   return (
     <Sidebar {...props}>
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem>
-            <OrganizationSelector />
+            <OrganizationSelector organization={data as Organization} />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

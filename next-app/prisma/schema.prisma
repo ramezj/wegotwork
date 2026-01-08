@@ -90,9 +90,19 @@ model Organization {
   metadata    String?
   members     Member[]
   invitations Invitation[]
-
+  jobs        Job[]
   @@unique([slug])
   @@map("organization")
+}
+
+model Job {
+  id          String       @id
+  title       String
+  description String
+  createdAt   DateTime
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  @@map("job")
 }
 
 model Member {

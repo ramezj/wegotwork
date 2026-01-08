@@ -1,10 +1,9 @@
-"use cache";
+"use server";
 import prisma from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Session } from "@/lib/auth-client";
 import { headers } from "next/headers";
-import { unstable_cacheTag } from "next/cache";
 
 export async function GetOrganization(organizationId: string) {
   const session: Session | null = await auth.api.getSession({
@@ -13,7 +12,6 @@ export async function GetOrganization(organizationId: string) {
   if (!session) {
     redirect("/");
   }
-  unstable_cacheTag("organizations");
   try {
     const organization = await prisma.organizationUser.findFirst({
       where: {

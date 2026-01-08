@@ -14,6 +14,9 @@ export const getCurrentOrganizationAction = cache(async () => {
     where: {
       id: session?.session.activeOrganizationId!,
     },
+    include: {
+      jobs: true,
+    },
   });
   return organization;
 });

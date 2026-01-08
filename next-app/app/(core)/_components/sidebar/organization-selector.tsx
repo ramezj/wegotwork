@@ -14,35 +14,41 @@ import { getCurrentOrganizationAction } from "@/actions/organization/get-current
 import setCurrentOrganizationAction from "@/actions/organization/set-current-organization";
 import { Check, ChevronsUpDown, Loader2 } from "lucide-react";
 
-export function OrganizationSelector() {
-  const queryClient = useQueryClient();
+export function OrganizationSelector({
+  organization,
+}: {
+  organization: Organization;
+}) {
+  // const queryClient = useQueryClient();
+  // const { data: organizationData } = useQuery({
+  //   queryKey: ["activeOrganization"],
+  //   queryFn: getCurrentOrganizationAction,
+  // });
 
-  const { data: organizationData } = useQuery({
-    queryKey: ["activeOrganization"],
-    queryFn: getCurrentOrganizationAction,
-  });
+  // const { data: allOrganizationsData } = useQuery({
+  //   queryKey: ["organizations"],
+  //   queryFn: getAllOrganizationsAction,
+  // });
 
-  const { data: allOrganizationsData } = useQuery({
-    queryKey: ["organizations"],
-    queryFn: getAllOrganizationsAction,
-  });
-
-  const {
-    mutate: mutation,
-    isError,
-    isPending,
-  } = useMutation({
-    mutationFn: ({ id, slug }: { id: string; slug: string }) =>
-      setCurrentOrganizationAction(id, slug),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["activeOrganization"] });
-      queryClient.invalidateQueries({ queryKey: ["organizations"] });
-    },
-  });
+  // const {
+  //   mutate: mutation,
+  //   isError,
+  //   isPending,
+  // } = useMutation({
+  //   mutationFn: ({ id, slug }: { id: string; slug: string }) =>
+  //     setCurrentOrganizationAction(id, slug),
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries({ queryKey: ["activeOrganization"] });
+  //     queryClient.invalidateQueries({ queryKey: ["organizations"] });
+  //   },
+  // });
 
   return (
     <>
-      <DropdownMenu>
+      <Button variant={"outline"} className="w-full">
+        {organization.name}
+      </Button>
+      {/* <DropdownMenu>
         <DropdownMenuTrigger asChild suppressHydrationWarning>
           <Button variant={"outline"} className="w-full justify-between">
             {organizationData?.name || "Select Organization"}
@@ -70,7 +76,7 @@ export function OrganizationSelector() {
             );
           })}
         </DropdownMenuContent>
-      </DropdownMenu>
+      </DropdownMenu> */}
     </>
   );
 }

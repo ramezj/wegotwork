@@ -25,10 +25,10 @@ export default async function Layout({
   if (!session.session.activeOrganizationId) {
     redirect("/organization/create");
   }
-  await queryClient.prefetchQuery({
-    queryKey: ["organizations"],
-    queryFn: getAllOrganizationsAction,
-  });
+  // await queryClient.prefetchQuery({
+  //   queryKey: ["organizations"],
+  //   queryFn: getAllOrganizationsAction,
+  // });
   await queryClient.prefetchQuery({
     queryKey: ["activeOrganization"],
     queryFn: getCurrentOrganizationAction,
