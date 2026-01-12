@@ -1,9 +1,9 @@
 {
-  "projectName": "app",
+  "projectName": "webapp",
   "mode": "file-router",
   "typescript": true,
   "tailwind": true,
-  "packageManager": "npm",
+  "packageManager": "pnpm",
   "addOnOptions": {},
   "git": true,
   "version": 1,
@@ -12,7 +12,7 @@
     "nitro",
     "start",
     "form",
-    "shadcn",
-    "tanstack-query"
+    "tanstack-query",
+    "shadcn"
   ]
 }
