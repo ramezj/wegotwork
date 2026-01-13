@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getServerSession } from "@/lib/get-server-session";
 
-export const Route = createFileRoute("/(application)/_layout/dash")({
+export const Route = createFileRoute("/(core)/_layout/dash")({
   component: RouteComponent,
   beforeLoad: async () => {
     const session = await getServerSession();

@@ -10,18 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as applicationLayoutRouteRouteImport } from './routes/(application)/_layout/route'
+import { Route as coreLayoutRouteRouteImport } from './routes/(core)/_layout/route'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
-import { Route as applicationLayoutDashRouteRouteImport } from './routes/(application)/_layout/dash/route'
-import { Route as applicationLayoutJobsJobIdRouteImport } from './routes/(application)/_layout/jobs/$jobId'
+import { Route as coreLayoutDashRouteRouteImport } from './routes/(core)/_layout/dash/route'
+import { Route as coreLayoutJobsJobIdRouteImport } from './routes/(core)/_layout/jobs/$jobId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const applicationLayoutRouteRoute = applicationLayoutRouteRouteImport.update({
-  id: '/(application)/_layout',
+const coreLayoutRouteRoute = coreLayoutRouteRouteImport.update({
+  id: '/(core)/_layout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
@@ -29,38 +29,36 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
-const applicationLayoutDashRouteRoute =
-  applicationLayoutDashRouteRouteImport.update({
-    id: '/dash',
-    path: '/dash',
-    getParentRoute: () => applicationLayoutRouteRoute,
-  } as any)
-const applicationLayoutJobsJobIdRoute =
-  applicationLayoutJobsJobIdRouteImport.update({
-    id: '/jobs/$jobId',
-    path: '/jobs/$jobId',
-    getParentRoute: () => applicationLayoutRouteRoute,
-  } as any)
+const coreLayoutDashRouteRoute = coreLayoutDashRouteRouteImport.update({
+  id: '/dash',
+  path: '/dash',
+  getParentRoute: () => coreLayoutRouteRoute,
+} as any)
+const coreLayoutJobsJobIdRoute = coreLayoutJobsJobIdRouteImport.update({
+  id: '/jobs/$jobId',
+  path: '/jobs/$jobId',
+  getParentRoute: () => coreLayoutRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/dash': typeof applicationLayoutDashRouteRoute
+  '/dash': typeof coreLayoutDashRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/jobs/$jobId': typeof applicationLayoutJobsJobIdRoute
+  '/jobs/$jobId': typeof coreLayoutJobsJobIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dash': typeof applicationLayoutDashRouteRoute
+  '/dash': typeof coreLayoutDashRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/jobs/$jobId': typeof applicationLayoutJobsJobIdRoute
+  '/jobs/$jobId': typeof coreLayoutJobsJobIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/(application)/_layout': typeof applicationLayoutRouteRouteWithChildren
-  '/(application)/_layout/dash': typeof applicationLayoutDashRouteRoute
+  '/(core)/_layout': typeof coreLayoutRouteRouteWithChildren
+  '/(core)/_layout/dash': typeof coreLayoutDashRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/(application)/_layout/jobs/$jobId': typeof applicationLayoutJobsJobIdRoute
+  '/(core)/_layout/jobs/$jobId': typeof coreLayoutJobsJobIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -70,15 +68,15 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/(application)/_layout'
-    | '/(application)/_layout/dash'
+    | '/(core)/_layout'
+    | '/(core)/_layout/dash'
     | '/api/auth/$'
-    | '/(application)/_layout/jobs/$jobId'
+    | '/(core)/_layout/jobs/$jobId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  applicationLayoutRouteRoute: typeof applicationLayoutRouteRouteWithChildren
+  coreLayoutRouteRoute: typeof coreLayoutRouteRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -91,11 +89,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(application)/_layout': {
-      id: '/(application)/_layout'
+    '/(core)/_layout': {
+      id: '/(core)/_layout'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof applicationLayoutRouteRouteImport
+      preLoaderRoute: typeof coreLayoutRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/auth/$': {
@@ -105,42 +103,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(application)/_layout/dash': {
-      id: '/(application)/_layout/dash'
+    '/(core)/_layout/dash': {
+      id: '/(core)/_layout/dash'
       path: '/dash'
       fullPath: '/dash'
-      preLoaderRoute: typeof applicationLayoutDashRouteRouteImport
-      parentRoute: typeof applicationLayoutRouteRoute
+      preLoaderRoute: typeof coreLayoutDashRouteRouteImport
+      parentRoute: typeof coreLayoutRouteRoute
     }
-    '/(application)/_layout/jobs/$jobId': {
-      id: '/(application)/_layout/jobs/$jobId'
+    '/(core)/_layout/jobs/$jobId': {
+      id: '/(core)/_layout/jobs/$jobId'
       path: '/jobs/$jobId'
       fullPath: '/jobs/$jobId'
-      preLoaderRoute: typeof applicationLayoutJobsJobIdRouteImport
-      parentRoute: typeof applicationLayoutRouteRoute
+      preLoaderRoute: typeof coreLayoutJobsJobIdRouteImport
+      parentRoute: typeof coreLayoutRouteRoute
     }
   }
 }
 
-interface applicationLayoutRouteRouteChildren {
-  applicationLayoutDashRouteRoute: typeof applicationLayoutDashRouteRoute
-  applicationLayoutJobsJobIdRoute: typeof applicationLayoutJobsJobIdRoute
+interface coreLayoutRouteRouteChildren {
+  coreLayoutDashRouteRoute: typeof coreLayoutDashRouteRoute
+  coreLayoutJobsJobIdRoute: typeof coreLayoutJobsJobIdRoute
 }
 
-const applicationLayoutRouteRouteChildren: applicationLayoutRouteRouteChildren =
-  {
-    applicationLayoutDashRouteRoute: applicationLayoutDashRouteRoute,
-    applicationLayoutJobsJobIdRoute: applicationLayoutJobsJobIdRoute,
-  }
+const coreLayoutRouteRouteChildren: coreLayoutRouteRouteChildren = {
+  coreLayoutDashRouteRoute: coreLayoutDashRouteRoute,
+  coreLayoutJobsJobIdRoute: coreLayoutJobsJobIdRoute,
+}
 
-const applicationLayoutRouteRouteWithChildren =
-  applicationLayoutRouteRoute._addFileChildren(
-    applicationLayoutRouteRouteChildren,
-  )
+const coreLayoutRouteRouteWithChildren = coreLayoutRouteRoute._addFileChildren(
+  coreLayoutRouteRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  applicationLayoutRouteRoute: applicationLayoutRouteRouteWithChildren,
+  coreLayoutRouteRoute: coreLayoutRouteRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
