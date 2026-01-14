@@ -12,8 +12,10 @@ import {
 import { Briefcase, HomeIcon, Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
+import UserDropdown from "./user-dropdown";
+import { Session } from "@/lib/auth";
 
-export function AppSidebar() {
+export function AppSidebar({ session }: { session: Session }) {
   type menuItem = {
     label: string;
     icon: React.ReactNode;
@@ -103,7 +105,7 @@ export function AppSidebar() {
       <SidebarFooter className="h-(--footer-height) border-t flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem>
-            {/* <UserDropdown session={session} /> */}
+            <UserDropdown session={session} />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>

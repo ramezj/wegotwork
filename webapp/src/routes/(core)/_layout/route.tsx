@@ -4,6 +4,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 
 export const Route = createFileRoute("/(core)/_layout")({
+  ssr: true,
   component: RouteComponent,
   beforeLoad: async () => {
     const session = await getServerSession();
@@ -12,10 +13,11 @@ export const Route = createFileRoute("/(core)/_layout")({
 });
 
 function RouteComponent() {
+  const ctx = Route.useRouteContext();
   return (
     <>
       <SidebarProvider>
-        <AppSidebar />
+        <AppSidebar session={ctx.session} />
         <main className="">
           <Outlet />
         </main>
