@@ -9,17 +9,29 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as OrganizationRouteRouteImport } from './routes/organization/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OrganizationCreateRouteRouteImport } from './routes/organization/create/route'
 import { Route as coreLayoutRouteRouteImport } from './routes/(core)/_layout/route'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as coreLayoutJobsRouteRouteImport } from './routes/(core)/_layout/jobs/route'
 import { Route as coreLayoutDashRouteRouteImport } from './routes/(core)/_layout/dash/route'
 import { Route as coreLayoutJobsJobIdRouteImport } from './routes/(core)/_layout/jobs/$jobId'
 
+const OrganizationRouteRoute = OrganizationRouteRouteImport.update({
+  id: '/organization',
+  path: '/organization',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const OrganizationCreateRouteRoute = OrganizationCreateRouteRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => OrganizationRouteRoute,
 } as any)
 const coreLayoutRouteRoute = coreLayoutRouteRouteImport.update({
   id: '/(core)/_layout',
@@ -48,6 +60,8 @@ const coreLayoutJobsJobIdRoute = coreLayoutJobsJobIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/organization': typeof OrganizationRouteRouteWithChildren
+  '/organization/create': typeof OrganizationCreateRouteRoute
   '/dash': typeof coreLayoutDashRouteRoute
   '/jobs': typeof coreLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -55,6 +69,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/organization': typeof OrganizationRouteRouteWithChildren
+  '/organization/create': typeof OrganizationCreateRouteRoute
   '/dash': typeof coreLayoutDashRouteRoute
   '/jobs': typeof coreLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -63,7 +79,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/organization': typeof OrganizationRouteRouteWithChildren
   '/(core)/_layout': typeof coreLayoutRouteRouteWithChildren
+  '/organization/create': typeof OrganizationCreateRouteRoute
   '/(core)/_layout/dash': typeof coreLayoutDashRouteRoute
   '/(core)/_layout/jobs': typeof coreLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -71,13 +89,29 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dash' | '/jobs' | '/api/auth/$' | '/jobs/$jobId'
+  fullPaths:
+    | '/'
+    | '/organization'
+    | '/organization/create'
+    | '/dash'
+    | '/jobs'
+    | '/api/auth/$'
+    | '/jobs/$jobId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dash' | '/jobs' | '/api/auth/$' | '/jobs/$jobId'
+  to:
+    | '/'
+    | '/organization'
+    | '/organization/create'
+    | '/dash'
+    | '/jobs'
+    | '/api/auth/$'
+    | '/jobs/$jobId'
   id:
     | '__root__'
     | '/'
+    | '/organization'
     | '/(core)/_layout'
+    | '/organization/create'
     | '/(core)/_layout/dash'
     | '/(core)/_layout/jobs'
     | '/api/auth/$'
@@ -86,18 +120,33 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  OrganizationRouteRoute: typeof OrganizationRouteRouteWithChildren
   coreLayoutRouteRoute: typeof coreLayoutRouteRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/organization': {
+      id: '/organization'
+      path: '/organization'
+      fullPath: '/organization'
+      preLoaderRoute: typeof OrganizationRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/organization/create': {
+      id: '/organization/create'
+      path: '/create'
+      fullPath: '/organization/create'
+      preLoaderRoute: typeof OrganizationCreateRouteRouteImport
+      parentRoute: typeof OrganizationRouteRoute
     }
     '/(core)/_layout': {
       id: '/(core)/_layout'
@@ -137,6 +186,17 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface OrganizationRouteRouteChildren {
+  OrganizationCreateRouteRoute: typeof OrganizationCreateRouteRoute
+}
+
+const OrganizationRouteRouteChildren: OrganizationRouteRouteChildren = {
+  OrganizationCreateRouteRoute: OrganizationCreateRouteRoute,
+}
+
+const OrganizationRouteRouteWithChildren =
+  OrganizationRouteRoute._addFileChildren(OrganizationRouteRouteChildren)
+
 interface coreLayoutJobsRouteRouteChildren {
   coreLayoutJobsJobIdRoute: typeof coreLayoutJobsJobIdRoute
 }
@@ -164,6 +224,7 @@ const coreLayoutRouteRouteWithChildren = coreLayoutRouteRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  OrganizationRouteRoute: OrganizationRouteRouteWithChildren,
   coreLayoutRouteRoute: coreLayoutRouteRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }

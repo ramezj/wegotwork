@@ -22,7 +22,7 @@ export default function UserDropdown({ session }: { session: Session }) {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           side="top"
-          className="w-[--radix-dropdown-menu-trigger-width] "
+          className="w-[--radix-dropdown-menu-trigger-width] DropdownMenuContent"
         >
           <DropdownMenuItem>
             <span>Account</span>
