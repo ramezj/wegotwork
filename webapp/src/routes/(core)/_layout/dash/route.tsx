@@ -1,19 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { getServerSession } from "@/lib/get-server-session";
 
 export const Route = createFileRoute("/(core)/_layout/dash")({
   component: RouteComponent,
-  beforeLoad: async () => {
-    const session = await getServerSession();
-    return { session };
-  },
-  loader: async ({ context }) => {
-    return { session: context.session };
-  },
 });
 
 function RouteComponent() {
-  const { session } = Route.useLoaderData();
+  const { session } = Route.useRouteContext();
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
