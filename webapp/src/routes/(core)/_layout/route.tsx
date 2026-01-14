@@ -1,7 +1,8 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { getServerSession } from "@/lib/get-server-session";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
+import { AppHeader } from "@/components/sidebar/app-header";
 
 export const Route = createFileRoute("/(core)/_layout")({
   ssr: true,
@@ -13,14 +14,26 @@ export const Route = createFileRoute("/(core)/_layout")({
 });
 
 function RouteComponent() {
-  const ctx = Route.useRouteContext();
+  const context = Route.useRouteContext();
   return (
     <>
-      <SidebarProvider>
-        <AppSidebar session={ctx.session} />
-        <main className="">
-          <Outlet />
-        </main>
+      <SidebarProvider
+        defaultOpen={true}
+        style={
+          {
+            "--sidebar-width": "calc(var(--spacing) * 72)",
+            "--header-height": "3.5rem",
+            "--footer-height": "3.5rem",
+          } as React.CSSProperties
+        }
+      >
+        <AppSidebar session={context.session} />
+        <SidebarInset>
+          <AppHeader />
+          <div className="flex flex-1 flex-col p-4">
+            <Outlet />
+          </div>
+        </SidebarInset>
       </SidebarProvider>
     </>
   );

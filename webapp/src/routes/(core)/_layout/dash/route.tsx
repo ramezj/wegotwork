@@ -6,5 +6,5 @@ export const Route = createFileRoute("/(core)/_layout/dash")({
 
 function RouteComponent() {
   const { session } = Route.useRouteContext();
-  return <>{JSON.stringify(session)}</>;
+  return <>hello world</>;
 }
