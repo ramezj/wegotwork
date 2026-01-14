@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as coreLayoutRouteRouteImport } from './routes/(core)/_layout/route'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as coreLayoutJobsRouteRouteImport } from './routes/(core)/_layout/jobs/route'
 import { Route as coreLayoutDashRouteRouteImport } from './routes/(core)/_layout/dash/route'
 import { Route as coreLayoutJobsJobIdRouteImport } from './routes/(core)/_layout/jobs/$jobId'
 
@@ -29,26 +30,33 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const coreLayoutJobsRouteRoute = coreLayoutJobsRouteRouteImport.update({
+  id: '/jobs',
+  path: '/jobs',
+  getParentRoute: () => coreLayoutRouteRoute,
+} as any)
 const coreLayoutDashRouteRoute = coreLayoutDashRouteRouteImport.update({
   id: '/dash',
   path: '/dash',
   getParentRoute: () => coreLayoutRouteRoute,
 } as any)
 const coreLayoutJobsJobIdRoute = coreLayoutJobsJobIdRouteImport.update({
-  id: '/jobs/$jobId',
-  path: '/jobs/$jobId',
-  getParentRoute: () => coreLayoutRouteRoute,
+  id: '/$jobId',
+  path: '/$jobId',
+  getParentRoute: () => coreLayoutJobsRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dash': typeof coreLayoutDashRouteRoute
+  '/jobs': typeof coreLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/jobs/$jobId': typeof coreLayoutJobsJobIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dash': typeof coreLayoutDashRouteRoute
+  '/jobs': typeof coreLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/jobs/$jobId': typeof coreLayoutJobsJobIdRoute
 }
@@ -57,19 +65,21 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/(core)/_layout': typeof coreLayoutRouteRouteWithChildren
   '/(core)/_layout/dash': typeof coreLayoutDashRouteRoute
+  '/(core)/_layout/jobs': typeof coreLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/(core)/_layout/jobs/$jobId': typeof coreLayoutJobsJobIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dash' | '/api/auth/$' | '/jobs/$jobId'
+  fullPaths: '/' | '/dash' | '/jobs' | '/api/auth/$' | '/jobs/$jobId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dash' | '/api/auth/$' | '/jobs/$jobId'
+  to: '/' | '/dash' | '/jobs' | '/api/auth/$' | '/jobs/$jobId'
   id:
     | '__root__'
     | '/'
     | '/(core)/_layout'
     | '/(core)/_layout/dash'
+    | '/(core)/_layout/jobs'
     | '/api/auth/$'
     | '/(core)/_layout/jobs/$jobId'
   fileRoutesById: FileRoutesById
@@ -103,6 +113,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(core)/_layout/jobs': {
+      id: '/(core)/_layout/jobs'
+      path: '/jobs'
+      fullPath: '/jobs'
+      preLoaderRoute: typeof coreLayoutJobsRouteRouteImport
+      parentRoute: typeof coreLayoutRouteRoute
+    }
     '/(core)/_layout/dash': {
       id: '/(core)/_layout/dash'
       path: '/dash'
@@ -112,22 +129,33 @@ declare module '@tanstack/react-router' {
     }
     '/(core)/_layout/jobs/$jobId': {
       id: '/(core)/_layout/jobs/$jobId'
-      path: '/jobs/$jobId'
+      path: '/$jobId'
       fullPath: '/jobs/$jobId'
       preLoaderRoute: typeof coreLayoutJobsJobIdRouteImport
-      parentRoute: typeof coreLayoutRouteRoute
+      parentRoute: typeof coreLayoutJobsRouteRoute
     }
   }
 }
 
+interface coreLayoutJobsRouteRouteChildren {
+  coreLayoutJobsJobIdRoute: typeof coreLayoutJobsJobIdRoute
+}
+
+const coreLayoutJobsRouteRouteChildren: coreLayoutJobsRouteRouteChildren = {
+  coreLayoutJobsJobIdRoute: coreLayoutJobsJobIdRoute,
+}
+
+const coreLayoutJobsRouteRouteWithChildren =
+  coreLayoutJobsRouteRoute._addFileChildren(coreLayoutJobsRouteRouteChildren)
+
 interface coreLayoutRouteRouteChildren {
   coreLayoutDashRouteRoute: typeof coreLayoutDashRouteRoute
-  coreLayoutJobsJobIdRoute: typeof coreLayoutJobsJobIdRoute
+  coreLayoutJobsRouteRoute: typeof coreLayoutJobsRouteRouteWithChildren
 }
 
 const coreLayoutRouteRouteChildren: coreLayoutRouteRouteChildren = {
   coreLayoutDashRouteRoute: coreLayoutDashRouteRoute,
-  coreLayoutJobsJobIdRoute: coreLayoutJobsJobIdRoute,
+  coreLayoutJobsRouteRoute: coreLayoutJobsRouteRouteWithChildren,
 }
 
 const coreLayoutRouteRouteWithChildren = coreLayoutRouteRoute._addFileChildren(

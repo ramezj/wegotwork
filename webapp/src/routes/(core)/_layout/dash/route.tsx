@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/components/theme-toggle";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/(core)/_layout/dash")({
@@ -8,6 +9,7 @@ function RouteComponent() {
   const { session } = Route.useRouteContext();
   return (
     <div className="p-8">
+      <ThemeToggle />
       <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
       <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
         <p className="text-xl mb-4">
