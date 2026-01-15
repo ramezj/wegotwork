@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import DisplayCurrentOrganization from "@/components/dash/display-current-organization";
+import DisplayCurrentOrganization from "@/components/dash/display-organization";
 
 export const Route = createFileRoute("/(core)/_layout/dash")({
   component: RouteComponent,
@@ -7,9 +7,5 @@ export const Route = createFileRoute("/(core)/_layout/dash")({
 
 function RouteComponent() {
   const { session } = Route.useRouteContext();
-  return (
-    <>
-      <DisplayCurrentOrganization />
-    </>
-  );
+  return <DisplayCurrentOrganization />;
 }

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createOrganizationFn } from "../actions/create-organization";
+import { createOrganizationFn } from "@/features/organization/actions/create-organization";
 import { Button } from "@/components/ui/button";
 import { useForm, Controller } from "react-hook-form";
 import {
@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { z } from "zod";
-import { createOrganizationSchema } from "../types/schema";
+import { createOrganizationSchema } from "@/features/organization/types/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardContent } from "@/components/ui/card";
 

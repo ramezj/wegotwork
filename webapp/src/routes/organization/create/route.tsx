@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import CreateOrganizationButton from "@/features/organization/components/create-organization";
+import CreateOrganizationButton from "@/components/create-manage/manage-organizations";
 
 export const Route = createFileRoute("/organization/create")({
   component: RouteComponent,
