@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createOrganizationFn } from "../actions/create-organization";
 import { Button } from "@/components/ui/button";
 import { useForm, Controller } from "react-hook-form";
@@ -19,6 +19,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function CreateOrganizationButton() {
+  const queryClient = useQueryClient();
   const form = useForm({
     resolver: zodResolver(createOrganizationSchema),
     defaultValues: {
@@ -29,8 +30,13 @@ export default function CreateOrganizationButton() {
 
   const mutation = useMutation({
     mutationFn: createOrganizationFn,
-    onSuccess: () => {
-      form.reset();
+    onSuccess: async () => {
+      await queryClient.refetchQueries({ queryKey: ["organizations"] });
+      form.reset({
+        name: "",
+        slug: "",
+      });
+      // router.invalidate();
     },
     onError: (error) => {
       console.error("Mutation error:", error);
@@ -87,15 +93,13 @@ export default function CreateOrganizationButton() {
               />
             </FieldGroup>
           </FieldSet>
-          <div className="mt-6">
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={mutation.isPending}
-            >
-              {mutation.isPending ? "Creating..." : "Create Organization"}
-            </Button>
-          </div>
+          <Button
+            type="submit"
+            className="w-full mt-4"
+            disabled={mutation.isPending}
+          >
+            {mutation.isPending ? "Creating..." : "Create Organization"}
+          </Button>
         </form>
         {mutation.isSuccess && (
           <div className="text-sm text-green-600">

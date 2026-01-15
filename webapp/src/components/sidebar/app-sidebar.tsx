@@ -14,6 +14,9 @@ import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 import UserDropdown from "./user-dropdown";
 import { Session } from "@/lib/auth";
+import { Button } from "../ui/button";
+import { useQuery } from "@tanstack/react-query";
+import { getActiveOrganizationFn } from "@/features/organization/actions/get-active-organization";
 
 export function AppSidebar({ session }: { session: Session }) {
   type menuItem = {
@@ -53,12 +56,18 @@ export function AppSidebar({ session }: { session: Session }) {
     },
   ];
   const location = useLocation();
+  const { data: organization } = useQuery({
+    queryKey: ["activeOrganization"],
+    queryFn: getActiveOrganizationFn,
+  });
   return (
     <Sidebar>
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
         <SidebarMenu>
-          <SidebarMenuItem>
-            {/* <OrganizationSelector organization={data as Organization} /> */}
+          <SidebarMenuItem className="items-center content-center text-center">
+            <Button variant={"outline"} className="w-full">
+              {organization?.organization?.name}
+            </Button>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -72,7 +81,6 @@ export function AppSidebar({ session }: { session: Session }) {
                 className="flex items-center gap-2 cursor-pointer"
                 key={index}
                 asChild
-                // onClick={handleMenuClick}
               >
                 <Link to={item.href}>
                   {item.icon}
@@ -91,7 +99,6 @@ export function AppSidebar({ session }: { session: Session }) {
                 className="flex items-center gap-2 cursor-pointer"
                 key={index}
                 asChild
-                // onClick={handleMenuClick}
               >
                 <Link to={item.href}>
                   {item.icon}

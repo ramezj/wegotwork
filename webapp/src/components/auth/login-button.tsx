@@ -14,3 +14,15 @@ export default function LoginButton() {
     </Button>
   );
 }
+
+export function LogOutButton() {
+  return (
+    <Button
+      onClick={() => {
+        authClient.signOut();
+      }}
+    >
+      Logout
+    </Button>
+  );
+}

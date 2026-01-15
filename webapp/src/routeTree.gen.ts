@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as OrganizationRouteRouteImport } from './routes/organization/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OrganizationManageRouteRouteImport } from './routes/organization/manage/route'
 import { Route as OrganizationCreateRouteRouteImport } from './routes/organization/create/route'
 import { Route as coreLayoutRouteRouteImport } from './routes/(core)/_layout/route'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -27,6 +28,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const OrganizationManageRouteRoute = OrganizationManageRouteRouteImport.update({
+  id: '/manage',
+  path: '/manage',
+  getParentRoute: () => OrganizationRouteRoute,
 } as any)
 const OrganizationCreateRouteRoute = OrganizationCreateRouteRouteImport.update({
   id: '/create',
@@ -62,6 +68,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/organization': typeof OrganizationRouteRouteWithChildren
   '/organization/create': typeof OrganizationCreateRouteRoute
+  '/organization/manage': typeof OrganizationManageRouteRoute
   '/dash': typeof coreLayoutDashRouteRoute
   '/jobs': typeof coreLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/organization': typeof OrganizationRouteRouteWithChildren
   '/organization/create': typeof OrganizationCreateRouteRoute
+  '/organization/manage': typeof OrganizationManageRouteRoute
   '/dash': typeof coreLayoutDashRouteRoute
   '/jobs': typeof coreLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -82,6 +90,7 @@ export interface FileRoutesById {
   '/organization': typeof OrganizationRouteRouteWithChildren
   '/(core)/_layout': typeof coreLayoutRouteRouteWithChildren
   '/organization/create': typeof OrganizationCreateRouteRoute
+  '/organization/manage': typeof OrganizationManageRouteRoute
   '/(core)/_layout/dash': typeof coreLayoutDashRouteRoute
   '/(core)/_layout/jobs': typeof coreLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -93,6 +102,7 @@ export interface FileRouteTypes {
     | '/'
     | '/organization'
     | '/organization/create'
+    | '/organization/manage'
     | '/dash'
     | '/jobs'
     | '/api/auth/$'
@@ -102,6 +112,7 @@ export interface FileRouteTypes {
     | '/'
     | '/organization'
     | '/organization/create'
+    | '/organization/manage'
     | '/dash'
     | '/jobs'
     | '/api/auth/$'
@@ -112,6 +123,7 @@ export interface FileRouteTypes {
     | '/organization'
     | '/(core)/_layout'
     | '/organization/create'
+    | '/organization/manage'
     | '/(core)/_layout/dash'
     | '/(core)/_layout/jobs'
     | '/api/auth/$'
@@ -140,6 +152,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/organization/manage': {
+      id: '/organization/manage'
+      path: '/manage'
+      fullPath: '/organization/manage'
+      preLoaderRoute: typeof OrganizationManageRouteRouteImport
+      parentRoute: typeof OrganizationRouteRoute
     }
     '/organization/create': {
       id: '/organization/create'
@@ -188,10 +207,12 @@ declare module '@tanstack/react-router' {
 
 interface OrganizationRouteRouteChildren {
   OrganizationCreateRouteRoute: typeof OrganizationCreateRouteRoute
+  OrganizationManageRouteRoute: typeof OrganizationManageRouteRoute
 }
 
 const OrganizationRouteRouteChildren: OrganizationRouteRouteChildren = {
   OrganizationCreateRouteRoute: OrganizationCreateRouteRoute,
+  OrganizationManageRouteRoute: OrganizationManageRouteRoute,
 }
 
 const OrganizationRouteRouteWithChildren =

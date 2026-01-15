@@ -16,9 +16,9 @@ export function AppHeader() {
         </div>
         <div className="ml-auto flex items-center gap-2">
           <Button asChild className="hidden sm:flex">
-            <Link to="/">
-              <Plus />
-              Create Organization
+            <Link to="/organization/manage">
+              {/* <Plus /> */}
+              Organizations
             </Link>
           </Button>
         </div>
