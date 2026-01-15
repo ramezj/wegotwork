@@ -16,7 +16,7 @@ import UserDropdown from "./user-dropdown";
 import { Session } from "@/lib/auth";
 import { Button } from "../ui/button";
 import { useQuery } from "@tanstack/react-query";
-import { getActiveOrganizationFn } from "@/features/organization/actions/get-active-organization";
+import { getDashFn } from "@/features/dash/get-dash";
 
 export function AppSidebar({ session }: { session: Session }) {
   type menuItem = {
@@ -56,9 +56,9 @@ export function AppSidebar({ session }: { session: Session }) {
     },
   ];
   const location = useLocation();
-  const { data: organization } = useQuery({
-    queryKey: ["activeOrganization"],
-    queryFn: getActiveOrganizationFn,
+  const { data } = useQuery({
+    queryKey: ["dash"],
+    queryFn: getDashFn,
   });
   return (
     <Sidebar>
@@ -66,7 +66,7 @@ export function AppSidebar({ session }: { session: Session }) {
         <SidebarMenu>
           <SidebarMenuItem className="items-center content-center text-center">
             <Button variant={"outline"} className="w-full">
-              {organization?.organization?.name}
+              {data?.organization?.name}
             </Button>
           </SidebarMenuItem>
         </SidebarMenu>

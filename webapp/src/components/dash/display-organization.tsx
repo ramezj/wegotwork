@@ -1,12 +1,11 @@
-"use client";
-import { useQuery } from "@tanstack/react-query";
-import { getActiveOrganizationFn } from "@/features/organization/actions/get-active-organization";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { getDashFn } from "@/features/dash/get-dash";
 import AnalyticsCard from "@/components/dash/analytics-card";
 
 export default function DisplayCurrentOrganization() {
-  const { data: organization } = useQuery({
-    queryKey: ["activeOrganization"],
-    queryFn: getActiveOrganizationFn,
+  const { data: organization } = useSuspenseQuery({
+    queryKey: ["dash"],
+    queryFn: getDashFn,
   });
 
   return (
