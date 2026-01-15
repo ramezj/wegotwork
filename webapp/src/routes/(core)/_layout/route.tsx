@@ -15,7 +15,7 @@ export const Route = createFileRoute("/(core)/_layout")({
       session.session.activeOrganizationId === null ||
       !session.session.activeOrganizationId
     ) {
-      redirect({ to: "/organization/manage" });
+      throw redirect({ to: "/organization/manage" });
     }
     await context.queryClient.prefetchQuery({
       queryKey: ["activeOrganization"],

@@ -1,10 +1,4 @@
-"use client";
-
-import { Plus } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Link } from "@tanstack/react-router";
 
 export function AppHeader() {
   return (
@@ -14,14 +8,7 @@ export function AppHeader() {
         <div className="md:hidden flex">
           <SidebarTrigger />
         </div>
-        <div className="ml-auto flex items-center gap-2">
-          <Button asChild className="hidden sm:flex">
-            <Link to="/organization/manage">
-              {/* <Plus /> */}
-              Organizations
-            </Link>
-          </Button>
-        </div>
+        <div className="ml-auto flex items-center gap-2"></div>
       </div>
     </header>
   );
