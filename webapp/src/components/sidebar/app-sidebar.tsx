@@ -14,9 +14,9 @@ import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 import UserDropdown from "./user-dropdown";
 import { Session } from "@/lib/auth";
-import { Button } from "../ui/button";
-import { useQuery } from "@tanstack/react-query";
-import { getDashFn } from "@/features/dash/get-dash";
+// import { Button } from "../ui/button";
+// import { useQuery } from "@tanstack/react-query";
+// import { getDashFn } from "@/features/dash/get-dash";
 
 export function AppSidebar({ session }: { session: Session }) {
   type menuItem = {
@@ -56,18 +56,19 @@ export function AppSidebar({ session }: { session: Session }) {
     },
   ];
   const location = useLocation();
-  const { data } = useQuery({
-    queryKey: ["dash"],
-    queryFn: getDashFn,
-  });
+  // const { data } = useQuery({
+  //   queryKey: ["dash"],
+  //   queryFn: getDashFn,
+  // });
   return (
     <Sidebar>
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem className="items-center content-center text-center">
-            <Button variant={"outline"} className="w-full">
+            {/* <Button variant={"outline"} className="w-full">
               {data?.organization?.name}
-            </Button>
+            </Button> */}
+            <span className="font-base">wegotwork</span>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

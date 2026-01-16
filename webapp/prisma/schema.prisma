@@ -23,7 +23,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
-
+  onboarded     Boolean   @default(false)
   members     Member[]
   invitations Invitation[]
 

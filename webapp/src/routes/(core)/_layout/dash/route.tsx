@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import DisplayCurrentOrganization from "@/components/dash/display-organization";
-import { Suspense } from "react";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { dashQueryOptions } from "@/features/dash/query-options";
 
 export const Route = createFileRoute("/(core)/_layout/dash")({
   component: RouteComponent,
@@ -8,11 +9,10 @@ export const Route = createFileRoute("/(core)/_layout/dash")({
 
 function RouteComponent() {
   const { session } = Route.useRouteContext();
+  const { data: organization } = useSuspenseQuery(dashQueryOptions);
   return (
     <>
-      <Suspense fallback={<>Loading</>}>
-        <DisplayCurrentOrganization />
-      </Suspense>
+      <DisplayCurrentOrganization organization={organization?.organization!} />
     </>
   );
 }

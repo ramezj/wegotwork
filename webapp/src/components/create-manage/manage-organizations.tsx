@@ -7,12 +7,13 @@ import {
 } from "@/components/ui/card";
 import CreateOrganizationButton from "./create-organization";
 import { useQuery } from "@tanstack/react-query";
-import { getAllOrganizationsFn } from "../actions/get-all-organizations";
 
 export default function ManageOrganizations() {
   const { data: organizations } = useQuery({
     queryKey: ["organizations"],
-    queryFn: getAllOrganizationsFn,
+    queryFn: () => {
+      return fetch("/api/organizations").then((res) => res.json());
+    },
   });
   return (
     <Card>
@@ -20,7 +21,7 @@ export default function ManageOrganizations() {
         <CardTitle>Organizations</CardTitle>
       </CardHeader>
       <CardContent>
-        {organizations?.organizations?.map((organization) => (
+        {organizations?.organizations?.map((organization: any) => (
           <div key={organization.id}>{organization.name}</div>
         ))}
       </CardContent>

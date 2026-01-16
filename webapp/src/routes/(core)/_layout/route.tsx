@@ -3,8 +3,6 @@ import { getServerSession } from "@/lib/get-server-session";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { AppHeader } from "@/components/sidebar/app-header";
-import { getActiveOrganizationFn } from "@/features/organization/actions/get-active-organization";
-import { getAllOrganizationsFn } from "@/features/organization/actions/get-all-organizations";
 import { getDashFn } from "@/features/dash/get-dash";
 
 export const Route = createFileRoute("/(core)/_layout")({
