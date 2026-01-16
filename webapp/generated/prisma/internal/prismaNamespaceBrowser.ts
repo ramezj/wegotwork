@@ -57,7 +57,10 @@ export const ModelName = {
   Verification: 'Verification',
   Organization: 'Organization',
   Member: 'Member',
-  Invitation: 'Invitation'
+  Invitation: 'Invitation',
+  Job: 'Job',
+  Applicant: 'Applicant',
+  JobCategory: 'JobCategory'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -171,6 +174,49 @@ export const InvitationScalarFieldEnum = {
 } as const
 
 export type InvitationScalarFieldEnum = (typeof InvitationScalarFieldEnum)[keyof typeof InvitationScalarFieldEnum]
+
+
+export const JobScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  type: 'type',
+  country: 'country',
+  city: 'city',
+  content: 'content',
+  remote: 'remote',
+  createdAt: 'createdAt',
+  organizationId: 'organizationId',
+  categoryId: 'categoryId'
+} as const
+
+export type JobScalarFieldEnum = (typeof JobScalarFieldEnum)[keyof typeof JobScalarFieldEnum]
+
+
+export const ApplicantScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  motivation: 'motivation',
+  email: 'email',
+  linkedIn: 'linkedIn',
+  twitter: 'twitter',
+  github: 'github',
+  createdAt: 'createdAt',
+  status: 'status',
+  resumeKey: 'resumeKey',
+  jobId: 'jobId'
+} as const
+
+export type ApplicantScalarFieldEnum = (typeof ApplicantScalarFieldEnum)[keyof typeof ApplicantScalarFieldEnum]
+
+
+export const JobCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  order: 'order',
+  organizationId: 'organizationId'
+} as const
+
+export type JobCategoryScalarFieldEnum = (typeof JobCategoryScalarFieldEnum)[keyof typeof JobCategoryScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -74,3 +74,18 @@ export type Member = Prisma.MemberModel
  * 
  */
 export type Invitation = Prisma.InvitationModel
+/**
+ * Model Job
+ * 
+ */
+export type Job = Prisma.JobModel
+/**
+ * Model Applicant
+ * 
+ */
+export type Applicant = Prisma.ApplicantModel
+/**
+ * Model JobCategory
+ * 
+ */
+export type JobCategory = Prisma.JobCategoryModel

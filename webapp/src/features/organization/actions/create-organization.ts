@@ -1,7 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { createOrganizationSchema } from "../types/schema";
 import { getServerSession } from "@/lib/get-server-session";
-import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 
 export const createOrganizationFn = createServerFn()
@@ -14,14 +13,26 @@ export const createOrganizationFn = createServerFn()
       };
     }
     try {
-      const organization = await auth.api.createOrganization({
-        body: {
+      // const organization = await auth.api.createOrganization({
+      //   body: {
+      //     name: data.name,
+      //     slug: data.slug,
+      //     userId: session.user.id,
+      //   },
+      // });
+      const organization = await prisma.organization.create({
+        data: {
           name: data.name,
           slug: data.slug,
-          userId: session.user.id,
+          members: {
+            create: {
+              userId: session.user.id,
+              role: "owner",
+            },
+          },
         },
       });
-      const updateSession = await prisma.session.update({
+      await prisma.session.update({
         where: {
           id: session.session.id,
         },
