@@ -36,17 +36,17 @@ export function AppSidebar({
     {
       label: "Dashboard",
       icon: <HomeIcon />,
-      href: "/dash",
+      href: `/${slug}/dash`,
     },
     {
       label: "Jobs",
       icon: <Briefcase />,
-      href: "/jobs",
+      href: `/${slug}/jobs`,
     },
     {
       label: "Applicants",
       icon: <Users />,
-      href: "/applicants",
+      href: `/${slug}/applicants`,
     },
   ];
 
@@ -63,10 +63,6 @@ export function AppSidebar({
     },
   ];
   const location = useLocation();
-  // const { data } = useQuery({
-  //   queryKey: ["dash"],
-  //   queryFn: getDashFn,
-  // });
   return (
     <Sidebar>
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
@@ -89,7 +85,7 @@ export function AppSidebar({
           {menuItems.map((item, index) => {
             return (
               <SidebarMenuButton
-                isActive={item.href === location.pathname}
+                isActive={location.pathname === item.href}
                 className="flex items-center gap-2 cursor-pointer"
                 key={index}
                 asChild
