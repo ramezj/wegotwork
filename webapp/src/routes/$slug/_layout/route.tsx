@@ -5,10 +5,10 @@ import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { AppHeader } from "@/components/sidebar/app-header";
 import { getDashFn } from "@/features/dash/get-dash";
 
-export const Route = createFileRoute("/(core)/_layout")({
+export const Route = createFileRoute("/$slug/_layout")({
   ssr: true,
   component: RouteComponent,
-  beforeLoad: async ({ context }) => {
+  beforeLoad: async ({ context, params }) => {
     const session = await getServerSession();
     if (
       session.session.activeOrganizationId === null ||
@@ -18,7 +18,10 @@ export const Route = createFileRoute("/(core)/_layout")({
     }
     await context.queryClient.prefetchQuery({
       queryKey: ["dash"],
-      queryFn: getDashFn,
+      queryFn: () =>
+        getDashFn({
+          data: { slug: params.slug },
+        }),
     });
     return { session };
   },
@@ -26,6 +29,7 @@ export const Route = createFileRoute("/(core)/_layout")({
 
 function RouteComponent() {
   const context = Route.useRouteContext();
+  const params = Route.useParams();
   return (
     <>
       <SidebarProvider
@@ -38,7 +42,7 @@ function RouteComponent() {
           } as React.CSSProperties
         }
       >
-        <AppSidebar session={context.session} />
+        <AppSidebar session={context.session} slug={params.slug} />
         <SidebarInset>
           <AppHeader />
           <div className="flex flex-1 flex-col p-4">

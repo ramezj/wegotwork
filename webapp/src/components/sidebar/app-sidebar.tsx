@@ -9,16 +9,23 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Briefcase, HomeIcon, Users } from "lucide-react";
+import { ArrowUpRight, Briefcase, HomeIcon, Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 import UserDropdown from "./user-dropdown";
 import { Session } from "@/lib/auth";
+import { Button } from "../ui/button";
 // import { Button } from "../ui/button";
 // import { useQuery } from "@tanstack/react-query";
 // import { getDashFn } from "@/features/dash/get-dash";
 
-export function AppSidebar({ session }: { session: Session }) {
+export function AppSidebar({
+  session,
+  slug,
+}: {
+  session: Session;
+  slug: string;
+}) {
   type menuItem = {
     label: string;
     icon: React.ReactNode;
@@ -65,10 +72,14 @@ export function AppSidebar({ session }: { session: Session }) {
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem className="items-center content-center text-center">
-            {/* <Button variant={"outline"} className="w-full">
-              {data?.organization?.name}
-            </Button> */}
-            <span className="font-base">wegotwork</span>
+            <Button
+              variant={"outline"}
+              className="w-full items-center justify-between cursor-pointer"
+            >
+              {slug}
+              <ArrowUpRight />
+            </Button>
+            {/* <span className="font-base">wegotwork</span> */}
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

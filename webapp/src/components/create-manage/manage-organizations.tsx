@@ -8,6 +8,7 @@ import {
 import CreateOrganizationButton from "./create-organization";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "../ui/button";
+import { Link } from "@tanstack/react-router";
 
 export default function ManageOrganizations() {
   const { data: organizations } = useQuery({
@@ -28,7 +29,11 @@ export default function ManageOrganizations() {
             className="flex items-center justify-between"
           >
             <p>{organization.name}</p>
-            <Button>View</Button>
+            <Button asChild>
+              <Link to={"/$slug/dash"} params={{ slug: organization.slug }}>
+                View
+              </Link>
+            </Button>
           </div>
         ))}
       </CardContent>

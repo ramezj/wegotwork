@@ -3,8 +3,10 @@ import { Organization } from "generated/prisma/client";
 
 export default function DisplayCurrentOrganization({
   organization,
-}: {
+}: // slug,
+{
   organization: Organization;
+  // slug: string;
 }) {
   return (
     <main className="space-y-4">

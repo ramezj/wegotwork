@@ -13,11 +13,11 @@ import { Route as OrganizationRouteRouteImport } from './routes/organization/rou
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OrganizationManageRouteRouteImport } from './routes/organization/manage/route'
 import { Route as OrganizationCreateRouteRouteImport } from './routes/organization/create/route'
-import { Route as coreLayoutRouteRouteImport } from './routes/(core)/_layout/route'
+import { Route as SlugLayoutRouteRouteImport } from './routes/$slug/_layout/route'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
-import { Route as coreLayoutJobsRouteRouteImport } from './routes/(core)/_layout/jobs/route'
-import { Route as coreLayoutDashRouteRouteImport } from './routes/(core)/_layout/dash/route'
-import { Route as coreLayoutJobsJobIdRouteImport } from './routes/(core)/_layout/jobs/$jobId'
+import { Route as SlugLayoutJobsRouteRouteImport } from './routes/$slug/_layout/jobs/route'
+import { Route as SlugLayoutDashRouteRouteImport } from './routes/$slug/_layout/dash/route'
+import { Route as SlugLayoutJobsJobIdRouteImport } from './routes/$slug/_layout/jobs/$jobId'
 
 const OrganizationRouteRoute = OrganizationRouteRouteImport.update({
   id: '/organization',
@@ -39,8 +39,9 @@ const OrganizationCreateRouteRoute = OrganizationCreateRouteRouteImport.update({
   path: '/create',
   getParentRoute: () => OrganizationRouteRoute,
 } as any)
-const coreLayoutRouteRoute = coreLayoutRouteRouteImport.update({
-  id: '/(core)/_layout',
+const SlugLayoutRouteRoute = SlugLayoutRouteRouteImport.update({
+  id: '/$slug/_layout',
+  path: '/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
@@ -48,92 +49,96 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
-const coreLayoutJobsRouteRoute = coreLayoutJobsRouteRouteImport.update({
+const SlugLayoutJobsRouteRoute = SlugLayoutJobsRouteRouteImport.update({
   id: '/jobs',
   path: '/jobs',
-  getParentRoute: () => coreLayoutRouteRoute,
+  getParentRoute: () => SlugLayoutRouteRoute,
 } as any)
-const coreLayoutDashRouteRoute = coreLayoutDashRouteRouteImport.update({
+const SlugLayoutDashRouteRoute = SlugLayoutDashRouteRouteImport.update({
   id: '/dash',
   path: '/dash',
-  getParentRoute: () => coreLayoutRouteRoute,
+  getParentRoute: () => SlugLayoutRouteRoute,
 } as any)
-const coreLayoutJobsJobIdRoute = coreLayoutJobsJobIdRouteImport.update({
+const SlugLayoutJobsJobIdRoute = SlugLayoutJobsJobIdRouteImport.update({
   id: '/$jobId',
   path: '/$jobId',
-  getParentRoute: () => coreLayoutJobsRouteRoute,
+  getParentRoute: () => SlugLayoutJobsRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/organization': typeof OrganizationRouteRouteWithChildren
+  '/$slug': typeof SlugLayoutRouteRouteWithChildren
   '/organization/create': typeof OrganizationCreateRouteRoute
   '/organization/manage': typeof OrganizationManageRouteRoute
-  '/dash': typeof coreLayoutDashRouteRoute
-  '/jobs': typeof coreLayoutJobsRouteRouteWithChildren
+  '/$slug/dash': typeof SlugLayoutDashRouteRoute
+  '/$slug/jobs': typeof SlugLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/jobs/$jobId': typeof coreLayoutJobsJobIdRoute
+  '/$slug/jobs/$jobId': typeof SlugLayoutJobsJobIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/organization': typeof OrganizationRouteRouteWithChildren
+  '/$slug': typeof SlugLayoutRouteRouteWithChildren
   '/organization/create': typeof OrganizationCreateRouteRoute
   '/organization/manage': typeof OrganizationManageRouteRoute
-  '/dash': typeof coreLayoutDashRouteRoute
-  '/jobs': typeof coreLayoutJobsRouteRouteWithChildren
+  '/$slug/dash': typeof SlugLayoutDashRouteRoute
+  '/$slug/jobs': typeof SlugLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/jobs/$jobId': typeof coreLayoutJobsJobIdRoute
+  '/$slug/jobs/$jobId': typeof SlugLayoutJobsJobIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/organization': typeof OrganizationRouteRouteWithChildren
-  '/(core)/_layout': typeof coreLayoutRouteRouteWithChildren
+  '/$slug/_layout': typeof SlugLayoutRouteRouteWithChildren
   '/organization/create': typeof OrganizationCreateRouteRoute
   '/organization/manage': typeof OrganizationManageRouteRoute
-  '/(core)/_layout/dash': typeof coreLayoutDashRouteRoute
-  '/(core)/_layout/jobs': typeof coreLayoutJobsRouteRouteWithChildren
+  '/$slug/_layout/dash': typeof SlugLayoutDashRouteRoute
+  '/$slug/_layout/jobs': typeof SlugLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/(core)/_layout/jobs/$jobId': typeof coreLayoutJobsJobIdRoute
+  '/$slug/_layout/jobs/$jobId': typeof SlugLayoutJobsJobIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/organization'
+    | '/$slug'
     | '/organization/create'
     | '/organization/manage'
-    | '/dash'
-    | '/jobs'
+    | '/$slug/dash'
+    | '/$slug/jobs'
     | '/api/auth/$'
-    | '/jobs/$jobId'
+    | '/$slug/jobs/$jobId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/organization'
+    | '/$slug'
     | '/organization/create'
     | '/organization/manage'
-    | '/dash'
-    | '/jobs'
+    | '/$slug/dash'
+    | '/$slug/jobs'
     | '/api/auth/$'
-    | '/jobs/$jobId'
+    | '/$slug/jobs/$jobId'
   id:
     | '__root__'
     | '/'
     | '/organization'
-    | '/(core)/_layout'
+    | '/$slug/_layout'
     | '/organization/create'
     | '/organization/manage'
-    | '/(core)/_layout/dash'
-    | '/(core)/_layout/jobs'
+    | '/$slug/_layout/dash'
+    | '/$slug/_layout/jobs'
     | '/api/auth/$'
-    | '/(core)/_layout/jobs/$jobId'
+    | '/$slug/_layout/jobs/$jobId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   OrganizationRouteRoute: typeof OrganizationRouteRouteWithChildren
-  coreLayoutRouteRoute: typeof coreLayoutRouteRouteWithChildren
+  SlugLayoutRouteRoute: typeof SlugLayoutRouteRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -167,11 +172,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrganizationCreateRouteRouteImport
       parentRoute: typeof OrganizationRouteRoute
     }
-    '/(core)/_layout': {
-      id: '/(core)/_layout'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof coreLayoutRouteRouteImport
+    '/$slug/_layout': {
+      id: '/$slug/_layout'
+      path: '/$slug'
+      fullPath: '/$slug'
+      preLoaderRoute: typeof SlugLayoutRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/auth/$': {
@@ -181,26 +186,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(core)/_layout/jobs': {
-      id: '/(core)/_layout/jobs'
+    '/$slug/_layout/jobs': {
+      id: '/$slug/_layout/jobs'
       path: '/jobs'
-      fullPath: '/jobs'
-      preLoaderRoute: typeof coreLayoutJobsRouteRouteImport
-      parentRoute: typeof coreLayoutRouteRoute
+      fullPath: '/$slug/jobs'
+      preLoaderRoute: typeof SlugLayoutJobsRouteRouteImport
+      parentRoute: typeof SlugLayoutRouteRoute
     }
-    '/(core)/_layout/dash': {
-      id: '/(core)/_layout/dash'
+    '/$slug/_layout/dash': {
+      id: '/$slug/_layout/dash'
       path: '/dash'
-      fullPath: '/dash'
-      preLoaderRoute: typeof coreLayoutDashRouteRouteImport
-      parentRoute: typeof coreLayoutRouteRoute
+      fullPath: '/$slug/dash'
+      preLoaderRoute: typeof SlugLayoutDashRouteRouteImport
+      parentRoute: typeof SlugLayoutRouteRoute
     }
-    '/(core)/_layout/jobs/$jobId': {
-      id: '/(core)/_layout/jobs/$jobId'
+    '/$slug/_layout/jobs/$jobId': {
+      id: '/$slug/_layout/jobs/$jobId'
       path: '/$jobId'
-      fullPath: '/jobs/$jobId'
-      preLoaderRoute: typeof coreLayoutJobsJobIdRouteImport
-      parentRoute: typeof coreLayoutJobsRouteRoute
+      fullPath: '/$slug/jobs/$jobId'
+      preLoaderRoute: typeof SlugLayoutJobsJobIdRouteImport
+      parentRoute: typeof SlugLayoutJobsRouteRoute
     }
   }
 }
@@ -218,35 +223,35 @@ const OrganizationRouteRouteChildren: OrganizationRouteRouteChildren = {
 const OrganizationRouteRouteWithChildren =
   OrganizationRouteRoute._addFileChildren(OrganizationRouteRouteChildren)
 
-interface coreLayoutJobsRouteRouteChildren {
-  coreLayoutJobsJobIdRoute: typeof coreLayoutJobsJobIdRoute
+interface SlugLayoutJobsRouteRouteChildren {
+  SlugLayoutJobsJobIdRoute: typeof SlugLayoutJobsJobIdRoute
 }
 
-const coreLayoutJobsRouteRouteChildren: coreLayoutJobsRouteRouteChildren = {
-  coreLayoutJobsJobIdRoute: coreLayoutJobsJobIdRoute,
+const SlugLayoutJobsRouteRouteChildren: SlugLayoutJobsRouteRouteChildren = {
+  SlugLayoutJobsJobIdRoute: SlugLayoutJobsJobIdRoute,
 }
 
-const coreLayoutJobsRouteRouteWithChildren =
-  coreLayoutJobsRouteRoute._addFileChildren(coreLayoutJobsRouteRouteChildren)
+const SlugLayoutJobsRouteRouteWithChildren =
+  SlugLayoutJobsRouteRoute._addFileChildren(SlugLayoutJobsRouteRouteChildren)
 
-interface coreLayoutRouteRouteChildren {
-  coreLayoutDashRouteRoute: typeof coreLayoutDashRouteRoute
-  coreLayoutJobsRouteRoute: typeof coreLayoutJobsRouteRouteWithChildren
+interface SlugLayoutRouteRouteChildren {
+  SlugLayoutDashRouteRoute: typeof SlugLayoutDashRouteRoute
+  SlugLayoutJobsRouteRoute: typeof SlugLayoutJobsRouteRouteWithChildren
 }
 
-const coreLayoutRouteRouteChildren: coreLayoutRouteRouteChildren = {
-  coreLayoutDashRouteRoute: coreLayoutDashRouteRoute,
-  coreLayoutJobsRouteRoute: coreLayoutJobsRouteRouteWithChildren,
+const SlugLayoutRouteRouteChildren: SlugLayoutRouteRouteChildren = {
+  SlugLayoutDashRouteRoute: SlugLayoutDashRouteRoute,
+  SlugLayoutJobsRouteRoute: SlugLayoutJobsRouteRouteWithChildren,
 }
 
-const coreLayoutRouteRouteWithChildren = coreLayoutRouteRoute._addFileChildren(
-  coreLayoutRouteRouteChildren,
+const SlugLayoutRouteRouteWithChildren = SlugLayoutRouteRoute._addFileChildren(
+  SlugLayoutRouteRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   OrganizationRouteRoute: OrganizationRouteRouteWithChildren,
-  coreLayoutRouteRoute: coreLayoutRouteRouteWithChildren,
+  SlugLayoutRouteRoute: SlugLayoutRouteRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
