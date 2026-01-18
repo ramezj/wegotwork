@@ -3,11 +3,16 @@ import { getServerSession } from "@/lib/get-server-session";
 import prisma from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { getRequest } from "@tanstack/react-start/server";
-import { dashSchema } from "./schemas";
+import { z } from "zod";
 
-export const getDashFn = createServerFn()
-  .inputValidator(dashSchema)
-  .handler(async () => {
+export const setActiveOrganizationFn = createServerFn()
+  .inputValidator(
+    z.object({
+      organizationId: z.string(),
+      organizationSlug: z.string(),
+    }),
+  )
+  .handler(async ({ data }) => {
     const session = await getServerSession();
     if (!session?.user) {
       console.log("No user");
@@ -15,22 +20,28 @@ export const getDashFn = createServerFn()
         error: "Unauthorized",
       };
     }
-    if (!session?.session.activeOrganizationId) {
-      console.log("no active org");
-      return {
-        error: "No active organization",
-      };
-    }
     try {
       const organization = await prisma.organization.findFirst({
         where: {
-          id: session.session.activeOrganizationId,
+          id: data.organizationId,
         },
       });
-      const organizations = await auth.api.listOrganizations({
+      if (!organization) {
+        return {
+          error: "Organization not found",
+        };
+      }
+      await auth.api.setActiveOrganization({
+        body: {
+          organizationId: data.organizationId,
+          organizationSlug: data.organizationSlug,
+        },
         headers: await getRequest().headers,
       });
-      return { organization, organizations };
+      console.log("set successfully");
+      return {
+        success: true,
+      };
     } catch (error) {
       return {
         error: "Failed to fetch dash",

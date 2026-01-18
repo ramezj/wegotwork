@@ -13,10 +13,11 @@ export const Route = createFileRoute("/")({
 
 function App() {
   const { session } = Route.useRouteContext();
+  console.log(session);
   return (
     <>
       <Header session={session} />
-      {session.user ? <LogOutButton /> : <LoginButton />}
+      {session?.user ? <LogOutButton /> : <LoginButton />}
     </>
   );
 }

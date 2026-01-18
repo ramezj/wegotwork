@@ -6,7 +6,7 @@ export const Route = createFileRoute("/organization")({
   component: RouteComponent,
   beforeLoad: async ({ context }) => {
     const session = await getServerSession();
-    if (!session.user) {
+    if (!session?.user) {
       return {
         redirect: "/login",
       };

@@ -11,6 +11,7 @@ export const Route = createFileRoute("/$slug/_layout")({
   beforeLoad: async ({ context, params }) => {
     const session = await getServerSession();
     if (
+      !session ||
       session.session.activeOrganizationId === null ||
       !session.session.activeOrganizationId
     ) {

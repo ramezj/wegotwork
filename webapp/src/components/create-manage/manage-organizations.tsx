@@ -9,6 +9,7 @@ import CreateOrganizationButton from "./create-organization";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "../ui/button";
 import { Link } from "@tanstack/react-router";
+import { setActiveOrganizationFn } from "@/features/dash/set-active-organization";
 
 export default function ManageOrganizations() {
   const { data: organizations } = useQuery({
@@ -30,7 +31,18 @@ export default function ManageOrganizations() {
           >
             <p>{organization.name}</p>
             <Button asChild>
-              <Link to={"/$slug/dash"} params={{ slug: organization.slug }}>
+              <Link
+                to={"/$slug/dash"}
+                params={{ slug: organization.slug }}
+                onClick={() =>
+                  setActiveOrganizationFn({
+                    data: {
+                      organizationId: organization.id,
+                      organizationSlug: organization.slug,
+                    },
+                  })
+                }
+              >
                 View
               </Link>
             </Button>
