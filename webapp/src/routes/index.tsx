@@ -1,6 +1,7 @@
 import LoginButton, { LogOutButton } from "@/components/auth/login-button";
 import { createFileRoute } from "@tanstack/react-router";
 import { getServerSession } from "@/lib/get-server-session";
+import Header from "@/components/common/header";
 
 export const Route = createFileRoute("/")({
   component: App,
@@ -12,5 +13,10 @@ export const Route = createFileRoute("/")({
 
 function App() {
   const { session } = Route.useRouteContext();
-  return <>{session.user ? <LogOutButton /> : <LoginButton />}</>;
+  return (
+    <>
+      <Header session={session} />
+      {session.user ? <LogOutButton /> : <LoginButton />}
+    </>
+  );
 }
