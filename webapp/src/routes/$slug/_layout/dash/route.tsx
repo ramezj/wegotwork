@@ -11,7 +11,7 @@ export const Route = createFileRoute("/$slug/_layout/dash")({
 
 function RouteComponent() {
   const { data: organization } = useSuspenseQuery({
-    queryKey: ["dash"],
+    queryKey: ["dash", Route.useParams().slug],
     queryFn: () =>
       getDashFn({
         data: { slug: Route.useParams().slug },

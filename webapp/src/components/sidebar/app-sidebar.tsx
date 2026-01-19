@@ -64,7 +64,7 @@ export function AppSidebar({
   ];
   const location = useLocation();
   const { data } = useQuery({
-    queryKey: ["dash"],
+    queryKey: ["dash", slug],
     queryFn: () => getDashFn({ data: { slug: slug } }),
   });
   return (
@@ -75,6 +75,7 @@ export function AppSidebar({
             <OrganizationSelector
               organizations={data?.organizations as Organization[]}
               currentOrganization={data?.organization as Organization}
+              slug={slug}
             />
           </SidebarMenuItem>
         </SidebarMenu>

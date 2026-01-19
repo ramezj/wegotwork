@@ -18,7 +18,7 @@ export const Route = createFileRoute("/$slug/_layout")({
       throw redirect({ to: "/organization/manage" });
     }
     await context.queryClient.prefetchQuery({
-      queryKey: ["dash"],
+      queryKey: ["dash", params.slug],
       queryFn: () =>
         getDashFn({
           data: { slug: params.slug },
