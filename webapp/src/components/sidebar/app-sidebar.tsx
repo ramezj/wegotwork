@@ -9,7 +9,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Briefcase, HomeIcon, Users } from "lucide-react";
+import { ArrowUpRight, Briefcase, HomeIcon, Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 import UserDropdown from "./user-dropdown";
@@ -18,6 +18,7 @@ import { OrganizationSelector } from "./organization-selector";
 import { useQuery } from "@tanstack/react-query";
 import { getDashFn } from "@/features/dash/get-dash";
 import { Organization } from "generated/prisma/client";
+import { Button } from "../ui/button";
 
 export function AppSidebar({
   session,
@@ -72,11 +73,14 @@ export function AppSidebar({
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem className="items-center content-center text-center">
-            <OrganizationSelector
+            {/* <OrganizationSelector
               organizations={data?.organizations as Organization[]}
               currentOrganization={data?.organization as Organization}
-              slug={slug}
-            />
+            /> */}
+            <Button variant={"outline"} className="w-full justify-between">
+              {data?.organization?.name || "Select Organization"}
+              <ArrowUpRight />
+            </Button>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

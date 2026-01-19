@@ -15,11 +15,9 @@ import { useMutation } from "@tanstack/react-query";
 export function OrganizationSelector({
   organizations,
   currentOrganization,
-  slug,
 }: {
   organizations?: Organization[];
   currentOrganization?: Organization;
-  slug: string;
 }) {
   const navigate = useNavigate();
 
@@ -52,7 +50,7 @@ export function OrganizationSelector({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="DropdownMenuContent">
-          {organizations?.map((organization) => {
+          {/* {organizations?.map((organization) => {
             return (
               <DropdownMenuItem
                 className="justify-between flex cursor-pointer"
@@ -66,11 +64,17 @@ export function OrganizationSelector({
                 )}
               </DropdownMenuItem>
             );
-          })}
-          <DropdownMenuSeparator />
+          })} */}
+          {/* <DropdownMenuItem key={currentOrganization?.id}>
+            {currentOrganization?.name}
+          </DropdownMenuItem> */}
+          {/* <DropdownMenuSeparator /> */}
+          {/* <DropdownMenuItem asChild>
+            <Link to="/organization/manage">Create Organization</Link>
+          </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link to="/organization/manage">All Organizations</Link>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
         </DropdownMenuContent>
       </DropdownMenu>
     </>
