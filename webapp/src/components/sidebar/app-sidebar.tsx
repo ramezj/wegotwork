@@ -9,15 +9,15 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { ArrowUpRight, Briefcase, HomeIcon, Users } from "lucide-react";
+import { Briefcase, HomeIcon, Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 import UserDropdown from "./user-dropdown";
 import { Session } from "@/lib/auth";
-import { Button } from "../ui/button";
-// import { Button } from "../ui/button";
-// import { useQuery } from "@tanstack/react-query";
-// import { getDashFn } from "@/features/dash/get-dash";
+import { OrganizationSelector } from "./organization-selector";
+import { useQuery } from "@tanstack/react-query";
+import { getDashFn } from "@/features/dash/get-dash";
+import { Organization } from "generated/prisma/client";
 
 export function AppSidebar({
   session,
@@ -34,17 +34,17 @@ export function AppSidebar({
 
   const menuItems: menuItem[] = [
     {
-      label: "Dashboard",
+      label: "dashboard",
       icon: <HomeIcon />,
       href: `/${slug}/dash`,
     },
     {
-      label: "Jobs",
+      label: "jobs",
       icon: <Briefcase />,
       href: `/${slug}/jobs`,
     },
     {
-      label: "Applicants",
+      label: "applicants",
       icon: <Users />,
       href: `/${slug}/applicants`,
     },
@@ -52,30 +52,30 @@ export function AppSidebar({
 
   const teamMenuItems: menuItem[] = [
     {
-      label: "Team",
+      label: "team",
       icon: <Users />,
       href: "/team",
     },
     {
-      label: "Members",
+      label: "members",
       icon: <Users />,
       href: "/members",
     },
   ];
   const location = useLocation();
+  const { data } = useQuery({
+    queryKey: ["dash"],
+    queryFn: () => getDashFn({ data: { slug: slug } }),
+  });
   return (
     <Sidebar>
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem className="items-center content-center text-center">
-            <Button
-              variant={"outline"}
-              className="w-full items-center justify-between cursor-pointer"
-            >
-              {slug}
-              <ArrowUpRight />
-            </Button>
-            {/* <span className="font-base">wegotwork</span> */}
+            <OrganizationSelector
+              organizations={data?.organizations as Organization[]}
+              currentOrganization={data?.organization as Organization}
+            />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

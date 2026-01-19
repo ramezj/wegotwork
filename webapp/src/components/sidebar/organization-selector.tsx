@@ -1,72 +1,56 @@
-"use client";
-import { Session } from "better-auth";
 import { Button } from "@/components/ui/button";
-import { Organization } from "generated/prisma/client";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Check, ChevronsUpDown } from "lucide-react";
-import { getAllOrganizationsFn } from "@/features/organization/actions/get-all-organizations";
-import { getActiveOrganizationFn } from "@/features/organization/actions/get-active-organization";
-import { setOrganization } from "@/features/organization/actions/set-organization";
+import { Link } from "@tanstack/react-router";
+import { Organization } from "generated/prisma/client";
 
-export function OrganizationSelector() {
-  const queryClient = useQueryClient();
-  const { data: activeOrganization } = useQuery({
-    queryKey: ["activeOrganization"],
-    queryFn: getActiveOrganizationFn,
-  });
-  const { data: organizations } = useQuery({
-    queryKey: ["organizations"],
-    queryFn: getAllOrganizationsFn,
-  });
-
-  const {
-    mutate: mutation,
-    isError,
-    isPending,
-  } = useMutation({
-    mutationFn: ({ id, slug }: { id: string; slug: string }) =>
-      setOrganization({ data: { organizationId: id, organizationSlug: slug } }),
-    onSuccess: () => {
-      queryClient.refetchQueries({ queryKey: ["activeOrganization"] });
-      queryClient.refetchQueries({ queryKey: ["organizations"] });
-    },
-  });
-
+export function OrganizationSelector({
+  organizations,
+  currentOrganization,
+}: {
+  organizations?: Organization[];
+  currentOrganization?: Organization;
+}) {
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild suppressHydrationWarning>
           <Button variant={"outline"} className="w-full justify-between">
-            {activeOrganization?.organization?.name || "Select Organization"}
+            {currentOrganization?.name || "Select Organization"}
             <ChevronsUpDown />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="DropdownMenuContent">
-          {organizations?.organizations?.map((organization) => {
+          {organizations?.map((organization) => {
             return (
               <DropdownMenuItem
                 className="justify-between flex"
                 key={organization.id}
-                onClick={() =>
-                  mutation({
-                    id: organization.id,
-                    slug: organization.slug,
-                  })
-                }
+                asChild
               >
-                {organization.name}
-                {organization.id === activeOrganization?.organization?.id && (
-                  <Check className="ml-2 h-4 w-4" />
-                )}
+                <Link to={`/$slug/dash`} params={{ slug: organization.slug }}>
+                  {organization.name}
+                  {organization.id === currentOrganization?.id && (
+                    <Check className="ml-2 h-4 w-4" />
+                  )}
+                </Link>
               </DropdownMenuItem>
             );
           })}
+          <DropdownMenuSeparator />
+          <DropdownMenuItem asChild>
+            <Link to="/organization/manage">All Organizations</Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem asChild>
+            <Link to="/organization/create">Create Organization</Link>
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>

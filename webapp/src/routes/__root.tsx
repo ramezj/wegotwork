@@ -11,7 +11,6 @@ import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
 
 import type { QueryClient } from "@tanstack/react-query";
-import { getThemeServerFn } from "@/lib/theme";
 import { ThemeProvider } from "@/lib/theme-provider";
 
 interface MyRouterContext {

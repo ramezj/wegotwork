@@ -1,11 +1,10 @@
-import LoginButton, { LogOutButton } from "@/components/auth/login-button";
 import { createFileRoute } from "@tanstack/react-router";
 import { getServerSession } from "@/lib/get-server-session";
 import Header from "@/components/common/header";
 
 export const Route = createFileRoute("/")({
   component: App,
-  beforeLoad: async ({ context }) => {
+  beforeLoad: async () => {
     const session = await getServerSession();
     return { session };
   },
@@ -17,7 +16,7 @@ function App() {
   return (
     <>
       <Header session={session} />
-      {session?.user ? <LogOutButton /> : <LoginButton />}
+      {/* {session?.user ? <LogOutButton /> : <LoginButton />} */}
     </>
   );
 }
