@@ -1,4 +1,4 @@
-import { Session } from "@/lib/auth";
+import { Session } from "@/lib/auth.types";
 import LoginButton from "../auth/login-button";
 import { Link } from "@tanstack/react-router";
 import { Button } from "../ui/button";

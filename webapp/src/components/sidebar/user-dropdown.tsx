@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -7,7 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Session } from "@/lib/auth";
+import { Session } from "@/lib/auth.types";
 import { ChevronUp, Users2 } from "lucide-react";
 
 export default function UserDropdown({ session }: { session: Session }) {

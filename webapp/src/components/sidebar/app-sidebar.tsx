@@ -13,7 +13,7 @@ import { ArrowUpRight, Briefcase, HomeIcon, Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 import UserDropdown from "./user-dropdown";
-import { Session } from "@/lib/auth";
+import { Session } from "@/lib/auth.types";
 import { OrganizationSelector } from "./organization-selector";
 import { useQuery } from "@tanstack/react-query";
 import { getDashFn } from "@/features/dash/get-dash";

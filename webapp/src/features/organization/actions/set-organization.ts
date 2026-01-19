@@ -13,7 +13,7 @@ export const setOrganization = createServerFn()
   .inputValidator(setOrganizationSchema)
   .handler(async ({ data }) => {
     const session = await getServerSession();
-    if (!session.user) {
+    if (!session?.user) {
       return {
         error: "Unauthorized",
       };

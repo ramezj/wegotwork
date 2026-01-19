@@ -10,9 +10,6 @@ export default function DisplayCurrentOrganization({
 }) {
   return (
     <main className="space-y-4">
-      <p className="text-muted-foreground">
-        Welcome back! Here is what's happening with {organization?.name} today.
-      </p>
       <div className="flex xl:flex-row flex-col w-full gap-4">
         <AnalyticsCard cardTitle="Total Jobs" cardContent={1} cardNumber={1} />
         <AnalyticsCard

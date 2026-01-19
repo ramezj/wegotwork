@@ -26,10 +26,7 @@ export default function AnalyticsCard({
       </CardHeader>
       <CardFooter className="flex-col items-start gap-1.5 text-sm">
         <div className="line-clamp-1 flex gap-2 font-medium">
-          Trending up this month
-        </div>
-        <div className="text-muted-foreground">
-          Visitors for the last 6 months
+          <h1 className="text-2xl font-semibold">{cardNumber}</h1>
         </div>
       </CardFooter>
     </Card>
