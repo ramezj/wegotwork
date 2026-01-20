@@ -1,9 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/$slug/_layout/dashboard')({
+export const Route = createFileRoute("/$slug/_layout/dashboard")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  return <div>Hello "/$slug/dashboard"!</div>
+  const { session } = Route.useRouteContext();
+  return <div>Hello {JSON.stringify(session.user.name)}</div>;
 }
