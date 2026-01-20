@@ -18,7 +18,10 @@ function RouteComponent() {
   return (
     <>
       <SidebarProvider>
-        <AppSidebar slug={Route.useParams().slug} />
+        <AppSidebar
+          slug={Route.useParams().slug}
+          session={Route.useRouteContext().session}
+        />
         <SidebarInset>
           <div className="flex flex-1 flex-col p-4">
             <Outlet />

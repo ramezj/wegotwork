@@ -13,13 +13,14 @@ import { Briefcase, HomeIcon, Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 // import { Button } from "../ui/button";
-import { Session } from "better-auth";
+import { Session } from "@/lib/auth";
+import UserDropdown from "./user-dropdown";
 
 export function AppSidebar({
-  //   session,
+  session,
   slug,
 }: {
-  //   session: Session;
+  session: Session;
   slug: string;
 }) {
   type menuItem = {
@@ -59,10 +60,6 @@ export function AppSidebar({
     },
   ];
   const location = useLocation();
-  //   const { data } = useQuery({
-  //     queryKey: ["dash", slug],
-  //     queryFn: () => getDashFn({ data: { slug: slug } }),
-  //   });
   return (
     <Sidebar>
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
@@ -116,7 +113,7 @@ export function AppSidebar({
       <SidebarFooter className="h-(--footer-height) border-t flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem>
-            {/* <UserDropdown session={session} /> */}
+            <UserDropdown session={session} />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
