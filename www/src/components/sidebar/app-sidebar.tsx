@@ -33,7 +33,7 @@ export function AppSidebar({
     {
       label: "dashboard",
       icon: <HomeIcon />,
-      href: `/${slug}/dash`,
+      href: `/${slug}/dashboard`,
     },
     {
       label: "jobs",

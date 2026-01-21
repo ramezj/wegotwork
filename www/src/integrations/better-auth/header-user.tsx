@@ -3,13 +3,6 @@ import { Link } from "@tanstack/react-router";
 
 export default function BetterAuthHeader() {
   const { data: session, isPending } = authClient.useSession();
-
-  if (isPending) {
-    return (
-      <div className="h-8 w-8 bg-neutral-100 dark:bg-neutral-800 animate-pulse" />
-    );
-  }
-
   if (session?.user) {
     return (
       <div className="flex items-center gap-2">
