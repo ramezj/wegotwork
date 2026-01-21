@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SlugLayoutRouteRouteImport } from './routes/$slug/_layout/route'
+import { Route as SlugLayoutIndexRouteImport } from './routes/$slug/_layout/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
-import { Route as SlugLayoutDashboardRouteRouteImport } from './routes/$slug/_layout/dashboard/route'
 
+const DashboardRouteRoute = DashboardRouteRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -24,58 +30,68 @@ const SlugLayoutRouteRoute = SlugLayoutRouteRouteImport.update({
   path: '/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SlugLayoutIndexRoute = SlugLayoutIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SlugLayoutRouteRoute,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SlugLayoutDashboardRouteRoute =
-  SlugLayoutDashboardRouteRouteImport.update({
-    id: '/dashboard',
-    path: '/dashboard',
-    getParentRoute: () => SlugLayoutRouteRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteRoute
   '/$slug': typeof SlugLayoutRouteRouteWithChildren
-  '/$slug/dashboard': typeof SlugLayoutDashboardRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/$slug/': typeof SlugLayoutIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/$slug': typeof SlugLayoutRouteRouteWithChildren
-  '/$slug/dashboard': typeof SlugLayoutDashboardRouteRoute
+  '/dashboard': typeof DashboardRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/$slug': typeof SlugLayoutIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteRoute
   '/$slug/_layout': typeof SlugLayoutRouteRouteWithChildren
-  '/$slug/_layout/dashboard': typeof SlugLayoutDashboardRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/$slug/_layout/': typeof SlugLayoutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$slug' | '/$slug/dashboard' | '/api/auth/$'
+  fullPaths: '/' | '/dashboard' | '/$slug' | '/api/auth/$' | '/$slug/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$slug' | '/$slug/dashboard' | '/api/auth/$'
+  to: '/' | '/dashboard' | '/api/auth/$' | '/$slug'
   id:
     | '__root__'
     | '/'
+    | '/dashboard'
     | '/$slug/_layout'
-    | '/$slug/_layout/dashboard'
     | '/api/auth/$'
+    | '/$slug/_layout/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRouteRoute: typeof DashboardRouteRoute
   SlugLayoutRouteRoute: typeof SlugLayoutRouteRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -90,6 +106,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SlugLayoutRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$slug/_layout/': {
+      id: '/$slug/_layout/'
+      path: '/'
+      fullPath: '/$slug/'
+      preLoaderRoute: typeof SlugLayoutIndexRouteImport
+      parentRoute: typeof SlugLayoutRouteRoute
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -97,22 +120,15 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/$slug/_layout/dashboard': {
-      id: '/$slug/_layout/dashboard'
-      path: '/dashboard'
-      fullPath: '/$slug/dashboard'
-      preLoaderRoute: typeof SlugLayoutDashboardRouteRouteImport
-      parentRoute: typeof SlugLayoutRouteRoute
-    }
   }
 }
 
 interface SlugLayoutRouteRouteChildren {
-  SlugLayoutDashboardRouteRoute: typeof SlugLayoutDashboardRouteRoute
+  SlugLayoutIndexRoute: typeof SlugLayoutIndexRoute
 }
 
 const SlugLayoutRouteRouteChildren: SlugLayoutRouteRouteChildren = {
-  SlugLayoutDashboardRouteRoute: SlugLayoutDashboardRouteRoute,
+  SlugLayoutIndexRoute: SlugLayoutIndexRoute,
 }
 
 const SlugLayoutRouteRouteWithChildren = SlugLayoutRouteRoute._addFileChildren(
@@ -121,6 +137,7 @@ const SlugLayoutRouteRouteWithChildren = SlugLayoutRouteRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRouteRoute: DashboardRouteRoute,
   SlugLayoutRouteRoute: SlugLayoutRouteRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
