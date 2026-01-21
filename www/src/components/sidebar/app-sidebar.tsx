@@ -33,7 +33,7 @@ export function AppSidebar({
     {
       label: "dashboard",
       icon: <HomeIcon />,
-      href: `/${slug}/dashboard`,
+      href: `/${slug}`,
     },
     {
       label: "jobs",
@@ -76,9 +76,13 @@ export function AppSidebar({
         <SidebarGroup className="space-y-2">
           <SidebarGroupLabel>Main</SidebarGroupLabel>
           {menuItems.map((item, index) => {
+            const isActive =
+              item.label === "dashboard"
+                ? location.pathname === item.href
+                : location.pathname.includes(item.href);
             return (
               <SidebarMenuButton
-                isActive={location.pathname === item.href}
+                isActive={isActive}
                 className="flex items-center gap-2 cursor-pointer"
                 key={index}
                 asChild

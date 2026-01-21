@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SignInButton } from "@/components/auth/auth-buttons";
 import Header from "@/components/shared/header";
 import { authClient } from "@/lib/auth-client";
 
@@ -10,7 +9,6 @@ function App() {
   return (
     <div>
       <Header session={session} isPending={isPending} />
-      <SignInButton />
     </div>
   );
 }

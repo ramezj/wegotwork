@@ -3,7 +3,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { getSession } from "@/server/auth/server-session";
 
-export const Route = createFileRoute("/$slug/_layout")({
+export const Route = createFileRoute("/dashboard/org/$slug/_layout")({
   component: RouteComponent,
   beforeLoad: async () => {
     const session = await getSession();
