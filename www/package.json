@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev --port 3000",
-    "build": "vite build",
+    "build": "npx prisma generate && vite build",
     "start": "node .output/server/index.mjs",
     "preview": "vite preview",
     "test": "vitest run"
