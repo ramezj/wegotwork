@@ -37,17 +37,17 @@ export function AppSidebar({
     {
       label: "dashboard",
       icon: <HomeIcon />,
-      href: `/dashboard/${slug}`,
+      href: `/${slug}`,
     },
     {
       label: "jobs",
       icon: <Briefcase />,
-      href: `/dashboard/${slug}/jobs`,
+      href: `/${slug}/jobs`,
     },
     {
       label: "applicants",
       icon: <Users />,
-      href: `/dashboard/${slug}/applicants`,
+      href: `/${slug}/applicants`,
     },
   ];
 

@@ -29,7 +29,7 @@ export function OrganizationSelector({
         <DropdownMenuContent className="DropdownMenuContent">
           {organizations?.map((organization) => {
             return (
-              <Link to="/dashboard/$slug" params={{ slug: organization.slug }}>
+              <Link to="/$slug" params={{ slug: organization.slug }}>
                 <DropdownMenuItem
                   className="justify-between flex cursor-pointer"
                   key={organization.id}
@@ -43,7 +43,7 @@ export function OrganizationSelector({
             );
           })}
           <DropdownMenuSeparator />
-          <Link to={"/dashboard/organizations"}>
+          <Link to={"/dashboard"}>
             <DropdownMenuItem className="justify-between flex cursor-pointer">
               All Organizations
             </DropdownMenuItem>

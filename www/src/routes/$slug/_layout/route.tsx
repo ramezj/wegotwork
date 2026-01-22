@@ -5,7 +5,7 @@ import { getSession } from "@/server/auth/server-session";
 import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 
-export const Route = createFileRoute("/dashboard/$slug/_layout")({
+export const Route = createFileRoute("/$slug/_layout")({
   component: RouteComponent,
   beforeLoad: async ({ context, params }) => {
     const session = await getSession();

@@ -36,7 +36,7 @@ export default function Header({
         {session?.user ? (
           <>
             <Button asChild>
-              <Link to={"/dashboard/organizations"}>dashboard</Link>
+              <Link to={"/dashboard"}>dashboard</Link>
             </Button>
           </>
         ) : (

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 
-export const Route = createFileRoute("/dashboard/$slug/_layout/")({
+export const Route = createFileRoute("/$slug/_layout/")({
   component: RouteComponent,
 });
 
