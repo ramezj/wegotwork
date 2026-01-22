@@ -31,7 +31,7 @@ export function OrganizationCard({
       </CardContent>
       <CardFooter>
         <Button asChild variant="outline" size="sm" className="w-full">
-          <Link to="/dashboard/org/$slug" params={{ slug: organization.slug }}>
+          <Link to="/dashboard/$slug" params={{ slug: organization.slug }}>
             View
           </Link>
         </Button>

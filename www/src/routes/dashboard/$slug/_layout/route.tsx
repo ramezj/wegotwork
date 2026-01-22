@@ -5,21 +5,21 @@ import { getSession } from "@/server/auth/server-session";
 import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 
-export const Route = createFileRoute("/dashboard/org/$slug/_layout")({
+export const Route = createFileRoute("/dashboard/$slug/_layout")({
   component: RouteComponent,
-  beforeLoad: async ({ context }) => {
+  beforeLoad: async ({ context, params }) => {
     const session = await getSession();
     if (!session?.user) {
       throw redirect({ to: "/" });
     }
-    await context.queryClient.prefetchQuery({
+    context.queryClient.prefetchQuery({
       queryKey: ["organizations"],
       queryFn: getAllOrganizationsFn,
     });
-    // await context.queryClient.prefetchQuery({
-    //   queryKey: ["organization", Route.useParams().slug],
-    //   queryFn: getOrganizationBySlugFn,
-    // });
+    context.queryClient.prefetchQuery({
+      queryKey: ["organization", params.slug],
+      queryFn: () => getOrganizationBySlugFn({ data: { slug: params.slug } }),
+    });
     return { session };
   },
 });
