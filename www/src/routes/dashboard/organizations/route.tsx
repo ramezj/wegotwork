@@ -10,7 +10,7 @@ export const Route = createFileRoute("/dashboard/organizations")({
   component: RouteComponent,
   ssr: true,
   beforeLoad: async ({ context }) => {
-    context.queryClient.prefetchQuery({
+    await context.queryClient.prefetchQuery({
       queryFn: getAllOrganizationsFn,
       queryKey: ["organizations"],
     });
