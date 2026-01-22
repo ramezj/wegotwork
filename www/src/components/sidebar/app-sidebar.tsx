@@ -67,6 +67,7 @@ export function AppSidebar({
   const { data, isPending } = useQuery({
     queryKey: ["organizations"],
     queryFn: getAllOrganizationsFn,
+    staleTime: 60 * 60 * 1000,
   });
   return (
     <Sidebar>

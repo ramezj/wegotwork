@@ -11,6 +11,7 @@ function RouteComponent() {
     queryKey: ["organization", Route.useParams().slug],
     queryFn: () =>
       getOrganizationBySlugFn({ data: { slug: Route.useParams().slug } }),
+    staleTime: 60 * 60 * 1000,
   });
   return <div>{isLoading ? "Loading..." : data?.organization?.name}</div>;
 }

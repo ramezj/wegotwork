@@ -15,10 +15,12 @@ export const Route = createFileRoute("/dashboard/$slug/_layout")({
     await context.queryClient.prefetchQuery({
       queryKey: ["organizations"],
       queryFn: getAllOrganizationsFn,
+      staleTime: 60 * 60 * 1000,
     });
-    context.queryClient.prefetchQuery({
+    await context.queryClient.prefetchQuery({
       queryKey: ["organization", params.slug],
       queryFn: () => getOrganizationBySlugFn({ data: { slug: params.slug } }),
+      staleTime: 60 * 60 * 1000,
     });
     return { session };
   },
