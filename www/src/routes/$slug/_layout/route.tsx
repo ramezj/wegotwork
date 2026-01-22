@@ -4,6 +4,7 @@ import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { getSession } from "@/server/auth/server-session";
 import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
+import { AppHeader } from "@/components/sidebar/app-header";
 
 export const Route = createFileRoute("/$slug/_layout")({
   component: RouteComponent,
@@ -35,6 +36,7 @@ function RouteComponent() {
           session={Route.useRouteContext().session}
         />
         <SidebarInset>
+          <AppHeader />
           <div className="flex flex-1 flex-col p-4">
             <Outlet />
           </div>
