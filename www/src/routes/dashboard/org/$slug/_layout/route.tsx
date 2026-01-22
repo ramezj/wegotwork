@@ -2,14 +2,19 @@ import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { getSession } from "@/server/auth/server-session";
+import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
 
 export const Route = createFileRoute("/dashboard/org/$slug/_layout")({
   component: RouteComponent,
-  beforeLoad: async () => {
+  beforeLoad: async ({ context }) => {
     const session = await getSession();
     if (!session?.user) {
       throw redirect({ to: "/" });
     }
+    await context.queryClient.prefetchQuery({
+      queryKey: ["organizations"],
+      queryFn: getAllOrganizationsFn,
+    });
     return { session };
   },
 });

@@ -1,11 +1,10 @@
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { authClient } from "@/lib/auth-client";
 import Header from "@/components/shared/header";
 import { CreateOrganization } from "@/components/organization/create-organization";
 import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
 import { useQuery } from "@tanstack/react-query";
 import { Loader } from "lucide-react";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { OrganizationCard } from "@/components/organization/organization-card";
 import { Organization } from "generated/prisma/client";
 

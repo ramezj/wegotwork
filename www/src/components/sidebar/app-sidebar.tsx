@@ -9,12 +9,16 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "../ui/sidebar";
-import { Briefcase, HomeIcon, Users } from "lucide-react";
+import { Briefcase, HomeIcon, Loader, Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 // import { Button } from "../ui/button";
 import { Session } from "@/lib/auth";
 import UserDropdown from "./user-dropdown";
+import { useQuery } from "@tanstack/react-query";
+import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
+import { OrganizationSelector } from "./organization-selector";
+import { Organization } from "generated/prisma/client";
 
 export function AppSidebar({
   session,
@@ -60,15 +64,26 @@ export function AppSidebar({
     },
   ];
   const location = useLocation();
+  const { data, isPending } = useQuery({
+    queryKey: ["organizations"],
+    queryFn: getAllOrganizationsFn,
+  });
   return (
     <Sidebar>
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem className="items-center content-center text-center">
-            {/* <Button variant={"outline"} className="w-full justify-between">
-              {data?.organization?.name || "Select Organization"}
-              <ArrowUpRight />
-            </Button> */}
+            {isPending && <Loader className="animate-spin" />}
+            {!isPending && (
+              <OrganizationSelector
+                organizations={data?.organizations as Organization[]}
+                currentOrganization={
+                  data?.organizations.find(
+                    (org) => org.slug === slug,
+                  ) as Organization
+                }
+              />
+            )}
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
