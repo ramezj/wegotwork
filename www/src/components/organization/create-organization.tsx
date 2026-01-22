@@ -17,8 +17,10 @@ import { Input } from "../ui/input";
 import { useMutation } from "@tanstack/react-query";
 import { createOrganizationFn } from "@/server/organization/create-organization";
 import { Loader } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
 
 export function CreateOrganization() {
+  const queryClient = useQueryClient();
   const form = useForm<z.infer<typeof createOrganizationSchema>>({
     resolver: zodResolver(createOrganizationSchema),
     defaultValues: {
@@ -30,6 +32,7 @@ export function CreateOrganization() {
   const mutation = useMutation({
     mutationFn: createOrganizationFn,
     onSuccess: async () => {
+      await queryClient.refetchQueries({ queryKey: ["organizations"] });
       console.log("Done!");
     },
   });

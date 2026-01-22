@@ -22,7 +22,7 @@ function RouteComponent() {
   if (session?.user === null) {
     throw redirect({ to: "/" });
   }
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: getAllOrganizationsFn,
     queryKey: ["organizations"],
   });
