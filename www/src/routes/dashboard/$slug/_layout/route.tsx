@@ -12,7 +12,7 @@ export const Route = createFileRoute("/dashboard/$slug/_layout")({
     if (!session?.user) {
       throw redirect({ to: "/" });
     }
-    context.queryClient.prefetchQuery({
+    await context.queryClient.prefetchQuery({
       queryKey: ["organizations"],
       queryFn: getAllOrganizationsFn,
     });

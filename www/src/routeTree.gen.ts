@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardOrganizationsRouteRouteImport } from './routes/dashboard/organizations/route'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as DashboardSlugLayoutRouteRouteImport } from './routes/dashboard/$slug/_layout/route'
+import { Route as DashboardSlugLayoutIndexRouteImport } from './routes/dashboard/$slug/_layout/index'
 
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
   id: '/dashboard',
@@ -42,28 +43,36 @@ const DashboardSlugLayoutRouteRoute =
     path: '/$slug',
     getParentRoute: () => DashboardRouteRoute,
   } as any)
+const DashboardSlugLayoutIndexRoute =
+  DashboardSlugLayoutIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => DashboardSlugLayoutRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/dashboard/organizations': typeof DashboardOrganizationsRouteRoute
-  '/dashboard/$slug': typeof DashboardSlugLayoutRouteRoute
+  '/dashboard/$slug': typeof DashboardSlugLayoutRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/dashboard/$slug/': typeof DashboardSlugLayoutIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/dashboard/organizations': typeof DashboardOrganizationsRouteRoute
-  '/dashboard/$slug': typeof DashboardSlugLayoutRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/dashboard/$slug': typeof DashboardSlugLayoutIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/dashboard/organizations': typeof DashboardOrganizationsRouteRoute
-  '/dashboard/$slug/_layout': typeof DashboardSlugLayoutRouteRoute
+  '/dashboard/$slug/_layout': typeof DashboardSlugLayoutRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/dashboard/$slug/_layout/': typeof DashboardSlugLayoutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -73,13 +82,14 @@ export interface FileRouteTypes {
     | '/dashboard/organizations'
     | '/dashboard/$slug'
     | '/api/auth/$'
+    | '/dashboard/$slug/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/dashboard'
     | '/dashboard/organizations'
-    | '/dashboard/$slug'
     | '/api/auth/$'
+    | '/dashboard/$slug'
   id:
     | '__root__'
     | '/'
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/dashboard/organizations'
     | '/dashboard/$slug/_layout'
     | '/api/auth/$'
+    | '/dashboard/$slug/_layout/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,17 +143,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSlugLayoutRouteRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
+    '/dashboard/$slug/_layout/': {
+      id: '/dashboard/$slug/_layout/'
+      path: '/'
+      fullPath: '/dashboard/$slug/'
+      preLoaderRoute: typeof DashboardSlugLayoutIndexRouteImport
+      parentRoute: typeof DashboardSlugLayoutRouteRoute
+    }
   }
 }
 
+interface DashboardSlugLayoutRouteRouteChildren {
+  DashboardSlugLayoutIndexRoute: typeof DashboardSlugLayoutIndexRoute
+}
+
+const DashboardSlugLayoutRouteRouteChildren: DashboardSlugLayoutRouteRouteChildren =
+  {
+    DashboardSlugLayoutIndexRoute: DashboardSlugLayoutIndexRoute,
+  }
+
+const DashboardSlugLayoutRouteRouteWithChildren =
+  DashboardSlugLayoutRouteRoute._addFileChildren(
+    DashboardSlugLayoutRouteRouteChildren,
+  )
+
 interface DashboardRouteRouteChildren {
   DashboardOrganizationsRouteRoute: typeof DashboardOrganizationsRouteRoute
-  DashboardSlugLayoutRouteRoute: typeof DashboardSlugLayoutRouteRoute
+  DashboardSlugLayoutRouteRoute: typeof DashboardSlugLayoutRouteRouteWithChildren
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardOrganizationsRouteRoute: DashboardOrganizationsRouteRoute,
-  DashboardSlugLayoutRouteRoute: DashboardSlugLayoutRouteRoute,
+  DashboardSlugLayoutRouteRoute: DashboardSlugLayoutRouteRouteWithChildren,
 }
 
 const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
