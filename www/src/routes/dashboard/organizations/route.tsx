@@ -2,10 +2,19 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { authClient } from "@/lib/auth-client";
 import Header from "@/components/shared/header";
 import { CreateOrganization } from "@/components/organization/create-organization";
+import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
+import { useQuery } from "@tanstack/react-query";
+import { Loader } from "lucide-react";
 
 export const Route = createFileRoute("/dashboard/organizations")({
   component: RouteComponent,
   ssr: true,
+  beforeLoad: async ({ context }) => {
+    context.queryClient.prefetchQuery({
+      queryFn: getAllOrganizationsFn,
+      queryKey: ["organizations"],
+    });
+  },
 });
 
 function RouteComponent() {
@@ -13,6 +22,10 @@ function RouteComponent() {
   if (session?.user === null) {
     throw redirect({ to: "/" });
   }
+  const { data, isLoading, error } = useQuery({
+    queryFn: getAllOrganizationsFn,
+    queryKey: ["organizations"],
+  });
   return (
     <div>
       <Header session={session} isPending={isPending} />
@@ -20,6 +33,8 @@ function RouteComponent() {
         <h1 className="text-2xl">Your Organizations</h1>
       </main>
       <CreateOrganization />
+      {isLoading && <Loader className="animate-spin" />}
+      {JSON.stringify(data?.organizations)}
     </div>
   );
 }
