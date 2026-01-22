@@ -3,6 +3,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { getSession } from "@/server/auth/server-session";
 import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
+import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 
 export const Route = createFileRoute("/dashboard/org/$slug/_layout")({
   component: RouteComponent,
@@ -15,6 +16,10 @@ export const Route = createFileRoute("/dashboard/org/$slug/_layout")({
       queryKey: ["organizations"],
       queryFn: getAllOrganizationsFn,
     });
+    // await context.queryClient.prefetchQuery({
+    //   queryKey: ["organization", Route.useParams().slug],
+    //   queryFn: getOrganizationBySlugFn,
+    // });
     return { session };
   },
 });
