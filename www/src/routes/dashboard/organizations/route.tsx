@@ -9,9 +9,9 @@ export const Route = createFileRoute("/dashboard/organizations")({
 
 function RouteComponent() {
   const { data: session, isPending } = authClient.useSession();
-  // if (!session) {
-  //   redirect({ to: "/" });
-  // }
+  if (session?.user === null) {
+    throw redirect({ to: "/" });
+  }
   return (
     <div>
       <Header session={session} isPending={isPending} />
