@@ -90,7 +90,8 @@ model Organization {
   metadata    String?
   members     Member[]
   invitations Invitation[]
-
+  jobs        Job[]
+  categories JobCategory[]
   @@unique([slug])
   @@map("organization")
 }
@@ -124,4 +125,61 @@ model Invitation {
   @@index([organizationId])
   @@index([email])
   @@map("invitation")
+}
+
+
+enum Type {
+  fulltime
+  parttime
+  internship
+  contract
+}
+
+model Job {
+  id             String       @id @default(cuid())
+  title          String
+  type           Type         @default(fulltime)
+  country        String?
+  city           String?
+  content        String?
+  remote         Boolean      @default(false)
+  createdAt      DateTime     @default(now())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  applicants     Applicant[]
+  categoryId     String?
+  category       JobCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+}
+
+enum Status {
+  SUBMITTED
+  UNDERREVIEW
+  INTERVIEW
+  OFFER
+  REJECTED
+  HIRED
+}
+
+model Applicant {
+  id         String   @id @default(cuid())
+  name       String
+  motivation String   @default("")
+  email      String
+  linkedIn   String?
+  twitter    String?
+  github     String?
+  createdAt  DateTime @default(now())
+  status     Status   @default(SUBMITTED)
+  resumeKey  String
+  jobId      String
+  job        Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+}
+
+model JobCategory {
+  id             String       @id @default(cuid())
+  name           String
+  order          Int          @default(0)
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  jobs           Job[]
 }
