@@ -3,6 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 import { StatisticCard } from "@/components/dashboard/statistics";
 import { Briefcase, Users } from "lucide-react";
+import { JobCard } from "@/components/job/job-card";
+
 export const Route = createFileRoute("/$slug/_layout/")({
   component: RouteComponent,
 });
@@ -33,6 +35,11 @@ function RouteComponent() {
           amount={data?.organization?.categories?.length || 0}
           icon={<Users className="size-4" />}
         />
+      </div>
+      <div>
+        {data?.organization?.jobs?.map((job) => (
+          <JobCard key={job.id} job={job} />
+        ))}
       </div>
     </div>
   );
