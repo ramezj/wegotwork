@@ -1,5 +1,4 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { authClient } from "@/lib/auth-client";
 import Header from "@/components/shared/header";
 import { CreateOrganization } from "@/components/organization/create-organization";
 import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
@@ -21,18 +20,19 @@ export const Route = createFileRoute("/dashboard")({
       queryFn: getAllOrganizationsFn,
       queryKey: ["organizations"],
     });
+    return { session };
   },
 });
 
 function RouteComponent() {
-  const { data: session, isPending } = authClient.useSession();
+  const { session } = Route.useRouteContext();
   const { data, isLoading } = useQuery({
     queryFn: getAllOrganizationsFn,
     queryKey: ["organizations"],
   });
   return (
     <div>
-      <Header session={session} isPending={isPending} />
+      <Header session={session} />
       <main className="p-4 items-center content-center justify-center text-center">
         <h1 className="text-2xl">Your Organizations</h1>
       </main>

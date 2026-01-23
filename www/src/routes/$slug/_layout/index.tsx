@@ -10,6 +10,7 @@ export const Route = createFileRoute("/$slug/_layout/")({
 });
 
 function RouteComponent() {
+  const { session } = Route.useRouteContext();
   const { data, isLoading } = useQuery({
     queryKey: ["organization", Route.useParams().slug],
     queryFn: () =>

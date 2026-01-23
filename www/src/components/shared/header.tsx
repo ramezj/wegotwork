@@ -7,10 +7,10 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 
 export default function Header({
   session,
-  isPending,
+  // isPending,
 }: {
   session: Session | null;
-  isPending: boolean;
+  // isPending: boolean;
 }) {
   return (
     <header className="w-full sticky top-0 z-50 p-4 border border-b border-l-0 border-r-0 flex flex-row items-center justify-between">
@@ -32,7 +32,7 @@ export default function Header({
         <Link className="font-medium" to={"/"}>
           blog
         </Link>
-        {isPending && <SignInButton />}
+        {/* {isPending && <SignInButton />} */}
         {session?.user ? (
           <>
             <Button asChild>
@@ -40,11 +40,11 @@ export default function Header({
             </Button>
           </>
         ) : (
-          !isPending && (
-            <>
-              <SignInButton />
-            </>
-          )
+          // !isPending && (
+          <>
+            <SignInButton />
+          </>
+          // )
         )}
       </div>
       <div className="md:hidden flex">

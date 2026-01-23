@@ -1,14 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { getSession } from "@/server/auth/server-session";
 import Header from "@/components/shared/header";
-import { authClient } from "@/lib/auth-client";
 
-export const Route = createFileRoute("/")({ component: App });
+export const Route = createFileRoute("/")({
+  beforeLoad: async () => {
+    const session = await getSession();
+    return { session };
+  },
+  component: App,
+});
 
 function App() {
-  const { data: session, isPending } = authClient.useSession();
+  const { session } = Route.useRouteContext();
   return (
     <div>
-      <Header session={session} isPending={isPending} />
+      <Header session={session} />
     </div>
   );
 }
