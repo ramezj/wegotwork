@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
-
+import { StatisticCard } from "@/components/dashboard/statistics";
+import { Briefcase, Users } from "lucide-react";
 export const Route = createFileRoute("/$slug/_layout/")({
   component: RouteComponent,
 });
@@ -13,5 +14,26 @@ function RouteComponent() {
       getOrganizationBySlugFn({ data: { slug: Route.useParams().slug } }),
     staleTime: 60 * 60 * 1000,
   });
-  return <div>{isLoading ? "Loading..." : data?.organization?.name}</div>;
+  return (
+    <div>
+      {isLoading && "Loading..."}
+      <div className="flex lg:flex-row flex-col gap-4">
+        <StatisticCard
+          title="Organization"
+          amount={data?.organization?.name || ""}
+          icon={<Briefcase className="size-4" />}
+        />
+        <StatisticCard
+          title="Jobs"
+          amount={data?.organization?.jobs?.length || 0}
+          icon={<Briefcase className="size-4" />}
+        />
+        <StatisticCard
+          title="Categories"
+          amount={data?.organization?.categories?.length || 0}
+          icon={<Users className="size-4" />}
+        />
+      </div>
+    </div>
+  );
 }
