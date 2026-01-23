@@ -38,7 +38,7 @@ function RouteComponent() {
         />
       </div>
       <div className="space-y-2">
-        <h1 className="text-2xl font-bold">Jobs</h1>
+        <h1 className="text-base font-medium">Jobs</h1>
         {data?.organization?.jobs?.map((job) => (
           <JobCard key={job.id} job={job} />
         ))}

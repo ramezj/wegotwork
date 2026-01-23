@@ -8,6 +8,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarSeparator,
 } from "../ui/sidebar";
 import { Briefcase, HomeIcon, Loader, Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
