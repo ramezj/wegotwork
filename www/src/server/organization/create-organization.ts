@@ -21,6 +21,30 @@ export const createOrganizationFn = createServerFn()
               role: "owner",
             },
           },
+          categories: {
+            create: [
+              {
+                name: "Software Development",
+                order: 1,
+              },
+              {
+                name: "Finance",
+                order: 2,
+              },
+              {
+                name: "Operations",
+                order: 3,
+              },
+              {
+                name: "HR & Recruiting",
+                order: 4,
+              },
+              {
+                name: "Security",
+                order: 5,
+              },
+            ],
+          },
         },
       });
       return { success: true, organization };

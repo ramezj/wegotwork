@@ -3,6 +3,7 @@ import { authClient } from "@/lib/auth-client";
 import Header from "@/components/shared/header";
 import { CreateOrganization } from "@/components/organization/create-organization";
 import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
+import { getSession } from "@/server/auth/server-session";
 import { useQuery } from "@tanstack/react-query";
 import { Loader } from "lucide-react";
 import { OrganizationCard } from "@/components/organization/organization-card";
@@ -12,6 +13,10 @@ export const Route = createFileRoute("/dashboard")({
   component: RouteComponent,
   ssr: true,
   beforeLoad: async ({ context }) => {
+    const session = await getSession();
+    if (!session?.user) {
+      throw redirect({ to: "/" });
+    }
     await context.queryClient.prefetchQuery({
       queryFn: getAllOrganizationsFn,
       queryKey: ["organizations"],
@@ -21,9 +26,6 @@ export const Route = createFileRoute("/dashboard")({
 
 function RouteComponent() {
   const { data: session, isPending } = authClient.useSession();
-  if (session?.user === null) {
-    throw redirect({ to: "/" });
-  }
   const { data, isLoading } = useQuery({
     queryFn: getAllOrganizationsFn,
     queryKey: ["organizations"],
