@@ -45,6 +45,14 @@ export const createOrganizationFn = createServerFn()
               },
             ],
           },
+          jobs: {
+            create: {
+              title: "Software Developer",
+              content: "Software Developer",
+              city: "Remote",
+              type: "fulltime",
+            },
+          },
         },
       });
       return { success: true, organization };
