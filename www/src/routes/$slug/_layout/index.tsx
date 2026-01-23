@@ -18,7 +18,7 @@ function RouteComponent() {
     staleTime: 60 * 60 * 1000,
   });
   return (
-    <div>
+    <div className="space-y-4">
       {isLoading && "Loading..."}
       <div className="flex lg:flex-row flex-col gap-4">
         <StatisticCard
@@ -37,7 +37,8 @@ function RouteComponent() {
           icon={<Users className="size-4" />}
         />
       </div>
-      <div>
+      <div className="space-y-2">
+        <h1 className="text-2xl font-bold">Jobs</h1>
         {data?.organization?.jobs?.map((job) => (
           <JobCard key={job.id} job={job} />
         ))}
