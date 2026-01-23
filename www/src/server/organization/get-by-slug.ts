@@ -15,6 +15,10 @@ export const getOrganizationBySlugFn = createServerFn()
         where: {
           slug: data.slug,
         },
+        include: {
+          jobs: true,
+          categories: true,
+        },
       });
       return { success: true, organization };
     } catch (error) {
