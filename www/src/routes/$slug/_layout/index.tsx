@@ -1,8 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 import { StatisticCard } from "@/components/dashboard/statistics";
-import { Briefcase, Users } from "lucide-react";
+import { Briefcase, Loader2, Users } from "lucide-react";
 import { JobCard } from "@/components/job/job-card";
 import { Button } from "@/components/ui/button";
 
@@ -16,11 +16,18 @@ export const Route = createFileRoute("/$slug/_layout/")({
 function RouteComponent() {
   const { session } = Route.useRouteContext();
   const { slug } = Route.useParams();
-  const { data } = useQuery({
+  const { data, isLoading } = useSuspenseQuery({
     queryKey: ["organization", slug],
     queryFn: () => getOrganizationBySlugFn({ data: { slug } }),
     staleTime: 60 * 60 * 1000,
   });
+  if (isLoading) {
+    return (
+      <div className="flex h-full items-center justify-center min-h-[400px]">
+        <Loader2 className="animate-spin size-8 text-muted-foreground" />
+      </div>
+    );
+  }
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
