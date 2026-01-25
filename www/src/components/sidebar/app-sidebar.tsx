@@ -111,7 +111,7 @@ export function AppSidebar({
                 onClick={handleItemClick}
                 asChild
               >
-                <Link to={item.href}>
+                <Link to={item.href} viewTransition>
                   {item.icon}
                   {item.label}
                 </Link>
@@ -130,7 +130,7 @@ export function AppSidebar({
                 onClick={handleItemClick}
                 asChild
               >
-                <Link to={item.href}>
+                <Link to={item.href} viewTransition>
                   {item.icon}
                   {item.label}
                 </Link>

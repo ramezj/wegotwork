@@ -3,14 +3,13 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { getSession } from "@/server/auth/server-session";
 import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
-import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 import { AppHeader } from "@/components/sidebar/app-header";
 import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
 
 export const Route = createFileRoute("/$slug/_layout")({
   component: RouteComponent,
-  beforeLoad: async ({ context, params }) => {
+  beforeLoad: async ({ context }) => {
     const session = await getSession();
     if (!session?.user) {
       throw redirect({ to: "/" });
