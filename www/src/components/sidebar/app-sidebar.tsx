@@ -8,7 +8,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarSeparator,
+  useSidebar,
 } from "../ui/sidebar";
 import { Briefcase, HomeIcon, Loader, Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
@@ -65,6 +65,13 @@ export function AppSidebar({
     },
   ];
   const location = useLocation();
+  const { isMobile, setOpenMobile } = useSidebar();
+
+  const handleItemClick = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
   const { data, isPending } = useQuery({
     queryKey: ["organizations"],
     queryFn: getAllOrganizationsFn,
@@ -102,6 +109,7 @@ export function AppSidebar({
                 isActive={isActive}
                 className="flex items-center gap-2 cursor-pointer"
                 key={index}
+                onClick={handleItemClick}
                 asChild
               >
                 <Link to={item.href}>
@@ -120,6 +128,7 @@ export function AppSidebar({
                 isActive={item.href === location.pathname}
                 className="flex items-center gap-2 cursor-pointer font-medium"
                 key={index}
+                onClick={handleItemClick}
                 asChild
               >
                 <Link to={item.href}>
