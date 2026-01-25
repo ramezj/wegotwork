@@ -1,5 +1,5 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { createFileRoute, Navigate } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
+import { createFileRoute } from "@tanstack/react-router";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 import { JobCard } from "@/components/job/job-card";
 import { Button } from "@/components/ui/button";
@@ -10,16 +10,11 @@ export const Route = createFileRoute("/$slug/_layout/jobs")({
 
 function RouteComponent() {
   const { slug } = Route.useParams();
-  const { data } = useSuspenseQuery({
+  const { data } = useQuery({
     queryKey: ["organization", slug],
     queryFn: () => getOrganizationBySlugFn({ data: { slug } }),
     staleTime: 60 * 60 * 1000,
   });
-
-  if (!data?.organization) {
-    return <Navigate to="/dashboard" replace />;
-  }
-
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
