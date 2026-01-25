@@ -66,7 +66,6 @@ export function AppSidebar({
   ];
   const location = useLocation();
   const { isMobile, setOpenMobile } = useSidebar();
-
   const handleItemClick = () => {
     if (isMobile) {
       setOpenMobile(false);

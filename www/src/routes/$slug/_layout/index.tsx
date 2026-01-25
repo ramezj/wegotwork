@@ -14,7 +14,7 @@ export const Route = createFileRoute("/$slug/_layout/")({
 
 function RouteComponent() {
   const { session } = Route.useRouteContext();
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["organization", Route.useParams().slug],
     queryFn: () =>
       getOrganizationBySlugFn({ data: { slug: Route.useParams().slug } }),
@@ -22,7 +22,7 @@ function RouteComponent() {
   });
   return (
     <div className="space-y-4">
-      {isLoading && "Loading..."}
+      <h1 className="text-xl">Welcome back, {session.user.name}</h1>
       <div className="flex lg:flex-row flex-col gap-4">
         <StatisticCard
           title="Organization"
@@ -40,12 +40,20 @@ function RouteComponent() {
           icon={<Users className="size-4" />}
         />
       </div>
-      <div className="space-y-2">
+      <div className="space-y-4">
+        <h1 className="text-xl">Your Job Openings</h1>
+        <div className="flex flex-col space-y-4">
+          {data?.organization?.jobs?.map((job) => (
+            <JobCard key={job.id} job={job} />
+          ))}
+        </div>
+      </div>
+      {/* <div className="space-y-2">
         <h1 className="text-base font-medium">Jobs</h1>
         {data?.organization?.jobs?.map((job) => (
           <JobCard key={job.id} job={job} />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

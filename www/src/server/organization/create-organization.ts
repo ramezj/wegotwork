@@ -46,11 +46,21 @@ export const createOrganizationFn = createServerFn()
             ],
           },
           jobs: {
-            create: {
-              title: "Software Developer",
-              content: "Software Developer",
-              city: "Remote",
-              type: "fulltime",
+            createMany: {
+              data: [
+                {
+                  title: "Software Developer",
+                  content: "Software Developer",
+                  city: "Tallinn",
+                  type: "fulltime",
+                },
+                {
+                  title: "UI/UX Designer",
+                  content: "UI/UX Designer",
+                  city: "Cairo",
+                  type: "fulltime",
+                },
+              ],
             },
           },
         },

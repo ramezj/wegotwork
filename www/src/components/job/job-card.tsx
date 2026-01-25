@@ -8,7 +8,7 @@ export function JobCard({ job }: { job: Job }) {
   return (
     <Card className="w-full flex flex-row border rounded-none items-center p-5 cursor-pointer shadow-none gap-0">
       <div className="flex flex-col items-start text-left py-2">
-        <p className="sm:text-lg text-md font-bold text-left text-foreground">
+        <p className="sm:text-lg text-md font-medium text-left text-foreground">
           {job.title}
         </p>
         <div className="flex">
