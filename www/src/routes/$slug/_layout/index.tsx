@@ -16,7 +16,6 @@ export const Route = createFileRoute("/$slug/_layout/")({
 function RouteComponent() {
   const { session } = Route.useRouteContext();
   const { slug } = Route.useParams();
-
   const { data } = useSuspenseQuery({
     queryKey: ["organization", slug],
     queryFn: () => getOrganizationBySlugFn({ data: { slug } }),
