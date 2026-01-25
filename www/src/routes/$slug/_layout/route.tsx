@@ -6,10 +6,11 @@ import { getAllOrganizationsFn } from "@/server/organization/get-all-organizatio
 import { AppHeader } from "@/components/sidebar/app-header";
 import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
+import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 
 export const Route = createFileRoute("/$slug/_layout")({
   component: RouteComponent,
-  beforeLoad: async ({ context }) => {
+  beforeLoad: async ({ context, params }) => {
     const session = await getSession();
     if (!session?.user) {
       throw redirect({ to: "/" });
@@ -19,17 +20,14 @@ export const Route = createFileRoute("/$slug/_layout")({
       queryFn: getAllOrganizationsFn,
       staleTime: 60 * 60 * 1000,
     });
-
-    // const data = context.queryClient.fetchQuery({
-    //   queryKey: ["organization", params.slug],
-    //   queryFn: () => getOrganizationBySlugFn({ data: { slug: params.slug } }),
-    //   staleTime: 60 * 60 * 1000,
-    // });
-
-    // if (!data?.organization) {
-    //   throw redirect({ to: "/dashboard" });
-    // }
-
+    const { organization } = await context.queryClient.fetchQuery({
+      queryKey: ["organization", params.slug],
+      queryFn: () => getOrganizationBySlugFn({ data: { slug: params.slug } }),
+      staleTime: 60 * 60 * 1000,
+    });
+    if (!organization) {
+      throw redirect({ to: "/dashboard" });
+    }
     return { session };
   },
 });
