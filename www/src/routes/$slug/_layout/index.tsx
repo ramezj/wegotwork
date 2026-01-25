@@ -22,7 +22,9 @@ function RouteComponent() {
   });
   return (
     <div className="space-y-4">
-      <h1 className="text-xl">Welcome back, {session.user.name}</h1>
+      <h1 className="text-xl">
+        Welcome back, <b>{session.user.name}</b>
+      </h1>
       <div className="flex lg:flex-row flex-col gap-4">
         <StatisticCard
           title="Organization"
@@ -41,19 +43,15 @@ function RouteComponent() {
         />
       </div>
       <div className="space-y-4">
-        <h1 className="text-xl">Your Job Openings</h1>
+        <h1 className="text-xl">
+          Your Job Openings <b>({data?.organization?.jobs?.length || 0})</b>
+        </h1>
         <div className="flex flex-col space-y-4">
           {data?.organization?.jobs?.map((job) => (
             <JobCard key={job.id} job={job} />
           ))}
         </div>
       </div>
-      {/* <div className="space-y-2">
-        <h1 className="text-base font-medium">Jobs</h1>
-        {data?.organization?.jobs?.map((job) => (
-          <JobCard key={job.id} job={job} />
-        ))}
-      </div> */}
     </div>
   );
 }

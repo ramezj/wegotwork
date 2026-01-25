@@ -36,17 +36,17 @@ export function AppSidebar({
 
   const menuItems: menuItem[] = [
     {
-      label: "dashboard",
+      label: "Dashboard",
       icon: <HomeIcon />,
       href: `/${slug}`,
     },
     {
-      label: "jobs",
+      label: "Jobs",
       icon: <Briefcase />,
       href: `/${slug}/jobs`,
     },
     {
-      label: "applicants",
+      label: "Applicants",
       icon: <Users />,
       href: `/${slug}/applicants`,
     },
@@ -54,12 +54,12 @@ export function AppSidebar({
 
   const teamMenuItems: menuItem[] = [
     {
-      label: "team",
+      label: "Team",
       icon: <Users />,
       href: "/team",
     },
     {
-      label: "members",
+      label: "Members",
       icon: <Users />,
       href: "/members",
     },
@@ -100,7 +100,7 @@ export function AppSidebar({
           <SidebarGroupLabel>Main</SidebarGroupLabel>
           {menuItems.map((item, index) => {
             const isActive =
-              item.label === "dashboard"
+              item.label === "Dashboard"
                 ? location.pathname === item.href
                 : location.pathname.includes(item.href);
             return (
