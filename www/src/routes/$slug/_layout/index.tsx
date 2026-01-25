@@ -5,6 +5,7 @@ import { StatisticCard } from "@/components/dashboard/statistics";
 import { Briefcase, Loader2, Users } from "lucide-react";
 import { JobCard } from "@/components/job/job-card";
 import { Button } from "@/components/ui/button";
+import { motion } from "motion/react";
 
 export const Route = createFileRoute("/$slug/_layout/")({
   component: RouteComponent,
@@ -29,7 +30,12 @@ function RouteComponent() {
     );
   }
   return (
-    <div className="space-y-4">
+    <motion.div
+      initial={{ opacity: 0, y: 4 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      className="space-y-4"
+    >
       <div className="flex items-center justify-between">
         <h1 className="text-xl">
           Welcome back, <b>{session.user.name}</b>
@@ -63,6 +69,6 @@ function RouteComponent() {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

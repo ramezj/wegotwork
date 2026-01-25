@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 import { JobCard } from "@/components/job/job-card";
 import { Button } from "@/components/ui/button";
+import { motion } from "motion/react";
 
 export const Route = createFileRoute("/$slug/_layout/jobs")({
   component: RouteComponent,
@@ -16,7 +17,12 @@ function RouteComponent() {
     staleTime: 60 * 60 * 1000,
   });
   return (
-    <div className="space-y-4">
+    <motion.div
+      initial={{ opacity: 0, y: 4 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      className="space-y-4"
+    >
       <div className="flex items-center justify-between">
         <h1 className="text-xl">
           Job Openings <b>({data?.organization?.jobs?.length || 0})</b>
@@ -28,6 +34,6 @@ function RouteComponent() {
           <JobCard key={job.id} job={job} />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
