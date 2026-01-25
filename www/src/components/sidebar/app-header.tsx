@@ -1,4 +1,6 @@
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Button } from "../ui/button";
+import { BellIcon } from "lucide-react";
 
 export function AppHeader() {
   return (
@@ -8,7 +10,11 @@ export function AppHeader() {
         <div className="md:hidden flex">
           <SidebarTrigger />
         </div>
-        <div className="ml-auto flex items-center gap-2"></div>
+        <div className="ml-auto flex items-center gap-2">
+          <Button size={"icon"} variant={"outline"}>
+            <BellIcon />
+          </Button>
+        </div>
       </div>
     </header>
   );
