@@ -7,6 +7,9 @@ import { JobCard } from "@/components/job/job-card";
 
 export const Route = createFileRoute("/$slug/_layout/")({
   component: RouteComponent,
+  head: () => ({
+    meta: [{ title: "Dashboard", content: "Dashboard" }, { name: "Dashboard" }],
+  }),
 });
 
 function RouteComponent() {
