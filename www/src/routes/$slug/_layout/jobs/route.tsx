@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 import { JobCard } from "@/components/job/job-card";
 import { Button } from "@/components/ui/button";
-import { motion } from "motion/react";
+import { Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/$slug/_layout/jobs")({
   component: RouteComponent,
@@ -11,18 +11,20 @@ export const Route = createFileRoute("/$slug/_layout/jobs")({
 
 function RouteComponent() {
   const { slug } = Route.useParams();
-  const { data } = useSuspenseQuery({
+  const { data, isLoading } = useSuspenseQuery({
     queryKey: ["organization", slug],
     queryFn: () => getOrganizationBySlugFn({ data: { slug } }),
     staleTime: 60 * 60 * 1000,
   });
+  if (isLoading) {
+    return (
+      <div className="flex h-full items-center justify-center min-h-[400px]">
+        <Loader2 className="animate-spin size-8 text-muted-foreground" />
+      </div>
+    );
+  }
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 4 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
-      className="space-y-4"
-    >
+    <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h1 className="text-xl">
           Job Openings <b>({data?.organization?.jobs?.length || 0})</b>
@@ -34,6 +36,6 @@ function RouteComponent() {
           <JobCard key={job.id} job={job} />
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
