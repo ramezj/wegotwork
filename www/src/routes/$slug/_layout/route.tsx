@@ -5,7 +5,7 @@ import { getSession } from "@/server/auth/server-session";
 import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 import { AppHeader } from "@/components/sidebar/app-header";
-import { Loader } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
 
 export const Route = createFileRoute("/$slug/_layout")({
@@ -49,7 +49,7 @@ function RouteComponent() {
             <Suspense
               fallback={
                 <div className="flex h-full items-center justify-center min-h-[400px]">
-                  <Loader className="animate-spin size-8 text-muted-foreground" />
+                  <Loader2 className="animate-spin size-8 text-muted-foreground" />
                 </div>
               }
             >
