@@ -4,6 +4,7 @@ import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 import { StatisticCard } from "@/components/dashboard/statistics";
 import { Briefcase, Users } from "lucide-react";
 import { JobCard } from "@/components/job/job-card";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/$slug/_layout/")({
   component: RouteComponent,
@@ -22,9 +23,12 @@ function RouteComponent() {
   });
   return (
     <div className="space-y-4">
-      <h1 className="text-xl">
-        Welcome back, <b>{session.user.name}</b>
-      </h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-xl">
+          Welcome back, <b>{session.user.name}</b>
+        </h1>
+        <Button>Preview</Button>
+      </div>
       <div className="flex lg:flex-row flex-col gap-4">
         <StatisticCard
           title="Organization"
