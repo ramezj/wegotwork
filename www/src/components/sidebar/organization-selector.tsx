@@ -47,7 +47,7 @@ export function OrganizationSelector({
             );
           })}
           <DropdownMenuSeparator />
-          <Link to={"/dashboard"}>
+          <Link viewTransition to={"/dashboard"}>
             <DropdownMenuItem className="justify-between flex cursor-pointer">
               All Organizations
             </DropdownMenuItem>
