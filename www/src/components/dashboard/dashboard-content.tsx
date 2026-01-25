@@ -1,23 +1,21 @@
+import { useParams, useRouteContext } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { Navigate } from "@tanstack/react-router";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 import { StatisticCard } from "@/components/dashboard/statistics";
 import { Briefcase, Users } from "lucide-react";
 import { JobCard } from "@/components/job/job-card";
 import { Button } from "@/components/ui/button";
-import { Route } from "@/routes/$slug/_layout/index";
 
 export function DashboardContent() {
-  const { session } = Route.useRouteContext();
-  const { slug } = Route.useParams();
+  const { session } = useRouteContext({ strict: false }) as any;
+  const { slug } = useParams({ strict: false });
+
   const { data } = useSuspenseQuery({
     queryKey: ["organization", slug],
-    queryFn: () => getOrganizationBySlugFn({ data: { slug } }),
+    queryFn: () => getOrganizationBySlugFn({ data: { slug: slug! } }),
     staleTime: 60 * 60 * 1000,
   });
-  if (!data?.organization) {
-    return <Navigate to="/dashboard" replace />;
-  }
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
