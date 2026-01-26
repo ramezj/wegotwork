@@ -16,7 +16,7 @@ export const Route = createFileRoute("/$slug/_layout/")({
       <p>we are loading your organization</p>
     </div>
   ),
-  pendingMinMs: 500,
+  pendingMinMs: 2500,
   pendingMs: 0,
 });
 
