@@ -2,10 +2,9 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 import { StatisticCard } from "@/components/dashboard/statistics";
-import { Briefcase, Loader2, Users } from "lucide-react";
+import { Briefcase, Users } from "lucide-react";
 import { JobCard } from "@/components/job/job-card";
 import { Button } from "@/components/ui/button";
-import { Suspense } from "react";
 
 export const Route = createFileRoute("/$slug/_layout/")({
   component: RouteComponent,

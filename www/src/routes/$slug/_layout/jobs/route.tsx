@@ -3,7 +3,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 import { JobCard } from "@/components/job/job-card";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/$slug/_layout/jobs")({
   component: RouteComponent,
@@ -11,18 +10,11 @@ export const Route = createFileRoute("/$slug/_layout/jobs")({
 
 function RouteComponent() {
   const { slug } = Route.useParams();
-  const { data, isLoading } = useSuspenseQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ["organization", slug],
     queryFn: () => getOrganizationBySlugFn({ data: { slug } }),
     staleTime: 60 * 60 * 1000,
   });
-  if (isLoading) {
-    return (
-      <div className="flex h-full items-center justify-center min-h-[400px]">
-        <Loader2 className="animate-spin size-8 text-muted-foreground" />
-      </div>
-    );
-  }
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
