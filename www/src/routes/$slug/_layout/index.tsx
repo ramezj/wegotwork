@@ -40,16 +40,19 @@ function RouteComponent() {
           title="Organization"
           amount={data?.organization?.name || ""}
           icon={<Briefcase className="size-4" />}
+          animationKey={data?.organization?.id}
         />
         <StatisticCard
           title="Jobs"
           amount={data?.organization?.jobs?.length || 0}
           icon={<Briefcase className="size-4" />}
+          animationKey={data?.organization?.id}
         />
         <StatisticCard
           title="Categories"
           amount={data?.organization?.categories?.length || 0}
           icon={<Users className="size-4" />}
+          animationKey={data?.organization?.id}
         />
       </div>
       <div className="space-y-4">

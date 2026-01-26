@@ -5,14 +5,17 @@ export function StatisticCard({
   title,
   amount,
   icon,
+  animationKey,
 }: {
   title: string;
   amount: number | string;
   icon: React.ReactNode;
+  animationKey?: string;
 }) {
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       <motion.div
+        key={animationKey}
         initial={{ opacity: 0, y: -5 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2, ease: "easeIn" }}
