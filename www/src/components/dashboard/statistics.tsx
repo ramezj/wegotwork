@@ -13,7 +13,7 @@ export function StatisticCard({
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: -5 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2, ease: "easeIn" }}
         className="w-full dark:bg-theme rounded-none border"
