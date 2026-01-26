@@ -5,32 +5,32 @@ export function StatisticCard({
   title,
   amount,
   icon,
-  animationKey,
+  // animationKey,
 }: {
   title: string;
   amount: number | string;
   icon: React.ReactNode;
-  animationKey?: string;
+  // animationKey?: string;
 }) {
   return (
-    <motion.div
-      key={animationKey}
-      initial={{ opacity: 0, y: -5 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -5 }}
-      transition={{ duration: 0.2, ease: "easeInOut" }}
-      layout
-      className="w-full dark:bg-theme rounded-none border"
-    >
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0">
-          <CardTitle className="text-foreground font-medium">{title}</CardTitle>
-          {icon}
-        </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-medium text-foreground">{amount}</div>
-        </CardContent>
-      </Card>
-    </motion.div>
+    // <motion.div
+    //   key={animationKey}
+    //   initial={{ opacity: 0, y: -5 }}
+    //   animate={{ opacity: 1, y: 0 }}
+    //   exit={{ opacity: 0, y: -5 }}
+    //   transition={{ duration: 0.2, ease: "easeInOut" }}
+    //   layout
+    //   className="w-full dark:bg-theme rounded-none border"
+    // >
+    <Card className="w-full dark:bg-theme rounded-none border">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0">
+        <CardTitle className="text-foreground font-medium">{title}</CardTitle>
+        {icon}
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-medium text-foreground">{amount}</div>
+      </CardContent>
+    </Card>
+    // </motion.div>
   );
 }

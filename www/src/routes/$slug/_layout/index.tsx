@@ -36,31 +36,31 @@ function RouteComponent() {
         </h1>
         <Button>Preview</Button>
       </div>
-      <AnimatePresence mode="wait">
-        <div
-          key={data?.organization?.id}
-          className="flex lg:flex-row flex-col gap-4"
-        >
-          <StatisticCard
-            title="Organization"
-            amount={data?.organization?.name || ""}
-            icon={<Briefcase className="size-4" />}
-            animationKey={data?.organization?.id}
-          />
-          <StatisticCard
-            title="Jobs"
-            amount={data?.organization?.jobs?.length || 0}
-            icon={<Briefcase className="size-4" />}
-            animationKey={data?.organization?.id}
-          />
-          <StatisticCard
-            title="Categories"
-            amount={data?.organization?.categories?.length || 0}
-            icon={<Users className="size-4" />}
-            animationKey={data?.organization?.id}
-          />
-        </div>
-      </AnimatePresence>
+      {/* <AnimatePresence mode="wait"> */}
+      <div
+        key={data?.organization?.id}
+        className="flex lg:flex-row flex-col gap-4"
+      >
+        <StatisticCard
+          title="Organization"
+          amount={data?.organization?.name || ""}
+          icon={<Briefcase className="size-4" />}
+          // animationKey={data?.organization?.id}
+        />
+        <StatisticCard
+          title="Jobs"
+          amount={data?.organization?.jobs?.length || 0}
+          icon={<Briefcase className="size-4" />}
+          // animationKey={data?.organization?.id}
+        />
+        <StatisticCard
+          title="Categories"
+          amount={data?.organization?.categories?.length || 0}
+          icon={<Users className="size-4" />}
+          // animationKey={data?.organization?.id}
+        />
+      </div>
+      {/* </AnimatePresence> */}
       <div className="space-y-4">
         <h1 className="text-xl">
           Your Job Openings <b>({data?.organization?.jobs?.length || 0})</b>
