@@ -7,32 +7,32 @@ import { motion, AnimatePresence } from "motion/react";
 
 export function JobCard({ job }: { job: Job }) {
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={job.id}
-        initial={{ opacity: 0, y: -5 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, ease: "easeIn" }}
-        className="w-full"
-      >
-        <Card className="w-full flex flex-row border rounded-none items-center p-5 cursor-pointer shadow-none gap-0">
-          <div className="flex flex-col items-start text-left py-2">
-            <p className="sm:text-lg text-md font-medium text-left text-foreground">
-              {job.title}
-            </p>
-            <div className="flex">
-              <p className="text-xs text-white font-medium">
-                {formatDistanceToNow(job.createdAt)} ago
-              </p>
-            </div>
-          </div>
-          <div className="ml-auto">
-            <Button size={"sm"} variant={"default"} className="rounded-none">
-              <Settings className="size-4" />
-            </Button>
-          </div>
-        </Card>
-      </motion.div>
-    </AnimatePresence>
+    // <AnimatePresence mode="wait">
+    //   <motion.div
+    //     key={job.id}
+    //     initial={{ opacity: 0, y: -5 }}
+    //     animate={{ opacity: 1, y: 0 }}
+    //     transition={{ duration: 0.2, ease: "easeIn" }}
+    //     className="w-full"
+    //   >
+    <Card className="w-full flex flex-row border rounded-none items-center p-5 cursor-pointer shadow-none gap-0">
+      <div className="flex flex-col items-start text-left py-2">
+        <p className="sm:text-lg text-md font-medium text-left text-foreground">
+          {job.title}
+        </p>
+        <div className="flex">
+          <p className="text-xs text-white font-medium">
+            {formatDistanceToNow(job.createdAt)} ago
+          </p>
+        </div>
+      </div>
+      <div className="ml-auto">
+        <Button size={"sm"} variant={"default"} className="rounded-none">
+          <Settings className="size-4" />
+        </Button>
+      </div>
+    </Card>
+    //   </motion.div>
+    // </AnimatePresence>
   );
 }
