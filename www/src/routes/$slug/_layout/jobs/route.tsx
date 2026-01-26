@@ -13,7 +13,6 @@ function RouteComponent() {
   const { data } = useQuery({
     queryKey: ["organization", slug],
     queryFn: () => getOrganizationBySlugFn({ data: { slug } }),
-    staleTime: 60 * 60 * 1000,
   });
   return (
     <div className="space-y-4">
