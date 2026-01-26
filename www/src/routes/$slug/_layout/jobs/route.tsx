@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/$slug/_layout/jobs")({
   component: RouteComponent,
-  pendingComponent: () => <div>This is the pending component..</div>,
 });
 
 function RouteComponent() {
