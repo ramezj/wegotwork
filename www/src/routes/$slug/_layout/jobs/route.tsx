@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 import { JobCard } from "@/components/job/job-card";
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/$slug/_layout/jobs")({
 
 function RouteComponent() {
   const { slug } = Route.useParams();
-  const { data } = useSuspenseQuery({
+  const { data } = useQuery({
     queryKey: ["organization", slug],
     queryFn: () => getOrganizationBySlugFn({ data: { slug } }),
     staleTime: 60 * 60 * 1000,
