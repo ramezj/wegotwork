@@ -20,11 +20,11 @@ export const Route = createFileRoute("/$slug/_layout")({
       queryFn: getAllOrganizationsFn,
       staleTime: 60 * 60 * 1000,
     });
-    // context.queryClient.fetchQuery({
-    //   queryKey: ["organization", params.slug],
-    //   queryFn: () => getOrganizationBySlugFn({ data: { slug: params.slug } }),
-    //   staleTime: 60 * 60 * 1000,
-    // });
+    context.queryClient.fetchQuery({
+      queryKey: ["organization", params.slug],
+      queryFn: () => getOrganizationBySlugFn({ data: { slug: params.slug } }),
+      staleTime: 60 * 60 * 1000,
+    });
     // if (!organization) {
     //   throw redirect({ to: "/dashboard" });
     // }
@@ -33,17 +33,16 @@ export const Route = createFileRoute("/$slug/_layout")({
 });
 
 function RouteComponent() {
+  const { slug } = Route.useParams();
   return (
     <>
       <SidebarProvider>
-        <AppSidebar
-          slug={Route.useParams().slug}
-          session={Route.useRouteContext().session}
-        />
+        <AppSidebar slug={slug} session={Route.useRouteContext().session} />
         <SidebarInset>
           <AppHeader />
           <main className="flex flex-1 flex-col p-4">
             <Suspense
+              key={slug}
               fallback={
                 <div className="flex h-full items-center justify-center min-h-[400px]">
                   <Loader2 className="animate-spin size-8 text-muted-foreground" />
