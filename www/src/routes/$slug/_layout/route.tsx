@@ -10,6 +10,11 @@ import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 
 export const Route = createFileRoute("/$slug/_layout")({
   component: RouteComponent,
+  pendingComponent: () => (
+    <div className="flex h-screen items-center justify-center">
+      <Loader2 className="animate-spin size-8 text-muted-foreground" />
+    </div>
+  ),
   pendingMinMs: 500,
   pendingMs: 0,
   beforeLoad: async ({ context, params }) => {
@@ -21,13 +26,13 @@ export const Route = createFileRoute("/$slug/_layout")({
       queryKey: ["organizations"],
       queryFn: getAllOrganizationsFn,
     });
-    const { organization } = await context.queryClient.fetchQuery({
-      queryKey: ["organization", params.slug],
-      queryFn: () => getOrganizationBySlugFn({ data: { slug: params.slug } }),
-    });
-    if (!organization) {
-      throw redirect({ to: "/dashboard" });
-    }
+    // const { organization } = await context.queryClient.fetchQuery({
+    //   queryKey: ["organization", params.slug],
+    //   queryFn: () => getOrganizationBySlugFn({ data: { slug: params.slug } }),
+    // });
+    // if (!organization) {
+    //   throw redirect({ to: "/dashboard" });
+    // }
     return { session };
   },
 });
@@ -41,16 +46,16 @@ function RouteComponent() {
         <SidebarInset>
           <AppHeader />
           <main className="flex flex-1 flex-col p-4">
-            <Suspense
+            {/* <Suspense
               key={slug}
               fallback={
                 <div className="flex h-full items-center justify-center min-h-[400px]">
                   <Loader2 className="animate-spin size-8 text-muted-foreground" />
                 </div>
               }
-            >
-              <Outlet />
-            </Suspense>
+            > */}
+            <Outlet />
+            {/* </Suspense> */}
           </main>
         </SidebarInset>
       </SidebarProvider>

@@ -6,11 +6,12 @@ import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/$slug/_layout/jobs")({
   component: RouteComponent,
+  pendingComponent: () => <div>This is the pending component..</div>,
 });
 
 function RouteComponent() {
   const { slug } = Route.useParams();
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["organization", slug],
     queryFn: () => getOrganizationBySlugFn({ data: { slug } }),
   });
