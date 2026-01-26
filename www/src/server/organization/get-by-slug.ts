@@ -6,6 +6,7 @@ import prisma from "@/lib/prisma";
 export const getOrganizationBySlugFn = createServerFn()
   .inputValidator(getOrganizationBySlugSchema)
   .handler(async ({ data }) => {
+    // await new Promise((resolve) => setTimeout(resolve, 5000));
     const session = await getSession();
     if (!session) {
       throw new Error("Unauthenticated");

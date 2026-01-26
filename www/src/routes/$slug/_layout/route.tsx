@@ -10,6 +10,8 @@ import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 
 export const Route = createFileRoute("/$slug/_layout")({
   component: RouteComponent,
+  pendingMinMs: 500,
+  pendingMs: 0,
   beforeLoad: async ({ context, params }) => {
     const session = await getSession();
     if (!session?.user) {

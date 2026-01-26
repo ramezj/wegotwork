@@ -11,6 +11,8 @@ export const Route = createFileRoute("/$slug/_layout/")({
   head: () => ({
     meta: [{ title: "Dashboard", content: "Dashboard" }, { name: "Dashboard" }],
   }),
+  pendingMinMs: 500,
+  pendingMs: 0,
 });
 
 function RouteComponent() {
