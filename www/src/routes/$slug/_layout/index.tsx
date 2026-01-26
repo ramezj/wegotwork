@@ -1,4 +1,4 @@
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 import { StatisticCard } from "@/components/dashboard/statistics";
@@ -12,8 +12,8 @@ export const Route = createFileRoute("/$slug/_layout/")({
     meta: [{ title: "Dashboard", content: "Dashboard" }, { name: "Dashboard" }],
   }),
   pendingComponent: () => (
-    <div className="flex h-screen items-center justify-center">
-      <p>use suspense....</p>
+    <div className="flex h-full items-center justify-center min-h-[400px]">
+      <p>we are loading your organization</p>
     </div>
   ),
   pendingMinMs: 500,
@@ -23,17 +23,10 @@ export const Route = createFileRoute("/$slug/_layout/")({
 function RouteComponent() {
   const { session } = Route.useRouteContext();
   const { slug } = Route.useParams();
-  const { data, isLoading, isPending } = useSuspenseQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ["organization", slug],
     queryFn: () => getOrganizationBySlugFn({ data: { slug } }),
   });
-  // if (isLoading || isPending) {
-  //   return (
-  //     <div className="flex h-full items-center justify-center min-h-[400px]">
-  //       Loading your lovely organization..
-  //     </div>
-  //   );
-  // }
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">

@@ -11,8 +11,8 @@ import { Organization } from "generated/prisma/client";
 export const Route = createFileRoute("/dashboard")({
   component: RouteComponent,
   pendingComponent: () => (
-    <div className="flex h-screen items-center justify-center">
-      <p>use suspense....</p>
+    <div className="flex h-full items-center justify-center min-h-[400px]">
+      <p>we are loading your organizations</p>
     </div>
   ),
   pendingMinMs: 500,
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/dashboard")({
 
 function RouteComponent() {
   const { session } = Route.useRouteContext();
-  const { data, isLoading } = useSuspenseQuery({
+  const { data } = useSuspenseQuery({
     queryFn: getAllOrganizationsFn,
     queryKey: ["organizations"],
   });
@@ -44,7 +44,7 @@ function RouteComponent() {
         <h1 className="text-2xl">Your Organizations</h1>
       </main>
       <CreateOrganization />
-      {isLoading && <Loader className="animate-spin" />}
+
       <div className="flex flex-wrap gap-4">
         {data?.organizations.map((organization) => {
           return (

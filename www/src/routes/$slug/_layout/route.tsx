@@ -4,14 +4,11 @@ import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { getSession } from "@/server/auth/server-session";
 import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
 import { AppHeader } from "@/components/sidebar/app-header";
-import { Loader2 } from "lucide-react";
-import { Suspense } from "react";
-import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
 
 export const Route = createFileRoute("/$slug/_layout")({
   component: RouteComponent,
 
-  beforeLoad: async ({ context, params }) => {
+  beforeLoad: async ({ context }) => {
     const session = await getSession();
     if (!session?.user) {
       throw redirect({ to: "/" });
@@ -40,16 +37,7 @@ function RouteComponent() {
         <SidebarInset>
           <AppHeader />
           <main className="flex flex-1 flex-col p-4">
-            {/* <Suspense
-              key={slug}
-              fallback={
-                <div className="flex h-full items-center justify-center min-h-[400px]">
-                  <Loader2 className="animate-spin size-8 text-muted-foreground" />
-                </div>
-              }
-            > */}
             <Outlet />
-            {/* </Suspense> */}
           </main>
         </SidebarInset>
       </SidebarProvider>
