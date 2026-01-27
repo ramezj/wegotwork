@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Suspense } from "react";
 import { organizationBySlugQueryOptions } from "@/queries/organization";
 import { Layout, LoadingLayout } from "@/components/shared/layout";
-import { RecentApplicants } from "@/components/dashboard/recent-applicants";
-import { JobsDashboard, JobsList } from "@/components/job/job-card";
+import { JobsList } from "@/components/job/job-card";
 
 export const Route = createFileRoute("/$slug/_layout/")({
   component: RouteComponent,
