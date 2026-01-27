@@ -17,7 +17,11 @@ export const getOrganizationBySlugFn = createServerFn()
           slug: data.slug,
         },
         include: {
-          jobs: true,
+          jobs: {
+            include: {
+              applicants: true,
+            },
+          },
           categories: true,
         },
       });
