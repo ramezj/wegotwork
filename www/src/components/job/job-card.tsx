@@ -78,3 +78,23 @@ export function JobCard({ job }: { job: Job }) {
     </Card>
   );
 }
+
+export function JobsList({ slug }: { slug: string }) {
+  const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
+  if (!data?.organization) {
+    return <Navigate to="/dashboard" />;
+  }
+  return (
+    <div className="flex flex-col space-y-4">
+      <div>
+        <h1 className="text-xl">
+          Recent Jobs
+          <b> ({data?.organization?.jobs?.length || 0})</b>
+        </h1>
+      </div>
+      {data?.organization?.jobs?.map((job) => (
+        <JobCard key={job.id} job={job} />
+      ))}
+    </div>
+  );
+}
