@@ -1,6 +1,8 @@
-import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
+import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
+import { queryOptions } from "@tanstack/react-query";
 
-export const organizationQueryOptions = {
-  queryKey: ["organization"],
-  queryFn: getAllOrganizationsFn,
-};
+export const organizationBySlugQueryOptions = (slug: string) =>
+  queryOptions({
+    queryKey: ["organization", slug],
+    queryFn: () => getOrganizationBySlugFn({ data: { slug } }),
+  });

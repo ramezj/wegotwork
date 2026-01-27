@@ -1,14 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
+import { organizationBySlugQueryOptions } from "@/queries/organization";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Briefcase, Users } from "lucide-react";
-import { motion } from "motion/react";
 
 export function StatisticsCards({ slug }: { slug: string }) {
-  const { data } = useSuspenseQuery({
-    queryKey: ["organization", slug],
-    queryFn: () => getOrganizationBySlugFn({ data: { slug } }),
-  });
+  const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
   return (
     <>
       <StatisticCard

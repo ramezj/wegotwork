@@ -17,15 +17,11 @@ export const Route = createFileRoute("/dashboard")({
   pendingMinMs: 500,
   pendingMs: 0,
   ssr: true,
-  beforeLoad: async ({ context }) => {
+  beforeLoad: async () => {
     const session = await getSession();
     if (!session?.user) {
       throw redirect({ to: "/" });
     }
-    // await context.queryClient.prefetchQuery({
-    //   queryFn: getAllOrganizationsFn,
-    //   queryKey: ["organizations"],
-    // });
     return { session };
   },
 });

@@ -1,21 +1,15 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { AnimatePresence } from "motion/react";
 import { createFileRoute } from "@tanstack/react-router";
-import { getOrganizationBySlugFn } from "@/server/organization/get-by-slug";
-import {
-  StatisticCard,
-  StatisticsCards,
-} from "@/components/dashboard/statistics";
-import { Briefcase, Users } from "lucide-react";
-import { JobCard } from "@/components/job/job-card";
+import { StatisticsCards } from "@/components/dashboard/statistics";
 import { Button } from "@/components/ui/button";
-import { organizationQueryOptions } from "@/queries/organization";
 import { Suspense } from "react";
+import { organizationBySlugQueryOptions } from "@/queries/organization";
 
 export const Route = createFileRoute("/$slug/_layout/")({
   component: RouteComponent,
-  loader: async ({ context }) => {
-    context.queryClient.prefetchQuery(organizationQueryOptions);
+  loader: async ({ context, params }) => {
+    context.queryClient.prefetchQuery(
+      organizationBySlugQueryOptions(params.slug),
+    );
   },
   head: () => ({
     meta: [{ title: "Dashboard", content: "Dashboard" }, { name: "Dashboard" }],
