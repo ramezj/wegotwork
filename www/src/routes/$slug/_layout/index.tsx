@@ -6,6 +6,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Suspense } from "react";
 import { organizationBySlugQueryOptions } from "@/queries/organization";
+import { Layout, LoadingLayout } from "@/components/shared/layout";
+import { LoaderPinwheel } from "lucide-react";
 
 export const Route = createFileRoute("/$slug/_layout/")({
   component: RouteComponent,
@@ -23,28 +25,22 @@ function RouteComponent() {
   const { session } = Route.useRouteContext();
   const { slug } = Route.useParams();
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h1 className="text-xl">
-          Welcome back, <b>{session.user.name}</b>
-        </h1>
-        <Button>Preview</Button>
-      </div>
-      <div className="flex lg:flex-row flex-col gap-4">
-        <Suspense fallback={<StatisticsCardsSkeleton />}>
-          <StatisticsCards slug={slug} />
-        </Suspense>
-      </div>
-      {/* <div className="space-y-4">
-        <h1 className="text-xl">
-          Your Job Openings <b>({data?.organization?.jobs?.length || 0})</b>
-        </h1>
-        <div className="flex flex-col space-y-4">
-          {data?.organization?.jobs?.map((job) => (
-            <JobCard key={job.id} job={job} />
-          ))}
-        </div>
-      </div> */}
-    </div>
+    <Suspense
+      fallback={
+        <LoadingLayout
+          title="Welcome back,"
+          boldText={session.user.name}
+          primaryButton={<Button disabled>Preview</Button>}
+        />
+      }
+    >
+      <Layout
+        title="Welcome back,"
+        boldText={session.user.name}
+        primaryButton={<Button>Preview</Button>}
+      >
+        <StatisticsCards slug={slug} />
+      </Layout>
+    </Suspense>
   );
 }
