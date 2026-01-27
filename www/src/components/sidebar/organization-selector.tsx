@@ -32,7 +32,6 @@ export function OrganizationSelector({
               <Link
                 to="/$slug"
                 params={{ slug: organization.slug }}
-                viewTransition
                 preload={false}
               >
                 <DropdownMenuItem
@@ -48,7 +47,7 @@ export function OrganizationSelector({
             );
           })}
           <DropdownMenuSeparator />
-          <Link viewTransition to={"/dashboard"} preload={false}>
+          <Link to={"/dashboard"} preload={false}>
             <DropdownMenuItem className="justify-between flex cursor-pointer">
               All Organizations
             </DropdownMenuItem>

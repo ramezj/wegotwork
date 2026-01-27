@@ -17,13 +17,6 @@ export const Route = createFileRoute("/$slug/_layout")({
       queryKey: ["organizations"],
       queryFn: getAllOrganizationsFn,
     });
-    // const { organization } = await context.queryClient.fetchQuery({
-    //   queryKey: ["organization", params.slug],
-    //   queryFn: () => getOrganizationBySlugFn({ data: { slug: params.slug } }),
-    // });
-    // if (!organization) {
-    //   throw redirect({ to: "/dashboard" });
-    // }
     return { session };
   },
 });
