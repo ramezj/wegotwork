@@ -1,6 +1,6 @@
 import { Card } from "../ui/card";
 import { Button } from "../ui/button";
-import { Settings } from "lucide-react";
+import { Loader, Loader2, LoaderPinwheel, Settings } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { Job } from "generated/prisma/client";
 import { useSuspenseQuery } from "@tanstack/react-query";
@@ -36,10 +36,8 @@ export function JobsDashboardSkeleton() {
       primaryButton={<Button>Create</Button>}
       boldText={"0"}
     >
-      <div className="flex flex-col space-y-4">
-        <JobCardSkeleton />
-        <JobCardSkeleton />
-        <JobCardSkeleton />
+      <div className="flex-1 items-center flex flex-col justify-center">
+        <LoaderPinwheel className="size-8 animate-spin text-foreground" />
       </div>
     </Layout>
   );
