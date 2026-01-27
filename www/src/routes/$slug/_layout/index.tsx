@@ -1,13 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  StatisticsCards,
-  StatisticsCardsSkeleton,
-} from "@/components/dashboard/statistics";
+import { StatisticsCards } from "@/components/dashboard/statistics";
 import { Button } from "@/components/ui/button";
 import { Suspense } from "react";
 import { organizationBySlugQueryOptions } from "@/queries/organization";
 import { Layout, LoadingLayout } from "@/components/shared/layout";
-import { LoaderPinwheel } from "lucide-react";
 
 export const Route = createFileRoute("/$slug/_layout/")({
   component: RouteComponent,
