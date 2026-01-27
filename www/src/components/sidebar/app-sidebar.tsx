@@ -106,7 +106,7 @@ export function AppSidebar({
             return (
               <SidebarMenuButton
                 isActive={isActive}
-                className="flex items-center gap-2 cursor-pointer"
+                className="flex items-center gap-2 cursor-pointer transition duration-200 font-medium"
                 key={index}
                 onClick={handleItemClick}
                 asChild
@@ -125,7 +125,7 @@ export function AppSidebar({
             return (
               <SidebarMenuButton
                 isActive={item.href === location.pathname}
-                className="flex items-center gap-2 cursor-pointer font-medium"
+                className="flex items-center gap-2 cursor-pointer transition duration-200 font-medium"
                 key={index}
                 onClick={handleItemClick}
                 asChild
