@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { StatisticsCards } from "@/components/dashboard/statistics";
+import {
+  StatisticsCards,
+  StatisticsCardsSkeleton,
+} from "@/components/dashboard/statistics";
 import { Button } from "@/components/ui/button";
 import { Suspense } from "react";
 import { organizationBySlugQueryOptions } from "@/queries/organization";
@@ -28,7 +31,7 @@ function RouteComponent() {
         <Button>Preview</Button>
       </div>
       <div className="flex lg:flex-row flex-col gap-4">
-        <Suspense fallback={<>loading your statistics...</>}>
+        <Suspense fallback={<StatisticsCardsSkeleton />}>
           <StatisticsCards slug={slug} />
         </Suspense>
       </div>
