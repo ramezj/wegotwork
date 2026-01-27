@@ -35,7 +35,9 @@ function RouteComponent() {
         boldText={session.user.name}
         primaryButton={<Button>Preview</Button>}
       >
-        <StatisticsCards slug={slug} />
+        <div className="flex lg:flex-row flex-col gap-4">
+          <StatisticsCards slug={slug} />
+        </div>
       </Layout>
     </Suspense>
   );

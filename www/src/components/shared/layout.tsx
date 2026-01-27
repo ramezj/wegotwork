@@ -31,12 +31,10 @@ export function LoadingLayout({
   title,
   boldText,
   primaryButton,
-  className,
 }: {
   title: string;
   boldText?: string;
   primaryButton?: React.ReactNode;
-  className?: string;
 }) {
   return (
     <Layout title={title} boldText={boldText} primaryButton={primaryButton}>
