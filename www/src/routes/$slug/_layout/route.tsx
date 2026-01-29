@@ -4,6 +4,8 @@ import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { getSession } from "@/server/auth/server-session";
 import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
 import { AppHeader } from "@/components/sidebar/app-header";
+import { Suspense } from "react";
+import { LoadingLayout } from "@/components/shared/layout";
 
 export const Route = createFileRoute("/$slug/_layout")({
   component: RouteComponent,
@@ -30,7 +32,9 @@ function RouteComponent() {
         <SidebarInset>
           <AppHeader />
           <main className="flex flex-1 flex-col p-4">
-            <Outlet />
+            <Suspense fallback={<LoadingLayout title="" />}>
+              <Outlet />
+            </Suspense>
           </main>
         </SidebarInset>
       </SidebarProvider>
