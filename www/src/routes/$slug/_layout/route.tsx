@@ -15,7 +15,7 @@ export const Route = createFileRoute("/$slug/_layout")({
     if (!session?.user) {
       throw redirect({ to: "/" });
     }
-    await context.queryClient.prefetchQuery({
+    await context.queryClient.ensureQueryData({
       queryKey: ["organizations"],
       queryFn: getAllOrganizationsFn,
     });
