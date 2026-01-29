@@ -14,7 +14,9 @@ export const jobSchema = z.object({
   salaryMin: z.number().optional(),
   salaryMax: z.number().optional(),
   currency: z.string().min(1, "Currency is required").default("USD"),
-  salaryInterval: z.enum(["HOURLY", "MONTHLY", "YEARLY"]).default("MONTHLY"),
+  salaryInterval: z
+    .enum(["HOURLY", "DAILY", "WEEKLY", "MONTHLY", "QUARTERLY", "YEARLY"])
+    .default("MONTHLY"),
   experienceLevel: z
     .enum(["ENTRY", "MID", "SENIOR", "LEAD", "EXECUTIVE"])
     .default("ENTRY"),

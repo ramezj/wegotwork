@@ -143,7 +143,7 @@ enum JobStatus {
 }
 
 enum LocationMode {
-  ONSIT
+  ONSITE
   REMOTE
   HYBRID
 }
@@ -157,12 +157,21 @@ enum SalaryInterval {
   YEARLY
 }
 
+enum ExperienceLevel {
+  ENTRY
+  MID
+  SENIOR
+  LEAD
+  EXECUTIVE
+}
+
 model Job {
   id             String       @id @default(cuid())
   title          String
   type           Type         @default(FULLTIME)
   status         JobStatus    @default(DRAFT)
   locationMode   LocationMode @default(REMOTE)
+  address        String?  
   country        String?
   city           String?
   description    String?
@@ -170,6 +179,7 @@ model Job {
   salaryMax      Int?
   currency       String?      @default("USD")
   salaryInterval SalaryInterval? 
+  experienceLevel ExperienceLevel? @default(ENTRY)
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
   organizationId String
