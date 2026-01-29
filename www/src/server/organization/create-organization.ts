@@ -50,15 +50,15 @@ export const createOrganizationFn = createServerFn()
               data: [
                 {
                   title: "Software Developer",
-                  content: "Software Developer",
+                  description: "Software Developer",
                   city: "Tallinn",
-                  type: "fulltime",
+                  type: "FULLTIME",
                 },
                 {
                   title: "UI/UX Designer",
-                  content: "UI/UX Designer",
+                  description: "UI/UX Designer",
                   city: "Cairo",
-                  type: "fulltime",
+                  type: "FULLTIME",
                 },
               ],
             },
