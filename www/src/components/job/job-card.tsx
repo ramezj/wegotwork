@@ -11,7 +11,7 @@ import { Layout } from "../shared/layout";
 
 export function JobsDashboard({ slug }: { slug: string }) {
   const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
-  if (!data?.organization) {
+  if (!data.organization) {
     return <Navigate to="/dashboard" />;
   }
   return (
