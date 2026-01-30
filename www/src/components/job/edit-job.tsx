@@ -2,14 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { JobWithCategory } from "@/types/job";
 import { jobSchema } from "@/types/job";
-import {
-  Field,
-  FieldLabel,
-  FieldContent,
-  FieldError,
-  FieldGroup,
-  FieldSet,
-} from "../ui/field";
+import { Field, FieldLabel, FieldContent, FieldError } from "../ui/field";
 import { Controller } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
@@ -30,13 +23,16 @@ import { Loader } from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 import { jobByIdQueryOptions } from "@/queries/jobs";
+import { organizationBySlugQueryOptions } from "@/queries/organization";
 
 export function EditJobForm({
   job,
   categories,
+  slug,
 }: {
   job: JobWithCategory;
   categories: JobCategory[];
+  slug: string;
 }) {
   const queryClient = useQueryClient();
   const form = useForm({
@@ -63,8 +59,9 @@ export function EditJobForm({
   const mutation = useMutation({
     mutationFn: (data: z.infer<typeof jobSchema>) =>
       editJobBySlugFn({ data: { jobId: job.id, job: data } }),
-    onSuccess: () => {
-      queryClient.refetchQueries(jobByIdQueryOptions(job.id));
+    onSuccess: async () => {
+      await queryClient.refetchQueries(jobByIdQueryOptions(job.id));
+      await queryClient.refetchQueries(organizationBySlugQueryOptions(slug));
       toast.success("Job updated successfully");
     },
     onError: (error) => {
