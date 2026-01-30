@@ -12,7 +12,8 @@ function RouteComponent() {
   const { jobId } = Route.useParams();
   const { data } = useSuspenseQuery(jobByIdQueryOptions(jobId));
   return (
-    <div>
+    <div className="space-y-4">
+      <h1 className="text-xl">Edit Job</h1>
       <EditJobForm job={data.job as Job} />
     </div>
   );

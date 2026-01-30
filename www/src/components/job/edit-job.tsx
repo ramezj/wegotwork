@@ -22,11 +22,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { Button } from "../ui/button";
+import z from "zod";
+import { Card, CardContent } from "../ui/card";
 
 export function EditJobForm({ job }: { job: Job }) {
   const form = useForm({
     defaultValues: {
       ...job,
+      title: job.title || "",
       description: job.description || "",
       status: job.status || "DRAFT",
       type: job.type || "FULLTIME",
@@ -42,220 +46,229 @@ export function EditJobForm({ job }: { job: Job }) {
       categoryId: job.categoryId || "",
     },
     resolver: zodResolver(jobSchema),
+    mode: "onBlur",
   });
+
+  const onSubmit = (data: z.infer<typeof jobSchema>) => {
+    console.log(data);
+  };
   return (
     <>
-      <form>
-        <Form {...form}>
-          <FieldGroup>
-            <FieldSet>
-              <FieldLegend>Job Details</FieldLegend>
-              <FieldDescription>Edit job information</FieldDescription>
-              <FieldGroup>
-                <Controller
-                  control={form.control}
-                  name="title"
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel>Title</FieldLabel>
-                      <FieldContent>
-                        <Input {...field} />
-                      </FieldContent>
-                      <FieldError />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="description"
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel>Description</FieldLabel>
-                      <FieldContent>
-                        <Textarea {...field} />
-                      </FieldContent>
-                      <FieldError />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="type"
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel>Type</FieldLabel>
-                      <FieldContent>
-                        <Select defaultValue={field.value}>
-                          <SelectTrigger className="w-36">
-                            <SelectValue defaultValue={field.value} />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="FULLTIME">Full Time</SelectItem>
-                            <SelectItem value="PARTTIME">Part Time</SelectItem>
-                            <SelectItem value="INTERNSHIP">
-                              Internship
-                            </SelectItem>
-                            <SelectItem value="CONTRACT">Contract</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FieldContent>
-                      <FieldError />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="locationMode"
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel>Location Mode</FieldLabel>
-                      <FieldContent>
-                        <Select defaultValue={field.value}>
-                          <SelectTrigger className="w-36">
-                            <SelectValue defaultValue={field.value} />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="REMOTE">Remote</SelectItem>
-                            <SelectItem value="ONSITE">Onsite</SelectItem>
-                            <SelectItem value="HYBRID">Hybrid</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FieldContent>
-                      <FieldError />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="country"
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel>Country</FieldLabel>
-                      <FieldContent>
-                        <Input placeholder="Country" {...field} />
-                      </FieldContent>
-                      <FieldError />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="city"
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel>City</FieldLabel>
-                      <FieldContent>
-                        <Input placeholder="City" {...field} />
-                      </FieldContent>
-                      <FieldError />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="address"
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel>Address</FieldLabel>
-                      <FieldContent>
-                        <Input placeholder="Address" {...field} />
-                      </FieldContent>
-                      <FieldError />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="salaryMin"
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel>Salary Min</FieldLabel>
-                      <FieldContent>
-                        <Input type="number" {...field} />
-                      </FieldContent>
-                      <FieldError />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="salaryMax"
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel>Salary Max</FieldLabel>
-                      <FieldContent>
-                        <Input type="number" {...field} />
-                      </FieldContent>
-                      <FieldError />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="title"
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel>Title</FieldLabel>
-                      <FieldContent>
-                        <Input {...field} />
-                      </FieldContent>
-                      <FieldError />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="salaryInterval"
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel>Salary Interval</FieldLabel>
-                      <FieldContent>
-                        <Select defaultValue={field.value}>
-                          <SelectTrigger className="w-36">
-                            <SelectValue defaultValue={field.value} />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="HOURLY">Hourly</SelectItem>
-                            <SelectItem value="DAILY">Daily</SelectItem>
-                            <SelectItem value="WEEKLY">Weekly</SelectItem>
-                            <SelectItem value="MONTHLY">Monthly</SelectItem>
-                            <SelectItem value="QUARTERLY">Quarterly</SelectItem>
-                            <SelectItem value="YEARLY">Yearly</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FieldContent>
-                      <FieldError />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="experienceLevel"
-                  render={({ field }) => (
-                    <Field>
-                      <FieldLabel>Experience Level</FieldLabel>
-                      <FieldContent>
-                        <Select defaultValue={field.value}>
-                          <SelectTrigger className="w-36">
-                            <SelectValue defaultValue={field.value} />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="ENTRY">Entry</SelectItem>
-                            <SelectItem value="MID">Mid</SelectItem>
-                            <SelectItem value="SENIOR">Senior</SelectItem>
-                            <SelectItem value="LEAD">Lead</SelectItem>
-                            <SelectItem value="EXECUTIVE">Executive</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FieldContent>
-                      <FieldError />
-                    </Field>
-                  )}
-                />
-              </FieldGroup>
-            </FieldSet>
-          </FieldGroup>
-        </Form>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <FieldGroup>
+          <FieldSet>
+            <FieldGroup>
+              <Card>
+                <CardContent className="flex flex-col space-y-4 px-4">
+                  <Controller
+                    control={form.control}
+                    name="title"
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel>Title</FieldLabel>
+                        <FieldContent>
+                          <Input {...field} />
+                        </FieldContent>
+                        <FieldError />
+                      </Field>
+                    )}
+                  />
+                  <Controller
+                    control={form.control}
+                    name="description"
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel>Description</FieldLabel>
+                        <FieldContent>
+                          <Textarea {...field} />
+                        </FieldContent>
+                        <FieldError />
+                      </Field>
+                    )}
+                  />
+                  <Controller
+                    control={form.control}
+                    name="type"
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel>Type</FieldLabel>
+                        <FieldContent>
+                          <Select defaultValue={field.value}>
+                            <SelectTrigger className="w-36">
+                              <SelectValue defaultValue={field.value} />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="FULLTIME">
+                                Full Time
+                              </SelectItem>
+                              <SelectItem value="PARTTIME">
+                                Part Time
+                              </SelectItem>
+                              <SelectItem value="INTERNSHIP">
+                                Internship
+                              </SelectItem>
+                              <SelectItem value="CONTRACT">Contract</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </FieldContent>
+                        <FieldError />
+                      </Field>
+                    )}
+                  />
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="flex flex-col gap-4">
+                  <Controller
+                    control={form.control}
+                    name="country"
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel>Country</FieldLabel>
+                        <FieldContent>
+                          <Input placeholder="Country" {...field} />
+                        </FieldContent>
+                        <FieldError />
+                      </Field>
+                    )}
+                  />
+                  <Controller
+                    control={form.control}
+                    name="city"
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel>City</FieldLabel>
+                        <FieldContent>
+                          <Input placeholder="City" {...field} />
+                        </FieldContent>
+                        <FieldError />
+                      </Field>
+                    )}
+                  />
+                  <Controller
+                    control={form.control}
+                    name="address"
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel>Address</FieldLabel>
+                        <FieldContent>
+                          <Input placeholder="Address" {...field} />
+                        </FieldContent>
+                        <FieldError />
+                      </Field>
+                    )}
+                  />
+                  <Controller
+                    control={form.control}
+                    name="locationMode"
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel>Location Mode</FieldLabel>
+                        <FieldContent>
+                          <Select defaultValue={field.value}>
+                            <SelectTrigger className="w-36">
+                              <SelectValue defaultValue={field.value} />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="REMOTE">Remote</SelectItem>
+                              <SelectItem value="ONSITE">Onsite</SelectItem>
+                              <SelectItem value="HYBRID">Hybrid</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </FieldContent>
+                        <FieldError />
+                      </Field>
+                    )}
+                  />
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="flex flex-col gap-4">
+                  <Controller
+                    control={form.control}
+                    name="salaryMin"
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel>Salary Min</FieldLabel>
+                        <FieldContent>
+                          <Input type="number" {...field} />
+                        </FieldContent>
+                        <FieldError />
+                      </Field>
+                    )}
+                  />
+                  <Controller
+                    control={form.control}
+                    name="salaryMax"
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel>Salary Max</FieldLabel>
+                        <FieldContent>
+                          <Input type="number" {...field} />
+                        </FieldContent>
+                        <FieldError />
+                      </Field>
+                    )}
+                  />
+                  <Controller
+                    control={form.control}
+                    name="salaryInterval"
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel>Salary Interval</FieldLabel>
+                        <FieldContent>
+                          <Select defaultValue={field.value}>
+                            <SelectTrigger className="w-36">
+                              <SelectValue defaultValue={field.value} />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="HOURLY">Hourly</SelectItem>
+                              <SelectItem value="DAILY">Daily</SelectItem>
+                              <SelectItem value="WEEKLY">Weekly</SelectItem>
+                              <SelectItem value="MONTHLY">Monthly</SelectItem>
+                              <SelectItem value="QUARTERLY">
+                                Quarterly
+                              </SelectItem>
+                              <SelectItem value="YEARLY">Yearly</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </FieldContent>
+                        <FieldError />
+                      </Field>
+                    )}
+                  />
+                  <Controller
+                    control={form.control}
+                    name="experienceLevel"
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel>Experience Level</FieldLabel>
+                        <FieldContent>
+                          <Select defaultValue={field.value}>
+                            <SelectTrigger className="w-36">
+                              <SelectValue defaultValue={field.value} />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="ENTRY">Entry</SelectItem>
+                              <SelectItem value="MID">Mid</SelectItem>
+                              <SelectItem value="SENIOR">Senior</SelectItem>
+                              <SelectItem value="LEAD">Lead</SelectItem>
+                              <SelectItem value="EXECUTIVE">
+                                Executive
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </FieldContent>
+                        <FieldError />
+                      </Field>
+                    )}
+                  />
+                </CardContent>
+              </Card>
+            </FieldGroup>
+          </FieldSet>
+          <Button type="submit">Update Job Details</Button>
+        </FieldGroup>
       </form>
     </>
   );
