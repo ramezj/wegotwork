@@ -18,7 +18,6 @@ function RouteComponent() {
   const categories = orgData?.organization?.categories || [];
   return (
     <div className="space-y-4">
-      <h1 className="text-xl">Edit Job</h1>
       <EditJobForm job={data.job as JobWithCategory} categories={categories} />
     </div>
   );

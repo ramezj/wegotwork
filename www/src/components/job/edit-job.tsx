@@ -24,6 +24,10 @@ import { Button } from "../ui/button";
 import z from "zod";
 import { Card, CardContent } from "../ui/card";
 import { JobCategory } from "generated/prisma/client";
+import { useMutation } from "@tanstack/react-query";
+import { editJobBySlugFn } from "@/server/jobs/edit-by-slug";
+import { Loader } from "lucide-react";
+import { toast } from "sonner";
 
 export function EditJobForm({
   job,
@@ -53,13 +57,30 @@ export function EditJobForm({
     resolver: zodResolver(jobSchema),
     mode: "onBlur",
   });
-
+  const mutation = useMutation({
+    mutationFn: (data: z.infer<typeof jobSchema>) =>
+      editJobBySlugFn({ data: { jobId: job.id, job: data } }),
+    onSuccess: () => {
+      toast.success("Job updated successfully");
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
   const onSubmit = (data: z.infer<typeof jobSchema>) => {
-    console.log(data);
+    mutation.mutateAsync(data);
   };
   return (
     <>
+      <div className="flex items-center justify-between w-full">
+        <h1 className="text-xl">Edit Job</h1>
+        <Button type="submit" form="form" disabled={mutation.isPending}>
+          {mutation.isPending && <Loader className="animate-spin" />}
+          Save Changes
+        </Button>
+      </div>
       <form
+        id="form"
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col space-y-4"
       >
@@ -68,34 +89,34 @@ export function EditJobForm({
             <Controller
               control={form.control}
               name="title"
-              render={({ field }) => (
-                <Field>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Title</FieldLabel>
                   <FieldContent>
                     <Input {...field} />
                   </FieldContent>
-                  <FieldError />
+                  <FieldError errors={[fieldState.error]} />
                 </Field>
               )}
             />
             <Controller
               control={form.control}
               name="description"
-              render={({ field }) => (
-                <Field>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Description</FieldLabel>
                   <FieldContent>
                     <Textarea {...field} />
                   </FieldContent>
-                  <FieldError />
+                  <FieldError errors={[fieldState.error]} />
                 </Field>
               )}
             />
             <Controller
               control={form.control}
               name="type"
-              render={({ field }) => (
-                <Field>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Type</FieldLabel>
                   <FieldContent>
                     <Select value={field.value} onValueChange={field.onChange}>
@@ -110,15 +131,15 @@ export function EditJobForm({
                       </SelectContent>
                     </Select>
                   </FieldContent>
-                  <FieldError />
+                  <FieldError errors={[form.formState.errors.type]} />
                 </Field>
               )}
             />
             <Controller
               control={form.control}
               name="status"
-              render={({ field }) => (
-                <Field>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Status</FieldLabel>
                   <FieldContent>
                     <Select value={field.value} onValueChange={field.onChange}>
@@ -133,15 +154,15 @@ export function EditJobForm({
                       </SelectContent>
                     </Select>
                   </FieldContent>
-                  <FieldError />
+                  <FieldError errors={[fieldState.error]} />
                 </Field>
               )}
             />
             <Controller
               control={form.control}
               name="categoryId"
-              render={({ field }) => (
-                <Field>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Category</FieldLabel>
                   <FieldContent>
                     <Select
@@ -163,7 +184,7 @@ export function EditJobForm({
                       </SelectContent>
                     </Select>
                   </FieldContent>
-                  <FieldError />
+                  <FieldError errors={[fieldState.error]} />
                 </Field>
               )}
             />
@@ -174,47 +195,47 @@ export function EditJobForm({
             <Controller
               control={form.control}
               name="country"
-              render={({ field }) => (
-                <Field>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Country</FieldLabel>
                   <FieldContent>
                     <Input placeholder="Country" {...field} />
                   </FieldContent>
-                  <FieldError />
+                  <FieldError errors={[fieldState.error]} />
                 </Field>
               )}
             />
             <Controller
               control={form.control}
               name="city"
-              render={({ field }) => (
-                <Field>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>City</FieldLabel>
                   <FieldContent>
                     <Input placeholder="City" {...field} />
                   </FieldContent>
-                  <FieldError />
+                  <FieldError errors={[fieldState.error]} />
                 </Field>
               )}
             />
             <Controller
               control={form.control}
               name="address"
-              render={({ field }) => (
-                <Field>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Address</FieldLabel>
                   <FieldContent>
                     <Input placeholder="Address" {...field} />
                   </FieldContent>
-                  <FieldError />
+                  <FieldError errors={[fieldState.error]} />
                 </Field>
               )}
             />
             <Controller
               control={form.control}
               name="locationMode"
-              render={({ field }) => (
-                <Field>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Location Mode</FieldLabel>
                   <FieldContent>
                     <Select value={field.value} onValueChange={field.onChange}>
@@ -228,7 +249,7 @@ export function EditJobForm({
                       </SelectContent>
                     </Select>
                   </FieldContent>
-                  <FieldError />
+                  <FieldError errors={[fieldState.error]} />
                 </Field>
               )}
             />
@@ -239,34 +260,48 @@ export function EditJobForm({
             <Controller
               control={form.control}
               name="salaryMin"
-              render={({ field }) => (
-                <Field>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Salary Min</FieldLabel>
                   <FieldContent>
-                    <Input type="number" {...field} />
+                    <Input
+                      type="number"
+                      {...field}
+                      onChange={(e) => {
+                        const val = e.target.valueAsNumber;
+                        field.onChange(isNaN(val) ? undefined : val);
+                      }}
+                    />
                   </FieldContent>
-                  <FieldError />
+                  <FieldError errors={[fieldState.error]} />
                 </Field>
               )}
             />
             <Controller
               control={form.control}
               name="salaryMax"
-              render={({ field }) => (
-                <Field>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Salary Max</FieldLabel>
                   <FieldContent>
-                    <Input type="number" {...field} />
+                    <Input
+                      type="number"
+                      {...field}
+                      onChange={(e) => {
+                        const val = e.target.valueAsNumber;
+                        field.onChange(isNaN(val) ? undefined : val);
+                      }}
+                    />
                   </FieldContent>
-                  <FieldError />
+                  <FieldError errors={[fieldState.error]} />
                 </Field>
               )}
             />
             <Controller
               control={form.control}
               name="salaryInterval"
-              render={({ field }) => (
-                <Field>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Salary Interval</FieldLabel>
                   <FieldContent>
                     <Select
@@ -286,15 +321,15 @@ export function EditJobForm({
                       </SelectContent>
                     </Select>
                   </FieldContent>
-                  <FieldError />
+                  <FieldError errors={[fieldState.error]} />
                 </Field>
               )}
             />
             <Controller
               control={form.control}
               name="experienceLevel"
-              render={({ field }) => (
-                <Field>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Experience Level</FieldLabel>
                   <FieldContent>
                     <Select
@@ -313,13 +348,13 @@ export function EditJobForm({
                       </SelectContent>
                     </Select>
                   </FieldContent>
-                  <FieldError />
+                  <FieldError errors={[fieldState.error]} />
                 </Field>
               )}
             />
           </CardContent>
         </Card>
-        <Button type="submit">Update Job Details</Button>
+        <Button type="submit">Save Changes</Button>
       </form>
     </>
   );
