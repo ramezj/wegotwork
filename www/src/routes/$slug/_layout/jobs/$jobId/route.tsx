@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { jobByIdQueryOptions } from "@/queries/jobs";
 import { EditJobForm } from "@/components/job/edit-job";
@@ -12,6 +12,9 @@ export const Route = createFileRoute("/$slug/_layout/jobs/$jobId")({
 function RouteComponent() {
   const { jobId, slug } = Route.useParams();
   const { data } = useSuspenseQuery(jobByIdQueryOptions(jobId));
+  if (data?.job === null) {
+    return <Navigate to="/$slug" params={{ slug }} />;
+  }
   const { data: orgData } = useSuspenseQuery(
     organizationBySlugQueryOptions(slug),
   );

@@ -28,6 +28,8 @@ import { useMutation } from "@tanstack/react-query";
 import { editJobBySlugFn } from "@/server/jobs/edit-by-slug";
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
+import { jobByIdQueryOptions } from "@/queries/jobs";
 
 export function EditJobForm({
   job,
@@ -36,6 +38,7 @@ export function EditJobForm({
   job: JobWithCategory;
   categories: JobCategory[];
 }) {
+  const queryClient = useQueryClient();
   const form = useForm({
     defaultValues: {
       ...job,
@@ -61,6 +64,7 @@ export function EditJobForm({
     mutationFn: (data: z.infer<typeof jobSchema>) =>
       editJobBySlugFn({ data: { jobId: job.id, job: data } }),
     onSuccess: () => {
+      queryClient.refetchQueries(jobByIdQueryOptions(job.id));
       toast.success("Job updated successfully");
     },
     onError: (error) => {

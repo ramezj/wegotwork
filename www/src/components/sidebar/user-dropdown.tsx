@@ -6,9 +6,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Session } from "@/lib/auth";
+import { authClient } from "@/lib/auth-client";
 import { ChevronUp, Users2 } from "lucide-react";
+import { useRouter } from "@tanstack/react-router";
 
 export default function UserDropdown({ session }: { session: Session }) {
+  const router = useRouter();
   return (
     <>
       <DropdownMenu>
@@ -28,7 +31,12 @@ export default function UserDropdown({ session }: { session: Session }) {
           <DropdownMenuItem>
             <span>Billing</span>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={async () => {
+              await authClient.signOut();
+              router.navigate({ to: "/" });
+            }}
+          >
             <span>Sign out</span>
           </DropdownMenuItem>
         </DropdownMenuContent>

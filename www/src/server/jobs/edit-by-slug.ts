@@ -11,6 +11,22 @@ export const editJobBySlugFn = createServerFn()
     if (!session) {
       throw new Error("Unauthenticated");
     }
+    // Security Check: Verify user is a member of the organization that owns this job
+    const authorizedJob = await prisma.job.findFirst({
+      where: {
+        id: data.jobId,
+        organization: {
+          members: {
+            some: {
+              userId: session.user.id,
+            },
+          },
+        },
+      },
+    });
+    if (!authorizedJob) {
+      throw new Error("You are not authorized to edit this job");
+    }
     try {
       const job = await prisma.job.update({
         where: {
