@@ -18,7 +18,6 @@ import { Route as SlugLayoutJobsRouteRouteImport } from './routes/$slug/_layout/
 import { Route as SlugLayoutApplicantsRouteRouteImport } from './routes/$slug/_layout/applicants/route'
 import { Route as SlugLayoutJobsIndexRouteImport } from './routes/$slug/_layout/jobs/index'
 import { Route as SlugLayoutJobsJobIdRouteRouteImport } from './routes/$slug/_layout/jobs/$jobId/route'
-import { Route as SlugLayoutJobsCreateIndexRouteImport } from './routes/$slug/_layout/jobs/create/index'
 
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
   id: '/dashboard',
@@ -67,12 +66,6 @@ const SlugLayoutJobsJobIdRouteRoute =
     path: '/$jobId',
     getParentRoute: () => SlugLayoutJobsRouteRoute,
   } as any)
-const SlugLayoutJobsCreateIndexRoute =
-  SlugLayoutJobsCreateIndexRouteImport.update({
-    id: '/create/',
-    path: '/create/',
-    getParentRoute: () => SlugLayoutJobsRouteRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -84,7 +77,6 @@ export interface FileRoutesByFullPath {
   '/$slug/': typeof SlugLayoutIndexRoute
   '/$slug/jobs/$jobId': typeof SlugLayoutJobsJobIdRouteRoute
   '/$slug/jobs/': typeof SlugLayoutJobsIndexRoute
-  '/$slug/jobs/create/': typeof SlugLayoutJobsCreateIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -94,7 +86,6 @@ export interface FileRoutesByTo {
   '/$slug': typeof SlugLayoutIndexRoute
   '/$slug/jobs/$jobId': typeof SlugLayoutJobsJobIdRouteRoute
   '/$slug/jobs': typeof SlugLayoutJobsIndexRoute
-  '/$slug/jobs/create': typeof SlugLayoutJobsCreateIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -107,7 +98,6 @@ export interface FileRoutesById {
   '/$slug/_layout/': typeof SlugLayoutIndexRoute
   '/$slug/_layout/jobs/$jobId': typeof SlugLayoutJobsJobIdRouteRoute
   '/$slug/_layout/jobs/': typeof SlugLayoutJobsIndexRoute
-  '/$slug/_layout/jobs/create/': typeof SlugLayoutJobsCreateIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -121,7 +111,6 @@ export interface FileRouteTypes {
     | '/$slug/'
     | '/$slug/jobs/$jobId'
     | '/$slug/jobs/'
-    | '/$slug/jobs/create/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -131,7 +120,6 @@ export interface FileRouteTypes {
     | '/$slug'
     | '/$slug/jobs/$jobId'
     | '/$slug/jobs'
-    | '/$slug/jobs/create'
   id:
     | '__root__'
     | '/'
@@ -143,7 +131,6 @@ export interface FileRouteTypes {
     | '/$slug/_layout/'
     | '/$slug/_layout/jobs/$jobId'
     | '/$slug/_layout/jobs/'
-    | '/$slug/_layout/jobs/create/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -218,26 +205,17 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SlugLayoutJobsJobIdRouteRouteImport
       parentRoute: typeof SlugLayoutJobsRouteRoute
     }
-    '/$slug/_layout/jobs/create/': {
-      id: '/$slug/_layout/jobs/create/'
-      path: '/create'
-      fullPath: '/$slug/jobs/create/'
-      preLoaderRoute: typeof SlugLayoutJobsCreateIndexRouteImport
-      parentRoute: typeof SlugLayoutJobsRouteRoute
-    }
   }
 }
 
 interface SlugLayoutJobsRouteRouteChildren {
   SlugLayoutJobsJobIdRouteRoute: typeof SlugLayoutJobsJobIdRouteRoute
   SlugLayoutJobsIndexRoute: typeof SlugLayoutJobsIndexRoute
-  SlugLayoutJobsCreateIndexRoute: typeof SlugLayoutJobsCreateIndexRoute
 }
 
 const SlugLayoutJobsRouteRouteChildren: SlugLayoutJobsRouteRouteChildren = {
   SlugLayoutJobsJobIdRouteRoute: SlugLayoutJobsJobIdRouteRoute,
   SlugLayoutJobsIndexRoute: SlugLayoutJobsIndexRoute,
-  SlugLayoutJobsCreateIndexRoute: SlugLayoutJobsCreateIndexRoute,
 }
 
 const SlugLayoutJobsRouteRouteWithChildren =

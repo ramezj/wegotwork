@@ -6,6 +6,7 @@ import { Navigate } from "@tanstack/react-router";
 import { Layout } from "@/components/shared/layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
+import { CreateJobDialog } from "@/components/job/create-job-dialog";
 
 export const Route = createFileRoute("/$slug/_layout/jobs/")({
   component: RouteComponent,
@@ -22,11 +23,10 @@ function RouteComponent() {
       <Layout
         title="Job Openings"
         primaryButton={
-          <Button asChild>
-            <Link to="/$slug/jobs/create" params={{ slug }}>
-              Create
-            </Link>
-          </Button>
+          <CreateJobDialog
+            categories={data.organization.categories}
+            slug={slug}
+          />
         }
         boldText={"(" + (data?.organization?.jobs?.length || 0) + ")"}
       >
