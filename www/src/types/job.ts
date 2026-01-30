@@ -1,4 +1,10 @@
 import { z } from "zod";
+export { type Job, type JobCategory } from "generated/prisma/client";
+import { Job, JobCategory } from "generated/prisma/client";
+
+export type JobWithCategory = Job & {
+  category: JobCategory | null;
+};
 
 export const jobSchema = z.object({
   title: z.string().min(1, "Title is required"),

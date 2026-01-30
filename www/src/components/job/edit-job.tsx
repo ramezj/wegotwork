@@ -1,6 +1,8 @@
 import { Form, useForm } from "react-hook-form";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { organizationBySlugQueryOptions } from "@/queries/organization";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Job } from "generated/prisma/client";
+import { JobWithCategory } from "@/types/job";
 import { jobSchema } from "@/types/job";
 import {
   Field,
@@ -25,8 +27,15 @@ import {
 import { Button } from "../ui/button";
 import z from "zod";
 import { Card, CardContent } from "../ui/card";
+import { JobCategory } from "generated/prisma/client";
 
-export function EditJobForm({ job }: { job: Job }) {
+export function EditJobForm({
+  job,
+  categories,
+}: {
+  job: JobWithCategory;
+  categories: JobCategory[];
+}) {
   const form = useForm({
     defaultValues: {
       ...job,
@@ -93,9 +102,12 @@ export function EditJobForm({ job }: { job: Job }) {
                       <Field>
                         <FieldLabel>Type</FieldLabel>
                         <FieldContent>
-                          <Select defaultValue={field.value}>
+                          <Select
+                            value={field.value}
+                            onValueChange={field.onChange}
+                          >
                             <SelectTrigger className="w-36">
-                              <SelectValue defaultValue={field.value} />
+                              <SelectValue placeholder="Select type" />
                             </SelectTrigger>
                             <SelectContent>
                               <SelectItem value="FULLTIME">
@@ -108,6 +120,67 @@ export function EditJobForm({ job }: { job: Job }) {
                                 Internship
                               </SelectItem>
                               <SelectItem value="CONTRACT">Contract</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </FieldContent>
+                        <FieldError />
+                      </Field>
+                    )}
+                  />
+                  <Controller
+                    control={form.control}
+                    name="status"
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel>Status</FieldLabel>
+                        <FieldContent>
+                          <Select
+                            value={field.value}
+                            onValueChange={field.onChange}
+                          >
+                            <SelectTrigger className="w-36">
+                              <SelectValue placeholder="Select status" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="DRAFT">Draft</SelectItem>
+                              <SelectItem value="PUBLISHED">
+                                Published
+                              </SelectItem>
+                              <SelectItem value="CLOSED">Closed</SelectItem>
+                              <SelectItem value="ARCHIVED">Archived</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </FieldContent>
+                        <FieldError />
+                      </Field>
+                    )}
+                  />
+                  <Controller
+                    control={form.control}
+                    name="categoryId"
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel>Category</FieldLabel>
+                        <FieldContent>
+                          <Select
+                            value={field.value || "none"}
+                            onValueChange={(value) =>
+                              field.onChange(value === "none" ? "" : value)
+                            }
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a category" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="none">No Category</SelectItem>
+                              {categories.map((category) => (
+                                <SelectItem
+                                  key={category.id}
+                                  value={category.id}
+                                >
+                                  {category.name}
+                                </SelectItem>
+                              ))}
                             </SelectContent>
                           </Select>
                         </FieldContent>
@@ -165,9 +238,12 @@ export function EditJobForm({ job }: { job: Job }) {
                       <Field>
                         <FieldLabel>Location Mode</FieldLabel>
                         <FieldContent>
-                          <Select defaultValue={field.value}>
+                          <Select
+                            value={field.value}
+                            onValueChange={field.onChange}
+                          >
                             <SelectTrigger className="w-36">
-                              <SelectValue defaultValue={field.value} />
+                              <SelectValue placeholder="Select mode" />
                             </SelectTrigger>
                             <SelectContent>
                               <SelectItem value="REMOTE">Remote</SelectItem>
@@ -217,9 +293,12 @@ export function EditJobForm({ job }: { job: Job }) {
                       <Field>
                         <FieldLabel>Salary Interval</FieldLabel>
                         <FieldContent>
-                          <Select defaultValue={field.value}>
+                          <Select
+                            value={field.value || ""}
+                            onValueChange={field.onChange}
+                          >
                             <SelectTrigger className="w-36">
-                              <SelectValue defaultValue={field.value} />
+                              <SelectValue placeholder="Select interval" />
                             </SelectTrigger>
                             <SelectContent>
                               <SelectItem value="HOURLY">Hourly</SelectItem>
@@ -244,9 +323,12 @@ export function EditJobForm({ job }: { job: Job }) {
                       <Field>
                         <FieldLabel>Experience Level</FieldLabel>
                         <FieldContent>
-                          <Select defaultValue={field.value}>
+                          <Select
+                            value={field.value || ""}
+                            onValueChange={field.onChange}
+                          >
                             <SelectTrigger className="w-36">
-                              <SelectValue defaultValue={field.value} />
+                              <SelectValue placeholder="Select level" />
                             </SelectTrigger>
                             <SelectContent>
                               <SelectItem value="ENTRY">Entry</SelectItem>
