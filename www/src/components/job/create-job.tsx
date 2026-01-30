@@ -1,0 +1,356 @@
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { jobSchema } from "@/types/job";
+import { Field, FieldLabel, FieldContent, FieldError } from "../ui/field";
+import { Controller } from "react-hook-form";
+import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+import { Button } from "../ui/button";
+import z from "zod";
+import { Card, CardContent } from "../ui/card";
+import { JobCategory } from "generated/prisma/client";
+import { useMutation } from "@tanstack/react-query";
+import { Loader } from "lucide-react";
+import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
+import { organizationBySlugQueryOptions } from "@/queries/organization";
+import { createJobFn } from "@/server/jobs/create-job";
+
+export function CreateJobForm({
+  categories,
+  slug,
+}: {
+  categories: JobCategory[];
+  slug: string;
+}) {
+  const queryClient = useQueryClient();
+  const form = useForm({
+    defaultValues: {
+      title: "",
+      description: "",
+      status: "DRAFT",
+      type: "FULLTIME",
+      locationMode: "ONSITE",
+      country: "",
+      city: "",
+      address: "",
+      salaryMin: 0,
+      salaryMax: 0,
+      currency: "USD",
+      salaryInterval: "MONTHLY",
+      experienceLevel: "ENTRY",
+      categoryId: "",
+    },
+    resolver: zodResolver(jobSchema),
+    mode: "onBlur",
+  });
+  const mutation = useMutation({
+    mutationFn: (data: z.infer<typeof jobSchema>) =>
+      createJobFn({ data: { slug, job: data } }),
+    onSuccess: async () => {
+      await queryClient.refetchQueries(organizationBySlugQueryOptions(slug));
+      toast.success("Job created successfully");
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+  const onSubmit = (data: z.infer<typeof jobSchema>) => {
+    mutation.mutateAsync(data);
+  };
+  return (
+    <>
+      <div className="flex items-center justify-between w-full">
+        <h1 className="text-xl">Edit Job</h1>
+        <Button type="submit" form="form" disabled={mutation.isPending}>
+          {mutation.isPending && <Loader className="animate-spin" />}
+          Save Changes
+        </Button>
+      </div>
+      <form
+        id="form"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col space-y-4"
+      >
+        <Card>
+          <CardContent className="flex flex-col space-y-4 px-4">
+            <Controller
+              control={form.control}
+              name="title"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Title</FieldLabel>
+                  <FieldContent>
+                    <Input {...field} />
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="description"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Description</FieldLabel>
+                  <FieldContent>
+                    <Textarea {...field} />
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="type"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Type</FieldLabel>
+                  <FieldContent>
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <SelectTrigger className="w-36">
+                        <SelectValue placeholder="Select type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="FULLTIME">Full Time</SelectItem>
+                        <SelectItem value="PARTTIME">Part Time</SelectItem>
+                        <SelectItem value="INTERNSHIP">Internship</SelectItem>
+                        <SelectItem value="CONTRACT">Contract</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FieldContent>
+                  <FieldError errors={[form.formState.errors.type]} />
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="status"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Status</FieldLabel>
+                  <FieldContent>
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <SelectTrigger className="w-36">
+                        <SelectValue placeholder="Select status" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="DRAFT">Draft</SelectItem>
+                        <SelectItem value="PUBLISHED">Published</SelectItem>
+                        <SelectItem value="CLOSED">Closed</SelectItem>
+                        <SelectItem value="ARCHIVED">Archived</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="categoryId"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Category</FieldLabel>
+                  <FieldContent>
+                    <Select
+                      value={field.value || "none"}
+                      onValueChange={(value) =>
+                        field.onChange(value === "none" ? "" : value)
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="none">No Category</SelectItem>
+                        {categories.map((category) => (
+                          <SelectItem key={category.id} value={category.id}>
+                            {category.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="flex flex-col gap-4">
+            <Controller
+              control={form.control}
+              name="country"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Country</FieldLabel>
+                  <FieldContent>
+                    <Input placeholder="Country" {...field} />
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="city"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>City</FieldLabel>
+                  <FieldContent>
+                    <Input placeholder="City" {...field} />
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="address"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Address</FieldLabel>
+                  <FieldContent>
+                    <Input placeholder="Address" {...field} />
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="locationMode"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Location Mode</FieldLabel>
+                  <FieldContent>
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <SelectTrigger className="w-36">
+                        <SelectValue placeholder="Select mode" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="REMOTE">Remote</SelectItem>
+                        <SelectItem value="ONSITE">Onsite</SelectItem>
+                        <SelectItem value="HYBRID">Hybrid</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="flex flex-col gap-4">
+            <Controller
+              control={form.control}
+              name="salaryMin"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Salary Min</FieldLabel>
+                  <FieldContent>
+                    <Input
+                      type="number"
+                      {...field}
+                      onChange={(e) => {
+                        const val = e.target.valueAsNumber;
+                        field.onChange(isNaN(val) ? undefined : val);
+                      }}
+                    />
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="salaryMax"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Salary Max</FieldLabel>
+                  <FieldContent>
+                    <Input
+                      type="number"
+                      {...field}
+                      onChange={(e) => {
+                        const val = e.target.valueAsNumber;
+                        field.onChange(isNaN(val) ? undefined : val);
+                      }}
+                    />
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="salaryInterval"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Salary Interval</FieldLabel>
+                  <FieldContent>
+                    <Select
+                      value={field.value || ""}
+                      onValueChange={field.onChange}
+                    >
+                      <SelectTrigger className="w-36">
+                        <SelectValue placeholder="Select interval" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="HOURLY">Hourly</SelectItem>
+                        <SelectItem value="DAILY">Daily</SelectItem>
+                        <SelectItem value="WEEKLY">Weekly</SelectItem>
+                        <SelectItem value="MONTHLY">Monthly</SelectItem>
+                        <SelectItem value="QUARTERLY">Quarterly</SelectItem>
+                        <SelectItem value="YEARLY">Yearly</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="experienceLevel"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Experience Level</FieldLabel>
+                  <FieldContent>
+                    <Select
+                      value={field.value || ""}
+                      onValueChange={field.onChange}
+                    >
+                      <SelectTrigger className="w-36">
+                        <SelectValue placeholder="Select level" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="ENTRY">Entry</SelectItem>
+                        <SelectItem value="MID">Mid</SelectItem>
+                        <SelectItem value="SENIOR">Senior</SelectItem>
+                        <SelectItem value="LEAD">Lead</SelectItem>
+                        <SelectItem value="EXECUTIVE">Executive</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+          </CardContent>
+        </Card>
+        <Button type="submit">Save Changes</Button>
+      </form>
+    </>
+  );
+}

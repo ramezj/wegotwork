@@ -1,9 +1,21 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Navigate } from "@tanstack/react-router";
+import { CreateJobForm } from "@/components/job/create-job";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { organizationBySlugQueryOptions } from "@/queries/organization";
 
-export const Route = createFileRoute('/$slug/_layout/jobs/create/')({
+export const Route = createFileRoute("/$slug/_layout/jobs/create/")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  return <div>Hello "/$slug/_layout/jobs/create/"!</div>
+  const { slug } = Route.useParams();
+  const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
+  if (!data.organization) {
+    return <Navigate to="/dashboard" />;
+  }
+  return (
+    <div>
+      <CreateJobForm categories={data.organization.categories} slug={slug} />
+    </div>
+  );
 }
