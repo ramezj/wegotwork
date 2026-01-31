@@ -1,4 +1,4 @@
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/features/auth/auth-client";
 import { Button } from "../ui/button";
 
 export function SignInButton() {

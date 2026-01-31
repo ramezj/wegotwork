@@ -5,8 +5,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Session } from "@/lib/auth";
-import { authClient } from "@/lib/auth-client";
+import { Session } from "@/features/auth/auth";
+import { authClient } from "@/features/auth/auth-client";
 import { ChevronUp, Users2 } from "lucide-react";
 import { useRouter } from "@tanstack/react-router";
 

@@ -14,7 +14,7 @@ import { Briefcase, HomeIcon, Loader, Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 // import { Button } from "../ui/button";
-import { Session } from "@/lib/auth";
+import { Session } from "@/features/auth/auth";
 import UserDropdown from "./user-dropdown";
 import { useQuery } from "@tanstack/react-query";
 import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
