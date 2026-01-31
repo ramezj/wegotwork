@@ -10,12 +10,12 @@ import {
   FieldSet,
 } from "../ui/field";
 import { useForm, Controller } from "react-hook-form";
-import { createOrganizationSchema } from "@/server/organization/schemas";
+import { createOrganizationSchema } from "@/features/types/organization/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import { Input } from "../ui/input";
 import { useMutation } from "@tanstack/react-query";
-import { createOrganizationFn } from "@/server/organization/create-organization";
+import { createOrganizationFn } from "@/features/services/organization/create-organization";
 import { Loader } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 

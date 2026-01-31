@@ -1,8 +1,8 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import Header from "@/components/shared/header";
 import { CreateOrganization } from "@/components/organization/create-organization";
-import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
-import { getSession } from "@/server/auth/server-session";
+import { getAllOrganizationsFn } from "@/features/services/organization/get-all-organizations";
+import { getSession } from "@/features/auth/server-session";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { OrganizationCard } from "@/components/organization/organization-card";
 import { Organization } from "generated/prisma/client";

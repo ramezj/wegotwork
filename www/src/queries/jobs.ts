@@ -1,6 +1,6 @@
-import { getJobsBySlugFn } from "@/server/jobs/get-by-slug";
+import { getJobsBySlugFn } from "@/features/services/jobs/get-by-slug";
 import { queryOptions } from "@tanstack/react-query";
-import { getJobByIdFn } from "@/server/jobs/get-job";
+import { getJobByIdFn } from "@/features/services/jobs/get-job";
 
 export const jobsBySlugQueryOptions = (slug: string) =>
   queryOptions({

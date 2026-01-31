@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getSession } from "../auth/server-session";
+import { getSession } from "../../auth/server-session";
 import prisma from "@/lib/prisma";
 import z from "zod";
 

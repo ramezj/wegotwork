@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
-import { createOrganizationSchema } from "./schemas";
-import { getSession } from "../auth/server-session";
+import { createOrganizationSchema } from "@/features/types/organization/schemas";
+import { getSession } from "@/features/auth/server-session";
 import prisma from "@/lib/prisma";
 
 export const createOrganizationFn = createServerFn()

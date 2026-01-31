@@ -17,7 +17,7 @@ import { useLocation } from "@tanstack/react-router";
 import { Session } from "@/features/auth/auth";
 import UserDropdown from "./user-dropdown";
 import { useQuery } from "@tanstack/react-query";
-import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
+import { getAllOrganizationsFn } from "@/features/services/organization/get-all-organizations";
 import { OrganizationSelector } from "./organization-selector";
 import { Organization } from "generated/prisma/client";
 

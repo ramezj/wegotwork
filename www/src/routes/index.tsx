@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { getSession } from "@/server/auth/server-session";
+import { getSession } from "@/features/auth/server-session";
 import Header from "@/components/shared/header";
 
 export const Route = createFileRoute("/")({

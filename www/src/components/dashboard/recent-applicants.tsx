@@ -13,7 +13,7 @@ export function RecentApplicants({ slug }: { slug: string }) {
         job.applicants.map((app: any) => ({ ...app, jobTitle: job.title })),
       )
       .sort(
-        (a, b) =>
+        (a: any, b: any) =>
           new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
       )
       .slice(0, 5) || [];
@@ -30,7 +30,7 @@ export function RecentApplicants({ slug }: { slug: string }) {
               No recent applicants found.
             </p>
           ) : (
-            allApplicants.map((applicant) => (
+            allApplicants.map((applicant: any) => (
               <div
                 key={applicant.id}
                 className="flex items-center justify-between border-b pb-4 last:border-0 last:pb-0"

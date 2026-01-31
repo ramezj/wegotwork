@@ -1,8 +1,8 @@
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import { getSession } from "@/server/auth/server-session";
-import { getAllOrganizationsFn } from "@/server/organization/get-all-organizations";
+import { getSession } from "@/features/auth/server-session";
+import { getAllOrganizationsFn } from "@/features/services/organization/get-all-organizations";
 import { AppHeader } from "@/components/sidebar/app-header";
 import { Suspense } from "react";
 import { LoadingLayout } from "@/components/shared/layout";

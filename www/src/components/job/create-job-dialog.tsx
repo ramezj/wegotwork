@@ -11,7 +11,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { jobSchema } from "@/types/job";
-import { createJobFn } from "@/server/jobs/create-job";
+import { createJobFn } from "@/features/services/jobs/create-job";
 import z from "zod";
 import { organizationBySlugQueryOptions } from "@/queries/organization";
 import { toast } from "sonner";

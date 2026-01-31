@@ -1,35 +1,40 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getSession } from "../auth/server-session";
+import { getSession } from "../../auth/server-session";
 import prisma from "@/lib/prisma";
 import z from "zod";
 import { jobSchema } from "@/types/job";
 
-export const createJobFn = createServerFn()
-  .inputValidator(z.object({ slug: z.string(), job: jobSchema }))
+export const editJobBySlugFn = createServerFn()
+  .inputValidator(z.object({ jobId: z.string(), job: jobSchema }))
   .handler(async ({ data }) => {
     const session = await getSession();
     if (!session) {
       throw new Error("Unauthenticated");
     }
-    try {
-      const organization = await prisma.organization.findFirst({
-        where: {
-          slug: data.slug,
+    // Security Check: Verify user is a member of the organization that owns this job
+    const authorizedJob = await prisma.job.findFirst({
+      where: {
+        id: data.jobId,
+        organization: {
           members: {
             some: {
               userId: session.user.id,
             },
           },
         },
-      });
-      if (!organization) {
-        throw new Error("Organization not found");
-      }
-      const job = await prisma.job.create({
+      },
+    });
+    if (!authorizedJob) {
+      throw new Error("You are not authorized to edit this job");
+    }
+    try {
+      const job = await prisma.job.update({
+        where: {
+          id: data.jobId,
+        },
         data: {
           ...data.job,
           categoryId: data.job.categoryId || undefined,
-          organizationId: organization.id,
         },
       });
       return { success: true, job };

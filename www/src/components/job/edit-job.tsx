@@ -18,7 +18,7 @@ import z from "zod";
 import { Card, CardContent } from "../ui/card";
 import { JobCategory } from "generated/prisma/client";
 import { useMutation } from "@tanstack/react-query";
-import { editJobBySlugFn } from "@/server/jobs/edit-by-slug";
+import { editJobBySlugFn } from "@/features/services/jobs/edit-by-slug";
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";

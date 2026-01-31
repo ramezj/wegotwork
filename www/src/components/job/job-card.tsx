@@ -21,7 +21,7 @@ export function JobsDashboard({ slug }: { slug: string }) {
       boldText={"(" + (data?.organization?.jobs?.length || 0) + ")"}
     >
       <div className="flex flex-col space-y-4">
-        {data?.organization?.jobs?.map((job) => (
+        {data?.organization?.jobs?.map((job: Job) => (
           <JobCard slug={slug} key={job.id} job={job} />
         ))}
       </div>
@@ -94,7 +94,7 @@ export function JobsList({ slug }: { slug: string }) {
           <b> ({data?.organization?.jobs?.length || 0})</b>
         </h1>
       </div>
-      {data?.organization?.jobs?.map((job) => (
+      {data?.organization?.jobs?.map((job: Job) => (
         <JobCard slug={slug} key={job.id} job={job} />
       ))}
     </div>

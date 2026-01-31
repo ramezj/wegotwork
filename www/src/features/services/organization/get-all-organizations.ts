@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getSession } from "../auth/server-session";
+import { getSession } from "@/features/auth/server-session";
 import { auth } from "@/features/auth/auth";
 import { getRequest } from "@tanstack/react-start/server";
 
