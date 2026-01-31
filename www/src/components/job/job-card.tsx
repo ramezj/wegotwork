@@ -4,7 +4,7 @@ import { LoaderPinwheel, Settings } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { Job } from "generated/prisma/client";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { organizationBySlugQueryOptions } from "@/queries/organization";
+import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { Link, Navigate } from "@tanstack/react-router";
 import { Skeleton } from "../ui/skeleton";
 import { Layout } from "../shared/layout";

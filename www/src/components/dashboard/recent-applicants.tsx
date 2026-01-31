@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { organizationBySlugQueryOptions } from "@/queries/organization";
+import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { formatDistanceToNow } from "date-fns";
 import { Badge } from "@/components/ui/badge";

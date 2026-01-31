@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { JobCard } from "@/components/job/job-card";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { organizationBySlugQueryOptions } from "@/queries/organization";
+import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { Navigate } from "@tanstack/react-router";
 import { Layout } from "@/components/shared/layout";
 import { CreateJobDialog } from "@/components/job/create-job-dialog";

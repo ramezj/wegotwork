@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { JobWithCategory } from "@/types/job";
-import { jobSchema } from "@/types/job";
+import { JobWithCategory } from "@/features/types/job/job";
+import { jobSchema } from "@/features/types/job/job";
 import { Field, FieldLabel, FieldContent, FieldError } from "../ui/field";
 import { Controller } from "react-hook-form";
 import { Input } from "../ui/input";
@@ -22,8 +22,8 @@ import { editJobBySlugFn } from "@/features/services/jobs/edit-by-slug";
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
-import { jobByIdQueryOptions } from "@/queries/jobs";
-import { organizationBySlugQueryOptions } from "@/queries/organization";
+import { jobByIdQueryOptions } from "@/features/queries/jobs";
+import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 
 export function EditJobForm({
   job,

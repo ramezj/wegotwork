@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { organizationBySlugQueryOptions } from "@/queries/organization";
+import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Briefcase, Users } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { StatisticsCards } from "@/components/dashboard/statistics";
 import { Button } from "@/components/ui/button";
-import { organizationBySlugQueryOptions } from "@/queries/organization";
+import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { Layout } from "@/components/shared/layout";
 import { JobsList } from "@/components/job/job-card";
 
