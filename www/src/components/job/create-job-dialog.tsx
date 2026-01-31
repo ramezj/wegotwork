@@ -65,18 +65,28 @@ export function CreateJobDialog({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Create Job</Button>
+        <Button variant="default">Create Job</Button>
       </DialogTrigger>
       <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Create Job</DialogTitle>
+          <DialogDescription>
+            Create a new job opening for your organization.
+          </DialogDescription>
+        </DialogHeader>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <Controller
             control={form.control}
             name="title"
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel>Title</FieldLabel>
+                <FieldLabel>Job Title</FieldLabel>
                 <FieldContent>
-                  <Input {...field} />
+                  <Input
+                    aria-invalid={fieldState.invalid}
+                    placeholder="Software Engineer"
+                    {...field}
+                  />
                 </FieldContent>
                 <FieldError errors={[fieldState.error]} />
               </Field>
