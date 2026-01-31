@@ -7,7 +7,6 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button } from "../ui/button";
-import { JobCategory } from "generated/prisma/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,13 +19,7 @@ import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
 import { Loader } from "lucide-react";
 
-export function CreateJobDialog({
-  categories,
-  slug,
-}: {
-  categories: JobCategory[];
-  slug: string;
-}) {
+export function CreateJobDialog({ slug }: { slug: string }) {
   const queryClient = useQueryClient();
   const form = useForm({
     defaultValues: {

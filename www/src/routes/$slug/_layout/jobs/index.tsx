@@ -4,8 +4,6 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { organizationBySlugQueryOptions } from "@/queries/organization";
 import { Navigate } from "@tanstack/react-router";
 import { Layout } from "@/components/shared/layout";
-import { Button } from "@/components/ui/button";
-import { Link } from "@tanstack/react-router";
 import { CreateJobDialog } from "@/components/job/create-job-dialog";
 
 export const Route = createFileRoute("/$slug/_layout/jobs/")({
@@ -22,12 +20,7 @@ function RouteComponent() {
     <>
       <Layout
         title="Job Openings"
-        primaryButton={
-          <CreateJobDialog
-            categories={data.organization.categories}
-            slug={slug}
-          />
-        }
+        primaryButton={<CreateJobDialog slug={slug} />}
         boldText={"(" + (data?.organization?.jobs?.length || 0) + ")"}
       >
         <div className="flex flex-col space-y-4">
