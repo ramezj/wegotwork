@@ -106,27 +106,27 @@ function App() {
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-theme border border-dashed rounded-none">
+            <Card className="bg-input/30 border border-dashed rounded-none">
               <CardHeader>
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <Building2 className="h-6 w-6 text-black" />
                 </div>
-                <CardTitle className="text-white font-medium !mb-2 text-foreground">
+                <CardTitle className="text-white font-medium mb-2!">
                   Beautiful Career Pages
                 </CardTitle>
-                <CardDescription className="text-muted-foreground font-medium text-foreground">
+                <CardDescription className="text-muted-foreground font-medium">
                   Create stunning, branded career pages that showcase your
                   company culture and attract top talent.
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="bg-theme border border-dashed rounded-none">
+            <Card className="bg-input/30 border border-dashed rounded-none">
               <CardHeader>
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <FileText className="h-6 w-6 text-black" />
                 </div>
-                <CardTitle className="text-white font-medium !mb-2">
+                <CardTitle className="text-white font-medium mb-2!">
                   Easy Job Posting
                 </CardTitle>
                 <CardDescription className="text-gray-400 font-medium">
@@ -136,12 +136,12 @@ function App() {
               </CardHeader>
             </Card>
 
-            <Card className="bg-theme border border-dashed rounded-none">
+            <Card className="bg-input/30 border border-dashed rounded-none">
               <CardHeader>
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <Users className="h-6 w-6 text-black" />
                 </div>
-                <CardTitle className="text-white font-medium !mb-2">
+                <CardTitle className="text-white font-medium mb-2!">
                   Applicant Management
                 </CardTitle>
                 <CardDescription className="text-muted-foreground font-medium">
@@ -151,12 +151,12 @@ function App() {
               </CardHeader>
             </Card>
 
-            <Card className="bg-theme border border-dashed rounded-none">
+            <Card className="bg-input/30 border border-dashed rounded-none">
               <CardHeader>
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <BarChart3 className="h-6 w-6 text-black" />
                 </div>
-                <CardTitle className="text-white font-medium !mb-2">
+                <CardTitle className="text-white font-medium mb-2!">
                   Analytics & Insights
                 </CardTitle>
                 <CardDescription className="text-muted-foreground font-medium">
@@ -174,7 +174,7 @@ function App() {
 
 const dummyJobs: Job[] = [
   {
-    id: "job_001",
+    id: "#",
     title: "Senior Software Engineer",
     type: "FULLTIME",
     status: "PUBLISHED",
@@ -195,7 +195,7 @@ const dummyJobs: Job[] = [
     categoryId: "cat_engineering",
   },
   {
-    id: "job_002",
+    id: "#",
     title: "Product Designer",
     type: "FULLTIME",
     status: "PUBLISHED",
@@ -215,7 +215,7 @@ const dummyJobs: Job[] = [
     categoryId: "cat_design",
   },
   {
-    id: "job_003",
+    id: "#",
     title: "Marketing Intern",
     type: "INTERNSHIP",
     status: "PUBLISHED",
