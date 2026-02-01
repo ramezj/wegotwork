@@ -16,7 +16,7 @@ export function StatisticsCardsSkeleton() {
 
 export function StatisticCardSkeleton() {
   return (
-    <Card className="w-full dark:bg-theme rounded-none border">
+    <Card className="w-full bg-input/30 hover:bg-input/50 transition-all rounded-none border">
       <CardHeader className="flex flex-row items-center justify-between space-y-0">
         <CardTitle className="text-foreground font-medium">
           <Skeleton className="h-4 w-24" />
@@ -68,7 +68,7 @@ export function StatisticCard({
   icon: React.ReactNode;
 }) {
   return (
-    <Card className="w-full dark:bg-theme rounded-none border">
+    <Card className="w-full bg-input/30 rounded-none border">
       <CardHeader className="flex flex-row items-center justify-between space-y-0">
         <CardTitle className="text-foreground font-medium">{title}</CardTitle>
         {icon}

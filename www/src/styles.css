@@ -98,11 +98,14 @@ code {
 }
 
 .dark {
-  --background: oklch(0.141 0.005 285.823);
+  /* --background changed to black instead of "--background: oklch(0.141 0.005 285.823);" */
+  --background: oklch(0 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
+  /* --card changed to black instead of "oklch(0.21 0.006 285.885);" */
+  --card: oklch(0.1 0 0);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.21 0.006 285.885);
+  /* --popover changed to black instead of "oklch(0.21 0.006 285.885);" */
+  --popover: oklch(0.1 0 0);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.985 0 0);
   --primary-foreground: oklch(0.141 0.005 285.823);
@@ -121,7 +124,8 @@ code {
   --chart-3: oklch(0.546 0.245 262.881);
   --chart-4: oklch(0.488 0.243 264.376);
   --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.21 0.006 285.885);
+  /* --sidebar changed to black instead of "oklch(0.1 0 0);" */
+  --sidebar: oklch(0 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.623 0.214 259.815);
   --sidebar-primary-foreground: oklch(0.97 0.014 254.604);

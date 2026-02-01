@@ -60,7 +60,7 @@ export function JobCardSkeleton() {
 export function JobCard({ job, slug }: { job: Job; slug: string }) {
   return (
     <Link to="/$slug/jobs/$jobId" params={{ slug, jobId: job.id }}>
-      <Card className="w-full flex flex-row border rounded-none items-center p-5 cursor-pointer shadow-none gap-0">
+      <Card className="w-full bg-input/30 hover:bg-input/50 transition-all flex flex-row border rounded-none items-center p-5 cursor-pointer shadow-none gap-0">
         <div className="flex flex-col items-start text-left py-2">
           <p className="sm:text-lg text-md font-medium text-left text-foreground">
             {job.title}
