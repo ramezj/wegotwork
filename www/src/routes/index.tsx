@@ -106,7 +106,7 @@ function App() {
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-input/30 border border-dashed rounded-none">
+            <Card className="bg-input/30 rounded-none">
               <CardHeader>
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <Building2 className="h-6 w-6 text-black" />
@@ -121,7 +121,7 @@ function App() {
               </CardHeader>
             </Card>
 
-            <Card className="bg-input/30 border border-dashed rounded-none">
+            <Card className="bg-input/30 rounded-none">
               <CardHeader>
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <FileText className="h-6 w-6 text-black" />
@@ -136,7 +136,7 @@ function App() {
               </CardHeader>
             </Card>
 
-            <Card className="bg-input/30 border border-dashed rounded-none">
+            <Card className="bg-input/30 rounded-none">
               <CardHeader>
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <Users className="h-6 w-6 text-black" />
@@ -151,7 +151,7 @@ function App() {
               </CardHeader>
             </Card>
 
-            <Card className="bg-input/30 border border-dashed rounded-none">
+            <Card className="bg-input/30 rounded-none">
               <CardHeader>
                 <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
                   <BarChart3 className="h-6 w-6 text-black" />
