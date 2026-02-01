@@ -1,6 +1,6 @@
 import { Card } from "../ui/card";
 import { Button } from "../ui/button";
-import { LoaderPinwheel, Settings } from "lucide-react";
+import { ArrowUpRight, LoaderPinwheel, Settings } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { Job } from "generated/prisma/client";
 import { useSuspenseQuery } from "@tanstack/react-query";
@@ -73,7 +73,8 @@ export function JobCard({ job, slug }: { job: Job; slug: string }) {
         </div>
         <div className="ml-auto">
           <Button size={"sm"} variant={"default"} className="rounded-none">
-            <Settings className="size-4" />
+            View
+            <ArrowUpRight className="size-4" />
           </Button>
         </div>
       </Card>
