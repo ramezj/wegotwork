@@ -53,10 +53,10 @@ function App() {
       <header>
         <section className="flex flex-col items-center text-center mt-12 px-2">
           <div className="lg:w-[60%] w-full">
-            <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-white">
+            <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-medium leading-tight text-white">
               Career Pages, Redefined.
             </h1>
-            <p className="text-[1rem] mt-2 font-semibold text-balance text-muted-foreground">
+            <p className="text-[1rem] mt-2 font-medium text-balance text-muted-foreground">
               Create stunning career pages, post jobs, manage applicants — all
               from one, easy-to-use platform.
             </p>
