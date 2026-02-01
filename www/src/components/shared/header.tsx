@@ -13,7 +13,7 @@ export default function Header({
   // isPending: boolean;
 }) {
   return (
-    <header className="w-full sticky top-0 z-50 h-16 border border-b border-l-0 border-r-0 flex flex-row items-center justify-between">
+    <header className="w-full sticky top-0 z-50 h-16 border border-b border-l-0 border-r-0 bg-background flex flex-row items-center justify-between">
       <div className="flex-row flex gap-2 items-center content-center align-middle">
         <Link to={"/"}>
           <h1 className="font-bold pl-4">LOOP</h1>
