@@ -13,18 +13,15 @@ export default function Header({
   // isPending: boolean;
 }) {
   return (
-    <header className="w-full sticky top-0 z-50 p-4 border border-b border-l-0 border-r-0 flex flex-row items-center justify-between">
+    <header className="w-full sticky top-0 z-50 h-16 border border-b border-l-0 border-r-0 flex flex-row items-center justify-between">
       <div className="flex-row flex gap-2 items-center content-center align-middle">
         <Link to={"/"}>
-          <h1 className="font-bold">wegotwork</h1>
+          <h1 className="font-bold pl-4">LOOP</h1>
         </Link>
       </div>
       <div className="flex-row gap-2 items-center md:flex hidden">
         <Link className="font-medium" to={"/"}>
           home
-        </Link>
-        <Link className="font-medium" to={"/"}>
-          resources
         </Link>
         <Link className="font-medium" to={"/"}>
           support
@@ -35,8 +32,8 @@ export default function Header({
         {/* {isPending && <SignInButton />} */}
         {session?.user ? (
           <>
-            <Button asChild>
-              <Link to={"/dashboard"}>dashboard</Link>
+            <Button asChild className="h-16 px-8 font-semibold">
+              <Link to={"/dashboard"}>Dashboard</Link>
             </Button>
           </>
         ) : (
