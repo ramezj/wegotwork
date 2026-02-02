@@ -16,7 +16,7 @@ export default function UserDropdown({ session }: { session: Session }) {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild suppressHydrationWarning>
-          <Button variant={"outline"} className="w-full">
+          <Button variant={"outline"} className="w-full py-4">
             <Users2 /> {session.user.name}
             <ChevronUp className="ml-auto" />
           </Button>
@@ -25,13 +25,14 @@ export default function UserDropdown({ session }: { session: Session }) {
           side="top"
           className="w-[--radix-dropdown-menu-trigger-width] DropdownMenuContent"
         >
-          <DropdownMenuItem>
+          <DropdownMenuItem className="hover:bg-input/30!">
             <span>Account</span>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="hover:bg-input/30!">
             <span>Billing</span>
           </DropdownMenuItem>
           <DropdownMenuItem
+            className="hover:bg-input/30!"
             onClick={async () => {
               await authClient.signOut();
               router.navigate({ to: "/" });

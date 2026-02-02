@@ -6,7 +6,7 @@ import { Layout } from "@/components/shared/layout";
 import { JobCard } from "@/components/job/job-card";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Navigate } from "@tanstack/react-router";
-import { Briefcase, Users } from "lucide-react";
+import { ArrowUpRight, Briefcase, Users } from "lucide-react";
 import { Job } from "generated/prisma/browser";
 
 export const Route = createFileRoute("/$slug/_layout/")({
@@ -32,7 +32,11 @@ function RouteComponent() {
     <Layout
       title="Welcome back,"
       boldText={session.user.name}
-      primaryButton={<Button>Preview</Button>}
+      primaryButton={
+        <Button>
+          Preview <ArrowUpRight />
+        </Button>
+      }
     >
       <div className="flex flex-col gap-4">
         <div className="flex lg:flex-row flex-col gap-4">

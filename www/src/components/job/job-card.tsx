@@ -1,6 +1,6 @@
 import { Card } from "../ui/card";
 import { Button } from "../ui/button";
-import { ArrowUpRight, LoaderPinwheel, Settings } from "lucide-react";
+import { ArrowUpRight, LoaderPinwheel } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { Job } from "generated/prisma/client";
 import { useSuspenseQuery } from "@tanstack/react-query";

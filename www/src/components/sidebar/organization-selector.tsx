@@ -21,7 +21,7 @@ export function OrganizationSelector({
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild suppressHydrationWarning>
-          <Button variant={"outline"} className="w-full justify-between">
+          <Button variant={"outline"} className="w-full justify-between py-4">
             {currentOrganization?.name || "Select Organization"}
             <ChevronsUpDown />
           </Button>
@@ -35,7 +35,7 @@ export function OrganizationSelector({
                 preload={false}
               >
                 <DropdownMenuItem
-                  className="justify-between flex cursor-pointer"
+                  className="justify-between flex cursor-pointer hover:bg-input/30!"
                   key={organization.id}
                 >
                   {organization.name}
@@ -48,7 +48,7 @@ export function OrganizationSelector({
           })}
           <DropdownMenuSeparator />
           <Link to={"/dashboard"} preload={false}>
-            <DropdownMenuItem className="justify-between flex cursor-pointer">
+            <DropdownMenuItem className="justify-between flex cursor-pointer hover:bg-input/30!">
               All Organizations
             </DropdownMenuItem>
           </Link>
