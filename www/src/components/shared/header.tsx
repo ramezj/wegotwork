@@ -47,7 +47,7 @@ export default function Header({
       <div className="md:hidden flex">
         <Sheet>
           <SheetTrigger asChild>
-            <Button size={"icon"} className="mr-4">
+            <Button className="h-16 px-6!">
               <Menu />
             </Button>
           </SheetTrigger>

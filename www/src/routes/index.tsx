@@ -53,10 +53,10 @@ function App() {
       <header>
         <section className="flex flex-col items-center text-center mt-12 px-2">
           <div className="lg:w-[60%] w-full">
-            <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-medium leading-tight text-white">
+            <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-light leading-tight text-white">
               Career Pages, Redefined.
             </h1>
-            <p className="text-[1rem] mt-2 font-medium text-balance text-muted-foreground">
+            <p className="text-[1rem] mt-2 font-light text-balance text-muted-foreground">
               Create stunning career pages, post jobs, manage applicants — all
               from one, easy-to-use platform.
             </p>
@@ -75,15 +75,6 @@ function App() {
                 <ArrowUpRight />
               </Link>
             </Button>
-            {/* <Button
-              asChild
-              variant={"default"}
-              className="px-4 bg-white text-black hover:bg-white w-full rounded-none font-bold"
-            >
-              <Link to="/">
-                Start Hiring
-              </Link>
-            </Button> */}
           </div>
           <div className="not-prose my-8 lg:w-[60%] w-full space-y-4">
             <div>
@@ -92,7 +83,7 @@ function App() {
             <div>
               <JobCard job={dummyJobs[1]} slug="#" />
             </div>
-            <div className="hidden 2xl:block">
+            <div>
               <JobCard job={dummyJobs[2]} slug="#" />
             </div>
           </div>
@@ -101,7 +92,7 @@ function App() {
       <section className="py-[1.20rem] px-4">
         <div className="w-full lg:w-[60%] mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            <h2 className="text-3xl md:text-4xl font-light text-foreground">
               Everything you need to start hiring.
             </h2>
           </div>
