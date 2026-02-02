@@ -53,7 +53,7 @@ function App() {
       <header>
         <section className="flex flex-col items-center text-center mt-12 px-2">
           <div className="lg:w-[60%] w-full">
-            <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-light leading-tight text-white">
+            <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-light leading-tight text-white text-balance">
               Career Pages, Redefined.
             </h1>
             <p className="text-[1rem] mt-2 font-light text-balance text-muted-foreground">
@@ -92,7 +92,7 @@ function App() {
       <section className="py-[1.20rem] px-4">
         <div className="w-full lg:w-[60%] mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-light text-foreground">
+            <h2 className="text-3xl md:text-4xl font-light text-foreground text-balance">
               Everything you need to start hiring.
             </h2>
           </div>

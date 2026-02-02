@@ -30,8 +30,7 @@ function RouteComponent() {
   }
   return (
     <Layout
-      title="Welcome back,"
-      boldText={session.user.name}
+      boldText={data.organization.name}
       primaryButton={
         <Button>
           Preview <ArrowUpRight />

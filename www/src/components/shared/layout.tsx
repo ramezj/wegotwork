@@ -7,7 +7,7 @@ export function Layout({
   children,
   className,
 }: {
-  title: string;
+  title?: string;
   boldText?: string;
   primaryButton?: React.ReactNode;
   children: React.ReactNode;
