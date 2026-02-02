@@ -120,7 +120,7 @@ function App() {
                 <CardTitle className="text-white font-medium mb-2!">
                   Easy Job Posting
                 </CardTitle>
-                <CardDescription className="text-gray-400 font-medium">
+                <CardDescription className="text-muted-foreground font-medium">
                   Post jobs in minutes with our intuitive editor. Add
                   requirements, benefits, and company info effortlessly.
                 </CardDescription>
