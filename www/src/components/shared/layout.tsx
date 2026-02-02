@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { LoaderPinwheel } from "lucide-react";
+import { Loader, Loader2, LoaderPinwheel } from "lucide-react";
 export function Layout({
   title,
   boldText,
@@ -39,7 +39,7 @@ export function LoadingLayout({
   return (
     <Layout title={title} boldText={boldText} primaryButton={primaryButton}>
       <div className="flex-1 items-center flex flex-col justify-center">
-        <LoaderPinwheel className="size-8 animate-spin text-foreground" />
+        <Loader2 className="size-8 animate-spin text-foreground" />
       </div>
     </Layout>
   );
