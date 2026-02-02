@@ -73,7 +73,7 @@ export default function Header({
         <Button
           variant="default"
           size="icon"
-          className="md:hidden z-50 text-black hover:text-white px-8 h-16 hover:bg-inherit rounded-none"
+          className="md:hidden z-50 hover:bg-white text-black px-8 h-16 rounded-none"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
