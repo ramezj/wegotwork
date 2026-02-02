@@ -39,7 +39,7 @@ export default function Header({
     };
   }, [isOpen]);
   return (
-    <header className="w-full sticky top-0 z-50 h-16 border border-b border-l-0 border-r-0 bg-background flex flex-row items-center justify-between">
+    <header className="w-full sticky top-0 z-50 h-16 border border-b border-l-0 border-r-0 border-t-0 bg-background flex flex-row items-center justify-between">
       <div className="flex-row flex gap-2 items-center content-center align-middle">
         <Link to={"/"}>
           <h1 className="font-bold pl-4">LOOP</h1>
@@ -71,9 +71,9 @@ export default function Header({
       </div>
       <div className="md:hidden flex">
         <Button
-          variant="ghost"
+          variant="default"
           size="icon"
-          className="md:hidden z-50 text-white hover:text-white px-8 h-16 bg-inherit hover:bg-inherit rounded-none"
+          className="md:hidden z-50 text-black hover:text-white px-8 h-16 hover:bg-inherit rounded-none"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
