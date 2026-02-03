@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as ViewSlugRouteRouteImport } from './routes/view/$slug/route'
 import { Route as SlugLayoutRouteRouteImport } from './routes/$slug/_layout/route'
 import { Route as SlugLayoutIndexRouteImport } from './routes/$slug/_layout/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -27,6 +29,16 @@ const DashboardRouteRoute = DashboardRouteRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const ViewSlugRouteRoute = ViewSlugRouteRouteImport.update({
+  id: '/view/$slug',
+  path: '/view/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SlugLayoutRouteRoute = SlugLayoutRouteRouteImport.update({
@@ -69,8 +81,10 @@ const SlugLayoutJobsJobIdRouteRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRouteRoute
+  '/dashboard': typeof DashboardRouteRouteWithChildren
   '/$slug': typeof SlugLayoutRouteRouteWithChildren
+  '/view/$slug': typeof ViewSlugRouteRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/$slug/applicants': typeof SlugLayoutApplicantsRouteRoute
   '/$slug/jobs': typeof SlugLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -80,7 +94,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRouteRoute
+  '/view/$slug': typeof ViewSlugRouteRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/$slug/applicants': typeof SlugLayoutApplicantsRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/$slug': typeof SlugLayoutIndexRoute
@@ -90,8 +105,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRouteRoute
+  '/dashboard': typeof DashboardRouteRouteWithChildren
   '/$slug/_layout': typeof SlugLayoutRouteRouteWithChildren
+  '/view/$slug': typeof ViewSlugRouteRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/$slug/_layout/applicants': typeof SlugLayoutApplicantsRouteRoute
   '/$slug/_layout/jobs': typeof SlugLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -105,6 +122,8 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/$slug'
+    | '/view/$slug'
+    | '/dashboard/'
     | '/$slug/applicants'
     | '/$slug/jobs'
     | '/api/auth/$'
@@ -114,6 +133,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/view/$slug'
     | '/dashboard'
     | '/$slug/applicants'
     | '/api/auth/$'
@@ -125,6 +145,8 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/$slug/_layout'
+    | '/view/$slug'
+    | '/dashboard/'
     | '/$slug/_layout/applicants'
     | '/$slug/_layout/jobs'
     | '/api/auth/$'
@@ -135,8 +157,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DashboardRouteRoute: typeof DashboardRouteRoute
+  DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
   SlugLayoutRouteRoute: typeof SlugLayoutRouteRouteWithChildren
+  ViewSlugRouteRoute: typeof ViewSlugRouteRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -154,6 +177,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/view/$slug': {
+      id: '/view/$slug'
+      path: '/view/$slug'
+      fullPath: '/view/$slug'
+      preLoaderRoute: typeof ViewSlugRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$slug/_layout': {
@@ -208,6 +245,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface DashboardRouteRouteChildren {
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
+  DashboardRouteRouteChildren,
+)
+
 interface SlugLayoutJobsRouteRouteChildren {
   SlugLayoutJobsJobIdRouteRoute: typeof SlugLayoutJobsJobIdRouteRoute
   SlugLayoutJobsIndexRoute: typeof SlugLayoutJobsIndexRoute
@@ -239,8 +288,9 @@ const SlugLayoutRouteRouteWithChildren = SlugLayoutRouteRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DashboardRouteRoute: DashboardRouteRoute,
+  DashboardRouteRoute: DashboardRouteRouteWithChildren,
   SlugLayoutRouteRoute: SlugLayoutRouteRouteWithChildren,
+  ViewSlugRouteRoute: ViewSlugRouteRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

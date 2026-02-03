@@ -2,21 +2,8 @@ import { Session } from "@/features/auth/auth";
 import { SignInButton } from "../auth/auth-buttons";
 import { Link } from "@tanstack/react-router";
 import { Button } from "../ui/button";
-import { Book, Menu, Sunset, Trees, X, Zap } from "lucide-react";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../ui/sheet";
+import { Menu, X } from "lucide-react";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../ui/accordion";
 import React from "react";
 import { cn } from "@/lib/utils";
 
@@ -45,13 +32,13 @@ export default function Header({
           <h1 className="font-bold pl-4">LOOP</h1>
         </Link>
         <div className="flex-row gap-2 items-center content-center align-middle md:flex hidden">
-          <Link className="font-medium text-gray-200" to={"/"}>
+          <Link className="font-medium text-gray-100" to={"/"}>
             home
           </Link>
-          <Link className="font-medium text-gray-200" to={"/"}>
+          <Link className="font-medium text-gray-100" to={"/"}>
             support
           </Link>
-          <Link className="font-medium text-gray-200" to={"/"}>
+          <Link className="font-medium text-gray-100" to={"/"}>
             blog
           </Link>
         </div>
