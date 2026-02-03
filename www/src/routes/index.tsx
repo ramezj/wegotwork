@@ -78,13 +78,13 @@ function App() {
           </div>
           <div className="not-prose my-8 lg:w-[60%] w-full space-y-4">
             <div>
-              <JobCard job={dummyJobs[0]} slug="#" />
+              <JobCard job={dummyJobs[0]} slug="#" isDemo />
             </div>
             <div>
-              <JobCard job={dummyJobs[1]} slug="#" />
+              <JobCard job={dummyJobs[1]} slug="#" isDemo />
             </div>
             <div>
-              <JobCard job={dummyJobs[2]} slug="#" />
+              <JobCard job={dummyJobs[2]} slug="#" isDemo />
             </div>
           </div>
         </div>
