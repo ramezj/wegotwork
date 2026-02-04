@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ViewIndexRouteImport } from './routes/view/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as ViewSlugRouteRouteImport } from './routes/view/$slug/route'
 import { Route as SlugLayoutRouteRouteImport } from './routes/$slug/_layout/route'
@@ -29,6 +30,11 @@ const DashboardRouteRoute = DashboardRouteRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ViewIndexRoute = ViewIndexRouteImport.update({
+  id: '/view/',
+  path: '/view/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/$slug': typeof SlugLayoutRouteRouteWithChildren
   '/view/$slug': typeof ViewSlugRouteRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/view/': typeof ViewIndexRoute
   '/$slug/applicants': typeof SlugLayoutApplicantsRouteRoute
   '/$slug/jobs': typeof SlugLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/view/$slug': typeof ViewSlugRouteRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/view': typeof ViewIndexRoute
   '/$slug/applicants': typeof SlugLayoutApplicantsRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/$slug': typeof SlugLayoutIndexRoute
@@ -109,6 +117,7 @@ export interface FileRoutesById {
   '/$slug/_layout': typeof SlugLayoutRouteRouteWithChildren
   '/view/$slug': typeof ViewSlugRouteRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/view/': typeof ViewIndexRoute
   '/$slug/_layout/applicants': typeof SlugLayoutApplicantsRouteRoute
   '/$slug/_layout/jobs': typeof SlugLayoutJobsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/$slug'
     | '/view/$slug'
     | '/dashboard/'
+    | '/view/'
     | '/$slug/applicants'
     | '/$slug/jobs'
     | '/api/auth/$'
@@ -135,6 +145,7 @@ export interface FileRouteTypes {
     | '/'
     | '/view/$slug'
     | '/dashboard'
+    | '/view'
     | '/$slug/applicants'
     | '/api/auth/$'
     | '/$slug'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
     | '/$slug/_layout'
     | '/view/$slug'
     | '/dashboard/'
+    | '/view/'
     | '/$slug/_layout/applicants'
     | '/$slug/_layout/jobs'
     | '/api/auth/$'
@@ -160,6 +172,7 @@ export interface RootRouteChildren {
   DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
   SlugLayoutRouteRoute: typeof SlugLayoutRouteRouteWithChildren
   ViewSlugRouteRoute: typeof ViewSlugRouteRoute
+  ViewIndexRoute: typeof ViewIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -177,6 +190,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/view/': {
+      id: '/view/'
+      path: '/view'
+      fullPath: '/view/'
+      preLoaderRoute: typeof ViewIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/': {
@@ -291,6 +311,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRouteRoute: DashboardRouteRouteWithChildren,
   SlugLayoutRouteRoute: SlugLayoutRouteRouteWithChildren,
   ViewSlugRouteRoute: ViewSlugRouteRoute,
+  ViewIndexRoute: ViewIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

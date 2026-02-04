@@ -14,6 +14,11 @@ export const getOrganizationBySlugFn = createServerFn()
       const organization = await prisma.organization.findFirst({
         where: {
           slug: data.slug,
+          members: {
+            some: {
+              userId: session.user.id,
+            },
+          },
         },
         include: {
           jobs: {
@@ -28,6 +33,7 @@ export const getOrganizationBySlugFn = createServerFn()
           categories: true,
         },
       });
+      console.log(organization);
       return { success: true, organization };
     } catch (error) {
       throw new Error("Something Went Wrong");

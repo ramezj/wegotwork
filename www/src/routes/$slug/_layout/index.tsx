@@ -25,6 +25,7 @@ function RouteComponent() {
   const { session } = Route.useRouteContext();
   const { slug } = Route.useParams();
   const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
+  console.log(data);
   if (!data?.organization) {
     return <Navigate to="/dashboard" />;
   }

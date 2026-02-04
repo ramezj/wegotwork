@@ -11,6 +11,25 @@ export const getRouter = () => {
 
   const router = createRouter({
     routeTree,
+    rewrite: {
+      input: ({ url }) => {
+        const subdomain = url.hostname.split(".")[0];
+
+        if (subdomain === "jobs") {
+          url.pathname = "/view" + url.pathname;
+        }
+
+        return url;
+      },
+      output: ({ url }) => {
+        const subdomain = url.hostname.split(".")[0];
+
+        if (subdomain === "jobs" && url.pathname.startsWith("/view")) {
+          url.pathname = url.pathname.replace(/^\/view/, "") || "/";
+        }
+        return url;
+      },
+    },
     context: {
       ...rqContext,
     },
