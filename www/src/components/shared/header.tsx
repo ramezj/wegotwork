@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 
 import React from "react";
 import { cn } from "@/lib/utils";
+import { authClient } from "@/features/auth/auth-client";
 
 export default function Header({
   session,
@@ -79,7 +80,7 @@ export default function Header({
             <Link
               key={item}
               to={`/`}
-              className="text-2xl text-white transition-colors font-bold"
+              className="text-xl text-white transition-colors font-bold"
               onClick={() => setIsOpen(false)}
             >
               {item}
@@ -87,7 +88,7 @@ export default function Header({
           ))}
           {session?.user ? (
             <>
-              <Button asChild className="w-52">
+              <Button asChild className="w-52 font-semibold text-xl">
                 <Link to="/dashboard" onClick={() => setIsOpen(false)}>
                   Dashboard
                 </Link>
@@ -95,7 +96,17 @@ export default function Header({
             </>
           ) : (
             <>
-              <SignInButton />
+              <Button
+                className="font-semibold w-52 text-xl"
+                onClick={() => {
+                  authClient.signIn.social({
+                    provider: "google",
+                    callbackURL: "/",
+                  });
+                }}
+              >
+                Sign In
+              </Button>
             </>
           )}
         </nav>

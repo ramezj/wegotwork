@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 export function SignInButton() {
   return (
     <Button
-      className="w-52"
+      className="h-16 px-8 font-semibold"
       onClick={() => {
         authClient.signIn.social({ provider: "google", callbackURL: "/" });
       }}
