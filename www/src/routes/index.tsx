@@ -65,9 +65,12 @@ function App() {
         <div className="flex flex-col items-center p-4 -mt-4 ">
           <div className="flex flex-row w-full lg:w-[60%] items-center justify-center content-center gap-4 mt-6">
             <Button variant={"outline"} asChild className="flex-1">
-              <Link to={"/"} target="_blank">
+              <a
+                href={"https://jobs.wegotwork.co/test-organization"}
+                target="_blank"
+              >
                 See Demo
-              </Link>
+              </a>
             </Button>
             <Button variant={"default"} asChild className="flex-1">
               <Link to={"/"} target="_blank">
