@@ -2,8 +2,14 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { viewOrganizationBySlugQueryOptions } from "@/features/queries/organization";
 import { useMemo, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { JobCard } from "@/components/job/job-card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export const Route = createFileRoute("/view/$slug/")({
   component: RouteComponent,
@@ -26,50 +32,53 @@ function RouteComponent() {
   }, [data.organization?.jobs, selectedCategory]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-100px)] py-12 px-4 space-y-12">
+    <div className="flex flex-col items-center justify-center py-12 px-4 space-y-12 w-full max-w-7xl mx-auto">
       <div className="text-center space-y-4">
-        <h1 className="text-5xl font-bold tracking-tight">
+        <h1 className="text-4xl md:text-5xl font-medium tracking-tight">
           {data.organization.name}
         </h1>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto text-balance font-light">
           Explore our open positions and join our team in building the future.
         </p>
       </div>
 
       <div className="w-full max-w-4xl space-y-8">
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          <Button
-            variant={selectedCategory === null ? "default" : "outline"}
-            size="sm"
-            onClick={() => setSelectedCategory(null)}
-            className="rounded-full"
-          >
-            All Jobs
-          </Button>
-          {data.organization.categories?.map((category) => (
-            <Button
-              key={category.id}
-              variant={selectedCategory === category.id ? "default" : "outline"}
-              size="sm"
-              onClick={() => setSelectedCategory(category.id)}
-              className="rounded-full"
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 border-b pb-6">
+          <div className="flex flex-col space-y-1 text-left w-full sm:w-auto">
+            <h2 className="text-xl font-medium">
+              Available Positions ({filteredJobs.length})
+            </h2>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+            <Select
+              value={selectedCategory || "all"}
+              onValueChange={(value) =>
+                setSelectedCategory(value === "all" ? null : value)
+              }
             >
-              {category.name}
-            </Button>
-          ))}
+              <SelectTrigger className="w-full sm:w-[200px]">
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Jobs</SelectItem>
+                {data.organization.categories?.map((category) => (
+                  <SelectItem key={category.id} value={category.id}>
+                    {category.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         <div className="flex flex-col space-y-4">
           {filteredJobs.length > 0 ? (
-            filteredJobs.map((job) => (
-              <JobCard slug={slug} key={job.id} job={job as any} />
-            ))
+            filteredJobs.map((job) => <JobCard slug={slug} job={job as any} />)
           ) : (
-            <div className="text-center py-12 bg-input/10 border border-dashed rounded-lg">
-              <p className="text-muted-foreground">
-                No job openings found for this category.
-              </p>
-            </div>
+            <p className="text-muted-foreground text-center">
+              No job openings found for this category.
+            </p>
           )}
         </div>
       </div>
