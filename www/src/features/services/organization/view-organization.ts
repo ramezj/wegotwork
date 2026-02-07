@@ -1,36 +1,26 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getSession } from "@/features/auth/server-session";
 import { getOrganizationBySlugSchema } from "@/features/types/organization/schemas";
 import prisma from "@/lib/prisma";
 
-export const getOrganizationBySlugFn = createServerFn()
+export const viewOrganizationBySlugFn = createServerFn()
   .inputValidator(getOrganizationBySlugSchema)
   .handler(async ({ data }) => {
-    const session = await getSession();
-    if (!session) {
-      throw new Error("Unauthenticated");
-    }
     try {
       const organization = await prisma.organization.findFirst({
         where: {
           slug: data.slug,
-          members: {
-            some: {
-              userId: session.user.id,
-            },
-          },
         },
         include: {
           jobs: {
-            include: {
-              applicants: true,
-            },
             orderBy: {
               createdAt: "desc",
             },
-            take: 3,
           },
-          categories: true,
+          categories: {
+            orderBy: {
+              order: "asc",
+            },
+          },
         },
       });
       return { success: true, organization };

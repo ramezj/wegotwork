@@ -94,7 +94,11 @@ export function EditJobForm({
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Title</FieldLabel>
                   <FieldContent>
-                    <Input {...field} />
+                    <Input
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Job Title"
+                      {...field}
+                    />
                   </FieldContent>
                   <FieldError errors={[fieldState.error]} />
                 </Field>
@@ -107,7 +111,11 @@ export function EditJobForm({
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Description</FieldLabel>
                   <FieldContent>
-                    <Textarea {...field} />
+                    <Textarea
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Job Description"
+                      {...field}
+                    />
                   </FieldContent>
                   <FieldError errors={[fieldState.error]} />
                 </Field>
@@ -120,7 +128,11 @@ export function EditJobForm({
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Type</FieldLabel>
                   <FieldContent>
-                    <Select value={field.value} onValueChange={field.onChange}>
+                    <Select
+                      aria-invalid={fieldState.invalid}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                    >
                       <SelectTrigger className="w-36">
                         <SelectValue placeholder="Select type" />
                       </SelectTrigger>
@@ -143,7 +155,11 @@ export function EditJobForm({
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Status</FieldLabel>
                   <FieldContent>
-                    <Select value={field.value} onValueChange={field.onChange}>
+                    <Select
+                      aria-invalid={fieldState.invalid}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                    >
                       <SelectTrigger className="w-36">
                         <SelectValue placeholder="Select status" />
                       </SelectTrigger>
@@ -167,6 +183,7 @@ export function EditJobForm({
                   <FieldLabel>Category</FieldLabel>
                   <FieldContent>
                     <Select
+                      aria-invalid={fieldState.invalid}
                       value={field.value || "none"}
                       onValueChange={(value) =>
                         field.onChange(value === "none" ? "" : value)
@@ -200,7 +217,11 @@ export function EditJobForm({
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Country</FieldLabel>
                   <FieldContent>
-                    <Input placeholder="Country" {...field} />
+                    <Input
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Country"
+                      {...field}
+                    />
                   </FieldContent>
                   <FieldError errors={[fieldState.error]} />
                 </Field>
@@ -213,7 +234,11 @@ export function EditJobForm({
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>City</FieldLabel>
                   <FieldContent>
-                    <Input placeholder="City" {...field} />
+                    <Input
+                      aria-invalid={fieldState.invalid}
+                      placeholder="City"
+                      {...field}
+                    />
                   </FieldContent>
                   <FieldError errors={[fieldState.error]} />
                 </Field>
@@ -226,7 +251,11 @@ export function EditJobForm({
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Address</FieldLabel>
                   <FieldContent>
-                    <Input placeholder="Address" {...field} />
+                    <Input
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Address"
+                      {...field}
+                    />
                   </FieldContent>
                   <FieldError errors={[fieldState.error]} />
                 </Field>
@@ -239,7 +268,11 @@ export function EditJobForm({
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Location Mode</FieldLabel>
                   <FieldContent>
-                    <Select value={field.value} onValueChange={field.onChange}>
+                    <Select
+                      aria-invalid={fieldState.invalid}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                    >
                       <SelectTrigger className="w-36">
                         <SelectValue placeholder="Select mode" />
                       </SelectTrigger>
@@ -266,6 +299,7 @@ export function EditJobForm({
                   <FieldLabel>Salary Min</FieldLabel>
                   <FieldContent>
                     <Input
+                      aria-invalid={fieldState.invalid}
                       type="number"
                       {...field}
                       onChange={(e) => {
@@ -286,6 +320,7 @@ export function EditJobForm({
                   <FieldLabel>Salary Max</FieldLabel>
                   <FieldContent>
                     <Input
+                      aria-invalid={fieldState.invalid}
                       type="number"
                       {...field}
                       onChange={(e) => {
@@ -306,6 +341,7 @@ export function EditJobForm({
                   <FieldLabel>Salary Interval</FieldLabel>
                   <FieldContent>
                     <Select
+                      aria-invalid={fieldState.invalid}
                       value={field.value || ""}
                       onValueChange={field.onChange}
                     >
@@ -334,6 +370,7 @@ export function EditJobForm({
                   <FieldLabel>Experience Level</FieldLabel>
                   <FieldContent>
                     <Select
+                      aria-invalid={fieldState.invalid}
                       value={field.value || ""}
                       onValueChange={field.onChange}
                     >

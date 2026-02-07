@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { StatisticCard } from "@/components/dashboard/statistics";
 import { Button } from "@/components/ui/button";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
@@ -25,16 +25,17 @@ function RouteComponent() {
   const { session } = Route.useRouteContext();
   const { slug } = Route.useParams();
   const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
-  console.log(data);
   if (!data?.organization) {
     return <Navigate to="/dashboard" />;
   }
   return (
     <Layout
-      boldText={data.organization.name}
+      title={data.organization.name}
       primaryButton={
-        <Button>
-          Preview <ArrowUpRight />
+        <Button asChild>
+          <Link target="_blank" to="/view/$slug" params={{ slug }}>
+            Preview <ArrowUpRight />
+          </Link>
         </Button>
       }
     >
