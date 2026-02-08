@@ -29,32 +29,13 @@ export const Route = createFileRoute("/")({
 function App() {
   const { session } = Route.useRouteContext();
   return (
-    // <div>
-    //   <Header session={session} />
-    //   <div className="justify-center items-center text-center content-center py-16">
-    //     <h1 className="text-4xl">Career Pages, Redefined</h1>
-    //     <div className="flex flex-row gap-2 justify-center items-center">
-    //       <Button className="w-36">Get Started</Button>
-    //       <Button variant={"outline"} className="w-36">
-    //         Learn More
-    //       </Button>
-    //     </div>
-    //     <div className="mt-8 flex justify-center">
-    //       <img
-    //         src="/demo.png"
-    //         alt="Demo"
-    //         className="lg:w-[50%] w-[80%] h-auto border-2"
-    //       />
-    //     </div>
-    //   </div>
-    // </div>
     <main className="">
       <Header session={session} />
       <header>
         <section className="flex flex-col items-center text-center mt-12 px-2">
           <div className="lg:w-[60%] w-full">
             <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-light leading-tight text-white text-balance">
-              Career Pages, Redefined.
+              Career Pages, <b>Redefined</b>
             </h1>
             <p className="text-[1rem] mt-2 font-light text-balance text-muted-foreground">
               Create stunning career pages, post jobs, manage applicants — all

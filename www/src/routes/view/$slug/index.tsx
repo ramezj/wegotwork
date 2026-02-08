@@ -58,7 +58,7 @@ function RouteComponent() {
           </p>
         </div>
 
-        <div className="w-full max-w-4xl space-y-8">
+        <div className="w-full max-w-6xl space-y-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 border-b pb-6">
             <div className="flex flex-col space-y-1 text-left w-full sm:w-auto">
               <h2 className="text-xl font-medium">
