@@ -47,7 +47,7 @@ function RouteComponent() {
 
   return (
     <div>
-      <Header name={data.organization.name} />
+      {/* <Header name={data.organization.name} /> */}
       <div className="flex flex-col items-center justify-center py-12 px-4 space-y-12 w-full max-w-7xl mx-auto">
         <div className="text-center space-y-4">
           <h1 className="text-4xl md:text-5xl font-medium tracking-tight">
