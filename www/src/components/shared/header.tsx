@@ -47,7 +47,7 @@ export default function Header({
       <div className="flex-row gap-2 items-center md:flex hidden">
         {session?.user ? (
           <>
-            <Button asChild className="h-16 px-8 font-semibold">
+            <Button asChild className="h-16 px-8 font-semibold cursor-pointer">
               <Link to={"/dashboard"}>Dashboard</Link>
             </Button>
           </>

@@ -3,13 +3,14 @@ import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { viewOrganizationBySlugQueryOptions } from "@/features/queries/organization";
 import { useMemo, useState } from "react";
 import { JobCard } from "@/components/job/job-card";
+import { Button } from "@/components/ui/button";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ChevronDown, Check } from "lucide-react";
 
 export const Route = createFileRoute("/view/$slug/")({
   component: RouteComponent,
@@ -45,6 +46,14 @@ function RouteComponent() {
     );
   }, [data.organization?.jobs, selectedCategory]);
 
+  const selectedCategoryName = useMemo(() => {
+    if (!selectedCategory) return "All Jobs";
+    return (
+      data.organization?.categories?.find((c) => c.id === selectedCategory)
+        ?.name || "All Jobs"
+    );
+  }, [selectedCategory, data.organization?.categories]);
+
   return (
     <div>
       {/* <Header name={data.organization.name} /> */}
@@ -67,24 +76,38 @@ function RouteComponent() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-              <Select
-                value={selectedCategory || "all"}
-                onValueChange={(value) =>
-                  setSelectedCategory(value === "all" ? null : value)
-                }
-              >
-                <SelectTrigger className="w-full sm:w-[200px]">
-                  <SelectValue placeholder="Select category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Jobs</SelectItem>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full sm:w-[200px] justify-between font-normal"
+                  >
+                    <span className="truncate">{selectedCategoryName}</span>
+                    <ChevronDown className="ml-2 h-4 w-4 opacity-50" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-[200px]">
+                  <DropdownMenuItem
+                    onClick={() => setSelectedCategory(null)}
+                    className="flex items-center justify-between"
+                  >
+                    <span>All Jobs</span>
+                    {!selectedCategory && <Check className="h-4 w-4" />}
+                  </DropdownMenuItem>
                   {data.organization.categories?.map((category) => (
-                    <SelectItem key={category.id} value={category.id}>
-                      {category.name}
-                    </SelectItem>
+                    <DropdownMenuItem
+                      key={category.id}
+                      onClick={() => setSelectedCategory(category.id)}
+                      className="flex items-center justify-between"
+                    >
+                      <span className="truncate">{category.name}</span>
+                      {selectedCategory === category.id && (
+                        <Check className="h-4 w-4" />
+                      )}
+                    </DropdownMenuItem>
                   ))}
-                </SelectContent>
-              </Select>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
 
