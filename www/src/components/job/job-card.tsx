@@ -1,68 +1,36 @@
 import { Card } from "../ui/card";
 import { Button } from "../ui/button";
-import { ArrowUpRight, LoaderPinwheel } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
-import { Job } from "generated/prisma/client";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { organizationBySlugQueryOptions } from "@/features/queries/organization";
-import { Link, Navigate } from "@tanstack/react-router";
-import { Skeleton } from "../ui/skeleton";
-import { Layout } from "../shared/layout";
+import { Link } from "@tanstack/react-router";
+import { JobWithCategory } from "@/features/types/job/job";
+import { Separator } from "../ui/separator";
 
-export function JobsDashboard({ slug }: { slug: string }) {
-  const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
-  if (!data.organization) {
-    return <Navigate to="/dashboard" />;
-  }
-  return (
-    <Layout
-      title="Job Openings"
-      primaryButton={<Button>Create</Button>}
-      boldText={"(" + (data?.organization?.jobs?.length || 0) + ")"}
-    >
-      <div className="flex flex-col space-y-4">
-        {data?.organization?.jobs?.map((job: Job) => (
-          <JobCard slug={slug} key={job.id} job={job} />
-        ))}
-      </div>
-    </Layout>
-  );
-}
+const formatLocationMode = (mode: string) => {
+  const map: Record<string, string> = {
+    ONSITE: "On Site",
+    REMOTE: "Remote",
+    HYBRID: "Hybrid",
+  };
+  return map[mode] || mode;
+};
 
-export function JobsDashboardSkeleton() {
-  return (
-    <Layout
-      title="Job Openings"
-      primaryButton={<Button>Create</Button>}
-      boldText={"(0)"}
-    >
-      <div className="flex-1 items-center flex flex-col justify-center">
-        <LoaderPinwheel className="size-8 animate-spin text-foreground" />
-      </div>
-    </Layout>
-  );
-}
-
-export function JobCardSkeleton() {
-  return (
-    <Card className="w-full flex flex-row border rounded-none items-center p-5 cursor-pointer shadow-none gap-0">
-      <div className="flex flex-col items-start text-left py-2">
-        <Skeleton className="h-4 w-24" />
-        <Skeleton className="h-4 w-24" />
-      </div>
-      <div className="ml-auto">
-        <Skeleton className="size-4" />
-      </div>
-    </Card>
-  );
-}
+const formatJobType = (type: string) => {
+  const map: Record<string, string> = {
+    FULLTIME: "Full Time",
+    PARTTIME: "Part Time",
+    INTERNSHIP: "Internship",
+    CONTRACT: "Contract",
+  };
+  return map[type] || type;
+};
 
 export function JobCard({
   job,
   slug,
   isDemo,
 }: {
-  job: Job;
+  job: JobWithCategory;
   slug: string;
   isDemo?: boolean;
 }) {
@@ -76,8 +44,30 @@ export function JobCard({
           <p className="sm:text-lg text-md font-medium text-left text-foreground">
             {job.title}
           </p>
-          <div className="flex">
-            <p className="text-xs text-white font-medium">
+          <div className="flex flex-row items-center flex-wrap gap-x-2 gap-y-1">
+            {job.category && (
+              <p className="text-xs text-muted-foreground font-medium">
+                {job.category.name}
+              </p>
+            )}
+            <div className="size-1 rounded-full bg-muted-foreground/30 shrink-0" />
+            <p className="text-xs text-muted-foreground font-medium">
+              {formatJobType(job.type)}
+            </p>
+            <div className="size-1 rounded-full bg-muted-foreground/30 shrink-0" />
+            <p className="text-xs text-muted-foreground font-medium">
+              {formatLocationMode(job.locationMode)}
+            </p>
+            {(job.city || job.country) && (
+              <>
+                <div className="size-1 rounded-full bg-muted-foreground/30 shrink-0" />
+                <p className="text-xs text-muted-foreground font-medium">
+                  {[job.city, job.country].filter(Boolean).join(", ")}
+                </p>
+              </>
+            )}
+            <div className="size-1 rounded-full bg-muted-foreground/30 shrink-0" />
+            <p className="text-xs text-muted-foreground font-medium">
               {formatDistanceToNow(job.createdAt)} ago
             </p>
           </div>
@@ -90,25 +80,5 @@ export function JobCard({
         </div>
       </Card>
     </Link>
-  );
-}
-
-export function JobsList({ slug }: { slug: string }) {
-  const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
-  if (!data?.organization) {
-    return <Navigate to="/dashboard" />;
-  }
-  return (
-    <div className="flex flex-col space-y-4">
-      <div>
-        <h1 className="text-xl">
-          Recent Jobs
-          <b> ({data?.organization?.jobs?.length || 0})</b>
-        </h1>
-      </div>
-      {data?.organization?.jobs?.map((job: Job) => (
-        <JobCard slug={slug} key={job.id} job={job} />
-      ))}
-    </div>
   );
 }

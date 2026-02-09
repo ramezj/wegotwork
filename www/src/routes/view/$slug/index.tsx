@@ -3,6 +3,7 @@ import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { viewOrganizationBySlugQueryOptions } from "@/features/queries/organization";
 import { useMemo, useState } from "react";
 import { JobCard } from "@/components/job/job-card";
+import { JobWithCategory } from "@/features/types/job/job";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -114,7 +115,11 @@ function RouteComponent() {
           <div className="flex flex-col space-y-4">
             {filteredJobs.length > 0 ? (
               filteredJobs.map((job) => (
-                <JobCard slug={slug} job={job as any} />
+                <JobCard
+                  key={job.id}
+                  slug={slug}
+                  job={job as JobWithCategory}
+                />
               ))
             ) : (
               <p className="text-muted-foreground text-center">

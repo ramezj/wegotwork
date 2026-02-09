@@ -12,6 +12,9 @@ export const viewOrganizationBySlugFn = createServerFn()
         },
         include: {
           jobs: {
+            include: {
+              category: true,
+            },
             orderBy: {
               createdAt: "desc",
             },
