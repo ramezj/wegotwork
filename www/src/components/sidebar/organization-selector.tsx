@@ -21,7 +21,10 @@ export function OrganizationSelector({
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild suppressHydrationWarning>
-          <Button variant={"outline"} className="w-full justify-between py-4">
+          <Button
+            variant={"outline"}
+            className="w-full justify-between border-input"
+          >
             {currentOrganization?.name || "Select Organization"}
             <ChevronsUpDown />
           </Button>

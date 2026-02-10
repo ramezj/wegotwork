@@ -16,7 +16,7 @@ export default function UserDropdown({ session }: { session: Session }) {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild suppressHydrationWarning>
-          <Button variant={"outline"} className="w-full py-4">
+          <Button variant={"outline"} className="w-full py-4 border-input">
             <Users2 /> {session.user.name}
             <ChevronUp className="ml-auto" />
           </Button>

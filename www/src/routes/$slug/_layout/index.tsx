@@ -19,7 +19,7 @@ export const Route = createFileRoute("/$slug/_layout/")({
 function RouteComponent() {
   const { session } = Route.useRouteContext();
   const { slug } = Route.useParams();
-  const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug, 3));
+  const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
   if (!data?.organization) {
     return <Navigate to="/dashboard" />;
   }
@@ -57,12 +57,14 @@ function RouteComponent() {
             <div>
               <h1 className="text-xl">
                 Recent Jobs
-                <b> ({data?.organization?.jobs?.length || 0})</b>
+                {/* <b> ({data?.organization?.jobs?.length || 0})</b> */}
               </h1>
             </div>
-            {data?.organization?.jobs?.map((job: JobWithCategory) => (
-              <JobCard slug={slug} key={job.id} job={job} />
-            ))}
+            {data?.organization?.jobs
+              ?.slice(0, 3)
+              .map((job: JobWithCategory) => (
+                <JobCard slug={slug} key={job.id} job={job} />
+              ))}
           </div>
         </div>
       </div>
