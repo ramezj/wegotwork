@@ -29,7 +29,7 @@ export const getOrganizationBySlugFn = createServerFn()
             orderBy: {
               createdAt: "desc",
             },
-            take: 3,
+            ...(data.limit ? { take: data.limit } : {}),
           },
           categories: true,
         },

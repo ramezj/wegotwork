@@ -7,4 +7,5 @@ export const createOrganizationSchema = z.object({
 
 export const getOrganizationBySlugSchema = z.object({
   slug: z.string(),
+  limit: z.number().optional(),
 });

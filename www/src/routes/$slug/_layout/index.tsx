@@ -7,15 +7,10 @@ import { JobCard } from "@/components/job/job-card";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Navigate } from "@tanstack/react-router";
 import { ArrowUpRight, Briefcase, Users } from "lucide-react";
-import { Job } from "generated/prisma/browser";
+import { JobWithCategory } from "@/features/types/job/job";
 
 export const Route = createFileRoute("/$slug/_layout/")({
   component: RouteComponent,
-  loader: async ({ context, params }) => {
-    context.queryClient.prefetchQuery(
-      organizationBySlugQueryOptions(params.slug),
-    );
-  },
   head: () => ({
     meta: [{ title: "Dashboard", content: "Dashboard" }, { name: "Dashboard" }],
   }),
@@ -24,7 +19,7 @@ export const Route = createFileRoute("/$slug/_layout/")({
 function RouteComponent() {
   const { session } = Route.useRouteContext();
   const { slug } = Route.useParams();
-  const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
+  const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug, 3));
   if (!data?.organization) {
     return <Navigate to="/dashboard" />;
   }
@@ -65,7 +60,7 @@ function RouteComponent() {
                 <b> ({data?.organization?.jobs?.length || 0})</b>
               </h1>
             </div>
-            {data?.organization?.jobs?.map((job: Job) => (
+            {data?.organization?.jobs?.map((job: JobWithCategory) => (
               <JobCard slug={slug} key={job.id} job={job} />
             ))}
           </div>
