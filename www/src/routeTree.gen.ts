@@ -18,6 +18,7 @@ import { Route as SlugLayoutRouteRouteImport } from './routes/$slug/_layout/rout
 import { Route as ViewSlugIndexRouteImport } from './routes/view/$slug/index'
 import { Route as SlugLayoutIndexRouteImport } from './routes/$slug/_layout/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as SlugLayoutOrganizationRouteRouteImport } from './routes/$slug/_layout/organization/route'
 import { Route as SlugLayoutJobsRouteRouteImport } from './routes/$slug/_layout/jobs/route'
 import { Route as SlugLayoutApplicantsRouteRouteImport } from './routes/$slug/_layout/applicants/route'
 import { Route as SlugLayoutJobsIndexRouteImport } from './routes/$slug/_layout/jobs/index'
@@ -68,6 +69,12 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SlugLayoutOrganizationRouteRoute =
+  SlugLayoutOrganizationRouteRouteImport.update({
+    id: '/organization',
+    path: '/organization',
+    getParentRoute: () => SlugLayoutRouteRoute,
+  } as any)
 const SlugLayoutJobsRouteRoute = SlugLayoutJobsRouteRouteImport.update({
   id: '/jobs',
   path: '/jobs',
@@ -100,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/view/': typeof ViewIndexRoute
   '/$slug/applicants': typeof SlugLayoutApplicantsRouteRoute
   '/$slug/jobs': typeof SlugLayoutJobsRouteRouteWithChildren
+  '/$slug/organization': typeof SlugLayoutOrganizationRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/$slug/': typeof SlugLayoutIndexRoute
   '/view/$slug/': typeof ViewSlugIndexRoute
@@ -111,6 +119,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardIndexRoute
   '/view': typeof ViewIndexRoute
   '/$slug/applicants': typeof SlugLayoutApplicantsRouteRoute
+  '/$slug/organization': typeof SlugLayoutOrganizationRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/$slug': typeof SlugLayoutIndexRoute
   '/view/$slug': typeof ViewSlugIndexRoute
@@ -127,6 +136,7 @@ export interface FileRoutesById {
   '/view/': typeof ViewIndexRoute
   '/$slug/_layout/applicants': typeof SlugLayoutApplicantsRouteRoute
   '/$slug/_layout/jobs': typeof SlugLayoutJobsRouteRouteWithChildren
+  '/$slug/_layout/organization': typeof SlugLayoutOrganizationRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/$slug/_layout/': typeof SlugLayoutIndexRoute
   '/view/$slug/': typeof ViewSlugIndexRoute
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
     | '/view/'
     | '/$slug/applicants'
     | '/$slug/jobs'
+    | '/$slug/organization'
     | '/api/auth/$'
     | '/$slug/'
     | '/view/$slug/'
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/view'
     | '/$slug/applicants'
+    | '/$slug/organization'
     | '/api/auth/$'
     | '/$slug'
     | '/view/$slug'
@@ -170,6 +182,7 @@ export interface FileRouteTypes {
     | '/view/'
     | '/$slug/_layout/applicants'
     | '/$slug/_layout/jobs'
+    | '/$slug/_layout/organization'
     | '/api/auth/$'
     | '/$slug/_layout/'
     | '/view/$slug/'
@@ -251,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$slug/_layout/organization': {
+      id: '/$slug/_layout/organization'
+      path: '/organization'
+      fullPath: '/$slug/organization'
+      preLoaderRoute: typeof SlugLayoutOrganizationRouteRouteImport
+      parentRoute: typeof SlugLayoutRouteRoute
+    }
     '/$slug/_layout/jobs': {
       id: '/$slug/_layout/jobs'
       path: '/jobs'
@@ -310,12 +330,14 @@ const SlugLayoutJobsRouteRouteWithChildren =
 interface SlugLayoutRouteRouteChildren {
   SlugLayoutApplicantsRouteRoute: typeof SlugLayoutApplicantsRouteRoute
   SlugLayoutJobsRouteRoute: typeof SlugLayoutJobsRouteRouteWithChildren
+  SlugLayoutOrganizationRouteRoute: typeof SlugLayoutOrganizationRouteRoute
   SlugLayoutIndexRoute: typeof SlugLayoutIndexRoute
 }
 
 const SlugLayoutRouteRouteChildren: SlugLayoutRouteRouteChildren = {
   SlugLayoutApplicantsRouteRoute: SlugLayoutApplicantsRouteRoute,
   SlugLayoutJobsRouteRoute: SlugLayoutJobsRouteRouteWithChildren,
+  SlugLayoutOrganizationRouteRoute: SlugLayoutOrganizationRouteRoute,
   SlugLayoutIndexRoute: SlugLayoutIndexRoute,
 }
 

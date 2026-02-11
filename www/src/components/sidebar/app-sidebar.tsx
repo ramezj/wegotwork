@@ -10,7 +10,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "../ui/sidebar";
-import { Briefcase, HomeIcon, Loader, Users } from "lucide-react";
+import { Briefcase, Building, HomeIcon, Loader, Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 // import { Button } from "../ui/button";
@@ -54,14 +54,19 @@ export function AppSidebar({
 
   const teamMenuItems: menuItem[] = [
     {
+      label: "Organization",
+      icon: <Building />,
+      href: `/${slug}/organization`,
+    },
+    {
       label: "Team",
       icon: <Users />,
-      href: "/team",
+      href: `/${slug}/team`,
     },
     {
       label: "Members",
       icon: <Users />,
-      href: "/members",
+      href: `/${slug}/members`,
     },
   ];
   const location = useLocation();

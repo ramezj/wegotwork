@@ -86,8 +86,9 @@ model Organization {
   name        String
   slug        String
   logo        String?
+  website     String?
   createdAt   DateTime      @default(now())
-  metadata    String?
+  description    String?
   members     Member[]
   invitations Invitation[]
   jobs        Job[]
