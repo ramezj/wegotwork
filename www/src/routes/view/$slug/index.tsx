@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, Check } from "lucide-react";
 import { useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const Route = createFileRoute("/view/$slug/")({
   component: RouteComponent,
@@ -53,13 +54,27 @@ function RouteComponent() {
 
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4 space-y-12 w-full max-w-7xl mx-auto">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl md:text-5xl font-medium tracking-tight">
-          {data.organization.name}
-        </h1>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto text-balance font-light">
-          Explore our open positions and join our team in building the future.
-        </p>
+      <div className="text-center flex flex-col items-center space-y-4">
+        {data.organization.logo ? (
+          <Avatar className="w-20 h-20 rounded-none">
+            <AvatarImage src={data.organization.logo} />
+            <AvatarFallback>{data.organization.name.charAt(0)}</AvatarFallback>
+          </Avatar>
+        ) : (
+          <Avatar className="w-20 h-20 rounded-none">
+            <AvatarFallback className="text-4xl rounded-none bg-white text-black">
+              {data.organization.name.charAt(0)}
+            </AvatarFallback>
+          </Avatar>
+        )}
+        <div className="space-y-2">
+          <h1 className="text-3xl md:text-4xl font-medium tracking-tight leading-none">
+            {data.organization.name}
+          </h1>
+          <p className="text-muted-foreground text-base text-balance font-light leading-none">
+            Explore our open positions and join our team in building the future.
+          </p>
+        </div>
       </div>
 
       <div className="w-full max-w-6xl space-y-8">
