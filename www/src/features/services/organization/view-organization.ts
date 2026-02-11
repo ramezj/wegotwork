@@ -12,6 +12,9 @@ export const viewOrganizationBySlugFn = createServerFn()
         },
         include: {
           jobs: {
+            where: {
+              status: "PUBLISHED",
+            },
             include: {
               category: true,
             },
@@ -22,6 +25,16 @@ export const viewOrganizationBySlugFn = createServerFn()
           categories: {
             orderBy: {
               order: "asc",
+            },
+            include: {
+              jobs: {
+                where: {
+                  status: "PUBLISHED",
+                },
+                orderBy: {
+                  createdAt: "desc",
+                },
+              },
             },
           },
         },

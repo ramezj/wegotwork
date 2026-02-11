@@ -6,7 +6,7 @@ import { Layout } from "@/components/shared/layout";
 import { JobCard } from "@/components/job/job-card";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Navigate } from "@tanstack/react-router";
-import { ArrowUpRight, Briefcase, Users } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Briefcase, Users } from "lucide-react";
 import { JobWithCategory } from "@/features/types/job/job";
 
 export const Route = createFileRoute("/$slug/_layout/")({
@@ -29,7 +29,7 @@ function RouteComponent() {
       primaryButton={
         <Button asChild>
           <Link target="_blank" to="/view/$slug" params={{ slug }}>
-            Preview <ArrowUpRight />
+            Preview <ArrowRight />
           </Link>
         </Button>
       }

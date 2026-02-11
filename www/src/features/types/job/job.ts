@@ -6,6 +6,10 @@ export type JobWithCategory = Job & {
   category: JobCategory | null;
 };
 
+export type CategoryWithJob = JobCategory & {
+  jobs: Job[];
+};
+
 export const jobSchema = z.object({
   title: z.string().min(1, "Title is required"),
   description: z.string().optional(),
