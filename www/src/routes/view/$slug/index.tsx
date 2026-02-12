@@ -128,7 +128,7 @@ function RouteComponent() {
                   <JobCard
                     key={job.id}
                     slug={slug}
-                    job={job as JobWithCategory}
+                    job={{ ...job, category } as JobWithCategory}
                   />
                 ))}
               </div>
