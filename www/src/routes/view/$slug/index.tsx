@@ -56,12 +56,12 @@ function RouteComponent() {
     <div className="flex flex-col items-center justify-center py-12 px-4 space-y-12 w-full max-w-7xl mx-auto">
       <div className="text-center flex flex-col items-center space-y-4">
         {data.organization.logo ? (
-          <Avatar className="w-20 h-20 rounded-none">
+          <Avatar className="w-16 h-16 rounded-none">
             <AvatarImage src={data.organization.logo} />
             <AvatarFallback>{data.organization.name.charAt(0)}</AvatarFallback>
           </Avatar>
         ) : (
-          <Avatar className="w-20 h-20 rounded-none">
+          <Avatar className="w-16 h-16 rounded-none">
             <AvatarFallback className="text-4xl rounded-none bg-white text-black">
               {data.organization.name.charAt(0)}
             </AvatarFallback>

@@ -12,11 +12,14 @@ import {
   ArrowUpRight,
   BarChart3,
   Building2,
+  ChevronDown,
   FileText,
   Users,
 } from "lucide-react";
 import { JobCard } from "@/components/job/job-card";
 import { Job } from "generated/prisma/client";
+import { JobWithCategory } from "@/features/types/job/job";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export const Route = createFileRoute("/")({
   beforeLoad: async () => {
@@ -60,7 +63,7 @@ function App() {
               </Link>
             </Button>
           </div>
-          <div className="not-prose my-8 lg:w-[60%] w-full space-y-4">
+          {/* <div className="not-prose my-8 lg:w-[60%] w-full space-y-4">
             <div>
               <JobCard job={dummyJobs[0]} slug="#" isDemo />
             </div>
@@ -70,8 +73,54 @@ function App() {
             <div>
               <JobCard job={dummyJobs[2]} slug="#" isDemo />
             </div>
-          </div>
+          </div> */}
         </div>
+        <section className="px-4 pb-10">
+          <div className="lg:w-[60%] w-full mx-auto browser-glow">
+            {/* Browser chrome */}
+            <div className="border border-border bg-card">
+              <div className="flex items-center gap-2 border-b border-border p-3">
+                <div className="flex gap-1.5">
+                  <div className="size-3 bg-white/10 rounded-full" />
+                  <div className="size-3 bg-white/10 rounded-full" />
+                  <div className="size-3 bg-white/10 rounded-full" />
+                </div>
+                <div className="flex-1">
+                  <div className="bg-white/5 border border-border py-1 text-xs text-muted-foreground text-start p-2">
+                    jobs.wegotwork.co
+                  </div>
+                </div>
+              </div>
+              {/* Job cards inside browser */}
+              <div className="p-4 bg-background">
+                <div className="flex flex-col items-center text-center space-y-4 py-8">
+                  <Avatar className="w-16 h-16 rounded-none">
+                    <AvatarFallback className="text-4xl rounded-none bg-white text-black">
+                      A
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="space-y-2">
+                    <h3 className="text-3xl md:text-4xl font-medium tracking-tight leading-none">
+                      Acme Inc.
+                    </h3>
+                    <p className="text-muted-foreground text-base text-balance font-light leading-none">
+                      Explore our open positions and join our team in building
+                      the future.
+                    </p>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div>
+                    <JobCard job={dummyJobs[0]} slug="#" isDemo />
+                  </div>
+                  <div>
+                    <JobCard job={dummyJobs[1]} slug="#" isDemo />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </header>
       <section className="py-[1.20rem] px-4">
         <div className="w-full lg:w-[60%] mx-auto">
@@ -147,7 +196,7 @@ function App() {
   );
 }
 
-const dummyJobs: Job[] = [
+const dummyJobs: JobWithCategory[] = [
   {
     id: "#",
     title: "Senior Software Engineer",
@@ -168,6 +217,12 @@ const dummyJobs: Job[] = [
     updatedAt: new Date("2026-01-15"),
     organizationId: "org_demo_001",
     categoryId: "cat_engineering",
+    category: {
+      organizationId: "org_demo_001",
+      id: "cat_engineering",
+      name: "Engineering",
+      order: 1,
+    },
   },
   {
     id: "#",
@@ -188,6 +243,12 @@ const dummyJobs: Job[] = [
     updatedAt: new Date("2026-01-20"),
     organizationId: "org_demo_001",
     categoryId: "cat_design",
+    category: {
+      organizationId: "org_demo_001",
+      id: "cat_design",
+      name: "Design",
+      order: 2,
+    },
   },
   {
     id: "#",
@@ -208,5 +269,11 @@ const dummyJobs: Job[] = [
     updatedAt: new Date("2026-01-25"),
     organizationId: "org_demo_001",
     categoryId: "cat_marketing",
+    category: {
+      organizationId: "org_demo_001",
+      id: "cat_marketing",
+      name: "Marketing",
+      order: 3,
+    },
   },
 ];
