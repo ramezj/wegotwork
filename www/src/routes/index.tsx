@@ -12,12 +12,10 @@ import {
   ArrowUpRight,
   BarChart3,
   Building2,
-  ChevronDown,
   FileText,
   Users,
 } from "lucide-react";
 import { JobCard } from "@/components/job/job-card";
-import { Job } from "generated/prisma/client";
 import { JobWithCategory } from "@/features/types/job/job";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 

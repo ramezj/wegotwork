@@ -1,10 +1,7 @@
 import { Card } from "../ui/card";
-import { Button } from "../ui/button";
-import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
-import { formatDistanceToNow } from "date-fns";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { JobWithCategory } from "@/features/types/job/job";
-import { Separator } from "../ui/separator";
 import { Badge } from "../ui/badge";
 
 const formatLocationMode = (mode: string) => {
@@ -64,9 +61,9 @@ export function JobCard({
 
             {/* view job button */}
             <div className="sm:block hidden shrink-0">
-              <Button size={"sm"} variant={"ghost"}>
+              <div className="px-2">
                 <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </Button>
+              </div>
             </div>
           </div>
         </div>
