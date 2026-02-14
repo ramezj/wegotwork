@@ -27,6 +27,7 @@ import { organizationBySlugQueryOptions } from "@/features/queries/organization"
 import { Organization } from "generated/prisma/client";
 import { editOrganizationSchema } from "@/features/types/organization/schemas";
 import { editOrganizationFn } from "@/features/services/organization/edit-organization";
+import { uploadLogoFn } from "@/features/services/organization/upload-logo";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useRef, useState } from "react";
 import {
@@ -55,16 +56,17 @@ export function EditOrganizationForm({
   });
 
   const [preview, setPreview] = useState<string | null>(organization.logo);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setSelectedFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPreview(reader.result as string);
-        // In a real app, you might set the file to a form field or local state
-        // For now, we are just previewing.
+        const result = reader.result as string;
+        setPreview(result);
       };
       reader.readAsDataURL(file);
     }
@@ -84,8 +86,35 @@ export function EditOrganizationForm({
     },
   });
 
-  const handleSubmit = async (data: z.infer<typeof editOrganizationSchema>) => {
-    await mutation.mutateAsync(data);
+  const uploadMutation = useMutation({
+    mutationFn: (file: File) => {
+      const formData = new FormData();
+      formData.append("logo", file);
+      return uploadLogoFn({ data: formData });
+    },
+  });
+
+  const handleSubmit = async (
+    values: z.infer<typeof editOrganizationSchema>,
+  ) => {
+    let logoUrl = values.logo;
+
+    if (selectedFile) {
+      try {
+        const uploadResult = (await uploadMutation.mutateAsync(
+          selectedFile,
+        )) as { url: string };
+        logoUrl = uploadResult.url;
+      } catch (error: any) {
+        toast.error(error.message || "Failed to upload logo");
+        return;
+      }
+    }
+
+    await mutation.mutateAsync({
+      ...values,
+      logo: logoUrl,
+    });
   };
   return (
     <>
@@ -96,10 +125,12 @@ export function EditOrganizationForm({
           form="edit-organization-form"
           disabled={mutation.isPending}
         >
-          {mutation.isPending && (
+          {(mutation.isPending || uploadMutation.isPending) && (
             <Loader className="animate-spin mr-2 size-4" />
           )}
-          Save Changes
+          {mutation.isPending || uploadMutation.isPending
+            ? "Saving..."
+            : "Save Changes"}
         </Button>
       </div>
       <form

@@ -4,7 +4,7 @@ import { getSession } from "@/features/auth/server-session";
 import prisma from "@/lib/prisma";
 import z from "zod";
 
-export const editOrganizationFn = createServerFn()
+export const editOrganizationFn = createServerFn({ method: "POST" })
   .inputValidator(z.object({ id: z.string(), data: editOrganizationSchema }))
   .handler(async ({ data }) => {
     const session = await getSession();
@@ -26,6 +26,7 @@ export const editOrganizationFn = createServerFn()
     if (!member) {
       throw new Error("You are not authorized to edit this organization");
     }
+
     try {
       const organization = await prisma.organization.update({
         where: { id: data.id },
