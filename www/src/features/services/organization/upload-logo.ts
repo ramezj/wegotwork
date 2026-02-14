@@ -28,7 +28,7 @@ export const uploadLogoFn = createServerFn({ method: "POST" })
     try {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
-      const key = Date.now() + file.name;
+      const key = `${crypto.randomUUID()}`;
       const bucketName = "wegotwork";
 
       const putObject = new PutObjectCommand({
@@ -39,11 +39,7 @@ export const uploadLogoFn = createServerFn({ method: "POST" })
 
       await r2.send(putObject);
 
-      // Construct the public URL using the R2 Dev domain or your custom domain.
-      // Based on typical R2 dev endpoints:
-      const logoUrl = `https://pub-42c676678255476d91781297127e9976.r2.dev/${key}`;
-
-      return { url: logoUrl };
+      return { url: key };
     } catch (error) {
       console.error("Upload error:", error);
       throw new Error("Failed to upload logo to R2");

@@ -55,18 +55,14 @@ function RouteComponent() {
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4 space-y-12 w-full max-w-7xl mx-auto">
       <div className="text-center flex flex-col items-center space-y-4">
-        {data.organization.logo ? (
-          <Avatar className="w-16 h-16 rounded-none">
-            <AvatarImage src={data.organization.logo} />
-            <AvatarFallback>{data.organization.name.charAt(0)}</AvatarFallback>
-          </Avatar>
-        ) : (
-          <Avatar className="w-16 h-16 rounded-none">
-            <AvatarFallback className="text-4xl rounded-none bg-white text-black">
-              {data.organization.name.charAt(0)}
-            </AvatarFallback>
-          </Avatar>
-        )}
+        <Avatar className="w-24 h-24 rounded-none">
+          <AvatarImage
+            src={`${process.env.R2_PUBLIC_URL || "https://pub-c33c43f7f06946a1ba713658430b64ad.r2.dev"}/${data.organization.logo}`}
+          />
+          <AvatarFallback className="text-4xl rounded-none bg-white text-black">
+            {data.organization.name.charAt(0)}
+          </AvatarFallback>
+        </Avatar>
         <div className="space-y-2">
           <h1 className="text-3xl md:text-4xl font-medium tracking-tight leading-none">
             {data.organization.name}

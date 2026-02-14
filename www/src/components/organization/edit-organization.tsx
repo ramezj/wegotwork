@@ -55,7 +55,7 @@ export function EditOrganizationForm({
     },
   });
 
-  const [preview, setPreview] = useState<string | null>(organization.logo);
+  const [preview, setPreview] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -123,7 +123,7 @@ export function EditOrganizationForm({
         <Button
           type="submit"
           form="edit-organization-form"
-          disabled={mutation.isPending}
+          disabled={mutation.isPending || uploadMutation.isPending}
         >
           {(mutation.isPending || uploadMutation.isPending) && (
             <Loader className="animate-spin mr-2 size-4" />
@@ -146,7 +146,13 @@ export function EditOrganizationForm({
                   <div className="flex flex-col items-center space-y-2">
                     <Avatar className="size-32 rounded-none">
                       <AvatarImage
-                        src={preview || ""}
+                        src={
+                          preview
+                            ? preview
+                            : organization.logo
+                              ? `${process.env.R2_PUBLIC_URL || "https://pub-c33c43f7f06946a1ba713658430b64ad.r2.dev"}/${organization.logo}`
+                              : undefined
+                        }
                         className="object-cover"
                       />
                       <AvatarFallback className="bg-white text-black text-4xl rounded-none border border-border">
