@@ -27,6 +27,8 @@ import { organizationBySlugQueryOptions } from "@/features/queries/organization"
 import { Organization } from "generated/prisma/client";
 import { editOrganizationSchema } from "@/features/types/organization/schemas";
 import { editOrganizationFn } from "@/features/services/organization/edit-organization";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { useRef, useState } from "react";
 import {
   InputGroup,
   InputGroupAddon,
@@ -51,6 +53,22 @@ export function EditOrganizationForm({
       description: organization.description || "",
     },
   });
+
+  const [preview, setPreview] = useState<string | null>(organization.logo);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result as string);
+        // In a real app, you might set the file to a form field or local state
+        // For now, we are just previewing.
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const mutation = useMutation({
     mutationFn: (data: z.infer<typeof editOrganizationSchema>) =>
@@ -91,6 +109,41 @@ export function EditOrganizationForm({
       >
         <Card>
           <CardContent className="flex flex-col space-y-4 px-4">
+            <Field>
+              <FieldContent>
+                <div className="flex items-center space-x-4">
+                  <div className="flex flex-col items-center space-y-2">
+                    <Avatar className="size-32 rounded-none">
+                      <AvatarImage
+                        src={preview || ""}
+                        className="object-cover"
+                      />
+                      <AvatarFallback className="bg-white text-black text-4xl rounded-none border border-border">
+                        {form.getValues("name")?.charAt(0) || "O"}
+                      </AvatarFallback>
+                    </Avatar>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="w-32"
+                      onClick={() => fileInputRef.current?.click()}
+                    >
+                      Change Logo
+                    </Button>
+                  </div>
+                  <div className="flex flex-col space-y-2">
+                    <Input
+                      type="file"
+                      ref={fileInputRef}
+                      className="hidden"
+                      accept="image/*"
+                      onChange={onFileChange}
+                    />
+                  </div>
+                </div>
+              </FieldContent>
+            </Field>
             <Controller
               control={form.control}
               name="name"
