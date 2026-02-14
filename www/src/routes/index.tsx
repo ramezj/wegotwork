@@ -30,22 +30,22 @@ export const Route = createFileRoute("/")({
 function App() {
   const { session } = Route.useRouteContext();
   return (
-    <main className="">
+    <main className="space-y-8">
       <Header session={session} />
-      <header>
-        <section className="flex flex-col items-center text-center mt-12 px-2">
+      <header className="flex flex-col space-y-8">
+        <section className="flex flex-col items-center text-center px-2">
           <div className="lg:w-[60%] w-full">
             <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-light leading-tight text-white text-balance">
               Career Pages, <b>Redefined</b>
             </h1>
-            <p className="text-[1rem] mt-2 font-light text-balance text-muted-foreground">
+            <p className="text-[1rem] font-light text-balance text-muted-foreground">
               Create stunning career pages, post jobs, manage applicants — all
               from one, easy-to-use platform.
             </p>
           </div>
         </section>
-        <div className="flex flex-col items-center p-4 -mt-4 ">
-          <div className="flex flex-row w-full lg:w-[60%] items-center justify-center content-center gap-4 mt-6">
+        <div className="flex flex-col items-center px-4">
+          <div className="flex flex-row w-full lg:w-[60%] items-center justify-center content-center gap-4">
             <Button variant={"outline"} asChild className="flex-1">
               <a
                 href={"https://jobs.wegotwork.co/test-organization"}
@@ -61,19 +61,8 @@ function App() {
               </Link>
             </Button>
           </div>
-          {/* <div className="not-prose my-8 lg:w-[60%] w-full space-y-4">
-            <div>
-              <JobCard job={dummyJobs[0]} slug="#" isDemo />
-            </div>
-            <div>
-              <JobCard job={dummyJobs[1]} slug="#" isDemo />
-            </div>
-            <div>
-              <JobCard job={dummyJobs[2]} slug="#" isDemo />
-            </div>
-          </div> */}
         </div>
-        <section className="px-4 pb-10">
+        <section className="px-4">
           <div className="lg:w-[60%] w-full mx-auto browser-glow">
             {/* Browser chrome */}
             <div className="border border-border bg-card">
@@ -120,9 +109,9 @@ function App() {
           </div>
         </section>
       </header>
-      <section className="py-[1.20rem] px-4">
-        <div className="w-full lg:w-[60%] mx-auto">
-          <div className="text-center mb-16">
+      <section className="px-4">
+        <div className="w-full lg:w-[60%] mx-auto flex flex-col space-y-8">
+          <div className="text-center">
             <h2 className="text-3xl md:text-4xl font-light text-foreground text-balance">
               Everything you need to start hiring.
             </h2>
