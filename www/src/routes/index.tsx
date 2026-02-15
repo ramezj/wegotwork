@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
+  ArrowRight,
   ArrowUpRight,
   BarChart3,
   Building2,
@@ -57,7 +58,7 @@ function App() {
             <Button variant={"default"} asChild className="flex-1">
               <Link to={"/"} target="_blank">
                 Start Hiring
-                <ArrowUpRight />
+                <ArrowRight />
               </Link>
             </Button>
           </div>
