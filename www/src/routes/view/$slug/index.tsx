@@ -53,7 +53,7 @@ function RouteComponent() {
     : "All Jobs";
 
   return (
-    <div className="flex flex-col items-center justify-center py-12 px-4 space-y-12 w-full max-w-7xl mx-auto">
+    <div className="flex flex-col items-center justify-center py-12 px-4 space-y-8 w-full max-w-7xl mx-auto">
       <div className="text-center flex flex-col items-center space-y-4">
         <Avatar className="w-24 h-24 rounded-none">
           <AvatarImage

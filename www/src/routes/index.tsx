@@ -36,7 +36,7 @@ function App() {
         <section className="flex flex-col items-center text-center px-2">
           <div className="lg:w-[60%] w-full">
             <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-light leading-tight text-white text-balance">
-              Career Pages, <b>Redefined</b>
+              The Hiring Infrastructure for Modern Teams
             </h1>
             <p className="text-[1rem] font-light text-balance text-muted-foreground">
               Create stunning career pages, post jobs, manage applicants — all
