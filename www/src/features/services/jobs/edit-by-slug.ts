@@ -34,7 +34,7 @@ export const editJobBySlugFn = createServerFn()
         },
         data: {
           ...data.job,
-          categoryId: data.job.categoryId || undefined,
+          categoryId: data.job.categoryId || null,
         },
       });
       return { success: true, job };

@@ -28,7 +28,7 @@ export const createJobFn = createServerFn()
       const job = await prisma.job.create({
         data: {
           ...data.job,
-          categoryId: data.job.categoryId || undefined,
+          categoryId: data.job.categoryId || null,
           organizationId: organization.id,
         },
       });

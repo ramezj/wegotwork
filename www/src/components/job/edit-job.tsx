@@ -15,7 +15,7 @@ import {
 } from "../ui/select";
 import { Button } from "../ui/button";
 import z from "zod";
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { JobCategory } from "generated/prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { editJobBySlugFn } from "@/features/services/jobs/edit-by-slug";
@@ -97,13 +97,16 @@ export function EditJobForm({
 
           <TabsContent value="general" className="m-0">
             <Card>
+              <CardHeader>
+                <CardTitle>General Information</CardTitle>
+              </CardHeader>
               <CardContent className="flex flex-col space-y-4">
                 <Controller
                   control={form.control}
                   name="title"
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Title</FieldLabel>
+                      <FieldLabel>Job Title</FieldLabel>
                       <FieldContent>
                         <Input
                           aria-invalid={fieldState.invalid}
@@ -120,7 +123,7 @@ export function EditJobForm({
                   name="description"
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Description</FieldLabel>
+                      <FieldLabel>Job Description</FieldLabel>
                       <FieldContent>
                         <Textarea
                           aria-invalid={fieldState.invalid}
@@ -137,7 +140,7 @@ export function EditJobForm({
                   name="type"
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Type</FieldLabel>
+                      <FieldLabel>Employment Type</FieldLabel>
                       <FieldContent>
                         <Select
                           aria-invalid={fieldState.invalid}
@@ -166,7 +169,7 @@ export function EditJobForm({
                   name="status"
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Status</FieldLabel>
+                      <FieldLabel>Job Status</FieldLabel>
                       <FieldContent>
                         <Select
                           aria-invalid={fieldState.invalid}
@@ -193,7 +196,7 @@ export function EditJobForm({
                   name="categoryId"
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Category</FieldLabel>
+                      <FieldLabel>Job Category</FieldLabel>
                       <FieldContent>
                         <Select
                           aria-invalid={fieldState.invalid}
@@ -225,6 +228,9 @@ export function EditJobForm({
 
           <TabsContent value="location" className="m-0">
             <Card>
+              <CardHeader>
+                <CardTitle>Location Information</CardTitle>
+              </CardHeader>
               <CardContent className="flex flex-col gap-4">
                 <Controller
                   control={form.control}
@@ -309,6 +315,9 @@ export function EditJobForm({
 
           <TabsContent value="compensation" className="m-0">
             <Card>
+              <CardHeader>
+                <CardTitle>Compensation Information</CardTitle>
+              </CardHeader>
               <CardContent className="flex flex-col gap-4">
                 <Controller
                   control={form.control}
