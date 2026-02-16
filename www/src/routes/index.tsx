@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/card";
 import {
   ArrowRight,
-  ArrowUpRight,
   BarChart3,
   Building2,
   FileText,
@@ -31,156 +30,158 @@ export const Route = createFileRoute("/")({
 function App() {
   const { session } = Route.useRouteContext();
   return (
-    <main className="space-y-8">
+    <div className="space-y-8">
       <Header session={session} />
-      <header className="flex flex-col space-y-8">
-        <section className="flex flex-col items-center text-center px-2">
-          <div className="lg:w-[60%] w-full">
-            <h1 className="text-3xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-light leading-tight text-white text-balance">
-              The Hiring Infrastructure for Modern Teams
-            </h1>
-            <p className="text-[1rem] font-light text-balance text-muted-foreground">
-              Create stunning career pages, post jobs, manage applicants — all
-              from one, easy-to-use platform.
-            </p>
+      <main className="space-y-8 lg:w-[70%] w-full mx-auto">
+        <header className="flex flex-col space-y-8">
+          <section className="flex flex-col items-center text-center px-2">
+            <div className="w-full px-4">
+              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-light leading-tight text-white text-balance">
+                The Hiring Infrastructure for Modern Teams
+              </h1>
+              <p className="text-[1rem] font-light text-balance text-muted-foreground">
+                Create stunning career pages, post jobs, manage applicants — all
+                from one, easy-to-use platform.
+              </p>
+            </div>
+          </section>
+          <div className="flex flex-col items-center px-4">
+            <div className="flex flex-row w-full items-center justify-center content-center gap-4">
+              <Button variant={"outline"} asChild className="flex-1">
+                <a
+                  href={"https://jobs.wegotwork.co/test-organization"}
+                  target="_blank"
+                >
+                  See Demo
+                </a>
+              </Button>
+              <Button variant={"default"} asChild className="flex-1">
+                <Link to={"/"} target="_blank">
+                  Start Hiring
+                  <ArrowRight />
+                </Link>
+              </Button>
+            </div>
           </div>
-        </section>
-        <div className="flex flex-col items-center px-4">
-          <div className="flex flex-row w-full lg:w-[60%] items-center justify-center content-center gap-4">
-            <Button variant={"outline"} asChild className="flex-1">
-              <a
-                href={"https://jobs.wegotwork.co/test-organization"}
-                target="_blank"
-              >
-                See Demo
-              </a>
-            </Button>
-            <Button variant={"default"} asChild className="flex-1">
-              <Link to={"/"} target="_blank">
-                Start Hiring
-                <ArrowRight />
-              </Link>
-            </Button>
-          </div>
-        </div>
-        <section className="px-4">
-          <div className="lg:w-[60%] w-full mx-auto browser-glow">
-            {/* Browser chrome */}
-            <div className="border border-border bg-card">
-              <div className="flex items-center gap-2 border-b border-border p-3">
-                <div className="flex gap-1.5">
-                  <div className="size-3 bg-white/10 rounded-full" />
-                  <div className="size-3 bg-white/10 rounded-full" />
-                  <div className="size-3 bg-white/10 rounded-full" />
-                </div>
-                <div className="flex-1">
-                  <div className="bg-white/5 border border-border py-1 text-xs text-muted-foreground text-start p-2">
-                    jobs.wegotwork.co
+          <section className="px-4">
+            <div className="w-full mx-auto browser-glow">
+              {/* Browser chrome */}
+              <div className="border border-border bg-card">
+                <div className="flex items-center gap-2 border-b border-border p-3">
+                  <div className="flex gap-1.5">
+                    <div className="size-3 bg-white/10 rounded-full" />
+                    <div className="size-3 bg-white/10 rounded-full" />
+                    <div className="size-3 bg-white/10 rounded-full" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="bg-white/5 border border-border py-1 text-xs text-muted-foreground text-start p-2">
+                      jobs.wegotwork.co
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/* Job cards inside browser */}
-              <div className="p-4 bg-background">
-                <div className="flex flex-col items-center text-center space-y-4 py-8">
-                  <Avatar className="w-16 h-16 rounded-none">
-                    <AvatarFallback className="text-4xl rounded-none bg-white text-black">
-                      A
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="space-y-2">
-                    <h3 className="text-3xl md:text-4xl font-medium tracking-tight leading-none">
-                      Acme Inc.
-                    </h3>
-                    <p className="text-muted-foreground text-base text-balance font-light leading-none">
-                      Explore our open positions and join our team in building
-                      the future.
-                    </p>
+                {/* Job cards inside browser */}
+                <div className="p-4 bg-background">
+                  <div className="flex flex-col items-center text-center space-y-4 py-8">
+                    <Avatar className="w-16 h-16 rounded-none">
+                      <AvatarFallback className="text-4xl rounded-none bg-white text-black">
+                        A
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="space-y-2">
+                      <h3 className="text-3xl md:text-4xl font-medium tracking-tight leading-none">
+                        Acme Inc.
+                      </h3>
+                      <p className="text-muted-foreground text-base text-balance font-light leading-none">
+                        Explore our open positions and join our team in building
+                        the future.
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <JobCard job={dummyJobs[0]} slug="#" isDemo />
-                  </div>
-                  <div>
-                    <JobCard job={dummyJobs[1]} slug="#" isDemo />
+                  <div className="space-y-4">
+                    <div>
+                      <JobCard job={dummyJobs[0]} slug="#" isDemo />
+                    </div>
+                    <div>
+                      <JobCard job={dummyJobs[1]} slug="#" isDemo />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </section>
+        </header>
+        <section className="px-4">
+          <div className="w-full mx-auto flex flex-col space-y-8">
+            <div className="text-center">
+              <h2 className="text-3xl md:text-4xl font-light text-foreground text-balance">
+                Everything you need to start hiring.
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              <Card className="bg-input/30 rounded-none">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                    <Building2 className="h-6 w-6 text-black" />
+                  </div>
+                  <CardTitle className="text-white font-medium mb-2!">
+                    Beautiful Career Pages
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground font-medium">
+                    Create stunning, branded career pages that showcase your
+                    company culture and attract top talent.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
+              <Card className="bg-input/30 rounded-none">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                    <FileText className="h-6 w-6 text-black" />
+                  </div>
+                  <CardTitle className="text-white font-medium mb-2!">
+                    Easy Job Posting
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground font-medium">
+                    Post jobs in minutes with our intuitive editor. Add
+                    requirements, benefits, and company info effortlessly.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
+              <Card className="bg-input/30 rounded-none">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                    <Users className="h-6 w-6 text-black" />
+                  </div>
+                  <CardTitle className="text-white font-medium mb-2!">
+                    Applicant Management
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground font-medium">
+                    Track, review, and manage all applications in one place.
+                    Collaborate with your team seamlessly.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
+              <Card className="bg-input/30 rounded-none">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                    <BarChart3 className="h-6 w-6 text-black" />
+                  </div>
+                  <CardTitle className="text-white font-medium mb-2!">
+                    Analytics & Insights
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground font-medium">
+                    Get detailed analytics on job performance, application
+                    rates, and hiring metrics.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
           </div>
         </section>
-      </header>
-      <section className="px-4">
-        <div className="w-full lg:w-[60%] mx-auto flex flex-col space-y-8">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-light text-foreground text-balance">
-              Everything you need to start hiring.
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-input/30 rounded-none">
-              <CardHeader>
-                <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
-                  <Building2 className="h-6 w-6 text-black" />
-                </div>
-                <CardTitle className="text-white font-medium mb-2!">
-                  Beautiful Career Pages
-                </CardTitle>
-                <CardDescription className="text-muted-foreground font-medium">
-                  Create stunning, branded career pages that showcase your
-                  company culture and attract top talent.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="bg-input/30 rounded-none">
-              <CardHeader>
-                <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
-                  <FileText className="h-6 w-6 text-black" />
-                </div>
-                <CardTitle className="text-white font-medium mb-2!">
-                  Easy Job Posting
-                </CardTitle>
-                <CardDescription className="text-muted-foreground font-medium">
-                  Post jobs in minutes with our intuitive editor. Add
-                  requirements, benefits, and company info effortlessly.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="bg-input/30 rounded-none">
-              <CardHeader>
-                <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
-                  <Users className="h-6 w-6 text-black" />
-                </div>
-                <CardTitle className="text-white font-medium mb-2!">
-                  Applicant Management
-                </CardTitle>
-                <CardDescription className="text-muted-foreground font-medium">
-                  Track, review, and manage all applications in one place.
-                  Collaborate with your team seamlessly.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="bg-input/30 rounded-none">
-              <CardHeader>
-                <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
-                  <BarChart3 className="h-6 w-6 text-black" />
-                </div>
-                <CardTitle className="text-white font-medium mb-2!">
-                  Analytics & Insights
-                </CardTitle>
-                <CardDescription className="text-muted-foreground font-medium">
-                  Get detailed analytics on job performance, application rates,
-                  and hiring metrics.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-        </div>
-      </section>
-    </main>
+      </main>
+    </div>
   );
 }
 
