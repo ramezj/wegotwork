@@ -21,7 +21,7 @@ function RouteComponent() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header session={session} />
-      <main className="flex flex-1 flex-col p-4">
+      <main className="flex flex-1 flex-col">
         <Suspense fallback={<LoadingLayout title="" />}>
           <Outlet />
         </Suspense>
