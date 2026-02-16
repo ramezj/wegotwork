@@ -16,7 +16,7 @@ import { useLocation } from "@tanstack/react-router";
 // import { Button } from "../ui/button";
 import { Session } from "@/features/auth/auth";
 import UserDropdown from "./user-dropdown";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { getAllOrganizationsFn } from "@/features/services/organization/get-all-organizations";
 import { OrganizationSelector } from "./organization-selector";
 import { Organization } from "generated/prisma/client";
@@ -51,7 +51,13 @@ export function AppSidebar({
       href: `/${slug}/applicants`,
     },
   ];
-
+  const categoryMenuItems: menuItem[] = [
+    {
+      label: "Categories",
+      icon: <Building />,
+      href: `/${slug}/categories`,
+    },
+  ];
   const teamMenuItems: menuItem[] = [
     {
       label: "Organization",
@@ -69,6 +75,7 @@ export function AppSidebar({
       href: `/${slug}/members`,
     },
   ];
+
   const location = useLocation();
   const { isMobile, setOpenMobile } = useSidebar();
   const handleItemClick = () => {
@@ -76,7 +83,7 @@ export function AppSidebar({
       setOpenMobile(false);
     }
   };
-  const { data, isPending } = useQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ["organizations"],
     queryFn: getAllOrganizationsFn,
     staleTime: 60 * 60 * 1000,
@@ -86,17 +93,14 @@ export function AppSidebar({
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem className="items-center content-center text-center">
-            {isPending && <Loader className="animate-spin" />}
-            {!isPending && (
-              <OrganizationSelector
-                organizations={data?.organizations as Organization[]}
-                currentOrganization={
-                  data?.organizations.find(
-                    (org) => org.slug === slug,
-                  ) as Organization
-                }
-              />
-            )}
+            <OrganizationSelector
+              organizations={data?.organizations as Organization[]}
+              currentOrganization={
+                data?.organizations.find(
+                  (org) => org.slug === slug,
+                ) as Organization
+              }
+            />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -114,6 +118,28 @@ export function AppSidebar({
                   <SidebarMenuButton
                     isActive={isActive}
                     className="flex items-center gap-2 py-4 cursor-pointer transition duration-200 font-medium border border-transparent hover:bg-input/30 hover:border-input active:bg-input/30 active:border-input focus:bg-input/30 focus:border-input data-[active=true]:bg-input/30 data-[active=true] data-[active=true]:border data-[active=true]:border-input data-[active=true]:text-sidebar-accent-foreground"
+                    onClick={handleItemClick}
+                    asChild
+                  >
+                    <Link to={item.href}>
+                      {item.icon}
+                      {item.label}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              );
+            })}
+          </SidebarMenu>
+        </SidebarGroup>
+        <SidebarGroup className="space-y-1">
+          <SidebarGroupLabel>Categories</SidebarGroupLabel>
+          <SidebarMenu className="gap-1">
+            {categoryMenuItems.map((item, index) => {
+              return (
+                <SidebarMenuItem key={index}>
+                  <SidebarMenuButton
+                    isActive={item.href === location.pathname}
+                    className="flex items-center gap-2 py-4 cursor-pointer transition duration-200 font-medium border border-transparent hover:bg-input/30 hover:border-input active:bg-input/30 active:border-input focus:bg-input/30 focus:border-input data-[active=true]:bg-input/30 data-[active=true]:border data-[active=true]:border-input data-[active=true]:text-sidebar-accent-foreground"
                     onClick={handleItemClick}
                     asChild
                   >
