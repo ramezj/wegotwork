@@ -87,7 +87,7 @@ function App() {
                         A
                       </AvatarFallback>
                     </Avatar>
-                    <div className="space-y-2">
+                    <div className="space-y-4">
                       <h3 className="text-3xl md:text-4xl font-medium tracking-tight leading-none">
                         Acme Inc.
                       </h3>

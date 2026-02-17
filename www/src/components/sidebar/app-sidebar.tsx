@@ -10,7 +10,14 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "../ui/sidebar";
-import { Briefcase, Building, HomeIcon, Loader, Users } from "lucide-react";
+import {
+  Briefcase,
+  Building,
+  CreditCard,
+  HomeIcon,
+  Loader,
+  Users,
+} from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 // import { Button } from "../ui/button";
@@ -70,9 +77,9 @@ export function AppSidebar({
       href: `/${slug}/team`,
     },
     {
-      label: "Members",
-      icon: <Users />,
-      href: `/${slug}/members`,
+      label: "Billing",
+      icon: <CreditCard />,
+      href: `/${slug}/billing`,
     },
   ];
 
