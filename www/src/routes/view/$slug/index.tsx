@@ -53,7 +53,7 @@ function RouteComponent() {
     : "All Jobs";
 
   return (
-    <div className="flex flex-col items-center justify-center py-12 px-4 space-y-8 w-full max-w-7xl mx-auto">
+    <div className="flex flex-col items-center justify-center py-12 px-4 space-y-4 w-full max-w-7xl mx-auto">
       <div className="text-center flex flex-col items-center space-y-4">
         <Avatar className="w-24 h-24 rounded-none">
           <AvatarImage
@@ -63,7 +63,7 @@ function RouteComponent() {
             {data.organization.name.charAt(0)}
           </AvatarFallback>
         </Avatar>
-        <div className="space-y-2">
+        <div className="space-y-4">
           <h1 className="text-3xl md:text-4xl font-medium tracking-tight leading-none">
             {data.organization.name}
           </h1>
@@ -74,7 +74,7 @@ function RouteComponent() {
       </div>
 
       <div className="w-full max-w-6xl space-y-4">
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 border-b pb-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 border-b pb-4">
           <h2 className="text-xl font-medium">
             Available Positions ({jobs.length})
           </h2>
@@ -117,7 +117,7 @@ function RouteComponent() {
 
         <div className="space-y-4">
           {filteredCategories.map((category: CategoryWithJob) => (
-            <section key={category.id} className="space-y-2">
+            <section key={category.id} className="space-y-4">
               <h3 className="text-xl font-medium">{category.name}</h3>
               <div className="grid gap-4">
                 {category.jobs.map((job) => (
@@ -131,7 +131,7 @@ function RouteComponent() {
             </section>
           ))}
           {showUncategorized && uncategorizedJobs.length > 0 && (
-            <section className="space-y-2">
+            <section className="space-y-4">
               <h3 className="text-xl font-medium">Other Openings</h3>
               <div className="grid gap-4">
                 {uncategorizedJobs.map((job) => (
