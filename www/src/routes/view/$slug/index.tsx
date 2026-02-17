@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { viewOrganizationBySlugQueryOptions } from "@/features/queries/organization";
-import { JobCard } from "@/components/job/job-card";
+import { JobCard, JobCardForViewPage } from "@/components/job/job-card";
 import { CategoryWithJob, JobWithCategory } from "@/features/types/job/job";
 import { Button } from "@/components/ui/button";
 import {
@@ -121,7 +121,7 @@ function RouteComponent() {
               <h3 className="text-xl font-medium">{category.name}</h3>
               <div className="grid gap-4">
                 {category.jobs.map((job) => (
-                  <JobCard
+                  <JobCardForViewPage
                     key={job.id}
                     slug={slug}
                     job={{ ...job, category } as JobWithCategory}
