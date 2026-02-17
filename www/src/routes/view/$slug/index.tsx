@@ -135,7 +135,7 @@ function RouteComponent() {
               <h3 className="text-xl font-medium">Other Openings</h3>
               <div className="grid gap-4">
                 {uncategorizedJobs.map((job) => (
-                  <JobCard
+                  <JobCardForViewPage
                     key={job.id}
                     slug={slug}
                     job={job as JobWithCategory}
