@@ -222,17 +222,12 @@ export function EditOrganizationForm({
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Website</FieldLabel>
                   <FieldContent>
-                    <InputGroup>
-                      <InputGroupInput
-                        id="input-group-url"
-                        placeholder="example.com"
-                        aria-invalid={fieldState.invalid}
-                        {...field}
-                      />
-                      <InputGroupAddon>
-                        <InputGroupText>https://</InputGroupText>
-                      </InputGroupAddon>
-                    </InputGroup>
+                    <Input
+                      id="input-group-url"
+                      placeholder="https://example.com"
+                      aria-invalid={fieldState.invalid}
+                      {...field}
+                    />
                   </FieldContent>
                   <FieldError errors={[fieldState.error]} />
                 </Field>

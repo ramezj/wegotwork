@@ -75,7 +75,7 @@ function App() {
                   </div>
                   <div className="flex-1">
                     <div className="bg-white/5 border border-border py-1 text-xs text-muted-foreground text-start p-2">
-                      jobs.wegotwork.co
+                      jobs.hirelou.app
                     </div>
                   </div>
                 </div>
@@ -84,12 +84,12 @@ function App() {
                   <div className="flex flex-col items-center text-center space-y-4 py-8">
                     <Avatar className="w-16 h-16 rounded-none">
                       <AvatarFallback className="text-4xl rounded-none bg-white text-black">
-                        A
+                        H
                       </AvatarFallback>
                     </Avatar>
                     <div className="space-y-4">
                       <h3 className="text-3xl md:text-4xl font-medium tracking-tight leading-none">
-                        Acme Inc.
+                        Hirelou
                       </h3>
                       <p className="text-muted-foreground text-base text-balance font-light leading-none">
                         Explore our open positions and join our team in building

@@ -75,9 +75,7 @@ function RouteComponent() {
 
       <div className="w-full max-w-6xl space-y-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 border-b pb-4">
-          <h2 className="text-xl font-medium">
-            Available Positions ({jobs.length})
-          </h2>
+          <h2 className="text-xl font-medium">Open Roles ({jobs.length})</h2>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

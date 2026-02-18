@@ -30,7 +30,7 @@ export default function Header({
     <header className="w-full sticky top-0 z-50 h-16 border border-b border-l-0 border-r-0 border-t-0 bg-background flex flex-row items-center justify-between">
       <div className="flex-row flex gap-2 items-center content-center align-middle">
         <Link to={"/"}>
-          <h1 className="font-bold pl-4">wegotwork</h1>
+          <h1 className="font-bold pl-4">Hirelou</h1>
         </Link>
         <div className="flex-row gap-2 items-center content-center align-middle md:flex hidden">
           <Link className="font-medium text-gray-100" to={"/"}>
