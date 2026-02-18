@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { viewOrganizationBySlugQueryOptions } from "@/features/queries/organization";
-import { JobCard, JobCardForViewPage } from "@/components/job/job-card";
+import { JobCardForViewPage } from "@/components/job/job-card";
 import { CategoryWithJob, JobWithCategory } from "@/features/types/job/job";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,10 +18,74 @@ export const Route = createFileRoute("/view/$slug/")({
   component: RouteComponent,
 });
 
+const EMPLOYMENT_TYPES = [
+  { value: "FULLTIME", label: "Full-time" },
+  { value: "PARTTIME", label: "Part-time" },
+  { value: "INTERNSHIP", label: "Internship" },
+  { value: "CONTRACT", label: "Contract" },
+] as const;
+
+const LOCATION_MODES = [
+  { value: "REMOTE", label: "Remote" },
+  { value: "ONSITE", label: "On-site" },
+  { value: "HYBRID", label: "Hybrid" },
+] as const;
+
+function FilterDropdown({
+  label,
+  options,
+  selected,
+  onSelect,
+}: {
+  label: string;
+  options: readonly { value: string; label: string }[];
+  selected: string | null;
+  onSelect: (value: string | null) => void;
+}) {
+  const selectedLabel = selected
+    ? options.find((o) => o.value === selected)?.label
+    : null;
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="outline"
+          className="justify-between font-normal w-full"
+        >
+          <span className="truncate">{selectedLabel ?? label}</span>
+          <ChevronDown className="ml-2 h-4 w-4 opacity-50 shrink-0" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="start" className="min-w-[160px]">
+        <DropdownMenuItem
+          onClick={() => onSelect(null)}
+          className="flex items-center justify-between"
+        >
+          <span>All</span>
+          {!selected && <Check className="h-4 w-4" />}
+        </DropdownMenuItem>
+        {options.map((option) => (
+          <DropdownMenuItem
+            key={option.value}
+            onClick={() => onSelect(option.value)}
+            className="flex items-center justify-between"
+          >
+            <span>{option.label}</span>
+            {selected === option.value && <Check className="h-4 w-4" />}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
 function RouteComponent() {
   const { slug } = Route.useParams();
   const { data } = useSuspenseQuery(viewOrganizationBySlugQueryOptions(slug));
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
 
   if (!data.organization) return <Navigate to="/" />;
 
@@ -31,26 +95,41 @@ function RouteComponent() {
   // Get all category IDs for filtering
   const categoryIds = new Set(categories.map((c) => c.id));
 
-  // Find jobs without a valid category
-  const uncategorizedJobs = jobs.filter(
-    (job) => !job.categoryId || !categoryIds.has(job.categoryId),
+  // Apply employment type and location filters to a job list
+  const applyFilters = <T extends (typeof jobs)[number]>(jobList: T[]) =>
+    jobList.filter((job) => {
+      if (selectedType && job.type !== selectedType) return false;
+      if (selectedLocation && job.locationMode !== selectedLocation)
+        return false;
+      return true;
+    }) as T[];
+
+  // Find jobs without a valid category (after applying filters)
+  const uncategorizedJobs = applyFilters(
+    jobs.filter((job) => !job.categoryId || !categoryIds.has(job.categoryId)),
   );
 
-  // Filter categories based on selected category
-  const filteredCategories = selectedCategory
-    ? categories.filter(
-        (cat: CategoryWithJob) =>
-          cat.id === selectedCategory && cat.jobs.length > 0,
-      )
-    : categories.filter((cat: CategoryWithJob) => cat.jobs.length > 0);
+  // Filter categories based on selected category, then apply other filters
+  const filteredCategories = (
+    selectedCategory
+      ? categories.filter((cat: CategoryWithJob) => cat.id === selectedCategory)
+      : categories
+  )
+    .map((cat: CategoryWithJob) => ({
+      ...cat,
+      jobs: applyFilters(cat.jobs),
+    }))
+    .filter((cat) => cat.jobs.length > 0);
 
   // Show uncategorized jobs only when no specific category is selected
   const showUncategorized = !selectedCategory;
 
-  // Get selected category name for display
-  const selectedName = selectedCategory
-    ? categories.find((c) => c.id === selectedCategory)?.name || "All Jobs"
-    : "All Jobs";
+  // Total visible jobs count
+  const visibleCount =
+    filteredCategories.reduce((sum, cat) => sum + cat.jobs.length, 0) +
+    (showUncategorized ? uncategorizedJobs.length : 0);
+
+  const hasActiveFilters = selectedCategory || selectedType || selectedLocation;
 
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4 space-y-4 w-full max-w-7xl mx-auto">
@@ -74,43 +153,54 @@ function RouteComponent() {
       </div>
 
       <div className="w-full max-w-6xl space-y-4">
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 border-b pb-4">
-          <h2 className="text-xl font-medium">Open Roles ({jobs.length})</h2>
+        <div className="flex flex-col space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-medium">Open Roles ({visibleCount})</h2>
+            {/* {hasActiveFilters && (
+              <button
+                onClick={() => {
+                  setSelectedCategory(null);
+                  setSelectedType(null);
+                  setSelectedLocation(null);
+                }}
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Clear filters
+              </button>
+            )} */}
+          </div>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="outline"
-                className="w-full sm:w-[200px] justify-between font-normal"
-              >
-                <span className="truncate">{selectedName}</span>
-                <ChevronDown className="ml-2 h-4 w-4 opacity-50" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-[200px]">
-              <DropdownMenuItem
-                onClick={() => setSelectedCategory(null)}
-                className="flex items-center justify-between"
-              >
-                <span>All Jobs</span>
-                {!selectedCategory && <Check className="h-4 w-4" />}
-              </DropdownMenuItem>
-              {categories
-                .filter((cat: CategoryWithJob) => cat.jobs.length > 0)
-                .map((category: CategoryWithJob) => (
-                  <DropdownMenuItem
-                    key={category.id}
-                    onClick={() => setSelectedCategory(category.id)}
-                    className="flex items-center justify-between"
-                  >
-                    <span className="truncate">{category.name}</span>
-                    {selectedCategory === category.id && (
-                      <Check className="h-4 w-4" />
-                    )}
-                  </DropdownMenuItem>
-                ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <div className="flex sm:flex-row flex-col gap-2">
+            <div className="flex-1">
+              <FilterDropdown
+                label="Category"
+                options={categories
+                  .filter((cat: CategoryWithJob) => cat.jobs.length > 0)
+                  .map((cat: CategoryWithJob) => ({
+                    value: cat.id,
+                    label: cat.name,
+                  }))}
+                selected={selectedCategory}
+                onSelect={setSelectedCategory}
+              />
+            </div>
+            <div className="flex-1">
+              <FilterDropdown
+                label="Employment Type"
+                options={EMPLOYMENT_TYPES}
+                selected={selectedType}
+                onSelect={setSelectedType}
+              />
+            </div>
+            <div className="flex-1">
+              <FilterDropdown
+                label="Location"
+                options={LOCATION_MODES}
+                selected={selectedLocation}
+                onSelect={setSelectedLocation}
+              />
+            </div>
+          </div>
         </div>
 
         <div className="space-y-4">
@@ -143,9 +233,11 @@ function RouteComponent() {
             </section>
           )}
 
-          {jobs.length === 0 && (
+          {visibleCount === 0 && (
             <p className="text-muted-foreground text-center py-12">
-              No job openings found.
+              {hasActiveFilters
+                ? "No jobs match the selected filters."
+                : "No job openings found."}
             </p>
           )}
         </div>

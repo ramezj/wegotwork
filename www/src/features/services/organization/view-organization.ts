@@ -31,6 +31,9 @@ export const viewOrganizationBySlugFn = createServerFn()
                 where: {
                   status: "PUBLISHED",
                 },
+                include: {
+                  category: true,
+                },
                 orderBy: {
                   createdAt: "desc",
                 },

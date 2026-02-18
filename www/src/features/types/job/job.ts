@@ -7,7 +7,7 @@ export type JobWithCategory = Job & {
 };
 
 export type CategoryWithJob = JobCategory & {
-  jobs: Job[];
+  jobs: JobWithCategory[];
 };
 
 export const jobSchema = z.object({

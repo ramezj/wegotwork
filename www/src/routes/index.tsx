@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import {
   ArrowRight,
+  ArrowUpRight,
   BarChart3,
   Building2,
   FileText,
@@ -55,10 +56,11 @@ function App() {
                   See Demo
                 </a>
               </Button>
-              <Button variant={"default"} asChild className="flex-1">
+              <Button variant={"default"} asChild className="flex-1 group">
                 <Link to={"/"} target="_blank">
                   Start Hiring
-                  <ArrowRight />
+                  <ArrowRight className="group-hover:hidden" />
+                  <ArrowUpRight className="group-hover:block hidden" />
                 </Link>
               </Button>
             </div>
