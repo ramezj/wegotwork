@@ -49,10 +49,7 @@ function App() {
           <div className="flex flex-col items-center px-4">
             <div className="flex flex-row w-full items-center justify-center content-center gap-4">
               <Button variant={"outline"} asChild className="flex-1">
-                <a
-                  href={"https://jobs.wegotwork.co/test-organization"}
-                  target="_blank"
-                >
+                <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
                   See Demo
                 </a>
               </Button>
