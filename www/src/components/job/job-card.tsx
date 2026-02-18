@@ -62,8 +62,8 @@ export function JobCard({
             {/* view job button */}
             <div className="sm:block hidden shrink-0">
               <div className="px-2">
-                <ArrowRight className="h-5 w-5 text-white group-hover:text-primary shrink-0 group-hover:hidden" />
-                <ArrowUpRight className="h-5 w-5 text-white hidden group-hover:block group-hover:text-primary shrink-0" />
+                <ArrowRight className="h-5 w-5 text-white group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
+                {/* <ArrowUpRight className="h-5 w-5 text-white hidden group-hover:block group-hover:text-primary shrink-0" /> */}
               </div>
             </div>
           </div>
@@ -107,8 +107,7 @@ export function JobCardForViewPage({
             {/* view job button */}
             <div className="sm:block hidden shrink-0">
               <div className="px-2">
-                <ArrowRight className="h-5 w-5 text-white group-hover:text-primary shrink-0 group-hover:hidden" />
-                <ArrowUpRight className="h-5 w-5 text-white hidden group-hover:block group-hover:text-primary shrink-0" />
+                <ArrowRight className="h-5 w-5 text-white group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
               </div>
             </div>
           </div>

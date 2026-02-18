@@ -33,8 +33,7 @@ export function OrganizationCard({
                 </CardTitle>
               </div>
             </div>
-            <ArrowRight className="h-5 w-5 text-white group-hover:text-primary shrink-0 group-hover:hidden" />
-            <ArrowUpRight className="h-5 w-5 text-white hidden group-hover:block group-hover:text-primary shrink-0" />
+            <ArrowRight className="h-5 w-5 text-white group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
           </div>
         </CardHeader>
 
@@ -49,7 +48,6 @@ export function OrganizationCard({
         <CardFooter className="border-t">
           <div className="flex items-center text-sm font-medium text-primary">
             View Organization
-            <ArrowRight className="ml-1 h-4 w-4" />
           </div>
         </CardFooter>
       </Card>

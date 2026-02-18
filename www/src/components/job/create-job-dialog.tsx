@@ -17,7 +17,7 @@ import { organizationBySlugQueryOptions } from "@/features/queries/organization"
 import { toast } from "sonner";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
-import { Loader } from "lucide-react";
+import { Loader, PlusIcon } from "lucide-react";
 
 export function CreateJobDialog({ slug }: { slug: string }) {
   const queryClient = useQueryClient();
@@ -58,7 +58,10 @@ export function CreateJobDialog({ slug }: { slug: string }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="default">Create Job</Button>
+        <Button variant="default" className="group">
+          Create Job
+          <PlusIcon className="duration-100 group-hover:rotate-90" />
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

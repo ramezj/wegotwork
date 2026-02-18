@@ -58,6 +58,7 @@ export function EditOrganizationForm({
   const [preview, setPreview] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const logoValue = form.watch("logo");
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -138,7 +139,7 @@ export function EditOrganizationForm({
         onSubmit={form.handleSubmit(handleSubmit)}
         className="flex flex-col space-y-4"
       >
-        <Card>
+        <Card className="bg-black">
           <CardContent className="flex flex-col space-y-4 px-4">
             <Field>
               <FieldContent>
@@ -149,8 +150,8 @@ export function EditOrganizationForm({
                         src={
                           preview
                             ? preview
-                            : organization.logo
-                              ? `${process.env.R2_PUBLIC_URL || "https://pub-c33c43f7f06946a1ba713658430b64ad.r2.dev"}/${organization.logo}`
+                            : logoValue
+                              ? `${process.env.R2_PUBLIC_URL || "https://pub-c33c43f7f06946a1ba713658430b64ad.r2.dev"}/${logoValue}`
                               : undefined
                         }
                         className="object-cover"
@@ -166,7 +167,22 @@ export function EditOrganizationForm({
                       className="w-32"
                       onClick={() => fileInputRef.current?.click()}
                     >
-                      Change Logo
+                      Upload
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="w-32 text-destructive hover:text-destructive"
+                      onClick={() => {
+                        setPreview(null);
+                        setSelectedFile(null);
+                        if (fileInputRef.current)
+                          fileInputRef.current.value = "";
+                        form.setValue("logo", "");
+                      }}
+                    >
+                      Remove
                     </Button>
                   </div>
                   <div className="flex flex-col space-y-2">

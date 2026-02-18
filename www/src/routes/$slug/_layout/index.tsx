@@ -27,9 +27,10 @@ function RouteComponent() {
     <Layout
       title={data.organization.name}
       primaryButton={
-        <Button asChild>
+        <Button asChild className="group">
           <Link target="_blank" to="/view/$slug" params={{ slug }}>
-            Preview <ArrowRight />
+            Preview{" "}
+            <ArrowRight className="duration-100 group-hover:-rotate-45" />
           </Link>
         </Button>
       }

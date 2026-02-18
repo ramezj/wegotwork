@@ -33,7 +33,7 @@ export const editOrganizationFn = createServerFn({ method: "POST" })
         data: {
           name: data.data.name,
           slug: data.data.slug,
-          logo: data.data.logo,
+          logo: data.data.logo || null,
           description: data.data.description,
           website: data.data.website,
         },

@@ -56,8 +56,7 @@ function App() {
               <Button variant={"default"} asChild className="flex-1 group">
                 <Link to={"/"} target="_blank">
                   Start Hiring
-                  <ArrowRight className="group-hover:hidden" />
-                  <ArrowUpRight className="group-hover:block hidden" />
+                  <ArrowRight className="duration-100 group-hover:-rotate-45" />
                 </Link>
               </Button>
             </div>
