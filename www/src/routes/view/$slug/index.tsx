@@ -54,7 +54,7 @@ function FilterDropdown({
           className="justify-between font-normal w-full"
         >
           <span className="truncate">{selectedLabel ?? label}</span>
-          <ChevronDown className="ml-2 h-4 w-4 opacity-50 shrink-0" />
+          <ChevronDown className="ml-2 h-4 w-4 shrink-0" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="space-y-1 bg-black">
