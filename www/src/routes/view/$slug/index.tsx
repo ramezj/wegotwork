@@ -143,21 +143,23 @@ function RouteComponent() {
               {data.organization.name.charAt(0)}
             </AvatarFallback>
           </Avatar>
-          <div>
-            <h1 className="text-3xl md:text-4xl font-medium tracking-tight">
-              {data.organization.name}
-            </h1>
-            <p className="text-muted-foreground text-base text-balance font-light">
+          {/* <div> */}
+          <h1 className="text-3xl md:text-4xl font-medium tracking-tight leading-none">
+            {data.organization.name}
+          </h1>
+          {/* <p className="text-muted-foreground text-base text-balance font-light">
               Explore our open positions and join our team in building the
               future.
-            </p>
-          </div>
+            </p> */}
+          {/* </div> */}
         </div>
       </div>
       <div className="w-full space-y-4">
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-medium">Open Roles ({visibleCount})</h2>
+            <h2 className="text-xl font-medium leading-none">
+              Open Roles ({visibleCount})
+            </h2>
             {/* {hasActiveFilters && (
               <button
                 onClick={() => {
