@@ -25,14 +25,13 @@ export default function UserDropdown({ session }: { session: Session }) {
           side="top"
           className="w-[--radix-dropdown-menu-trigger-width] DropdownMenuContent"
         >
-          <DropdownMenuItem className="hover:bg-input/30!">
+          <DropdownMenuItem>
             <span>Account</span>
           </DropdownMenuItem>
-          <DropdownMenuItem className="hover:bg-input/30!">
+          <DropdownMenuItem>
             <span>Billing</span>
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="hover:bg-input/30!"
             onClick={async () => {
               await authClient.signOut();
               router.navigate({ to: "/" });

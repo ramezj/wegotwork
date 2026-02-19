@@ -60,7 +60,8 @@ function FilterDropdown({
       <DropdownMenuContent align="start" className="space-y-1 bg-black">
         <DropdownMenuItem
           onClick={() => onSelect(null)}
-          className={`flex items-center justify-between border border-transparent hover:bg-input/30! hover:border-input! ${selected ? "" : "border-input bg-input/30"}`}
+          selected={!selected}
+          className="flex items-center justify-between"
         >
           <span>All</span>
           {!selected && <Check className="h-4 w-4" />}
@@ -69,7 +70,8 @@ function FilterDropdown({
           <DropdownMenuItem
             key={option.value}
             onClick={() => onSelect(option.value)}
-            className={`flex items-center justify-between border border-transparent hover:bg-input/30! hover:border-input! ${selected === option.value ? "border-input bg-input/30" : ""}`}
+            selected={selected === option.value}
+            className="flex items-center justify-between"
           >
             <span>{option.label}</span>
             {selected === option.value && <Check className="h-4 w-4" />}

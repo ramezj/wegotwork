@@ -31,27 +31,27 @@ export function OrganizationSelector({
         </DropdownMenuTrigger>
         <DropdownMenuContent className="DropdownMenuContent">
           {organizations?.map((organization) => {
+            const isSelected = organization.slug === currentOrganization?.slug;
             return (
               <Link
+                key={organization.id}
                 to="/$slug"
                 params={{ slug: organization.slug }}
                 preload={false}
               >
                 <DropdownMenuItem
-                  className="justify-between flex cursor-pointer hover:bg-input/30!"
-                  key={organization.id}
+                  className="justify-between flex cursor-pointer"
+                  selected={isSelected}
                 >
                   {organization.name}
-                  {organization.slug === currentOrganization?.slug && (
-                    <Check className="ml-2 h-4 w-4" />
-                  )}
+                  {isSelected && <Check className="ml-2 h-4 w-4" />}
                 </DropdownMenuItem>
               </Link>
             );
           })}
           <DropdownMenuSeparator />
           <Link to={"/dashboard"} preload={false}>
-            <DropdownMenuItem className="justify-between flex cursor-pointer hover:bg-input/30!">
+            <DropdownMenuItem className="justify-between flex cursor-pointer">
               All Organizations
             </DropdownMenuItem>
           </Link>
