@@ -89,7 +89,7 @@ export function EditJobForm({
         className="flex flex-col space-y-4"
       >
         <Tabs defaultValue="general" className="w-full">
-          <TabsList className="w-full justify-start mb-4 bg-input/30 border border-input">
+          <TabsList className="w-full justify-start mb-4 bg-black border border-input">
             <TabsTrigger value="general">General</TabsTrigger>
             <TabsTrigger value="location">Location</TabsTrigger>
             <TabsTrigger value="compensation">Compensation</TabsTrigger>
