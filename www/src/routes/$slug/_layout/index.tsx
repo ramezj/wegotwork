@@ -7,7 +7,7 @@ import { JobCard } from "@/components/job/job-card";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Navigate } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Briefcase, Users } from "lucide-react";
-import { JobWithCategory } from "@/features/types/job/job";
+import { JobWithCategory } from "@/types/job/job";
 
 export const Route = createFileRoute("/$slug/_layout/")({
   component: RouteComponent,

@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { editOrganizationSchema } from "@/features/types/organization/schemas";
+import { editOrganizationSchema } from "@/types/organization/schemas";
 import { getSession } from "@/features/auth/server-session";
 import prisma from "@/lib/prisma";
 import z from "zod";

@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getOrganizationBySlugSchema } from "@/features/types/organization/schemas";
+import { getOrganizationBySlugSchema } from "@/types/organization/schemas";
 import prisma from "@/lib/prisma";
 
 export const viewOrganizationBySlugFn = createServerFn()

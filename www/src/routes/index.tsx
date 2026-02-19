@@ -17,7 +17,7 @@ import {
   Users,
 } from "lucide-react";
 import { JobCard } from "@/components/job/job-card";
-import { JobWithCategory } from "@/features/types/job/job";
+import { JobWithCategory } from "@/types/job/job";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export const Route = createFileRoute("/")({

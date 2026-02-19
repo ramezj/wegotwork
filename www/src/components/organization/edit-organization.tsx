@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { JobWithCategory } from "@/features/types/job/job";
-import { jobSchema } from "@/features/types/job/job";
+import { JobWithCategory } from "@/types/job/job";
+import { jobSchema } from "@/types/job/job";
 import { Field, FieldLabel, FieldContent, FieldError } from "../ui/field";
 import { Controller } from "react-hook-form";
 import { Input } from "../ui/input";
@@ -25,7 +25,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { jobByIdQueryOptions } from "@/features/queries/jobs";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { Organization } from "generated/prisma/client";
-import { editOrganizationSchema } from "@/features/types/organization/schemas";
+import { editOrganizationSchema } from "@/types/organization/schemas";
 import { editOrganizationFn } from "@/features/services/organization/edit-organization";
 import { uploadLogoFn } from "@/features/services/organization/upload-logo";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";

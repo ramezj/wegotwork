@@ -10,7 +10,7 @@ import {
   FieldSet,
 } from "../ui/field";
 import { useForm, Controller } from "react-hook-form";
-import { createOrganizationSchema } from "@/features/types/organization/schemas";
+import { createOrganizationSchema } from "@/types/organization/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import { Input } from "../ui/input";

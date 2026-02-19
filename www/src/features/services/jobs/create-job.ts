@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { getSession } from "../../auth/server-session";
 import prisma from "@/lib/prisma";
 import z from "zod";
-import { jobSchema } from "@/features/types/job/job";
+import { jobSchema } from "@/types/job/job";
 
 export const createJobFn = createServerFn()
   .inputValidator(z.object({ slug: z.string(), job: jobSchema }))

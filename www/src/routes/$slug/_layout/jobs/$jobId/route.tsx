@@ -2,7 +2,7 @@ import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { jobByIdQueryOptions } from "@/features/queries/jobs";
 import { EditJobForm } from "@/components/job/edit-job";
-import { JobWithCategory } from "@/features/types/job/job";
+import { JobWithCategory } from "@/types/job/job";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 
 export const Route = createFileRoute("/$slug/_layout/jobs/$jobId")({

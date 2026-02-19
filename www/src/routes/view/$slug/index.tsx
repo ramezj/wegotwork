@@ -2,7 +2,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { viewOrganizationBySlugQueryOptions } from "@/features/queries/organization";
 import { JobCardForViewPage } from "@/components/job/job-card";
-import { CategoryWithJob, JobWithCategory } from "@/features/types/job/job";
+import { CategoryWithJob, JobWithCategory } from "@/types/job/job";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,

@@ -1,7 +1,7 @@
 import { Card } from "../ui/card";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { JobWithCategory } from "@/features/types/job/job";
+import { JobWithCategory } from "@/types/job/job";
 import { Badge } from "../ui/badge";
 
 const formatLocationMode = (mode: string) => {

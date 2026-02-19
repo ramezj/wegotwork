@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { JobWithCategory } from "@/features/types/job/job";
-import { jobSchema } from "@/features/types/job/job";
+import { JobWithCategory } from "@/types/job/job";
+import { jobSchema } from "@/types/job/job";
 import { Field, FieldLabel, FieldContent, FieldError } from "../ui/field";
 import { Controller } from "react-hook-form";
 import { Input } from "../ui/input";

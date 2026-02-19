@@ -10,7 +10,7 @@ import { Button } from "../ui/button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { jobSchema } from "@/features/types/job/job";
+import { jobSchema } from "@/types/job/job";
 import { createJobFn } from "@/features/services/jobs/create-job";
 import z from "zod";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
