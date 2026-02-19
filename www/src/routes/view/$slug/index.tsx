@@ -134,8 +134,8 @@ function RouteComponent() {
   const hasActiveFilters = selectedCategory || selectedType || selectedLocation;
 
   return (
-    <div className="flex flex-col items-center justify-center py-12 px-4 space-y-4 w-full max-w-6xl mx-auto ">
-      <div className="w-full">
+    <div className="flex flex-col items-center justify-center space-y-4 w-full max-w-6xl mx-auto ">
+      {/* <div className="w-full">
         <div className="text-center flex flex-col items-center space-y-4">
           <Avatar className="w-24 h-24 rounded-none">
             <AvatarImage
@@ -145,35 +145,17 @@ function RouteComponent() {
               {data.organization.name.charAt(0)}
             </AvatarFallback>
           </Avatar>
-          {/* <div> */}
           <h1 className="text-3xl md:text-4xl font-medium tracking-tight leading-none">
             {data.organization.name}
           </h1>
-          {/* <p className="text-muted-foreground text-base text-balance font-light">
-              Explore our open positions and join our team in building the
-              future.
-            </p> */}
-          {/* </div> */}
         </div>
-      </div>
+      </div> */}
       <div className="w-full space-y-4">
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-medium leading-none">
               Open Roles ({visibleCount})
             </h2>
-            {/* {hasActiveFilters && (
-              <button
-                onClick={() => {
-                  setSelectedCategory(null);
-                  setSelectedType(null);
-                  setSelectedLocation(null);
-                }}
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Clear filters
-              </button>
-            )} */}
           </div>
 
           <div className="flex sm:flex-row flex-col gap-2">

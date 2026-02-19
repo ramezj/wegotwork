@@ -81,7 +81,11 @@ export function JobCardForViewPage({
   slug: string;
 }) {
   return (
-    <Link to={"/view/$slug/$jobId"} params={{ slug, jobId: job.id }}>
+    <Link
+      viewTransition
+      to={"/view/$slug/$jobId"}
+      params={{ slug, jobId: job.id }}
+    >
       <Card className="w-full group min-h-28 bg-input/30 hover:bg-input/40 transition-all flex flex-row border border-input rounded-none items-center p-5 cursor-pointer shadow-none gap-0">
         <div className="flex flex-1 flex-col">
           <div className="flex items-center justify-between">

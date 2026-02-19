@@ -10,12 +10,13 @@ import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/view/$slug/$jobId/")({
   component: RouteComponent,
+  loader: ({ context, params }) =>
+    context.queryClient.ensureQueryData(viewJobQueryOptions(params.jobId)),
 });
 
 function RouteComponent() {
   const { slug, jobId } = Route.useParams();
   const { data } = useSuspenseQuery(viewJobQueryOptions(jobId));
-
   if (!data?.success || !data?.job) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] space-y-4">
@@ -39,7 +40,7 @@ function RouteComponent() {
       {/* Header / Back Link */}
       <div className="w-full flex items-center justify-between">
         <Button asChild variant="ghost" size="sm" className="-ml-2">
-          <Link to="/view/$slug" params={{ slug }}>
+          <Link viewTransition to="/view/$slug" params={{ slug }}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             All Jobs
           </Link>
