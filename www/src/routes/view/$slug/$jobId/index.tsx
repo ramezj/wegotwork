@@ -1,12 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { viewJobQueryOptions } from "@/features/queries/jobs";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, MapPin, Globe } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Separator } from "@/components/ui/separator";
+import { ArrowLeft, MapPin, Briefcase, Paperclip } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 
 export const Route = createFileRoute("/view/$slug/$jobId/")({
   component: RouteComponent,
@@ -17,9 +20,11 @@ export const Route = createFileRoute("/view/$slug/$jobId/")({
 function RouteComponent() {
   const { slug, jobId } = Route.useParams();
   const { data } = useSuspenseQuery(viewJobQueryOptions(jobId));
+  const [resumeName, setResumeName] = useState<string | null>(null);
+
   if (!data?.success || !data?.job) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[50vh] space-y-4">
+      <div className="flex flex-col items-center justify-center gap-4">
         <p className="text-muted-foreground">
           Job not found or no longer available.
         </p>
@@ -35,89 +40,185 @@ function RouteComponent() {
 
   const { job } = data;
 
+  const typeLabel = job.type
+    .split("_")
+    .map((w) => w.charAt(0) + w.slice(1).toLowerCase())
+    .join("-");
+
+  const locationLabel =
+    job.locationMode.charAt(0) + job.locationMode.slice(1).toLowerCase();
+
   return (
-    <div className="flex flex-col items-center py-12 px-4 space-y-8 w-full max-w-4xl mx-auto animate-fade-in">
-      {/* Header / Back Link */}
-      <div className="w-full flex items-center justify-between">
-        <Button asChild variant="ghost" size="sm" className="-ml-2">
-          <Link viewTransition to="/view/$slug" params={{ slug }}>
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            All Jobs
-          </Link>
-        </Button>
-      </div>
+    <div className="w-full max-w-6xl mx-auto px-4 flex flex-col space-y-4">
+      {/* Back */}
+      <Link
+        viewTransition
+        to="/view/$slug"
+        params={{ slug }}
+        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors w-fit"
+      >
+        <ArrowLeft className="size-4" />
+        Back to all jobs
+      </Link>
 
-      <div className="w-full grid md:grid-cols-[1fr_300px] gap-8">
-        <div className="space-y-8">
-          {/* Job Title & Badges */}
-          <div className="space-y-4">
-            <h1 className="text-4xl font-medium tracking-tight leading-tight">
-              {job.title}
-            </h1>
-            <div className="flex flex-wrap gap-2">
-              {job.category && (
-                <Badge variant="secondary">{job.category.name}</Badge>
-              )}
-              <Badge variant="outline">{job.type.replace("_", " ")}</Badge>
-              <Badge variant="outline" className="flex items-center gap-1">
-                <MapPin className="size-3" />
-                {job.locationMode}
-              </Badge>
-            </div>
-          </div>
-
-          {/* Job Description */}
-          <div className="prose prose-invert max-w-none">
-            <div className="text-foreground/90 whitespace-pre-wrap leading-relaxed">
-              {job.description || "No description provided."}
-            </div>
-          </div>
-
-          {/* Apply Button (Sticky on mobile?) */}
-          <div className="pt-8">
-            <Button size="lg" className="px-8">
-              Apply for this position
-            </Button>
-          </div>
+      {/* ── Job info ── */}
+      <div className="flex flex-col">
+        <div className="flex flex-col">
+          <h1 className="text-3xl font-semibold tracking-tight leading-snug">
+            {job.title}
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            {job.organization.name}
+          </p>
         </div>
 
-        {/* Sidebar / Org Info */}
-        <aside className="space-y-6">
-          <Card className="bg-input/10 border-none rounded-none">
-            <CardHeader className="pb-4">
-              <Avatar className="size-20 rounded-none border border-border">
-                <AvatarImage
-                  src={`${process.env.R2_PUBLIC_URL || "https://pub-c33c43f7f06946a1ba713658430b64ad.r2.dev"}/${job.organization.logo}`}
-                />
-                <AvatarFallback className="bg-white text-black text-2xl font-medium">
-                  {job.organization.name.charAt(0)}
-                </AvatarFallback>
-              </Avatar>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-1">
-                <h2 className="font-medium text-lg leading-none">
-                  About {job.organization.name}
-                </h2>
-                {job.organization.website && (
-                  <a
-                    href={job.organization.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
-                  >
-                    <Globe className="size-3" />
-                    Visit website
-                  </a>
-                )}
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {job.organization.description ||
-                  "No organization description available."}
-              </p>
-            </CardContent>
-          </Card>
-        </aside>
+        <div className="flex flex-wrap">
+          {job.category && (
+            <Badge variant="secondary" className="rounded-sm">
+              {job.category.name}
+            </Badge>
+          )}
+          <Badge
+            variant="outline"
+            className="rounded-sm flex items-center gap-1.5"
+          >
+            <Briefcase className="size-3" />
+            {typeLabel}
+          </Badge>
+          <Badge
+            variant="outline"
+            className="rounded-sm flex items-center gap-1.5"
+          >
+            <MapPin className="size-3" />
+            {locationLabel}
+          </Badge>
+        </div>
+      </div>
+
+      <Separator />
+
+      {/* ── Description ── */}
+      <div className="text-sm leading-7 text-foreground/80 whitespace-pre-wrap">
+        {job.description || "No description provided."}
+      </div>
+
+      <Separator />
+
+      {/* ── Application Form ── */}
+      <div className="flex flex-col">
+        <h2 className="text-xl font-semibold">Apply</h2>
+
+        <form
+          className="flex flex-col"
+          onSubmit={(e) => {
+            e.preventDefault();
+            // TODO: wire up submission
+          }}
+        >
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="name">
+              Full name <span className="text-destructive">*</span>
+            </Label>
+            <Input id="name" placeholder="Jane Doe" required />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="email">
+              Email <span className="text-destructive">*</span>
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="jane@example.com"
+              required
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="phone">Phone number</Label>
+            <Input id="phone" type="tel" placeholder="+1 (555) 000-0000" />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="linkedin">LinkedIn</Label>
+            <div className="flex">
+              <span className="inline-flex items-center px-3 border border-r-0 border-input bg-muted text-muted-foreground text-xs rounded-l-sm shrink-0">
+                linkedin.com/in/
+              </span>
+              <Input
+                id="linkedin"
+                placeholder="yourhandle"
+                className="rounded-l-none"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="portfolio">Portfolio / Website</Label>
+            <div className="flex">
+              <span className="inline-flex items-center px-3 border border-r-0 border-input bg-muted text-muted-foreground text-xs rounded-l-sm shrink-0">
+                https://
+              </span>
+              <Input
+                id="portfolio"
+                placeholder="yourwebsite.com"
+                className="rounded-l-none"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label>
+              Resume / CV <span className="text-destructive">*</span>
+            </Label>
+            <label
+              htmlFor="resume"
+              className="flex items-center gap-2 w-fit cursor-pointer border border-input rounded-sm px-4 py-2 text-sm hover:bg-muted transition-colors"
+            >
+              <Paperclip className="size-4 shrink-0" />
+              {resumeName ?? "Attach file"}
+              <input
+                id="resume"
+                type="file"
+                accept=".pdf,.doc,.docx"
+                className="sr-only"
+                onChange={(e) =>
+                  setResumeName(e.target.files?.[0]?.name ?? null)
+                }
+              />
+            </label>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="cover">
+              Why are you a great fit?{" "}
+              <span className="text-destructive">*</span>
+            </Label>
+            <Textarea
+              id="cover"
+              placeholder="Tell us about yourself and why you're excited about this role..."
+              className="min-h-32 resize-y"
+              required
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="extra">Anything else?</Label>
+            <Textarea
+              id="extra"
+              placeholder="Work samples, projects, references..."
+              className="min-h-24 resize-y"
+            />
+          </div>
+
+          <Button type="submit" size="lg" className="w-full mt-2">
+            Submit application
+          </Button>
+
+          <p className="text-xs text-muted-foreground text-center">
+            By submitting you agree to our privacy policy and terms of service.
+          </p>
+        </form>
       </div>
     </div>
   );
