@@ -134,7 +134,7 @@ function RouteComponent() {
   const hasActiveFilters = selectedCategory || selectedType || selectedLocation;
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-4 w-full max-w-6xl mx-auto ">
+    <div className="flex flex-col items-center justify-center space-y-4 w-full max-w-6xl mx-auto">
       <div className="w-full space-y-4">
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">

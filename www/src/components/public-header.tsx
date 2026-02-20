@@ -1,10 +1,14 @@
 import { Button } from "./ui/button";
 import { Link } from "@tanstack/react-router";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { viewOrganizationBySlugQueryOptions } from "@/features/queries/organization";
+import { Bell, Moon } from "lucide-react";
 
 export function PublicHeader({ slug }: { slug: string }) {
+  const { data } = useSuspenseQuery(viewOrganizationBySlugQueryOptions(slug));
   return (
-    <header className="w-full sticky top-0 z-50 border-b border-input bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="max-w-6xl mx-auto lg:px-0 px-4 h-16 flex items-center justify-between">
+    <header className="w-full px-4 sticky top-0 z-50 border-b border-input bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="max-w-6xl mx-auto h-16 flex items-center justify-between">
         <Link
           viewTransition
           to="/view/$slug"
@@ -12,14 +16,12 @@ export function PublicHeader({ slug }: { slug: string }) {
           className="flex items-center gap-2"
         >
           <span className="font-bold text-xl tracking-tight capitalize">
-            {slug.replace(/-/g, " ")}
+            {data.organization?.name}
           </span>
         </Link>
         <div className="flex items-center gap-4">
-          <Button variant="outline" size="sm" asChild>
-            <Link to="/view/$slug" params={{ slug }}>
-              View jobs
-            </Link>
+          <Button variant="outline" size="sm">
+            <Moon />
           </Button>
         </div>
       </div>
