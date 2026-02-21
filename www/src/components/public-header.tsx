@@ -19,13 +19,15 @@ export function PublicHeader({ slug }: { slug: string }) {
             {data.organization?.name}
           </span>
         </Link>
-        <div className="flex items-center gap-4 group">
-          <Button variant="outline" size="sm" asChild>
-            <Link to={data.organization?.website || "#"} target="_blank">
-              Visit Website
-              <ArrowRight className="text-white duration-100 group-hover:-rotate-45" />
-            </Link>
-          </Button>
+        <div className="flex items-center gap-4">
+          {data.organization?.website && (
+            <Button variant="outline" size="sm" className="group" asChild>
+              <Link to={data.organization?.website} target="_blank">
+                Visit Website
+                <ArrowRight className="text-white duration-100 group-hover:-rotate-45" />
+              </Link>
+            </Button>
+          )}
         </div>
       </div>
     </header>
