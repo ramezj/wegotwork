@@ -2,7 +2,7 @@ import { Button } from "./ui/button";
 import { Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { viewOrganizationBySlugQueryOptions } from "@/features/queries/organization";
-import { Bell, Moon } from "lucide-react";
+import { ArrowRight, Bell, Moon } from "lucide-react";
 
 export function PublicHeader({ slug }: { slug: string }) {
   const { data } = useSuspenseQuery(viewOrganizationBySlugQueryOptions(slug));
@@ -19,9 +19,12 @@ export function PublicHeader({ slug }: { slug: string }) {
             {data.organization?.name}
           </span>
         </Link>
-        <div className="flex items-center gap-4">
-          <Button variant="outline" size="sm">
-            <Moon />
+        <div className="flex items-center gap-4 group">
+          <Button variant="outline" size="sm" asChild>
+            <Link to={data.organization?.website || "#"} target="_blank">
+              Visit Website
+              <ArrowRight className="text-white duration-100 group-hover:-rotate-45" />
+            </Link>
           </Button>
         </div>
       </div>
