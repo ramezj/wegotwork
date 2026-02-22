@@ -15,6 +15,9 @@ function RouteComponent() {
     queryFn: getAllOrganizationsFn,
     queryKey: ["organizations"],
   });
+  if (!data.success) {
+    return <>something went insanely wrong..</>;
+  }
 
   const hasOrganizations = data?.organizations && data.organizations.length > 0;
 
