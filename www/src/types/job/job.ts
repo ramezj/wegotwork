@@ -32,3 +32,6 @@ export const jobSchema = z.object({
     .default("ENTRY"),
   categoryId: z.string().optional(),
 });
+export const categorySchema = z.object({
+  name: z.string().min(1, "Name is required"),
+});

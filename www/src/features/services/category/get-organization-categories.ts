@@ -17,9 +17,6 @@ export const getOrganizationCategoriesFn = createServerFn()
             slug: data.slug,
           },
         },
-        orderBy: {
-          order: "asc",
-        },
       });
       return { success: true, categories };
     } catch (error) {

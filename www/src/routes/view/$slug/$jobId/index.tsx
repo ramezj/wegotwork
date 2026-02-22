@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { viewJobQueryOptions } from "@/features/queries/jobs";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +13,18 @@ import { useState } from "react";
 
 export const Route = createFileRoute("/view/$slug/$jobId/")({
   component: RouteComponent,
+  beforeLoad: async ({ context, params }) => {
+    const data = await context.queryClient.ensureQueryData(
+      viewJobQueryOptions(params.jobId),
+    );
+    if (!data.success) {
+      throw redirect({
+        to: "/view/$slug",
+        params: { slug: params.slug },
+      });
+    }
+    return { data };
+  },
   loader: ({ context, params }) =>
     context.queryClient.ensureQueryData(viewJobQueryOptions(params.jobId)),
   head: ({ loaderData }) => ({

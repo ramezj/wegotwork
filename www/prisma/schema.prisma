@@ -217,7 +217,6 @@ model Applicant {
 model JobCategory {
   id             String       @id @default(cuid())
   name           String
-  order          Int          @default(0)
   organizationId String
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   jobs           Job[]

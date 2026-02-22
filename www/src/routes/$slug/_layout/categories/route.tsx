@@ -1,9 +1,8 @@
 import { Layout } from "@/components/shared/layout";
 import { createFileRoute } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
-import { Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { getOrganizationCategoriesQuery } from "@/features/queries/category";
+import { CreateCategoryDialog } from "@/components/category/create-category-dialog";
 
 export const Route = createFileRoute("/$slug/_layout/categories")({
   component: RouteComponent,
@@ -22,17 +21,18 @@ function RouteComponent() {
     <>
       <Layout
         title="Categories"
-        primaryButton={
-          <Button asChild>
-            <Link target="_blank" to="/">
-              Create Category
-            </Link>
-          </Button>
-        }
+        primaryButton={<CreateCategoryDialog slug={slug} />}
       >
-        {data.categories.map((category) => (
-          <div key={category.id}>{category.name}</div>
-        ))}
+        <div className="flex flex-col gap-2">
+          {data.categories.map((category) => (
+            <div
+              key={category.id}
+              className="p-4 border border-input rounded-sm bg-input/30"
+            >
+              {category.name}
+            </div>
+          ))}
+        </div>
       </Layout>
     </>
   );
