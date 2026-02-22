@@ -16,6 +16,17 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const Route = createFileRoute("/view/$slug/")({
   component: RouteComponent,
+  loader: ({ context, params }) =>
+    context.queryClient.ensureQueryData(
+      viewOrganizationBySlugQueryOptions(params.slug),
+    ),
+  head: ({ loaderData }) => ({
+    meta: [
+      {
+        title: loaderData?.organization?.name || "Hirelou",
+      },
+    ],
+  }),
 });
 
 const EMPLOYMENT_TYPES = [
