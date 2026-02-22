@@ -15,6 +15,13 @@ export const Route = createFileRoute("/view/$slug/$jobId/")({
   component: RouteComponent,
   loader: ({ context, params }) =>
     context.queryClient.ensureQueryData(viewJobQueryOptions(params.jobId)),
+  head: ({ loaderData }) => ({
+    meta: [
+      {
+        title: loaderData?.job?.title || "Hirelou",
+      },
+    ],
+  }),
 });
 
 function RouteComponent() {
