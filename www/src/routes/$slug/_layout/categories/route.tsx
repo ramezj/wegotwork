@@ -7,6 +7,12 @@ import { getOrganizationCategoriesQuery } from "@/features/queries/category";
 
 export const Route = createFileRoute("/$slug/_layout/categories")({
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      { title: "Categories", content: "Categories" },
+      { name: "Categories" },
+    ],
+  }),
 });
 
 function RouteComponent() {

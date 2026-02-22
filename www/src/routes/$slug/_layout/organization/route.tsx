@@ -6,6 +6,12 @@ import { Navigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/$slug/_layout/organization")({
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      { title: "Organization", content: "Organization" },
+      { name: "Organization" },
+    ],
+  }),
 });
 
 function RouteComponent() {

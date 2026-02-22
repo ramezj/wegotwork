@@ -8,6 +8,9 @@ import { CreateJobDialog } from "@/components/job/create-job-dialog";
 
 export const Route = createFileRoute("/$slug/_layout/jobs/")({
   component: RouteComponent,
+  head: () => ({
+    meta: [{ title: "Jobs", content: "Jobs" }, { name: "Jobs" }],
+  }),
 });
 
 function RouteComponent() {
