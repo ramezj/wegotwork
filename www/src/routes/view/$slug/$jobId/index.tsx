@@ -69,7 +69,7 @@ function RouteComponent() {
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 flex flex-col space-y-4">
-      <Link
+      {/* <Link
         viewTransition
         to="/view/$slug"
         params={{ slug }}
@@ -77,9 +77,9 @@ function RouteComponent() {
       >
         <ArrowLeft className="size-4" />
         Back to all jobs
-      </Link>
-      <div className="flex flex-col">
-        <div className="flex flex-col">
+      </Link> */}
+      <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-4">
           <h1 className="text-3xl font-semibold tracking-tight leading-snug">
             {job.title}
           </h1>
@@ -88,23 +88,17 @@ function RouteComponent() {
           </p>
         </div>
 
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap gap-2">
           {job.category && (
-            <Badge variant="secondary" className="rounded-sm">
+            <Badge variant="outline" className="rounded-sm bg-input/30">
               {job.category.name}
             </Badge>
           )}
-          <Badge
-            variant="outline"
-            className="rounded-sm flex items-center gap-1.5"
-          >
+          <Badge variant="outline" className="rounded-sm bg-input/30">
             <Briefcase className="size-3" />
             {typeLabel}
           </Badge>
-          <Badge
-            variant="outline"
-            className="rounded-sm flex items-center gap-1.5"
-          >
+          <Badge variant="outline" className="rounded-sm bg-input/30">
             <MapPin className="size-3" />
             {locationLabel}
           </Badge>
@@ -116,11 +110,11 @@ function RouteComponent() {
         {job.description || "No description provided."}
       </div>
       <Separator />
-      <div className="flex flex-col">
+      <div className="flex flex-col space-y-4">
         <h2 className="text-xl font-semibold">Apply</h2>
 
         <form
-          className="flex flex-col"
+          className="flex flex-col space-y-4"
           onSubmit={(e) => {
             e.preventDefault();
           }}
@@ -221,7 +215,7 @@ function RouteComponent() {
             />
           </div>
 
-          <Button type="submit" size="lg" className="w-full mt-2">
+          <Button type="submit" size="lg" className="w-full">
             Submit application
           </Button>
 
