@@ -10,6 +10,11 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, MapPin, Briefcase, Paperclip } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { uploadResumeFn } from "@/features/services/applicants/upload-resume";
+import { createApplicantFn } from "@/features/services/applicants/create-applicant";
+import { toast } from "sonner";
+import { CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/view/$slug/$jobId/")({
   component: RouteComponent,
@@ -40,6 +45,42 @@ function RouteComponent() {
   const { slug, jobId } = Route.useParams();
   const { data } = useSuspenseQuery(viewJobQueryOptions(jobId));
   const [resumeName, setResumeName] = useState<string | null>(null);
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const { mutate: submitApplication, isPending } = useMutation({
+    mutationFn: async (formData: FormData) => {
+      // 1. Upload Resume
+      const uploadFormData = new FormData();
+      uploadFormData.append("resume", resumeFile!);
+      const { key: resumeKey } = await uploadResumeFn({ data: uploadFormData });
+
+      // 2. Create Applicant
+      return createApplicantFn({
+        data: {
+          name: formData.get("name") as string,
+          email: formData.get("email") as string,
+          motivation: formData.get("motivation") as string,
+          linkedIn: formData.get("linkedin") as string,
+          twitter: "", // Add if needed
+          github: "", // Add if needed
+          resumeKey,
+          jobId,
+        },
+      });
+    },
+    onSuccess: (data) => {
+      if (data.success) {
+        setIsSubmitted(true);
+        toast.success("Application submitted successfully!");
+      } else {
+        toast.error(data.error || "Failed to submit application");
+      }
+    },
+    onError: () => {
+      toast.error("Something went wrong. Please try again.");
+    },
+  });
 
   if (!data?.success || !data?.job) {
     return (
@@ -58,6 +99,31 @@ function RouteComponent() {
   }
 
   const { job } = data;
+
+  if (isSubmitted) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 space-y-4 text-center">
+        <div className="size-16 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+          <CheckCircle2 className="size-10" />
+        </div>
+        <div className="space-y-2">
+          <h1 className="text-3xl font-bold tracking-tight">
+            Application Sent!
+          </h1>
+          <p className="text-muted-foreground max-w-md">
+            Thank you for applying to {job.organization.name}. We've received
+            your application for the {job.title} position and will be in touch
+            soon.
+          </p>
+        </div>
+        <Button asChild variant="outline" className="mt-4">
+          <Link to="/view/$slug" params={{ slug }}>
+            Back to Open Roles
+          </Link>
+        </Button>
+      </div>
+    );
+  }
 
   const typeLabel = job.type
     .split("_")
@@ -117,13 +183,19 @@ function RouteComponent() {
           className="flex flex-col space-y-4"
           onSubmit={(e) => {
             e.preventDefault();
+            const formData = new FormData(e.currentTarget);
+            if (!resumeFile) {
+              toast.error("Please attach your resume");
+              return;
+            }
+            submitApplication(formData);
           }}
         >
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="name">
               Full name <span className="text-destructive">*</span>
             </Label>
-            <Input id="name" placeholder="Jane Doe" required />
+            <Input id="name" name="name" placeholder="Jane Doe" required />
           </div>
 
           <div className="flex flex-col gap-1.5">
@@ -132,6 +204,7 @@ function RouteComponent() {
             </Label>
             <Input
               id="email"
+              name="email"
               type="email"
               placeholder="jane@example.com"
               required
@@ -151,6 +224,7 @@ function RouteComponent() {
               </span>
               <Input
                 id="linkedin"
+                name="linkedin"
                 placeholder="yourhandle"
                 className="rounded-l-none"
               />
@@ -186,9 +260,11 @@ function RouteComponent() {
                 type="file"
                 accept=".pdf,.doc,.docx"
                 className="sr-only"
-                onChange={(e) =>
-                  setResumeName(e.target.files?.[0]?.name ?? null)
-                }
+                onChange={(e) => {
+                  const file = e.target.files?.[0] ?? null;
+                  setResumeName(file?.name ?? null);
+                  setResumeFile(file);
+                }}
               />
             </label>
           </div>
@@ -200,6 +276,7 @@ function RouteComponent() {
             </Label>
             <Textarea
               id="cover"
+              name="motivation"
               placeholder="Tell us about yourself and why you're excited about this role..."
               className="min-h-32 resize-y"
               required
@@ -215,8 +292,13 @@ function RouteComponent() {
             />
           </div>
 
-          <Button type="submit" size="lg" className="w-full">
-            Submit application
+          <Button
+            type="submit"
+            size="lg"
+            className="w-full"
+            disabled={isPending}
+          >
+            {isPending ? "Submitting..." : "Submit application"}
           </Button>
 
           <p className="text-xs text-muted-foreground text-center">
