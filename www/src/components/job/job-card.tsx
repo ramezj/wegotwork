@@ -47,10 +47,14 @@ export function JobCard({
               </p>
               <div className="flex flex-row flex-wrap gap-2">
                 {job.category && (
-                  <Badge variant="outline">{job.category.name}</Badge>
+                  <Badge className="bg-input/30" variant="outline">
+                    {job.category.name}
+                  </Badge>
                 )}
-                <Badge variant="outline">{formatJobType(job.type)}</Badge>
-                <Badge variant="outline">
+                <Badge className="bg-input/30" variant="outline">
+                  {formatJobType(job.type)}
+                </Badge>
+                <Badge className="bg-input/30" variant="outline">
                   {formatLocationMode(job.locationMode)}
                 </Badge>
                 {/* <Badge variant="outline">
@@ -96,10 +100,14 @@ export function JobCardForViewPage({
               </p>
               <div className="flex flex-row flex-wrap gap-2">
                 {job.category && (
-                  <Badge variant="outline">{job.category.name}</Badge>
+                  <Badge className="bg-input/30" variant="outline">
+                    {job.category.name}
+                  </Badge>
                 )}
-                <Badge variant="outline">{formatJobType(job.type)}</Badge>
-                <Badge variant="outline">
+                <Badge className="bg-input/30" variant="outline">
+                  {formatJobType(job.type)}
+                </Badge>
+                <Badge className="bg-input/30" variant="outline">
                   {formatLocationMode(job.locationMode)}
                 </Badge>
                 {/* <Badge variant="outline">

@@ -72,14 +72,14 @@ export function AppSidebar({
       href: `/${slug}/organization`,
     },
     {
-      label: "Team",
-      icon: <Users />,
-      href: `/${slug}/team`,
-    },
-    {
       label: "Billing",
       icon: <CreditCard />,
       href: `/${slug}/billing`,
+    },
+    {
+      label: "Team",
+      icon: <Users />,
+      href: `/${slug}/team`,
     },
   ];
 

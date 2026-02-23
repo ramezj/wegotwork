@@ -19,7 +19,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { JobCategory } from "generated/prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { editJobBySlugFn } from "@/features/services/jobs/edit-by-slug";
-import { Loader } from "lucide-react";
+import { Loader, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 import { jobByIdQueryOptions } from "@/features/queries/jobs";
@@ -127,10 +127,10 @@ export function EditOrganizationForm({
           disabled={mutation.isPending || uploadMutation.isPending}
         >
           {(mutation.isPending || uploadMutation.isPending) && (
-            <Loader className="animate-spin mr-2 size-4" />
+            <Loader2 className="animate-spin" />
           )}
           {mutation.isPending || uploadMutation.isPending
-            ? "Saving..."
+            ? "Save Changes"
             : "Save Changes"}
         </Button>
       </div>

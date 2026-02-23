@@ -23,9 +23,6 @@ export const viewOrganizationBySlugFn = createServerFn()
             },
           },
           categories: {
-            orderBy: {
-              order: "asc",
-            },
             include: {
               jobs: {
                 where: {
