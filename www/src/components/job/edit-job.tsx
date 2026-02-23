@@ -26,6 +26,8 @@ import { jobByIdQueryOptions } from "@/features/queries/jobs";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../ui/tabs";
+import { FormBuilder } from "../forms/FormBuilder";
+import { FormFieldType } from "@/types/form-config";
 
 export function EditJobForm({
   job,
@@ -54,6 +56,15 @@ export function EditJobForm({
       salaryInterval: job.salaryInterval || "MONTHLY",
       experienceLevel: job.experienceLevel || "ENTRY",
       categoryId: job.categoryId || "",
+      questions: job.questions.map((q) => ({
+        id: q.id,
+        label: q.label,
+        type: q.type as FormFieldType,
+        required: q.required,
+        placeholder: q.placeholder,
+        options: q.options || [],
+        order: q.order || 0,
+      })),
     },
     resolver: zodResolver(jobSchema),
     mode: "onBlur",
@@ -93,6 +104,7 @@ export function EditJobForm({
             <TabsTrigger value="general">General</TabsTrigger>
             <TabsTrigger value="location">Location</TabsTrigger>
             <TabsTrigger value="compensation">Compensation</TabsTrigger>
+            <TabsTrigger value="application">Application Form</TabsTrigger>
           </TabsList>
 
           <TabsContent value="general" className="m-0">
@@ -416,6 +428,30 @@ export function EditJobForm({
                       </FieldContent>
                       <FieldError errors={[fieldState.error]} />
                     </Field>
+                  )}
+                />
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="application" className="m-0">
+            <Card className="bg-black!">
+              <CardHeader>
+                <CardTitle>Application Form</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Controller
+                  control={form.control}
+                  name="questions"
+                  render={({ field }) => (
+                    <FormBuilder
+                      value={(field.value ?? []).map((q) => ({
+                        ...q,
+                        required: q.required ?? false,
+                        options: q.options ?? [],
+                        order: q.order ?? 0,
+                      }))}
+                      onChange={field.onChange}
+                    />
                   )}
                 />
               </CardContent>

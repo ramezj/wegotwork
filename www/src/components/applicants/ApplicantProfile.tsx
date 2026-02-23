@@ -17,22 +17,18 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "./StatusBadge";
 import { Applicant, Status } from "generated/prisma/client";
-import {
-  ExternalLink,
-  Mail,
-  Linkedin,
-  Twitter,
-  Github,
-  FileText,
-} from "lucide-react";
+import { ExternalLink, Mail, FileText } from "lucide-react";
 import { updateApplicantStatusFn } from "@/features/services/applicants/update-status";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { FormConfig } from "@/types/form-config";
+import { Badge } from "@/components/ui/badge";
 
 type ApplicantWithJob = Applicant & {
   job: {
     title: string;
     id: string;
+    formConfig: any; // FormConfig
   };
 };
 
@@ -75,6 +71,9 @@ export function ApplicantProfile({
   });
 
   if (!applicant) return null;
+
+  const formConfig = (applicant.job.formConfig as any as FormConfig) || [];
+  const responses = (applicant.responses as Record<string, any>) || {};
 
   return (
     <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
@@ -120,7 +119,7 @@ export function ApplicantProfile({
 
           <Separator />
 
-          {/* Contact Info */}
+          {/* Core Info */}
           <div className="space-y-4">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
               Contact Information
@@ -133,55 +132,51 @@ export function ApplicantProfile({
                 <Mail className="size-4" />
                 {applicant.email}
               </a>
-              {applicant.linkedIn && (
-                <a
-                  href={`https://linkedin.com/in/${applicant.linkedIn}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm hover:underline text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Linkedin className="size-4" />
-                  LinkedIn Profile
-                </a>
-              )}
-              {applicant.twitter && (
-                <a
-                  href={`https://twitter.com/${applicant.twitter}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm hover:underline text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Twitter className="size-4" />
-                  Twitter
-                </a>
-              )}
-              {applicant.github && (
-                <a
-                  href={`https://github.com/${applicant.github}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm hover:underline text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Github className="size-4" />
-                  GitHub
-                </a>
-              )}
             </div>
           </div>
 
           <Separator />
 
-          {/* Motivation */}
-          <div className="space-y-3">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-              Motivation
-            </h3>
-            <p className="text-sm leading-relaxed text-foreground/80 whitespace-pre-wrap">
-              {applicant.motivation || "No motivation provided."}
-            </p>
-          </div>
+          {/* Dynamic Responses */}
+          {formConfig.length > 0 && (
+            <>
+              <div className="space-y-6">
+                {formConfig.map((field) => {
+                  const value = responses[field.id];
+                  if (value === undefined || value === null || value === "")
+                    return null;
 
-          <Separator />
+                  return (
+                    <div key={field.id} className="space-y-2">
+                      <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        {field.label}
+                      </h3>
+                      {field.type === "LONG_ANSWER" ? (
+                        <p className="text-sm leading-relaxed text-foreground/80 whitespace-pre-wrap">
+                          {value}
+                        </p>
+                      ) : field.type === "CHECKBOX" ? (
+                        <p className="text-sm text-foreground/80">
+                          {value ? "Yes" : "No"}
+                        </p>
+                      ) : field.type === "MULTI_SELECT" ? (
+                        <div className="flex flex-wrap gap-1">
+                          {(value as string[]).map((v) => (
+                            <Badge key={v} variant="secondary">
+                              {v}
+                            </Badge>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-sm text-foreground/80">{value}</p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              <Separator />
+            </>
+          )}
 
           {/* Resume */}
           <div className="space-y-3">

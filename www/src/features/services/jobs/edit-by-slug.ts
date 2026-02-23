@@ -28,13 +28,25 @@ export const editJobBySlugFn = createServerFn()
       throw new Error("You are not authorized to edit this job");
     }
     try {
+      const { questions, ...jobData } = data.job;
       const job = await prisma.job.update({
         where: {
           id: data.jobId,
         },
         data: {
-          ...data.job,
+          ...jobData,
           categoryId: data.job.categoryId || null,
+          questions: {
+            deleteMany: {},
+            create: (questions || []).map((q) => ({
+              type: q.type,
+              label: q.label,
+              placeholder: q.placeholder,
+              required: q.required,
+              options: q.options,
+              order: q.order,
+            })),
+          },
         },
       });
       return { success: true, job };

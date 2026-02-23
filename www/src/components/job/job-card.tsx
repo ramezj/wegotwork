@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { JobWithCategory } from "@/types/job/job";
 import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
 
 const formatLocationMode = (mode: string) => {
   const map: Record<string, string> = {
@@ -118,6 +119,11 @@ export function JobCardForViewPage({
 
             {/* view job button */}
             <div className="sm:block hidden shrink-0">
+              <div className="px-2">
+                <Button>View Job</Button>
+              </div>
+            </div>
+            <div className="sm:hidden block shrink-0">
               <div className="px-2">
                 <ArrowRight className="h-5 w-5 text-white group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
               </div>

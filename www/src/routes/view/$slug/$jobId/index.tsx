@@ -9,12 +9,24 @@ import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, MapPin, Briefcase, Paperclip } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState, useMemo } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { uploadResumeFn } from "@/features/services/applicants/upload-resume";
 import { createApplicantFn } from "@/features/services/applicants/create-applicant";
 import { toast } from "sonner";
 import { CheckCircle2 } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { FormFieldConfig } from "@/types/form-config";
 
 export const Route = createFileRoute("/view/$slug/$jobId/")({
   component: RouteComponent,
@@ -41,47 +53,133 @@ export const Route = createFileRoute("/view/$slug/$jobId/")({
   }),
 });
 
+// ---------------------------------------------------------------------------
+// Build a client-side zod schema that mirrors dynamic-schema.ts on the server
+// ---------------------------------------------------------------------------
+function buildSchema(questions: FormFieldConfig[]) {
+  const responsesShape: Record<string, z.ZodTypeAny> = {};
+
+  questions.forEach((field) => {
+    let fieldSchema: z.ZodTypeAny;
+
+    switch (field.type) {
+      case "SHORT_ANSWER":
+      case "LONG_ANSWER":
+      case "SELECT":
+        fieldSchema = field.required
+          ? z.string().min(1, `${field.label} is required`)
+          : z.string().optional().nullable();
+        break;
+
+      case "MULTI_SELECT":
+        fieldSchema = field.required
+          ? z
+              .array(z.string())
+              .min(1, `Please select at least one ${field.label}`)
+          : z.array(z.string()).optional().default([]);
+        break;
+
+      case "CHECKBOX":
+        fieldSchema = field.required
+          ? z.literal(true, { message: `${field.label} must be checked` })
+          : z.boolean().optional().default(false);
+        break;
+
+      default:
+        fieldSchema = z.string().optional().nullable();
+    }
+
+    responsesShape[field.id] = fieldSchema;
+  });
+
+  return z.object({
+    name: z.string().min(1, "Full name is required"),
+    email: z.string().email("Invalid email address"),
+    resume: z
+      .instanceof(File, { message: "Resume is required" })
+      .refine((f) => f.size > 0, "Resume is required"),
+    responses: z.object(responsesShape),
+  });
+}
+
+type ApplicationFormValues = {
+  name: string;
+  email: string;
+  resume: File;
+  responses: Record<string, any>;
+};
+
+// ---------------------------------------------------------------------------
+// Route component
+// ---------------------------------------------------------------------------
 function RouteComponent() {
   const { slug, jobId } = Route.useParams();
-  const { data } = useSuspenseQuery(viewJobQueryOptions(jobId));
-  const [resumeName, setResumeName] = useState<string | null>(null);
-  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const { data } = useSuspenseQuery(viewJobQueryOptions(jobId)) as any;
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const { mutate: submitApplication, isPending } = useMutation({
-    mutationFn: async (formData: FormData) => {
-      // 1. Upload Resume
-      const uploadFormData = new FormData();
-      uploadFormData.append("resume", resumeFile!);
-      const { key: resumeKey } = await uploadResumeFn({ data: uploadFormData });
+  const questions: FormFieldConfig[] = useMemo(
+    () => (data?.job?.questions as FormFieldConfig[]) ?? [],
+    [data?.job?.questions],
+  );
 
-      // 2. Create Applicant
-      return createApplicantFn({
-        data: {
-          name: formData.get("name") as string,
-          email: formData.get("email") as string,
-          motivation: formData.get("motivation") as string,
-          linkedIn: formData.get("linkedin") as string,
-          twitter: "", // Add if needed
-          github: "", // Add if needed
-          resumeKey,
-          jobId,
-        },
-      });
-    },
-    onSuccess: (data) => {
-      if (data.success) {
-        setIsSubmitted(true);
-        toast.success("Application submitted successfully!");
-      } else {
-        toast.error(data.error || "Failed to submit application");
-      }
-    },
-    onError: () => {
-      toast.error("Something went wrong. Please try again.");
+  const schema = useMemo(() => buildSchema(questions), [questions]);
+
+  const form = useForm<ApplicationFormValues>({
+    resolver: zodResolver(schema) as any,
+    defaultValues: {
+      name: "",
+      email: "",
+      resume: undefined as any,
+      responses: {},
     },
   });
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    watch,
+  } = form;
+
+  const resumeFile = watch("resume");
+
+  const { mutate: submitApplication, isPending } = useMutation({
+    mutationFn: async (values: ApplicationFormValues) => {
+      // 1. Upload resume
+      const uploadFormData = new FormData();
+      uploadFormData.append("resume", values.resume);
+      const uploadResult = await uploadResumeFn({ data: uploadFormData });
+      const resumeKey = uploadResult.key;
+
+      // 2. Create applicant
+      return createApplicantFn({
+        data: {
+          name: values.name,
+          email: values.email,
+          resumeKey,
+          jobId,
+          responses: values.responses,
+        },
+      });
+    },
+    onSuccess: (result) => {
+      if (result.success) {
+        setIsSubmitted(true);
+        toast.success("Application submitted successfully!");
+      } else {
+        toast.error(result.error || "Submission failed. Please try again.");
+      }
+    },
+    onError: (error: Error) => {
+      toast.error(error.message || "Something went wrong. Please try again.");
+    },
+  });
+
+  // -------------------------------------------------------------------------
+  // Guard: job not found
+  // -------------------------------------------------------------------------
   if (!data?.success || !data?.job) {
     return (
       <div className="flex flex-col items-center justify-center gap-4">
@@ -100,6 +198,9 @@ function RouteComponent() {
 
   const { job } = data;
 
+  // -------------------------------------------------------------------------
+  // Success screen
+  // -------------------------------------------------------------------------
   if (isSubmitted) {
     return (
       <div className="flex flex-col items-center justify-center py-20 space-y-4 text-center">
@@ -127,23 +228,18 @@ function RouteComponent() {
 
   const typeLabel = job.type
     .split("_")
-    .map((w) => w.charAt(0) + w.slice(1).toLowerCase())
+    .map((w: string) => w.charAt(0) + w.slice(1).toLowerCase())
     .join("-");
 
   const locationLabel =
     job.locationMode.charAt(0) + job.locationMode.slice(1).toLowerCase();
 
+  // -------------------------------------------------------------------------
+  // Render
+  // -------------------------------------------------------------------------
   return (
     <div className="w-full max-w-6xl mx-auto px-4 flex flex-col space-y-4">
-      {/* <Link
-        viewTransition
-        to="/view/$slug"
-        params={{ slug }}
-        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors w-fit"
-      >
-        <ArrowLeft className="size-4" />
-        Back to all jobs
-      </Link> */}
+      {/* Job header */}
       <div className="flex flex-col space-y-4">
         <div className="flex flex-col space-y-4">
           <h1 className="text-3xl font-semibold tracking-tight leading-snug">
@@ -176,126 +272,233 @@ function RouteComponent() {
         {job.description || "No description provided."}
       </div>
       <Separator />
+
+      {/* Application form */}
       <div className="flex flex-col space-y-4">
         <h2 className="text-xl font-semibold">Apply</h2>
 
         <form
           className="flex flex-col space-y-4"
-          onSubmit={(e) => {
-            e.preventDefault();
-            const formData = new FormData(e.currentTarget);
-            if (!resumeFile) {
-              toast.error("Please attach your resume");
-              return;
-            }
-            submitApplication(formData);
-          }}
+          onSubmit={handleSubmit((values) => submitApplication(values))}
         >
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor="name">
-              Full name <span className="text-destructive">*</span>
-            </Label>
-            <Input id="name" name="name" placeholder="Jane Doe" required />
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor="email">
-              Email <span className="text-destructive">*</span>
-            </Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="jane@example.com"
-              required
-            />
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor="phone">Phone number</Label>
-            <Input id="phone" type="tel" placeholder="+1 (555) 000-0000" />
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor="linkedin">LinkedIn</Label>
-            <div className="flex">
-              <span className="inline-flex items-center px-3 border border-r-0 border-input bg-muted text-muted-foreground text-xs rounded-l-sm shrink-0">
-                linkedin.com/in/
-              </span>
-              <Input
-                id="linkedin"
-                name="linkedin"
-                placeholder="yourhandle"
-                className="rounded-l-none"
+          {/* ----------------------------------------------------------------
+              Core fields: Name + Email
+          ---------------------------------------------------------------- */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            {/* Full name */}
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="name">
+                Full name <span className="text-destructive">*</span>
+              </Label>
+              <Controller
+                name="name"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <Input
+                    id="name"
+                    placeholder="Jane Doe"
+                    aria-invalid={fieldState.invalid}
+                    {...field}
+                  />
+                )}
               />
+              {errors.name && (
+                <p className="text-sm text-destructive">
+                  {errors.name.message}
+                </p>
+              )}
+            </div>
+
+            {/* Email */}
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="email">
+                Email <span className="text-destructive">*</span>
+              </Label>
+              <Controller
+                name="email"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="jane@example.com"
+                    aria-invalid={fieldState.invalid}
+                    {...field}
+                  />
+                )}
+              />
+              {errors.email && (
+                <p className="text-sm text-destructive">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
           </div>
 
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor="portfolio">Portfolio / Website</Label>
-            <div className="flex">
-              <span className="inline-flex items-center px-3 border border-r-0 border-input bg-muted text-muted-foreground text-xs rounded-l-sm shrink-0">
-                https://
-              </span>
-              <Input
-                id="portfolio"
-                placeholder="yourwebsite.com"
-                className="rounded-l-none"
-              />
-            </div>
-          </div>
-
+          {/* ----------------------------------------------------------------
+              Resume / CV
+          ---------------------------------------------------------------- */}
           <div className="flex flex-col gap-1.5">
             <Label>
               Resume / CV <span className="text-destructive">*</span>
             </Label>
-            <label
-              htmlFor="resume"
-              className="flex items-center gap-2 w-fit cursor-pointer border border-input rounded-sm px-4 py-2 text-sm hover:bg-muted transition-colors"
-            >
-              <Paperclip className="size-4 shrink-0" />
-              {resumeName ?? "Attach file"}
-              <input
-                id="resume"
-                type="file"
-                accept=".pdf,.doc,.docx"
-                className="sr-only"
-                onChange={(e) => {
-                  const file = e.target.files?.[0] ?? null;
-                  setResumeName(file?.name ?? null);
-                  setResumeFile(file);
-                }}
-              />
-            </label>
-          </div>
-
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor="cover">
-              Why are you a great fit?{" "}
-              <span className="text-destructive">*</span>
-            </Label>
-            <Textarea
-              id="cover"
-              name="motivation"
-              placeholder="Tell us about yourself and why you're excited about this role..."
-              className="min-h-32 resize-y"
-              required
+            <Controller
+              name="resume"
+              control={control}
+              render={({ fieldState }) => (
+                <label
+                  htmlFor="resume"
+                  className="flex items-center gap-2 w-fit cursor-pointer border border-input rounded-sm px-4 py-2 text-sm hover:bg-muted transition-colors"
+                >
+                  <Paperclip className="size-4 shrink-0" />
+                  {resumeFile?.name ?? "Attach file"}
+                  <input
+                    ref={fileInputRef}
+                    aria-invalid={fieldState.invalid}
+                    id="resume"
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    className="sr-only"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file)
+                        setValue("resume", file, { shouldValidate: true });
+                    }}
+                  />
+                </label>
+              )}
             />
+            {errors.resume && (
+              <p className="text-sm text-destructive">
+                {errors.resume.message as string}
+              </p>
+            )}
           </div>
 
-          <div className="flex flex-col gap-1.5">
-            <Label htmlFor="extra">Anything else?</Label>
-            <Textarea
-              id="extra"
-              placeholder="Work samples, projects, references..."
-              className="min-h-24 resize-y"
-            />
-          </div>
+          {/* ----------------------------------------------------------------
+              Dynamic job-specific questions
+          ---------------------------------------------------------------- */}
+          {questions.length > 0 && (
+            <>
+              <Separator className="my-2" />
+              {questions.map((field) => (
+                <div key={field.id} className="flex flex-col gap-1.5">
+                  <Label htmlFor={field.id}>
+                    {field.label}{" "}
+                    {field.required && (
+                      <span className="text-destructive">*</span>
+                    )}
+                  </Label>
 
+                  {/* SHORT_ANSWER */}
+                  {field.type === "SHORT_ANSWER" && (
+                    <Controller
+                      name={`responses.${field.id}` as any}
+                      control={control}
+                      defaultValue=""
+                      render={({ field: f, fieldState }) => (
+                        <Input
+                          id={field.id}
+                          aria-invalid={fieldState.invalid}
+                          placeholder={field.placeholder || undefined}
+                          {...f}
+                        />
+                      )}
+                    />
+                  )}
+
+                  {/* LONG_ANSWER */}
+                  {field.type === "LONG_ANSWER" && (
+                    <Controller
+                      name={`responses.${field.id}` as any}
+                      control={control}
+                      defaultValue=""
+                      render={({ field: f, fieldState }) => (
+                        <Textarea
+                          id={field.id}
+                          aria-invalid={fieldState.invalid}
+                          placeholder={field.placeholder || undefined}
+                          className="min-h-32"
+                          {...f}
+                        />
+                      )}
+                    />
+                  )}
+
+                  {/* SELECT */}
+                  {field.type === "SELECT" && (
+                    <Controller
+                      name={`responses.${field.id}` as any}
+                      control={control}
+                      defaultValue=""
+                      render={({ field: f, fieldState }) => (
+                        <Select
+                          value={f.value ?? ""}
+                          onValueChange={f.onChange}
+                        >
+                          <SelectTrigger
+                            aria-invalid={fieldState.invalid}
+                            id={field.id}
+                          >
+                            <SelectValue
+                              placeholder={
+                                field.placeholder || "Select an option"
+                              }
+                            />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {(field.options || []).map((option) => (
+                              <SelectItem key={option} value={option}>
+                                {option}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )}
+                    />
+                  )}
+
+                  {/* CHECKBOX */}
+                  {field.type === "CHECKBOX" && (
+                    <Controller
+                      name={`responses.${field.id}` as any}
+                      control={control}
+                      defaultValue={false}
+                      render={({ field: f, fieldState }) => (
+                        <div className="flex items-center space-x-2">
+                          <Checkbox
+                            id={field.id}
+                            checked={!!f.value}
+                            onCheckedChange={f.onChange}
+                            aria-invalid={fieldState.invalid}
+                          />
+                          <Label
+                            htmlFor={field.id}
+                            className="text-sm font-normal text-muted-foreground"
+                          >
+                            {field.placeholder || "I agree"}
+                          </Label>
+                        </div>
+                      )}
+                    />
+                  )}
+
+                  {/* Inline error */}
+                  {(errors as any)?.responses?.[field.id] && (
+                    <p className="text-sm text-destructive">
+                      {(errors as any).responses[field.id]?.message}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </>
+          )}
+
+          {/* Submit */}
           <Button
             type="submit"
             size="lg"
-            className="w-full"
+            className="w-full mt-4"
             disabled={isPending}
           >
             {isPending ? "Submitting..." : "Submit application"}

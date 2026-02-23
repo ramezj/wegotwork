@@ -39,6 +39,7 @@ export const getApplicantsForOrganizationFn = createServerFn()
             select: {
               title: true,
               id: true,
+              formConfig: true,
             },
           },
         },

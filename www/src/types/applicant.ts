@@ -9,12 +9,9 @@ export type ApplicantWithJob = Applicant & {
 export const applicantSchema = z.object({
   name: z.string().min(1, "Full name is required"),
   email: z.string().email("Invalid email address"),
-  motivation: z.string().min(1, "Please tell us why you're a great fit"),
-  linkedIn: z.string().optional().nullable(),
-  twitter: z.string().optional().nullable(),
-  github: z.string().optional().nullable(),
   resumeKey: z.string().min(1, "Resume is required"),
   jobId: z.string().min(1, "Job ID is required"),
+  responses: z.record(z.string(), z.any()).default({}), // Dynamic answers
 });
 
 export const updateApplicantStatusSchema = z.object({

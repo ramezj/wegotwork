@@ -188,6 +188,26 @@ model Job {
   applicants     Applicant[]
   categoryId     String?
   category       JobCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  questions      JobQuestion[]
+}
+
+model JobQuestion {
+  id          String   @id @default(cuid())
+  jobId       String
+  job         Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  
+  type        String   // SHORT_ANSWER, LONG_ANSWER, SELECT, CHECKBOX, etc.
+  label       String
+  placeholder String?
+  required    Boolean  @default(false)
+  options     String[] // For SELECT or MULTI_SELECT
+  order       Int      @default(0)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([jobId])
+  @@map("job_question")
 }
 
 enum Status {
@@ -202,14 +222,11 @@ enum Status {
 model Applicant {
   id         String   @id @default(cuid())
   name       String
-  motivation String   @default("")
   email      String
-  linkedIn   String?
-  twitter    String?
-  github     String?
   createdAt  DateTime @default(now())
   status     Status   @default(SUBMITTED)
   resumeKey  String
+  responses  Json     @default("{}")
   jobId      String
   job        Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
 }

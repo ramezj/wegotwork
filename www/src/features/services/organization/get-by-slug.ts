@@ -36,6 +36,7 @@ export const getOrganizationBySlugFn = createServerFn()
       });
       return { success: true, organization };
     } catch (error) {
-      throw new Error("Something Went Wrong");
+      console.error("Error in getOrganizationBySlugFn:", error);
+      throw error;
     }
   });

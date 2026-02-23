@@ -1,9 +1,11 @@
 import { z } from "zod";
+import { formFieldConfigSchema } from "../form-config";
 export { type Job, type JobCategory } from "generated/prisma/client";
-import { Job, JobCategory } from "generated/prisma/client";
+import { Job, JobCategory, JobQuestion } from "generated/prisma/client";
 
 export type JobWithCategory = Job & {
   category: JobCategory | null;
+  questions: JobQuestion[];
 };
 
 export type CategoryWithJob = JobCategory & {
@@ -31,7 +33,9 @@ export const jobSchema = z.object({
     .enum(["ENTRY", "MID", "SENIOR", "LEAD", "EXECUTIVE"])
     .default("ENTRY"),
   categoryId: z.string().optional(),
+  questions: z.array(formFieldConfigSchema).optional().default([]),
 });
+
 export const categorySchema = z.object({
   name: z.string().min(1, "Name is required"),
 });
