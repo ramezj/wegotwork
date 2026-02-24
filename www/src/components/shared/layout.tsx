@@ -16,7 +16,7 @@ export function Layout({
   return (
     <div className={cn("flex flex-1 flex-col space-y-4", className)}>
       <div className="flex items-center justify-between">
-        <h1 className="text-xl">
+        <h1 className="text-xl font-bold">
           {title}
           {boldText && <b> {boldText}</b>}
         </h1>
