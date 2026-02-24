@@ -44,7 +44,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
+    <html lang="en" suppressHydrationWarning className="">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
