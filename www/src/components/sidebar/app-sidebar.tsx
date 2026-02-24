@@ -168,7 +168,7 @@ export function AppSidebar({
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={item.href === location.pathname}
-                    className="flex items-center gap-2 py-4 cursor-pointer transition duration-200 font-medium border border-transparent hover:bg-input/30 hover:border-input active:bg-input/30 active:border-input focus:bg-input/30 focus:border-input data-[active=true]:bg-input/30 data-[active=true]:border data-[active=true]:border-input data-[active=true]:text-sidebar-accent-foreground"
+                    className="flex items-center gap-2 py-4 cursor-pointer transition duration-200 font-medium"
                     onClick={handleItemClick}
                     asChild
                   >

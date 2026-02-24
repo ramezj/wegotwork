@@ -33,13 +33,13 @@ export default function Header({
           <h1 className="font-bold pl-4">Hirelou</h1>
         </Link>
         <div className="flex-row gap-2 items-center content-center align-middle md:flex hidden">
-          <Link className="font-medium text-gray-100" to={"/"}>
+          <Link className="font-medium text-muted-foreground" to={"/"}>
             home
           </Link>
-          <Link className="font-medium text-gray-100" to={"/"}>
+          <Link className="font-medium text-muted-foreground" to={"/"}>
             support
           </Link>
-          <Link className="font-medium text-gray-100" to={"/"}>
+          <Link className="font-medium text-muted-foreground" to={"/"}>
             blog
           </Link>
         </div>
@@ -61,7 +61,7 @@ export default function Header({
         <Button
           variant="default"
           size="icon"
-          className="md:hidden z-50 hover:bg-white text-black px-8 h-16 rounded-none"
+          className="md:hidden z-50 hover:bg-accent text-primary px-8 h-16 rounded-md"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
@@ -69,7 +69,7 @@ export default function Header({
       </div>
       <div
         className={cn(
-          "fixed inset-0 bg-black z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
+          "fixed inset-0 bg-background z-40 flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
           isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-full pointer-events-none",
@@ -80,7 +80,7 @@ export default function Header({
             <Link
               key={item}
               to={`/`}
-              className="text-xl text-white transition-colors font-bold"
+              className="text-xl text-primary transition-colors font-bold"
               onClick={() => setIsOpen(false)}
             >
               {item}

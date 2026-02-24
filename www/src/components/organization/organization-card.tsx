@@ -20,26 +20,26 @@ export function OrganizationCard({
       params={{ slug: organization.slug }}
       className="group block h-full"
     >
-      <Card className="h-full border bg-input/30 hover:bg-input/40 overflow-hidden">
+      <Card className="h-full border bg-card hover:bg-muted/30 transition-all shadow-sm overflow-hidden rounded-md">
         <CardHeader className="space-y-4">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-none bg-input/30 border text-primary transition-colors duration-300">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-muted border text-primary transition-colors duration-300">
                 <Building2 className="h-6 w-6" />
               </div>
               <div className="flex-1 min-w-0">
-                <CardTitle className="text-xl truncate group-hover:text-primary transition-colors">
+                <CardTitle className="text-xl truncate group-hover:text-primary transition-colors font-semibold">
                   {organization.name}
                 </CardTitle>
               </div>
             </div>
-            <ArrowRight className="h-5 w-5 text-white group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
+            <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
           </div>
         </CardHeader>
 
         <CardContent className="space-y-4">
           <div className="flex items-center gap-2 text-sm text-muted-foreground ">
-            <span className="px-2 py-1 rounded-none text-xs bg-input/30 border text-white">
+            <span className="px-2 py-1 rounded-md text-xs bg-muted border text-muted-foreground font-medium">
               /{organization.slug}
             </span>
           </div>

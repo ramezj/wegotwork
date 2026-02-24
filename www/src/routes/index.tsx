@@ -37,8 +37,8 @@ function App() {
         <header className="flex flex-col space-y-8">
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
-              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-light leading-tight text-white text-balance">
-                The Hiring Infrastructure for Modern Teams
+              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-extrabold leading-tight text-balance">
+                The Hiring Platform for Modern Teams
               </h1>
               <p className="text-[1rem] font-light text-balance text-muted-foreground">
                 Create stunning career pages, post jobs, manage applicants — all
@@ -80,8 +80,8 @@ function App() {
                 {/* Job cards inside browser */}
                 <div className="p-4 bg-background">
                   <div className="flex flex-col items-center text-center space-y-4 py-8">
-                    <Avatar className="w-16 h-16 rounded-none">
-                      <AvatarFallback className="text-4xl rounded-none bg-white text-black">
+                    <Avatar className="w-16 h-16 rounded-md">
+                      <AvatarFallback className="text-4xl bg-secondary text-primary">
                         H
                       </AvatarFallback>
                     </Avatar>
@@ -116,12 +116,12 @@ function App() {
               </h2>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
-              <Card className="bg-input/30 rounded-none">
+              <Card className="bg-muted/30 border-none shadow-none">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-white rounded-md flex items-center justify-center mb-4 shadow-sm">
                     <Building2 className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="text-white font-medium mb-2!">
+                  <CardTitle className="font-semibold mb-2!">
                     Beautiful Career Pages
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
@@ -131,12 +131,12 @@ function App() {
                 </CardHeader>
               </Card>
 
-              <Card className="bg-input/30 rounded-none">
+              <Card className="bg-muted/30 border-none shadow-none">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-white rounded-md flex items-center justify-center mb-4 shadow-sm">
                     <FileText className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="text-white font-medium mb-2!">
+                  <CardTitle className="font-semibold mb-2!">
                     Easy Job Posting
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
@@ -146,12 +146,12 @@ function App() {
                 </CardHeader>
               </Card>
 
-              <Card className="bg-input/30 rounded-none">
+              <Card className="bg-muted/30 border-none shadow-none">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-white rounded-md flex items-center justify-center mb-4 shadow-sm">
                     <Users className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="text-white font-medium mb-2!">
+                  <CardTitle className="font-semibold mb-2!">
                     Applicant Management
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
@@ -161,12 +161,12 @@ function App() {
                 </CardHeader>
               </Card>
 
-              <Card className="bg-input/30 rounded-none">
+              <Card className="bg-muted/30 border-none shadow-none">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-white rounded-md flex items-center justify-center mb-4 shadow-sm">
                     <BarChart3 className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="text-white font-medium mb-2!">
+                  <CardTitle className="font-semibold mb-2!">
                     Analytics & Insights
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
@@ -208,8 +208,8 @@ const dummyJobs: JobWithCategory[] = [
       organizationId: "org_demo_001",
       id: "cat_engineering",
       name: "Engineering",
-      order: 1,
     },
+    questions: [],
   },
   {
     id: "#",
@@ -234,8 +234,8 @@ const dummyJobs: JobWithCategory[] = [
       organizationId: "org_demo_001",
       id: "cat_design",
       name: "Design",
-      order: 2,
     },
+    questions: [],
   },
   {
     id: "#",
@@ -260,7 +260,7 @@ const dummyJobs: JobWithCategory[] = [
       organizationId: "org_demo_001",
       id: "cat_marketing",
       name: "Marketing",
-      order: 3,
     },
+    questions: [],
   },
 ];

@@ -19,7 +19,7 @@ export function RecentApplicants({ slug }: { slug: string }) {
       .slice(0, 5) || [];
 
   return (
-    <Card className="w-full border rounded-none shadow-none">
+    <Card className="w-full border rounded-md shadow-sm">
       <CardHeader>
         <CardTitle className="text-lg font-medium">Recent Applicants</CardTitle>
       </CardHeader>
@@ -44,7 +44,7 @@ export function RecentApplicants({ slug }: { slug: string }) {
                 <div className="flex flex-col items-end gap-2">
                   <Badge
                     variant="secondary"
-                    className="text-[10px] uppercase font-bold rounded-none"
+                    className="text-[10px] uppercase font-bold rounded-md"
                   >
                     {applicant.status}
                   </Badge>
