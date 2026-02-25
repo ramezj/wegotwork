@@ -80,8 +80,8 @@ function App() {
                 {/* Job cards inside browser */}
                 <div className="p-4 bg-background">
                   <div className="flex flex-col items-center text-center space-y-4 py-8">
-                    <Avatar className="w-16 h-16 rounded-md">
-                      <AvatarFallback className="text-4xl bg-secondary text-primary">
+                    <Avatar className="w-16 h-16 rounded-lg">
+                      <AvatarFallback className="text-4xl bg-primary text-primary-foreground">
                         H
                       </AvatarFallback>
                     </Avatar>

@@ -1,5 +1,7 @@
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useMatches } from "@tanstack/react-router";
+import { Button } from "../ui/button";
+import { LogOut } from "lucide-react";
 
 export function AppHeader() {
   const matches = useMatches();
@@ -25,13 +27,17 @@ export function AppHeader() {
   const title = getTitle();
 
   return (
-    <header className="sticky top-0 z-10 flex h-(--header-height) shrink-0 items-center gap-2 border-b bg-background ">
-      <div className="flex w-full items-center gap-1 px-4">
-        <h1 className="text-base font-bold hidden md:flex">{title}</h1>
+    <header className="sticky top-0 z-10 flex h-(--header-height) shrink-0 items-center gap-2 border-b backdrop-blur supports-[backdrop-filter]:bg-background/60 ">
+      <div className="flex w-full justify-between items-center gap-1 px-4">
+        <div className="hidden md:flex">
+          <h1 className="text-base font-medium">{title}</h1>
+        </div>
         <div className="md:hidden flex">
           <SidebarTrigger />
         </div>
-        <div className="ml-auto flex items-center gap-2"></div>
+        <Button variant={"secondary"}>
+          Log Out <LogOut />
+        </Button>
       </div>
     </header>
   );

@@ -25,6 +25,7 @@ export const getOrganizationBySlugFn = createServerFn()
             include: {
               applicants: true,
               category: true,
+              questions: true,
             },
             orderBy: {
               createdAt: "desc",

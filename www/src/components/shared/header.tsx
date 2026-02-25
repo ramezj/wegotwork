@@ -27,10 +27,10 @@ export default function Header({
     };
   }, [isOpen]);
   return (
-    <header className="w-full sticky top-0 z-50 h-16 border border-b border-l-0 border-r-0 border-t-0 bg-background flex flex-row items-center justify-between">
+    <header className="w-full px-4 sticky top-0 z-50 h-16 border border-b border-l-0 border-r-0 border-t-0 bg-background flex flex-row items-center justify-between">
       <div className="flex-row flex gap-2 items-center content-center align-middle">
         <Link to={"/"}>
-          <h1 className="font-bold pl-4">Hirelou</h1>
+          <h1 className="font-bold">Hirelou</h1>
         </Link>
         <div className="flex-row gap-2 items-center content-center align-middle md:flex hidden">
           <Link className="font-medium text-muted-foreground" to={"/"}>
@@ -47,8 +47,19 @@ export default function Header({
       <div className="flex-row gap-2 items-center md:flex hidden">
         {session?.user ? (
           <>
-            <Button asChild className="h-16 px-8 font-semibold cursor-pointer">
-              <Link to={"/dashboard"}>Dashboard</Link>
+            <Button
+              variant={"secondary"}
+              asChild
+              className="font-semibold cursor-pointer"
+            >
+              <Link to={"/dashboard"}>Log Out</Link>
+            </Button>
+            <Button
+              variant={"default"}
+              asChild
+              className="font-semibold cursor-pointer"
+            >
+              <Link to={"/dashboard"}>Open Dashboard</Link>
             </Button>
           </>
         ) : (
