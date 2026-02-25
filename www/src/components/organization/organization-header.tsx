@@ -19,7 +19,7 @@ export function OrganizationHeader({ slug }: { slug: string }) {
           </AvatarFallback>
         </Avatar>
         {/* <div> */}
-        <h1 className="text-3xl md:text-4xl font-medium tracking-tight leading-none">
+        <h1 className="text-3xl md:text-4xl font-semibold tracking-tight leading-none">
           {data.organization.name}
         </h1>
         {/* <p className="text-muted-foreground text-base text-balance font-light">

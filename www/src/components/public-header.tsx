@@ -15,7 +15,7 @@ export function PublicHeader({ slug }: { slug: string }) {
           params={{ slug }}
           className="flex items-center gap-2"
         >
-          <span className="text-xl font-medium tracking-tight">
+          <span className="text-xl font-semibold tracking-tight">
             {data.organization?.name}
           </span>
         </Link>
