@@ -94,7 +94,7 @@ export function JobCardForViewPage({
           <div className="flex items-center justify-between">
             {/* job information */}
             <div className="flex flex-col gap-2 flex-1 min-w-0">
-              <p className="font-semibold text-lg truncate-options">
+              <p className="font-medium text-lg truncate-options">
                 {job.title}
               </p>
               <div className="flex flex-row flex-wrap gap-2">
