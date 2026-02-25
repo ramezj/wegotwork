@@ -71,7 +71,6 @@ function FilterDropdown({
       >
         <DropdownMenuItem
           onClick={() => onSelect(null)}
-          selected={!selected}
           className="flex items-center justify-between"
         >
           <span>All</span>
@@ -81,7 +80,6 @@ function FilterDropdown({
           <DropdownMenuItem
             key={option.value}
             onClick={() => onSelect(option.value)}
-            selected={selected === option.value}
             className="flex items-center justify-between"
           >
             <span>{option.label}</span>
