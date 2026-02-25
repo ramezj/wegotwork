@@ -40,7 +40,7 @@ export function OrganizationSelector({
                 preload={false}
               >
                 <DropdownMenuItem
-                  className="justify-between flex cursor-pointer rounded-sm!"
+                  className="justify-between flex cursor-pointer"
                   selected={isSelected}
                 >
                   {organization.name}

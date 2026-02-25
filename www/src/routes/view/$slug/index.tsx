@@ -60,10 +60,7 @@ function FilterDropdown({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          className="justify-between font-semibold w-full"
-        >
+        <Button variant="outline" className="justify-between w-full">
           <span className="truncate">{selectedLabel ?? label}</span>
           <ChevronDown className="ml-2 h-4 w-4 shrink-0" />
         </Button>
@@ -75,7 +72,7 @@ function FilterDropdown({
         <DropdownMenuItem
           onClick={() => onSelect(null)}
           selected={!selected}
-          className="flex items-center justify-between font-semibold"
+          className="flex items-center justify-between"
         >
           <span>All</span>
           {!selected && <Check className="h-4 w-4" />}
@@ -85,7 +82,7 @@ function FilterDropdown({
             key={option.value}
             onClick={() => onSelect(option.value)}
             selected={selected === option.value}
-            className="flex items-center justify-between font-semibold"
+            className="flex items-center justify-between"
           >
             <span>{option.label}</span>
             {selected === option.value && <Check className="h-4 w-4" />}
@@ -152,7 +149,7 @@ function RouteComponent() {
       <div className="w-full space-y-4">
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold leading-none">
+            <h2 className="text-xl font-semibold leading-none">
               Open Roles ({visibleCount})
             </h2>
           </div>
@@ -193,7 +190,7 @@ function RouteComponent() {
         <div className="space-y-4">
           {filteredCategories.map((category: CategoryWithJob) => (
             <section key={category.id} className="space-y-4">
-              <h3 className="text-xl font-bold">{category.name}</h3>
+              <h3 className="text-xl font-semibold">{category.name}</h3>
               <div className="grid gap-4">
                 {category.jobs.map((job) => (
                   <JobCardForViewPage

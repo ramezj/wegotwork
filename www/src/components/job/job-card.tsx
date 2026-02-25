@@ -38,7 +38,7 @@ export function JobCard({
       to={isDemo ? "/" : "/$slug/jobs/$jobId"}
       params={{ slug, jobId: job.id }}
     >
-      <Card className="w-full group min-h-30 bg-card transition-all flex flex-row border rounded-md items-center p-5 cursor-pointer gap-0">
+      <Card className="w-full group min-h-30 bg-card transition-all flex flex-row border items-center p-5 cursor-pointer gap-0">
         <div className="flex flex-1 flex-col">
           <div className="flex items-center justify-between">
             {/* job information */}
@@ -89,12 +89,14 @@ export function JobCardForViewPage({
       to={"/view/$slug/$jobId"}
       params={{ slug, jobId: job.id }}
     >
-      <Card className="w-full group min-h-30 bg-card hover:bg-muted/50 transition-all flex flex-row border border-input rounded-md items-center p-5 cursor-pointer gap-0">
+      <Card className="w-full group min-h-30 bg-card hover:bg-muted/50 transition-all flex flex-row border border-input items-center p-5 cursor-pointer gap-0">
         <div className="flex flex-1 flex-col">
           <div className="flex items-center justify-between">
             {/* job information */}
             <div className="flex flex-col gap-2 flex-1 min-w-0">
-              <p className="font-bold text-lg truncate-options">{job.title}</p>
+              <p className="font-semibold text-lg truncate-options">
+                {job.title}
+              </p>
               <div className="flex flex-row flex-wrap gap-2">
                 {job.category && (
                   <Badge variant="outline">{job.category.name}</Badge>
