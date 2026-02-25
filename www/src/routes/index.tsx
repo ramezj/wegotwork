@@ -37,11 +37,11 @@ function App() {
         <header className="flex flex-col space-y-8">
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
-              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-extrabold leading-tight text-balance">
-                The Hiring Platform for Modern Teams
+              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-bold leading-tight text-balance">
+                The hiring platform for modern teams.
               </h1>
               <p className="text-[1rem] font-light text-balance text-muted-foreground">
-                Create stunning career pages, post jobs, manage applicants — all
+                create stunning career pages, post jobs, manage applicants — all
                 from one, easy-to-use platform.
               </p>
             </div>
