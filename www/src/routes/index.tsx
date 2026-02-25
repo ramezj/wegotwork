@@ -38,7 +38,7 @@ function App() {
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
               <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-bold leading-tight text-balance">
-                The hiring platform for modern teams.
+                The hiring platform for modern teams
               </h1>
               <p className="text-[1rem] font-light text-balance text-muted-foreground">
                 create stunning career pages, post jobs, manage applicants — all
@@ -48,7 +48,7 @@ function App() {
           </section>
           <div className="flex flex-col items-center px-4">
             <div className="flex flex-row w-full items-center justify-center content-center gap-4">
-              <Button variant={"outline"} asChild className="flex-1">
+              <Button variant={"secondary"} asChild className="flex-1">
                 <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
                   See Demo
                 </a>
@@ -64,15 +64,15 @@ function App() {
           <section className="px-4">
             <div className="w-full mx-auto browser-glow">
               {/* Browser chrome */}
-              <div className="border border-border bg-card">
-                <div className="flex items-center gap-2 border-b border-border p-3">
+              <div className="border border-border bg-card rounded-lg">
+                <div className="flex items-center gap-2 border-b border-border p-4">
                   <div className="flex gap-1.5">
-                    <div className="size-3 bg-white/10 rounded-full" />
-                    <div className="size-3 bg-white/10 rounded-full" />
-                    <div className="size-3 bg-white/10 rounded-full" />
+                    <div className="size-3 bg-secondary rounded-full" />
+                    <div className="size-3 bg-secondary rounded-full" />
+                    <div className="size-3 bg-secondary rounded-full" />
                   </div>
                   <div className="flex-1">
-                    <div className="bg-white/5 border border-border py-1 text-xs text-muted-foreground text-start p-2">
+                    <div className="bg-secondary py-1 text-xs text-primary font-medium text-start p-2 rounded-md">
                       jobs.hirelou.app
                     </div>
                   </div>
@@ -111,14 +111,14 @@ function App() {
         <section className="px-4">
           <div className="w-full mx-auto flex flex-col space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl md:text-4xl font-light text-foreground text-balance">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
                 Everything you need to start hiring.
               </h2>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
-              <Card className="bg-muted/30 border-none shadow-none">
+              <Card className="bg-muted/30">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-white rounded-md flex items-center justify-center mb-4 shadow-sm">
+                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4 shadow-sm">
                     <Building2 className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
@@ -131,9 +131,9 @@ function App() {
                 </CardHeader>
               </Card>
 
-              <Card className="bg-muted/30 border-none shadow-none">
+              <Card className="bg-muted/30">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-white rounded-md flex items-center justify-center mb-4 shadow-sm">
+                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4 shadow-sm">
                     <FileText className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
@@ -146,9 +146,9 @@ function App() {
                 </CardHeader>
               </Card>
 
-              <Card className="bg-muted/30 border-none shadow-none">
+              <Card className="bg-muted/30">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-white rounded-md flex items-center justify-center mb-4 shadow-sm">
+                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4 shadow-sm">
                     <Users className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
@@ -161,9 +161,9 @@ function App() {
                 </CardHeader>
               </Card>
 
-              <Card className="bg-muted/30 border-none shadow-none">
+              <Card className="bg-muted/30">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-white rounded-md flex items-center justify-center mb-4 shadow-sm">
+                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4 shadow-sm">
                     <BarChart3 className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">

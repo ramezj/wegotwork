@@ -22,9 +22,8 @@ function RouteComponent() {
   return (
     <>
       <Layout
-        title="Job Openings"
+        title={"Job Openings (" + (data?.organization?.jobs?.length || 0) + ")"}
         primaryButton={<CreateJobDialog slug={slug} />}
-        boldText={"(" + (data?.organization?.jobs?.length || 0) + ")"}
       >
         <div className="flex flex-col space-y-4">
           {data?.organization?.jobs?.map((job) => (

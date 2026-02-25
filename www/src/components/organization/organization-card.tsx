@@ -24,8 +24,8 @@ export function OrganizationCard({
         <CardHeader className="space-y-4">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-primary text-primary transition-colors duration-300">
-                <Building2 className="h-6 w-6 text-primary-foreground" />
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-secondary transition-colors duration-300">
+                <Building2 className="h-6 w-6 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
                 <CardTitle className="text-xl truncate group-hover:text-primary transition-colors font-medium">
@@ -38,8 +38,8 @@ export function OrganizationCard({
         </CardHeader>
 
         <CardContent className="space-y-4">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground ">
-            <span className="px-2 py-1 rounded-md text-xs bg-primary text-primary-foreground font-medium">
+          <div className="flex items-center gap-2 text-sm ">
+            <span className="px-2 py-1 rounded-md text-xs bg-secondary text-primary font-medium">
               /{organization.slug}
             </span>
           </div>
