@@ -37,7 +37,7 @@ function App() {
         <header className="flex flex-col space-y-8">
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
-              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-bold leading-tight text-balance">
+              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-medium leading-tight text-balance">
                 The hiring platform for modern teams
               </h1>
               <p className="text-[1rem] font-light text-balance text-muted-foreground">
@@ -111,7 +111,7 @@ function App() {
         <section className="px-4">
           <div className="w-full mx-auto flex flex-col space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
+              <h2 className="text-3xl md:text-4xl font-medium text-foreground text-balance">
                 Everything you need to start hiring.
               </h2>
             </div>

@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { getOrganizationCategoriesQuery } from "@/features/queries/category";
 import { CreateCategoryDialog } from "@/components/category/create-category-dialog";
+import { Card } from "@/components/ui/card";
 
 export const Route = createFileRoute("/$slug/_layout/categories")({
   component: RouteComponent,
@@ -25,12 +26,12 @@ function RouteComponent() {
       >
         <div className="flex flex-col gap-2">
           {data.categories.map((category) => (
-            <div
+            <Card
               key={category.id}
-              className="p-4 border border-input rounded-sm bg-input/30"
+              className="p-4 border border-input rounded-lg bg-input/30"
             >
               {category.name}
-            </div>
+            </Card>
           ))}
         </div>
       </Layout>
