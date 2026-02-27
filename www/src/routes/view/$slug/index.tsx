@@ -147,7 +147,7 @@ function RouteComponent() {
       <div className="w-full space-y-4">
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-medium leading-none">
+            <h2 className="text-xl font-semibold leading-none">
               Open Roles ({visibleCount})
             </h2>
           </div>
@@ -188,7 +188,7 @@ function RouteComponent() {
         <div className="space-y-4">
           {filteredCategories.map((category: CategoryWithJob) => (
             <section key={category.id} className="space-y-4">
-              <h3 className="text-xl font-medium">{category.name}</h3>
+              <h3 className="text-xl font-semibold">{category.name}</h3>
               <div className="grid gap-4">
                 {category.jobs.map((job) => (
                   <JobCardForViewPage

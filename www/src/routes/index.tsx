@@ -19,6 +19,7 @@ import {
 import { JobCard } from "@/components/job/job-card";
 import { JobWithCategory } from "@/types/job/job";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 
 export const Route = createFileRoute("/")({
   beforeLoad: async () => {
@@ -37,6 +38,9 @@ function App() {
         <header className="flex flex-col space-y-8">
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
+              <Badge variant={"secondary"}>
+                currently in development phase
+              </Badge>
               <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-medium leading-tight text-balance">
                 The hiring platform for modern teams
               </h1>
