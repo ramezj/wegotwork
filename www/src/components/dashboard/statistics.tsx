@@ -74,7 +74,7 @@ export function StatisticCard({
         {icon}
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-medium text-foreground">{amount}</div>
+        <div className="text-2xl font-semibold text-foreground">{amount}</div>
       </CardContent>
     </Card>
   );

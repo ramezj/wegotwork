@@ -56,7 +56,7 @@ function RouteComponent() {
         <div className="flex flex-col gap-4">
           <div className="flex flex-col space-y-4">
             <div>
-              <h1 className="text-xl font-medium">
+              <h1 className="text-xl font-semibold">
                 Recent Jobs
                 {/* <b> ({data?.organization?.jobs?.length || 0})</b> */}
               </h1>
