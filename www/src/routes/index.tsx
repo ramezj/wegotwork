@@ -209,6 +209,7 @@ const dummyJobs: JobWithCategory[] = [
     organizationId: "org_demo_001",
     categoryId: "cat_engineering",
     category: {
+      createdAt: new Date("2026-01-15"),
       organizationId: "org_demo_001",
       id: "cat_engineering",
       name: "Engineering",
@@ -235,6 +236,7 @@ const dummyJobs: JobWithCategory[] = [
     organizationId: "org_demo_001",
     categoryId: "cat_design",
     category: {
+      createdAt: new Date("2026-01-15"),
       organizationId: "org_demo_001",
       id: "cat_design",
       name: "Design",
@@ -261,6 +263,7 @@ const dummyJobs: JobWithCategory[] = [
     organizationId: "org_demo_001",
     categoryId: "cat_marketing",
     category: {
+      createdAt: new Date("2026-01-15"),
       organizationId: "org_demo_001",
       id: "cat_marketing",
       name: "Marketing",
