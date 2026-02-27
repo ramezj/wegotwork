@@ -13,12 +13,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { categorySchema } from "@/types/job/job";
 import { createCategoryFn } from "@/features/services/category/create-category";
 import z from "zod";
-import { getOrganizationCategoriesQuery } from "@/features/queries/category";
 import { toast } from "sonner";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
 import { Loader, PlusIcon } from "lucide-react";
 import { useState } from "react";
+import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 
 export function CreateCategoryDialog({ slug }: { slug: string }) {
   const [open, setOpen] = useState(false);
@@ -35,7 +35,7 @@ export function CreateCategoryDialog({ slug }: { slug: string }) {
     mutationFn: (data: z.infer<typeof categorySchema>) =>
       createCategoryFn({ data: { slug, category: data } }),
     onSuccess: async () => {
-      await queryClient.refetchQueries(getOrganizationCategoriesQuery(slug));
+      await queryClient.refetchQueries(organizationBySlugQueryOptions(slug));
       toast.success("Category created successfully");
       form.reset();
       setOpen(false);

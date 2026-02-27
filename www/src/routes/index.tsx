@@ -39,7 +39,7 @@ function App() {
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
               <Badge variant={"secondary"}>
-                currently in development phase
+                Currently in development phase.
               </Badge>
               <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-medium leading-tight text-balance">
                 The hiring platform for modern teams

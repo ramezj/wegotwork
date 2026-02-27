@@ -32,7 +32,11 @@ export const getOrganizationBySlugFn = createServerFn()
             },
             ...(data.limit ? { take: data.limit } : {}),
           },
-          categories: true,
+          categories: {
+            orderBy: {
+              createdAt: "desc",
+            },
+          },
         },
       });
       return { success: true, organization };
