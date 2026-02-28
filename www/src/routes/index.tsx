@@ -31,7 +31,9 @@ function App() {
   const { session } = Route.useRouteContext();
   return (
     <div className="space-y-8">
-      <Header session={session} />
+      <div className="lg:w-[70%] w-full mx-auto sticky top-5 z-50 px-4">
+        <Header session={session} />
+      </div>
       <main className="space-y-8 lg:w-[70%] w-full mx-auto">
         <header className="flex flex-col space-y-8">
           <section className="flex flex-col items-center text-center px-2">
