@@ -139,13 +139,13 @@ export function EditOrganizationForm({
         onSubmit={form.handleSubmit(handleSubmit)}
         className="flex flex-col space-y-4"
       >
-        <Card className="bg-black">
+        <Card className="bg-card">
           <CardContent className="flex flex-col space-y-4 px-4">
             <Field>
               <FieldContent>
                 <div className="flex items-center space-x-4">
                   <div className="flex flex-col items-center space-y-2">
-                    <Avatar className="size-32 rounded-none">
+                    <Avatar className="size-32 rounded-md shadow-sm border">
                       <AvatarImage
                         src={
                           preview
@@ -156,7 +156,7 @@ export function EditOrganizationForm({
                         }
                         className="object-cover"
                       />
-                      <AvatarFallback className="bg-white text-black text-4xl rounded-none border border-border">
+                      <AvatarFallback className="bg-secondary text-primary text-4xl">
                         {form.getValues("name")?.charAt(0) || "O"}
                       </AvatarFallback>
                     </Avatar>

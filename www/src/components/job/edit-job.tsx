@@ -100,7 +100,7 @@ export function EditJobForm({
         className="flex flex-col space-y-4"
       >
         <Tabs defaultValue="general" className="w-full">
-          <TabsList className="w-full justify-start mb-4 bg-black border border-input">
+          <TabsList className="w-full justify-start mb-4 p-1">
             <TabsTrigger value="general">General</TabsTrigger>
             <TabsTrigger value="location">Location</TabsTrigger>
             <TabsTrigger value="compensation">Compensation</TabsTrigger>
@@ -108,7 +108,7 @@ export function EditJobForm({
           </TabsList>
 
           <TabsContent value="general" className="m-0">
-            <Card className="bg-black!">
+            <Card className="">
               <CardHeader>
                 <CardTitle>General Information</CardTitle>
               </CardHeader>
@@ -239,7 +239,7 @@ export function EditJobForm({
           </TabsContent>
 
           <TabsContent value="location" className="m-0">
-            <Card className="bg-black!">
+            <Card className="">
               <CardHeader>
                 <CardTitle>Location Information</CardTitle>
               </CardHeader>
@@ -326,7 +326,7 @@ export function EditJobForm({
           </TabsContent>
 
           <TabsContent value="compensation" className="m-0">
-            <Card className="bg-black!">
+            <Card className="">
               <CardHeader>
                 <CardTitle>Compensation Information</CardTitle>
               </CardHeader>
@@ -434,7 +434,7 @@ export function EditJobForm({
             </Card>
           </TabsContent>
           <TabsContent value="application" className="m-0">
-            <Card className="bg-black!">
+            <Card className="">
               <CardHeader>
                 <CardTitle>Application Form</CardTitle>
               </CardHeader>

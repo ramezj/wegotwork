@@ -1,8 +1,9 @@
 import { Layout } from "@/components/shared/layout";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { getOrganizationCategoriesQuery } from "@/features/queries/category";
 import { CreateCategoryDialog } from "@/components/category/create-category-dialog";
+import { Card } from "@/components/ui/card";
+import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 
 export const Route = createFileRoute("/$slug/_layout/categories")({
   component: RouteComponent,
@@ -16,7 +17,10 @@ export const Route = createFileRoute("/$slug/_layout/categories")({
 
 function RouteComponent() {
   const { slug } = Route.useParams();
-  const { data } = useSuspenseQuery(getOrganizationCategoriesQuery(slug));
+  const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
+  if (!data?.organization) {
+    return <Navigate to="/dashboard" />;
+  }
   return (
     <>
       <Layout
@@ -24,13 +28,13 @@ function RouteComponent() {
         primaryButton={<CreateCategoryDialog slug={slug} />}
       >
         <div className="flex flex-col gap-2">
-          {data.categories.map((category) => (
-            <div
+          {data.organization.categories.map((category) => (
+            <Card
               key={category.id}
-              className="p-4 border border-input rounded-sm bg-input/30"
+              className="p-4 border border-input rounded-lg bg-input/30"
             >
               {category.name}
-            </div>
+            </Card>
           ))}
         </div>
       </Layout>

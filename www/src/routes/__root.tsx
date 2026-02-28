@@ -44,7 +44,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
+    <html lang="en" suppressHydrationWarning className="no-scrollbar">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -53,7 +53,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           crossOrigin=""
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
           rel="stylesheet"
         />
         <HeadContent />

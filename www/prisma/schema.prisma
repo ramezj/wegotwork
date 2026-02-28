@@ -234,6 +234,7 @@ model Applicant {
 model JobCategory {
   id             String       @id @default(cuid())
   name           String
+  createdAt      DateTime     @default(now())
   organizationId String
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   jobs           Job[]

@@ -25,13 +25,18 @@ export const getOrganizationBySlugFn = createServerFn()
             include: {
               applicants: true,
               category: true,
+              questions: true,
             },
             orderBy: {
               createdAt: "desc",
             },
             ...(data.limit ? { take: data.limit } : {}),
           },
-          categories: true,
+          categories: {
+            orderBy: {
+              createdAt: "desc",
+            },
+          },
         },
       });
       return { success: true, organization };

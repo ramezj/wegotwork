@@ -10,15 +10,14 @@ import {
 } from "@/components/ui/card";
 import {
   ArrowRight,
-  ArrowUpRight,
   BarChart3,
   Building2,
   FileText,
   Users,
 } from "lucide-react";
-import { JobCard } from "@/components/job/job-card";
 import { JobWithCategory } from "@/types/job/job";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Browser } from "@/components/shared/browser";
 
 export const Route = createFileRoute("/")({
   beforeLoad: async () => {
@@ -37,10 +36,11 @@ function App() {
         <header className="flex flex-col space-y-8">
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
-              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-light leading-tight text-white text-balance">
-                The Hiring Infrastructure for Modern Teams
+              {/* <Badge variant={"default"}>Currently in early development</Badge> */}
+              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance">
+                The hiring platform for modern teams
               </h1>
-              <p className="text-[1rem] font-light text-balance text-muted-foreground">
+              <p className="text-[1rem] font-medium text-balance text-muted-foreground">
                 Create stunning career pages, post jobs, manage applicants — all
                 from one, easy-to-use platform.
               </p>
@@ -48,7 +48,7 @@ function App() {
           </section>
           <div className="flex flex-col items-center px-4">
             <div className="flex flex-row w-full items-center justify-center content-center gap-4">
-              <Button variant={"outline"} asChild className="flex-1">
+              <Button variant={"secondary"} asChild className="flex-1">
                 <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
                   See Demo
                 </a>
@@ -62,66 +62,23 @@ function App() {
             </div>
           </div>
           <section className="px-4">
-            <div className="w-full mx-auto browser-glow">
-              {/* Browser chrome */}
-              <div className="border border-border bg-card">
-                <div className="flex items-center gap-2 border-b border-border p-3">
-                  <div className="flex gap-1.5">
-                    <div className="size-3 bg-white/10 rounded-full" />
-                    <div className="size-3 bg-white/10 rounded-full" />
-                    <div className="size-3 bg-white/10 rounded-full" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="bg-white/5 border border-border py-1 text-xs text-muted-foreground text-start p-2">
-                      jobs.hirelou.app
-                    </div>
-                  </div>
-                </div>
-                {/* Job cards inside browser */}
-                <div className="p-4 bg-background">
-                  <div className="flex flex-col items-center text-center space-y-4 py-8">
-                    <Avatar className="w-16 h-16 rounded-none">
-                      <AvatarFallback className="text-4xl rounded-none bg-white text-black">
-                        H
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="space-y-4">
-                      <h3 className="text-3xl md:text-4xl font-medium tracking-tight leading-none">
-                        Hirelou
-                      </h3>
-                      <p className="text-muted-foreground text-base text-balance font-light leading-none">
-                        Explore our open positions and join our team in building
-                        the future.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <div>
-                      <JobCard job={dummyJobs[0]} slug="#" isDemo />
-                    </div>
-                    <div>
-                      <JobCard job={dummyJobs[1]} slug="#" isDemo />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
           </section>
         </header>
         <section className="px-4">
           <div className="w-full mx-auto flex flex-col space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl md:text-4xl font-light text-foreground text-balance">
-                Everything you need to start hiring.
-              </h2>
+              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance">
+                Everything you need to start hiring
+              </h1>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
-              <Card className="bg-input/30 rounded-none">
+              <Card className="bg-muted/30">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4 shadow-sm">
                     <Building2 className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="text-white font-medium mb-2!">
+                  <CardTitle className="font-semibold mb-2!">
                     Beautiful Career Pages
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
@@ -131,12 +88,12 @@ function App() {
                 </CardHeader>
               </Card>
 
-              <Card className="bg-input/30 rounded-none">
+              <Card className="bg-muted/30">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4 shadow-sm">
                     <FileText className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="text-white font-medium mb-2!">
+                  <CardTitle className="font-semibold mb-2!">
                     Easy Job Posting
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
@@ -146,12 +103,12 @@ function App() {
                 </CardHeader>
               </Card>
 
-              <Card className="bg-input/30 rounded-none">
+              <Card className="bg-muted/30">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4 shadow-sm">
                     <Users className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="text-white font-medium mb-2!">
+                  <CardTitle className="font-semibold mb-2!">
                     Applicant Management
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
@@ -161,12 +118,12 @@ function App() {
                 </CardHeader>
               </Card>
 
-              <Card className="bg-input/30 rounded-none">
+              <Card className="bg-muted/30">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-white rounded-none flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4 shadow-sm">
                     <BarChart3 className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="text-white font-medium mb-2!">
+                  <CardTitle className="font-semibold mb-2!">
                     Analytics & Insights
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
@@ -205,11 +162,12 @@ const dummyJobs: JobWithCategory[] = [
     organizationId: "org_demo_001",
     categoryId: "cat_engineering",
     category: {
+      createdAt: new Date("2026-01-15"),
       organizationId: "org_demo_001",
       id: "cat_engineering",
       name: "Engineering",
-      order: 1,
     },
+    questions: [],
   },
   {
     id: "#",
@@ -231,11 +189,12 @@ const dummyJobs: JobWithCategory[] = [
     organizationId: "org_demo_001",
     categoryId: "cat_design",
     category: {
+      createdAt: new Date("2026-01-15"),
       organizationId: "org_demo_001",
       id: "cat_design",
       name: "Design",
-      order: 2,
     },
+    questions: [],
   },
   {
     id: "#",
@@ -257,10 +216,11 @@ const dummyJobs: JobWithCategory[] = [
     organizationId: "org_demo_001",
     categoryId: "cat_marketing",
     category: {
+      createdAt: new Date("2026-01-15"),
       organizationId: "org_demo_001",
       id: "cat_marketing",
       name: "Marketing",
-      order: 3,
     },
+    questions: [],
   },
 ];
