@@ -36,7 +36,7 @@ function App() {
         <header className="flex flex-col space-y-8">
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
-              <Badge variant={"default"}>Currently in early development</Badge>
+              {/* <Badge variant={"default"}>Currently in early development</Badge> */}
               <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance">
                 The hiring platform for modern teams
               </h1>
@@ -68,9 +68,9 @@ function App() {
         <section className="px-4">
           <div className="w-full mx-auto flex flex-col space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl md:text-4xl font-medium text-foreground text-balance">
-                Everything you need to start hiring.
-              </h2>
+              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance">
+                Everything you need to start hiring
+              </h1>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
               <Card className="bg-muted/30">
