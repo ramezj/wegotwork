@@ -237,7 +237,7 @@ function RouteComponent() {
   // Render
   // -------------------------------------------------------------------------
   return (
-    <div className="w-full mx-auto flex flex-col space-y-4 border rounded-xl p-4">
+    <div className="w-full mx-auto flex flex-col space-y-4 border rounded-lg p-4">
       {/* Job header */}
       <div className="flex flex-col space-y-2">
         <h1 className="text-3xl font-semibold tracking-tight leading-snug">

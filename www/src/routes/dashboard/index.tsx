@@ -24,8 +24,8 @@ function RouteComponent() {
   return (
     <div className="">
       {/* Hero Section */}
-      <div className="border-b w-full bg-linear-to-b from-background to-muted/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div className="border-b w-full">
+        <div className="mx-auto pt-12 md:pt-16 pb-6 md:pb-12 px-2">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="space-y-3">
               <h1 className="text-3xl tracking-tight">Your Organizations</h1>
@@ -38,7 +38,7 @@ function RouteComponent() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <div className="mx-auto px-4 py-6 md:py-8">
         <div className="space-y-6">
           {/* Stats Bar */}
           <div className="flex items-center justify-between">
