@@ -77,7 +77,7 @@ function App() {
             <div className="grid md:grid-cols-2 gap-8">
               <Card>
                 <CardHeader>
-                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4 shadow-sm">
+                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
                     <Building2 className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
@@ -92,7 +92,7 @@ function App() {
 
               <Card>
                 <CardHeader>
-                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4 shadow-sm">
+                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
                     <FileText className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
@@ -107,7 +107,7 @@ function App() {
 
               <Card>
                 <CardHeader>
-                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4 shadow-sm">
+                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
                     <Users className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
@@ -122,7 +122,7 @@ function App() {
 
               <Card>
                 <CardHeader>
-                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4 shadow-sm">
+                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
                     <BarChart3 className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
