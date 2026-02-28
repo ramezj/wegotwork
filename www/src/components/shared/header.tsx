@@ -9,7 +9,7 @@ export default function Header({ session }: { session: Session | null }) {
     <header className="w-full px-4 h-16 rounded-lg border backdrop-blur supports-backdrop-filter:bg-background/60 flex flex-row items-center justify-between">
       <div className="flex-row flex gap-2 items-center content-center align-middle">
         <Link to={"/"}>
-          <h1 className="font-bold">Hirelou</h1>
+          <h1 className="text-xl font-semibold tracking-tight">Hirelou</h1>
         </Link>
         <div className="flex-row gap-2 items-center content-center align-middle md:flex hidden">
           <Link className="font-medium text-muted-foreground" to={"/"}>
