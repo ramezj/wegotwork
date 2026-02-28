@@ -237,29 +237,22 @@ function RouteComponent() {
   // Render
   // -------------------------------------------------------------------------
   return (
-    <div className="w-full mx-auto flex flex-col space-y-4">
+    <div className="w-full mx-auto flex flex-col space-y-4 border rounded-xl p-4">
       {/* Job header */}
-      <div className="flex flex-col space-y-4">
-        <div className="flex flex-col space-y-4">
-          <h1 className="text-3xl font-semibold tracking-tight leading-snug">
-            {job.title}
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            {job.organization.name}
-          </p>
-        </div>
+      <div className="flex flex-col space-y-2">
+        <h1 className="text-3xl font-semibold tracking-tight leading-snug">
+          {job.title}
+        </h1>
 
         <div className="flex flex-wrap gap-2">
           {job.category && (
-            <Badge variant="outline" className="rounded-sm bg-input/30">
-              {job.category.name}
-            </Badge>
+            <Badge variant="secondary">{job.category.name}</Badge>
           )}
-          <Badge variant="outline" className="rounded-sm bg-input/30">
+          <Badge variant="secondary">
             <Briefcase className="size-3" />
             {typeLabel}
           </Badge>
-          <Badge variant="outline" className="rounded-sm bg-input/30">
+          <Badge variant="secondary">
             <MapPin className="size-3" />
             {locationLabel}
           </Badge>
