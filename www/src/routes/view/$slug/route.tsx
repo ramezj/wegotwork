@@ -13,9 +13,11 @@ function RouteComponent() {
   return (
     <div className="flex flex-col min-h-screen">
       <Suspense fallback={<div>Loading...</div>}>
-        <PublicHeader slug={slug} />
-        <main className="flex-1 flex flex-col items-center py-12 px-4 space-y-4 w-full">
-          <div className="w-full max-w-6xl mx-auto flex flex-col items-center space-y-4">
+        <div className="lg:w-[70%] w-full mx-auto sticky top-5 z-50 px-4">
+          <PublicHeader slug={slug} />
+        </div>
+        <main className="flex-1 flex flex-col items-center py-12 space-y-4 w-full">
+          <div className="w-full lg:w-[70%] px-4 mx-auto space-y-4">
             <OrganizationHeader slug={slug} />
             <Outlet />
           </div>
