@@ -20,7 +20,7 @@ export function OrganizationCard({
       params={{ slug: organization.slug }}
       className="group block h-full"
     >
-      <Card className="h-full border bg-card hover:bg-muted/30 transition-all shadow-sm overflow-hidden rounded-md">
+      <Card className="overflow-hidden">
         <CardHeader className="space-y-4">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">

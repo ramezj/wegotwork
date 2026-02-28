@@ -1,7 +1,9 @@
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { useMatches } from "@tanstack/react-router";
+import { redirect, useMatches } from "@tanstack/react-router";
 import { Button } from "../ui/button";
 import { LogOut } from "lucide-react";
+import { auth } from "@/features/auth/auth";
+import { authClient } from "@/features/auth/auth-client";
 
 export function AppHeader() {
   const matches = useMatches();
@@ -25,7 +27,10 @@ export function AppHeader() {
   };
 
   const title = getTitle();
-
+  const logOut = async () => {
+    await authClient.signOut();
+    redirect({ to: "/" });
+  };
   return (
     <header className="sticky top-0 z-10 flex h-(--header-height) shrink-0 items-center gap-2 border-b backdrop-blur supports-[backdrop-filter]:bg-background/60 ">
       <div className="flex w-full justify-between items-center gap-1 px-4">
@@ -35,7 +40,7 @@ export function AppHeader() {
         <div className="md:hidden flex">
           <SidebarTrigger />
         </div>
-        <Button variant={"secondary"}>
+        <Button variant={"secondary"} onClick={logOut}>
           Log Out <LogOut />
         </Button>
       </div>
