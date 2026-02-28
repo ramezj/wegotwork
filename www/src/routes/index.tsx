@@ -10,16 +10,14 @@ import {
 } from "@/components/ui/card";
 import {
   ArrowRight,
-  ArrowUpRight,
   BarChart3,
   Building2,
   FileText,
   Users,
 } from "lucide-react";
-import { JobCard } from "@/components/job/job-card";
 import { JobWithCategory } from "@/types/job/job";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Browser } from "@/components/shared/browser";
 
 export const Route = createFileRoute("/")({
   beforeLoad: async () => {
@@ -38,14 +36,12 @@ function App() {
         <header className="flex flex-col space-y-8">
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
-              <Badge variant={"secondary"}>
-                Currently in development phase.
-              </Badge>
-              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-medium leading-tight text-balance">
+              <Badge variant={"default"}>Currently in early development</Badge>
+              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance">
                 The hiring platform for modern teams
               </h1>
-              <p className="text-[1rem] font-light text-balance text-muted-foreground">
-                create stunning career pages, post jobs, manage applicants — all
+              <p className="text-[1rem] font-medium text-balance text-muted-foreground">
+                Create stunning career pages, post jobs, manage applicants — all
                 from one, easy-to-use platform.
               </p>
             </div>
@@ -66,50 +62,7 @@ function App() {
             </div>
           </div>
           <section className="px-4">
-            <div className="w-full mx-auto browser-glow">
-              {/* Browser chrome */}
-              <div className="border border-border bg-card rounded-lg">
-                <div className="flex items-center gap-2 border-b border-border p-4">
-                  <div className="flex gap-1.5">
-                    <div className="size-3 bg-secondary rounded-full" />
-                    <div className="size-3 bg-secondary rounded-full" />
-                    <div className="size-3 bg-secondary rounded-full" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="bg-secondary py-1 text-xs text-primary font-medium text-start p-2 rounded-md">
-                      jobs.hirelou.app
-                    </div>
-                  </div>
-                </div>
-                {/* Job cards inside browser */}
-                <div className="p-4 bg-background">
-                  <div className="flex flex-col items-center text-center space-y-4 py-8">
-                    <Avatar className="w-16 h-16 rounded-lg">
-                      <AvatarFallback className="text-4xl bg-primary text-primary-foreground">
-                        H
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="space-y-4">
-                      <h3 className="text-3xl md:text-4xl font-medium tracking-tight leading-none">
-                        Hirelou
-                      </h3>
-                      <p className="text-muted-foreground text-base text-balance font-light leading-none">
-                        Explore our open positions and join our team in building
-                        the future.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <div>
-                      <JobCard job={dummyJobs[0]} slug="#" isDemo />
-                    </div>
-                    <div>
-                      <JobCard job={dummyJobs[1]} slug="#" isDemo />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
           </section>
         </header>
         <section className="px-4">
