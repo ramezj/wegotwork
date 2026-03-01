@@ -145,7 +145,7 @@ export function EditOrganizationForm({
               <FieldContent>
                 <div className="flex items-center space-x-4">
                   <div className="flex flex-col items-center space-y-2">
-                    <Avatar className="size-32 rounded-md shadow-sm border">
+                    <Avatar className="size-32">
                       <AvatarImage
                         src={
                           preview
