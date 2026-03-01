@@ -28,7 +28,7 @@ export function OrganizationCard({
                 <Building2 className="h-6 w-6 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
-                <CardTitle className="text-xl truncate group-hover:text-primary transition-colors font-medium">
+                <CardTitle className="text-xl truncate group-hover:text-primary transition-colors font-semibold">
                   {organization.name}
                 </CardTitle>
               </div>
@@ -39,14 +39,14 @@ export function OrganizationCard({
 
         <CardContent className="space-y-4">
           <div className="flex items-center gap-2 text-sm ">
-            <span className="px-2 py-1 rounded-md text-xs bg-secondary text-primary font-medium">
+            <span className="px-2 py-1 rounded-md text-xs bg-secondary text-primary font-semibold">
               /{organization.slug}
             </span>
           </div>
         </CardContent>
 
         <CardFooter className="border-t">
-          <div className="flex items-center text-sm font-medium text-primary">
+          <div className="flex items-center text-sm font-semibold text-primary">
             View Organization
           </div>
         </CardFooter>

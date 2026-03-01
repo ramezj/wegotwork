@@ -7,19 +7,19 @@ import { NavSidebar } from "./nav-sidebar";
 export default function Header({ session }: { session: Session | null }) {
   return (
     <header className="w-full px-4 h-16 rounded-lg border backdrop-blur supports-backdrop-filter:bg-background/60 flex flex-row items-center justify-between">
-      <div className="flex-row flex gap-2 items-center content-center align-middle">
-        <Link to={"/"}>
-          <h1 className="text-xl font-semibold tracking-tight">Hirelou</h1>
+      <div className="flex-row flex gap-2 items-baseline content-center align-middle">
+        <Link to={"/"} className="text-xl font-semibold tracking-tight">
+          wehavework
         </Link>
-        <div className="flex-row gap-2 items-center content-center align-middle md:flex hidden">
+        <div className="flex-row gap-2 items-baseline content-center align-middle md:flex hidden">
           <Link className="font-medium text-muted-foreground" to={"/"}>
-            home
+            features
           </Link>
           <Link className="font-medium text-muted-foreground" to={"/"}>
-            support
+            pricing
           </Link>
           <Link className="font-medium text-muted-foreground" to={"/"}>
-            blog
+            about
           </Link>
         </div>
       </div>
