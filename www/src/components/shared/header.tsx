@@ -40,7 +40,9 @@ export default function Header({ session }: { session: Session | null }) {
               asChild
               className="font-semibold cursor-pointer"
             >
-              <Link to={"/dashboard"}>Open Dashboard</Link>
+              <Link preload="render" to={"/dashboard"}>
+                Open Dashboard
+              </Link>
             </Button>
           </>
         ) : (

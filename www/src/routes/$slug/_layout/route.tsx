@@ -2,10 +2,10 @@ import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { getSession } from "@/features/auth/server-session";
-import { getAllOrganizationsFn } from "@/features/services/organization/get-all-organizations";
 import { AppHeader } from "@/components/sidebar/app-header";
 import { Suspense } from "react";
 import { LoadingLayout } from "@/components/shared/layout";
+import { organizationsQueryOptions } from "@/features/queries/organization";
 
 export const Route = createFileRoute("/$slug/_layout")({
   component: RouteComponent,
@@ -15,10 +15,7 @@ export const Route = createFileRoute("/$slug/_layout")({
     if (!session?.user) {
       throw redirect({ to: "/" });
     }
-    await context.queryClient.ensureQueryData({
-      queryKey: ["organizations"],
-      queryFn: getAllOrganizationsFn,
-    });
+    await context.queryClient.ensureQueryData(organizationsQueryOptions());
     return { session };
   },
 });

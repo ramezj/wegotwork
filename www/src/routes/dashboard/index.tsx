@@ -1,25 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CreateOrganization } from "@/components/organization/create-organization";
-import { getAllOrganizationsFn } from "@/features/services/organization/get-all-organizations";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { OrganizationCard } from "@/components/organization/organization-card";
 import { Organization } from "generated/prisma/client";
+import { organizationsQueryOptions } from "@/features/queries/organization";
 
 export const Route = createFileRoute("/dashboard/")({
   component: RouteComponent,
   ssr: true,
+  loader: ({ context }) =>
+    context.queryClient.ensureQueryData(organizationsQueryOptions()),
 });
 
 function RouteComponent() {
-  const { data } = useSuspenseQuery({
-    queryFn: getAllOrganizationsFn,
-    queryKey: ["organizations"],
-  });
+  const { data } = useSuspenseQuery(organizationsQueryOptions());
+
   if (!data.success) {
     return <>something went insanely wrong..</>;
   }
-
-  const hasOrganizations = data?.organizations && data.organizations.length > 0;
 
   return (
     <div className="">
