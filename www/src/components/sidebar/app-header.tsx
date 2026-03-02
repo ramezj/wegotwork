@@ -1,7 +1,7 @@
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { redirect, useMatches } from "@tanstack/react-router";
 import { Button } from "../ui/button";
-import { LogOut } from "lucide-react";
+import { BellIcon, LogOut } from "lucide-react";
 import { auth } from "@/features/auth/auth";
 import { authClient } from "@/features/auth/auth-client";
 
@@ -40,9 +40,14 @@ export function AppHeader() {
         <div className="md:hidden flex">
           <SidebarTrigger />
         </div>
-        <Button variant={"secondary"} onClick={logOut}>
-          Log Out <LogOut />
-        </Button>
+        <div className="flex flex-row">
+          <Button variant={"default"}>
+            <BellIcon fill="currentColor" />
+          </Button>
+          {/* <Button variant={"secondary"} onClick={logOut}>
+            Log Out <LogOut />
+          </Button> */}
+        </div>
       </div>
     </header>
   );

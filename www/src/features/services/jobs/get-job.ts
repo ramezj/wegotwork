@@ -11,7 +11,7 @@ export const getJobByIdFn = createServerFn()
       throw new Error("Unauthenticated");
     }
     try {
-      const job = await prisma.job.findUnique({
+      const job = await prisma.job.findFirst({
         where: {
           id: data.jobId,
           organization: {
@@ -23,8 +23,20 @@ export const getJobByIdFn = createServerFn()
           },
         },
         include: {
+          organization: true,
           category: true,
           questions: { orderBy: { order: "asc" } },
+          pipeline: {
+            include: {
+              stages: { orderBy: { order: "asc" } },
+            },
+          },
+          applicants: {
+            include: {
+              currentStage: true,
+              evaluations: true,
+            },
+          },
           _count: {
             select: {
               applicants: true,
@@ -34,6 +46,7 @@ export const getJobByIdFn = createServerFn()
       });
       return { success: true, job };
     } catch (error) {
-      throw new Error("Something Went Wrong");
+      console.error(error);
+      throw new Error("Something Went Wrongaaa");
     }
   });

@@ -17,6 +17,7 @@ import {
   HomeIcon,
   Loader,
   Users,
+  GitBranch,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
@@ -51,6 +52,11 @@ export function AppSidebar({
       label: "Jobs",
       icon: <Briefcase />,
       href: `/${slug}/jobs`,
+    },
+    {
+      label: "Pipelines",
+      icon: <GitBranch />,
+      href: `/${slug}/pipelines`,
     },
     {
       label: "Applicants",

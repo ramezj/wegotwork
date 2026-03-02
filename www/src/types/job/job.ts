@@ -6,6 +6,8 @@ import { Job, JobCategory, JobQuestion } from "generated/prisma/client";
 export type JobWithCategory = Job & {
   category: JobCategory | null;
   questions: JobQuestion[];
+  pipeline?: any; // To allow for the new pipeline relation
+  applicants?: any[]; // To allow for the new applicants relation
 };
 
 export type CategoryWithJob = JobCategory & {
@@ -33,6 +35,7 @@ export const jobSchema = z.object({
     .enum(["ENTRY", "MID", "SENIOR", "LEAD", "EXECUTIVE"])
     .default("ENTRY"),
   categoryId: z.string().optional(),
+  pipelineId: z.string().optional(),
   questions: z.array(formFieldConfigSchema).optional().default([]),
 });
 

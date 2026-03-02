@@ -32,6 +32,9 @@ model User {
   plan          Plan      @default(FREE)
   members     Member[]
   invitations Invitation[]
+  evaluations Evaluation[]
+  activityLogs ActivityLog[]
+
 
   @@unique([email])
   @@map("user")
@@ -98,7 +101,9 @@ model Organization {
   members     Member[]
   invitations Invitation[]
   jobs        Job[]
-  categories JobCategory[]
+  categories  JobCategory[]
+  pipelines   Pipeline[]
+
   @@unique([slug])
   @@map("organization")
 }
@@ -195,6 +200,84 @@ model Job {
   categoryId     String?
   category       JobCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   questions      JobQuestion[]
+  
+  pipelineId     String?
+  pipeline       Pipeline?    @relation(fields: [pipelineId], references: [id], onDelete: SetNull)
+
+  @@map("job")
+}
+
+model Pipeline {
+  id             String       @id @default(cuid())
+  name           String
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  stages         Stage[]
+  jobs           Job[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([organizationId])
+  @@map("pipeline")
+}
+
+model Stage {
+  id             String       @id @default(cuid())
+  name           String
+  order          Int          @default(0)
+  pipelineId     String
+  pipeline       Pipeline     @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
+  applicants     Applicant[]
+  evaluations    Evaluation[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([pipelineId])
+  @@map("stage")
+}
+
+model Evaluation {
+  id             String       @id @default(cuid())
+  score          Int          // 1-5 scale
+  feedback       String?
+  interviewerId  String
+  interviewer    User         @relation(fields: [interviewerId], references: [id])
+  applicantId    String
+  applicant      Applicant    @relation(fields: [applicantId], references: [id], onDelete: Cascade)
+  stageId        String
+  stage          Stage        @relation(fields: [stageId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([applicantId])
+  @@index([stageId])
+  @@map("evaluation")
+}
+
+model ActivityLog {
+  id             String       @id @default(cuid())
+  action         String       // e.g. "MOVED_STAGE", "ADDED_EVALUATION"
+  metadata       Json?        // Stores old/new values
+  actorId        String?
+  actor          User?        @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  applicantId    String
+  applicant      Applicant    @relation(fields: [applicantId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+
+  @@index([applicantId])
+  @@map("activity_log")
+}
+
+model Communication {
+  id             String       @id @default(cuid())
+  type           String       // EMAIL, NOTE, CALL
+  content        String
+  applicantId    String
+  applicant      Applicant    @relation(fields: [applicantId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+
+  @@index([applicantId])
+  @@map("communication")
 }
 
 model JobQuestion {
@@ -226,15 +309,27 @@ enum Status {
 }
 
 model Applicant {
-  id         String   @id @default(cuid())
-  name       String
-  email      String
-  createdAt  DateTime @default(now())
-  status     Status   @default(SUBMITTED)
-  resumeKey  String
-  responses  Json     @default("{}")
-  jobId      String
-  job        Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  id             String       @id @default(cuid())
+  name           String
+  email          String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  status         Status       @default(SUBMITTED)
+  resumeKey      String
+  responses      Json         @default("{}")
+  jobId          String
+  job            Job          @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  
+  currentStageId String?
+  currentStage   Stage?       @relation(fields: [currentStageId], references: [id], onDelete: SetNull)
+  
+  evaluations    Evaluation[]
+  activityLogs   ActivityLog[]
+  communications Communication[]
+
+  @@index([jobId])
+  @@index([currentStageId])
+  @@map("applicant")
 }
 
 model JobCategory {
@@ -244,4 +339,7 @@ model JobCategory {
   organizationId String
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   jobs           Job[]
+
+  @@map("job_category")
 }
+

@@ -30,6 +30,7 @@ export const createJobFn = createServerFn()
         data: {
           ...jobData,
           categoryId: data.job.categoryId || null,
+          pipelineId: data.job.pipelineId || null,
           organizationId: organization.id,
           questions: {
             create: (questions || []).map((q) => ({

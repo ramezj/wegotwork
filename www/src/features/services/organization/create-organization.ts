@@ -60,6 +60,20 @@ export const createOrganizationFn = createServerFn()
               { name: "Sustainability & ESG" },
             ],
           },
+          pipelines: {
+            create: {
+              name: "General Hiring Pipeline",
+              stages: {
+                create: [
+                  { name: "Screening", order: 1 },
+                  { name: "Interview", order: 2 },
+                  { name: "Technical Task", order: 3 },
+                  { name: "Final Interview", order: 4 },
+                  { name: "Offer", order: 5 },
+                ],
+              },
+            },
+          },
           jobs: {
             createMany: {
               data: [

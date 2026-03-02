@@ -34,6 +34,19 @@ export const createApplicantFn = createServerFn()
         };
       }
 
+      const jobWithPipeline = await prisma.job.findUnique({
+        where: { id: data.jobId },
+        include: {
+          pipeline: {
+            include: {
+              stages: { orderBy: { order: "asc" } },
+            },
+          },
+        },
+      });
+
+      const firstStageId = jobWithPipeline?.pipeline?.stages[0]?.id;
+
       const applicant = await prisma.applicant.create({
         data: {
           name: data.name,
@@ -42,6 +55,19 @@ export const createApplicantFn = createServerFn()
           responses: data.responses,
           jobId: data.jobId,
           status: "SUBMITTED",
+          currentStageId: firstStageId,
+        },
+      });
+
+      // Log the application
+      await prisma.activityLog.create({
+        data: {
+          action: "APPLIED",
+          applicantId: applicant.id,
+          metadata: {
+            jobTitle: job.title,
+            stage: jobWithPipeline?.pipeline?.stages[0]?.name || "Initial",
+          },
         },
       });
 
