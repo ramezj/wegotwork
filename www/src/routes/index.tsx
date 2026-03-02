@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
 function App() {
   const { session } = Route.useRouteContext();
   return (
-    <div className="space-y-8">
+    <div className="space-y-12">
       <div className="lg:w-[70%] w-full mx-auto sticky top-5 z-50 px-4">
         <Header session={session} />
       </div>
@@ -39,12 +39,12 @@ function App() {
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
               {/* <Badge variant={"default"}>Currently in early development</Badge> */}
-              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance">
-                The hiring platform for modern teams
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl 2xl:text-7xl font-semibold leading-tight text-balance">
+                The Whole Hiring Process. One Ark.
               </h1>
               <p className="text-[1rem] font-medium text-balance text-muted-foreground">
-                Create stunning career pages, post jobs, manage applicants — all
-                from one, easy-to-use platform.
+                Start with a career page, then run every job post, application,
+                and hiring decision inside one organized Ark.
               </p>
             </div>
           </section>
