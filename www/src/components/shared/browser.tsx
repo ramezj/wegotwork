@@ -29,12 +29,12 @@ export function Browser({ jobs }: BrowserProps) {
         <div className="flex flex-col items-center text-center space-y-4 py-8">
           <Avatar className="w-16 h-16 rounded-lg">
             <AvatarFallback className="text-2xl bg-primary text-primary-foreground">
-              W
+              H
             </AvatarFallback>
           </Avatar>
           <div className="space-y-4">
             <h3 className="text-3xl md:text-4xl font-semibold tracking-tight leading-none">
-              wehavework
+              hireark
             </h3>
             <p className="text-muted-foreground text-base text-balance font-medium leading-none">
               Explore our open positions and join our team in building the
