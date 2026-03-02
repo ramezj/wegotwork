@@ -4,6 +4,13 @@ import { organizationClient } from "better-auth/client/plugins";
 export const authClient = createAuthClient({
   baseURL: process.env.BETTER_AUTH_URL,
   plugins: [organizationClient()],
+  user: {
+    additionalFields: {
+      plan: {
+        type: "string",
+      },
+    },
+  },
 });
 
 export type Session = typeof authClient.$Infer.Session;

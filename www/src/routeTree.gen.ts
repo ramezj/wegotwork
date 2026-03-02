@@ -21,6 +21,7 @@ import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as SlugLayoutOrganizationRouteRouteImport } from './routes/$slug/_layout/organization/route'
 import { Route as SlugLayoutJobsRouteRouteImport } from './routes/$slug/_layout/jobs/route'
 import { Route as SlugLayoutCategoriesRouteRouteImport } from './routes/$slug/_layout/categories/route'
+import { Route as SlugLayoutBillingRouteRouteImport } from './routes/$slug/_layout/billing/route'
 import { Route as ViewSlugJobIdIndexRouteImport } from './routes/view/$slug/$jobId/index'
 import { Route as SlugLayoutJobsIndexRouteImport } from './routes/$slug/_layout/jobs/index'
 import { Route as SlugLayoutApplicantsIndexRouteImport } from './routes/$slug/_layout/applicants/index'
@@ -89,6 +90,11 @@ const SlugLayoutCategoriesRouteRoute =
     path: '/categories',
     getParentRoute: () => SlugLayoutRouteRoute,
   } as any)
+const SlugLayoutBillingRouteRoute = SlugLayoutBillingRouteRouteImport.update({
+  id: '/billing',
+  path: '/billing',
+  getParentRoute: () => SlugLayoutRouteRoute,
+} as any)
 const ViewSlugJobIdIndexRoute = ViewSlugJobIdIndexRouteImport.update({
   id: '/$jobId/',
   path: '/$jobId/',
@@ -125,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/view/$slug': typeof ViewSlugRouteRouteWithChildren
   '/dashboard/': typeof DashboardIndexRoute
   '/view/': typeof ViewIndexRoute
+  '/$slug/billing': typeof SlugLayoutBillingRouteRoute
   '/$slug/categories': typeof SlugLayoutCategoriesRouteRoute
   '/$slug/jobs': typeof SlugLayoutJobsRouteRouteWithChildren
   '/$slug/organization': typeof SlugLayoutOrganizationRouteRoute
@@ -141,6 +148,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/view': typeof ViewIndexRoute
+  '/$slug/billing': typeof SlugLayoutBillingRouteRoute
   '/$slug/categories': typeof SlugLayoutCategoriesRouteRoute
   '/$slug/organization': typeof SlugLayoutOrganizationRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -160,6 +168,7 @@ export interface FileRoutesById {
   '/view/$slug': typeof ViewSlugRouteRouteWithChildren
   '/dashboard/': typeof DashboardIndexRoute
   '/view/': typeof ViewIndexRoute
+  '/$slug/_layout/billing': typeof SlugLayoutBillingRouteRoute
   '/$slug/_layout/categories': typeof SlugLayoutCategoriesRouteRoute
   '/$slug/_layout/jobs': typeof SlugLayoutJobsRouteRouteWithChildren
   '/$slug/_layout/organization': typeof SlugLayoutOrganizationRouteRoute
@@ -181,6 +190,7 @@ export interface FileRouteTypes {
     | '/view/$slug'
     | '/dashboard/'
     | '/view/'
+    | '/$slug/billing'
     | '/$slug/categories'
     | '/$slug/jobs'
     | '/$slug/organization'
@@ -197,6 +207,7 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/view'
+    | '/$slug/billing'
     | '/$slug/categories'
     | '/$slug/organization'
     | '/api/auth/$'
@@ -215,6 +226,7 @@ export interface FileRouteTypes {
     | '/view/$slug'
     | '/dashboard/'
     | '/view/'
+    | '/$slug/_layout/billing'
     | '/$slug/_layout/categories'
     | '/$slug/_layout/jobs'
     | '/$slug/_layout/organization'
@@ -323,6 +335,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SlugLayoutCategoriesRouteRouteImport
       parentRoute: typeof SlugLayoutRouteRoute
     }
+    '/$slug/_layout/billing': {
+      id: '/$slug/_layout/billing'
+      path: '/billing'
+      fullPath: '/$slug/billing'
+      preLoaderRoute: typeof SlugLayoutBillingRouteRouteImport
+      parentRoute: typeof SlugLayoutRouteRoute
+    }
     '/view/$slug/$jobId/': {
       id: '/view/$slug/$jobId/'
       path: '/$jobId'
@@ -387,6 +406,7 @@ const SlugLayoutJobsRouteRouteWithChildren =
   SlugLayoutJobsRouteRoute._addFileChildren(SlugLayoutJobsRouteRouteChildren)
 
 interface SlugLayoutRouteRouteChildren {
+  SlugLayoutBillingRouteRoute: typeof SlugLayoutBillingRouteRoute
   SlugLayoutCategoriesRouteRoute: typeof SlugLayoutCategoriesRouteRoute
   SlugLayoutJobsRouteRoute: typeof SlugLayoutJobsRouteRouteWithChildren
   SlugLayoutOrganizationRouteRoute: typeof SlugLayoutOrganizationRouteRoute
@@ -396,6 +416,7 @@ interface SlugLayoutRouteRouteChildren {
 }
 
 const SlugLayoutRouteRouteChildren: SlugLayoutRouteRouteChildren = {
+  SlugLayoutBillingRouteRoute: SlugLayoutBillingRouteRoute,
   SlugLayoutCategoriesRouteRoute: SlugLayoutCategoriesRouteRoute,
   SlugLayoutJobsRouteRoute: SlugLayoutJobsRouteRouteWithChildren,
   SlugLayoutOrganizationRouteRoute: SlugLayoutOrganizationRouteRoute,

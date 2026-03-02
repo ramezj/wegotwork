@@ -14,6 +14,14 @@ export const auth = betterAuth({
     },
   },
   plugins: [organization()],
+  user: {
+    additionalFields: {
+      plan: {
+        type: "string",
+        input: false, // Ensure it's not editable by user directly via auth
+      },
+    },
+  },
 });
 
 export type Session = typeof auth.$Infer.Session;

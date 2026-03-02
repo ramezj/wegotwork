@@ -13,6 +13,12 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Plan {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
 model User {
   id            String    @id
   name          String
@@ -23,7 +29,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
-
+  plan          Plan      @default(FREE)
   members     Member[]
   invitations Invitation[]
 
