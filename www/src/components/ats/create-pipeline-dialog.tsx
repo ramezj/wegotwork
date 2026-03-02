@@ -111,9 +111,15 @@ export function CreatePipelineDialog({
             name="name"
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel>Pipeline Name</FieldLabel>
+                <FieldLabel aria-invalid={fieldState.invalid}>
+                  Pipeline Name
+                </FieldLabel>
                 <FieldContent>
-                  <Input {...field} placeholder="e.g. Engineering Pipeline" />
+                  <Input
+                    {...field}
+                    aria-invalid={fieldState.invalid}
+                    placeholder="e.g. Engineering Pipeline"
+                  />
                 </FieldContent>
                 <FieldError errors={[fieldState.error]} />
               </Field>
@@ -138,6 +144,7 @@ export function CreatePipelineDialog({
                         <Field data-invalid={fieldState.invalid}>
                           <FieldContent>
                             <Input
+                              aria-invalid={fieldState.invalid}
                               className="w-full"
                               {...field}
                               placeholder={`Stage ${index + 1} name`}
