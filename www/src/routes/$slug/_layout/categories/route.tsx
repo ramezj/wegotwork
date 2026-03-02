@@ -31,7 +31,7 @@ function RouteComponent() {
           {data.organization.categories.map((category) => (
             <Card
               key={category.id}
-              className="p-4 border border-input rounded-lg bg-input/30"
+              className="p-4 border rounded-lg font-semibold"
             >
               {category.name}
             </Card>
