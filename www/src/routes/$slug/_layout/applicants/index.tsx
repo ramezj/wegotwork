@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Users, ChevronRight, Briefcase } from "lucide-react";
 import { Job, Applicant } from "generated/prisma/client";
+import { Layout } from "@/components/shared/layout";
 
 export const Route = createFileRoute("/$slug/_layout/applicants/")({
   component: RouteComponent,
@@ -30,14 +31,7 @@ function RouteComponent() {
   const jobs = data.organization.jobs as (Job & { applicants: Applicant[] })[];
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-3xl font-bold tracking-tight">Applicants</h1>
-        <p className="text-muted-foreground">
-          Select a job to view and manage its candidates.
-        </p>
-      </div>
-
+    <Layout title="Applicants">
       <div className="grid gap-4">
         {jobs.map((job) => (
           <Link
@@ -86,6 +80,6 @@ function RouteComponent() {
           </div>
         )}
       </div>
-    </div>
+    </Layout>
   );
 }

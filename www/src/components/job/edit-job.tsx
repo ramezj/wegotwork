@@ -32,10 +32,12 @@ import { FormFieldType } from "@/types/form-config";
 export function EditJobForm({
   job,
   categories,
+  pipelines,
   slug,
 }: {
   job: JobWithCategory;
   categories: JobCategory[];
+  pipelines: any[];
   slug: string;
 }) {
   const queryClient = useQueryClient();
@@ -65,6 +67,7 @@ export function EditJobForm({
         options: q.options || [],
         order: q.order || 0,
       })),
+      pipelineId: job.pipelineId || "",
     },
     resolver: zodResolver(jobSchema),
     mode: "onBlur",
@@ -225,6 +228,37 @@ export function EditJobForm({
                             {categories.map((category) => (
                               <SelectItem key={category.id} value={category.id}>
                                 {category.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </FieldContent>
+                      <FieldError errors={[fieldState.error]} />
+                    </Field>
+                  )}
+                />
+                <Controller
+                  control={form.control}
+                  name="pipelineId"
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <FieldLabel>Hiring Pipeline</FieldLabel>
+                      <FieldContent>
+                        <Select
+                          aria-invalid={fieldState.invalid}
+                          value={field.value || "none"}
+                          onValueChange={(value) =>
+                            field.onChange(value === "none" ? "" : value)
+                          }
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a pipeline" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="none">No Pipeline</SelectItem>
+                            {pipelines.map((pipeline) => (
+                              <SelectItem key={pipeline.id} value={pipeline.id}>
+                                {pipeline.name}
                               </SelectItem>
                             ))}
                           </SelectContent>

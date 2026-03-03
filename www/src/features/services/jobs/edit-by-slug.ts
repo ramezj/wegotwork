@@ -11,6 +11,7 @@ export const editJobBySlugFn = createServerFn()
     if (!session) {
       throw new Error("Unauthenticated");
     }
+
     // Security Check: Verify user is a member of the organization that owns this job
     const authorizedJob = await prisma.job.findFirst({
       where: {
@@ -24,9 +25,11 @@ export const editJobBySlugFn = createServerFn()
         },
       },
     });
+
     if (!authorizedJob) {
       throw new Error("You are not authorized to edit this job");
     }
+
     try {
       const { questions, ...jobData } = data.job;
       const job = await prisma.job.update({
@@ -36,6 +39,7 @@ export const editJobBySlugFn = createServerFn()
         data: {
           ...jobData,
           categoryId: data.job.categoryId || null,
+          pipelineId: data.job.pipelineId || null,
           questions: {
             deleteMany: {},
             create: (questions || []).map((q) => ({
@@ -51,6 +55,7 @@ export const editJobBySlugFn = createServerFn()
       });
       return { success: true, job };
     } catch (error) {
+      console.error(error);
       throw new Error("Something Went Wrong");
     }
   });

@@ -24,6 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { GitBranch as GitBranchIcon } from "lucide-react";
+import { Layout } from "@/components/shared/layout";
 
 export const Route = createFileRoute("/$slug/_layout/applicants/$jobId/")({
   component: RouteComponent,
@@ -106,63 +107,66 @@ function RouteComponent() {
 
   if (!pipeline) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center p-12 border rounded-lg bg-muted/5 min-h-[500px] text-center">
-        <div className="size-16 rounded-full bg-muted flex items-center justify-center text-muted-foreground mb-8">
-          <Plus className="size-8" />
-        </div>
-        <h3 className="text-2xl font-bold mb-4">No Hiring Pipeline</h3>
-        <p className="text-muted-foreground max-w-md mb-10">
-          Each job needs a structured pipeline to manage candidates effectively.
-          Select an existing pipeline or create a new one.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <Button
-            onClick={handleCreateDefaultPipeline}
-            disabled={
-              createPipelineMutation.isPending || linkPipelineMutation.isPending
-            }
-            variant="outline"
-          >
-            {createPipelineMutation.isPending || linkPipelineMutation.isPending
-              ? "Creating..."
-              : "Standard Pipeline"}
-          </Button>
-          <CreatePipelineDialog
-            organizationId={job.organizationId}
-            trigger={<Button>Create Custom Pipeline</Button>}
-          />
-        </div>
-
-        <div className="w-full max-w-sm flex flex-col gap-3">
-          <div className="flex items-center gap-2 mb-1">
-            <div className="h-px flex-1 bg-border" />
-            <span className="text-[10px] text-muted-foreground">
-              OR LINK EXISTING
-            </span>
-            <div className="h-px flex-1 bg-border" />
+      <Layout title={job.title}>
+        <div className="flex-1 flex flex-col items-center justify-center p-12 border rounded-lg bg-muted/5 min-h-[500px] text-center">
+          <div className="size-16 rounded-full bg-muted flex items-center justify-center text-muted-foreground mb-8">
+            <Plus className="size-8" />
           </div>
-          <Select
-            onValueChange={(val) =>
-              linkPipelineMutation.mutate({ data: { jobId, pipelineId: val } })
-            }
-            disabled={linkPipelineMutation.isPending}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Link existing pipeline" />
-            </SelectTrigger>
-            <SelectContent>
-              {pipelines.map((p: any) => (
-                <SelectItem key={p.id} value={p.id}>
-                  <div className="flex items-center gap-2">
-                    <GitBranchIcon className="size-3.5" />
-                    {p.name}
-                  </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <h3 className="text-2xl font-bold mb-4">No Hiring Pipeline</h3>
+          <p className="text-muted-foreground max-w-md mb-10">
+            Each job needs a structured pipeline to manage candidates
+            effectively. Select an existing pipeline or create a new one.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <Button
+              onClick={handleCreateDefaultPipeline}
+              disabled={
+                createPipelineMutation.isPending ||
+                linkPipelineMutation.isPending
+              }
+              variant="outline"
+            >
+              {createPipelineMutation.isPending ||
+              linkPipelineMutation.isPending
+                ? "Creating..."
+                : "Standard Pipeline"}
+            </Button>
+            <CreatePipelineDialog organizationId={job.organizationId} />
+          </div>
+
+          <div className="w-full max-w-sm flex flex-col gap-3">
+            <div className="flex items-center gap-2 mb-1">
+              <div className="h-px flex-1 bg-border" />
+              <span className="text-[10px] text-muted-foreground">
+                OR LINK EXISTING
+              </span>
+              <div className="h-px flex-1 bg-border" />
+            </div>
+            <Select
+              onValueChange={(val) =>
+                linkPipelineMutation.mutate({
+                  data: { jobId, pipelineId: val },
+                })
+              }
+              disabled={linkPipelineMutation.isPending}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Link existing pipeline" />
+              </SelectTrigger>
+              <SelectContent>
+                {pipelines.map((p: any) => (
+                  <SelectItem key={p.id} value={p.id}>
+                    <div className="flex items-center gap-2">
+                      <GitBranchIcon className="size-3.5" />
+                      {p.name}
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 

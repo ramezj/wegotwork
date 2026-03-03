@@ -28,31 +28,8 @@ function RouteComponent() {
   const job = data.job;
 
   return (
-    <div className="flex flex-col gap-6 h-full">
-      <div className="flex items-center justify-between shrink-0">
-        <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-2 mb-1">
-            <Button variant="ghost" size="icon" asChild className="size-8">
-              <Link to="/$slug/applicants" params={{ slug }}>
-                <ChevronLeft className="size-4" />
-              </Link>
-            </Button>
-            <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
-              Back to Jobs
-            </span>
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight">{job.title}</h1>
-          <p className="text-muted-foreground flex items-center gap-2 text-sm font-medium">
-            <Briefcase className="size-3.5" />
-            {job.locationMode.toLowerCase()} •{" "}
-            {job.type.toLowerCase().replace("_", "-")}
-          </p>
-        </div>
-      </div>
-
-      <div className="flex-1 overflow-hidden">
-        <Outlet />
-      </div>
+    <div className="flex-1 overflow-hidden">
+      <Outlet />
     </div>
   );
 }

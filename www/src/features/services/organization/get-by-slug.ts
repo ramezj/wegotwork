@@ -37,6 +37,11 @@ export const getOrganizationBySlugFn = createServerFn()
               createdAt: "desc",
             },
           },
+          pipelines: {
+            orderBy: {
+              name: "asc",
+            },
+          },
         },
       });
       return { success: true, organization };

@@ -2,20 +2,18 @@ import { cn } from "@/lib/utils";
 import { Loader, Loader2, LoaderPinwheel } from "lucide-react";
 export function Layout({
   title,
-  boldText,
   primaryButton,
   children,
   className,
 }: {
   title?: string;
-  boldText?: string;
   primaryButton?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
 }) {
   return (
     <div className={cn("flex flex-1 flex-col space-y-4", className)}>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between min-h-8">
         <h1 className="text-xl font-semibold">{title}</h1>
         {primaryButton}
       </div>
@@ -26,15 +24,13 @@ export function Layout({
 
 export function LoadingLayout({
   title,
-  boldText,
   primaryButton,
 }: {
   title: string;
-  boldText?: string;
   primaryButton?: React.ReactNode;
 }) {
   return (
-    <Layout title={title} boldText={boldText} primaryButton={primaryButton}>
+    <Layout title={title} primaryButton={primaryButton}>
       <div className="flex-1 items-center flex flex-col justify-center">
         <Loader2 className="size-8 animate-spin text-foreground" />
       </div>
