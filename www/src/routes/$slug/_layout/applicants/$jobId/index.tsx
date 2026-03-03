@@ -5,14 +5,12 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { getJobByIdFn } from "@/features/services/jobs/get-job";
-import { ATSListView } from "@/components/ats/ats-list-view";
-import { PipelineBoard } from "@/components/ats/pipeline-board";
 import { Button } from "@/components/ui/button";
-import { Plus, LayoutGrid, List } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Plus } from "lucide-react";
 import { createPipelineFn } from "@/features/services/ats/pipeline";
 import { toast } from "sonner";
 import { useState } from "react";
-import { CreatePipelineDialog } from "@/components/ats/create-pipeline-dialog";
 import { moveApplicantStageFn } from "@/features/services/ats/applicant";
 import { linkJobToPipelineFn } from "@/features/services/jobs/link-pipeline";
 import { pipelinesQueryOptions } from "@/features/queries/ats";
@@ -23,17 +21,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { GitBranch as GitBranchIcon } from "lucide-react";
 import { Layout } from "@/components/shared/layout";
+import { ApplicantCard } from "@/components/ats/applicant-card";
 
 export const Route = createFileRoute("/$slug/_layout/applicants/$jobId/")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const { jobId } = Route.useParams();
+  const { jobId, slug } = Route.useParams();
   const queryClient = useQueryClient();
-  const [viewMode, setViewMode] = useState<"board" | "list">("list");
+  const [activeStageId, setActiveStageId] = useState<string>("all");
 
   const { data } = useSuspenseQuery({
     queryKey: ["job", jobId],
@@ -87,14 +85,28 @@ function RouteComponent() {
   if (!data?.success || !data?.job) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <h3 className="text-lg font-bold">Job not found</h3>
+        <h3 className="text-lg font-bold text-muted-foreground italic">
+          Job not found
+        </h3>
       </div>
     );
   }
 
   const job = data.job;
   const pipeline = job.pipeline;
+  const stages = pipeline?.stages || [];
   const applicants = job.applicants || [];
+
+  const filteredApplicants =
+    activeStageId === "all"
+      ? applicants
+      : applicants.filter((a: any) => a.currentStageId === activeStageId);
+
+  const handleLinkExisting = (val: string) => {
+    linkPipelineMutation.mutate({
+      data: { jobId, pipelineId: val },
+    });
+  };
 
   const handleCreateDefaultPipeline = () => {
     createPipelineMutation.mutate({
@@ -105,104 +117,109 @@ function RouteComponent() {
     });
   };
 
-  if (!pipeline) {
-    return (
-      <Layout title={job.title}>
-        <div className="flex-1 flex flex-col items-center justify-center p-12 border rounded-lg bg-muted/5 min-h-[500px] text-center">
-          <div className="size-16 rounded-full bg-muted flex items-center justify-center text-muted-foreground mb-8">
-            <Plus className="size-8" />
-          </div>
-          <h3 className="text-2xl font-bold mb-4">No Hiring Pipeline</h3>
-          <p className="text-muted-foreground max-w-md mb-10">
-            Each job needs a structured pipeline to manage candidates
-            effectively. Select an existing pipeline or create a new one.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 mb-8">
-            <Button
-              onClick={handleCreateDefaultPipeline}
-              disabled={
-                createPipelineMutation.isPending ||
-                linkPipelineMutation.isPending
-              }
-              variant="outline"
-            >
-              {createPipelineMutation.isPending ||
-              linkPipelineMutation.isPending
-                ? "Creating..."
-                : "Standard Pipeline"}
-            </Button>
-            <CreatePipelineDialog organizationId={job.organizationId} />
-          </div>
-
-          <div className="w-full max-w-sm flex flex-col gap-3">
-            <div className="flex items-center gap-2 mb-1">
-              <div className="h-px flex-1 bg-border" />
-              <span className="text-[10px] text-muted-foreground">
-                OR LINK EXISTING
-              </span>
-              <div className="h-px flex-1 bg-border" />
-            </div>
-            <Select
-              onValueChange={(val) =>
-                linkPipelineMutation.mutate({
-                  data: { jobId, pipelineId: val },
-                })
-              }
-              disabled={linkPipelineMutation.isPending}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Link existing pipeline" />
-              </SelectTrigger>
-              <SelectContent>
-                {pipelines.map((p: any) => (
-                  <SelectItem key={p.id} value={p.id}>
-                    <div className="flex items-center gap-2">
-                      <GitBranchIcon className="size-3.5" />
-                      {p.name}
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-      </Layout>
-    );
-  }
-
   return (
-    <div className="flex flex-col gap-6 h-full">
-      <div className="flex items-center justify-end px-2">
-        <div className="flex items-center bg-muted/50 p-1 rounded-md">
-          <Button
-            variant={viewMode === "board" ? "secondary" : "ghost"}
-            size="sm"
-            onClick={() => setViewMode("board")}
-          >
-            <LayoutGrid className="size-4 mr-2" /> Board
-          </Button>
-          <Button
-            variant={viewMode === "list" ? "secondary" : "ghost"}
-            size="sm"
-            onClick={() => setViewMode("list")}
-          >
-            <List className="size-4 mr-2" /> List
-          </Button>
-        </div>
-      </div>
+    <Layout title={job.title}>
+      <div className="flex flex-col gap-8 pb-12">
+        {/* Header / Actions Section */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="space-y-1">
+            <h2 className="text-3xl font-bold tracking-tight">Applicants</h2>
+            <p className="text-muted-foreground text-sm">
+              Manage and track candidates for this position
+            </p>
+          </div>
 
-      <div className="flex-1 min-h-0">
-        {viewMode === "board" ? (
-          <PipelineBoard pipeline={pipeline} applicants={applicants} />
+          {!pipeline ? (
+            <div className="flex items-center gap-3">
+              <Select onValueChange={handleLinkExisting}>
+                <SelectTrigger className="w-[200px] h-9 text-xs">
+                  <SelectValue placeholder="Link Pipeline" />
+                </SelectTrigger>
+                <SelectContent>
+                  {pipelines.map((p: any) => (
+                    <SelectItem key={p.id} value={p.id} className="text-xs">
+                      {p.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Button
+                size="sm"
+                onClick={handleCreateDefaultPipeline}
+                disabled={createPipelineMutation.isPending}
+                className="h-9 px-4"
+              >
+                {createPipelineMutation.isPending ? "..." : "Auto Pipeline"}
+              </Button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2 bg-muted/30 p-1 rounded-lg border border-border/50">
+              <Button
+                variant={activeStageId === "all" ? "secondary" : "ghost"}
+                size="sm"
+                onClick={() => setActiveStageId("all")}
+                className="h-8 text-xs font-medium"
+              >
+                All
+                <Badge
+                  variant="outline"
+                  className="ml-2 px-1 opacity-50 border-none bg-transparent"
+                >
+                  {applicants.length}
+                </Badge>
+              </Button>
+              {stages.map((stage: any) => (
+                <Button
+                  key={stage.id}
+                  variant={activeStageId === stage.id ? "secondary" : "ghost"}
+                  size="sm"
+                  onClick={() => setActiveStageId(stage.id)}
+                  className="h-8 text-xs font-medium"
+                >
+                  {stage.name}
+                  <Badge
+                    variant="outline"
+                    className="ml-2 px-1 opacity-50 border-none bg-transparent"
+                  >
+                    {
+                      applicants.filter(
+                        (a: any) => a.currentStageId === stage.id,
+                      ).length
+                    }
+                  </Badge>
+                </Button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Applicants Grid */}
+        {filteredApplicants.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            {filteredApplicants.map((applicant: any) => (
+              <ApplicantCard
+                key={applicant.id}
+                applicant={applicant}
+                stages={stages}
+                onMove={handleMoveApplicant}
+                slug={slug}
+              />
+            ))}
+          </div>
         ) : (
-          <ATSListView
-            pipeline={pipeline}
-            applicants={applicants}
-            onMoveApplicant={handleMoveApplicant}
-            slug={job.organization.slug}
-          />
+          <div className="flex flex-col items-center justify-center py-24 px-4 border-2 border-dashed rounded-2xl bg-muted/5 text-center">
+            <div className="size-12 rounded-full bg-muted flex items-center justify-center mb-4">
+              <Plus className="size-6 text-muted-foreground opacity-50" />
+            </div>
+            <h3 className="text-lg font-semibold">No candidates yet</h3>
+            <p className="text-muted-foreground text-sm max-w-xs mt-1">
+              {activeStageId === "all"
+                ? "Once people apply, they will show up here for you to review."
+                : "There are current no applicants in this specific stage."}
+            </p>
+          </div>
         )}
       </div>
-    </div>
+    </Layout>
   );
 }
