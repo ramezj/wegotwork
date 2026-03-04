@@ -24,9 +24,11 @@ import { Input } from "../ui/input";
 import { Loader, PlusIcon, GitBranch, Briefcase } from "lucide-react";
 import { pipelinesQueryOptions } from "@/features/queries/ats";
 import { redirect } from "@tanstack/react-router";
+import { useState } from "react";
 
 export function CreateJobDialog({ slug }: { slug: string }) {
   const queryClient = useQueryClient();
+  const [open, setOpen] = useState(false);
 
   // Get organization data to get organizationId
   const { data: orgData } = useSuspenseQuery(
@@ -68,10 +70,7 @@ export function CreateJobDialog({ slug }: { slug: string }) {
       await queryClient.refetchQueries(organizationBySlugQueryOptions(slug));
       toast.success("Job created successfully");
       form.reset();
-      // throw redirect({
-      //   to: "/$slug/jobs/$jobId",
-      //   params: { slug, jobId: data.job.id },
-      // });
+      setOpen(false);
     },
     onError: (error) => {
       console.error(error);
@@ -84,7 +83,7 @@ export function CreateJobDialog({ slug }: { slug: string }) {
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="default" className="group transition-all">
           Create Job
