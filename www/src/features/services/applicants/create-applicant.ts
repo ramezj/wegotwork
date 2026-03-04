@@ -10,7 +10,14 @@ export const createApplicantFn = createServerFn()
     try {
       const job = await prisma.job.findUnique({
         where: { id: data.jobId },
-        include: { questions: { orderBy: { order: "asc" } } },
+        include: {
+          questions: { orderBy: { order: "asc" } },
+          pipeline: {
+            include: {
+              stages: { orderBy: { order: "asc" } },
+            },
+          },
+        },
       });
 
       if (!job) {
@@ -34,18 +41,11 @@ export const createApplicantFn = createServerFn()
         };
       }
 
-      const jobWithPipeline = await prisma.job.findUnique({
-        where: { id: data.jobId },
-        include: {
-          pipeline: {
-            include: {
-              stages: { orderBy: { order: "asc" } },
-            },
-          },
-        },
-      });
+      const firstStageId = job?.pipeline?.stages[0]?.id;
 
-      const firstStageId = jobWithPipeline?.pipeline?.stages[0]?.id;
+      if (!firstStageId) {
+        throw new Error("Job pipeline has no stages");
+      }
 
       const applicant = await prisma.applicant.create({
         data: {
@@ -66,7 +66,7 @@ export const createApplicantFn = createServerFn()
           applicantId: applicant.id,
           metadata: {
             jobTitle: job.title,
-            stage: jobWithPipeline?.pipeline?.stages[0]?.name || "Initial",
+            stage: job?.pipeline?.stages[0]?.name || "Initial",
           },
         },
       });

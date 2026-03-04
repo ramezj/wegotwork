@@ -122,12 +122,12 @@ function RouteComponent() {
       <div className="flex flex-col gap-8 pb-12">
         {/* Header / Actions Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="space-y-1">
+          {/* <div className="space-y-1">
             <h2 className="text-3xl font-bold tracking-tight">Applicants</h2>
             <p className="text-muted-foreground text-sm">
               Manage and track candidates for this position
             </p>
-          </div>
+          </div> */}
 
           {!pipeline ? (
             <div className="flex items-center gap-3">

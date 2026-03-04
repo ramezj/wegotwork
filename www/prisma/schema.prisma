@@ -202,7 +202,7 @@ model Job {
   questions      JobQuestion[]
   
   pipelineId     String?
-  pipeline       Pipeline?    @relation(fields: [pipelineId], references: [id], onDelete: SetNull)
+  pipeline       Pipeline?    @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
 
   @@map("job")
 }
@@ -342,4 +342,3 @@ model JobCategory {
 
   @@map("job_category")
 }
-
