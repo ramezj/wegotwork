@@ -27,6 +27,7 @@ interface ATSFilterBarProps {
   onStageChange: (value: string) => void;
   stages: Stage[];
   totalApplicants: number;
+  resultsCount: number;
 }
 
 export function ATSFilterBar({
@@ -36,6 +37,7 @@ export function ATSFilterBar({
   onStageChange,
   stages,
   totalApplicants,
+  resultsCount,
 }: ATSFilterBarProps) {
   const isMobile = useIsMobile();
   const activeStage = stages.find((s) => s.id === activeStageId);
@@ -47,8 +49,16 @@ export function ATSFilterBar({
   return (
     <div className="flex flex-col gap-4 p-4 border-b sticky top-0 z-10">
       <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
-        {/* Search and Filters */}
-        <div className="flex flex-col sm:flex-row flex-1 items-stretch sm:items-center gap-3 w-full justify-between">
+        {/* Left Side: Active Stage Name */}
+        <div className="flex items-center">
+          <h1 className="text-xl font-semibold">
+            {activeStageId === "all" ? "All Stages" : activeStage?.name} (
+            {resultsCount})
+          </h1>
+        </div>
+
+        {/* Right Side: Search and Filters */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <InputGroup className="flex-1 sm:max-w-[250px] shadow-none">
             <InputGroupInput
               placeholder="Search candidates..."

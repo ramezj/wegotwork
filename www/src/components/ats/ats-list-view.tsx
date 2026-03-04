@@ -44,8 +44,6 @@ export function ATSListView({
     });
   }, [applicants, activeStageId, searchQuery]);
 
-  const activeStage = stages.find((s: any) => s.id === activeStageId);
-
   return (
     <div className="flex flex-col h-full bg-background overflow-hidden border rounded-none">
       {/* Header Area */}
@@ -56,9 +54,7 @@ export function ATSListView({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-semibold tracking-tight">
-                {pipeline.name}
-              </h2>
+              <h2 className="text-lg font-semibold">{pipeline.name}</h2>
               <EditPipelineDialog
                 pipeline={pipeline}
                 organizationId={organizationId}
@@ -86,19 +82,11 @@ export function ATSListView({
         onStageChange={setActiveStageId}
         stages={stageData}
         totalApplicants={applicants.length}
+        resultsCount={filteredApplicants.length}
       />
       {/* Main Content Area */}
       <div className="flex-1 overflow-y-auto custom-scrollbar p-4 bg-muted/10">
-        <div className="max-w-7xl mx-auto space-y-6">
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-              {activeStageId === "all" ? "All Candidates" : activeStage?.name}{" "}
-              <span className="ml-1 text-xs lowercase font-normal italic">
-                ({filteredApplicants.length})
-              </span>
-            </h3>
-          </div>
-
+        <div className="max-w-7xl mx-auto space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
             <AnimatePresence mode="popLayout" initial={false}>
               {filteredApplicants.map((applicant) => (
