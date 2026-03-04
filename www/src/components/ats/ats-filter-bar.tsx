@@ -45,11 +45,11 @@ export function ATSFilterBar({
       : `${activeStage?.name} (${activeStage?.count})`;
 
   return (
-    <div className="flex flex-col gap-4 p-4 bg-background border-b sticky top-0 z-10">
+    <div className="flex flex-col gap-4 p-4 border-b sticky top-0 z-10">
       <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
         {/* Search and Filters */}
         <div className="flex flex-col sm:flex-row flex-1 items-stretch sm:items-center gap-3 w-full justify-between">
-          <InputGroup className="flex-1 sm:max-w-[250px]">
+          <InputGroup className="flex-1 sm:max-w-[250px] shadow-none">
             <InputGroupInput
               placeholder="Search candidates..."
               value={searchQuery}

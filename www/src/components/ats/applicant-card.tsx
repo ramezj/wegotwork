@@ -31,7 +31,7 @@ export function ApplicantCard({
   const currentStage = stages.find((s) => s.id === applicant.currentStageId);
 
   return (
-    <Card className="group relative overflow-hidden hover:border-primary/40 transition-all duration-200 shadow-sm border-muted h-full flex flex-col">
+    <Card className="group relative overflow-hidden transition-all duration-200 h-full flex flex-col">
       <CardContent className="p-5 flex-1 flex flex-col justify-between">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-4 flex-1">
