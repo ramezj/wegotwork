@@ -5,12 +5,8 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { getJobByIdFn } from "@/features/services/jobs/get-job";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Plus } from "lucide-react";
 import { createPipelineFn } from "@/features/services/ats/pipeline";
 import { toast } from "sonner";
-import { useState } from "react";
 import { moveApplicantStageFn } from "@/features/services/ats/applicant";
 import { linkJobToPipelineFn } from "@/features/services/jobs/link-pipeline";
 import { pipelinesQueryOptions } from "@/features/queries/ats";
@@ -22,7 +18,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Layout } from "@/components/shared/layout";
-import { ApplicantCard } from "@/components/ats/applicant-card";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import { ATSListView } from "@/components/ats/ats-list-view";
 
 export const Route = createFileRoute("/$slug/_layout/applicants/$jobId/")({
   component: RouteComponent,
@@ -31,7 +29,6 @@ export const Route = createFileRoute("/$slug/_layout/applicants/$jobId/")({
 function RouteComponent() {
   const { jobId, slug } = Route.useParams();
   const queryClient = useQueryClient();
-  const [activeStageId, setActiveStageId] = useState<string>("all");
 
   const { data } = useSuspenseQuery({
     queryKey: ["job", jobId],
@@ -84,23 +81,19 @@ function RouteComponent() {
 
   if (!data?.success || !data?.job) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <h3 className="text-lg font-bold text-muted-foreground italic">
-          Job not found
-        </h3>
-      </div>
+      <Layout title="Job Not Found">
+        <div className="flex items-center justify-center min-h-[400px]">
+          <h3 className="text-lg font-bold text-muted-foreground italic">
+            Job not found
+          </h3>
+        </div>
+      </Layout>
     );
   }
 
   const job = data.job;
   const pipeline = job.pipeline;
-  const stages = pipeline?.stages || [];
   const applicants = job.applicants || [];
-
-  const filteredApplicants =
-    activeStageId === "all"
-      ? applicants
-      : applicants.filter((a: any) => a.currentStageId === activeStageId);
 
   const handleLinkExisting = (val: string) => {
     linkPipelineMutation.mutate({
@@ -119,107 +112,56 @@ function RouteComponent() {
 
   return (
     <Layout title={job.title}>
-      <div className="flex flex-col gap-8 pb-12">
-        {/* Header / Actions Section */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          {/* <div className="space-y-1">
-            <h2 className="text-3xl font-bold tracking-tight">Applicants</h2>
-            <p className="text-muted-foreground text-sm">
-              Manage and track candidates for this position
-            </p>
-          </div> */}
+      {!pipeline ? (
+        <div className="flex flex-col items-center justify-center py-24 px-4 border-2 border-dashed rounded-3xl bg-muted/5 text-center max-w-2xl mx-auto my-12">
+          <div className="size-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+            <Plus className="size-8 text-primary" />
+          </div>
+          <h3 className="text-2xl font-bold tracking-tight">
+            Setup Hiring Pipeline
+          </h3>
+          <p className="text-muted-foreground text-base max-w-sm mt-2 mb-8">
+            Each job needs a pipeline to manage its candidates. Choose an
+            existing one or create a new one automatically.
+          </p>
 
-          {!pipeline ? (
-            <div className="flex items-center gap-3">
-              <Select onValueChange={handleLinkExisting}>
-                <SelectTrigger className="w-[200px] h-9 text-xs">
-                  <SelectValue placeholder="Link Pipeline" />
-                </SelectTrigger>
-                <SelectContent>
-                  {pipelines.map((p: any) => (
-                    <SelectItem key={p.id} value={p.id} className="text-xs">
-                      {p.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Button
-                size="sm"
-                onClick={handleCreateDefaultPipeline}
-                disabled={createPipelineMutation.isPending}
-                className="h-9 px-4"
-              >
-                {createPipelineMutation.isPending ? "..." : "Auto Pipeline"}
-              </Button>
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+            <Select onValueChange={handleLinkExisting}>
+              <SelectTrigger className="w-full sm:w-[220px] h-11">
+                <SelectValue placeholder="Link Existing Pipeline" />
+              </SelectTrigger>
+              <SelectContent>
+                {pipelines.map((p: any) => (
+                  <SelectItem key={p.id} value={p.id}>
+                    {p.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <div className="text-sm text-muted-foreground font-medium uppercase tracking-widest hidden sm:block">
+              Or
             </div>
-          ) : (
-            <div className="flex items-center gap-2 bg-muted/30 p-1 rounded-lg border border-border/50">
-              <Button
-                variant={activeStageId === "all" ? "secondary" : "ghost"}
-                size="sm"
-                onClick={() => setActiveStageId("all")}
-                className="h-8 text-xs font-medium"
-              >
-                All
-                <Badge
-                  variant="outline"
-                  className="ml-2 px-1 opacity-50 border-none bg-transparent"
-                >
-                  {applicants.length}
-                </Badge>
-              </Button>
-              {stages.map((stage: any) => (
-                <Button
-                  key={stage.id}
-                  variant={activeStageId === stage.id ? "secondary" : "ghost"}
-                  size="sm"
-                  onClick={() => setActiveStageId(stage.id)}
-                  className="h-8 text-xs font-medium"
-                >
-                  {stage.name}
-                  <Badge
-                    variant="outline"
-                    className="ml-2 px-1 opacity-50 border-none bg-transparent"
-                  >
-                    {
-                      applicants.filter(
-                        (a: any) => a.currentStageId === stage.id,
-                      ).length
-                    }
-                  </Badge>
-                </Button>
-              ))}
-            </div>
-          )}
+            <Button
+              size="lg"
+              onClick={handleCreateDefaultPipeline}
+              disabled={createPipelineMutation.isPending}
+              className="w-full sm:w-auto h-11 px-8"
+            >
+              {createPipelineMutation.isPending
+                ? "Creating..."
+                : "Create Auto Pipeline"}
+            </Button>
+          </div>
         </div>
-
-        {/* Applicants Grid */}
-        {filteredApplicants.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            {filteredApplicants.map((applicant: any) => (
-              <ApplicantCard
-                key={applicant.id}
-                applicant={applicant}
-                stages={stages}
-                onMove={handleMoveApplicant}
-                slug={slug}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center py-24 px-4 border-2 border-dashed rounded-2xl bg-muted/5 text-center">
-            <div className="size-12 rounded-full bg-muted flex items-center justify-center mb-4">
-              <Plus className="size-6 text-muted-foreground opacity-50" />
-            </div>
-            <h3 className="text-lg font-semibold">No candidates yet</h3>
-            <p className="text-muted-foreground text-sm max-w-xs mt-1">
-              {activeStageId === "all"
-                ? "Once people apply, they will show up here for you to review."
-                : "There are current no applicants in this specific stage."}
-            </p>
-          </div>
-        )}
-      </div>
+      ) : (
+        <ATSListView
+          pipeline={pipeline}
+          applicants={applicants}
+          onMoveApplicant={handleMoveApplicant}
+          slug={slug}
+          organizationId={job.organizationId}
+        />
+      )}
     </Layout>
   );
 }

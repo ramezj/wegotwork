@@ -1,0 +1,91 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Search, ChevronDown } from "lucide-react";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "../ui/input-group";
+
+interface Stage {
+  id: string;
+  name: string;
+  count: number;
+}
+
+interface ATSFilterBarProps {
+  searchQuery: string;
+  onSearchChange: (value: string) => void;
+  activeStageId: string;
+  onStageChange: (value: string) => void;
+  stages: Stage[];
+  totalApplicants: number;
+}
+
+export function ATSFilterBar({
+  searchQuery,
+  onSearchChange,
+  activeStageId,
+  onStageChange,
+  stages,
+  totalApplicants,
+}: ATSFilterBarProps) {
+  const activeStage = stages.find((s) => s.id === activeStageId);
+  const activeLabel =
+    activeStageId === "all"
+      ? `All Stages (${totalApplicants})`
+      : `${activeStage?.name} (${activeStage?.count})`;
+
+  return (
+    <div className="flex flex-col gap-4 p-4 bg-background border-b sticky top-0 z-10">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+        {/* Search and Filters */}
+        <div className="flex flex-col sm:flex-row flex-1 items-stretch sm:items-center gap-3 w-full justify-between">
+          <InputGroup className="flex-1 sm:max-w-[220px]">
+            <InputGroupInput
+              placeholder="Search candidates..."
+              value={searchQuery}
+              onChange={(e) => onSearchChange(e.target.value)}
+              className="pl-9 w-full"
+            />
+            <InputGroupAddon>
+              <Search className="size-4 text-muted-foreground" />
+            </InputGroupAddon>
+          </InputGroup>
+          <div className="sm:max-w-[220px]">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="w-full justify-between font-normal"
+                >
+                  <span className="truncate">{activeLabel}</span>
+                  <ChevronDown className="ml-2 size-4 shrink-0 opacity-50" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-[220px]">
+                <DropdownMenuItem onClick={() => onStageChange("all")}>
+                  All Stages ({totalApplicants})
+                </DropdownMenuItem>
+                {stages.map((stage) => (
+                  <DropdownMenuItem
+                    key={stage.id}
+                    onClick={() => onStageChange(stage.id)}
+                  >
+                    {stage.name} ({stage.count})
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

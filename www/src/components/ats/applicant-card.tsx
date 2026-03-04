@@ -31,8 +31,8 @@ export function ApplicantCard({
   const currentStage = stages.find((s) => s.id === applicant.currentStageId);
 
   return (
-    <Card className="group relative overflow-hidden hover:border-primary/40 transition-all duration-200 shadow-sm border-muted">
-      <CardContent className="p-5">
+    <Card className="group relative overflow-hidden hover:border-primary/40 transition-all duration-200 shadow-sm border-muted h-full flex flex-col">
+      <CardContent className="p-5 flex-1 flex flex-col justify-between">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-4 flex-1">
             <div className="size-10 rounded-full bg-secondary flex items-center justify-center text-secondary-foreground shrink-0 border border-border">
@@ -54,15 +54,6 @@ export function ApplicantCard({
           </div>
 
           <div className="flex items-start gap-1">
-            {currentStage && (
-              <Badge
-                variant="outline"
-                className="h-6 px-2 text-[10px] font-medium bg-secondary/30 border-secondary-foreground/10 text-secondary-foreground/80"
-              >
-                {currentStage.name}
-              </Badge>
-            )}
-
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -108,23 +99,31 @@ export function ApplicantCard({
           </div>
         </div>
 
-        <div className="mt-5 flex items-center justify-between">
+        <div className="mt-6">
+          <div className="flex flex-wrap gap-2 mb-4">
+            {currentStage && (
+              <Badge
+                variant="outline"
+                className="h-6 px-2 text-[10px] font-medium bg-secondary/30 border-secondary-foreground/10 text-secondary-foreground/80"
+              >
+                {currentStage.name}
+              </Badge>
+            )}
+            {applicant.evaluations?.length > 0 && (
+              <Badge
+                variant="secondary"
+                className="px-2 h-6 text-[10px] font-bold bg-primary/5 text-primary border-transparent"
+              >
+                {applicant.evaluations.length} EVALUATIONS
+              </Badge>
+            )}
+          </div>
+
           <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground font-medium uppercase tracking-wider opacity-60">
             <Calendar className="size-3" />
             <span>
               Applied {formatDistanceToNow(new Date(applicant.createdAt))} ago
             </span>
-          </div>
-
-          <div className="flex gap-2">
-            {applicant.evaluations?.length > 0 && (
-              <Badge
-                variant="secondary"
-                className="px-2 h-5 text-[9px] font-bold bg-primary/5 text-primary border-transparent"
-              >
-                {applicant.evaluations.length} EVALUATIONS
-              </Badge>
-            )}
           </div>
         </div>
       </CardContent>
