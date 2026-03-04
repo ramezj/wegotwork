@@ -201,8 +201,8 @@ model Job {
   category       JobCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   questions      JobQuestion[]
   
-  pipelineId     String?
-  pipeline       Pipeline?    @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
+  pipelineId     String
+  pipeline       Pipeline    @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
 
   @@map("job")
 }
@@ -320,8 +320,8 @@ model Applicant {
   jobId          String
   job            Job          @relation(fields: [jobId], references: [id], onDelete: Cascade)
   
-  currentStageId String?
-  currentStage   Stage?       @relation(fields: [currentStageId], references: [id], onDelete: SetNull)
+  currentStageId String
+  currentStage   Stage       @relation(fields: [currentStageId], references: [id], onDelete: Cascade)
   
   evaluations    Evaluation[]
   activityLogs   ActivityLog[]

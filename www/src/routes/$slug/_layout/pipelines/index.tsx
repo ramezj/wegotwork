@@ -15,7 +15,7 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { GitBranch, Trash2, Plus, MoreVertical } from "lucide-react";
+import { GitBranch, Trash2, Plus, MoreVertical, Settings2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,6 +25,7 @@ import {
 import { deletePipelineFn } from "@/features/services/ats/pipeline";
 import { toast } from "sonner";
 import { CreatePipelineDialog } from "@/components/ats/create-pipeline-dialog";
+import { EditPipelineDialog } from "@/components/ats/edit-pipeline-dialog";
 
 export const Route = createFileRoute("/$slug/_layout/pipelines/")({
   component: PipelinesPage,
@@ -78,6 +79,18 @@ function PipelinesPage() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
+                    <EditPipelineDialog
+                      pipeline={pipeline}
+                      organizationId={organizationId || ""}
+                      trigger={
+                        <DropdownMenuItem
+                          onSelect={(e) => e.preventDefault()}
+                          className="cursor-pointer"
+                        >
+                          <Settings2 className="size-4" /> Edit
+                        </DropdownMenuItem>
+                      }
+                    />
                     <DropdownMenuItem
                       className="text-destructive cursor-pointer"
                       onClick={() => {

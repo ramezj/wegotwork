@@ -25,7 +25,7 @@ export const createJobFn = createServerFn()
       if (!organization) {
         throw new Error("Organization not found");
       }
-      const { questions, pipelineId: _, categoryId, ...jobData } = data.job;
+      const { questions, categoryId, ...jobData } = data.job;
 
       const job = await prisma.job.create({
         data: {

@@ -23,13 +23,7 @@ import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
 import { Loader, PlusIcon, GitBranch, Briefcase } from "lucide-react";
 import { pipelinesQueryOptions } from "@/features/queries/ats";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
+import { redirect } from "@tanstack/react-router";
 
 export function CreateJobDialog({ slug }: { slug: string }) {
   const queryClient = useQueryClient();
@@ -62,7 +56,6 @@ export function CreateJobDialog({ slug }: { slug: string }) {
       salaryInterval: "MONTHLY",
       experienceLevel: "ENTRY",
       categoryId: "",
-      pipelineId: "",
     },
     resolver: zodResolver(jobSchema),
     mode: "onSubmit",
@@ -71,12 +64,17 @@ export function CreateJobDialog({ slug }: { slug: string }) {
   const mutation = useMutation({
     mutationFn: (data: z.infer<typeof jobSchema>) =>
       createJobFn({ data: { slug, job: data } }),
-    onSuccess: async () => {
+    onSuccess: async (data) => {
       await queryClient.refetchQueries(organizationBySlugQueryOptions(slug));
       toast.success("Job created successfully");
       form.reset();
+      // throw redirect({
+      //   to: "/$slug/jobs/$jobId",
+      //   params: { slug, jobId: data.job.id },
+      // });
     },
     onError: (error) => {
+      console.error(error);
       toast.error(error.message);
     },
   });
@@ -121,43 +119,6 @@ export function CreateJobDialog({ slug }: { slug: string }) {
               </Field>
             )}
           />
-
-          <Controller
-            control={form.control}
-            name="pipelineId"
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel className="flex items-center gap-2">
-                  <GitBranch className="size-3.5 text-primary" /> Hiring
-                  Pipeline
-                </FieldLabel>
-                <FieldContent>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select a hiring pipeline" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {pipelines.map((pipeline: any) => (
-                        <SelectItem key={pipeline.id} value={pipeline.id}>
-                          {pipeline.name}
-                        </SelectItem>
-                      ))}
-                      {pipelines.length === 0 && (
-                        <div className="p-4 text-center text-xs text-muted-foreground italic font-medium">
-                          No pipelines found. Please create one in settings.
-                        </div>
-                      )}
-                    </SelectContent>
-                  </Select>
-                </FieldContent>
-                <FieldError errors={[fieldState.error]} />
-              </Field>
-            )}
-          />
-
           <div>
             <Button
               disabled={mutation.isPending}

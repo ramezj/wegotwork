@@ -7,12 +7,14 @@ import { ApplicantCard } from "./applicant-card";
 import { Users, LayoutGrid, List as ListIcon, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { motion, AnimatePresence } from "motion/react";
+import { EditPipelineDialog } from "./edit-pipeline-dialog";
 
 interface ATSListViewProps {
   pipeline: any;
   applicants: any[];
   onMoveApplicant: (applicantId: string, newStageId: string) => void;
   slug: string;
+  organizationId: string;
 }
 
 export function ATSListView({
@@ -20,6 +22,7 @@ export function ATSListView({
   applicants,
   onMoveApplicant,
   slug,
+  organizationId,
 }: ATSListViewProps) {
   const stages = pipeline.stages || [];
   const [activeStageId, setActiveStageId] = useState<string>(
@@ -53,6 +56,10 @@ export function ATSListView({
               <h2 className="text-lg font-bold tracking-tight">
                 {pipeline.name}
               </h2>
+              <EditPipelineDialog
+                pipeline={pipeline}
+                organizationId={organizationId}
+              />
             </div>
           </div>
 

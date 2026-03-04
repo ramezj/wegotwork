@@ -35,7 +35,6 @@ export const jobSchema = z.object({
     .enum(["ENTRY", "MID", "SENIOR", "LEAD", "EXECUTIVE"])
     .default("ENTRY"),
   categoryId: z.string().optional(),
-  pipelineId: z.string().optional(),
   questions: z.array(formFieldConfigSchema).optional().default([]),
 });
 
