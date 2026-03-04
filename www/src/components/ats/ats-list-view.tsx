@@ -47,11 +47,11 @@ export function ATSListView({
   const activeStage = stages.find((s: any) => s.id === activeStageId);
 
   return (
-    <div className="flex flex-col h-full bg-background overflow-hidden border rounded-xl shadow-sm">
+    <div className="flex flex-col h-full bg-background overflow-hidden border rounded-none">
       {/* Header Area */}
-      <div className="px-6 py-4 bg-muted/20 border-b flex items-center justify-between">
+      <div className="p-4 bg-muted/20 border-b flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+          <div className="size-10 rounded-none bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
             <Users className="size-5" />
           </div>
           <div>
@@ -79,7 +79,6 @@ export function ATSListView({
           </div>
         </div>
       </div>
-
       <ATSFilterBar
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
@@ -88,9 +87,8 @@ export function ATSListView({
         stages={stageData}
         totalApplicants={applicants.length}
       />
-
       {/* Main Content Area */}
-      <div className="flex-1 overflow-y-auto custom-scrollbar p-4 sm:p-6 bg-muted/10">
+      <div className="flex-1 overflow-y-auto custom-scrollbar p-4 bg-muted/10">
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
@@ -123,7 +121,7 @@ export function ATSListView({
             </AnimatePresence>
 
             {filteredApplicants.length === 0 && (
-              <div className="col-span-full flex flex-col items-center justify-center py-20 text-center bg-background border-2 border-dashed rounded-2xl shadow-sm">
+              <div className="col-span-full flex flex-col items-center justify-center py-20 text-center bg-background border rounded-none">
                 <div className="size-16 rounded-full bg-muted/50 flex items-center justify-center mb-4">
                   <Users className="size-8 text-muted-foreground/40" />
                 </div>

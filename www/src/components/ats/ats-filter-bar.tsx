@@ -12,6 +12,7 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "../ui/input-group";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Stage {
   id: string;
@@ -36,6 +37,7 @@ export function ATSFilterBar({
   stages,
   totalApplicants,
 }: ATSFilterBarProps) {
+  const isMobile = useIsMobile();
   const activeStage = stages.find((s) => s.id === activeStageId);
   const activeLabel =
     activeStageId === "all"
@@ -47,7 +49,7 @@ export function ATSFilterBar({
       <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
         {/* Search and Filters */}
         <div className="flex flex-col sm:flex-row flex-1 items-stretch sm:items-center gap-3 w-full justify-between">
-          <InputGroup className="flex-1 sm:max-w-[220px]">
+          <InputGroup className="flex-1 sm:max-w-[250px]">
             <InputGroupInput
               placeholder="Search candidates..."
               value={searchQuery}
@@ -58,7 +60,7 @@ export function ATSFilterBar({
               <Search className="size-4 text-muted-foreground" />
             </InputGroupAddon>
           </InputGroup>
-          <div className="sm:max-w-[220px]">
+          <div className="sm:max-w-[250px] w-full">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -69,7 +71,10 @@ export function ATSFilterBar({
                   <ChevronDown className="ml-2 size-4 shrink-0 opacity-50" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-[220px]">
+              <DropdownMenuContent
+                align={isMobile ? "start" : "end"}
+                className="DropdownMenuContent"
+              >
                 <DropdownMenuItem onClick={() => onStageChange("all")}>
                   All Stages ({totalApplicants})
                 </DropdownMenuItem>
