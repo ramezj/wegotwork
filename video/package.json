@@ -1,0 +1,24 @@
+{
+  "name": "hireark-video",
+  "version": "1.0.0",
+  "description": "Remotion animation for hireark",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "remotion preview src/index.ts",
+    "build": "remotion render src/index.ts HirearkComposition out/video.mp4",
+    "upgrade": "remotion upgrade"
+  },
+  "dependencies": {
+    "remotion": "4.0.211",
+    "@remotion/cli": "4.0.211",
+    "@remotion/renderer": "4.0.211",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "zod": "3.22.4"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.48",
+    "@types/react-dom": "18.2.18",
+    "typescript": "5.3.3"
+  }
+}
