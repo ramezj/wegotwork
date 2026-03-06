@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { ApplicantCard } from "./applicant-card";
-import { Users, Info } from "lucide-react";
+import { Users, Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "motion/react";
 import { EditPipelineDialog } from "./edit-pipeline-dialog";
@@ -47,33 +47,33 @@ export function ATSListView({
   return (
     <div className="flex flex-col h-full bg-background overflow-hidden border rounded-none">
       {/* Header Area */}
-      <div className="p-4 bg-muted/20 border-b flex items-center justify-between">
+      <div className="p-4 border-b flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="size-10 rounded-none bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
             <Users className="size-5" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-lg font-semibold">{pipeline.name}</h2>
-              <EditPipelineDialog
-                pipeline={pipeline}
-                organizationId={organizationId}
-                trigger={
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="size-6 rounded-full hover:bg-primary/10 hover:text-primary"
-                  >
-                    <Info className="size-3.5" />
-                  </Button>
-                }
-              />
-            </div>
-            <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest flex items-center gap-1.5 leading-none mt-0.5">
+            <h2 className="text-lg font-semibold leading-none">{pipeline.name}</h2>
+            <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest flex items-center gap-1.5 leading-none mt-1.5">
               Active Hiring Pipeline
             </p>
           </div>
         </div>
+
+        <EditPipelineDialog
+          pipeline={pipeline}
+          organizationId={organizationId}
+          trigger={
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-8 gap-2 text-xs font-semibold"
+            >
+              <Settings2 className="size-3.5" />
+              Configure Pipeline
+            </Button>
+          }
+        />
       </div>
       <ATSFilterBar
         searchQuery={searchQuery}
@@ -85,7 +85,7 @@ export function ATSListView({
         resultsCount={filteredApplicants.length}
       />
       {/* Main Content Area */}
-      <div className="flex-1 overflow-y-auto custom-scrollbar p-4 bg-muted/10">
+      <div className="flex-1 overflow-y-auto custom-scrollbar p-4">
         <div className="max-w-7xl mx-auto space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
             <AnimatePresence mode="popLayout" initial={false}>

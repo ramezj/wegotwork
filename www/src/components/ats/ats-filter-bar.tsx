@@ -59,7 +59,7 @@ export function ATSFilterBar({
 
         {/* Right Side: Search and Filters */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-          <InputGroup className="flex-1 sm:max-w-[250px] shadow-none">
+          <InputGroup className="flex-1 sm:max-w-[275px] shadow-none">
             <InputGroupInput
               placeholder="Search candidates..."
               value={searchQuery}
