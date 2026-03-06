@@ -64,13 +64,18 @@ export function CreateJobDialog({ slug }: { slug: string }) {
   });
 
   const mutation = useMutation({
-    mutationFn: (data: z.infer<typeof jobSchema>) =>
-      createJobFn({ data: { slug, job: data } }),
+    mutationFn: async (data: z.infer<typeof jobSchema>) => {
+      return createJobFn({ data: { slug, job: data } });
+    },
     onSuccess: async (data) => {
-      await queryClient.refetchQueries(organizationBySlugQueryOptions(slug));
-      toast.success("Job created successfully");
-      form.reset();
-      setOpen(false);
+      if (data.status === 200) {
+        await queryClient.refetchQueries(organizationBySlugQueryOptions(slug));
+        toast.success(data.statusText);
+        form.reset();
+        setOpen(false);
+      } else {
+        toast.error(data.statusText);
+      }
     },
     onError: (error) => {
       console.error(error);

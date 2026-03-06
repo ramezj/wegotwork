@@ -5,7 +5,7 @@ export const authMiddleware = createMiddleware().server(async ({ next }) => {
     const session = await getSession();
 
     if (!session) {
-        throw new Error("Unauthenticated");
+        return new Response(JSON.stringify({ success: false, error: "Unauthenticated" }), { status: 401 });
     }
 
     return next({

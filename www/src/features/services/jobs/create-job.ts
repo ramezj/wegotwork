@@ -64,8 +64,8 @@ export const createJobFn = createServerFn()
           },
         },
       });
-      return { success: true, job };
+      return new Response(JSON.stringify({ success: true, job }), { status: 200, statusText: "Job created successfully" });
     } catch (error) {
-      throw new Error("Something Went Wrong");
+      return new Response(JSON.stringify({ success: false, error: "Something Went Wrong" }), { status: 500, statusText: "Something Went Wrong" });
     }
   });
