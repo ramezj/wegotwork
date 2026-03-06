@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getSession } from "@/features/auth/server-session";
+import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import { z } from "zod";
 
@@ -10,8 +10,9 @@ export const moveApplicantStageFn = createServerFn()
       newStageId: z.string(),
     }),
   )
-  .handler(async ({ data }) => {
-    const session = await getSession();
+  .middleware([authMiddleware])
+  .handler(async ({ data, context }) => {
+    const { session } = context;
     if (!session?.user) throw new Error("Unauthorized");
 
     const applicant = await prisma.applicant.findUnique({
@@ -50,8 +51,9 @@ export const moveApplicantStageFn = createServerFn()
 
 export const getApplicantHistoryFn = createServerFn()
   .inputValidator(z.object({ applicantId: z.string() }))
-  .handler(async ({ data }) => {
-    const session = await getSession();
+  .middleware([authMiddleware])
+  .handler(async ({ data, context }) => {
+    const { session } = context;
     if (!session?.user) throw new Error("Unauthorized");
 
     return await prisma.applicant.findUnique({

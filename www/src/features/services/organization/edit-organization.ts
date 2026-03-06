@@ -1,16 +1,14 @@
 import { createServerFn } from "@tanstack/react-start";
 import { editOrganizationSchema } from "@/types/organization/schemas";
-import { getSession } from "@/features/auth/server-session";
+import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import z from "zod";
 
 export const editOrganizationFn = createServerFn({ method: "POST" })
+  .middleware([authMiddleware])
   .inputValidator(z.object({ id: z.string(), data: editOrganizationSchema }))
-  .handler(async ({ data }) => {
-    const session = await getSession();
-    if (!session || !session.user) {
-      throw new Error("Unauthenticated");
-    }
+  .handler(async ({ data, context }) => {
+    const { session } = context;
 
     // Authorization check: User must be an owner or admin of the organization
     const member = await prisma.member.findFirst({

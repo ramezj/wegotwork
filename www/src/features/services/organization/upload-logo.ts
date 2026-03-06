@@ -1,9 +1,10 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getSession } from "@/features/auth/server-session";
+import { authMiddleware } from "@/features/auth/middleware";
 import { r2 } from "@/lib/r2";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 
 export const uploadLogoFn = createServerFn({ method: "POST" })
+  .middleware([authMiddleware])
   .inputValidator((data: unknown) => {
     if (!(data instanceof FormData)) {
       throw new Error("Expected FormData");
@@ -20,10 +21,6 @@ export const uploadLogoFn = createServerFn({ method: "POST" })
   })
   .handler(async ({ data }) => {
     const { file } = data;
-    const session = await getSession();
-    if (!session || !session.user) {
-      throw new Error("Unauthenticated");
-    }
 
     try {
       const bytes = await file.arrayBuffer();

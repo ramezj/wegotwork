@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getSession } from "@/features/auth/server-session";
+import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import { z } from "zod";
 
@@ -12,8 +12,9 @@ export const createEvaluationFn = createServerFn()
       feedback: z.string().optional(),
     }),
   )
-  .handler(async ({ data }) => {
-    const session = await getSession();
+  .middleware([authMiddleware])
+  .handler(async ({ data, context }) => {
+    const { session } = context;
     if (!session?.user) throw new Error("Unauthorized");
 
     const evaluation = await prisma.evaluation.create({

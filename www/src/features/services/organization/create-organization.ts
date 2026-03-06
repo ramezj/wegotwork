@@ -1,15 +1,13 @@
 import { createServerFn } from "@tanstack/react-start";
 import { createOrganizationSchema } from "@/types/organization/schemas";
-import { getSession } from "@/features/auth/server-session";
+import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 
 export const createOrganizationFn = createServerFn()
+  .middleware([authMiddleware])
   .inputValidator(createOrganizationSchema)
-  .handler(async ({ data }) => {
-    const session = await getSession();
-    if (!session) {
-      throw new Error("Unauthenticated");
-    }
+  .handler(async ({ data, context }) => {
+    const { session } = context;
     try {
       const organization = await prisma.organization.create({
         data: {

@@ -1,13 +1,14 @@
 import { createServerFn } from "@tanstack/react-start";
 import { categorySchema } from "@/types/job/job";
-import { getSession } from "@/features/auth/server-session";
+import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import z from "zod";
 
 export const createCategoryFn = createServerFn()
+  .middleware([authMiddleware])
   .inputValidator(z.object({ slug: z.string(), category: categorySchema }))
-  .handler(async ({ data }) => {
-    const session = await getSession();
+  .handler(async ({ data, context }) => {
+    const { session } = context;
     if (!session) {
       throw new Error("Unauthenticated");
     }

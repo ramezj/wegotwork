@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getSession } from "@/features/auth/server-session";
+import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import { z } from "zod";
 
@@ -11,8 +11,9 @@ export const createPipelineFn = createServerFn()
       stages: z.array(z.string()).optional(),
     }),
   )
-  .handler(async ({ data }) => {
-    const session = await getSession();
+  .middleware([authMiddleware])
+  .handler(async ({ data, context }) => {
+    const { session } = context;
     if (!session?.user) throw new Error("Unauthorized");
 
     const defaultStages = data.stages || [
@@ -44,8 +45,9 @@ export const createPipelineFn = createServerFn()
 
 export const getPipelinesFn = createServerFn()
   .inputValidator(z.object({ organizationId: z.string() }))
-  .handler(async ({ data }) => {
-    const session = await getSession();
+  .middleware([authMiddleware])
+  .handler(async ({ data, context }) => {
+    const { session } = context;
     if (!session?.user) throw new Error("Unauthorized");
 
     return await prisma.pipeline.findMany({
@@ -73,8 +75,9 @@ export const updatePipelineFn = createServerFn()
         .optional(),
     }),
   )
-  .handler(async ({ data }) => {
-    const session = await getSession();
+  .middleware([authMiddleware])
+  .handler(async ({ data, context }) => {
+    const { session } = context;
     if (!session?.user) throw new Error("Unauthorized");
 
     const pipelineId = data.id;
@@ -156,8 +159,9 @@ export const updatePipelineFn = createServerFn()
 
 export const deletePipelineFn = createServerFn()
   .inputValidator(z.object({ id: z.string() }))
-  .handler(async ({ data }) => {
-    const session = await getSession();
+  .middleware([authMiddleware])
+  .handler(async ({ data, context }) => {
+    const { session } = context;
     if (!session?.user) throw new Error("Unauthorized");
 
     // Check if it's used by any jobs

@@ -1,15 +1,13 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getSession } from "@/features/auth/server-session";
+import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import { updateApplicantStatusSchema } from "@/types/applicant";
 
 export const updateApplicantStatusFn = createServerFn()
+  .middleware([authMiddleware])
   .inputValidator(updateApplicantStatusSchema)
-  .handler(async ({ data }) => {
-    const session = await getSession();
-    if (!session) {
-      throw new Error("Unauthenticated");
-    }
+  .handler(async ({ data, context }) => {
+    const { session } = context;
 
     try {
       // Check if user has access to the applicant's organization

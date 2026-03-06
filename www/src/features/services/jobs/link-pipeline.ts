@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getSession } from "../../auth/server-session";
+import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import z from "zod";
 import { moveApplicantsToPipelineFirstStage } from "./utils";
@@ -11,8 +11,9 @@ export const linkJobToPipelineFn = createServerFn()
       pipelineId: z.string(),
     }),
   )
-  .handler(async ({ data }) => {
-    const session = await getSession();
+  .middleware([authMiddleware])
+  .handler(async ({ data, context }) => {
+    const { session } = context;
     if (!session?.user) throw new Error("Unauthorized");
 
     // Security check: ensure job belongs to an organization where user is a member

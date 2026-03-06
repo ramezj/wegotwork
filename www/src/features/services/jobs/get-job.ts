@@ -1,15 +1,13 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getSession } from "../../auth/server-session";
+import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import z from "zod";
 
 export const getJobByIdFn = createServerFn()
+  .middleware([authMiddleware])
   .inputValidator(z.object({ jobId: z.string() }))
-  .handler(async ({ data }) => {
-    const session = await getSession();
-    if (!session) {
-      throw new Error("Unauthenticated");
-    }
+  .handler(async ({ data, context }) => {
+    const { session } = context;
     try {
       const job = await prisma.job.findFirst({
         where: {
