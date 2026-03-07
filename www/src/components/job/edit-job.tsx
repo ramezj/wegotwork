@@ -104,7 +104,7 @@ export function EditJobForm({
         type="submit"
         disabled={mutation.isPending}
         size="lg"
-        className="fixed bottom-5 right-5 z-50 gap-2"
+        className="fixed bottom-4 right-4 z-50 gap-2"
       >
         {mutation.isPending
           ? <Loader className="animate-spin h-4 w-4" />
