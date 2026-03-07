@@ -25,7 +25,7 @@ import {
 import { JobCategory } from "generated/prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { editJobBySlugFn } from "@/features/services/jobs/edit-by-slug";
-import { Loader, MapPin, DollarSign, FileText, Briefcase, Save } from "lucide-react";
+import { Loader, MapPin, DollarSign, FileText, Briefcase, Save, Check } from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 import { jobByIdQueryOptions } from "@/features/queries/jobs";
@@ -108,7 +108,7 @@ export function EditJobForm({
       >
         {mutation.isPending
           ? <Loader className="animate-spin h-4 w-4" />
-          : <Save className="h-4 w-4" />}
+          : <Check className="h-4 w-4" />}
         Save Changes
       </Button>
 
