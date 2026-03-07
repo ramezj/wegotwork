@@ -15,17 +15,21 @@ import {
 } from "../ui/select";
 import { Button } from "../ui/button";
 import z from "zod";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "../ui/card";
 import { JobCategory } from "generated/prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { editJobBySlugFn } from "@/features/services/jobs/edit-by-slug";
-import { Loader } from "lucide-react";
+import { Loader, MapPin, DollarSign, FileText, Briefcase, Save } from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 import { jobByIdQueryOptions } from "@/features/queries/jobs";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
-
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "../ui/tabs";
 import { FormBuilder } from "../forms/FormBuilder";
 import { FormFieldType } from "@/types/form-config";
 
@@ -71,6 +75,7 @@ export function EditJobForm({
     resolver: zodResolver(jobSchema),
     mode: "onBlur",
   });
+
   const mutation = useMutation({
     mutationFn: (data: z.infer<typeof jobSchema>) =>
       editJobBySlugFn({ data: { jobId: job.id, job: data } }),
@@ -83,384 +88,419 @@ export function EditJobForm({
       toast.error(error.message);
     },
   });
+
   const onSubmit = (data: z.infer<typeof jobSchema>) => {
     mutation.mutateAsync(data);
   };
+
   return (
-    <>
-      <div className="flex items-center justify-between w-full">
-        <h1 className="text-xl">Edit Job</h1>
-        <Button type="submit" form="form" disabled={mutation.isPending}>
-          {mutation.isPending && <Loader className="animate-spin" />}
-          Save Changes
-        </Button>
-      </div>
-
-      <form
-        id="form"
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col space-y-4"
+    <form
+      id="edit-job-form"
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="flex flex-col"
+    >
+      {/* Floating save button */}
+      <Button
+        type="submit"
+        disabled={mutation.isPending}
+        size="lg"
+        className="fixed bottom-5 right-5 z-50 gap-2"
       >
-        <Tabs defaultValue="general" className="w-full">
-          <TabsList className="w-full justify-start mb-4 p-1">
-            <TabsTrigger value="general">General</TabsTrigger>
-            <TabsTrigger value="location">Location</TabsTrigger>
-            <TabsTrigger value="compensation">Compensation</TabsTrigger>
-            <TabsTrigger value="application">Application Form</TabsTrigger>
-          </TabsList>
+        {mutation.isPending
+          ? <Loader className="animate-spin h-4 w-4" />
+          : <Save className="h-4 w-4" />}
+        Save Changes
+      </Button>
 
-          <TabsContent value="general" className="m-0">
-            <Card className="">
-              <CardHeader>
-                <CardTitle>General Information</CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-col space-y-4">
-                <Controller
-                  control={form.control}
-                  name="title"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Job Title</FieldLabel>
-                      <FieldContent>
-                        <Input
-                          aria-invalid={fieldState.invalid}
-                          placeholder="Job Title"
-                          {...field}
-                        />
-                      </FieldContent>
-                      <FieldError errors={[fieldState.error]} />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="description"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Job Description</FieldLabel>
-                      <FieldContent>
-                        <Textarea
-                          aria-invalid={fieldState.invalid}
-                          placeholder="Job Description"
-                          {...field}
-                        />
-                      </FieldContent>
-                      <FieldError errors={[fieldState.error]} />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="type"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Employment Type</FieldLabel>
-                      <FieldContent>
-                        <Select
-                          aria-invalid={fieldState.invalid}
-                          value={field.value}
-                          onValueChange={field.onChange}
-                        >
-                          <SelectTrigger className="w-36">
-                            <SelectValue placeholder="Select type" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="FULLTIME">Full Time</SelectItem>
-                            <SelectItem value="PARTTIME">Part Time</SelectItem>
-                            <SelectItem value="INTERNSHIP">
-                              Internship
-                            </SelectItem>
-                            <SelectItem value="CONTRACT">Contract</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FieldContent>
-                      <FieldError errors={[form.formState.errors.type]} />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="status"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Job Status</FieldLabel>
-                      <FieldContent>
-                        <Select
-                          aria-invalid={fieldState.invalid}
-                          value={field.value}
-                          onValueChange={field.onChange}
-                        >
-                          <SelectTrigger className="w-36">
-                            <SelectValue placeholder="Select status" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="DRAFT">Draft</SelectItem>
-                            <SelectItem value="PUBLISHED">Published</SelectItem>
-                            <SelectItem value="CLOSED">Closed</SelectItem>
-                            <SelectItem value="ARCHIVED">Archived</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FieldContent>
-                      <FieldError errors={[fieldState.error]} />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="categoryId"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Job Category</FieldLabel>
-                      <FieldContent>
-                        <Select
-                          aria-invalid={fieldState.invalid}
-                          value={field.value || "none"}
-                          onValueChange={(value) =>
-                            field.onChange(value === "none" ? "" : value)
-                          }
-                        >
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select a category" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="none">No Category</SelectItem>
-                            {categories.map((category) => (
-                              <SelectItem key={category.id} value={category.id}>
-                                {category.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </FieldContent>
-                      <FieldError errors={[fieldState.error]} />
-                    </Field>
-                  )}
-                />
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="location" className="m-0">
-            <Card className="">
-              <CardHeader>
-                <CardTitle>Location Information</CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-4">
-                <Controller
-                  control={form.control}
-                  name="country"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Country</FieldLabel>
-                      <FieldContent>
-                        <Input
-                          aria-invalid={fieldState.invalid}
-                          placeholder="Country"
-                          {...field}
-                        />
-                      </FieldContent>
-                      <FieldError errors={[fieldState.error]} />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="city"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>City</FieldLabel>
-                      <FieldContent>
-                        <Input
-                          aria-invalid={fieldState.invalid}
-                          placeholder="City"
-                          {...field}
-                        />
-                      </FieldContent>
-                      <FieldError errors={[fieldState.error]} />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="address"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Address</FieldLabel>
-                      <FieldContent>
-                        <Input
-                          aria-invalid={fieldState.invalid}
-                          placeholder="Address"
-                          {...field}
-                        />
-                      </FieldContent>
-                      <FieldError errors={[fieldState.error]} />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="locationMode"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Location Mode</FieldLabel>
-                      <FieldContent>
-                        <Select
-                          aria-invalid={fieldState.invalid}
-                          value={field.value}
-                          onValueChange={field.onChange}
-                        >
-                          <SelectTrigger className="w-36">
-                            <SelectValue placeholder="Select mode" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="REMOTE">Remote</SelectItem>
-                            <SelectItem value="ONSITE">Onsite</SelectItem>
-                            <SelectItem value="HYBRID">Hybrid</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FieldContent>
-                      <FieldError errors={[fieldState.error]} />
-                    </Field>
-                  )}
-                />
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="compensation" className="m-0">
-            <Card className="">
-              <CardHeader>
-                <CardTitle>Compensation Information</CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-4">
-                <Controller
-                  control={form.control}
-                  name="salaryMin"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Salary Min</FieldLabel>
-                      <FieldContent>
-                        <Input
-                          aria-invalid={fieldState.invalid}
-                          type="number"
-                          {...field}
-                          onChange={(e) => {
-                            const val = e.target.valueAsNumber;
-                            field.onChange(isNaN(val) ? undefined : val);
-                          }}
-                        />
-                      </FieldContent>
-                      <FieldError errors={[fieldState.error]} />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="salaryMax"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Salary Max</FieldLabel>
-                      <FieldContent>
-                        <Input
-                          aria-invalid={fieldState.invalid}
-                          type="number"
-                          {...field}
-                          onChange={(e) => {
-                            const val = e.target.valueAsNumber;
-                            field.onChange(isNaN(val) ? undefined : val);
-                          }}
-                        />
-                      </FieldContent>
-                      <FieldError errors={[fieldState.error]} />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="salaryInterval"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Salary Interval</FieldLabel>
-                      <FieldContent>
-                        <Select
-                          aria-invalid={fieldState.invalid}
-                          value={field.value || ""}
-                          onValueChange={field.onChange}
-                        >
-                          <SelectTrigger className="w-36">
-                            <SelectValue placeholder="Select interval" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="HOURLY">Hourly</SelectItem>
-                            <SelectItem value="DAILY">Daily</SelectItem>
-                            <SelectItem value="WEEKLY">Weekly</SelectItem>
-                            <SelectItem value="MONTHLY">Monthly</SelectItem>
-                            <SelectItem value="QUARTERLY">Quarterly</SelectItem>
-                            <SelectItem value="YEARLY">Yearly</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FieldContent>
-                      <FieldError errors={[fieldState.error]} />
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name="experienceLevel"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Experience Level</FieldLabel>
-                      <FieldContent>
-                        <Select
-                          aria-invalid={fieldState.invalid}
-                          value={field.value || ""}
-                          onValueChange={field.onChange}
-                        >
-                          <SelectTrigger className="w-36">
-                            <SelectValue placeholder="Select level" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="ENTRY">Entry</SelectItem>
-                            <SelectItem value="MID">Mid</SelectItem>
-                            <SelectItem value="SENIOR">Senior</SelectItem>
-                            <SelectItem value="LEAD">Lead</SelectItem>
-                            <SelectItem value="EXECUTIVE">Executive</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FieldContent>
-                      <FieldError errors={[fieldState.error]} />
-                    </Field>
-                  )}
-                />
-              </CardContent>
-            </Card>
-          </TabsContent>
-          <TabsContent value="application" className="m-0">
-            <Card className="">
-              <CardHeader>
-                <CardTitle>Application Form</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Controller
-                  control={form.control}
-                  name="questions"
-                  render={({ field }) => (
-                    <FormBuilder
-                      value={(field.value ?? []).map((q) => ({
-                        ...q,
-                        required: q.required ?? false,
-                        options: q.options ?? [],
-                        order: q.order ?? 0,
-                      }))}
-                      onChange={field.onChange}
+      {/* Sections */}
+      <div className="flex flex-col gap-6">
+        {/* General */}
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-3 pb-4">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-secondary shrink-0">
+              <Briefcase className="h-4 w-4 text-secondary-foreground" />
+            </div>
+            <div>
+              <CardTitle className="text-base">General</CardTitle>
+              <CardDescription className="text-xs">
+                Basic information about this role
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4">
+            <Controller
+              control={form.control}
+              name="title"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Job Title</FieldLabel>
+                  <FieldContent>
+                    <Input
+                      aria-invalid={fieldState.invalid}
+                      placeholder="e.g. Senior Software Engineer"
+                      {...field}
                     />
-                  )}
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="description"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Job Description</FieldLabel>
+                  <FieldContent>
+                    <Textarea
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Describe the role, responsibilities, and requirements..."
+                      className="min-h-32 resize-y"
+                      {...field}
+                    />
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Controller
+                control={form.control}
+                name="type"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Employment Type</FieldLabel>
+                    <FieldContent>
+                      <Select
+                        aria-invalid={fieldState.invalid}
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="FULLTIME">Full Time</SelectItem>
+                          <SelectItem value="PARTTIME">Part Time</SelectItem>
+                          <SelectItem value="INTERNSHIP">Internship</SelectItem>
+                          <SelectItem value="CONTRACT">Contract</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FieldContent>
+                    <FieldError errors={[form.formState.errors.type]} />
+                  </Field>
+                )}
+              />
+              <Controller
+                control={form.control}
+                name="status"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Status</FieldLabel>
+                    <FieldContent>
+                      <Select
+                        aria-invalid={fieldState.invalid}
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="DRAFT">Draft</SelectItem>
+                          <SelectItem value="PUBLISHED">Published</SelectItem>
+                          <SelectItem value="CLOSED">Closed</SelectItem>
+                          <SelectItem value="ARCHIVED">Archived</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+            </div>
+            <Controller
+              control={form.control}
+              name="categoryId"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Category</FieldLabel>
+                  <FieldContent>
+                    <Select
+                      aria-invalid={fieldState.invalid}
+                      value={field.value || "none"}
+                      onValueChange={(value) =>
+                        field.onChange(value === "none" ? "" : value)
+                      }
+                    >
+                      <SelectTrigger className="w-full sm:w-64">
+                        <SelectValue placeholder="Select a category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="none">No Category</SelectItem>
+                        {categories.map((category) => (
+                          <SelectItem key={category.id} value={category.id}>
+                            {category.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+          </CardContent>
+        </Card>
+
+        {/* Location */}
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-3 pb-4">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-secondary shrink-0">
+              <MapPin className="h-4 w-4 text-secondary-foreground" />
+            </div>
+            <div>
+              <CardTitle className="text-base">Location</CardTitle>
+              <CardDescription className="text-xs">
+                Where is this role based
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4">
+            <Controller
+              control={form.control}
+              name="locationMode"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Work Mode</FieldLabel>
+                  <FieldContent>
+                    <Select
+                      aria-invalid={fieldState.invalid}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                    >
+                      <SelectTrigger className="w-full sm:w-48">
+                        <SelectValue placeholder="Select mode" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="REMOTE">Remote</SelectItem>
+                        <SelectItem value="ONSITE">Onsite</SelectItem>
+                        <SelectItem value="HYBRID">Hybrid</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Controller
+                control={form.control}
+                name="country"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Country</FieldLabel>
+                    <FieldContent>
+                      <Input
+                        aria-invalid={fieldState.invalid}
+                        placeholder="e.g. United States"
+                        {...field}
+                      />
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+              <Controller
+                control={form.control}
+                name="city"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>City</FieldLabel>
+                    <FieldContent>
+                      <Input
+                        aria-invalid={fieldState.invalid}
+                        placeholder="e.g. San Francisco"
+                        {...field}
+                      />
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+            </div>
+            <Controller
+              control={form.control}
+              name="address"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Address</FieldLabel>
+                  <FieldContent>
+                    <Input
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Street address (optional)"
+                      {...field}
+                    />
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+          </CardContent>
+        </Card>
+
+        {/* Compensation */}
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-3 pb-4">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-secondary shrink-0">
+              <DollarSign className="h-4 w-4 text-secondary-foreground" />
+            </div>
+            <div>
+              <CardTitle className="text-base">Compensation</CardTitle>
+              <CardDescription className="text-xs">
+                Salary range and experience requirements
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <Controller
+                control={form.control}
+                name="salaryMin"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Min Salary</FieldLabel>
+                    <FieldContent>
+                      <Input
+                        aria-invalid={fieldState.invalid}
+                        type="number"
+                        placeholder="e.g. 80000"
+                        {...field}
+                        onChange={(e) => {
+                          const val = e.target.valueAsNumber;
+                          field.onChange(isNaN(val) ? undefined : val);
+                        }}
+                      />
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+              <Controller
+                control={form.control}
+                name="salaryMax"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Max Salary</FieldLabel>
+                    <FieldContent>
+                      <Input
+                        aria-invalid={fieldState.invalid}
+                        type="number"
+                        placeholder="e.g. 120000"
+                        {...field}
+                        onChange={(e) => {
+                          const val = e.target.valueAsNumber;
+                          field.onChange(isNaN(val) ? undefined : val);
+                        }}
+                      />
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+              <Controller
+                control={form.control}
+                name="salaryInterval"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Interval</FieldLabel>
+                    <FieldContent>
+                      <Select
+                        aria-invalid={fieldState.invalid}
+                        value={field.value || ""}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select interval" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="HOURLY">Hourly</SelectItem>
+                          <SelectItem value="DAILY">Daily</SelectItem>
+                          <SelectItem value="WEEKLY">Weekly</SelectItem>
+                          <SelectItem value="MONTHLY">Monthly</SelectItem>
+                          <SelectItem value="QUARTERLY">Quarterly</SelectItem>
+                          <SelectItem value="YEARLY">Yearly</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+            </div>
+            <Controller
+              control={form.control}
+              name="experienceLevel"
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Experience Level</FieldLabel>
+                  <FieldContent>
+                    <Select
+                      aria-invalid={fieldState.invalid}
+                      value={field.value || ""}
+                      onValueChange={field.onChange}
+                    >
+                      <SelectTrigger className="w-full sm:w-48">
+                        <SelectValue placeholder="Select level" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="ENTRY">Entry</SelectItem>
+                        <SelectItem value="MID">Mid</SelectItem>
+                        <SelectItem value="SENIOR">Senior</SelectItem>
+                        <SelectItem value="LEAD">Lead</SelectItem>
+                        <SelectItem value="EXECUTIVE">Executive</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+          </CardContent>
+        </Card>
+
+        {/* Application Form */}
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-3 pb-4">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-secondary shrink-0">
+              <FileText className="h-4 w-4 text-secondary-foreground" />
+            </div>
+            <div>
+              <CardTitle className="text-base">Application Form</CardTitle>
+              <CardDescription className="text-xs">
+                Custom questions candidates will answer
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <Controller
+              control={form.control}
+              name="questions"
+              render={({ field }) => (
+                <FormBuilder
+                  value={(field.value ?? []).map((q) => ({
+                    ...q,
+                    required: q.required ?? false,
+                    options: q.options ?? [],
+                    order: q.order ?? 0,
+                  }))}
+                  onChange={field.onChange}
                 />
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
-      </form>
-    </>
+              )}
+            />
+          </CardContent>
+        </Card>
+      </div>
+    </form>
   );
 }
