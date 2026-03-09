@@ -55,12 +55,12 @@ function App() {
             <div className="flex flex-row w-full items-center justify-center content-center gap-4">
               <Button variant={"secondary"} asChild className="flex-1">
                 <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
-                  See demo
+                  See Demo
                 </a>
               </Button>
               <Button variant={"default"} asChild className="flex-1 group">
                 <Link to={"/"} target="_blank">
-                  Start hiring
+                  Start Hiring
                   <ArrowRight className="duration-100 group-hover:-rotate-45" />
                 </Link>
               </Button>
@@ -84,10 +84,10 @@ function App() {
                     <Building2 className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
-                    beautiful career pages
+                    Beautiful Career Pages
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
-                    create stunning, branded career pages that showcase your
+                    Create stunning, branded career pages that showcase your
                     company culture and attract top talent.
                   </CardDescription>
                 </CardHeader>
@@ -99,10 +99,10 @@ function App() {
                     <FileText className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
-                    easy job posting
+                    Easy job posting
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
-                    post jobs in minutes with our intuitive editor. Add
+                    Post jobs in minutes with our intuitive editor. Add
                     requirements, benefits, and company info effortlessly.
                   </CardDescription>
                 </CardHeader>
@@ -114,10 +114,10 @@ function App() {
                     <Users className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
-                    applicant management
+                    Applicant management
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
-                    track, review, and manage all applications in one place.
+                    Track, review, and manage all applications in one place.
                     collaborate with your team seamlessly.
                   </CardDescription>
                 </CardHeader>
@@ -129,10 +129,10 @@ function App() {
                     <BarChart3 className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
-                    analytics & insights
+                    Analytics & insights
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
-                    get detailed analytics on job performance, application
+                    Get detailed analytics on job performance, application
                     rates, and hiring metrics.
                   </CardDescription>
                 </CardHeader>
