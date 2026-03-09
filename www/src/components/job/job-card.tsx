@@ -63,7 +63,10 @@ export function JobCard({
             {/* view job button */}
             <div className="sm:block hidden shrink-0">
               <div className="px-2">
-                <Button>View</Button>
+                <Button>
+                  view job
+                  <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
+                </Button>
               </div>
             </div>
             <div className="sm:hidden block shrink-0">
@@ -117,7 +120,10 @@ export function JobCardForViewPage({
             {/* view job button */}
             <div className="sm:block hidden shrink-0">
               <div className="px-2">
-                <Button className="">View Job</Button>
+                <Button>
+                  view job
+                  <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
+                </Button>
               </div>
             </div>
             <div className="sm:hidden block shrink-0">

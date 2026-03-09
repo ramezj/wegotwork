@@ -41,7 +41,7 @@ export function OrganizationSelector({
               >
                 <DropdownMenuItem
                   className="justify-between flex cursor-pointer"
-                  selected={isSelected}
+                  // selected={isSelected}
                 >
                   {organization.name}
                   {isSelected && <Check className="ml-2 h-4 w-4" />}
@@ -52,7 +52,7 @@ export function OrganizationSelector({
           <DropdownMenuSeparator />
           <Link to={"/dashboard"} preload={false}>
             <DropdownMenuItem className="justify-between flex cursor-pointer hover:bg-accent">
-              All Organizations
+              all organizations
             </DropdownMenuItem>
           </Link>
         </DropdownMenuContent>
