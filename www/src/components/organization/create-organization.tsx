@@ -43,9 +43,9 @@ export function CreateOrganization() {
     <>
       <Dialog>
         <DialogTrigger asChild>
-          <Button>
-            create new organization
-            <PlusIcon />
+          <Button className="group">
+            Create Organization
+            <PlusIcon className="duration-100 group-hover:rotate-45" />
           </Button>
         </DialogTrigger>
         <DialogContent>
@@ -63,7 +63,11 @@ export function CreateOrganization() {
                     render={({ field, fieldState }) => (
                       <Field data-invalid={fieldState.invalid}>
                         <FieldLabel htmlFor={field.name}>Name</FieldLabel>
-                        <Input {...field} placeholder="Name" />
+                        <Input
+                          aria-invalid={fieldState.invalid}
+                          {...field}
+                          placeholder="Name"
+                        />
                         {fieldState.error && (
                           <FieldError errors={[fieldState.error]} />
                         )}
@@ -76,7 +80,11 @@ export function CreateOrganization() {
                     render={({ field, fieldState }) => (
                       <Field data-invalid={fieldState.invalid}>
                         <FieldLabel htmlFor={field.name}>Name</FieldLabel>
-                        <Input {...field} placeholder="Slug" />
+                        <Input
+                          aria-invalid={fieldState.invalid}
+                          {...field}
+                          placeholder="Slug"
+                        />
                         {fieldState.error && (
                           <FieldError errors={[fieldState.error]} />
                         )}

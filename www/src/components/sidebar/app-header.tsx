@@ -12,18 +12,18 @@ export function AppHeader() {
     const routeId = matches[matches.length - 1]?.routeId;
 
     if (routeId?.includes("/jobs")) {
-      return "jobs";
+      return "Jobs";
     }
 
     if (routeId?.includes("/applicants")) {
-      return "applicants";
+      return "Applicants";
     }
 
     if (routeId === "/$slug/_layout/") {
-      return "overview";
+      return "Overview";
     }
 
-    return "dashboard";
+    return "Dashboard";
   };
 
   const title = getTitle();
@@ -42,7 +42,7 @@ export function AppHeader() {
         </div>
         <div className="flex flex-row gap-2">
           <Button variant={"secondary"} onClick={logOut}>
-            log out <LogOut />
+            Log Out <LogOut />
           </Button>
           <Button variant={"default"}>
             <BellIcon fill="currentColor" />

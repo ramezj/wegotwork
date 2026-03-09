@@ -44,46 +44,46 @@ export function AppSidebar({
 
   const menuItems: menuItem[] = [
     {
-      label: "dashboard",
+      label: "Dashboard",
       icon: <HomeIcon />,
       href: `/${slug}`,
     },
     {
-      label: "jobs",
+      label: "Jobs",
       icon: <Briefcase />,
       href: `/${slug}/jobs`,
     },
     {
-      label: "pipelines",
+      label: "Pipelines",
       icon: <GitBranch />,
       href: `/${slug}/pipelines`,
     },
     {
-      label: "applicants",
+      label: "Applicants",
       icon: <Users />,
       href: `/${slug}/applicants`,
     },
   ];
   const categoryMenuItems: menuItem[] = [
     {
-      label: "categories",
+      label: "Categories",
       icon: <Building />,
       href: `/${slug}/categories`,
     },
   ];
   const teamMenuItems: menuItem[] = [
     {
-      label: "organization",
+      label: "Organization",
       icon: <Building />,
       href: `/${slug}/organization`,
     },
     {
-      label: "billing",
+      label: "Billing",
       icon: <CreditCard />,
       href: `/${slug}/billing`,
     },
     {
-      label: "team",
+      label: "Team",
       icon: <Users />,
       href: `/${slug}/team`,
     },
@@ -123,7 +123,7 @@ export function AppSidebar({
           <SidebarMenu className="gap-1">
             {menuItems.map((item, index) => {
               const isActive =
-                item.label === "dashboard"
+                item.label === "Dashboard"
                   ? location.pathname === item.href
                   : location.pathname.includes(item.href);
               return (

@@ -19,7 +19,7 @@ export function Browser({ jobs }: BrowserProps) {
         </div>
         <div className="flex-1">
           <div className="bg-secondary py-1 text-xs text-primary font-medium text-start p-2 rounded-md">
-            jobs.wehavework.app
+            jobs.hireark.io
           </div>
         </div>
       </div>
@@ -29,15 +29,15 @@ export function Browser({ jobs }: BrowserProps) {
         <div className="flex flex-col items-center text-center space-y-4 py-8">
           <Avatar className="w-16 h-16 rounded-lg">
             <AvatarFallback className="text-2xl bg-primary text-primary-foreground">
-              h
+              H
             </AvatarFallback>
           </Avatar>
           <div className="space-y-4">
             <h3 className="text-3xl md:text-4xl font-semibold tracking-tight leading-none">
-              hireark
+              Hireark
             </h3>
             <p className="text-muted-foreground text-base text-balance font-medium leading-none">
-              explore our open positions and join our team in building the
+              Explore our open positions and join our team in building the
               future.
             </p>
           </div>

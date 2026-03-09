@@ -31,7 +31,7 @@ function RouteComponent() {
   const jobs = data.organization.jobs as (Job & { applicants: Applicant[] })[];
 
   return (
-    <Layout title="applicants">
+    <Layout title="Applicants">
       <div className="grid gap-4">
         {jobs.map((job) => (
           <Link

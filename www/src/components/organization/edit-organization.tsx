@@ -120,7 +120,7 @@ export function EditOrganizationForm({
   return (
     <>
       <div className="flex items-center justify-between w-full">
-        <h1 className="text-xl">Edit Organization</h1>
+        <h1 className="text-xl font-semibold">Edit Organization</h1>
         <Button
           type="submit"
           form="edit-organization-form"

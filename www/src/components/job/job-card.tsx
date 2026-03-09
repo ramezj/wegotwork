@@ -64,7 +64,7 @@ export function JobCard({
             <div className="sm:block hidden shrink-0">
               <div className="px-2">
                 <Button>
-                  view job
+                  View Job
                   <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
                 </Button>
               </div>
@@ -121,7 +121,7 @@ export function JobCardForViewPage({
             <div className="sm:block hidden shrink-0">
               <div className="px-2">
                 <Button>
-                  view job
+                  View Job
                   <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
                 </Button>
               </div>

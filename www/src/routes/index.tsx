@@ -40,10 +40,10 @@ function App() {
             <div className="w-full px-4">
               {/* <Badge variant={"default"}>Currently in early development</Badge> */}
               <h1 className="text-4xl sm:text-4xl lg:text-5xl 2xl:text-7xl font-semibold">
-                we know you're building fast.
+                We know you're building fast.
               </h1>
               <h1 className="text-4xl sm:text-4xl lg:text-5xl 2xl:text-7xl font-semibold">
-                why not hire fast too?
+                Why not hire fast too?
               </h1>
               {/* <p className="text-[1rem] font-medium text-balance text-muted-foreground">
                 Start with a career page, then run every job post, application,
@@ -55,12 +55,12 @@ function App() {
             <div className="flex flex-row w-full items-center justify-center content-center gap-4">
               <Button variant={"secondary"} asChild className="flex-1">
                 <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
-                  see demo
+                  See demo
                 </a>
               </Button>
               <Button variant={"default"} asChild className="flex-1 group">
                 <Link to={"/"} target="_blank">
-                  start hiring
+                  Start hiring
                   <ArrowRight className="duration-100 group-hover:-rotate-45" />
                 </Link>
               </Button>
@@ -74,7 +74,7 @@ function App() {
           <div className="w-full mx-auto flex flex-col space-y-8">
             <div className="text-center">
               <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance">
-                everything you need to start hiring.
+                Everything you need to start hiring.
               </h1>
             </div>
             <div className="grid md:grid-cols-2 gap-8">

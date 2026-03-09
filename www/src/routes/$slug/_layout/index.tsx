@@ -36,7 +36,7 @@ function RouteComponent() {
       primaryButton={
         <Button asChild className="group">
           <Link target="_blank" to="/view/$slug" params={{ slug }}>
-            preview{" "}
+            Preview{" "}
             <ArrowRight className="duration-100 group-hover:-rotate-45" />
           </Link>
         </Button>
@@ -45,17 +45,17 @@ function RouteComponent() {
       <div className="flex flex-col gap-4">
         <div className="flex lg:flex-row flex-col gap-4">
           <StatisticCard
-            title="organization"
+            title="Organization"
             amount={data?.organization?.name || ""}
             icon={<Building className="size-4" />}
           />
           <StatisticCard
-            title="jobs"
+            title="Jobs"
             amount={data?.organization?.jobs?.length || 0}
             icon={<Briefcase className="size-4" />}
           />
           <StatisticCard
-            title="categories"
+            title="Categories"
             amount={data?.organization?.categories?.length || 0}
             icon={<PinIcon className="size-4" />}
           />
@@ -64,7 +64,7 @@ function RouteComponent() {
           <div className="flex flex-col space-y-4">
             <div>
               <h1 className="text-xl font-semibold">
-                recent jobs
+                Recent Jobs
                 {/* <b> ({data?.organization?.jobs?.length || 0})</b> */}
               </h1>
             </div>
