@@ -12,18 +12,18 @@ export function AppHeader() {
     const routeId = matches[matches.length - 1]?.routeId;
 
     if (routeId?.includes("/jobs")) {
-      return "Jobs";
+      return "jobs";
     }
 
     if (routeId?.includes("/applicants")) {
-      return "Applicants";
+      return "applicants";
     }
 
     if (routeId === "/$slug/_layout/") {
-      return "Overview";
+      return "overview";
     }
 
-    return "Dashboard";
+    return "dashboard";
   };
 
   const title = getTitle();
@@ -40,13 +40,13 @@ export function AppHeader() {
         <div className="md:hidden flex">
           <SidebarTrigger />
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-row gap-2">
+          <Button variant={"secondary"} onClick={logOut}>
+            log out <LogOut />
+          </Button>
           <Button variant={"default"}>
             <BellIcon fill="currentColor" />
           </Button>
-          {/* <Button variant={"secondary"} onClick={logOut}>
-            Log Out <LogOut />
-          </Button> */}
         </div>
       </div>
     </header>

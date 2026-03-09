@@ -91,7 +91,7 @@ export function CreatePipelineDialog({
     >
       <DialogTrigger asChild>
         <Button variant="default" className="group">
-          Create Pipeline
+          create pipeline
           <Plus className="duration-300 group-hover:rotate-90" />
         </Button>
       </DialogTrigger>
@@ -173,7 +173,7 @@ export function CreatePipelineDialog({
               onClick={() => append({ name: "" })}
               className="w-full"
             >
-              <Plus className="mr-2 h-4 w-4" />
+              <Plus className="h-4 w-4" />
               Add Stage
             </Button>
           </div>

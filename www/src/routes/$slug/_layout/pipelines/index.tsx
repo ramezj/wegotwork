@@ -59,7 +59,7 @@ function PipelinesPage() {
 
   return (
     <Layout
-      title="Hiring Pipelines"
+      title="hiring pipelines"
       primaryButton={
         <CreatePipelineDialog organizationId={organizationId || ""} />
       }

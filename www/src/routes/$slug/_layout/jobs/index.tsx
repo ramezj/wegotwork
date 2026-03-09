@@ -22,7 +22,7 @@ function RouteComponent() {
   return (
     <>
       <Layout
-        title={"Job Openings (" + (data?.organization?.jobs?.length || 0) + ")"}
+        title={"job openings (" + (data?.organization?.jobs?.length || 0) + ")"}
         primaryButton={<CreateJobDialog slug={slug} />}
       >
         <div className="flex flex-col space-y-4">

@@ -16,7 +16,7 @@ export function StatisticsCardsSkeleton() {
 
 export function StatisticCardSkeleton() {
   return (
-    <Card className="w-full bg-muted/30 hover:bg-muted/50 transition-all rounded-md border shadow-sm">
+    <Card className="w-full">
       <CardHeader className="flex flex-row items-center justify-between space-y-0">
         <CardTitle className="text-foreground font-medium">
           <Skeleton className="h-4 w-24" />

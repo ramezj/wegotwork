@@ -91,7 +91,7 @@ export function CreateJobDialog({ slug }: { slug: string }) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="default" className="group transition-all">
-          Create Job
+          create job
           <PlusIcon className="duration-300 group-hover:rotate-90" />
         </Button>
       </DialogTrigger>
