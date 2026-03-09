@@ -3,6 +3,7 @@ import { SignInButton } from "../auth/auth-buttons";
 import { Link } from "@tanstack/react-router";
 import { Button } from "../ui/button";
 import { NavSidebar } from "./nav-sidebar";
+import { LogOut } from "lucide-react";
 
 export default function Header({ session }: { session: Session | null }) {
   return (
@@ -33,7 +34,9 @@ export default function Header({ session }: { session: Session | null }) {
               asChild
               className="font-semibold cursor-pointer"
             >
-              <Link to={"/dashboard"}>Log Out</Link>
+              <Link to={"/dashboard"}>
+                log out <LogOut />
+              </Link>
             </Button>
             <Button
               variant={"default"}
@@ -41,7 +44,7 @@ export default function Header({ session }: { session: Session | null }) {
               className="font-semibold cursor-pointer"
             >
               <Link preload="render" to={"/dashboard"}>
-                Open Dashboard
+                open dashboard
               </Link>
             </Button>
           </>

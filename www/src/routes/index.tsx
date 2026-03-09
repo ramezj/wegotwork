@@ -39,25 +39,28 @@ function App() {
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
               {/* <Badge variant={"default"}>Currently in early development</Badge> */}
-              <h1 className="text-2xl sm:text-4xl lg:text-5xl 2xl:text-7xl font-semibold leading-tight text-balance">
-                The Whole Hiring Process. One Ark.
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl 2xl:text-7xl font-semibold">
+                we know you're building fast.
               </h1>
-              <p className="text-[1rem] font-medium text-balance text-muted-foreground">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl 2xl:text-7xl font-semibold">
+                why not hire fast too?
+              </h1>
+              {/* <p className="text-[1rem] font-medium text-balance text-muted-foreground">
                 Start with a career page, then run every job post, application,
                 and hiring decision inside one organized Ark.
-              </p>
+              </p> */}
             </div>
           </section>
           <div className="flex flex-col items-center px-4">
             <div className="flex flex-row w-full items-center justify-center content-center gap-4">
               <Button variant={"secondary"} asChild className="flex-1">
                 <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
-                  See Demo
+                  see demo
                 </a>
               </Button>
               <Button variant={"default"} asChild className="flex-1 group">
                 <Link to={"/"} target="_blank">
-                  Start Hiring
+                  start hiring
                   <ArrowRight className="duration-100 group-hover:-rotate-45" />
                 </Link>
               </Button>
@@ -71,7 +74,7 @@ function App() {
           <div className="w-full mx-auto flex flex-col space-y-8">
             <div className="text-center">
               <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance">
-                Everything you need to start hiring
+                everything you need to start hiring.
               </h1>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
@@ -81,10 +84,10 @@ function App() {
                     <Building2 className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
-                    Beautiful Career Pages
+                    beautiful career pages
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
-                    Create stunning, branded career pages that showcase your
+                    create stunning, branded career pages that showcase your
                     company culture and attract top talent.
                   </CardDescription>
                 </CardHeader>
@@ -96,10 +99,10 @@ function App() {
                     <FileText className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
-                    Easy Job Posting
+                    easy job posting
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
-                    Post jobs in minutes with our intuitive editor. Add
+                    post jobs in minutes with our intuitive editor. Add
                     requirements, benefits, and company info effortlessly.
                   </CardDescription>
                 </CardHeader>
@@ -111,11 +114,11 @@ function App() {
                     <Users className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
-                    Applicant Management
+                    applicant management
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
-                    Track, review, and manage all applications in one place.
-                    Collaborate with your team seamlessly.
+                    track, review, and manage all applications in one place.
+                    collaborate with your team seamlessly.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -126,10 +129,10 @@ function App() {
                     <BarChart3 className="h-6 w-6 text-black" />
                   </div>
                   <CardTitle className="font-semibold mb-2!">
-                    Analytics & Insights
+                    analytics & insights
                   </CardTitle>
                   <CardDescription className="text-muted-foreground font-medium">
-                    Get detailed analytics on job performance, application
+                    get detailed analytics on job performance, application
                     rates, and hiring metrics.
                   </CardDescription>
                 </CardHeader>

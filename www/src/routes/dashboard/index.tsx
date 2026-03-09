@@ -27,7 +27,7 @@ function RouteComponent() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="space-y-3">
               <h1 className="text-3xl tracking-tight font-semibold">
-                Your Organizations
+                your organizations
               </h1>
             </div>
             <div className="shrink-0">
@@ -44,7 +44,7 @@ function RouteComponent() {
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl tracking-tight font-semibold">
-                All Organizations
+                all organizations
               </h2>
               <p className="text-sm font-semibold text-muted-foreground mt-1">
                 {data.organizations.length}{" "}

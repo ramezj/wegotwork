@@ -47,7 +47,7 @@ export function OrganizationCard({
 
         <CardFooter className="border-t">
           <div className="flex items-center text-sm font-semibold text-primary">
-            View Organization
+            view organization
           </div>
         </CardFooter>
       </Card>

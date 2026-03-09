@@ -16,7 +16,7 @@ import z from "zod";
 import { Input } from "../ui/input";
 import { useMutation } from "@tanstack/react-query";
 import { createOrganizationFn } from "@/features/services/organization/create-organization";
-import { Loader } from "lucide-react";
+import { Loader, PlusIcon } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 
 export function CreateOrganization() {
@@ -43,7 +43,10 @@ export function CreateOrganization() {
     <>
       <Dialog>
         <DialogTrigger asChild>
-          <Button>Create New Organization</Button>
+          <Button>
+            create new organization
+            <PlusIcon />
+          </Button>
         </DialogTrigger>
         <DialogContent>
           <form onSubmit={form.handleSubmit(onSubmit)}>
