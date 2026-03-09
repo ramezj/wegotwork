@@ -96,6 +96,10 @@ model Organization {
   slug        String
   logo        String?
   website     String?
+  twitter String?
+  linkedIn    String?
+  instagram String?
+  facebook String?
   createdAt   DateTime      @default(now())
   description    String?
   members     Member[]
@@ -241,7 +245,7 @@ model Evaluation {
   score          Int          // 1-5 scale
   feedback       String?
   interviewerId  String
-  interviewer    User         @relation(fields: [interviewerId], references: [id])
+  interviewer    User         @relation(fields: [interviewerId], references: [id], onDelete: Cascade)
   applicantId    String
   applicant      Applicant    @relation(fields: [applicantId], references: [id], onDelete: Cascade)
   stageId        String

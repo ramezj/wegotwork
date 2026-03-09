@@ -91,8 +91,8 @@ export function CreatePipelineDialog({
     >
       <DialogTrigger asChild>
         <Button variant="default" className="group">
-          create pipeline
-          <Plus className="duration-300 group-hover:rotate-90" />
+          Create Pipeline
+          <Plus className="duration-100 group-hover:rotate-90" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
