@@ -63,7 +63,7 @@ export function JobCard({
             {/* view job button */}
             <div className="sm:block hidden shrink-0">
               <div className="px-2">
-                <Button>
+                <Button className="">
                   View Job
                   <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
                 </Button>

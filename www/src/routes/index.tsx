@@ -25,6 +25,14 @@ export const Route = createFileRoute("/")({
     return { session };
   },
   component: App,
+  head: () => ({
+    meta: [
+      {
+        title: "Hireark",
+        description: "Hireark - You're building fast. Why not hire fast too?",
+      },
+    ],
+  }),
 });
 
 function App() {
@@ -39,11 +47,8 @@ function App() {
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
               {/* <Badge variant={"default"}>Currently in early development</Badge> */}
-              <h1 className="text-4xl sm:text-4xl lg:text-5xl 2xl:text-7xl font-semibold">
-                We know you're building fast.
-              </h1>
-              <h1 className="text-4xl sm:text-4xl lg:text-5xl 2xl:text-7xl font-semibold">
-                Why not hire fast too?
+              <h1 className="text-4xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-semibold">
+                You're building fast. Why not hire fast too?
               </h1>
               {/* <p className="text-[1rem] font-medium text-balance text-muted-foreground">
                 Start with a career page, then run every job post, application,
