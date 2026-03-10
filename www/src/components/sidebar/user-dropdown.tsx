@@ -23,9 +23,9 @@ export default function UserDropdown({ session }: { session: Session }) {
             variant={"outline"}
             className="border bg-background hover:bg-accent hover:text-accent-foreground"
           >
-            <Avatar className="h-8 w-8 rounded-none bg-primary">
+            <Avatar className="h-8 w-8 bg-primary">
               <AvatarImage src={session?.user.image!} alt={session.user.name} />
-              <AvatarFallback className="rounded-none bg-primary text-primary-foreground">
+              <AvatarFallback className="bg-primary text-primary-foreground">
                 {session.user.name[0].charAt(0).toUpperCase()}
               </AvatarFallback>
             </Avatar>
@@ -40,7 +40,7 @@ export default function UserDropdown({ session }: { session: Session }) {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           side="top"
-          className="w-[--radix-dropdown-menu-trigger-width] DropdownMenuContent"
+          className="shadow-none DropdownMenuContent"
         >
           <DropdownMenuItem>
             <span>Account</span>
