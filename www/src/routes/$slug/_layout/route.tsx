@@ -28,7 +28,7 @@ function RouteComponent() {
         <AppSidebar slug={slug} session={Route.useRouteContext().session} />
         <SidebarInset>
           <AppHeader />
-          <main className="flex flex-1 flex-col p-4">
+          <main className="flex flex-1 flex-col p-4 min-h-0 overflow-hidden">
             <Suspense fallback={<LoadingLayout title="" />}>
               <Outlet />
             </Suspense>

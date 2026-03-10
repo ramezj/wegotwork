@@ -45,7 +45,7 @@ export function ATSListView({
   }, [applicants, activeStageId, searchQuery]);
 
   return (
-    <div className="flex flex-col h-full bg-background overflow-hidden border rounded-none">
+    <div className="flex flex-col flex-1 min-h-0 bg-background overflow-hidden border rounded-none">
       {/* Header Area */}
       <div className="p-4 border-b flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -53,7 +53,9 @@ export function ATSListView({
             <Users className="size-5" />
           </div>
           <div>
-            <h2 className="text-lg font-semibold leading-none">{pipeline.name}</h2>
+            <h2 className="text-lg font-semibold leading-none">
+              {pipeline.name}
+            </h2>
             <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest flex items-center gap-1.5 leading-none mt-1.5">
               Active Hiring Pipeline
             </p>
@@ -64,11 +66,7 @@ export function ATSListView({
           pipeline={pipeline}
           organizationId={organizationId}
           trigger={
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-8 gap-2 text-xs font-semibold"
-            >
+            <Button variant="outline" className="gap-2 text-xs font-semibold">
               <Settings2 className="size-3.5" />
               Configure Pipeline
             </Button>
@@ -86,7 +84,7 @@ export function ATSListView({
       />
       {/* Main Content Area */}
       <div className="flex-1 overflow-y-auto custom-scrollbar p-4">
-        <div className="max-w-7xl mx-auto space-y-4">
+        <div className="mx-auto space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
             <AnimatePresence mode="popLayout" initial={false}>
               {filteredApplicants.map((applicant) => (

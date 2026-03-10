@@ -22,7 +22,7 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { ATSListView } from "@/components/ats/ats-list-view";
 
-export const Route = createFileRoute("/$slug/_layout/applicants/$jobId/")({
+export const Route = createFileRoute("/$slug/_layout/candidates/$jobId/")({
   component: RouteComponent,
 });
 

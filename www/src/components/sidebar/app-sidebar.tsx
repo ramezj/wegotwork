@@ -59,9 +59,9 @@ export function AppSidebar({
       href: `/${slug}/pipelines`,
     },
     {
-      label: "Applicants",
+      label: "Candidates",
       icon: <Users />,
-      href: `/${slug}/applicants`,
+      href: `/${slug}/candidates`,
     },
   ];
   const categoryMenuItems: menuItem[] = [

@@ -18,11 +18,12 @@ export function AppHeader() {
     if (routeId?.includes("/applicants")) {
       return "Applicants";
     }
-
+    if (routeId?.includes("/candidates")) {
+      return "Candidates";
+    }
     if (routeId === "/$slug/_layout/") {
       return "Overview";
     }
-
     return "Dashboard";
   };
 

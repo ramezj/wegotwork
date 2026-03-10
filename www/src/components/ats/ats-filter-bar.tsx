@@ -51,15 +51,14 @@ export function ATSFilterBar({
       <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
         {/* Left Side: Active Stage Name */}
         <div className="flex items-center">
-          <h1 className="text-xl font-semibold">
+          <h1 className="text-lg font-semibold">
             {activeStageId === "all" ? "All Stages" : activeStage?.name} (
             {resultsCount})
           </h1>
         </div>
-
         {/* Right Side: Search and Filters */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-          <InputGroup className="flex-1 sm:max-w-[275px] shadow-none">
+          <InputGroup className="flex-1 sm:min-w-[240px] sm:max-w-[360px] shadow-none">
             <InputGroupInput
               placeholder="Search candidates..."
               value={searchQuery}

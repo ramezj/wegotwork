@@ -7,7 +7,7 @@ import { Users, ChevronRight, Briefcase } from "lucide-react";
 import { Job, Applicant } from "generated/prisma/client";
 import { Layout } from "@/components/shared/layout";
 
-export const Route = createFileRoute("/$slug/_layout/applicants/")({
+export const Route = createFileRoute("/$slug/_layout/candidates/")({
   component: RouteComponent,
   loader: ({ context, params }) =>
     context.queryClient.ensureQueryData(
@@ -31,12 +31,12 @@ function RouteComponent() {
   const jobs = data.organization.jobs as (Job & { applicants: Applicant[] })[];
 
   return (
-    <Layout title="Applicants">
+    <Layout title="Candidates">
       <div className="grid gap-4">
         {jobs.map((job) => (
           <Link
             key={job.id}
-            to="/$slug/applicants/$jobId"
+            to="/$slug/candidates/$jobId"
             params={{ slug, jobId: job.id }}
             className="block group"
           >
