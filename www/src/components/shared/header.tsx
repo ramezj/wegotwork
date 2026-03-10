@@ -85,13 +85,29 @@ export default function Header({ session }: { session: Session | null }) {
             </div>
 
             {/* Mobile hamburger / close button */}
-            <button
-              className="md:hidden flex items-center justify-center size-9 rounded-md border hover:bg-muted transition-colors"
+            <Button
+              variant={"ghost"}
+              className="md:hidden flex items-center justify-center size-9 relative"
               onClick={() => setOpen((prev) => !prev)}
               aria-label={open ? "Close menu" : "Open menu"}
             >
-              {open ? <X className="size-5" /> : <Menu className="size-5" />}
-            </button>
+              <Menu
+                className={cn(
+                  "absolute size-5 transition-all duration-200 ease-in-out",
+                  open
+                    ? "scale-50 opacity-0 -rotate-90"
+                    : "scale-100 opacity-100 rotate-0",
+                )}
+              />
+              <X
+                className={cn(
+                  "absolute size-5 transition-all duration-200 ease-in-out",
+                  open
+                    ? "scale-100 opacity-100 rotate-0"
+                    : "scale-50 opacity-0 rotate-90",
+                )}
+              />
+            </Button>
           </div>
 
           {/* Mobile expanded nav — revealed as header grows */}
@@ -110,7 +126,7 @@ export default function Header({ session }: { session: Session | null }) {
                   key={link.label}
                   to={link.href}
                   onClick={() => setOpen(false)}
-                  className="flex items-center p-2 rounded-md text-base font-medium text-foreground hover:bg-muted transition-colors"
+                  className="flex items-center py-2 rounded-md text-base font-medium text-foreground hover:bg-muted transition-colors"
                 >
                   {link.label}
                 </Link>
