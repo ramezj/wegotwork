@@ -1,62 +1,158 @@
+import { useState, useEffect } from "react";
 import { Session } from "@/features/auth/auth";
 import { SignInButton } from "../auth/auth-buttons";
 import { Link } from "@tanstack/react-router";
 import { Button } from "../ui/button";
-import { NavSidebar } from "./nav-sidebar";
-import { LogOut } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function Header({ session }: { session: Session | null }) {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  const navLinks = [
+    { label: "Features", href: "/" },
+    { label: "Pricing", href: "/" },
+    { label: "About", href: "/" },
+  ];
+
   return (
-    <header className="w-full px-4 h-16 rounded-lg border backdrop-blur supports-backdrop-filter:bg-background/60 flex flex-row items-center justify-between">
-      <div className="flex-row flex gap-2 items-baseline content-center align-middle">
-        <Link to={"/"} className="text-xl font-semibold tracking-tight">
-          Hireark
-        </Link>
-        <div className="flex-row gap-2 items-baseline content-center align-middle md:flex hidden">
-          <Link className="font-medium text-muted-foreground" to={"/"}>
-            Features
-          </Link>
-          <Link className="font-medium text-muted-foreground" to={"/"}>
-            Pricing
-          </Link>
-          <Link className="font-medium text-muted-foreground" to={"/"}>
-            About
-          </Link>
-        </div>
-      </div>
-
-      {/* Desktop actions */}
-      <div className="flex-row gap-2 items-center md:flex hidden">
-        {session?.user ? (
-          <>
-            <Button
-              variant={"secondary"}
-              asChild
-              className="font-semibold cursor-pointer"
-            >
-              <Link to={"/dashboard"}>
-                Log Out <LogOut />
+    <div className="fixed top-5 inset-x-0 z-50 pointer-events-none">
+      <div className="w-full lg:w-[80%] mx-auto px-4 pointer-events-auto">
+        <header
+          className={cn(
+            "px-4 border bg-background overflow-hidden transition-all duration-300 ease-in-out w-full flex flex-col",
+            open ? "h-[calc(100dvh-2.5rem)] rounded-none" : "h-16 rounded-lg",
+          )}
+        >
+          {/* Top bar — always visible */}
+          <div className="h-16 flex items-center justify-between shrink-0">
+            {/* Logo + desktop nav links grouped on the left */}
+            <div className="flex items-center gap-1">
+              <Link
+                to="/"
+                className="text-xl font-semibold tracking-tight mr-2"
+                onClick={() => setOpen(false)}
+              >
+                Hireark
               </Link>
-            </Button>
-            <Button
-              variant={"default"}
-              asChild
-              className="font-semibold cursor-pointer"
-            >
-              <Link preload="render" to={"/dashboard"}>
-                Open Dashboard
-              </Link>
-            </Button>
-          </>
-        ) : (
-          <SignInButton />
-        )}
-      </div>
 
-      {/* Mobile sidebar */}
-      <div className="md:hidden flex">
-        <NavSidebar session={session} />
+              <nav className="hidden md:flex flex-row gap-1 items-center">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className="font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-md hover:bg-muted"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            {/* Desktop actions */}
+            <div className="hidden md:flex flex-row gap-2 items-center">
+              {session?.user ? (
+                <>
+                  <Button
+                    variant="secondary"
+                    asChild
+                    className="font-semibold cursor-pointer"
+                  >
+                    <Link to="/dashboard">
+                      Log Out <LogOut className="size-4 ml-1" />
+                    </Link>
+                  </Button>
+                  <Button
+                    variant="default"
+                    asChild
+                    className="font-semibold cursor-pointer"
+                  >
+                    <Link preload="render" to="/dashboard">
+                      Open Dashboard
+                    </Link>
+                  </Button>
+                </>
+              ) : (
+                <SignInButton />
+              )}
+            </div>
+
+            {/* Mobile hamburger / close button */}
+            <button
+              className="md:hidden flex items-center justify-center size-9 rounded-md border hover:bg-muted transition-colors"
+              onClick={() => setOpen((prev) => !prev)}
+              aria-label={open ? "Close menu" : "Open menu"}
+            >
+              {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
+          </div>
+
+          {/* Mobile expanded nav — revealed as header grows */}
+          <div
+            className={cn(
+              "md:hidden flex flex-col justify-between flex-1 min-h-0 pb-5 transition-opacity duration-200",
+              open
+                ? "opacity-100 pointer-events-auto"
+                : "opacity-0 pointer-events-none",
+            )}
+          >
+            {/* Nav links */}
+            <nav className="flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center p-2 rounded-md text-base font-medium text-foreground hover:bg-muted transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Auth actions pinned to bottom */}
+            <div className="flex flex-col gap-2 border-t pt-4">
+              {session?.user ? (
+                <>
+                  <Button
+                    variant="secondary"
+                    asChild
+                    className="w-full font-semibold"
+                  >
+                    <Link to="/dashboard" onClick={() => setOpen(false)}>
+                      Log Out <LogOut className="size-4 ml-1" />
+                    </Link>
+                  </Button>
+                  <Button
+                    variant="default"
+                    asChild
+                    className="w-full font-semibold"
+                  >
+                    <Link
+                      preload="render"
+                      to="/dashboard"
+                      onClick={() => setOpen(false)}
+                    >
+                      Open Dashboard
+                    </Link>
+                  </Button>
+                </>
+              ) : (
+                <div className="w-full">
+                  <SignInButton />
+                </div>
+              )}
+            </div>
+          </div>
+        </header>
       </div>
-    </header>
+    </div>
   );
 }

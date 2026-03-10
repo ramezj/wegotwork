@@ -39,10 +39,9 @@ function App() {
   const { session } = Route.useRouteContext();
   return (
     <div className="space-y-12">
-      <div className="lg:w-[70%] w-full mx-auto sticky top-5 z-50 px-4">
-        <Header session={session} />
-      </div>
-      <main className="space-y-8 lg:w-[70%] w-full mx-auto">
+      <div className="h-16" />
+      <Header session={session} />
+      <main className="space-y-8 lg:w-[80%] w-full mx-auto">
         <header className="flex flex-col space-y-8">
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
@@ -171,7 +170,7 @@ const dummyJobs: JobWithCategory[] = [
     updatedAt: new Date(),
     organizationId: "#",
     categoryId: "#",
-    pipelineId: null,
+    pipelineId: "#",
     category: {
       id: "#",
       name: "Engineering",
@@ -199,7 +198,7 @@ const dummyJobs: JobWithCategory[] = [
     updatedAt: new Date(),
     organizationId: "#",
     categoryId: "#",
-    pipelineId: null,
+    pipelineId: "#",
     category: {
       id: "#",
       name: "Design",
@@ -227,7 +226,7 @@ const dummyJobs: JobWithCategory[] = [
     updatedAt: new Date(),
     organizationId: "#",
     categoryId: "#",
-    pipelineId: null,
+    pipelineId: "#",
     category: {
       id: "#",
       name: "Marketing",
