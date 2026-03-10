@@ -7,8 +7,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Session } from "@/features/auth/auth";
 import { authClient } from "@/features/auth/auth-client";
-import { ChevronUp, Users2 } from "lucide-react";
+import { ChevronsUpDown, ChevronUp, Users2 } from "lucide-react";
 import { useRouter } from "@tanstack/react-router";
+import { SidebarMenuButton } from "../ui/sidebar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function UserDropdown({ session }: { session: Session }) {
   const router = useRouter();
@@ -16,10 +18,25 @@ export default function UserDropdown({ session }: { session: Session }) {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild suppressHydrationWarning>
-          <Button variant={"outline"} className="w-full py-4 border-input">
-            <Users2 /> {session.user.name}
-            <ChevronUp className="ml-auto" />
-          </Button>
+          <SidebarMenuButton
+            size={"lg"}
+            variant={"outline"}
+            className="border bg-background hover:bg-accent hover:text-accent-foreground"
+          >
+            <Avatar className="h-8 w-8 rounded-none bg-primary">
+              <AvatarImage src={session?.user.image!} alt={session.user.name} />
+              <AvatarFallback className="rounded-none bg-primary text-primary-foreground">
+                {session.user.name[0].charAt(0).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <span className="truncate font-medium">{session.user.name}</span>
+              <span className="truncate text-xs text-muted-foreground">
+                {session.user.email}
+              </span>
+            </div>
+            <ChevronsUpDown className="ml-auto size-4" />
+          </SidebarMenuButton>
         </DropdownMenuTrigger>
         <DropdownMenuContent
           side="top"
