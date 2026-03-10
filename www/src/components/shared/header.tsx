@@ -20,6 +20,7 @@ export default function Header({ session }: { session: Session | null }) {
     { label: "Features", href: "/" },
     { label: "Pricing", href: "/" },
     { label: "About", href: "/" },
+    { label: "Demo", href: "https://jobs.wegotwork.co/demo" },
   ];
 
   return (
@@ -28,7 +29,7 @@ export default function Header({ session }: { session: Session | null }) {
         <header
           className={cn(
             "px-4 border bg-background overflow-hidden transition-all duration-300 ease-in-out w-full flex flex-col",
-            open ? "h-[calc(100dvh-2.5rem)] rounded-none" : "h-16 rounded-lg",
+            open ? "rounded-none" : "rounded-lg",
           )}
         >
           {/* Top bar — always visible */}
@@ -113,58 +114,62 @@ export default function Header({ session }: { session: Session | null }) {
           {/* Mobile expanded nav — revealed as header grows */}
           <div
             className={cn(
-              "md:hidden flex flex-col justify-between flex-1 min-h-0 pb-5 transition-opacity duration-200",
+              "md:hidden grid transition-all duration-300 ease-in-out",
               open
-                ? "opacity-100 pointer-events-auto"
-                : "opacity-0 pointer-events-none",
+                ? "grid-rows-[1fr] opacity-100 pointer-events-auto"
+                : "grid-rows-[0fr] opacity-0 pointer-events-none",
             )}
           >
-            {/* Nav links */}
-            <nav className="flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  onClick={() => setOpen(false)}
-                  className="flex items-center py-2 rounded-md text-base font-medium text-foreground hover:bg-muted transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Auth actions pinned to bottom */}
-            <div className="flex flex-col gap-2 border-t pt-4">
-              {session?.user ? (
-                <>
-                  <Button
-                    variant="secondary"
-                    asChild
-                    className="w-full font-semibold"
-                  >
-                    <Link to="/dashboard" onClick={() => setOpen(false)}>
-                      Log Out <LogOut className="size-4 ml-1" />
-                    </Link>
-                  </Button>
-                  <Button
-                    variant="default"
-                    asChild
-                    className="w-full font-semibold"
-                  >
+            <div className="overflow-hidden flex flex-col">
+              <div className="flex flex-col gap-2 pb-5">
+                {/* Nav links */}
+                <nav className="flex flex-col gap-1">
+                  {navLinks.map((link) => (
                     <Link
-                      preload="render"
-                      to="/dashboard"
+                      key={link.label}
+                      to={link.href}
                       onClick={() => setOpen(false)}
+                      className="flex items-center py-2 rounded-md text-base font-medium text-foreground hover:bg-muted transition-colors"
                     >
-                      Open Dashboard
+                      {link.label}
                     </Link>
-                  </Button>
-                </>
-              ) : (
-                <div className="w-full">
-                  <SignInButton />
+                  ))}
+                </nav>
+
+                {/* Auth actions pinned to bottom */}
+                <div className="flex flex-col gap-2 border-t pt-4">
+                  {session?.user ? (
+                    <>
+                      <Button
+                        variant="secondary"
+                        asChild
+                        className="w-full font-semibold"
+                      >
+                        <Link to="/dashboard" onClick={() => setOpen(false)}>
+                          Log Out <LogOut className="size-4 ml-1" />
+                        </Link>
+                      </Button>
+                      <Button
+                        variant="default"
+                        asChild
+                        className="w-full font-semibold"
+                      >
+                        <Link
+                          preload="render"
+                          to="/dashboard"
+                          onClick={() => setOpen(false)}
+                        >
+                          Open Dashboard
+                        </Link>
+                      </Button>
+                    </>
+                  ) : (
+                    <div className="w-full">
+                      <SignInButton />
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </header>
