@@ -47,18 +47,13 @@ export function ATSListView({
   return (
     <div className="flex flex-col flex-1 min-h-0 bg-background overflow-hidden border">
       {/* Pipeline Header */}
-      <div className="px-4 py-3 border-b flex items-center justify-between gap-4 shrink-0">
+      <div className="h-16 p-4 border-b flex items-center justify-between gap-4 shrink-0">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="size-8 rounded bg-primary/10 flex items-center justify-center text-primary border border-primary/20 shrink-0">
+          <div className="size-8 rounded-none bg-primary/10 flex items-center justify-center text-primary border border-primary/20 shrink-0">
             <Users className="size-4" />
           </div>
           <div className="min-w-0">
-            <h2 className="text-sm font-semibold leading-none truncate">
-              {pipeline.name}
-            </h2>
-            <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest leading-none mt-1.5">
-              Active Hiring Pipeline
-            </p>
+            <h2 className="text-lg font-semibold truncate">{pipeline.name}</h2>
           </div>
         </div>
         <EditPipelineDialog
@@ -70,7 +65,9 @@ export function ATSListView({
               className="gap-2 text-xs font-semibold shrink-0"
             >
               <Settings2 className="size-3.5" />
-              <span className="hidden sm:inline">Configure Pipeline</span>
+              <span className="hidden sm:inline">
+                Configure Hiring Pipeline
+              </span>
               <span className="sm:hidden">Configure</span>
             </Button>
           }
@@ -109,7 +106,7 @@ export function ATSListView({
             )}
           </div>
         ) : (
-          <ul className="p-3 sm:p-4 space-y-2.5">
+          <ul className="p-4 space-y-2.5">
             <AnimatePresence mode="sync" initial={false}>
               {filteredApplicants.map((applicant) => (
                 <motion.li

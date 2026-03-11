@@ -28,6 +28,23 @@ body {
   }
 }
 
+@keyframes enter {
+  from {
+    transform: translateY(8px);
+    filter: blur(5px);
+    opacity: 0;
+  }
+}
+
+.animate-enter {
+  animation: enter 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: calc(var(--delay, 0ms) * var(--stagger, 0));
+}
+
+.animate-enter-individual-title {
+  --delay: 80ms;
+}
+
 .animate-fade-in {
   animation: fade-in 0.2s ease-out forwards;
 }

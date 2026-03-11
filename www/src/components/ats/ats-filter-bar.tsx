@@ -47,7 +47,7 @@ export function ATSFilterBar({
       : `${activeStage?.name} (${activeStage?.count})`;
 
   return (
-    <div className="flex flex-col gap-4 p-4 border-b sticky top-0 z-10">
+    <div className="flex flex-col lg:h-16 lg:justify-center p-4 border-b sticky top-0 z-10 bg-background">
       <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
         {/* Left Side: Active Stage Name */}
         <div className="flex items-center">
@@ -58,23 +58,23 @@ export function ATSFilterBar({
         </div>
         {/* Right Side: Search and Filters */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-          <InputGroup className="flex-1 sm:min-w-[240px] sm:max-w-[360px] shadow-none">
+          <InputGroup className="flex-1 shadow-none">
             <InputGroupInput
               placeholder="Search candidates..."
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="pl-9 w-full"
+              className="w-full font-semibold"
             />
             <InputGroupAddon>
               <Search className="size-4 text-muted-foreground" />
             </InputGroupAddon>
           </InputGroup>
-          <div className="sm:max-w-[250px] w-full">
+          <div className="w-full flex-1">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
-                  className="w-full justify-between font-normal"
+                  className="w-full justify-between font-semibold"
                 >
                   <span className="truncate">{activeLabel}</span>
                   <ChevronDown className="ml-2 size-4 shrink-0 opacity-50" />
