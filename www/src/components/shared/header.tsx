@@ -17,10 +17,9 @@ export default function Header({ session }: { session: Session | null }) {
   }, [open]);
 
   const navLinks = [
-    { label: "Features", href: "/" },
-    { label: "Pricing", href: "/" },
-    { label: "About", href: "/" },
-    { label: "Demo", href: "https://jobs.wegotwork.co/demo" },
+    { label: "features", href: "/" },
+    { label: "pricing", href: "/" },
+    { label: "about", href: "/" },
   ];
 
   return (
@@ -41,15 +40,15 @@ export default function Header({ session }: { session: Session | null }) {
                 className="text-xl font-semibold tracking-tight mr-2"
                 onClick={() => setOpen(false)}
               >
-                Hireark
+                loux
               </Link>
 
-              <nav className="hidden md:flex flex-row gap-1 items-center">
+              <nav className="hidden md:flex flex-row gap-2 items-center">
                 {navLinks.map((link) => (
                   <Link
                     key={link.label}
                     to={link.href}
-                    className="font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-md hover:bg-muted"
+                    className="font-medium text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
                   </Link>
