@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Session } from "@/features/auth/auth";
 import { SignInButton } from "../auth/auth-buttons";
 import { Link } from "@tanstack/react-router";
@@ -8,11 +8,23 @@ import { cn } from "@/lib/utils";
 
 export default function Header({ session }: { session: Session | null }) {
   const [open, setOpen] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    const handleOutsideInteraction = (event: MouseEvent | TouchEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener("mousedown", handleOutsideInteraction);
+      document.addEventListener("touchstart", handleOutsideInteraction);
+    }
+
     return () => {
-      document.body.style.overflow = "";
+      document.removeEventListener("mousedown", handleOutsideInteraction);
+      document.removeEventListener("touchstart", handleOutsideInteraction);
     };
   }, [open]);
 
@@ -23,7 +35,7 @@ export default function Header({ session }: { session: Session | null }) {
   ];
 
   return (
-    <div className="fixed top-5 inset-x-0 z-50">
+    <div ref={headerRef} className="fixed top-5 inset-x-0 z-50">
       <div className="w-full lg:w-[80%] mx-auto px-4">
         <header
           className={cn(
@@ -63,7 +75,7 @@ export default function Header({ session }: { session: Session | null }) {
                   <Button
                     variant="secondary"
                     asChild
-                    className="font-semibold cursor-pointer"
+                    className="font-semibold cursor-pointer lowercase"
                   >
                     <Link to="/dashboard">
                       Log Out <LogOut className="size-4 ml-1" />
@@ -72,7 +84,7 @@ export default function Header({ session }: { session: Session | null }) {
                   <Button
                     variant="default"
                     asChild
-                    className="font-semibold cursor-pointer"
+                    className="font-semibold cursor-pointer lowercase"
                   >
                     <Link preload="render" to="/dashboard">
                       Open Dashboard
@@ -142,7 +154,7 @@ export default function Header({ session }: { session: Session | null }) {
                       <Button
                         variant="secondary"
                         asChild
-                        className="w-full font-semibold"
+                        className="w-full font-semibold lowercase"
                       >
                         <Link to="/dashboard" onClick={() => setOpen(false)}>
                           Log Out <LogOut className="size-4 ml-1" />
@@ -151,7 +163,7 @@ export default function Header({ session }: { session: Session | null }) {
                       <Button
                         variant="default"
                         asChild
-                        className="w-full font-semibold"
+                        className="w-full font-semibold lowercase"
                       >
                         <Link
                           preload="render"
