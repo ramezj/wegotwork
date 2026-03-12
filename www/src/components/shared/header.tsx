@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Session } from "@/features/auth/auth";
 import { SignInButton } from "../auth/auth-buttons";
 import { Link } from "@tanstack/react-router";
@@ -8,23 +8,11 @@ import { cn } from "@/lib/utils";
 
 export default function Header({ session }: { session: Session | null }) {
   const [open, setOpen] = useState(false);
-  const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleOutsideInteraction = (event: MouseEvent | TouchEvent) => {
-      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    };
-
-    if (open) {
-      document.addEventListener("mousedown", handleOutsideInteraction);
-      document.addEventListener("touchstart", handleOutsideInteraction);
-    }
-
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
-      document.removeEventListener("mousedown", handleOutsideInteraction);
-      document.removeEventListener("touchstart", handleOutsideInteraction);
+      document.body.style.overflow = "";
     };
   }, [open]);
 
@@ -35,8 +23,8 @@ export default function Header({ session }: { session: Session | null }) {
   ];
 
   return (
-    <div ref={headerRef} className="fixed top-5 inset-x-0 z-50">
-      <div className="w-full lg:w-[80%] mx-auto px-4">
+    <div className="fixed top-5 inset-x-0 z-50 pointer-events-none">
+      <div className="w-full lg:w-[80%] mx-auto px-4 pointer-events-auto">
         <header
           className={cn(
             "px-4 border bg-background overflow-hidden transition-all duration-300 ease-in-out w-full flex flex-col",
