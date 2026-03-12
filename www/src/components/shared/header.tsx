@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Session } from "@/features/auth/auth";
 import { SignInButton } from "../auth/auth-buttons";
 import { Link } from "@tanstack/react-router";
@@ -8,11 +8,21 @@ import { cn } from "@/lib/utils";
 
 export default function Header({ session }: { session: Session | null }) {
   const [open, setOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
+      if (open && headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+
     return () => {
-      document.body.style.overflow = "";
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
     };
   }, [open]);
 
@@ -26,6 +36,7 @@ export default function Header({ session }: { session: Session | null }) {
     <div className="fixed top-5 inset-x-0 z-50 pointer-events-none">
       <div className="w-full lg:w-[80%] mx-auto px-4 pointer-events-auto">
         <header
+          ref={headerRef}
           className={cn(
             "px-4 border bg-background overflow-hidden transition-all duration-300 ease-in-out w-full flex flex-col",
             open ? "rounded-none" : "rounded-lg",
