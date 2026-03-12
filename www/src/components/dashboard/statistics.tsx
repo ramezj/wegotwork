@@ -68,7 +68,7 @@ export function StatisticCard({
   icon: React.ReactNode;
 }) {
   return (
-    <Card className="w-full bg-muted/30 rounded-md">
+    <Card className="w-full">
       <CardHeader className="flex flex-row items-center justify-between space-y-0">
         <CardTitle className="text-foreground font-medium">{title}</CardTitle>
         {icon}
