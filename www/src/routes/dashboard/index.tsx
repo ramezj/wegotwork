@@ -26,7 +26,7 @@ function RouteComponent() {
         <div className="mx-auto pt-12 md:pt-16 pb-6 md:pb-12 px-2">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="space-y-3">
-              <h1 className="text-3xl tracking-tight font-semibold">
+              <h1 className="text-3xl tracking-tight font-semibold lowercase">
                 Your Organizations
               </h1>
             </div>
@@ -43,7 +43,7 @@ function RouteComponent() {
           {/* Stats Bar */}
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-2xl tracking-tight font-semibold">
+              <h2 className="text-2xl tracking-tight font-semibold lowercase">
                 All Organizations
               </h2>
               <p className="text-sm font-semibold text-muted-foreground mt-1">

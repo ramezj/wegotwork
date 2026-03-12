@@ -22,8 +22,8 @@ export function PublicHeader({ slug }: { slug: string }) {
         {data.organization?.website && (
           <Button variant="default" className="group " asChild>
             <Link to={data.organization?.website} target="_blank">
-              Visit Website
-              <ArrowRight className="text-white duration-100 group-hover:-rotate-45" />
+              Website
+              {/* <ArrowRight className="text-white duration-100 group-hover:-rotate-45" /> */}
             </Link>
           </Button>
         )}
