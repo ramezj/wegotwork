@@ -23,8 +23,8 @@ export default function Header({ session }: { session: Session | null }) {
   ];
 
   return (
-    <div className="fixed top-5 inset-x-0 z-50 pointer-events-none">
-      <div className="w-full lg:w-[80%] mx-auto px-4 pointer-events-auto">
+    <div className="fixed top-5 inset-x-0 z-50">
+      <div className="w-full lg:w-[80%] mx-auto px-4">
         <header
           className={cn(
             "px-4 border bg-background overflow-hidden transition-all duration-300 ease-in-out w-full flex flex-col",

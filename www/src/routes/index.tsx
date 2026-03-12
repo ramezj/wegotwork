@@ -28,8 +28,8 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Hireark",
-        description: "Hireark - You're building fast. Why not hire fast too?",
+        title: "loux - the hiring platform.",
+        description: "loux - you're building fast, why not hire fast too?",
       },
     ],
   }),
@@ -46,8 +46,8 @@ function App() {
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
               {/* <Badge variant={"default"}>Currently in early development</Badge> */}
-              <h1 className="text-4xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-semibold">
-                You're building fast. Why not hire fast too?
+              <h1 className="text-4xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-semibold lowercase text-balance">
+                You're building fast, Why not hire fast too?
               </h1>
               {/* <p className="text-[1rem] font-medium text-balance text-muted-foreground">
                 Start with a career page, then run every job post, application,
@@ -57,12 +57,20 @@ function App() {
           </section>
           <div className="flex flex-col items-center px-4">
             <div className="flex flex-row w-full items-center justify-center content-center gap-4">
-              <Button variant={"secondary"} asChild className="flex-1">
+              <Button
+                variant={"secondary"}
+                asChild
+                className="flex-1 lowercase"
+              >
                 <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
                   See Demo
                 </a>
               </Button>
-              <Button variant={"default"} asChild className="flex-1 group">
+              <Button
+                variant={"default"}
+                asChild
+                className="flex-1 group lowercase"
+              >
                 <Link to={"/"} target="_blank">
                   Start Hiring
                   <ArrowRight className="duration-100 group-hover:-rotate-45" />
@@ -77,7 +85,7 @@ function App() {
         <section className="px-4">
           <div className="w-full mx-auto flex flex-col space-y-8">
             <div className="text-center">
-              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance">
+              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance lowercase">
                 Everything you need to start hiring.
               </h1>
             </div>
@@ -87,10 +95,10 @@ function App() {
                   <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
                     <Building2 className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="font-semibold mb-2!">
+                  <CardTitle className="font-semibold mb-2! lowercase">
                     Beautiful Career Pages
                   </CardTitle>
-                  <CardDescription className="text-muted-foreground font-medium">
+                  <CardDescription className="text-muted-foreground font-medium lowercase">
                     Create stunning, branded career pages that showcase your
                     company culture and attract top talent.
                   </CardDescription>
@@ -102,10 +110,10 @@ function App() {
                   <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
                     <FileText className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="font-semibold mb-2!">
+                  <CardTitle className="font-semibold mb-2! lowercase">
                     Easy job posting
                   </CardTitle>
-                  <CardDescription className="text-muted-foreground font-medium">
+                  <CardDescription className="text-muted-foreground font-medium lowercase">
                     Post jobs in minutes with our intuitive editor. Add
                     requirements, benefits, and company info effortlessly.
                   </CardDescription>
@@ -117,10 +125,10 @@ function App() {
                   <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
                     <Users className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="font-semibold mb-2!">
+                  <CardTitle className="font-semibold mb-2! lowercase">
                     Applicant management
                   </CardTitle>
-                  <CardDescription className="text-muted-foreground font-medium">
+                  <CardDescription className="text-muted-foreground font-medium lowercase">
                     Track, review, and manage all applications in one place.
                     collaborate with your team seamlessly.
                   </CardDescription>
@@ -132,10 +140,10 @@ function App() {
                   <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
                     <BarChart3 className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="font-semibold mb-2!">
+                  <CardTitle className="font-semibold mb-2! lowercase">
                     Analytics & insights
                   </CardTitle>
-                  <CardDescription className="text-muted-foreground font-medium">
+                  <CardDescription className="text-muted-foreground font-medium lowercase">
                     Get detailed analytics on job performance, application
                     rates, and hiring metrics.
                   </CardDescription>
