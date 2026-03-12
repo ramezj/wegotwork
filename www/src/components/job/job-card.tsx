@@ -43,15 +43,15 @@ export function JobCard({
           <div className="flex items-center justify-between">
             {/* job information */}
             <div className="flex flex-col gap-2 flex-1 min-w-0">
-              <p className="font-semibold text-lg truncate-options">
+              <p className="font-bold text-lg truncate text-balance">
                 {job.title}
               </p>
               <div className="flex flex-row flex-wrap gap-2">
                 {job.category && (
-                  <Badge variant="secondary">{job.category.name}</Badge>
+                  <Badge variant="default">{job.category.name}</Badge>
                 )}
-                <Badge variant="secondary">{formatJobType(job.type)}</Badge>
-                <Badge variant="secondary">
+                <Badge variant="default">{formatJobType(job.type)}</Badge>
+                <Badge variant="default">
                   {formatLocationMode(job.locationMode)}
                 </Badge>
                 {/* <Badge variant="outline">
@@ -61,15 +61,15 @@ export function JobCard({
             </div>
 
             {/* view job button */}
-            <div className="sm:block hidden shrink-0">
+            {/* <div className="sm:block hidden shrink-0">
               <div className="px-2">
                 <Button className="lowercase">
                   View Job
                   <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
                 </Button>
               </div>
-            </div>
-            <div className="sm:hidden block shrink-0">
+            </div> */}
+            <div className="shrink-0">
               <div className="px-2">
                 <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
               </div>
@@ -100,15 +100,15 @@ export function JobCardForViewPage({
           <div className="flex items-center justify-between">
             {/* job information */}
             <div className="flex flex-col gap-2 flex-1 min-w-0">
-              <p className="font-semibold text-lg truncate-options">
+              <p className="font-bold text-lg truncate text-balance">
                 {job.title}
               </p>
               <div className="flex flex-row flex-wrap gap-2">
                 {job.category && (
-                  <Badge variant="secondary">{job.category.name}</Badge>
+                  <Badge variant="default">{job.category.name}</Badge>
                 )}
-                <Badge variant="secondary">{formatJobType(job.type)}</Badge>
-                <Badge variant="secondary">
+                <Badge variant="default">{formatJobType(job.type)}</Badge>
+                <Badge variant="default">
                   {formatLocationMode(job.locationMode)}
                 </Badge>
                 {/* <Badge variant="outline">
@@ -116,17 +116,15 @@ export function JobCardForViewPage({
                 </Badge> */}
               </div>
             </div>
-
-            {/* view job button */}
-            <div className="sm:block hidden shrink-0">
+            {/* <div className="sm:block hidden shrink-0">
               <div className="px-2">
-                <Button>
+                <Button className="">
                   View Job
                   <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
                 </Button>
               </div>
-            </div>
-            <div className="sm:hidden block shrink-0">
+            </div> */}
+            <div className="shrink-0">
               <div className="px-2">
                 <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
               </div>

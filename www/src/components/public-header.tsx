@@ -20,7 +20,7 @@ export function PublicHeader({ slug }: { slug: string }) {
       </Link>
       <div className="flex items-center gap-4">
         {data.organization?.website && (
-          <Button variant="default" className="group" asChild>
+          <Button variant="default" className="group " asChild>
             <Link to={data.organization?.website} target="_blank">
               Visit Website
               <ArrowRight className="text-white duration-100 group-hover:-rotate-45" />

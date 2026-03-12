@@ -12,7 +12,11 @@ export default function Header({ session }: { session: Session | null }) {
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
-      if (open && headerRef.current && !headerRef.current.contains(e.target as Node)) {
+      if (
+        open &&
+        headerRef.current &&
+        !headerRef.current.contains(e.target as Node)
+      ) {
         setOpen(false);
       }
     };
