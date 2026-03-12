@@ -102,7 +102,7 @@ export function AppSidebar({
     staleTime: 60 * 60 * 1000,
   });
   return (
-    <Sidebar>
+    <Sidebar variant="sidebar">
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
         <SidebarMenu>
           <SidebarMenuItem className="items-center content-center text-center">
@@ -130,7 +130,7 @@ export function AppSidebar({
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={isActive}
-                    className="flex items-center gap-2 py-4 cursor-pointer transition duration-200"
+                    className="flex items-center gap-2 py-4 cursor-pointer lowercase"
                     onClick={handleItemClick}
                     asChild
                   >
@@ -152,7 +152,7 @@ export function AppSidebar({
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={item.href === location.pathname}
-                    className="flex items-center gap-2 py-4 cursor-pointer transition duration-200"
+                    className="flex items-center gap-2 py-4 cursor-pointer lowercase"
                     onClick={handleItemClick}
                     asChild
                   >
@@ -174,7 +174,7 @@ export function AppSidebar({
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={item.href === location.pathname}
-                    className="flex items-center gap-2 py-4 cursor-pointer transition duration-200"
+                    className="flex items-center gap-2 py-4 cursor-pointer lowercase"
                     onClick={handleItemClick}
                     asChild
                   >

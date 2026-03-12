@@ -34,7 +34,7 @@ function RouteComponent() {
     <Layout
       title={data.organization.name}
       primaryButton={
-        <Button asChild className="group">
+        <Button asChild className="group lowercase">
           <Link target="_blank" to="/view/$slug" params={{ slug }}>
             Preview{" "}
             <ArrowRight className="duration-100 group-hover:-rotate-45" />
@@ -63,7 +63,7 @@ function RouteComponent() {
         <div className="flex flex-col gap-4">
           <div className="flex flex-col space-y-4">
             <div>
-              <h1 className="text-xl font-semibold">
+              <h1 className="text-xl font-semibold lowercase">
                 Recent Jobs
                 {/* <b> ({data?.organization?.jobs?.length || 0})</b> */}
               </h1>

@@ -36,13 +36,13 @@ export function AppHeader() {
     <header className="sticky top-0 z-10 flex h-(--header-height) shrink-0 items-center gap-2 border-b backdrop-blur supports-[backdrop-filter]:bg-background/60 ">
       <div className="flex w-full justify-between items-center gap-1 px-4">
         <div className="hidden md:flex">
-          <h1 className="text-base font-semibold">{title}</h1>
+          <h1 className="text-base font-semibold lowercase">{title}</h1>
         </div>
         <div className="md:hidden flex">
           <SidebarTrigger />
         </div>
         <div className="flex flex-row gap-2">
-          <Button variant={"secondary"} onClick={logOut}>
+          <Button variant={"secondary"} className="lowercase" onClick={logOut}>
             Log Out <LogOut />
           </Button>
           <Button variant={"default"}>
