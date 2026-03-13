@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { JobCard } from "@/components/job/job-card";
 import { JobWithCategory } from "@/types/job/job";
+import Glow from "../ui/glow";
 
 interface BrowserProps {
   jobs: JobWithCategory[];
@@ -9,7 +10,7 @@ interface BrowserProps {
 
 export function Browser({ jobs }: BrowserProps) {
   return (
-    <Card className="rounded-lg overflow-hidden p-0 gap-0">
+    <Card className="rounded-lg overflow-hidden p-0 gap-0 shadow-sm">
       {/* Browser chrome */}
       <div className="flex items-center gap-2 border-b border-border p-4">
         <div className="flex gap-1.5">

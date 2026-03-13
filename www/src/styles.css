@@ -60,7 +60,7 @@ code {
 
   /* ---- Core palette (light, no dark mode) ---- */
   --background: oklch(1 0 0);
-  --foreground: oklch(0% 0 0);
+  --foreground: #1d1c1c;
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
@@ -69,7 +69,7 @@ code {
   --popover-foreground: oklch(0.141 0.005 285.823);
 
   /* Primary = black */
-  --primary: oklch(0.141 0 0);
+  --primary: #1d1c1c;
   --primary-foreground: oklch(1 0 0);
 
   /* Secondary = light gray */
@@ -97,11 +97,11 @@ code {
 
   /* Sidebar — light */
   --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.141 0 0);
-  --sidebar-primary: oklch(0.141 0 0);
+  --sidebar-foreground: #1d1c1c;
+  --sidebar-primary: #1d1c1c;
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.93 0 0);
-  --sidebar-accent-foreground: oklch(0.141 0 0);
+  --sidebar-accent-foreground: #1d1c1c;
   --sidebar-border: oklch(0.9 0 0);
   --sidebar-ring: oklch(0.4 0 0);
 
