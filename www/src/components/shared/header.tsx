@@ -37,7 +37,7 @@ export default function Header({ session }: { session: Session | null }) {
   ];
 
   return (
-    <div className="fixed top-5 inset-x-0 z-50 pointer-events-none">
+    <div className="fixed top-5 inset-x-0 z-50 pointer-events-none mb-8">
       <div className="w-full lg:w-[80%] mx-auto px-4 pointer-events-auto">
         <header
           ref={headerRef}

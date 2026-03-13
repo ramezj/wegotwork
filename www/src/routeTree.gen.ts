@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ViewIndexRouteImport } from './routes/view/index'
@@ -31,6 +32,11 @@ import { Route as SlugLayoutCandidatesJobIdRouteRouteImport } from './routes/$sl
 import { Route as SlugLayoutCandidatesJobIdIndexRouteImport } from './routes/$slug/_layout/candidates/$jobId/index'
 import { Route as SlugLayoutCandidatesJobIdApplicantIdRouteImport } from './routes/$slug/_layout/candidates/$jobId/$applicantId'
 
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -148,6 +154,7 @@ const SlugLayoutCandidatesJobIdApplicantIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/demo': typeof DemoRoute
   '/$slug': typeof SlugLayoutRouteRouteWithChildren
   '/view/$slug': typeof ViewSlugRouteRouteWithChildren
   '/dashboard/': typeof DashboardIndexRoute
@@ -170,6 +177,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
   '/dashboard': typeof DashboardIndexRoute
   '/view': typeof ViewIndexRoute
   '/$slug/billing': typeof SlugLayoutBillingRouteRoute
@@ -190,6 +198,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/demo': typeof DemoRoute
   '/$slug/_layout': typeof SlugLayoutRouteRouteWithChildren
   '/view/$slug': typeof ViewSlugRouteRouteWithChildren
   '/dashboard/': typeof DashboardIndexRoute
@@ -215,6 +224,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/demo'
     | '/$slug'
     | '/view/$slug'
     | '/dashboard/'
@@ -237,6 +247,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/demo'
     | '/dashboard'
     | '/view'
     | '/$slug/billing'
@@ -256,6 +267,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dashboard'
+    | '/demo'
     | '/$slug/_layout'
     | '/view/$slug'
     | '/dashboard/'
@@ -280,6 +292,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
+  DemoRoute: typeof DemoRoute
   SlugLayoutRouteRoute: typeof SlugLayoutRouteRouteWithChildren
   ViewSlugRouteRoute: typeof ViewSlugRouteRouteWithChildren
   ViewIndexRoute: typeof ViewIndexRoute
@@ -288,6 +301,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -524,6 +544,7 @@ const ViewSlugRouteRouteWithChildren = ViewSlugRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRouteRoute: DashboardRouteRouteWithChildren,
+  DemoRoute: DemoRoute,
   SlugLayoutRouteRoute: SlugLayoutRouteRouteWithChildren,
   ViewSlugRouteRoute: ViewSlugRouteRouteWithChildren,
   ViewIndexRoute: ViewIndexRoute,
