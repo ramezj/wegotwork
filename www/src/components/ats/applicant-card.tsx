@@ -40,7 +40,7 @@ export function ApplicantCard({
             </div>
             <div className="min-w-0 flex-1">
               <Link
-                to="/$slug/applicants/$jobId/$applicantId"
+                to="/$slug/candidates/$jobId/$applicantId"
                 params={{ slug, jobId, applicantId: applicant.id }}
                 className="font-semibold text-[0.95rem] hover:underline underline-offset-4 decoration-muted-foreground/30 truncate block"
               >
@@ -67,7 +67,7 @@ export function ApplicantCard({
               <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem asChild>
                   <Link
-                    to="/$slug/applicants/$jobId/$applicantId"
+                    to="/$slug/candidates/$jobId/$applicantId"
                     params={{ slug, jobId, applicantId: applicant.id }}
                     className="flex items-center cursor-pointer"
                   >

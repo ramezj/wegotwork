@@ -36,6 +36,7 @@ import {
   InputGroupInput,
   InputGroupText,
 } from "../ui/input-group";
+import { Layout } from "../shared/layout";
 
 export function EditOrganizationForm({
   organization,
@@ -119,156 +120,159 @@ export function EditOrganizationForm({
   };
   return (
     <>
-      <div className="flex items-center justify-between w-full">
-        <h1 className="text-xl font-semibold">Edit Organization</h1>
-        <Button
-          type="submit"
-          form="edit-organization-form"
-          disabled={mutation.isPending || uploadMutation.isPending}
-        >
-          {(mutation.isPending || uploadMutation.isPending) && (
-            <Loader2 className="animate-spin" />
-          )}
-          {mutation.isPending || uploadMutation.isPending
-            ? "Save Changes"
-            : "Save Changes"}
-        </Button>
-      </div>
-      <form
-        id="edit-organization-form"
-        onSubmit={form.handleSubmit(handleSubmit)}
-        className="flex flex-col space-y-4"
+      <Layout
+        title="Edit Organization"
+        primaryButton={
+          <Button
+            type="submit"
+            form="edit-organization-form"
+            disabled={mutation.isPending || uploadMutation.isPending}
+          >
+            {(mutation.isPending || uploadMutation.isPending) && (
+              <Loader2 className="animate-spin" />
+            )}
+            {mutation.isPending || uploadMutation.isPending
+              ? "Save Changes"
+              : "Save Changes"}
+          </Button>
+        }
       >
-        <Card className="bg-card">
-          <CardContent className="flex flex-col space-y-4 px-4">
-            <Field>
-              <FieldContent>
-                <div className="flex items-center space-x-4">
-                  <div className="flex flex-col items-center space-y-2">
-                    <Avatar className="size-32">
-                      <AvatarImage
-                        src={
-                          preview
-                            ? preview
-                            : logoValue
-                              ? `${process.env.R2_PUBLIC_URL || "https://pub-c33c43f7f06946a1ba713658430b64ad.r2.dev"}/${logoValue}`
-                              : undefined
-                        }
-                        className="object-cover"
+        <form
+          id="edit-organization-form"
+          onSubmit={form.handleSubmit(handleSubmit)}
+          className="flex flex-col space-y-4"
+        >
+          <Card className="bg-card">
+            <CardContent className="flex flex-col space-y-4 px-4">
+              <Field>
+                <FieldContent>
+                  <div className="flex items-center space-x-4">
+                    <div className="flex flex-col items-center space-y-2">
+                      <Avatar className="size-32">
+                        <AvatarImage
+                          src={
+                            preview
+                              ? preview
+                              : logoValue
+                                ? `${process.env.R2_PUBLIC_URL || "https://pub-c33c43f7f06946a1ba713658430b64ad.r2.dev"}/${logoValue}`
+                                : undefined
+                          }
+                          className="object-cover"
+                        />
+                        <AvatarFallback className="bg-secondary text-primary text-4xl">
+                          {form.getValues("name")?.charAt(0) || "O"}
+                        </AvatarFallback>
+                      </Avatar>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        className="w-32"
+                        onClick={() => fileInputRef.current?.click()}
+                      >
+                        Upload
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        className="w-32 text-destructive hover:text-destructive"
+                        onClick={() => {
+                          setPreview(null);
+                          setSelectedFile(null);
+                          if (fileInputRef.current)
+                            fileInputRef.current.value = "";
+                          form.setValue("logo", "");
+                        }}
+                      >
+                        Remove
+                      </Button>
+                    </div>
+                    <div className="flex flex-col space-y-2">
+                      <Input
+                        type="file"
+                        ref={fileInputRef}
+                        className="hidden"
+                        accept="image/*"
+                        onChange={onFileChange}
                       />
-                      <AvatarFallback className="bg-secondary text-primary text-4xl">
-                        {form.getValues("name")?.charAt(0) || "O"}
-                      </AvatarFallback>
-                    </Avatar>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      className="w-32"
-                      onClick={() => fileInputRef.current?.click()}
-                    >
-                      Upload
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      className="w-32 text-destructive hover:text-destructive"
-                      onClick={() => {
-                        setPreview(null);
-                        setSelectedFile(null);
-                        if (fileInputRef.current)
-                          fileInputRef.current.value = "";
-                        form.setValue("logo", "");
-                      }}
-                    >
-                      Remove
-                    </Button>
+                    </div>
                   </div>
-                  <div className="flex flex-col space-y-2">
-                    <Input
-                      type="file"
-                      ref={fileInputRef}
-                      className="hidden"
-                      accept="image/*"
-                      onChange={onFileChange}
-                    />
-                  </div>
-                </div>
-              </FieldContent>
-            </Field>
-            <Controller
-              control={form.control}
-              name="name"
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Name</FieldLabel>
-                  <FieldContent>
-                    <Input
-                      aria-invalid={fieldState.invalid}
-                      placeholder="Organization Name"
-                      {...field}
-                    />
-                  </FieldContent>
-                  <FieldError errors={[fieldState.error]} />
-                </Field>
-              )}
-            />
-            <Controller
-              control={form.control}
-              name="slug"
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Slug</FieldLabel>
-                  <FieldContent>
-                    <Input
-                      aria-invalid={fieldState.invalid}
-                      placeholder="Organization Slug"
-                      {...field}
-                    />
-                  </FieldContent>
-                  <FieldError errors={[fieldState.error]} />
-                </Field>
-              )}
-            />
-            <Controller
-              control={form.control}
-              name="website"
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Website</FieldLabel>
-                  <FieldContent>
-                    <Input
-                      id="input-group-url"
-                      placeholder="https://example.com"
-                      aria-invalid={fieldState.invalid}
-                      {...field}
-                    />
-                  </FieldContent>
-                  <FieldError errors={[fieldState.error]} />
-                </Field>
-              )}
-            />
-            <Controller
-              control={form.control}
-              name="description"
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Description</FieldLabel>
-                  <FieldContent>
-                    <Textarea
-                      aria-invalid={fieldState.invalid}
-                      placeholder="Organization Description"
-                      {...field}
-                    />
-                  </FieldContent>
-                  <FieldError errors={[fieldState.error]} />
-                </Field>
-              )}
-            />
-          </CardContent>
-        </Card>
-      </form>
+                </FieldContent>
+              </Field>
+              <Controller
+                control={form.control}
+                name="name"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Name</FieldLabel>
+                    <FieldContent>
+                      <Input
+                        aria-invalid={fieldState.invalid}
+                        placeholder="Organization Name"
+                        {...field}
+                      />
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+              <Controller
+                control={form.control}
+                name="slug"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Slug</FieldLabel>
+                    <FieldContent>
+                      <Input
+                        aria-invalid={fieldState.invalid}
+                        placeholder="Organization Slug"
+                        {...field}
+                      />
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+              <Controller
+                control={form.control}
+                name="website"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Website</FieldLabel>
+                    <FieldContent>
+                      <Input
+                        id="input-group-url"
+                        placeholder="https://example.com"
+                        aria-invalid={fieldState.invalid}
+                        {...field}
+                      />
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+              <Controller
+                control={form.control}
+                name="description"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Description</FieldLabel>
+                    <FieldContent>
+                      <Textarea
+                        aria-invalid={fieldState.invalid}
+                        placeholder="Organization Description"
+                        {...field}
+                      />
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+            </CardContent>
+          </Card>
+        </form>
+      </Layout>
     </>
   );
 }
