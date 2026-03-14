@@ -25,23 +25,29 @@ import {
 import { JobCategory } from "generated/prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { editJobBySlugFn } from "@/features/services/jobs/edit-by-slug";
-import { Loader, MapPin, DollarSign, FileText, Briefcase, Save, Check } from "lucide-react";
+import {
+  Loader,
+  MapPin,
+  DollarSign,
+  FileText,
+  Briefcase,
+  Save,
+} from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 import { jobByIdQueryOptions } from "@/features/queries/jobs";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { FormBuilder } from "../forms/FormBuilder";
 import { FormFieldType } from "@/types/form-config";
+import { Layout } from "../shared/layout";
 
 export function EditJobForm({
   job,
   categories,
-  pipelines,
   slug,
 }: {
   job: JobWithCategory;
   categories: JobCategory[];
-  pipelines: any[];
   slug: string;
 }) {
   const queryClient = useQueryClient();
@@ -94,26 +100,30 @@ export function EditJobForm({
   };
 
   return (
-    <form
-      id="edit-job-form"
-      onSubmit={form.handleSubmit(onSubmit)}
-      className="flex flex-col"
+    <Layout
+      variant="header"
+      title={form.watch("title") || "Edit Job"}
+      primaryButton={
+        <Button
+          type="submit"
+          form="edit-job-form"
+          disabled={mutation.isPending}
+          className="gap-2"
+        >
+          {mutation.isPending ? (
+            <Loader className="animate-spin h-4 w-4" />
+          ) : (
+            <Save className="h-4 w-4" />
+          )}
+          Save Changes
+        </Button>
+      }
     >
-      {/* Floating save button */}
-      <Button
-        type="submit"
-        disabled={mutation.isPending}
-        size="lg"
-        className="fixed bottom-4 right-4 z-50 gap-2"
+      <form
+        id="edit-job-form"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-6"
       >
-        {mutation.isPending
-          ? <Loader className="animate-spin h-4 w-4" />
-          : <Check className="h-4 w-4" />}
-        Save Changes
-      </Button>
-
-      {/* Sections */}
-      <div className="flex flex-col gap-6">
         {/* General */}
         <Card>
           <CardHeader className="flex flex-row items-center gap-3 pb-4">
@@ -500,7 +510,7 @@ export function EditJobForm({
             />
           </CardContent>
         </Card>
-      </div>
-    </form>
+      </form>
+    </Layout>
   );
 }
