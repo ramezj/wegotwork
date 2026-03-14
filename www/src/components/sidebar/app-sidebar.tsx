@@ -150,7 +150,7 @@ export function AppSidebar({
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={item.href === location.pathname}
-                    className="flex items-center gap-2 py-4 cursor-pointer lowercase data-[active=true]:bg-red-500 data-[active=true]:text-white"
+                    className="flex items-center gap-2 py-4 cursor-pointer lowercase"
                     onClick={handleItemClick}
                     asChild
                   >
@@ -172,7 +172,7 @@ export function AppSidebar({
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={item.href === location.pathname}
-                    className="flex items-center gap-2 py-4 cursor-pointer lowercase data-[active=true]:bg-red-500 data-[active=true]:text-white"
+                    className="flex items-center gap-2 py-4 cursor-pointer lowercase"
                     onClick={handleItemClick}
                     asChild
                   >
