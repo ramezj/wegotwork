@@ -104,7 +104,7 @@ export function AppSidebar({
   return (
     <Sidebar variant="sidebar">
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
-        <SidebarMenu>
+        <SidebarMenu className="">
           <SidebarMenuItem className="items-center content-center text-center">
             <OrganizationSelector
               organizations={data?.organizations as Organization[]}
@@ -119,7 +119,6 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup className="space-y-1">
-          <SidebarGroupLabel>Main</SidebarGroupLabel>
           <SidebarMenu className="gap-1">
             {menuItems.map((item, index) => {
               const isActive =
@@ -145,14 +144,13 @@ export function AppSidebar({
           </SidebarMenu>
         </SidebarGroup>
         <SidebarGroup className="space-y-1">
-          <SidebarGroupLabel>Categories</SidebarGroupLabel>
           <SidebarMenu className="gap-1">
             {categoryMenuItems.map((item, index) => {
               return (
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={item.href === location.pathname}
-                    className="flex items-center gap-2 py-4 cursor-pointer lowercase"
+                    className="flex items-center gap-2 py-4 cursor-pointer lowercase data-[active=true]:bg-red-500 data-[active=true]:text-white"
                     onClick={handleItemClick}
                     asChild
                   >
@@ -167,14 +165,14 @@ export function AppSidebar({
           </SidebarMenu>
         </SidebarGroup>
         <SidebarGroup className="space-y-1">
-          <SidebarGroupLabel>Organization</SidebarGroupLabel>
+          {/* <SidebarGroupLabel>Organization</SidebarGroupLabel> */}
           <SidebarMenu className="gap-1">
             {teamMenuItems.map((item, index) => {
               return (
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={item.href === location.pathname}
-                    className="flex items-center gap-2 py-4 cursor-pointer lowercase"
+                    className="flex items-center gap-2 py-4 cursor-pointer lowercase data-[active=true]:bg-red-500 data-[active=true]:text-white"
                     onClick={handleItemClick}
                     asChild
                   >
