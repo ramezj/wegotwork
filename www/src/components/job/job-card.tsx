@@ -46,7 +46,7 @@ export function JobCard({
               <p className="font-bold text-lg truncate text-balance">
                 {job.title}
               </p>
-              <div className="flex flex-row flex-wrap gap-2">
+              <div className="flex flex-row flex-wrap gap-1">
                 {job.category && (
                   <Badge variant="default">{job.category.name}</Badge>
                 )}
@@ -103,7 +103,7 @@ export function JobCardForViewPage({
               <p className="font-bold text-lg truncate text-balance">
                 {job.title}
               </p>
-              <div className="flex flex-row flex-wrap gap-2">
+              <div className="flex flex-row flex-wrap gap-1">
                 {job.category && (
                   <Badge variant="default">{job.category.name}</Badge>
                 )}
