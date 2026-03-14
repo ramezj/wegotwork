@@ -63,7 +63,7 @@ export default function Header({ session }: { session: Session | null }) {
                   <Link
                     key={link.label}
                     to={link.href}
-                    className="font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    className="font-medium tracking-tight text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {link.label}
                   </Link>

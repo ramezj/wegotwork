@@ -1,5 +1,5 @@
 import { Card } from "../ui/card";
-import { ArrowRight, BriefcaseBusiness } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, PinIcon } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { JobWithCategory } from "@/types/job/job";
 import { Badge } from "../ui/badge";
@@ -47,11 +47,15 @@ export function JobCard({
                 {job.title}
               </p>
               <div className="flex flex-row flex-wrap gap-1">
-                {job.category && (
+                {/* {job.category && (
                   <Badge variant="default">{job.category.name}</Badge>
-                )}
-                <Badge variant="default">{formatJobType(job.type)}</Badge>
+                )} */}
                 <Badge variant="default">
+                  <BriefcaseBusiness />
+                  {formatJobType(job.type)}
+                </Badge>
+                <Badge variant="default">
+                  <PinIcon />
                   {formatLocationMode(job.locationMode)}
                 </Badge>
                 {/* <Badge variant="outline">
@@ -112,6 +116,7 @@ export function JobCardForViewPage({
                   {formatJobType(job.type)}
                 </Badge>
                 <Badge variant="default">
+                  <PinIcon />
                   {formatLocationMode(job.locationMode)}
                 </Badge>
                 {/* <Badge variant="outline">
