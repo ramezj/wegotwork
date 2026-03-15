@@ -43,7 +43,7 @@ export function CreateOrganization() {
     <>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="group lowercase">
+          <Button className="group ">
             Create Organization
             <PlusIcon className="duration-100 group-hover:rotate-45" />
           </Button>

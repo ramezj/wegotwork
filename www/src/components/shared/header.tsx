@@ -78,7 +78,7 @@ export default function Header({ session }: { session: Session | null }) {
                   <Button
                     variant="secondary"
                     asChild
-                    className="font-semibold cursor-pointer lowercase"
+                    className="font-semibold cursor-pointer "
                   >
                     <Link to="/dashboard">
                       Log Out <LogOut className="size-4 ml-1" />
@@ -87,7 +87,7 @@ export default function Header({ session }: { session: Session | null }) {
                   <Button
                     variant="default"
                     asChild
-                    className="font-semibold cursor-pointer lowercase"
+                    className="font-semibold cursor-pointer "
                   >
                     <Link preload="render" to="/dashboard">
                       Open Dashboard
@@ -157,7 +157,7 @@ export default function Header({ session }: { session: Session | null }) {
                       <Button
                         variant="secondary"
                         asChild
-                        className="w-full font-semibold lowercase"
+                        className="w-full font-semibold "
                       >
                         <Link to="/dashboard" onClick={() => setOpen(false)}>
                           Log Out <LogOut className="size-4 ml-1" />
@@ -166,7 +166,7 @@ export default function Header({ session }: { session: Session | null }) {
                       <Button
                         variant="default"
                         asChild
-                        className="w-full font-semibold lowercase"
+                        className="w-full font-semibold "
                       >
                         <Link
                           preload="render"
