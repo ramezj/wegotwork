@@ -45,9 +45,9 @@ export function AppHeader() {
           <Button variant={"secondary"} className="" onClick={logOut}>
             Log Out <LogOut />
           </Button>
-          <Button variant={"default"}>
+          {/* <Button variant={"default"}>
             <BellIcon fill="currentColor" />
-          </Button>
+          </Button> */}
         </div>
       </div>
     </header>

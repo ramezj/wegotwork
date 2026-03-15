@@ -126,7 +126,7 @@ export function EditJobForm({
       >
         {/* General */}
         <Card>
-          <CardHeader className="flex flex-row items-center gap-3 pb-4">
+          <CardHeader className="flex flex-row items-center gap-3 ">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-secondary shrink-0">
               <Briefcase className="h-4 w-4 text-secondary-foreground" />
             </div>
@@ -265,7 +265,7 @@ export function EditJobForm({
 
         {/* Location */}
         <Card>
-          <CardHeader className="flex flex-row items-center gap-3 pb-4">
+          <CardHeader className="flex flex-row items-center gap-3 ">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-secondary shrink-0">
               <MapPin className="h-4 w-4 text-secondary-foreground" />
             </div>
@@ -361,7 +361,7 @@ export function EditJobForm({
 
         {/* Compensation */}
         <Card>
-          <CardHeader className="flex flex-row items-center gap-3 pb-4">
+          <CardHeader className="flex flex-row items-center gap-3 ">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-secondary shrink-0">
               <DollarSign className="h-4 w-4 text-secondary-foreground" />
             </div>
@@ -481,7 +481,7 @@ export function EditJobForm({
 
         {/* Application Form */}
         <Card>
-          <CardHeader className="flex flex-row items-center gap-3 pb-4">
+          <CardHeader className="flex flex-row items-center gap-3 ">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-secondary shrink-0">
               <FileText className="h-4 w-4 text-secondary-foreground" />
             </div>
