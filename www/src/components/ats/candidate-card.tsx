@@ -1,4 +1,4 @@
-import { Mail, Calendar, MoreHorizontal, User, ArrowRight } from "lucide-react";
+import { Calendar, MoreHorizontal, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -21,17 +21,6 @@ interface CandidateCardProps {
   onMove: (applicantId: string, newStageId: string) => void;
 }
 
-const AVATAR_COLORS = [
-  "bg-blue-100 text-blue-700",
-  "bg-violet-100 text-violet-700",
-  "bg-rose-100 text-rose-700",
-  "bg-amber-100 text-amber-700",
-  "bg-emerald-100 text-emerald-700",
-  "bg-cyan-100 text-cyan-700",
-  "bg-pink-100 text-pink-700",
-  "bg-indigo-100 text-indigo-700",
-];
-
 function getInitials(name: string): string {
   return name
     .trim()
@@ -40,13 +29,6 @@ function getInitials(name: string): string {
     .join("")
     .toUpperCase()
     .slice(0, 2);
-}
-
-function getAvatarColor(name: string): string {
-  const index =
-    name.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0) %
-    AVATAR_COLORS.length;
-  return AVATAR_COLORS[index];
 }
 
 export function CandidateCard({
@@ -58,21 +40,20 @@ export function CandidateCard({
   const jobId = applicant.jobId || "";
   const currentStage = stages.find((s) => s.id === applicant.currentStageId);
   const initials = getInitials(applicant.name);
-  const avatarColor = getAvatarColor(applicant.name);
 
   return (
     <Card className="relative w-full group bg-card hover:bg-muted/50 transition-all duration-150 flex flex-row items-center p-4 cursor-pointer gap-4 overflow-hidden">
       {/* Full-row invisible link overlay */}
-      <Link
+      {/* <Link
         to="/$slug/candidates/$jobId/$applicantId"
         params={{ slug, jobId, applicantId: applicant.id }}
         className="absolute inset-0"
         aria-label={`View ${applicant.name}'s profile`}
-      />
+      /> */}
 
       {/* Avatar */}
       <div
-        className={`size-10 rounded-none flex items-center justify-center font-semibold text-sm shrink-0 bg-primary text-primary-foreground`}
+        className={`size-10 rounded-lg flex items-center justify-center font-semibold text-sm shrink-0 bg-primary text-primary-foreground`}
       >
         {initials}
       </div>

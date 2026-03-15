@@ -12,6 +12,7 @@ interface ATSListViewProps {
   onMoveApplicant: (applicantId: string, newStageId: string) => void;
   slug: string;
   organizationId: string;
+  jobName?: string;
 }
 
 export function ATSListView({
@@ -20,6 +21,7 @@ export function ATSListView({
   onMoveApplicant,
   slug,
   organizationId,
+  jobName,
 }: ATSListViewProps) {
   const stages = pipeline.stages || [];
   const [activeStageId, setActiveStageId] = useState<string>("all");
@@ -45,15 +47,15 @@ export function ATSListView({
   }, [applicants, activeStageId, searchQuery]);
 
   return (
-    <div className="flex flex-col flex-1 min-h-0 bg-background overflow-hidden border">
+    <div className="flex flex-col flex-1 min-h-0 bg-background overflow-hidden border rounded-md">
       {/* Pipeline Header */}
       <div className="h-16 p-4 border-b flex items-center justify-between gap-4 shrink-0">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="size-8 rounded-none bg-primary/10 flex items-center justify-center text-primary border border-primary/20 shrink-0">
+          <div className="size-8 rounded-md bg-primary/10 flex items-center justify-center text-primary border border-primary/20 shrink-0">
             <Users className="size-4" />
           </div>
           <div className="min-w-0">
-            <h2 className="text-lg font-semibold truncate">{pipeline.name}</h2>
+            <h2 className="text-lg font-semibold truncate">{jobName}</h2>
           </div>
         </div>
         <EditPipelineDialog
@@ -106,15 +108,25 @@ export function ATSListView({
             )}
           </div>
         ) : (
-          <ul className="p-4 space-y-2.5">
-            <AnimatePresence mode="sync" initial={false}>
+          <ul className="p-4 space-y-2.5 relative">
+            <AnimatePresence mode="popLayout" initial={false}>
               {filteredApplicants.map((applicant) => (
                 <motion.li
                   key={applicant.id}
-                  initial={{ opacity: 0, y: -4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -4 }}
-                  transition={{ duration: 0.15 }}
+                  layout
+                  initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{
+                    opacity: 0,
+                    scale: 0.98,
+                    transition: { duration: 0.1 },
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 30,
+                    mass: 0.8,
+                  }}
                 >
                   <CandidateCard
                     applicant={applicant}
