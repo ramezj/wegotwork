@@ -27,7 +27,7 @@ import { toast } from "sonner";
 import { CreatePipelineDialog } from "@/components/ats/create-pipeline-dialog";
 import { EditPipelineDialog } from "@/components/ats/edit-pipeline-dialog";
 
-export const Route = createFileRoute("/$slug/_layout/pipelines/")({
+export const Route = createFileRoute("/$slug/_layout/hiring-stages/")({
   component: PipelinesPage,
 });
 

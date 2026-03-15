@@ -54,9 +54,9 @@ export function AppSidebar({
       href: `/${slug}/jobs`,
     },
     {
-      label: "Pipelines",
+      label: "Hiring Stages",
       icon: <GitBranch />,
-      href: `/${slug}/pipelines`,
+      href: `/${slug}/hiring-stages`,
     },
     {
       label: "Candidates",
