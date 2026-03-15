@@ -139,7 +139,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
       {value.length === 0 && (
         <div
           onClick={addField}
-          className="flex flex-col items-center justify-center gap-3 border-2 border-dashed rounded-xl p-10 text-center cursor-pointer hover:border-primary/40 hover:bg-muted/40 transition-all group"
+          className="flex flex-col items-center justify-center gap-3 border rounded-lg p-10 text-center cursor-pointer hover:border-primary/40 hover:bg-muted/40 transition-all group"
         >
           <div className="size-10 rounded-full bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
             <Plus className="size-4 text-muted-foreground group-hover:text-primary transition-colors" />
