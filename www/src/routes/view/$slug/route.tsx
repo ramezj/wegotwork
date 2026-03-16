@@ -12,7 +12,7 @@ function RouteComponent() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="lg:w-[80%] w-full mx-auto sticky top-5 z-50 px-4">
+      <div className="lg:w-[80%] w-full mx-auto sticky top-6 z-50 px-4">
         <PublicHeader slug={slug} />
       </div>
       <main className="flex-1 flex flex-col items-center py-12 space-y-4 w-full">
