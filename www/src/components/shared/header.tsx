@@ -4,6 +4,8 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "../ui/button";
 import { LogOut } from "lucide-react";
 import { HeaderBase } from "./header-base";
+import { useNavigate } from "@tanstack/react-router";
+import { authClient } from "@/features/auth/auth-client";
 
 export default function Header({ session }: { session: Session | null }) {
   const navLinks = [
@@ -28,12 +30,20 @@ export default function Header({ session }: { session: Session | null }) {
     </Link>
   ));
 
+  const navigate = useNavigate();
+  const logOut = async () => {
+    await authClient.signOut();
+    navigate({ to: "/" });
+  };
+
   const authActions = session?.user ? (
     <>
-      <Button variant="secondary" asChild className="font-semibold cursor-pointer ">
-        <Link to="/dashboard">
-          Log Out <LogOut className="size-4 ml-1" />
-        </Link>
+      <Button
+        variant="secondary"
+        className="font-semibold cursor-pointer "
+        onClick={logOut}
+      >
+        Log Out <LogOut className="size-4 ml-1" />
       </Button>
       <Button variant="default" asChild className="font-semibold cursor-pointer ">
         <Link preload="render" to="/dashboard">
@@ -57,10 +67,12 @@ export default function Header({ session }: { session: Session | null }) {
 
   const mobileActions = session?.user ? (
     <>
-      <Button variant="secondary" asChild className="w-full font-semibold ">
-        <Link to="/dashboard">
-          Log Out <LogOut className="size-4 ml-1" />
-        </Link>
+      <Button
+        variant="secondary"
+        className="w-full font-semibold "
+        onClick={logOut}
+      >
+        Log Out <LogOut className="size-4 ml-1" />
       </Button>
       <Button variant="default" asChild className="w-full font-semibold ">
         <Link preload="render" to="/dashboard">
