@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Check, ChevronsUpDown } from "lucide-react";
-import { Organization } from "generated/prisma/client";
+import type { Organization } from "generated/prisma/client";
 import { Link } from "@tanstack/react-router";
 
 export function OrganizationSelector({

@@ -3,6 +3,7 @@ import { editOrganizationSchema } from "@/types/organization/schemas";
 import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import z from "zod";
+import { Role } from "generated/prisma/client";
 
 export const editOrganizationFn = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
@@ -16,7 +17,7 @@ export const editOrganizationFn = createServerFn({ method: "POST" })
         organizationId: data.id,
         userId: session.user.id,
         role: {
-          in: ["owner", "admin"],
+          in: [Role.owner, Role.admin],
         },
       },
     });

@@ -24,7 +24,7 @@ import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 import { jobByIdQueryOptions } from "@/features/queries/jobs";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
-import { Organization } from "generated/prisma/client";
+import type { Organization } from "generated/prisma/client";
 import { editOrganizationSchema } from "@/types/organization/schemas";
 import { editOrganizationFn } from "@/features/services/organization/edit-organization";
 import { uploadLogoFn } from "@/features/services/organization/upload-logo";

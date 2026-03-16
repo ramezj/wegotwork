@@ -18,6 +18,7 @@ import { Route as SlugLayoutRouteRouteImport } from './routes/$slug/_layout/rout
 import { Route as ViewSlugIndexRouteImport } from './routes/view/$slug/index'
 import { Route as SlugLayoutIndexRouteImport } from './routes/$slug/_layout/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as SlugLayoutTeamRouteRouteImport } from './routes/$slug/_layout/team/route'
 import { Route as SlugLayoutOrganizationRouteRouteImport } from './routes/$slug/_layout/organization/route'
 import { Route as SlugLayoutJobsRouteRouteImport } from './routes/$slug/_layout/jobs/route'
 import { Route as SlugLayoutCategoriesRouteRouteImport } from './routes/$slug/_layout/categories/route'
@@ -75,6 +76,11 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
+} as any)
+const SlugLayoutTeamRouteRoute = SlugLayoutTeamRouteRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => SlugLayoutRouteRoute,
 } as any)
 const SlugLayoutOrganizationRouteRoute =
   SlugLayoutOrganizationRouteRouteImport.update({
@@ -156,6 +162,7 @@ export interface FileRoutesByFullPath {
   '/$slug/categories': typeof SlugLayoutCategoriesRouteRoute
   '/$slug/jobs': typeof SlugLayoutJobsRouteRouteWithChildren
   '/$slug/organization': typeof SlugLayoutOrganizationRouteRoute
+  '/$slug/team': typeof SlugLayoutTeamRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/$slug/': typeof SlugLayoutIndexRoute
   '/view/$slug/': typeof ViewSlugIndexRoute
@@ -175,6 +182,7 @@ export interface FileRoutesByTo {
   '/$slug/billing': typeof SlugLayoutBillingRouteRoute
   '/$slug/categories': typeof SlugLayoutCategoriesRouteRoute
   '/$slug/organization': typeof SlugLayoutOrganizationRouteRoute
+  '/$slug/team': typeof SlugLayoutTeamRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/$slug': typeof SlugLayoutIndexRoute
   '/view/$slug': typeof ViewSlugIndexRoute
@@ -198,6 +206,7 @@ export interface FileRoutesById {
   '/$slug/_layout/categories': typeof SlugLayoutCategoriesRouteRoute
   '/$slug/_layout/jobs': typeof SlugLayoutJobsRouteRouteWithChildren
   '/$slug/_layout/organization': typeof SlugLayoutOrganizationRouteRoute
+  '/$slug/_layout/team': typeof SlugLayoutTeamRouteRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/$slug/_layout/': typeof SlugLayoutIndexRoute
   '/view/$slug/': typeof ViewSlugIndexRoute
@@ -223,6 +232,7 @@ export interface FileRouteTypes {
     | '/$slug/categories'
     | '/$slug/jobs'
     | '/$slug/organization'
+    | '/$slug/team'
     | '/api/auth/$'
     | '/$slug/'
     | '/view/$slug/'
@@ -242,6 +252,7 @@ export interface FileRouteTypes {
     | '/$slug/billing'
     | '/$slug/categories'
     | '/$slug/organization'
+    | '/$slug/team'
     | '/api/auth/$'
     | '/$slug'
     | '/view/$slug'
@@ -264,6 +275,7 @@ export interface FileRouteTypes {
     | '/$slug/_layout/categories'
     | '/$slug/_layout/jobs'
     | '/$slug/_layout/organization'
+    | '/$slug/_layout/team'
     | '/api/auth/$'
     | '/$slug/_layout/'
     | '/view/$slug/'
@@ -350,6 +362,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/auth/$'
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/$slug/_layout/team': {
+      id: '/$slug/_layout/team'
+      path: '/team'
+      fullPath: '/$slug/team'
+      preLoaderRoute: typeof SlugLayoutTeamRouteRouteImport
+      parentRoute: typeof SlugLayoutRouteRoute
     }
     '/$slug/_layout/organization': {
       id: '/$slug/_layout/organization'
@@ -485,6 +504,7 @@ interface SlugLayoutRouteRouteChildren {
   SlugLayoutCategoriesRouteRoute: typeof SlugLayoutCategoriesRouteRoute
   SlugLayoutJobsRouteRoute: typeof SlugLayoutJobsRouteRouteWithChildren
   SlugLayoutOrganizationRouteRoute: typeof SlugLayoutOrganizationRouteRoute
+  SlugLayoutTeamRouteRoute: typeof SlugLayoutTeamRouteRoute
   SlugLayoutIndexRoute: typeof SlugLayoutIndexRoute
   SlugLayoutCandidatesJobIdRouteRoute: typeof SlugLayoutCandidatesJobIdRouteRouteWithChildren
   SlugLayoutCandidatesIndexRoute: typeof SlugLayoutCandidatesIndexRoute
@@ -496,6 +516,7 @@ const SlugLayoutRouteRouteChildren: SlugLayoutRouteRouteChildren = {
   SlugLayoutCategoriesRouteRoute: SlugLayoutCategoriesRouteRoute,
   SlugLayoutJobsRouteRoute: SlugLayoutJobsRouteRouteWithChildren,
   SlugLayoutOrganizationRouteRoute: SlugLayoutOrganizationRouteRoute,
+  SlugLayoutTeamRouteRoute: SlugLayoutTeamRouteRoute,
   SlugLayoutIndexRoute: SlugLayoutIndexRoute,
   SlugLayoutCandidatesJobIdRouteRoute:
     SlugLayoutCandidatesJobIdRouteRouteWithChildren,

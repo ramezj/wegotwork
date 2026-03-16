@@ -1,6 +1,6 @@
 import { StatusBadge } from "./StatusBadge";
 import { format } from "date-fns";
-import { Applicant } from "generated/prisma/client";
+import type { Applicant } from "generated/prisma/client";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Mail, Calendar, Briefcase } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";

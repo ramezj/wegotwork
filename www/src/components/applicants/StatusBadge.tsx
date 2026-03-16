@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { Status } from "generated/prisma/client";
+import type { Status } from "generated/prisma/client";
 
 const statusConfig: Record<
   Status,

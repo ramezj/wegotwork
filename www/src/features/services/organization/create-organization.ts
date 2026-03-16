@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { createOrganizationSchema } from "@/types/organization/schemas";
 import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
+import { Role } from "generated/prisma/client";
 
 export const createOrganizationFn = createServerFn()
   .middleware([authMiddleware])
@@ -16,7 +17,7 @@ export const createOrganizationFn = createServerFn()
           members: {
             create: {
               userId: session.user.id,
-              role: "owner",
+              role: Role.owner,
             },
           },
           categories: {
@@ -70,24 +71,6 @@ export const createOrganizationFn = createServerFn()
                   { name: "Offer", order: 5 },
                 ],
               },
-            },
-          },
-          jobs: {
-            createMany: {
-              data: [
-                {
-                  title: "Software Developer",
-                  description: "Software Developer",
-                  city: "Tallinn",
-                  type: "FULLTIME",
-                },
-                {
-                  title: "UI/UX Designer",
-                  description: "UI/UX Designer",
-                  city: "Cairo",
-                  type: "FULLTIME",
-                },
-              ],
             },
           },
         },

@@ -27,7 +27,7 @@ import UserDropdown from "./user-dropdown";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { getAllOrganizationsFn } from "@/features/services/organization/get-all-organizations";
 import { OrganizationSelector } from "./organization-selector";
-import { Organization } from "generated/prisma/client";
+import type { Organization } from "generated/prisma/client";
 
 export function AppSidebar({
   session,

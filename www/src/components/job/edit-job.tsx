@@ -22,7 +22,7 @@ import {
   CardTitle,
   CardDescription,
 } from "../ui/card";
-import { JobCategory } from "generated/prisma/client";
+import type { JobCategory } from "generated/prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { editJobBySlugFn } from "@/features/services/jobs/edit-by-slug";
 import {

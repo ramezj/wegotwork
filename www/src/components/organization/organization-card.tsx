@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Organization } from "generated/prisma/client";
+import type { Organization } from "generated/prisma/client";
 import { Link } from "@tanstack/react-router";
 import { Building2, ArrowRight, ArrowUpRight } from "lucide-react";
 

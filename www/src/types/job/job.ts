@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { formFieldConfigSchema } from "../form-config";
 export { type Job, type JobCategory } from "generated/prisma/client";
-import { Job, JobCategory, JobQuestion } from "generated/prisma/client";
+import type { Job, JobCategory, JobQuestion } from "generated/prisma/client";
 
 export type JobWithCategory = Job & {
   category: JobCategory | null;

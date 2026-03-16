@@ -1,4 +1,14 @@
-import { Organization, Job, Applicant, JobCategory, JobQuestion, Pipeline } from "generated/prisma/client";
+import {
+  Organization,
+  Job,
+  Applicant,
+  JobCategory,
+  JobQuestion,
+  Pipeline,
+  Member,
+  Invitation,
+  User,
+} from "generated/prisma/client";
 
 export type OrganizationWithDetails = Organization & {
   jobs: (Job & {
@@ -32,5 +42,18 @@ export type ViewOrganizationWithDetails = Organization & {
 export type ViewOrganizationResponse = {
   success: boolean;
   organization: ViewOrganizationWithDetails | null;
+  error?: string;
+};
+
+export type OrganizationTeamMember = Member & {
+  user: User;
+};
+
+export type OrganizationTeamResponse = {
+  success: boolean;
+  organization: Organization | null;
+  members: OrganizationTeamMember[];
+  invitations: Invitation[];
+  currentMemberRole: "owner" | "admin" | "member" | null;
   error?: string;
 };

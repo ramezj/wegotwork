@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CreateOrganization } from "@/components/organization/create-organization";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { OrganizationCard } from "@/components/organization/organization-card";
-import { Organization } from "generated/prisma/client";
+import type { Organization } from "generated/prisma/client";
 import { organizationsQueryOptions } from "@/features/queries/organization";
 
 export const Route = createFileRoute("/dashboard/")({

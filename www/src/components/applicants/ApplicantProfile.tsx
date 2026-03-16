@@ -16,7 +16,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "./StatusBadge";
-import { Applicant, Status } from "generated/prisma/client";
+import type { Applicant, Status } from "generated/prisma/client";
 import { ExternalLink, Mail, FileText } from "lucide-react";
 import { updateApplicantStatusFn } from "@/features/services/applicants/update-status";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

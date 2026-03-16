@@ -19,6 +19,12 @@ enum Plan {
   ENTERPRISE
 }
 
+enum Role {
+  owner
+  admin
+  member
+}
+
 model User {
   id            String    @id
   name          String
@@ -118,7 +124,7 @@ model Member {
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   userId         String
   user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  role           String       @default("member")
+  role           Role         @default(member)
   createdAt      DateTime     @default(now())
 
   @@index([organizationId])
@@ -131,7 +137,7 @@ model Invitation {
   organizationId String
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   email          String
-  role           String?
+  role           Role?
   status         String       @default("pending")
   expiresAt      DateTime
   createdAt      DateTime     @default(now())
