@@ -1,5 +1,5 @@
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { redirect, useMatches } from "@tanstack/react-router";
+import { useNavigate, useMatches } from "@tanstack/react-router";
 import { Button } from "../ui/button";
 import { BellIcon, LogOut } from "lucide-react";
 import { auth } from "@/features/auth/auth";
@@ -28,9 +28,10 @@ export function AppHeader() {
   };
 
   const title = getTitle();
+  const navigate = useNavigate();
   const logOut = async () => {
     await authClient.signOut();
-    redirect({ to: "/" });
+    navigate({ to: "/" });
   };
   return (
     <header className="sticky top-0 z-10 flex h-(--header-height) shrink-0 items-center gap-2 border-b backdrop-blur supports-[backdrop-filter]:bg-background/60 md:rounded-t-xl">
