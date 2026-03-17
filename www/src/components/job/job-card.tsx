@@ -38,7 +38,7 @@ export function JobCard({
       to={isDemo ? "/" : "/$slug/jobs/$jobId"}
       params={{ slug, jobId: job.id }}
     >
-      <Card className="w-full group min-h-28 bg-card transition-all flex flex-row border items-center p-5 cursor-pointer gap-0">
+      <Card className="w-full group border-none min-h-28 bg-black/10 backdrop-blur-md transition-all flex flex-row items-center p-5 cursor-pointer gap-0">
         <div className="flex flex-1 flex-col">
           <div className="flex items-center justify-between">
             {/* job information */}
@@ -50,11 +50,11 @@ export function JobCard({
                 {/* {job.category && (
                   <Badge variant="default">{job.category.name}</Badge>
                 )} */}
-                <Badge variant="default">
+                <Badge variant="secondary" className="bg-white/15">
                   <BriefcaseBusiness />
                   {formatJobType(job.type)}
                 </Badge>
-                <Badge variant="default">
+                <Badge variant="secondary" className="bg-white/15">
                   <PinIcon />
                   {formatLocationMode(job.locationMode)}
                 </Badge>

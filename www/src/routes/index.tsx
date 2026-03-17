@@ -70,11 +70,52 @@ function App() {
               </Button>
             </div>
           </div>
-          <section className="px-4">
+          {/* <section className="px-4">
             <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
-          </section>
+          </section> */}
         </header>
         <section className="px-4">
+          <div className="w-full mx-auto">
+            <div className="relative overflow-hidden rounded-2xl border border-white/10">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: "url('/blue.png')" }}
+              />
+              <div className="absolute inset-0 bg-black/25" />
+              <div className="relative p-8">
+                <div className="p-2">
+                  <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* <section className="px-4">
+          <div className="w-full mx-auto">
+            <div className="relative overflow-hidden rounded-2xl bg-black/40">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: "url('/blue.png')" }}
+              />
+              <div className="absolute inset-0 bg-black/20" />
+              <div className="relative flex flex-col items-center justify-center text-center px-6 py-16 sm:py-20">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">
+                  Beautiful Career Pages
+                </h2>
+                <p className="mt-3 text-sm sm:text-base text-white/80">
+                  Vite. Optimized. Isomorphic. Deploy.
+                </p>
+                <Button
+                  variant={"secondary"}
+                  className="mt-6 bg-white text-black hover:bg-white"
+                >
+                  Start Hiring Now
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section> */}
+        {/* <section className="px-4">
           <div className="w-full mx-auto flex flex-col space-y-8">
             <div className="text-center">
               <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance ">
@@ -143,7 +184,7 @@ function App() {
               </Card>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
     </div>
   );
