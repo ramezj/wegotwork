@@ -76,7 +76,7 @@ function App() {
         </header>
         <section className="px-4">
           <div className="w-full mx-auto">
-            <div className="relative overflow-hidden rounded-2xl border border-white/10">
+            <div className="relative overflow-hidden rounded-2xl">
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: "url('/blue.png')" }}
