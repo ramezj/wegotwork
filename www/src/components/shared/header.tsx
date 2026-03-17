@@ -39,13 +39,17 @@ export default function Header({ session }: { session: Session | null }) {
   const authActions = session?.user ? (
     <>
       <Button
-        variant="secondary"
+        variant="outline"
         className="font-semibold cursor-pointer "
         onClick={logOut}
       >
         Log Out <LogOut className="size-4 ml-1" />
       </Button>
-      <Button variant="default" asChild className="font-semibold cursor-pointer ">
+      <Button
+        variant="default"
+        asChild
+        className="font-semibold cursor-pointer "
+      >
         <Link preload="render" to="/dashboard">
           Open Dashboard
         </Link>
