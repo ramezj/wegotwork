@@ -76,13 +76,13 @@ function App() {
         </header>
         <section className="px-4">
           <div className="w-full mx-auto">
-            <div className="relative overflow-hidden rounded-2xl">
+            <div className="relative overflow-hidden rounded-lg">
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: "url('/blue.png')" }}
               />
               <div className="absolute inset-0 bg-black/25" />
-              <div className="relative p-8">
+              <div className="relative p-6">
                 <div className="p-2">
                   <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
                 </div>
