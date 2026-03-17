@@ -81,7 +81,7 @@ function App() {
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: "url('/blue.png')" }}
               />
-              <div className="absolute inset-0 bg-black/25" />
+              <div className="absolute inset-0 bg-black/20" />
               <div className="relative p-2 md:p-6">
                 <div className="p-2">
                   <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
