@@ -27,7 +27,7 @@ export function Browser({ jobs }: BrowserProps) {
 
       {/* Browser content */}
       <div className="p-4">
-        <div className="flex flex-col items-center text-center space-y-4 py-4">
+        <div className="flex flex-col items-center text-center space-y-4 py-6 -mt-4">
           <Avatar className="w-16 h-16 rounded-lg">
             <AvatarFallback className="text-2xl bg-black/30 backdrop-blur-md text-white">
               L
