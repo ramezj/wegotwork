@@ -35,7 +35,7 @@ export function Browser({ jobs }: BrowserProps) {
           </Avatar>
           <div className="space-y-4">
             <h3 className="text-3xl md:text-4xl font-semibold tracking-tight leading-none ">
-              Loux
+              loux
             </h3>
             <p className="text-muted-foreground text-base text-balance font-medium leading-none ">
               Explore our open positions and join our team in building the

@@ -74,7 +74,7 @@ export default function Header({ session }: { session: Session | null }) {
       <Button variant="secondary" className="" onClick={logOut}>
         Log Out <LogOut className="size-4 ml-1" />
       </Button>
-      <Button variant="default" asChild className="w-full font-semibold ">
+      <Button variant="default" asChild className="">
         <Link preload="render" to="/dashboard">
           Open Dashboard
         </Link>
