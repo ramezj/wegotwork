@@ -71,11 +71,7 @@ export default function Header({ session }: { session: Session | null }) {
 
   const mobileActions = session?.user ? (
     <>
-      <Button
-        variant="secondary"
-        className="w-full font-semibold "
-        onClick={logOut}
-      >
+      <Button variant="secondary" className="" onClick={logOut}>
         Log Out <LogOut className="size-4 ml-1" />
       </Button>
       <Button variant="default" asChild className="w-full font-semibold ">

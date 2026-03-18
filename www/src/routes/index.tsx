@@ -28,8 +28,8 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Loux - Why not hire fast too?",
-        description: "Loux - You're building fast, Why not hire fast too?",
+        title: "loux - Why not hire fast too?",
+        description: "loux - You're building fast, Why not hire fast too?",
       },
     ],
   }),
