@@ -10,17 +10,17 @@ interface BrowserProps {
 
 export function Browser({ jobs }: BrowserProps) {
   return (
-    <Card className="rounded-lg overflow-hidden p-0 gap-0 bg-black/60 backdrop-blur-md border-none">
+    <Card className="rounded-lg overflow-hidden p-0 gap-0 bg-black/85 backdrop-blur-lg border-none">
       {/* Browser chrome */}
       <div className="flex items-center gap-2 p-4 ">
-        <div className="flex gap-1.5">
+        <div className="flex gap-1.5 ">
           <div className="size-3 bg-white/10 rounded-full" />
           <div className="size-3 bg-white/10 rounded-full" />
           <div className="size-3 bg-white/10 rounded-full" />
         </div>
         <div className="flex-1 ">
           <div className="bg-white/10 py-1 text-xs text-primary font-medium text-start p-2 rounded-md">
-            jobs.hireark.io
+            jobs.louxapp.io
           </div>
         </div>
       </div>
