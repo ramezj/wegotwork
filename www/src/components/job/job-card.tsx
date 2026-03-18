@@ -24,21 +24,10 @@ const formatJobType = (type: string) => {
   return map[type] || type;
 };
 
-export function JobCard({
-  job,
-  slug,
-  isDemo,
-}: {
-  job: JobWithCategory;
-  slug: string;
-  isDemo?: boolean;
-}) {
+export function JobCard({ job, slug }: { job: JobWithCategory; slug: string }) {
   return (
-    <Link
-      to={isDemo ? "/" : "/$slug/jobs/$jobId"}
-      params={{ slug, jobId: job.id }}
-    >
-      <Card className="w-full group border-none min-h-28 bg-black/50 transition-all flex flex-row items-center p-5 cursor-pointer gap-0">
+    <Link to={"/$slug/jobs/$jobId"} params={{ slug, jobId: job.id }}>
+      <Card className="w-full group min-h-28 bg-card hover:bg-muted/50 transition-all flex flex-row border border-input items-center p-5 cursor-pointer gap-0">
         <div className="flex flex-1 flex-col">
           <div className="flex items-center justify-between">
             {/* job information */}
@@ -50,11 +39,11 @@ export function JobCard({
                 {/* {job.category && (
                   <Badge variant="default">{job.category.name}</Badge>
                 )} */}
-                <Badge variant="secondary" className="bg-white/10">
+                <Badge variant="default">
                   <BriefcaseBusiness />
                   {formatJobType(job.type)}
                 </Badge>
-                <Badge variant="secondary" className="bg-white/10">
+                <Badge variant="default">
                   <PinIcon />
                   {formatLocationMode(job.locationMode)}
                 </Badge>
@@ -127,6 +116,67 @@ export function JobCardForViewPage({
             {/* <div className="sm:block hidden shrink-0">
               <div className="px-2">
                 <Button className="">
+                  View Job
+                  <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
+                </Button>
+              </div>
+            </div> */}
+            <div className="shrink-0">
+              <div className="px-2">
+                <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </Link>
+  );
+}
+
+export function JobCardForLandingPage({
+  job,
+  slug,
+  isDemo,
+}: {
+  job: JobWithCategory;
+  slug: string;
+  isDemo?: boolean;
+}) {
+  return (
+    <Link
+      to={isDemo ? "/" : "/$slug/jobs/$jobId"}
+      params={{ slug, jobId: job.id }}
+    >
+      <Card className="w-full group border-none min-h-28 bg-black/50 transition-all flex flex-row items-center p-5 cursor-pointer gap-0">
+        <div className="flex flex-1 flex-col">
+          <div className="flex items-center justify-between">
+            {/* job information */}
+            <div className="flex flex-col gap-2 flex-1 min-w-0">
+              <p className="font-bold text-lg truncate text-balance">
+                {job.title}
+              </p>
+              <div className="flex flex-row flex-wrap gap-1">
+                {/* {job.category && (
+                  <Badge variant="default">{job.category.name}</Badge>
+                )} */}
+                <Badge variant="secondary" className="bg-white/10">
+                  <BriefcaseBusiness />
+                  {formatJobType(job.type)}
+                </Badge>
+                <Badge variant="secondary" className="bg-white/10">
+                  <PinIcon />
+                  {formatLocationMode(job.locationMode)}
+                </Badge>
+                {/* <Badge variant="outline">
+                  {formatDistanceToNow(new Date(job.createdAt))}
+                </Badge> */}
+              </div>
+            </div>
+
+            {/* view job button */}
+            {/* <div className="sm:block hidden shrink-0">
+              <div className="px-2">
+                <Button className="lowercase">
                   View Job
                   <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
                 </Button>

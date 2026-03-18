@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { JobCard } from "@/components/job/job-card";
+import { JobCard, JobCardForLandingPage } from "@/components/job/job-card";
 import { JobWithCategory } from "@/types/job/job";
 import Glow from "../ui/glow";
 
@@ -46,7 +46,7 @@ export function Browser({ jobs }: BrowserProps) {
         <div className="space-y-4">
           {jobs.map((job, index) => (
             <div key={index}>
-              <JobCard job={job} slug="#" isDemo />
+              <JobCardForLandingPage job={job} slug="#" isDemo />
             </div>
           ))}
         </div>
