@@ -78,7 +78,7 @@ function App() {
           <div className="w-full mx-auto">
             <div className="relative overflow-hidden rounded-lg">
               <div
-                className="absolute inset-0 bg-cover bg-center"
+                className="absolute inset-0 bg-cover"
                 style={{ backgroundImage: "url('/blue.png')" }}
               />
               <div className="absolute inset-0" />
