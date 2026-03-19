@@ -2,21 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { getSession } from "@/features/auth/server-session";
 import Header from "@/components/shared/header";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ArrowRight,
-  BarChart3,
-  Building2,
-  FileText,
-  Users,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { JobWithCategory } from "@/types/job/job";
-import { Badge } from "@/components/ui/badge";
 import { Browser } from "@/components/shared/browser";
 
 export const Route = createFileRoute("/")({
@@ -42,48 +29,48 @@ function App() {
       <div className="h-16" />
       <Header session={session} />
       <main className="space-y-8 lg:w-[80%] w-full mx-auto">
-        <header className="flex flex-col space-y-8">
-          <section className="flex flex-col items-center text-center px-2">
-            <div className="w-full px-4">
-              {/* <Badge variant={"default"}>Currently in early development</Badge> */}
-              <h1 className="text-4xl tracking-tight sm:text-4xl lg:text-5xl 2xl:text-6xl font-bold  text-balance">
-                You're building fast, Why not hire fast too?
-              </h1>
-              {/* <p className="text-[1rem] font-medium text-balance text-muted-foreground">
-                Start with a career page, then run every job post, application,
-                and hiring decision inside one organized Ark.
-              </p> */}
+        <section className="px-4 py-8 lg:py-16">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left Side: Headline and Buttons */}
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-start space-y-8">
+              <div className="w-full">
+                <h1 className="text-4xl tracking-tight sm:text-5xl lg:text-6xl 2xl:text-7xl font-bold text-balance leading-[1.1]">
+                  You're building fast, <br className="hidden lg:block" />
+                  Why not hire fast too?
+                </h1>
+              </div>
+              <div className="flex flex-row w-full sm:w-auto items-center justify-center lg:justify-start gap-4">
+                <Button
+                  variant={"outline"}
+                  asChild
+                  className="px-8 py-6 text-lg"
+                >
+                  <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
+                    See Demo
+                  </a>
+                </Button>
+                <Button
+                  variant={"default"}
+                  asChild
+                  className="px-8 py-6 text-lg group"
+                >
+                  <Link to={"/"} target="_blank">
+                    Start Hiring
+                    <ArrowRight className="ml-2 h-5 w-5 duration-100 group-hover:-rotate-45" />
+                  </Link>
+                </Button>
+              </div>
             </div>
-          </section>
-          <div className="flex flex-col items-center px-4">
-            <div className="flex flex-row w-full items-center justify-center content-center gap-4">
-              <Button variant={"outline"} asChild className="flex-1 ">
-                <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
-                  See Demo
-                </a>
-              </Button>
-              <Button variant={"default"} asChild className="flex-1 group ">
-                <Link to={"/"} target="_blank">
-                  Start Hiring
-                  <ArrowRight className="duration-100 group-hover:-rotate-45" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-          {/* <section className="px-4">
-            <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
-          </section> */}
-        </header>
-        <section className="px-4">
-          <div className="w-full mx-auto">
-            <div className="relative overflow-hidden rounded-lg">
-              <div
-                className="absolute inset-0 bg-cover"
-                style={{ backgroundImage: "url('/blue.png')" }}
-              />
-              <div className="absolute inset-0" />
-              <div className="relative">
-                <div className="p-2">
+
+            {/* Right Side: Browser Component */}
+            <div className="w-full">
+              <div className="relative overflow-hidden rounded-2xl border border-border shadow-2xl">
+                <div
+                  className="absolute inset-0 bg-cover opacity-60"
+                  style={{ backgroundImage: "url('/blue.png')" }}
+                />
+                <div className="absolute inset-0 bg-white/10" />
+                <div className="relative p-1 md:p-3">
                   <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
                 </div>
               </div>
