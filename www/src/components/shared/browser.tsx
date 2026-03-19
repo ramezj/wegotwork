@@ -10,7 +10,7 @@ interface BrowserProps {
 
 export function Browser({ jobs }: BrowserProps) {
   return (
-    <Card className="rounded-lg overflow-hidden p-0 gap-0 bg-white border-none">
+    <Card className="rounded-lg overflow-hidden p-0 gap-0 bg-white">
       {/* Browser chrome */}
       <div className="flex items-center gap-2 p-4 ">
         <div className="flex gap-1.5 ">

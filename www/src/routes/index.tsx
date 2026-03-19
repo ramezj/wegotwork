@@ -69,7 +69,7 @@ function App() {
           </section> */}
         </header>
         <section className="px-4">
-          <div className="w-full mx-auto">
+          {/* <div className="w-full mx-auto">
             <div className="relative overflow-hidden rounded-lg">
               <div
                 className="absolute inset-0 bg-black"
@@ -82,7 +82,8 @@ function App() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
+          <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
         </section>
         {/* <section className="px-4">
           <div className="w-full mx-auto">
