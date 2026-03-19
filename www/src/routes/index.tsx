@@ -40,7 +40,7 @@ function App() {
           <section className="flex flex-col items-center text-center px-2">
             <div className="w-full px-4">
               {/* <Badge variant={"default"}>Currently in early development</Badge> */}
-              <h1 className="text-4xl tracking-tight sm:text-4xl lg:text-5xl 2xl:text-6xl font-bold  text-balance">
+              <h1 className="text-4xl tracking-tight sm:text-4xl lg:text-5xl 2xl:text-6xl font-semibold text-balance">
                 You're building fast, Why not hire fast too?
               </h1>
               {/* <p className="text-[1rem] font-medium text-balance text-muted-foreground">
@@ -56,10 +56,10 @@ function App() {
                   See Demo
                 </a>
               </Button>
-              <Button variant={"default"} asChild className="flex-1 group ">
+              <Button variant={"default"} asChild className="flex-1">
                 <Link to={"/"} target="_blank">
                   Start Hiring
-                  <ArrowRight className="duration-100 group-hover:-rotate-45" />
+                  {/* <ArrowRight className="duration-100 group-hover:-rotate-45" /> */}
                 </Link>
               </Button>
             </div>
