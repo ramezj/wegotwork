@@ -10,17 +10,17 @@ interface BrowserProps {
 
 export function Browser({ jobs }: BrowserProps) {
   return (
-    <Card className="rounded-lg overflow-hidden p-0 gap-0 bg-black/85 backdrop-blur-lg border-none">
+    <Card className="rounded-lg overflow-hidden p-0 gap-0 bg-white border-none">
       {/* Browser chrome */}
       <div className="flex items-center gap-2 p-4 ">
         <div className="flex gap-1.5 ">
-          <div className="size-3 bg-white/10 rounded-full" />
-          <div className="size-3 bg-white/10 rounded-full" />
-          <div className="size-3 bg-white/10 rounded-full" />
+          <div className="size-3 bg-black/10 rounded-full" />
+          <div className="size-3 bg-black/10 rounded-full" />
+          <div className="size-3 bg-black/10 rounded-full" />
         </div>
         <div className="flex-1 ">
-          <div className="bg-white/10 py-1 text-xs text-primary font-medium text-start p-2 rounded-md">
-            jobs.louxapp.io
+          <div className="bg-black/10 py-1 text-xs text-primary font-medium text-start p-2 rounded-md">
+            jobs.louxapp.com
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@ export function Browser({ jobs }: BrowserProps) {
       <div className="p-4">
         <div className="flex flex-col items-center text-center space-y-4 py-6 -mt-4">
           <Avatar className="w-16 h-16 rounded-lg">
-            <AvatarFallback className="text-2xl bg-black/30 backdrop-blur-md text-white">
+            <AvatarFallback className="text-2xl bg-black text-white">
               L
             </AvatarFallback>
           </Avatar>

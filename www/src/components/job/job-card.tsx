@@ -147,7 +147,7 @@ export function JobCardForLandingPage({
       to={isDemo ? "/" : "/$slug/jobs/$jobId"}
       params={{ slug, jobId: job.id }}
     >
-      <Card className="w-full group border-none min-h-28 bg-black/50 transition-all flex flex-row items-center p-5 cursor-pointer gap-0">
+      <Card className="w-full group min-h-28 bg-card hover:bg-muted/50 transition-all flex flex-row border border-input items-center p-5 cursor-pointer gap-0">
         <div className="flex flex-1 flex-col">
           <div className="flex items-center justify-between">
             {/* job information */}
@@ -159,11 +159,11 @@ export function JobCardForLandingPage({
                 {/* {job.category && (
                   <Badge variant="default">{job.category.name}</Badge>
                 )} */}
-                <Badge variant="secondary" className="bg-white/10">
+                <Badge variant="default">
                   <BriefcaseBusiness />
                   {formatJobType(job.type)}
                 </Badge>
-                <Badge variant="secondary" className="bg-white/10">
+                <Badge variant="default">
                   <PinIcon />
                   {formatLocationMode(job.locationMode)}
                 </Badge>

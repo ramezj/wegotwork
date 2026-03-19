@@ -2,9 +2,16 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { getSession } from "@/features/auth/server-session";
 import Header from "@/components/shared/header";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BarChart3 } from "lucide-react";
 import { JobWithCategory } from "@/types/job/job";
 import { Browser } from "@/components/shared/browser";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Building2, FileText, Users } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   beforeLoad: async () => {
@@ -65,8 +72,8 @@ function App() {
           <div className="w-full mx-auto">
             <div className="relative overflow-hidden rounded-lg">
               <div
-                className="absolute inset-0 bg-cover"
-                style={{ backgroundImage: "url('/blue.png')" }}
+                className="absolute inset-0 bg-black"
+                // style={{ backgroundImage: "url('/blue.png')" }}
               />
               <div className="absolute inset-0" />
               <div className="relative">
@@ -102,7 +109,7 @@ function App() {
             </div>
           </div>
         </section> */}
-        {/* <section className="px-4">
+        <section className="px-4">
           <div className="w-full mx-auto flex flex-col space-y-8">
             <div className="text-center">
               <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance ">
@@ -171,7 +178,7 @@ function App() {
               </Card>
             </div>
           </div>
-        </section> */}
+        </section>
       </main>
     </div>
   );
