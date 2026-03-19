@@ -118,11 +118,57 @@ export function EditJobForm({
       <form
         id="edit-job-form"
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-6"
+        className="flex flex-col space-y-4"
       >
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-secondary shrink-0">
+              <Briefcase className="h-4 w-4 text-secondary-foreground" />
+            </div>
+            <div>
+              <CardTitle className="text-base">Job Status</CardTitle>
+              <CardDescription className="text-xs">
+                Set the status of the job
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-0">
+            <Controller
+              control={form.control}
+              name="status"
+              render={({ field, fieldState }) => (
+                <Field
+                  data-invalid={fieldState.invalid}
+                  className="w-full sm:max-w-64"
+                >
+                  <FieldLabel>Status</FieldLabel>
+                  <FieldContent>
+                    <Select
+                      aria-invalid={fieldState.invalid}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                    >
+                      <SelectTrigger className="w-full bg-background">
+                        <SelectValue placeholder="Select status" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="DRAFT">Draft</SelectItem>
+                        <SelectItem value="PUBLISHED">Published</SelectItem>
+                        <SelectItem value="CLOSED">Closed</SelectItem>
+                        <SelectItem value="ARCHIVED">Archived</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FieldContent>
+                  <FieldError errors={[fieldState.error]} />
+                </Field>
+              )}
+            />
+          </CardContent>
+        </Card>
+
         {/* General */}
         <Card>
-          <CardHeader className="flex flex-row items-center gap-3 ">
+          <CardHeader className="flex flex-row items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-secondary shrink-0">
               <Briefcase className="h-4 w-4 text-secondary-foreground" />
             </div>
@@ -197,33 +243,6 @@ export function EditJobForm({
                   </Field>
                 )}
               />
-              <Controller
-                control={form.control}
-                name="status"
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel>Status</FieldLabel>
-                    <FieldContent>
-                      <Select
-                        aria-invalid={fieldState.invalid}
-                        value={field.value}
-                        onValueChange={field.onChange}
-                      >
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select status" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="DRAFT">Draft</SelectItem>
-                          <SelectItem value="PUBLISHED">Published</SelectItem>
-                          <SelectItem value="CLOSED">Closed</SelectItem>
-                          <SelectItem value="ARCHIVED">Archived</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FieldContent>
-                    <FieldError errors={[fieldState.error]} />
-                  </Field>
-                )}
-              />
             </div>
             <Controller
               control={form.control}
@@ -261,7 +280,7 @@ export function EditJobForm({
 
         {/* Location */}
         <Card>
-          <CardHeader className="flex flex-row items-center gap-3 ">
+          <CardHeader className="flex flex-row items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-secondary shrink-0">
               <MapPin className="h-4 w-4 text-secondary-foreground" />
             </div>
@@ -357,7 +376,7 @@ export function EditJobForm({
 
         {/* Compensation */}
         <Card>
-          <CardHeader className="flex flex-row items-center gap-3 ">
+          <CardHeader className="flex flex-row items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-secondary shrink-0">
               <DollarSign className="h-4 w-4 text-secondary-foreground" />
             </div>
@@ -477,7 +496,7 @@ export function EditJobForm({
 
         {/* Application Form */}
         <Card>
-          <CardHeader className="flex flex-row items-center gap-3 ">
+          <CardHeader className="flex flex-row items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-secondary shrink-0">
               <FileText className="h-4 w-4 text-secondary-foreground" />
             </div>
@@ -488,7 +507,7 @@ export function EditJobForm({
               </CardDescription>
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col gap-4">
             <Controller
               control={form.control}
               name="questions"

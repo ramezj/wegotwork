@@ -41,7 +41,7 @@ function App() {
             <div className="w-full px-4">
               {/* <Badge variant={"default"}>Currently in early development</Badge> */}
               <h1 className="text-4xl tracking-tight sm:text-4xl lg:text-5xl 2xl:text-6xl font-semibold text-balance">
-                You're building fast, Why not hire fast too?
+                You're building fast, why not hire fast too?
               </h1>
               {/* <p className="text-[1rem] font-medium text-balance text-muted-foreground">
                 Start with a career page, then run every job post, application,
@@ -114,7 +114,7 @@ function App() {
           <div className="w-full mx-auto flex flex-col space-y-8">
             <div className="text-center">
               <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance ">
-                Everything you need to start hiring.
+                The simplest all-in-one hiring platform
               </h1>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
