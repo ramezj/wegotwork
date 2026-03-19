@@ -15,9 +15,12 @@ export default function Header({ session }: { session: Session | null }) {
   ];
 
   const logo = (
-    <Link to="/" className="text-xl font-semibold tracking-tight mr-2">
-      loux
-    </Link>
+    // <Link to="/" className="mr-2 flex items-center">
+    //   <img src="/logo.png" alt="loux" className="h-8 w-auto" />
+    // </Link>
+    <Button className="mr-2" variant="default" size="icon">
+      <Link to="/">L</Link>
+    </Button>
   );
 
   const desktopNav = navLinks.map((link) => (
@@ -63,7 +66,7 @@ export default function Header({ session }: { session: Session | null }) {
     <Link
       key={link.label}
       to={link.href}
-      className="flex items-center py-2 rounded-md text-base font-medium text-foreground hover:bg-muted transition-colors"
+      className="flex items-center p-2 rounded-md text-base font-medium text-foreground hover:bg-muted transition-colors"
     >
       {link.label}
     </Link>

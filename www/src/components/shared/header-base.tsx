@@ -63,10 +63,10 @@ export function HeaderBase({
       {/* Top bar */}
       <div className="h-16 flex items-center justify-between shrink-0">
         {/* Left side: Logo + Desktop Nav */}
-        <div className="flex items-baseline gap-1" onClick={() => setOpen(false)}>
+        <div className="flex items-center gap-1" onClick={() => setOpen(false)}>
           {logo}
           {desktopNav && (
-            <nav className="hidden md:flex flex-row gap-2 items-baseline">
+            <nav className="hidden md:flex flex-row gap-2 items-center">
               {desktopNav}
             </nav>
           )}

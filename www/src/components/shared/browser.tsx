@@ -14,12 +14,12 @@ export function Browser({ jobs }: BrowserProps) {
       {/* Browser chrome */}
       <div className="flex items-center gap-2 p-4 ">
         <div className="flex gap-1.5 ">
-          <div className="size-3 bg-black/10 rounded-full" />
-          <div className="size-3 bg-black/10 rounded-full" />
-          <div className="size-3 bg-black/10 rounded-full" />
+          <div className="size-3 bg-secondary rounded-full" />
+          <div className="size-3 bg-secondary rounded-full" />
+          <div className="size-3 bg-secondary rounded-full" />
         </div>
         <div className="flex-1 ">
-          <div className="bg-black/10 py-1 text-xs text-primary font-medium text-start p-2 rounded-md">
+          <div className="bg-secondary py-1 text-xs text-primary font-medium text-start p-2 rounded-md">
             jobs.louxapp.com
           </div>
         </div>
