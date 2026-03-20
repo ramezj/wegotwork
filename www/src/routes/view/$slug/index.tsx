@@ -109,7 +109,16 @@ function RouteComponent() {
   // Apply employment type and location filters to a job list
   const applyFilters = <T extends (typeof jobs)[number]>(jobList: T[]) =>
     jobList.filter((job) => {
-      if (selectedType && job.type !== selectedType) return false;
+      if (selectedType) {
+        const matchesType =
+          job.type === selectedType ||
+          ((selectedType === "FULLTIME" || selectedType === "PARTTIME") &&
+            job.type === "FULLTIME_PARTTIME") ||
+          (selectedType === "FULLTIME_PARTTIME" &&
+            (job.type === "FULLTIME" || job.type === "PARTTIME"));
+
+        if (!matchesType) return false;
+      }
       if (selectedLocation && job.locationMode !== selectedLocation)
         return false;
       return true;
