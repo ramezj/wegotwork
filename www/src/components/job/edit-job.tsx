@@ -134,36 +134,35 @@ export function EditJobForm({
             </div>
           </CardHeader>
           <CardContent className="pt-0">
-            <Controller
-              control={form.control}
-              name="status"
-              render={({ field, fieldState }) => (
-                <Field
-                  data-invalid={fieldState.invalid}
-                  className="w-full sm:max-w-64"
-                >
-                  <FieldLabel required>Status</FieldLabel>
-                  <FieldContent>
-                    <Select
-                      aria-invalid={fieldState.invalid}
-                      value={field.value}
-                      onValueChange={field.onChange}
-                    >
-                      <SelectTrigger className="w-full bg-background">
-                        <SelectValue placeholder="Select status" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="DRAFT">Draft</SelectItem>
-                        <SelectItem value="PUBLISHED">Published</SelectItem>
-                        <SelectItem value="CLOSED">Closed</SelectItem>
-                        <SelectItem value="ARCHIVED">Archived</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </FieldContent>
-                  <FieldError errors={[fieldState.error]} />
-                </Field>
-              )}
-            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Controller
+                control={form.control}
+                name="status"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel required>Status</FieldLabel>
+                    <FieldContent>
+                      <Select
+                        aria-invalid={fieldState.invalid}
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger className="w-full bg-background">
+                          <SelectValue placeholder="Select status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="DRAFT">Draft</SelectItem>
+                          <SelectItem value="PUBLISHED">Published</SelectItem>
+                          <SelectItem value="CLOSED">Closed</SelectItem>
+                          <SelectItem value="ARCHIVED">Archived</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+            </div>
           </CardContent>
         </Card>
 
@@ -247,38 +246,68 @@ export function EditJobForm({
                   </Field>
                 )}
               />
+              <Controller
+                control={form.control}
+                name="categoryId"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Category</FieldLabel>
+                    <FieldContent>
+                      <Select
+                        aria-invalid={fieldState.invalid}
+                        value={field.value || "none"}
+                        onValueChange={(value) =>
+                          field.onChange(value === "none" ? "" : value)
+                        }
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select a category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="none">No Category</SelectItem>
+                          {categories.map((category) => (
+                            <SelectItem key={category.id} value={category.id}>
+                              {category.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
             </div>
-            <Controller
-              control={form.control}
-              name="categoryId"
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Category</FieldLabel>
-                  <FieldContent>
-                    <Select
-                      aria-invalid={fieldState.invalid}
-                      value={field.value || "none"}
-                      onValueChange={(value) =>
-                        field.onChange(value === "none" ? "" : value)
-                      }
-                    >
-                      <SelectTrigger className="w-full sm:w-64">
-                        <SelectValue placeholder="Select a category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="none">No Category</SelectItem>
-                        {categories.map((category) => (
-                          <SelectItem key={category.id} value={category.id}>
-                            {category.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </FieldContent>
-                  <FieldError errors={[fieldState.error]} />
-                </Field>
-              )}
-            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Controller
+                control={form.control}
+                name="experienceLevel"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel required>Experience Level</FieldLabel>
+                    <FieldContent>
+                      <Select
+                        aria-invalid={fieldState.invalid}
+                        value={field.value || ""}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select level" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="ENTRY">Entry</SelectItem>
+                          <SelectItem value="MID">Mid</SelectItem>
+                          <SelectItem value="SENIOR">Senior</SelectItem>
+                          <SelectItem value="LEAD">Lead</SelectItem>
+                          <SelectItem value="EXECUTIVE">Executive</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+            </div>
           </CardContent>
         </Card>
 
@@ -296,32 +325,34 @@ export function EditJobForm({
             </div>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            <Controller
-              control={form.control}
-              name="locationMode"
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel required>Work Mode</FieldLabel>
-                  <FieldContent>
-                    <Select
-                      aria-invalid={fieldState.invalid}
-                      value={field.value}
-                      onValueChange={field.onChange}
-                    >
-                      <SelectTrigger className="w-full sm:w-48">
-                        <SelectValue placeholder="Select mode" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="REMOTE">Remote</SelectItem>
-                        <SelectItem value="ONSITE">Onsite</SelectItem>
-                        <SelectItem value="HYBRID">Hybrid</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </FieldContent>
-                  <FieldError errors={[fieldState.error]} />
-                </Field>
-              )}
-            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Controller
+                control={form.control}
+                name="locationMode"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel required>Work Mode</FieldLabel>
+                    <FieldContent>
+                      <Select
+                        aria-invalid={fieldState.invalid}
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select mode" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="REMOTE">Remote</SelectItem>
+                          <SelectItem value="ONSITE">Onsite</SelectItem>
+                          <SelectItem value="HYBRID">Hybrid</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Controller
                 control={form.control}
@@ -392,7 +423,7 @@ export function EditJobForm({
             </div>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Controller
                 control={form.control}
                 name="showSalary"
@@ -407,7 +438,7 @@ export function EditJobForm({
                           field.onChange(value === "true")
                         }
                       >
-                        <SelectTrigger className="w-full sm:w-48">
+                        <SelectTrigger className="w-full">
                           <SelectValue placeholder="Select mode" />
                         </SelectTrigger>
                         <SelectContent>
@@ -415,50 +446,6 @@ export function EditJobForm({
                           <SelectItem value="false">No</SelectItem>
                         </SelectContent>
                       </Select>
-                    </FieldContent>
-                    <FieldError errors={[fieldState.error]} />
-                  </Field>
-                )}
-              />
-              <Controller
-                control={form.control}
-                name="salaryMin"
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel>Min Salary</FieldLabel>
-                    <FieldContent>
-                      <Input
-                        aria-invalid={fieldState.invalid}
-                        type="number"
-                        placeholder="e.g. 80000"
-                        {...field}
-                        onChange={(e) => {
-                          const val = e.target.valueAsNumber;
-                          field.onChange(isNaN(val) ? undefined : val);
-                        }}
-                      />
-                    </FieldContent>
-                    <FieldError errors={[fieldState.error]} />
-                  </Field>
-                )}
-              />
-              <Controller
-                control={form.control}
-                name="salaryMax"
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel>Max Salary</FieldLabel>
-                    <FieldContent>
-                      <Input
-                        aria-invalid={fieldState.invalid}
-                        type="number"
-                        placeholder="e.g. 120000"
-                        {...field}
-                        onChange={(e) => {
-                          const val = e.target.valueAsNumber;
-                          field.onChange(isNaN(val) ? undefined : val);
-                        }}
-                      />
                     </FieldContent>
                     <FieldError errors={[fieldState.error]} />
                   </Field>
@@ -493,35 +480,51 @@ export function EditJobForm({
                   </Field>
                 )}
               />
+              <Controller
+                control={form.control}
+                name="salaryMin"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Min Salary</FieldLabel>
+                    <FieldContent>
+                      <Input
+                        aria-invalid={fieldState.invalid}
+                        type="number"
+                        placeholder="e.g. 80000"
+                        {...field}
+                        onChange={(e) => {
+                          const val = e.target.valueAsNumber;
+                           field.onChange(isNaN(val) ? undefined : val);
+                        }}
+                      />
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+              <Controller
+                control={form.control}
+                name="salaryMax"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Max Salary</FieldLabel>
+                    <FieldContent>
+                      <Input
+                        aria-invalid={fieldState.invalid}
+                        type="number"
+                        placeholder="e.g. 120000"
+                        {...field}
+                        onChange={(e) => {
+                          const val = e.target.valueAsNumber;
+                          field.onChange(isNaN(val) ? undefined : val);
+                        }}
+                      />
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
             </div>
-            <Controller
-              control={form.control}
-              name="experienceLevel"
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel required>Experience Level</FieldLabel>
-                  <FieldContent>
-                    <Select
-                      aria-invalid={fieldState.invalid}
-                      value={field.value || ""}
-                      onValueChange={field.onChange}
-                    >
-                      <SelectTrigger className="w-full sm:w-48">
-                        <SelectValue placeholder="Select level" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="ENTRY">Entry</SelectItem>
-                        <SelectItem value="MID">Mid</SelectItem>
-                        <SelectItem value="SENIOR">Senior</SelectItem>
-                        <SelectItem value="LEAD">Lead</SelectItem>
-                        <SelectItem value="EXECUTIVE">Executive</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </FieldContent>
-                  <FieldError errors={[fieldState.error]} />
-                </Field>
-              )}
-            />
           </CardContent>
         </Card>
 
