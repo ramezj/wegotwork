@@ -10,7 +10,6 @@ import { Button } from "../ui/button";
 import {
   useMutation,
   useQueryClient,
-  useSuspenseQuery,
 } from "@tanstack/react-query";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,26 +20,14 @@ import { organizationBySlugQueryOptions } from "@/features/queries/organization"
 import { toast } from "sonner";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
-import { Loader, PlusIcon, GitBranch, Briefcase } from "lucide-react";
-import { pipelinesQueryOptions } from "@/features/queries/ats";
-import { redirect } from "@tanstack/react-router";
+import { Loader, PlusIcon, Briefcase } from "lucide-react";
 import { useState } from "react";
 
 export function CreateJobDialog({ slug }: { slug: string }) {
   const queryClient = useQueryClient();
   const [open, setOpen] = useState(false);
 
-  // Get organization data to get organizationId
-  const { data: orgData } = useSuspenseQuery(
-    organizationBySlugQueryOptions(slug),
-  );
-  const organizationId = orgData?.organization?.id;
 
-  // Get pipelines for the organization
-  const { data: pipelinesData } = useSuspenseQuery(
-    pipelinesQueryOptions(organizationId || ""),
-  );
-  const pipelines = pipelinesData || [];
 
   const form = useForm({
     defaultValues: {
@@ -111,7 +98,7 @@ export function CreateJobDialog({ slug }: { slug: string }) {
             name="title"
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel>Job Title</FieldLabel>
+                <FieldLabel required>Job Title</FieldLabel>
                 <FieldContent>
                   <Input
                     aria-invalid={fieldState.invalid}

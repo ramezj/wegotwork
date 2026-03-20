@@ -18,6 +18,7 @@ const formatJobType = (type: string) => {
   const map: Record<string, string> = {
     FULLTIME: "Full Time",
     PARTTIME: "Part Time",
+    FULLTIME_PARTTIME: "Full Time or Part Time",
     INTERNSHIP: "Internship",
     CONTRACT: "Contract",
   };

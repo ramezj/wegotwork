@@ -122,15 +122,15 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-sm font-semibold">Custom Questions</h3>
+          <h3 className=" font-semibold">Custom Questions</h3>
           <p className="text-xs text-muted-foreground mt-0.5">
             {value.length === 0
               ? "No custom questions yet"
               : `${value.length} question${value.length !== 1 ? "s" : ""} added`}
           </p>
         </div>
-        <Button type="button" size="sm" onClick={addField} className="gap-1.5">
-          <Plus className="h-3.5 w-3.5" />
+        <Button type="button" onClick={addField}>
+          <Plus />
           Add Question
         </Button>
       </div>
@@ -139,13 +139,13 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
       {value.length === 0 && (
         <div
           onClick={addField}
-          className="flex flex-col items-center justify-center gap-3 border rounded-lg p-10 text-center cursor-pointer hover:border-primary/40 hover:bg-muted/40 transition-all group"
+          className="flex flex-col items-center justify-center gap-3 border p-10 text-center cursor-pointer hover:border-primary/40 hover:bg-muted/40 transition-all group"
         >
-          <div className="size-10 rounded-full bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+          <div className="size-10 bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
             <Plus className="size-4 text-muted-foreground group-hover:text-primary transition-colors" />
           </div>
           <div>
-            <p className="text-sm font-medium">Add your first question</p>
+            <p className=" font-medium">Add your first question</p>
             <p className="text-xs text-muted-foreground mt-1">
               Candidates already provide Name, Email, and Resume by default.
             </p>
@@ -164,8 +164,8 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
             <div
               key={field.id}
               className={cn(
-                "border rounded-xl bg-card overflow-hidden transition-all",
-                isExpanded ? "shadow-sm" : "hover:border-border/80",
+                "border overflow-hidden transition-all",
+                isExpanded ? "" : "hover:border-border/80",
               )}
             >
               {/* Field header row — always visible */}
@@ -205,8 +205,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                 {/* Field type icon */}
                 <div
                   className={cn(
-                    "size-7 rounded-md flex items-center justify-center shrink-0",
-                    "bg-muted",
+                    "size-7 flex items-center justify-center shrink-0",
                   )}
                 >
                   <Icon
@@ -219,7 +218,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
 
                 {/* Label + badges */}
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate">
+                  <p className=" font-medium truncate">
                     {field.label || (
                       <span className="text-muted-foreground italic">
                         Untitled question
@@ -257,11 +256,11 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
 
               {/* Expanded editing panel */}
               {isExpanded && (
-                <div className="border-t bg-muted/20 px-4 py-4 space-y-4">
+                <div className="border-t px-4 py-4 space-y-4">
                   {/* Question label + type */}
                   <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-3">
                     <div className="space-y-1.5">
-                      <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                      <Label className="text-xs font-medium text-muted-foreground  tracking-wide">
                         Question Label
                       </Label>
                       <Input
@@ -275,7 +274,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                     </div>
 
                     <div className="space-y-1.5">
-                      <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                      <Label className="text-xs font-medium text-muted-foreground  tracking-wide">
                         Type
                       </Label>
                       <Select
@@ -294,7 +293,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                                 <t.icon
                                   className={cn("h-3.5 w-3.5", t.color)}
                                 />
-                                <span className="text-sm">{t.label}</span>
+                                <span className="">{t.label}</span>
                               </div>
                             </SelectItem>
                           ))}
@@ -307,7 +306,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                   {(field.type === "SHORT_ANSWER" ||
                     field.type === "LONG_ANSWER") && (
                     <div className="space-y-1.5">
-                      <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                      <Label className="text-xs font-medium text-muted-foreground  tracking-wide">
                         Placeholder hint{" "}
                         <span className="normal-case font-normal">
                           (optional)
@@ -329,7 +328,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                   {/* Options for SELECT */}
                   {field.type === "SELECT" && (
                     <div className="space-y-2">
-                      <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                      <Label className="text-xs font-medium text-muted-foreground  tracking-wide">
                         Options
                       </Label>
                       <div className="space-y-1.5">
@@ -338,7 +337,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                             key={optIndex}
                             className="flex gap-2 items-center"
                           >
-                            <div className="size-5 shrink-0 rounded border bg-background flex items-center justify-center">
+                            <div className="size-5 shrink-0 rounded border flex items-center justify-center">
                               <span className="text-[10px] text-muted-foreground font-mono">
                                 {optIndex + 1}
                               </span>
@@ -351,7 +350,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                                 updateField(field.id, { options: newOptions });
                               }}
                               placeholder={`Option ${optIndex + 1}`}
-                              className="h-8 text-sm"
+                              className="h-8 "
                             />
                             <button
                               type="button"
@@ -375,7 +374,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                               options: [...(field.options || []), ""],
                             })
                           }
-                          className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors w-full border border-dashed rounded-lg px-3 py-2 hover:border-border"
+                          className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors w-full border border-dashed px-3 py-2 hover:border-border"
                         >
                           <Plus className="h-3 w-3" />
                           Add option
@@ -403,14 +402,14 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                       </Label>
                     </div>
 
-                    <button
-                      type="button"
+                    <Button
+                      variant={"destructive"}
                       onClick={() => removeField(field.id)}
-                      className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-destructive transition-colors"
+                      className=""
                     >
                       <Trash2 className="h-3.5 w-3.5" />
                       Remove question
-                    </button>
+                    </Button>
                   </div>
                 </div>
               )}
@@ -424,7 +423,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
         <button
           type="button"
           onClick={addField}
-          className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors w-full border border-dashed rounded-xl px-4 py-3 hover:border-border hover:bg-muted/30"
+          className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors w-full border border-dashed px-4 py-3 hover:border-border hover:bg-muted/30"
         >
           <Plus className="h-3.5 w-3.5" />
           Add another question

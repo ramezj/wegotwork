@@ -58,6 +58,7 @@ export function EditJobForm({
       description: job.description || "",
       status: job.status || "DRAFT",
       type: job.type || "FULLTIME",
+      showSalary: job.showSalary ?? false,
       locationMode: job.locationMode || "ONSITE",
       country: job.country || "",
       city: job.city || "",
@@ -141,7 +142,7 @@ export function EditJobForm({
                   data-invalid={fieldState.invalid}
                   className="w-full sm:max-w-64"
                 >
-                  <FieldLabel>Status</FieldLabel>
+                  <FieldLabel required>Status</FieldLabel>
                   <FieldContent>
                     <Select
                       aria-invalid={fieldState.invalid}
@@ -185,7 +186,7 @@ export function EditJobForm({
               name="title"
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Job Title</FieldLabel>
+                  <FieldLabel required>Job Title</FieldLabel>
                   <FieldContent>
                     <Input
                       aria-invalid={fieldState.invalid}
@@ -221,7 +222,7 @@ export function EditJobForm({
                 name="type"
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel>Employment Type</FieldLabel>
+                    <FieldLabel required>Employment Type</FieldLabel>
                     <FieldContent>
                       <Select
                         aria-invalid={fieldState.invalid}
@@ -234,6 +235,9 @@ export function EditJobForm({
                         <SelectContent>
                           <SelectItem value="FULLTIME">Full Time</SelectItem>
                           <SelectItem value="PARTTIME">Part Time</SelectItem>
+                          <SelectItem value="FULLTIME_PARTTIME">
+                            Full Time or Part Time
+                          </SelectItem>
                           <SelectItem value="INTERNSHIP">Internship</SelectItem>
                           <SelectItem value="CONTRACT">Contract</SelectItem>
                         </SelectContent>
@@ -297,7 +301,7 @@ export function EditJobForm({
               name="locationMode"
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Work Mode</FieldLabel>
+                  <FieldLabel required>Work Mode</FieldLabel>
                   <FieldContent>
                     <Select
                       aria-invalid={fieldState.invalid}
@@ -391,6 +395,33 @@ export function EditJobForm({
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Controller
                 control={form.control}
+                name="showSalary"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Show Salary</FieldLabel>
+                    <FieldContent>
+                      <Select
+                        aria-invalid={fieldState.invalid}
+                        value={String(field.value)}
+                        onValueChange={(value) =>
+                          field.onChange(value === "true")
+                        }
+                      >
+                        <SelectTrigger className="w-full sm:w-48">
+                          <SelectValue placeholder="Select mode" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="true">Yes</SelectItem>
+                          <SelectItem value="false">No</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+              <Controller
+                control={form.control}
                 name="salaryMin"
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
@@ -438,7 +469,7 @@ export function EditJobForm({
                 name="salaryInterval"
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel>Interval</FieldLabel>
+                    <FieldLabel required>Interval</FieldLabel>
                     <FieldContent>
                       <Select
                         aria-invalid={fieldState.invalid}
@@ -468,7 +499,7 @@ export function EditJobForm({
               name="experienceLevel"
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Experience Level</FieldLabel>
+                  <FieldLabel required>Experience Level</FieldLabel>
                   <FieldContent>
                     <Select
                       aria-invalid={fieldState.invalid}

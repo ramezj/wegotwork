@@ -153,6 +153,7 @@ model Invitation {
 enum Type {
   FULLTIME
   PARTTIME
+  FULLTIME_PARTTIME
   INTERNSHIP
   CONTRACT
 }
@@ -197,6 +198,7 @@ model Job {
   country        String?
   city           String?
   description    String?
+  showSalary     Boolean @default(false)
   salaryMin      Int?
   salaryMax      Int?
   currency       String?      @default("USD")

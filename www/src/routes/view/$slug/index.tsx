@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, Check } from "lucide-react";
 import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const Route = createFileRoute("/view/$slug/")({
   component: RouteComponent,
@@ -32,6 +31,7 @@ export const Route = createFileRoute("/view/$slug/")({
 const EMPLOYMENT_TYPES = [
   { value: "FULLTIME", label: "Full-time" },
   { value: "PARTTIME", label: "Part-time" },
+  { value: "FULLTIME_PARTTIME", label: "Full-time or Part-time" },
   { value: "INTERNSHIP", label: "Internship" },
   { value: "CONTRACT", label: "Contract" },
 ] as const;
