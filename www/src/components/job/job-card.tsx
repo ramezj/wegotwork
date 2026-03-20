@@ -145,7 +145,7 @@ export function JobCardForCandidatesPage({
 }) {
   return (
     <Link
-      viewTransition
+      // viewTransition
       to={"/$slug/candidates/$jobId"}
       params={{ slug, jobId: job.id }}
       preload="render"
