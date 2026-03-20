@@ -1,11 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute(
-  '/$slug/_layout/candidates/$jobId/$applicantId',
+  '/$slug/_layout/candidates/$jobId/$candidateId',
 )({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <div>Hello "/$slug/_layout/applicants/$jobId/$applicantId"!</div>
+  return <div>Hello "/$slug/_layout/candidates/$jobId/$candidateId"!</div>
 }

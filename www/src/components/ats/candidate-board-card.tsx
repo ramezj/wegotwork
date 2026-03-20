@@ -14,21 +14,21 @@ import { formatDistanceToNow } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@tanstack/react-router";
 
-interface ApplicantCardProps {
-  applicant: any;
-  onMove?: (applicantId: string, newStageId: string) => void;
+interface CandidateBoardCardProps {
+  candidate: any;
+  onMove?: (candidateId: string, newStageId: string) => void;
   stages?: any[];
   slug: string;
 }
 
-export function ApplicantCard({
-  applicant,
+export function CandidateBoardCard({
+  candidate,
   onMove,
   stages = [],
   slug,
-}: ApplicantCardProps) {
-  const jobId = applicant.jobId || "";
-  const currentStage = stages.find((s) => s.id === applicant.currentStageId);
+}: CandidateBoardCardProps) {
+  const jobId = candidate.jobId || "";
+  const currentStage = stages.find((s) => s.id === candidate.currentStageId);
 
   return (
     <Card className="group relative overflow-hidden transition-all duration-200 h-full flex flex-col rounded-none">
@@ -40,15 +40,15 @@ export function ApplicantCard({
             </div>
             <div className="min-w-0 flex-1">
               <Link
-                to="/$slug/candidates/$jobId/$applicantId"
-                params={{ slug, jobId, applicantId: applicant.id }}
+                to="/$slug/candidates/$jobId/$candidateId"
+                params={{ slug, jobId, candidateId: candidate.id }}
                 className="font-semibold text-[0.95rem] hover:underline underline-offset-4 decoration-muted-foreground/30 truncate block"
               >
-                {applicant.name}
+                {candidate.name}
               </Link>
               <div className="flex items-center text-xs text-muted-foreground mt-1 gap-1.5">
                 <Mail className="size-3 shrink-0 opacity-70" />
-                <span className="truncate">{applicant.email}</span>
+                <span className="truncate">{candidate.email}</span>
               </div>
             </div>
           </div>
@@ -67,8 +67,8 @@ export function ApplicantCard({
               <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem asChild>
                   <Link
-                    to="/$slug/candidates/$jobId/$applicantId"
-                    params={{ slug, jobId, applicantId: applicant.id }}
+                    to="/$slug/candidates/$jobId/$candidateId"
+                    params={{ slug, jobId, candidateId: candidate.id }}
                     className="flex items-center cursor-pointer"
                   >
                     <User className="size-4 mr-2 opacity-70" /> View Profile
@@ -85,8 +85,8 @@ export function ApplicantCard({
                       {stages.map((stage) => (
                         <DropdownMenuItem
                           key={stage.id}
-                          disabled={stage.id === applicant.currentStageId}
-                          onClick={() => onMove(applicant.id, stage.id)}
+                          disabled={stage.id === candidate.currentStageId}
+                          onClick={() => onMove(candidate.id, stage.id)}
                         >
                           {stage.name}
                         </DropdownMenuItem>
@@ -109,12 +109,12 @@ export function ApplicantCard({
                 {currentStage.name}
               </Badge>
             )}
-            {applicant.evaluations?.length > 0 && (
+            {candidate.evaluations?.length > 0 && (
               <Badge
                 variant="secondary"
                 className="px-2 h-6 text-[10px] font-bold bg-primary/5 text-primary border-transparent"
               >
-                {applicant.evaluations.length} EVALUATIONS
+                {candidate.evaluations.length} EVALUATIONS
               </Badge>
             )}
           </div>
@@ -122,7 +122,7 @@ export function ApplicantCard({
           <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground font-medium uppercase tracking-wider opacity-60">
             <Calendar className="size-3" />
             <span>
-              Applied {formatDistanceToNow(new Date(applicant.createdAt))} ago
+              Applied {formatDistanceToNow(new Date(candidate.createdAt))} ago
             </span>
           </div>
         </div>

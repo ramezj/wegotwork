@@ -8,13 +8,13 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 interface EvaluationFormProps {
-  applicantId: string;
+  candidateId: string;
   stageId: string;
   onSuccess?: () => void;
 }
 
 export function EvaluationForm({
-  applicantId,
+  candidateId,
   stageId,
   onSuccess,
 }: EvaluationFormProps) {
@@ -44,7 +44,7 @@ export function EvaluationForm({
     }
     mutation.mutate({
       data: {
-        applicantId,
+        candidateId,
         stageId,
         score,
         feedback,

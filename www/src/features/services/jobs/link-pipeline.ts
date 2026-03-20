@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import z from "zod";
-import { moveApplicantsToPipelineFirstStage } from "./utils";
+import { moveCandidatesToPipelineFirstStage } from "./utils";
 
 export const linkJobToPipelineFn = createServerFn()
   .inputValidator(
@@ -39,8 +39,8 @@ export const linkJobToPipelineFn = createServerFn()
       },
     });
 
-    // Move applicants to the first stage of the new pipeline
-    await moveApplicantsToPipelineFirstStage(
+    // Move candidates to the first stage of the new pipeline
+    await moveCandidatesToPipelineFirstStage(
       data.jobId,
       data.pipelineId,
       session.user.id,

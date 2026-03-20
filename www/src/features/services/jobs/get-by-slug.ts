@@ -21,7 +21,7 @@ export const getJobsBySlugFn = createServerFn()
         include: {
           jobs: {
             include: {
-              applicants: true,
+              candidates: true,
               category: true,
             },
           },

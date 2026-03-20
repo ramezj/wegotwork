@@ -22,7 +22,7 @@ const statusConfig: Record<
   HIRED: { label: "Hired", variant: "success" as any },
 };
 
-export function StatusBadge({ status }: { status: Status }) {
+export function CandidateStatusBadge({ status }: { status: Status }) {
   const config = statusConfig[status];
   return (
     <Badge variant={config.variant as any} className="rounded-sm font-medium">

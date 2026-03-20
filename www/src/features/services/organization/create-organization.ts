@@ -61,7 +61,6 @@ export const createOrganizationFn = createServerFn()
           },
           pipelines: {
             create: {
-              name: "General Hiring Pipeline",
               stages: {
                 create: [
                   { name: "Screening", order: 1 },

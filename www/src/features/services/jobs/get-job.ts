@@ -29,15 +29,16 @@ export const getJobByIdFn = createServerFn()
               stages: { orderBy: { order: "asc" } },
             },
           },
-          applicants: {
+          candidates: {
             include: {
               currentStage: true,
               evaluations: true,
+              responses: true,
             },
           },
           _count: {
             select: {
-              applicants: true,
+              candidates: true,
             },
           },
         },

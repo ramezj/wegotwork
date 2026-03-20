@@ -1,7 +1,7 @@
 import {
   Organization,
   Job,
-  Applicant,
+  Candidate,
   JobCategory,
   JobQuestion,
   Pipeline,
@@ -12,7 +12,7 @@ import {
 
 export type OrganizationWithDetails = Organization & {
   jobs: (Job & {
-    applicants: Applicant[];
+    candidates: Candidate[];
     category: JobCategory | null;
     questions: JobQuestion[];
   })[];
@@ -23,7 +23,7 @@ export type OrganizationWithDetails = Organization & {
 export type OrganizationResponse = {
   success: boolean;
   organization: OrganizationWithDetails | null;
-  applicantCount: number;
+  candidateCount: number;
   error?: string;
 };
 

@@ -4,7 +4,7 @@ import { organizationBySlugQueryOptions } from "@/features/queries/organization"
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Users, ChevronRight, Briefcase } from "lucide-react";
-import { Job, Applicant } from "generated/prisma/client";
+import { Job, Candidate } from "generated/prisma/client";
 import { Layout } from "@/components/shared/layout";
 import { JobCardForCandidatesPage } from "@/components/job/job-card";
 
@@ -29,7 +29,7 @@ function RouteComponent() {
     return <div>Failed to load organization</div>;
   }
 
-  const jobs = data.organization.jobs as (Job & { applicants: Applicant[] })[];
+  const jobs = data.organization.jobs as (Job & { candidates: Candidate[] })[];
 
   return (
     <Layout title="Candidates">
@@ -72,7 +72,7 @@ function RouteComponent() {
           <JobCardForCandidatesPage
             job={job}
             slug={slug}
-            candidates={job.applicants.length}
+            candidates={job.candidates.length}
           />
         ))}
 

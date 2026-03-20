@@ -98,7 +98,7 @@ export const updatePipelineFn = createServerFn()
 
         for (const stage of stagesToDelete) {
           // Check if stage has applicants or evaluations
-          const applicantsCount = await tx.applicant.count({
+          const applicantsCount = await tx.candidate.count({
             where: { currentStageId: stage.id },
           });
           const evaluationsCount = await tx.evaluation.count({

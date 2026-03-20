@@ -208,7 +208,7 @@ model Job {
   updatedAt      DateTime     @updatedAt
   organizationId String
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  applicants     Applicant[]
+  candidates     Candidate[]
   categoryId     String?
   category       JobCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   questions      JobQuestion[]
@@ -238,7 +238,7 @@ model Stage {
   order          Int          @default(0)
   pipelineId     String
   pipeline       Pipeline     @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
-  applicants     Applicant[]
+  candidates     Candidate[]
   evaluations    Evaluation[]
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
@@ -253,14 +253,14 @@ model Evaluation {
   feedback       String?
   interviewerId  String
   interviewer    User         @relation(fields: [interviewerId], references: [id], onDelete: Cascade)
-  applicantId    String
-  applicant      Applicant    @relation(fields: [applicantId], references: [id], onDelete: Cascade)
+  candidateId    String
+  candidate      Candidate    @relation(fields: [candidateId], references: [id], onDelete: Cascade)
   stageId        String
   stage          Stage        @relation(fields: [stageId], references: [id], onDelete: Cascade)
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
 
-  @@index([applicantId])
+  @@index([candidateId])
   @@index([stageId])
   @@map("evaluation")
 }
@@ -271,11 +271,11 @@ model ActivityLog {
   metadata       Json?        // Stores old/new values
   actorId        String?
   actor          User?        @relation(fields: [actorId], references: [id], onDelete: SetNull)
-  applicantId    String
-  applicant      Applicant    @relation(fields: [applicantId], references: [id], onDelete: Cascade)
+  candidateId    String
+  candidate      Candidate    @relation(fields: [candidateId], references: [id], onDelete: Cascade)
   createdAt      DateTime     @default(now())
 
-  @@index([applicantId])
+  @@index([candidateId])
   @@map("activity_log")
 }
 
@@ -283,11 +283,11 @@ model Communication {
   id             String       @id @default(cuid())
   type           String       // EMAIL, NOTE, CALL
   content        String
-  applicantId    String
-  applicant      Applicant    @relation(fields: [applicantId], references: [id], onDelete: Cascade)
+  candidateId    String
+  candidate      Candidate    @relation(fields: [candidateId], references: [id], onDelete: Cascade)
   createdAt      DateTime     @default(now())
 
-  @@index([applicantId])
+  @@index([candidateId])
   @@map("communication")
 }
 
@@ -305,6 +305,7 @@ model JobQuestion {
   
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  responses   CandidateResponse[]
 
   @@index([jobId])
   @@map("job_question")
@@ -319,7 +320,7 @@ enum Status {
   HIRED
 }
 
-model Applicant {
+model Candidate {
   id             String       @id @default(cuid())
   name           String
   email          String
@@ -327,20 +328,35 @@ model Applicant {
   updatedAt      DateTime     @updatedAt
   status         Status       @default(SUBMITTED)
   resumeKey      String
-  responses      Json         @default("{}")
   jobId          String
   job            Job          @relation(fields: [jobId], references: [id], onDelete: Cascade)
   
   currentStageId String
   currentStage   Stage       @relation(fields: [currentStageId], references: [id], onDelete: Cascade)
   
+  responses      CandidateResponse[]
   evaluations    Evaluation[]
   activityLogs   ActivityLog[]
   communications Communication[]
 
   @@index([jobId])
   @@index([currentStageId])
-  @@map("applicant")
+  @@map("candidate")
+}
+
+model CandidateResponse {
+  id          String      @id @default(cuid())
+  candidateId String
+  candidate   Candidate   @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  questionId  String
+  question    JobQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  answer      Json
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([candidateId])
+  @@index([questionId])
+  @@map("candidate_response")
 }
 
 model JobCategory {

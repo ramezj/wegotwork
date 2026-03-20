@@ -15,25 +15,25 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { StatusBadge } from "./StatusBadge";
-import type { Applicant, Status } from "generated/prisma/client";
+import { CandidateStatusBadge } from "./CandidateStatusBadge";
+import type { Candidate, Status, CandidateResponse } from "generated/prisma/client";
 import { ExternalLink, Mail, FileText } from "lucide-react";
-import { updateApplicantStatusFn } from "@/features/services/applicants/update-status";
+import { updateCandidateStatusFn } from "@/features/services/candidates/update-status";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { FormConfig } from "@/types/form-config";
 import { Badge } from "@/components/ui/badge";
 
-type ApplicantWithJob = Applicant & {
+type CandidateWithJob = Candidate & {
   job: {
     title: string;
     id: string;
     formConfig: any; // FormConfig
   };
+  responses: (CandidateResponse & { question: any })[];
 };
 
-interface ApplicantProfileProps {
-  applicant: ApplicantWithJob | null;
+interface CandidateSheetProfileProps {
+  candidate: CandidateWithJob | null;
   isOpen: boolean;
   onClose: () => void;
   orgSlug: string;
@@ -48,48 +48,47 @@ const statuses: { value: Status; label: string }[] = [
   { value: "HIRED", label: "Hired" },
 ];
 
-export function ApplicantProfile({
-  applicant,
+export function CandidateSheetProfile({
+  candidate,
   isOpen,
   onClose,
   orgSlug,
-}: ApplicantProfileProps) {
+}: CandidateSheetProfileProps) {
   const queryClient = useQueryClient();
 
   const { mutate: updateStatus, isPending } = useMutation({
     mutationFn: (newStatus: Status) =>
-      updateApplicantStatusFn({
-        data: { id: applicant!.id, status: newStatus },
+      updateCandidateStatusFn({
+        data: { id: candidate!.id, status: newStatus },
       }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["applicants", orgSlug] });
-      toast.success("Applicant status updated");
+      queryClient.invalidateQueries({ queryKey: ["candidates", orgSlug] });
+      toast.success("Candidate status updated");
     },
     onError: () => {
       toast.error("Failed to update status");
     },
   });
 
-  if (!applicant) return null;
+  if (!candidate) return null;
 
-  const formConfig = (applicant.job.formConfig as any as FormConfig) || [];
-  const responses = (applicant.responses as Record<string, any>) || {};
+  const responses = candidate.responses || [];
 
   return (
     <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <SheetContent className="sm:max-w-xl overflow-y-auto">
         <SheetHeader className="space-y-4">
           <div className="flex items-center justify-between">
-            <StatusBadge status={applicant.status} />
+            <CandidateStatusBadge status={candidate.status} />
           </div>
           <div>
             <SheetTitle className="text-2xl font-bold">
-              {applicant.name}
+              {candidate.name}
             </SheetTitle>
             <SheetDescription className="text-base">
               Applied for{" "}
               <span className="font-medium text-foreground">
-                {applicant.job.title}
+                {candidate.job.title}
               </span>
             </SheetDescription>
           </div>
@@ -100,7 +99,7 @@ export function ApplicantProfile({
           <div className="space-y-3">
             <Label>Move to Status</Label>
             <Select
-              value={applicant.status}
+              value={candidate.status}
               onValueChange={(value) => updateStatus(value as Status)}
               disabled={isPending}
             >
@@ -126,11 +125,11 @@ export function ApplicantProfile({
             </h3>
             <div className="grid gap-3">
               <a
-                href={`mailto:${applicant.email}`}
+                href={`mailto:${candidate.email}`}
                 className="flex items-center gap-2 text-sm hover:underline text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Mail className="size-4" />
-                {applicant.email}
+                {candidate.email}
               </a>
             </div>
           </div>
@@ -138,37 +137,39 @@ export function ApplicantProfile({
           <Separator />
 
           {/* Dynamic Responses */}
-          {formConfig.length > 0 && (
+          {responses.length > 0 && (
             <>
               <div className="space-y-6">
-                {formConfig.map((field) => {
-                  const value = responses[field.id];
-                  if (value === undefined || value === null || value === "")
-                    return null;
+                {responses.map((resp) => {
+                  const question = resp.question;
+                  if (!question) return null;
+
+                  const answerValue = resp.answer as string;
+                  if (!answerValue) return null;
 
                   return (
-                    <div key={field.id} className="space-y-2">
+                    <div key={resp.id} className="space-y-2">
                       <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                        {field.label}
+                        {question.label}
                       </h3>
-                      {field.type === "LONG_ANSWER" ? (
+                      {question.type === "LONG_ANSWER" ? (
                         <p className="text-sm leading-relaxed text-foreground/80 whitespace-pre-wrap">
-                          {value}
+                          {answerValue}
                         </p>
-                      ) : field.type === "CHECKBOX" ? (
+                      ) : question.type === "CHECKBOX" ? (
                         <p className="text-sm text-foreground/80">
-                          {value ? "Yes" : "No"}
+                          {answerValue === "true" ? "Yes" : "No"}
                         </p>
-                      ) : field.type === "MULTI_SELECT" ? (
+                      ) : question.type === "MULTI_SELECT" ? (
                         <div className="flex flex-wrap gap-1">
-                          {(value as string[]).map((v) => (
+                          {answerValue.split(",").map((v) => (
                             <Badge key={v} variant="secondary">
                               {v}
                             </Badge>
                           ))}
                         </div>
                       ) : (
-                        <p className="text-sm text-foreground/80">{value}</p>
+                        <p className="text-sm text-foreground/80">{answerValue}</p>
                       )}
                     </div>
                   );
@@ -189,7 +190,7 @@ export function ApplicantProfile({
               asChild
             >
               <a
-                href={`/api/resumes/${applicant.resumeKey}`}
+                href={`/api/resumes/${candidate.resumeKey}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

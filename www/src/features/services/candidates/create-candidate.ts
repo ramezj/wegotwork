@@ -1,11 +1,11 @@
 import { createServerFn } from "@tanstack/react-start";
 import prisma from "@/lib/prisma";
-import { applicantSchema } from "@/types/applicant";
+import { candidateSchema } from "@/types/candidate";
 import { generateDynamicSchema } from "@/lib/dynamic-schema";
 import { FormConfig } from "@/types/form-config";
 
-export const createApplicantFn = createServerFn()
-  .inputValidator(applicantSchema)
+export const createCandidateFn = createServerFn()
+  .inputValidator(candidateSchema)
   .handler(async ({ data }) => {
     try {
       const job = await prisma.job.findUnique({
@@ -47,15 +47,20 @@ export const createApplicantFn = createServerFn()
         throw new Error("Job pipeline has no stages");
       }
 
-      const applicant = await prisma.applicant.create({
+      const candidate = await prisma.candidate.create({
         data: {
           name: data.name,
           email: data.email,
           resumeKey: data.resumeKey,
-          responses: data.responses,
           jobId: data.jobId,
           status: "SUBMITTED",
           currentStageId: firstStageId,
+          responses: {
+            create: Object.entries(data.responses).map(([questionId, answer]) => ({
+              questionId,
+              answer: answer as any,
+            })),
+          },
         },
       });
 
@@ -63,7 +68,7 @@ export const createApplicantFn = createServerFn()
       await prisma.activityLog.create({
         data: {
           action: "APPLIED",
-          applicantId: applicant.id,
+          candidateId: candidate.id,
           metadata: {
             jobTitle: job.title,
             stage: job?.pipeline?.stages[0]?.name || "Initial",
@@ -71,9 +76,9 @@ export const createApplicantFn = createServerFn()
         },
       });
 
-      return { success: true, applicant };
+      return { success: true, candidate };
     } catch (error) {
-      console.error("Error in createApplicantFn:", error);
+      console.error("Error in createCandidateFn:", error);
       throw new Error("Failed to submit application");
     }
   });

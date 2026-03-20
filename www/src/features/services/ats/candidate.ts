@@ -3,10 +3,10 @@ import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import { z } from "zod";
 
-export const moveApplicantStageFn = createServerFn()
+export const moveCandidateStageFn = createServerFn()
   .inputValidator(
     z.object({
-      applicantId: z.string(),
+      candidateId: z.string(),
       newStageId: z.string(),
     }),
   )
@@ -15,12 +15,12 @@ export const moveApplicantStageFn = createServerFn()
     const { session } = context;
     if (!session?.user) throw new Error("Unauthorized");
 
-    const applicant = await prisma.applicant.findUnique({
-      where: { id: data.applicantId },
+    const candidate = await prisma.candidate.findUnique({
+      where: { id: data.candidateId },
       include: { currentStage: true },
     });
 
-    if (!applicant) throw new Error("Applicant not found");
+    if (!candidate) throw new Error("Candidate not found");
 
     const newStage = await prisma.stage.findUnique({
       where: { id: data.newStageId },
@@ -28,8 +28,8 @@ export const moveApplicantStageFn = createServerFn()
 
     if (!newStage) throw new Error("New stage not found");
 
-    const updatedApplicant = await prisma.applicant.update({
-      where: { id: data.applicantId },
+    const updatedCandidate = await prisma.candidate.update({
+      where: { id: data.candidateId },
       data: { currentStageId: data.newStageId },
       include: { currentStage: true },
     });
@@ -38,26 +38,26 @@ export const moveApplicantStageFn = createServerFn()
       data: {
         action: "MOVED_STAGE",
         actorId: session.user.id,
-        applicantId: data.applicantId,
+        candidateId: data.candidateId,
         metadata: {
-          from: applicant.currentStage?.name || "Initial Stage",
+          from: candidate.currentStage?.name || "Initial Stage",
           to: newStage.name,
         },
       },
     });
 
-    return updatedApplicant;
+    return updatedCandidate;
   });
 
-export const getApplicantHistoryFn = createServerFn()
-  .inputValidator(z.object({ applicantId: z.string() }))
+export const getCandidateHistoryFn = createServerFn()
+  .inputValidator(z.object({ candidateId: z.string() }))
   .middleware([authMiddleware])
   .handler(async ({ data, context }) => {
     const { session } = context;
     if (!session?.user) throw new Error("Unauthorized");
 
-    return await prisma.applicant.findUnique({
-      where: { id: data.applicantId },
+    return await prisma.candidate.findUnique({
+      where: { id: data.candidateId },
       include: {
         activityLogs: {
           include: { actor: true },
@@ -69,6 +69,9 @@ export const getApplicantHistoryFn = createServerFn()
         evaluations: {
           include: { stage: true, interviewer: true },
           orderBy: { createdAt: "desc" },
+        },
+        responses: {
+          include: { question: true },
         },
       },
     });

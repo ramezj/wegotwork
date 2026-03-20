@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 
-export async function moveApplicantsToPipelineFirstStage(
+export async function moveCandidatesToPipelineFirstStage(
   jobId: string,
   pipelineId: string,
   actorId: string,
@@ -15,31 +15,28 @@ export async function moveApplicantsToPipelineFirstStage(
 
   const stageIds = pipelineWithStages.stages.map((s) => s.id);
 
-  // Find applicants needing migration (none or wrong pipeline)
-  const applicantsToUpdate = await prisma.applicant.findMany({
+  // Find candidates needing migration (none or wrong pipeline)
+  const candidatesToUpdate = await prisma.candidate.findMany({
     where: {
       jobId,
-      OR: [
-        { currentStageId: null },
-        { NOT: { currentStageId: { in: stageIds } } },
-      ],
+      NOT: { currentStageId: { in: stageIds } },
     },
   });
 
-  if (applicantsToUpdate.length === 0) return;
+  if (candidatesToUpdate.length === 0) return;
 
-  // Update applicants in a transaction for safety
+  // Update candidates in a transaction for safety
   await prisma.$transaction(async (tx) => {
-    for (const applicant of applicantsToUpdate) {
-      await tx.applicant.update({
-        where: { id: applicant.id },
+    for (const candidate of candidatesToUpdate) {
+      await tx.candidate.update({
+        where: { id: candidate.id },
         data: { currentStageId: firstStageId },
       });
 
       await tx.activityLog.create({
         data: {
           action: "MOVED_STAGE",
-          applicantId: applicant.id,
+          candidateId: candidate.id,
           actorId,
           metadata: {
             from: "Unassigned / Previous Pipeline",

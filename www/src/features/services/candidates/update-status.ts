@@ -1,17 +1,17 @@
 import { createServerFn } from "@tanstack/react-start";
 import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
-import { updateApplicantStatusSchema } from "@/types/applicant";
+import { updateCandidateStatusSchema } from "@/types/candidate";
 
-export const updateApplicantStatusFn = createServerFn()
+export const updateCandidateStatusFn = createServerFn()
   .middleware([authMiddleware])
-  .inputValidator(updateApplicantStatusSchema)
+  .inputValidator(updateCandidateStatusSchema)
   .handler(async ({ data, context }) => {
     const { session } = context;
 
     try {
-      // Check if user has access to the applicant's organization
-      const applicant = await prisma.applicant.findUnique({
+      // Check if user has access to the candidate's organization
+      const candidate = await prisma.candidate.findUnique({
         where: { id: data.id },
         include: {
           job: {
@@ -22,13 +22,13 @@ export const updateApplicantStatusFn = createServerFn()
         },
       });
 
-      if (!applicant) {
-        throw new Error("Applicant not found");
+      if (!candidate) {
+        throw new Error("Candidate not found");
       }
 
       const membership = await prisma.member.findFirst({
         where: {
-          organizationId: applicant.job.organizationId,
+          organizationId: candidate.job.organizationId,
           userId: session.user.id,
         },
       });
@@ -37,16 +37,16 @@ export const updateApplicantStatusFn = createServerFn()
         throw new Error("Access denied");
       }
 
-      const updatedApplicant = await prisma.applicant.update({
+      const updatedCandidate = await prisma.candidate.update({
         where: { id: data.id },
         data: {
           status: data.status,
         },
       });
 
-      return { success: true, applicant: updatedApplicant };
+      return { success: true, candidate: updatedCandidate };
     } catch (error) {
-      console.error("Error in updateApplicantStatusFn:", error);
-      throw new Error("Failed to update applicant status");
+      console.error("Error in updateCandidateStatusFn:", error);
+      throw new Error("Failed to update candidate status");
     }
   });

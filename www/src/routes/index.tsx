@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { getSession } from "@/features/auth/server-session";
 import Header from "@/components/shared/header";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BarChart3 } from "lucide-react";
+import { BarChart3 } from "lucide-react";
 import { JobWithCategory } from "@/types/job/job";
 import { Browser } from "@/components/shared/browser";
 import {
@@ -197,6 +197,7 @@ const dummyJobs: JobWithCategory[] = [
     city: "San Francisco",
     description:
       "We are looking for an experienced software engineer to join our team.",
+    showSalary: false,
     salaryMin: 120000,
     salaryMax: 180000,
     currency: "USD",
@@ -225,6 +226,7 @@ const dummyJobs: JobWithCategory[] = [
     country: "United States",
     city: "Remote",
     description: "Looking for a product designer with a strong portfolio.",
+    showSalary: false,
     salaryMin: 100000,
     salaryMax: 150000,
     currency: "USD",
@@ -253,6 +255,7 @@ const dummyJobs: JobWithCategory[] = [
     country: "United Kingdom",
     city: "London",
     description: "Join our marketing team as an intern and learn the ropes.",
+    showSalary: false,
     salaryMin: 2000,
     salaryMax: 3000,
     currency: "GBP",

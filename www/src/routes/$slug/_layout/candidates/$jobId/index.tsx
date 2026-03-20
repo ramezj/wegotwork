@@ -7,7 +7,7 @@ import {
 import { getJobByIdFn } from "@/features/services/jobs/get-job";
 import { createPipelineFn } from "@/features/services/ats/pipeline";
 import { toast } from "sonner";
-import { moveApplicantStageFn } from "@/features/services/ats/applicant";
+import { moveCandidateStageFn } from "@/features/services/ats/candidate";
 import { linkJobToPipelineFn } from "@/features/services/jobs/link-pipeline";
 import { pipelinesQueryOptions } from "@/features/queries/ats";
 import {
@@ -65,18 +65,18 @@ function RouteComponent() {
   const pipelines = pipelinesData || [];
 
   const moveMutation = useMutation({
-    mutationFn: moveApplicantStageFn,
+    mutationFn: moveCandidateStageFn,
     onSuccess: () => {
       queryClient.invalidateQueries();
-      toast.success("Applicant moved successfully");
+      toast.success("Candidate moved successfully");
     },
     onError: (error: any) => {
-      toast.error(error.message || "Failed to move applicant");
+      toast.error(error.message || "Failed to move candidate");
     },
   });
 
-  const handleMoveApplicant = (applicantId: string, newStageId: string) => {
-    moveMutation.mutate({ data: { applicantId, newStageId } });
+  const handleMoveCandidate = (candidateId: string, newStageId: string) => {
+    moveMutation.mutate({ data: { candidateId, newStageId } });
   };
 
   if (!data?.success || !data?.job) {
@@ -93,7 +93,7 @@ function RouteComponent() {
 
   const job = data.job;
   const pipeline = job.pipeline;
-  const applicants = job.applicants || [];
+  const candidates = job.candidates || [];
 
   const handleLinkExisting = (val: string) => {
     linkPipelineMutation.mutate({
@@ -155,8 +155,8 @@ function RouteComponent() {
       ) : (
         <ATSListView
           pipeline={pipeline}
-          applicants={applicants}
-          onMoveApplicant={handleMoveApplicant}
+          candidates={candidates}
+          onMoveCandidate={handleMoveCandidate}
           slug={slug}
           organizationId={job.organizationId}
           jobName={job.title}

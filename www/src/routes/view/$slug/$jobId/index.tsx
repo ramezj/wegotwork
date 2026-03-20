@@ -14,8 +14,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { uploadResumeFn } from "@/features/services/applicants/upload-resume";
-import { createApplicantFn } from "@/features/services/applicants/create-applicant";
+import { uploadResumeFn } from "@/features/services/candidates/upload-resume";
+import { createCandidateFn } from "@/features/services/candidates/create-candidate";
 import { toast } from "sonner";
 import { CheckCircle2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -152,8 +152,8 @@ function RouteComponent() {
       const uploadResult = await uploadResumeFn({ data: uploadFormData });
       const resumeKey = uploadResult.key;
 
-      // 2. Create applicant
-      return createApplicantFn({
+      // 2. Create candidate
+      return createCandidateFn({
         data: {
           name: values.name,
           email: values.email,

@@ -38,7 +38,6 @@ export const createJobFn = createServerFn()
             : undefined,
           pipeline: {
             create: {
-              name: `${data.job.title} Pipeline`,
               organizationId: organization.id,
               stages: {
                 create: [
@@ -57,7 +56,7 @@ export const createJobFn = createServerFn()
               type: q.type,
               label: q.label,
               placeholder: q.placeholder,
-              required: q.required,
+              required: !!q.required,
               options: q.options,
               order: q.order,
             })),

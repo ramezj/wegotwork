@@ -4,30 +4,25 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Mail,
-  Phone,
-  MapPin,
   Calendar,
-  FileText,
   MessageSquare,
   History,
   Star,
-  User,
   CheckCircle2,
-  XCircle,
 } from "lucide-react";
 import { formatDistanceToNow, format } from "date-fns";
 import { EvaluationForm } from "./evaluation-form";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-interface ApplicantProfileProps {
-  applicant: any;
+interface CandidateProfileProps {
+  candidate: any;
   history: any;
 }
 
-export function ApplicantProfile({
-  applicant,
+export function CandidateProfile({
+  candidate,
   history,
-}: ApplicantProfileProps) {
+}: CandidateProfileProps) {
   const evaluations = history?.evaluations || [];
   const activityLogs = history?.activityLogs || [];
 
@@ -44,9 +39,9 @@ export function ApplicantProfile({
         <Card className="rounded-3xl border shadow-sm overflow-hidden">
           <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
             <Avatar className="size-24 rounded-2xl shadow-xl shadow-primary/10">
-              <AvatarImage src={applicant.image} />
+              <AvatarImage src={candidate.image} />
               <AvatarFallback className="text-2xl bg-primary/10 text-primary font-bold">
-                {applicant.name
+                {candidate.name
                   .split(" ")
                   .map((n: string) => n[0])
                   .join("")}
@@ -55,22 +50,22 @@ export function ApplicantProfile({
 
             <div className="space-y-1">
               <h2 className="text-2xl font-bold tracking-tight">
-                {applicant.name}
+                {candidate.name}
               </h2>
               <p className="text-muted-foreground font-medium">
-                {applicant.job?.title}
+                {candidate.job?.title}
               </p>
             </div>
 
             <div className="w-full pt-4 space-y-3">
               <div className="flex items-center gap-3 text-sm font-medium text-muted-foreground bg-muted/30 p-3 rounded-xl">
                 <Mail className="size-4 text-primary" />
-                <span className="truncate">{applicant.email}</span>
+                <span className="truncate">{candidate.email}</span>
               </div>
               <div className="flex items-center gap-3 text-sm font-medium text-muted-foreground bg-muted/30 p-3 rounded-xl">
                 <Calendar className="size-4 text-primary" />
                 <span>
-                  Applied {formatDistanceToNow(new Date(applicant.createdAt))}{" "}
+                  Applied {formatDistanceToNow(new Date(candidate.createdAt))}{" "}
                   ago
                 </span>
               </div>
@@ -106,7 +101,7 @@ export function ApplicantProfile({
                 variant="default"
                 className="rounded-lg h-7 px-3 shadow-sm"
               >
-                {applicant.currentStage?.name || "Submitted"}
+                {candidate.currentStage?.name || "Submitted"}
               </Badge>
             </div>
             <div className="flex items-center justify-between">
@@ -147,8 +142,8 @@ export function ApplicantProfile({
 
           <TabsContent value="timeline" className="mt-6">
             <ScrollArea className="h-[500px] pr-4">
-              <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-primary/20 before:via-primary/20 before:to-transparent">
-                {activityLogs.map((log: any, i: number) => (
+              <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:bg-linear-to-b before:from-primary/20 before:via-primary/20 before:to-transparent">
+                {activityLogs.map((log: any) => (
                   <div key={log.id} className="relative pl-12 group">
                     <div className="absolute left-0 top-1 size-10 rounded-xl bg-background border-2 border-primary/20 flex items-center justify-center text-primary shadow-sm group-hover:border-primary transition-all">
                       {log.action === "MOVED_STAGE" ? (
@@ -249,8 +244,8 @@ export function ApplicantProfile({
               </CardHeader>
               <CardContent className="p-8 pt-0">
                 <EvaluationForm
-                  applicantId={applicant.id}
-                  stageId={applicant.currentStageId}
+                  candidateId={candidate.id}
+                  stageId={candidate.currentStageId}
                 />
               </CardContent>
             </Card>

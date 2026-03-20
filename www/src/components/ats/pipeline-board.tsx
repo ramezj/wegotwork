@@ -2,37 +2,37 @@ import { StageColumn } from "./stage-column";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import { moveApplicantStageFn } from "@/features/services/ats/applicant";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { EditPipelineDialog } from "./edit-pipeline-dialog";
+import { moveCandidateStageFn } from "@/features/services/ats/candidate";
 
 interface PipelineBoardProps {
   pipeline: any;
-  applicants: any[];
+  candidates: any[];
   organizationId: string;
 }
 
 export function PipelineBoard({
   pipeline,
-  applicants,
+  candidates,
   organizationId,
 }: PipelineBoardProps) {
   const queryClient = useQueryClient();
 
   const moveMutation = useMutation({
-    mutationFn: moveApplicantStageFn,
+    mutationFn: moveCandidateStageFn,
     onSuccess: () => {
       queryClient.invalidateQueries();
-      toast.success("Applicant moved successfully");
+      toast.success("Candidate moved successfully");
     },
     onError: (error: any) => {
-      toast.error(error.message || "Failed to move applicant");
+      toast.error(error.message || "Failed to move candidate");
     },
   });
 
-  const handleMoveApplicant = (applicantId: string, newStageId: string) => {
-    moveMutation.mutate({ data: { applicantId, newStageId } });
+  const handleMoveCandidate = (candidateId: string, newStageId: string) => {
+    moveMutation.mutate({ data: { candidateId, newStageId } });
   };
 
   const stages = pipeline.stages || [];
@@ -54,10 +54,10 @@ export function PipelineBoard({
               key={stage.id}
               stage={stage}
               allStages={stages}
-              applicants={applicants.filter(
-                (a) => a.currentStageId === stage.id,
+              candidates={candidates.filter(
+                (c) => c.currentStageId === stage.id,
               )}
-              onMoveApplicant={handleMoveApplicant}
+              onMoveCandidate={handleMoveCandidate}
             />
           ))}
 

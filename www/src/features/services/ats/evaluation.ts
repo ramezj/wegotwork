@@ -6,7 +6,7 @@ import { z } from "zod";
 export const createEvaluationFn = createServerFn()
   .inputValidator(
     z.object({
-      applicantId: z.string(),
+      candidateId: z.string(),
       stageId: z.string(),
       score: z.number().min(1).max(5),
       feedback: z.string().optional(),
@@ -22,7 +22,7 @@ export const createEvaluationFn = createServerFn()
         score: data.score,
         feedback: data.feedback,
         interviewerId: session.user.id,
-        applicantId: data.applicantId,
+        candidateId: data.candidateId,
         stageId: data.stageId,
       },
       include: {
@@ -35,7 +35,7 @@ export const createEvaluationFn = createServerFn()
       data: {
         action: "ADDED_EVALUATION",
         actorId: session.user.id,
-        applicantId: data.applicantId,
+        candidateId: data.candidateId,
         metadata: {
           stage: evaluation.stage.name,
           score: data.score,

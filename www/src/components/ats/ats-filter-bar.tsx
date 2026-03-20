@@ -26,7 +26,7 @@ interface ATSFilterBarProps {
   activeStageId: string;
   onStageChange: (value: string) => void;
   stages: Stage[];
-  totalApplicants: number;
+  totalCandidates: number;
   resultsCount: number;
 }
 
@@ -36,14 +36,14 @@ export function ATSFilterBar({
   activeStageId,
   onStageChange,
   stages,
-  totalApplicants,
+  totalCandidates,
   resultsCount,
 }: ATSFilterBarProps) {
   const isMobile = useIsMobile();
   const activeStage = stages.find((s) => s.id === activeStageId);
   const activeLabel =
     activeStageId === "all"
-      ? `All Stages (${totalApplicants})`
+      ? `All Stages (${totalCandidates})`
       : `${activeStage?.name} (${activeStage?.count})`;
 
   return (
@@ -85,7 +85,7 @@ export function ATSFilterBar({
                 className="DropdownMenuContent"
               >
                 <DropdownMenuItem onClick={() => onStageChange("all")}>
-                  All Stages ({totalApplicants})
+                  All Stages ({totalCandidates})
                 </DropdownMenuItem>
                 {stages.map((stage) => (
                   <DropdownMenuItem
