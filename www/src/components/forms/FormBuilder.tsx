@@ -185,7 +185,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                       disabled={index === 0}
                       className="text-muted-foreground hover:text-foreground disabled:opacity-20 transition-opacity leading-none"
                     >
-                      <ChevronUp className="h-3 w-3" />
+                      <ChevronUp />
                     </button>
                     <button
                       type="button"
@@ -196,10 +196,10 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                       disabled={index === value.length - 1}
                       className="text-muted-foreground hover:text-foreground disabled:opacity-20 transition-opacity leading-none"
                     >
-                      <ChevronDown className="h-3 w-3" />
+                      <ChevronDown />
                     </button>
                   </div>
-                  <GripVertical className="h-4 w-4 text-muted-foreground/40" />
+                  <GripVertical className=" text-muted-foreground/40" />
                 </div>
 
                 {/* Field type icon */}
@@ -209,10 +209,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                   )}
                 >
                   <Icon
-                    className={cn(
-                      "h-3.5 w-3.5",
-                      typeInfo?.color ?? "text-muted-foreground",
-                    )}
+                    className={cn(typeInfo?.color ?? "text-muted-foreground")}
                   />
                 </div>
 
@@ -247,7 +244,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                   )}
                   <ChevronDown
                     className={cn(
-                      "h-4 w-4 text-muted-foreground transition-transform duration-200",
+                      "text-muted-foreground transition-transform duration-200",
                       isExpanded && "rotate-180",
                     )}
                   />
@@ -269,7 +266,6 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                           updateField(field.id, { label: e.target.value })
                         }
                         placeholder="e.g. Why do you want to work here?"
-                        className="h-9"
                       />
                     </div>
 
@@ -283,16 +279,14 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                           updateField(field.id, { type: val })
                         }
                       >
-                        <SelectTrigger className="h-9 sm:w-40">
+                        <SelectTrigger className="">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
                           {FIELD_TYPES.map((t) => (
                             <SelectItem key={t.type} value={t.type}>
                               <div className="flex items-center gap-2">
-                                <t.icon
-                                  className={cn("h-3.5 w-3.5", t.color)}
-                                />
+                                <t.icon className={cn("", t.color)} />
                                 <span className="">{t.label}</span>
                               </div>
                             </SelectItem>
@@ -411,14 +405,10 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
 
       {/* Add more button when fields exist */}
       {value.length > 0 && (
-        <button
-          type="button"
-          onClick={addField}
-          className="flex items-center gap-2  text-muted-foreground hover:text-foreground transition-colors w-full border border-dashed px-4 py-3 hover:border-border hover:bg-muted/30"
-        >
-          <Plus className="h-3.5 w-3.5" />
+        <Button onClick={addField} className="flex items-center gap-2 w-full">
+          <Plus />
           Add another question
-        </button>
+        </Button>
       )}
     </div>
   );
