@@ -18,7 +18,7 @@ export default function Header({ session }: { session: Session | null }) {
     // <Link to="/" className="mr-2 flex items-center">
     //   <img src="/logo.png" alt="loux" className="h-8 w-auto" />
     // </Link>
-    <Button className="mr-2" variant="default" size="icon">
+    <Button asChild className="mr-2" variant="default" size="icon">
       <Link to="/">L</Link>
     </Button>
   );
