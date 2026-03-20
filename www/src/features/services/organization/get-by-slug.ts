@@ -36,8 +36,13 @@ export const getOrganizationBySlugFn = createServerFn()
             },
           },
           pipelines: {
-            orderBy: {
-              name: "asc",
+            include: {
+              stages: {
+                orderBy: {
+                  order: "asc",
+                },
+              },
+              jobs: true,
             },
           },
         },

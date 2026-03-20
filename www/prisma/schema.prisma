@@ -219,7 +219,6 @@ model Job {
 
 model Pipeline {
   id             String       @id @default(cuid())
-  name           String
   organizationId String
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   stages         Stage[]

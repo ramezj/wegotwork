@@ -70,15 +70,11 @@ export function StatisticCard({
   return (
     <Card className="w-full">
       <CardHeader className="flex flex-row items-center justify-between space-y-0">
-        <CardTitle className="text-foreground font-medium lowercase">
-          {title}
-        </CardTitle>
+        <CardTitle className="text-foreground font-medium ">{title}</CardTitle>
         {icon}
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-semibold text-foreground lowercase">
-          {amount}
-        </div>
+        <div className="text-2xl font-semibold text-foreground ">{amount}</div>
       </CardContent>
     </Card>
   );

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Users, ChevronRight, Briefcase } from "lucide-react";
 import { Job, Applicant } from "generated/prisma/client";
 import { Layout } from "@/components/shared/layout";
+import { JobCardForCandidatesPage } from "@/components/job/job-card";
 
 export const Route = createFileRoute("/$slug/_layout/candidates/")({
   component: RouteComponent,
@@ -34,40 +35,45 @@ function RouteComponent() {
     <Layout title="Candidates">
       <div className="grid gap-4">
         {jobs.map((job) => (
-          <Link
-            key={job.id}
-            to="/$slug/candidates/$jobId"
-            params={{ slug, jobId: job.id }}
-            className="block group"
-          >
-            <Card className="hover:border-primary/50 transition-all overflow-hidden border">
-              <CardContent className="p-0">
-                <div className="flex items-center p-5 gap-4">
-                  <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <Briefcase className="size-5" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-lg truncate group-hover:text-primary transition-colors">
-                      {job.title}
-                    </h3>
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground mt-0.5">
-                      <div className="flex items-center gap-1">
-                        <Users className="size-3.5" />
-                        <span>{job.applicants.length} candidates</span>
-                      </div>
-                      <Badge
-                        variant="outline"
-                        className="capitalize text-[10px] h-4"
-                      >
-                        {job.status.toLowerCase()}
-                      </Badge>
-                    </div>
-                  </div>
-                  <ChevronRight className="size-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
+          // <Link
+          //   key={job.id}
+          //   to="/$slug/candidates/$jobId"
+          //   params={{ slug, jobId: job.id }}
+          //   className="block group"
+          // >
+          //   <Card className="hover:border-primary/50 transition-all overflow-hidden border">
+          //     <CardContent className="p-0">
+          //       <div className="flex items-center p-5 gap-4">
+          //         <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+          //           <Briefcase className="size-5" />
+          //         </div>
+          //         <div className="flex-1 min-w-0">
+          //           <h3 className="font-semibold text-lg truncate group-hover:text-primary transition-colors">
+          //             {job.title}
+          //           </h3>
+          //           <div className="flex items-center gap-3 text-sm text-muted-foreground mt-0.5">
+          //             <div className="flex items-center gap-1">
+          //               <Users className="size-3.5" />
+          //               <span>{job.applicants.length} candidates</span>
+          //             </div>
+          //             <Badge
+          //               variant="outline"
+          //               className="capitalize text-[10px] h-4"
+          //             >
+          //               {job.status.toLowerCase()}
+          //             </Badge>
+          //           </div>
+          //         </div>
+          //         <ChevronRight className="size-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+          //       </div>
+          //     </CardContent>
+          //   </Card>
+          // </Link>
+          <JobCardForCandidatesPage
+            job={job}
+            slug={slug}
+            candidates={job.applicants.length}
+          />
         ))}
 
         {jobs.length === 0 && (

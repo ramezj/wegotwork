@@ -21,7 +21,6 @@ import { z } from "zod";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 
 const pipelineSchema = z.object({
-  name: z.string().min(1, "Pipeline name is required"),
   stages: z
     .array(
       z.object({
@@ -46,7 +45,6 @@ export function CreatePipelineDialog({
   const form = useForm<PipelineFormValues>({
     resolver: zodResolver(pipelineSchema),
     defaultValues: {
-      name: "",
       stages: [],
     },
   });
@@ -74,7 +72,6 @@ export function CreatePipelineDialog({
   const onSubmit = (data: PipelineFormValues) => {
     createMutation.mutate({
       data: {
-        name: data.name,
         organizationId,
         stages: data.stages.map((s) => s.name),
       },
@@ -106,25 +103,7 @@ export function CreatePipelineDialog({
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <Controller
-            control={form.control}
-            name="name"
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel aria-invalid={fieldState.invalid}>
-                  Pipeline Name
-                </FieldLabel>
-                <FieldContent>
-                  <Input
-                    {...field}
-                    aria-invalid={fieldState.invalid}
-                    placeholder="e.g. Engineering Pipeline"
-                  />
-                </FieldContent>
-                <FieldError errors={[fieldState.error]} />
-              </Field>
-            )}
-          />
+
 
           <div className="space-y-2">
             <Label className="flex justify-between items-center">

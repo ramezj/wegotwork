@@ -40,7 +40,7 @@ export function PipelineBoard({
   return (
     <div className="flex flex-col h-[calc(100vh-14rem)] w-full gap-4">
       <div className="flex items-center gap-3">
-        <h2 className="text-xl font-bold tracking-tight">{pipeline.name}</h2>
+        <h2 className="text-xl font-bold tracking-tight">Hiring Pipeline</h2>
         <EditPipelineDialog
           pipeline={pipeline}
           organizationId={organizationId}

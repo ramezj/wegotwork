@@ -6,7 +6,6 @@ import { z } from "zod";
 export const createPipelineFn = createServerFn()
   .inputValidator(
     z.object({
-      name: z.string(),
       organizationId: z.string(),
       stages: z.array(z.string()).optional(),
     }),
@@ -26,7 +25,6 @@ export const createPipelineFn = createServerFn()
 
     const pipeline = await prisma.pipeline.create({
       data: {
-        name: data.name,
         organizationId: data.organizationId,
         stages: {
           create: defaultStages.map((name, index) => ({
@@ -56,6 +54,7 @@ export const getPipelinesFn = createServerFn()
         stages: {
           orderBy: { order: "asc" },
         },
+        jobs: true,
       },
     });
   });
@@ -63,7 +62,6 @@ export const updatePipelineFn = createServerFn()
   .inputValidator(
     z.object({
       id: z.string(),
-      name: z.string().optional(),
       stages: z
         .array(
           z.object({
@@ -83,14 +81,6 @@ export const updatePipelineFn = createServerFn()
     const pipelineId = data.id;
 
     return await prisma.$transaction(async (tx) => {
-      // Update pipeline name if provided
-      if (data.name) {
-        await tx.pipeline.update({
-          where: { id: pipelineId },
-          data: { name: data.name },
-        });
-      }
-
       // Update stages if provided
       if (data.stages) {
         const existingStages = await tx.stage.findMany({

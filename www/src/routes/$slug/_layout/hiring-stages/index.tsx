@@ -108,7 +108,20 @@ function PipelinesPage() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
-              <CardTitle className="text-lg">{pipeline.name}</CardTitle>
+              <CardTitle className="text-lg">
+                {pipeline.jobs?.length > 0 ? (
+                  <div className="flex flex-wrap gap-1">
+                    {pipeline.jobs.map((job: any, i: number) => (
+                      <span key={job.id}>
+                        {job.title}
+                        {i < pipeline.jobs.length - 1 && ","}
+                      </span>
+                    ))}
+                  </div>
+                ) : (
+                  "Unassigned Pipeline"
+                )}
+              </CardTitle>
               <CardDescription>
                 {pipeline.stages?.length || 0} Hiring Stages
               </CardDescription>

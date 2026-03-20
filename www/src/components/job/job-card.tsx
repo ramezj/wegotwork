@@ -1,7 +1,7 @@
 import { Card } from "../ui/card";
 import { ArrowRight, BriefcaseBusiness, PinIcon } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { JobWithCategory } from "@/types/job/job";
+import { Job, JobWithCategory } from "@/types/job/job";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
@@ -124,6 +124,62 @@ export function JobCardForViewPage({
             <div className="shrink-0">
               <div className="px-2">
                 <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </Link>
+  );
+}
+
+export function JobCardForCandidatesPage({
+  job,
+  slug,
+  candidates,
+}: {
+  job: Job;
+  slug: string;
+  candidates: number;
+}) {
+  return (
+    <Link
+      viewTransition
+      to={"/$slug/candidates/$jobId"}
+      params={{ slug, jobId: job.id }}
+      preload="render"
+    >
+      <Card className="w-full group min-h-28 bg-card hover:bg-muted/50 transition-all flex flex-row border border-input items-center p-5 cursor-pointer gap-0">
+        <div className="flex flex-1 flex-col">
+          <div className="flex items-center justify-between">
+            {/* job information */}
+            <div className="flex flex-col gap-2 flex-1 min-w-0">
+              <p className="font-bold text-lg truncate text-balance">
+                {job.title}
+              </p>
+              <div className="flex flex-row flex-wrap gap-1">
+                {/* {job.category && (
+                  <Badge variant="default">{job.category.name}</Badge>
+                )} */}
+                <Badge variant="default">
+                  <BriefcaseBusiness />
+                  {formatJobType(job.type)}
+                </Badge>
+                <Badge variant="default">
+                  <PinIcon />
+                  {formatLocationMode(job.locationMode)}
+                </Badge>
+                {/* <Badge variant="outline">
+                  {formatDistanceToNow(new Date(job.createdAt))}
+                </Badge> */}
+              </div>
+            </div>
+            <div className="">
+              <div className="px-2">
+                <Button className="">
+                  {candidates} {candidates === 1 ? "Candidate" : "Candidates"}
+                  <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
+                </Button>
               </div>
             </div>
           </div>
