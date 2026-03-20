@@ -123,7 +123,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
       <div className="flex items-center justify-between">
         <div>
           <h3 className=" font-semibold">Custom Questions</h3>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <p className=" text-muted-foreground mt-0.5">
             {value.length === 0
               ? "No custom questions yet"
               : `${value.length} question${value.length !== 1 ? "s" : ""} added`}
@@ -146,7 +146,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
           </div>
           <div>
             <p className=" font-medium">Add your first question</p>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className=" text-muted-foreground mt-1">
               Candidates already provide Name, Email, and Resume by default.
             </p>
           </div>
@@ -231,7 +231,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                   <Badge
                     variant="outline"
                     className={cn(
-                      "text-[10px] font-medium px-1.5 py-0 hidden sm:inline-flex",
+                      "font-medium px-1.5 py-0 hidden sm:inline-flex",
                       TYPE_BADGE_COLORS[field.type],
                     )}
                   >
@@ -240,7 +240,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                   {field.required && (
                     <Badge
                       variant="outline"
-                      className="text-[10px] font-medium px-1.5 py-0 bg-destructive/10 text-destructive border-destructive/20 hidden sm:inline-flex"
+                      className="font-medium px-1.5 py-0 bg-destructive/10 text-destructive border-destructive/20 hidden sm:inline-flex"
                     >
                       Required
                     </Badge>
@@ -260,7 +260,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                   {/* Question label + type */}
                   <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-3">
                     <div className="space-y-1.5">
-                      <Label className="text-xs font-medium text-muted-foreground  tracking-wide">
+                      <Label className=" font-medium text-muted-foreground  tracking-wide">
                         Question Label
                       </Label>
                       <Input
@@ -274,7 +274,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                     </div>
 
                     <div className="space-y-1.5">
-                      <Label className="text-xs font-medium text-muted-foreground  tracking-wide">
+                      <Label className=" font-medium text-muted-foreground  tracking-wide">
                         Type
                       </Label>
                       <Select
@@ -306,7 +306,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                   {(field.type === "SHORT_ANSWER" ||
                     field.type === "LONG_ANSWER") && (
                     <div className="space-y-1.5">
-                      <Label className="text-xs font-medium text-muted-foreground  tracking-wide">
+                      <Label className=" font-medium text-muted-foreground  tracking-wide">
                         Placeholder hint{" "}
                         <span className="normal-case font-normal">
                           (optional)
@@ -328,7 +328,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                   {/* Options for SELECT */}
                   {field.type === "SELECT" && (
                     <div className="space-y-2">
-                      <Label className="text-xs font-medium text-muted-foreground  tracking-wide">
+                      <Label className=" font-medium text-muted-foreground  tracking-wide">
                         Options
                       </Label>
                       <div className="space-y-1.5">
@@ -337,11 +337,6 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                             key={optIndex}
                             className="flex gap-2 items-center"
                           >
-                            <div className="size-5 shrink-0 rounded border flex items-center justify-center">
-                              <span className="text-[10px] text-muted-foreground font-mono">
-                                {optIndex + 1}
-                              </span>
-                            </div>
                             <Input
                               value={option}
                               onChange={(e) => {
@@ -350,10 +345,10 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                                 updateField(field.id, { options: newOptions });
                               }}
                               placeholder={`Option ${optIndex + 1}`}
-                              className="h-8 "
                             />
-                            <button
-                              type="button"
+                            <Button
+                              size={"sm"}
+                              variant={"destructive"}
                               onClick={() =>
                                 updateField(field.id, {
                                   options: (field.options || []).filter(
@@ -361,30 +356,27 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                                   ),
                                 })
                               }
-                              className="text-muted-foreground hover:text-destructive transition-colors shrink-0"
                             >
-                              <X className="h-3.5 w-3.5" />
-                            </button>
+                              <X />
+                            </Button>
                           </div>
                         ))}
-                        <button
-                          type="button"
+                        <Button
                           onClick={() =>
                             updateField(field.id, {
                               options: [...(field.options || []), ""],
                             })
                           }
-                          className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors w-full border border-dashed px-3 py-2 hover:border-border"
+                          className="flex items-start text-start"
                         >
-                          <Plus className="h-3 w-3" />
                           Add option
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   )}
 
                   {/* Footer: Required toggle + Delete */}
-                  <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <Switch
                         id={`req-${field.id}`}
@@ -392,11 +384,10 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                         onCheckedChange={(val) =>
                           updateField(field.id, { required: val })
                         }
-                        className="scale-90"
                       />
                       <Label
                         htmlFor={`req-${field.id}`}
-                        className="text-xs text-muted-foreground cursor-pointer"
+                        className=" text-muted-foreground cursor-pointer"
                       >
                         Required
                       </Label>
@@ -407,7 +398,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
                       onClick={() => removeField(field.id)}
                       className=""
                     >
-                      <Trash2 className="h-3.5 w-3.5" />
+                      <Trash2 />
                       Remove question
                     </Button>
                   </div>
@@ -423,7 +414,7 @@ export function FormBuilder({ value, onChange }: FormBuilderProps) {
         <button
           type="button"
           onClick={addField}
-          className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors w-full border border-dashed px-4 py-3 hover:border-border hover:bg-muted/30"
+          className="flex items-center gap-2  text-muted-foreground hover:text-foreground transition-colors w-full border border-dashed px-4 py-3 hover:border-border hover:bg-muted/30"
         >
           <Plus className="h-3.5 w-3.5" />
           Add another question
