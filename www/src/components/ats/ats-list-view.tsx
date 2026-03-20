@@ -5,14 +5,18 @@ import { motion, AnimatePresence } from "motion/react";
 import { EditPipelineDialog } from "./edit-pipeline-dialog";
 import { ATSFilterBar } from "./ats-filter-bar";
 import { CandidateCard } from "./candidate-card";
+import { ApplicantSidebar } from "./applicant-sidebar";
+import { Applicant } from "@/types/applicant";
+import { FormFieldConfig } from "@/types/form-config";
 
 interface ATSListViewProps {
   pipeline: any;
-  applicants: any[];
+  applicants: Applicant[];
   onMoveApplicant: (applicantId: string, newStageId: string) => void;
   slug: string;
   organizationId: string;
   jobName?: string;
+  questions: FormFieldConfig[];
 }
 
 export function ATSListView({
@@ -22,10 +26,15 @@ export function ATSListView({
   slug,
   organizationId,
   jobName,
+  questions,
 }: ATSListViewProps) {
   const stages = pipeline.stages || [];
   const [activeStageId, setActiveStageId] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedApplicant, setSelectedApplicant] = useState<Applicant | null>(
+    null,
+  );
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const stageData = useMemo(() => {
     return stages.map((stage: any) => ({
@@ -133,6 +142,10 @@ export function ATSListView({
                     stages={stages}
                     slug={slug}
                     onMove={onMoveApplicant}
+                    onSelect={(applicant: Applicant) => {
+                      setSelectedApplicant(applicant);
+                      setIsSidebarOpen(true);
+                    }}
                   />
                 </motion.li>
               ))}
@@ -140,6 +153,15 @@ export function ATSListView({
           </ul>
         )}
       </div>
+
+      <ApplicantSidebar
+        applicant={selectedApplicant}
+        isOpen={isSidebarOpen}
+        onOpenChange={setIsSidebarOpen}
+        stages={stages}
+        slug={slug}
+        questions={questions}
+      />
     </div>
   );
 }

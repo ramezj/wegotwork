@@ -104,7 +104,6 @@ function RouteComponent() {
   const handleCreateDefaultPipeline = () => {
     createPipelineMutation.mutate({
       data: {
-        name: `${job.title} Pipeline`,
         organizationId: job.organizationId,
       },
     });
@@ -161,6 +160,7 @@ function RouteComponent() {
           slug={slug}
           organizationId={job.organizationId}
           jobName={job.title}
+          questions={(job.questions as any) || []}
         />
       )}
     </main>

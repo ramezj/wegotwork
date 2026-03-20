@@ -10,7 +10,7 @@ export function OrganizationHeader({ slug }: { slug: string }) {
   return (
     <div className="w-full">
       <div className="text-center flex flex-col items-center space-y-4">
-        <Avatar className="w-24 h-24 shadow-sm">
+        <Avatar className="w-24 h-24">
           <AvatarImage
             src={`${process.env.R2_PUBLIC_URL || "https://pub-c33c43f7f06946a1ba713658430b64ad.r2.dev"}/${data.organization.logo}`}
           />

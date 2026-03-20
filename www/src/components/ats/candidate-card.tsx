@@ -1,9 +1,10 @@
-import { Calendar, MoreHorizontal, User } from "lucide-react";
+import { Calendar, MoreHorizontal, User, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { formatDistanceToNow } from "date-fns";
 import { Link } from "@tanstack/react-router";
+import { Applicant } from "@/types/applicant";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,10 +16,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 interface CandidateCardProps {
-  applicant: any;
+  applicant: Applicant;
   stages: any[];
   slug: string;
   onMove: (applicantId: string, newStageId: string) => void;
+  onSelect: (applicant: Applicant) => void;
 }
 
 function getInitials(name: string): string {
@@ -36,13 +38,17 @@ export function CandidateCard({
   stages,
   slug,
   onMove,
+  onSelect,
 }: CandidateCardProps) {
   const jobId = applicant.jobId || "";
   const currentStage = stages.find((s) => s.id === applicant.currentStageId);
   const initials = getInitials(applicant.name);
 
   return (
-    <Card className="relative w-full group bg-card hover:bg-muted/50 transition-all duration-150 flex flex-row items-center p-4 cursor-pointer gap-4 overflow-hidden">
+    <Card 
+      onClick={() => onSelect(applicant)}
+      className="relative w-full group bg-card hover:bg-muted/50 transition-all duration-150 flex flex-row items-center p-4 cursor-pointer gap-4 overflow-hidden"
+    >
       {/* Full-row invisible link overlay */}
       {/* <Link
         to="/$slug/candidates/$jobId/$applicantId"
@@ -64,6 +70,12 @@ export function CandidateCard({
           {applicant.name}
         </p>
         <div className="flex flex-row flex-wrap gap-2 items-center">
+          <Badge variant="outline" className="gap-1 font-normal py-0 px-2 h-5 text-[10px] border-muted-foreground/20">
+            <Mail className="size-2.5 opacity-70" />
+            <span className="truncate max-w-[120px]">
+              {applicant.email}
+            </span>
+          </Badge>
           {/*<Badge variant="secondary" className="gap-1 font-normal">
             <Mail className="size-3 opacity-70" />
             <span className="truncate max-w-[180px] sm:max-w-none">
@@ -94,7 +106,10 @@ export function CandidateCard({
       </div>*/}
 
       {/* Actions dropdown — sits above link overlay */}
-      <div className="relative z-10 shrink-0">
+      <div 
+        className="relative z-10 shrink-0"
+        onClick={(e) => e.stopPropagation()}
+      >
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
