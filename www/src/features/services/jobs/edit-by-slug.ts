@@ -3,6 +3,7 @@ import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import z from "zod";
 import { jobSchema } from "@/types/job/job";
+import { moveCandidatesToPipelineFirstStage } from "./utils";
 
 export const editJobBySlugFn = createServerFn()
   .middleware([authMiddleware])
@@ -42,6 +43,8 @@ export const editJobBySlugFn = createServerFn()
         throw new Error("Pipeline not found");
       }
 
+      const shouldMoveCandidates = authorizedJob.pipelineId !== pipeline.id;
+
       const job = await prisma.job.update({
         where: {
           id: data.jobId,
@@ -63,6 +66,14 @@ export const editJobBySlugFn = createServerFn()
           },
         },
       });
+
+      if (shouldMoveCandidates) {
+        await moveCandidatesToPipelineFirstStage(
+          data.jobId,
+          pipeline.id,
+          session.user.id,
+        );
+      }
 
       return { success: true, job };
     } catch (error) {

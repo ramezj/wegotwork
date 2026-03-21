@@ -14,13 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Mail,
-  FileText,
-  Download,
-  ExternalLink,
-  User,
-} from "lucide-react";
+import { Mail, FileText, Download, ExternalLink, User } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { useState } from "react";
 import { Candidate, CandidateResponse } from "@/types/candidate";
@@ -168,7 +162,7 @@ export function CandidateSidebar({
                   Questionnaire Responses
                 </h3>
                 {candidate.responses.length === 0 ? (
-                  <p className="text-muted-foreground italic">
+                  <p className="text-muted-foreground">
                     No custom questions were answered.
                   </p>
                 ) : (
