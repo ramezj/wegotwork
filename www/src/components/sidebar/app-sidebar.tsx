@@ -17,6 +17,7 @@ import {
   HomeIcon,
   Users,
   GitBranch,
+  Folder,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
@@ -66,7 +67,7 @@ export function AppSidebar({
   const categoryMenuItems: menuItem[] = [
     {
       label: "Categories",
-      icon: <Building />,
+      icon: <Folder />,
       href: `/${slug}/categories`,
     },
   ];
@@ -117,77 +118,64 @@ export function AppSidebar({
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup className="py-2 space-y-1">
-          {/* <SidebarGroup className="space-y-1 py-1"> */}
-          {/* <SidebarGroupLabel>Overview</SidebarGroupLabel> */}
-          {/* <SidebarMenu className="gap-1"> */}
-          {menuItems.map((item, index) => {
-            const isActive =
-              item.label === "Dashboard"
-                ? location.pathname === item.href
-                : location.pathname.includes(item.href);
-            return (
-              <SidebarMenuItem key={index}>
-                <SidebarMenuButton
-                  isActive={isActive}
-                  className="flex items-center gap-2 py-4 cursor-pointer "
-                  onClick={handleItemClick}
-                  asChild
-                >
-                  <Link to={item.href}>
-                    {item.icon}
-                    {item.label}
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            );
-          })}
-          {/* </SidebarMenu> */}
-          {/* </SidebarGroup> */}
-          {/* <SidebarGroup className="space-y-1 py-1"> */}
-          {/* <SidebarGroupLabel>Structure</SidebarGroupLabel> */}
-          {/* <SidebarMenu className="gap-1"> */}
-          {categoryMenuItems.map((item, index) => {
-            return (
-              <SidebarMenuItem key={index}>
-                <SidebarMenuButton
-                  isActive={item.href === location.pathname}
-                  className="flex items-center gap-2 py-4 cursor-pointer "
-                  onClick={handleItemClick}
-                  asChild
-                >
-                  <Link to={item.href}>
-                    {item.icon}
-                    {item.label}
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            );
-          })}
-          {/* </SidebarMenu> */}
-          {/* </SidebarGroup> */}
-          {/* <SidebarGroup className="space-y-1 py-1"> */}
-          {/* <SidebarGroupLabel>Organization</SidebarGroupLabel> */}
-          {/* <SidebarMenu className="gap-1"> */}
-          {teamMenuItems.map((item, index) => {
-            return (
-              <SidebarMenuItem key={index}>
-                <SidebarMenuButton
-                  isActive={item.href === location.pathname}
-                  className="flex items-center gap-2 py-4 cursor-pointer "
-                  onClick={handleItemClick}
-                  asChild
-                >
-                  <Link to={item.href}>
-                    {item.icon}
-                    {item.label}
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            );
-          })}
-          {/* </SidebarMenu> */}
-          {/* </SidebarGroup> */}
+        <SidebarGroup className="py-2">
+          <SidebarMenu className="gap-1">
+            {menuItems.map((item, index) => {
+              const isActive =
+                item.label === "Dashboard"
+                  ? location.pathname === item.href
+                  : location.pathname.includes(item.href);
+              return (
+                <SidebarMenuItem key={index}>
+                  <SidebarMenuButton
+                    isActive={isActive}
+                    className="cursor-pointer"
+                    onClick={handleItemClick}
+                    asChild
+                  >
+                    <Link to={item.href}>
+                      {item.icon}
+                      {item.label}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              );
+            })}
+            {categoryMenuItems.map((item, index) => {
+              return (
+                <SidebarMenuItem key={index}>
+                  <SidebarMenuButton
+                    isActive={item.href === location.pathname}
+                    className="cursor-pointer"
+                    onClick={handleItemClick}
+                    asChild
+                  >
+                    <Link to={item.href}>
+                      {item.icon}
+                      {item.label}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              );
+            })}
+            {teamMenuItems.map((item, index) => {
+              return (
+                <SidebarMenuItem key={index}>
+                  <SidebarMenuButton
+                    isActive={item.href === location.pathname}
+                    className="cursor-pointer"
+                    onClick={handleItemClick}
+                    asChild
+                  >
+                    <Link to={item.href}>
+                      {item.icon}
+                      {item.label}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              );
+            })}
+          </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter className="h-(--footer-height) border-t flex items-center align-middle justify-center">

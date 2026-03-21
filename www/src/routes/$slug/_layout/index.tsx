@@ -10,10 +10,8 @@ import {
   ArrowRight,
   Briefcase,
   Building,
-  PinIcon,
+  Folder,
   Settings,
-  Settings2,
-  Users,
 } from "lucide-react";
 import { JobWithCategory } from "@/types/job/job";
 
@@ -66,7 +64,7 @@ function RouteComponent() {
           <StatisticCard
             title="Categories"
             amount={data?.organization?.categories?.length || 0}
-            icon={<PinIcon className="size-4" />}
+            icon={<Folder className="size-4" />}
           />
         </div>
         <div className="flex flex-col gap-4">

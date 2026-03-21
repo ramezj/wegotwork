@@ -83,13 +83,13 @@ function RouteComponent() {
           </CardHeader>
           <CardContent className="grid gap-6 sm:grid-cols-3">
             <div className="space-y-1">
-              <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">
+              <p className="text-xs text-muted-foreground font-semibold">
                 Members
               </p>
               <p className="text-3xl font-semibold">{data.members.length}</p>
             </div>
             <div className="space-y-1">
-              <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">
+              <p className="text-xs text-muted-foreground font-semibold">
                 Pending invites
               </p>
               <p className="text-3xl font-semibold">
@@ -97,7 +97,7 @@ function RouteComponent() {
               </p>
             </div>
             <div className="space-y-2">
-              <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">
+              <p className="text-xs text-muted-foreground font-semibold">
                 Your access
               </p>
               <Badge variant="outline" className="capitalize">
@@ -190,9 +190,7 @@ function RouteComponent() {
               <CardTitle className="text-lg font-semibold">
                 Pending invitations
               </CardTitle>
-              <Badge variant="outline">
-                {data.invitations.length} pending
-              </Badge>
+              <Badge variant="outline">{data.invitations.length} pending</Badge>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -220,7 +218,7 @@ function RouteComponent() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Badge variant="outline" className="capitalize">
-                    {invitation.role || "member"}
+                      {invitation.role || "member"}
                     </Badge>
                     <Badge variant="secondary" className="capitalize">
                       {invitation.status}
