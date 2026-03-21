@@ -4,6 +4,7 @@ import { jobByIdQueryOptions } from "@/features/queries/jobs";
 import { EditJobForm } from "@/components/job/edit-job";
 import { JobWithCategory } from "@/types/job/job";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
+import { pipelinesQueryOptions } from "@/features/queries/ats";
 
 export const Route = createFileRoute("/$slug/_layout/jobs/$jobId")({
   component: RouteComponent,
@@ -19,7 +20,10 @@ function RouteComponent() {
     organizationBySlugQueryOptions(slug),
   );
   const categories = orgData?.organization?.categories || [];
-  const pipelines = orgData?.organization?.pipelines || [];
+  const organizationId = orgData?.organization?.id || "";
+  const { data: pipelines } = useSuspenseQuery(
+    pipelinesQueryOptions(organizationId),
+  );
 
   return (
     <div>

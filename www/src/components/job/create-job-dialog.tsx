@@ -18,6 +18,7 @@ import { jobSchema } from "@/types/job/job";
 import { createJobFn } from "@/features/services/jobs/create-job";
 import z from "zod";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
+import { pipelinesQueryOptions } from "@/features/queries/ats";
 import { toast } from "sonner";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
@@ -37,8 +38,11 @@ export function CreateJobDialog({ slug }: { slug: string }) {
   const { data: orgData } = useSuspenseQuery(
     organizationBySlugQueryOptions(slug),
   );
+  const organizationId = orgData?.organization?.id || "";
+  const { data: pipelines } = useSuspenseQuery(
+    pipelinesQueryOptions(organizationId),
+  );
 
-  const pipelines = orgData?.organization?.pipelines || [];
   const defaultPipelineId =
     orgData?.organization?.defaultPipelineId || pipelines[0]?.id || "";
 

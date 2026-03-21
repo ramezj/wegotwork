@@ -19,7 +19,7 @@ export function Layout({
         {/* Sticky Page Header */}
         <div className="sticky top-0 z-20 p-4 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 border-b flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-xl font-semibold tracking-tight">{title}</h1>
+            <h1 className="text-xl font-semibold">{title}</h1>
           </div>
           <div className="flex items-center gap-2">{primaryButton}</div>
         </div>
@@ -34,7 +34,7 @@ export function Layout({
       className={cn("flex flex-1 flex-col space-y-4 p-4 min-h-0", className)}
     >
       <div className="flex items-center justify-between min-h-8">
-        <h1 className="text-xl font-semibold tracking-tight ">{title}</h1>
+        <h1 className="text-xl font-semibold ">{title}</h1>
         {primaryButton}
       </div>
       {children}

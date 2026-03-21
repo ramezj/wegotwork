@@ -15,7 +15,14 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { GitBranch, Trash2, Plus, MoreVertical, Settings2 } from "lucide-react";
+import {
+  GitBranch,
+  Trash2,
+  Plus,
+  MoreVertical,
+  Settings2,
+  PlusIcon,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -61,8 +68,13 @@ function PipelinesPage() {
       title="Hiring Pipelines"
       primaryButton={
         <Button asChild>
-          <Link to="/$slug/pipelines/create" params={{ slug }}>
+          <Link
+            to="/$slug/pipelines/create"
+            params={{ slug }}
+            className="group transition-all"
+          >
             Create Pipeline
+            <PlusIcon className="duration-300 group-hover:rotate-90" />
           </Link>
         </Button>
       }
@@ -122,9 +134,7 @@ function PipelinesPage() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
-              <CardTitle className="text-lg">
-                {pipeline.name}
-              </CardTitle>
+              <CardTitle className="text-lg">{pipeline.name}</CardTitle>
               <CardDescription>
                 {pipeline.jobs?.length > 0
                   ? `${pipeline.jobs.length} linked job${pipeline.jobs.length === 1 ? "" : "s"}`

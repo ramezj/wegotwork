@@ -53,7 +53,7 @@ export default function UserDropdown({ session }: { session: Session }) {
               router.navigate({ to: "/" });
             }}
           >
-            <span>Sign out</span>
+            <span>Log Out</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
