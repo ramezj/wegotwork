@@ -28,7 +28,7 @@ function RouteComponent() {
         <AppSidebar slug={slug} session={Route.useRouteContext().session} />
         <SidebarInset>
           <AppHeader />
-          <main className="flex flex-1 flex-col min-h-0 overflow-y-auto no-scrollbar">
+          <main className="bg-background flex flex-1 flex-col min-h-0 overflow-y-auto overscroll-contain no-scrollbar">
             <Suspense fallback={<LoadingLayout title="" />}>
               <Outlet />
             </Suspense>
