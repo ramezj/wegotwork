@@ -24,9 +24,5 @@ const statusConfig: Record<
 
 export function CandidateStatusBadge({ status }: { status: Status }) {
   const config = statusConfig[status];
-  return (
-    <Badge variant={config.variant as any} className="rounded-sm font-medium">
-      {config.label}
-    </Badge>
-  );
+  return <Badge variant={"default"}>{config.label}</Badge>;
 }

@@ -16,7 +16,11 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { CandidateStatusBadge } from "./CandidateStatusBadge";
-import type { Candidate, Status, CandidateResponse } from "generated/prisma/client";
+import type {
+  Candidate,
+  Status,
+  CandidateResponse,
+} from "generated/prisma/client";
 import { ExternalLink, Mail, FileText } from "lucide-react";
 import { updateCandidateStatusFn } from "@/features/services/candidates/update-status";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -163,13 +167,13 @@ export function CandidateSheetProfile({
                       ) : question.type === "MULTI_SELECT" ? (
                         <div className="flex flex-wrap gap-1">
                           {answerValue.split(",").map((v) => (
-                            <Badge key={v} variant="secondary">
-                              {v}
-                            </Badge>
+                            <Badge key={v}>{v}</Badge>
                           ))}
                         </div>
                       ) : (
-                        <p className="text-sm text-foreground/80">{answerValue}</p>
+                        <p className="text-sm text-foreground/80">
+                          {answerValue}
+                        </p>
                       )}
                     </div>
                   );

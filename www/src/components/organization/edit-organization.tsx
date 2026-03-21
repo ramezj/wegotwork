@@ -148,7 +148,7 @@ export function EditOrganizationForm({
                 <FieldContent>
                   <div className="flex items-center space-x-4">
                     <div className="flex flex-col items-center space-y-2">
-                      <Avatar className="size-32">
+                      <Avatar className="size-32 bg-primary text-primary-foreground">
                         <AvatarImage
                           src={
                             preview
@@ -159,7 +159,7 @@ export function EditOrganizationForm({
                           }
                           className="object-cover"
                         />
-                        <AvatarFallback className="bg-secondary text-primary text-4xl">
+                        <AvatarFallback className="bg-primary text-primary-foreground text-4xl">
                           {form.getValues("name")?.charAt(0) || "O"}
                         </AvatarFallback>
                       </Avatar>

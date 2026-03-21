@@ -61,16 +61,8 @@ export function CandidateSidebar({
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
-            {currentStage && (
-              <Badge variant="secondary" className="px-2.5 py-0.5">
-                {currentStage.name}
-              </Badge>
-            )}
-            <Badge
-              variant="outline"
-              className="px-2.5 py-0.5 gap-1.5 font-normal"
-            >
-              <Calendar className="size-3.5 text-muted-foreground" />
+            {currentStage && <Badge>{currentStage.name}</Badge>}
+            <Badge>
               Applied {formatDistanceToNow(new Date(candidate.createdAt))} ago
             </Badge>
           </div>
@@ -126,7 +118,9 @@ export function CandidateSidebar({
             ) : (
               <div className="space-y-4">
                 {candidate.responses.map((resp) => {
-                  const question = questions.find((q) => q.id === resp.questionId);
+                  const question = questions.find(
+                    (q) => q.id === resp.questionId,
+                  );
                   const label = question?.label || resp.questionId;
 
                   return (

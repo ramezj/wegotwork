@@ -62,20 +62,15 @@ export function CandidateCard({
           {candidate.name}
         </p>
         <div className="flex flex-row flex-wrap gap-2 items-center">
-          <Badge
-            variant="outline"
-            className="gap-1 font-normal py-0 px-2 h-5 text-[10px] border-muted-foreground/20"
-          >
-            <Mail className="size-2.5 opacity-70" />
+          <Badge>
+            {/* <Mail className="size-2.5 opacity-70" /> */}
             <span className="truncate max-w-[120px]">{candidate.email}</span>
           </Badge>
-          {currentStage && (
-            <Badge variant="secondary">{currentStage.name}</Badge>
-          )}
-          <Badge variant="secondary" className="gap-1 font-normal py-0 px-2 h-5 text-[10px] border-muted-foreground/20">
+          {currentStage && <Badge>{currentStage.name}</Badge>}
+          {/* <Badge>
             <Calendar className="size-2.5" />
             {formatDistanceToNow(new Date(candidate.createdAt))} ago
-          </Badge>
+          </Badge> */}
         </div>
       </div>
 
