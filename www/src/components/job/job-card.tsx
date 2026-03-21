@@ -1,5 +1,5 @@
 import { Card } from "../ui/card";
-import { ArrowRight, BriefcaseBusiness, PinIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Job, JobWithCategory } from "@/types/job/job";
 import { Badge } from "../ui/badge";
@@ -40,12 +40,8 @@ export function JobCard({ job, slug }: { job: JobWithCategory; slug: string }) {
                 {/* {job.category && (
                   <Badge variant="default">{job.category.name}</Badge>
                 )} */}
+                <Badge variant="default">{formatJobType(job.type)}</Badge>
                 <Badge variant="default">
-                  <BriefcaseBusiness />
-                  {formatJobType(job.type)}
-                </Badge>
-                <Badge variant="default">
-                  <PinIcon />
                   {formatLocationMode(job.locationMode)}
                 </Badge>
                 {/* <Badge variant="outline">
@@ -101,14 +97,15 @@ export function JobCardForViewPage({
                 {/* {job.category && (
                   <Badge variant="default">{job.category.name}</Badge>
                 )} */}
+                <Badge variant="default">{formatJobType(job.type)}</Badge>
                 <Badge variant="default">
-                  <BriefcaseBusiness />
-                  {formatJobType(job.type)}
-                </Badge>
-                <Badge variant="default">
-                  <PinIcon />
                   {formatLocationMode(job.locationMode)}
                 </Badge>
+                {job.showSalary && (
+                  <Badge variant="default">
+                    {job.salaryMin} - {job.salaryMax}
+                  </Badge>
+                )}
                 {/* <Badge variant="outline">
                   {formatDistanceToNow(new Date(job.createdAt))}
                 </Badge> */}
@@ -162,12 +159,8 @@ export function JobCardForCandidatesPage({
                 {/* {job.category && (
                   <Badge variant="default">{job.category.name}</Badge>
                 )} */}
+                <Badge variant="default">{formatJobType(job.type)}</Badge>
                 <Badge variant="default">
-                  <BriefcaseBusiness />
-                  {formatJobType(job.type)}
-                </Badge>
-                <Badge variant="default">
-                  <PinIcon />
                   {formatLocationMode(job.locationMode)}
                 </Badge>
                 {/* <Badge variant="outline">
@@ -216,12 +209,8 @@ export function JobCardForLandingPage({
                 {/* {job.category && (
                   <Badge variant="default">{job.category.name}</Badge>
                 )} */}
+                <Badge variant="default">{formatJobType(job.type)}</Badge>
                 <Badge variant="default">
-                  <BriefcaseBusiness />
-                  {formatJobType(job.type)}
-                </Badge>
-                <Badge variant="default">
-                  <PinIcon />
                   {formatLocationMode(job.locationMode)}
                 </Badge>
                 {/* <Badge variant="outline">
