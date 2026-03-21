@@ -8,10 +8,11 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { Navigate } from "@tanstack/react-router";
 import {
   ArrowRight,
-  ArrowUpRight,
   Briefcase,
   Building,
   PinIcon,
+  Settings,
+  Settings2,
   Users,
 } from "lucide-react";
 import { JobWithCategory } from "@/types/job/job";
@@ -34,12 +35,20 @@ function RouteComponent() {
     <Layout
       title={data.organization.name}
       primaryButton={
-        <Button asChild className="group ">
-          <Link target="_blank" to="/view/$slug" params={{ slug }}>
-            Preview{" "}
-            <ArrowRight className="duration-100 group-hover:-rotate-45" />
-          </Link>
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="icon" asChild>
+            <Link to="/$slug/organization" params={{ slug }}>
+              <Settings className="size-4" />
+              <span className="sr-only">Organization settings</span>
+            </Link>
+          </Button>
+          <Button asChild className="group ">
+            <Link target="_blank" to="/view/$slug" params={{ slug }}>
+              Preview{" "}
+              <ArrowRight className="duration-100 group-hover:-rotate-45" />
+            </Link>
+          </Button>
+        </div>
       }
     >
       <div className="flex flex-col gap-4">
