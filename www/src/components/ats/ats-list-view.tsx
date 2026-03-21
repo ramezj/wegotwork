@@ -12,7 +12,11 @@ import { FormFieldConfig } from "@/types/form-config";
 interface ATSListViewProps {
   pipeline: any;
   candidates: (Candidate & { responses: CandidateResponse[] })[];
-  onMoveCandidate: (candidateId: string, newStageId: string) => void;
+  onMoveCandidate: (
+    candidateId: string,
+    newStageId: string,
+  ) => Promise<void>;
+  isMovingCandidate: boolean;
   slug: string;
   organizationId: string;
   jobName?: string;
@@ -23,6 +27,7 @@ export function ATSListView({
   pipeline,
   candidates,
   onMoveCandidate,
+  isMovingCandidate,
   slug,
   organizationId,
   jobName,
@@ -145,12 +150,19 @@ export function ATSListView({
       </div>
 
       <CandidateSidebar
+        key={
+          selectedCandidate
+            ? `${selectedCandidate.id}:${selectedCandidate.currentStageId ?? ""}`
+            : "candidate-sidebar-empty"
+        }
         candidate={selectedCandidate}
         isOpen={isSidebarOpen}
         onOpenChange={setIsSidebarOpen}
         stages={stages}
         slug={slug}
         questions={questions}
+        onMoveCandidate={onMoveCandidate}
+        isMovingCandidate={isMovingCandidate}
       />
     </div>
   );

@@ -66,17 +66,18 @@ function RouteComponent() {
 
   const moveMutation = useMutation({
     mutationFn: moveCandidateStageFn,
-    onSuccess: () => {
-      queryClient.invalidateQueries();
-      toast.success("Candidate moved successfully");
-    },
     onError: (error: any) => {
       toast.error(error.message || "Failed to move candidate");
     },
   });
 
-  const handleMoveCandidate = (candidateId: string, newStageId: string) => {
-    moveMutation.mutate({ data: { candidateId, newStageId } });
+  const handleMoveCandidate = async (
+    candidateId: string,
+    newStageId: string,
+  ) => {
+    await moveMutation.mutateAsync({ data: { candidateId, newStageId } });
+    await queryClient.refetchQueries({ queryKey: ["job", jobId] });
+    toast.success("Candidate moved successfully");
   };
 
   if (!data?.success || !data?.job) {
@@ -157,6 +158,7 @@ function RouteComponent() {
           pipeline={pipeline}
           candidates={candidates}
           onMoveCandidate={handleMoveCandidate}
+          isMovingCandidate={moveMutation.isPending}
           slug={slug}
           organizationId={job.organizationId}
           jobName={job.title}
