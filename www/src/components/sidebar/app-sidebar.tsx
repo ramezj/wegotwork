@@ -15,7 +15,6 @@ import {
   Building,
   CreditCard,
   HomeIcon,
-  Loader,
   Users,
   GitBranch,
 } from "lucide-react";
@@ -24,7 +23,7 @@ import { useLocation } from "@tanstack/react-router";
 // import { Button } from "../ui/button";
 import { Session } from "@/features/auth/auth";
 import UserDropdown from "./user-dropdown";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { getAllOrganizationsFn } from "@/features/services/organization/get-all-organizations";
 import { OrganizationSelector } from "./organization-selector";
 import type { Organization } from "generated/prisma/client";
@@ -54,9 +53,9 @@ export function AppSidebar({
       href: `/${slug}/jobs`,
     },
     {
-      label: "Hiring Stages",
+      label: "Pipelines",
       icon: <GitBranch />,
-      href: `/${slug}/hiring-stages`,
+      href: `/${slug}/pipelines`,
     },
     {
       label: "Candidates",
@@ -117,8 +116,9 @@ export function AppSidebar({
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup className="space-y-1">
+      <SidebarContent className="gap-1">
+        <SidebarGroup className="space-y-1 py-1">
+          <SidebarGroupLabel>Overview</SidebarGroupLabel>
           <SidebarMenu className="gap-1">
             {menuItems.map((item, index) => {
               const isActive =
@@ -143,7 +143,8 @@ export function AppSidebar({
             })}
           </SidebarMenu>
         </SidebarGroup>
-        <SidebarGroup className="space-y-1">
+        <SidebarGroup className="space-y-1 py-1">
+          <SidebarGroupLabel>Structure</SidebarGroupLabel>
           <SidebarMenu className="gap-1">
             {categoryMenuItems.map((item, index) => {
               return (
@@ -164,8 +165,8 @@ export function AppSidebar({
             })}
           </SidebarMenu>
         </SidebarGroup>
-        <SidebarGroup className="space-y-1">
-          {/* <SidebarGroupLabel>Organization</SidebarGroupLabel> */}
+        <SidebarGroup className="space-y-1 py-1">
+          <SidebarGroupLabel>Organization</SidebarGroupLabel>
           <SidebarMenu className="gap-1">
             {teamMenuItems.map((item, index) => {
               return (

@@ -32,17 +32,28 @@ export const linkJobToPipelineFn = createServerFn()
 
     if (!job) throw new Error("Job not found or unauthorized");
 
+    const pipeline = await prisma.pipeline.findFirst({
+      where: {
+        id: data.pipelineId,
+        organizationId: job.organizationId,
+      },
+    });
+
+    if (!pipeline) {
+      throw new Error("Pipeline not found");
+    }
+
     const updatedJob = await prisma.job.update({
       where: { id: data.jobId },
       data: {
-        pipelineId: data.pipelineId,
+        pipelineId: pipeline.id,
       },
     });
 
     // Move candidates to the first stage of the new pipeline
     await moveCandidatesToPipelineFirstStage(
       data.jobId,
-      data.pipelineId,
+      pipeline.id,
       session.user.id,
     );
 

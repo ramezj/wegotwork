@@ -31,6 +31,17 @@ export const editJobBySlugFn = createServerFn()
     try {
       const { questions, ...jobData } = data.job;
 
+      const pipeline = await prisma.pipeline.findFirst({
+        where: {
+          id: jobData.pipelineId,
+          organizationId: authorizedJob.organizationId,
+        },
+      });
+
+      if (!pipeline) {
+        throw new Error("Pipeline not found");
+      }
+
       const job = await prisma.job.update({
         where: {
           id: data.jobId,
@@ -38,6 +49,7 @@ export const editJobBySlugFn = createServerFn()
         data: {
           ...jobData,
           categoryId: data.job.categoryId || null,
+          pipelineId: pipeline.id,
           questions: {
             deleteMany: {},
             create: (questions || []).map((q) => ({

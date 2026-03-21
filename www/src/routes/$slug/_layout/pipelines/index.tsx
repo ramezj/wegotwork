@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import {
   useSuspenseQuery,
   useMutation,
@@ -24,15 +24,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { deletePipelineFn } from "@/features/services/ats/pipeline";
 import { toast } from "sonner";
-import { CreatePipelineDialog } from "@/components/ats/create-pipeline-dialog";
-import { EditPipelineDialog } from "@/components/ats/edit-pipeline-dialog";
 
-export const Route = createFileRoute("/$slug/_layout/hiring-stages/")({
+export const Route = createFileRoute("/$slug/_layout/pipelines/")({
   component: PipelinesPage,
 });
 
 function PipelinesPage() {
   const { slug } = Route.useParams();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { data: orgData } = useSuspenseQuery(
@@ -61,12 +60,25 @@ function PipelinesPage() {
     <Layout
       title="Hiring Pipelines"
       primaryButton={
-        <CreatePipelineDialog organizationId={organizationId || ""} />
+        <Button asChild>
+          <Link to="/$slug/pipelines/create" params={{ slug }}>
+            Create Pipeline
+          </Link>
+        </Button>
       }
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {pipelines?.map((pipeline: any) => (
-          <Card key={pipeline.id} className="group overflow-hidden">
+          <Card
+            key={pipeline.id}
+            className="group overflow-hidden cursor-pointer transition-colors hover:border-primary/40"
+            onClick={() =>
+              navigate({
+                to: "/$slug/pipelines/$pipelineId",
+                params: { slug, pipelineId: pipeline.id },
+              })
+            }
+          >
             <CardHeader className="pb-4">
               <div className="flex justify-between items-start">
                 <div className="size-10 rounded-md bg-muted flex items-center justify-center text-muted-foreground mb-4">
@@ -74,23 +86,25 @@ function PipelinesPage() {
                 </div>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={(event) => event.stopPropagation()}
+                    >
                       <MoreVertical className="size-4" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <EditPipelineDialog
-                      pipeline={pipeline}
-                      organizationId={organizationId || ""}
-                      trigger={
-                        <DropdownMenuItem
-                          onSelect={(e) => e.preventDefault()}
-                          className="cursor-pointer"
-                        >
-                          <Settings2 className="size-4" /> Edit
-                        </DropdownMenuItem>
-                      }
-                    />
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/$slug/pipelines/$pipelineId"
+                        params={{ slug, pipelineId: pipeline.id }}
+                        onClick={(event) => event.stopPropagation()}
+                        className="cursor-pointer"
+                      >
+                        <Settings2 className="size-4" /> Edit
+                      </Link>
+                    </DropdownMenuItem>
                     <DropdownMenuItem
                       className="text-destructive cursor-pointer"
                       onClick={() => {
@@ -109,21 +123,12 @@ function PipelinesPage() {
                 </DropdownMenu>
               </div>
               <CardTitle className="text-lg">
-                {pipeline.jobs?.length > 0 ? (
-                  <div className="flex flex-wrap gap-1">
-                    {pipeline.jobs.map((job: any, i: number) => (
-                      <span key={job.id}>
-                        {job.title}
-                        {i < pipeline.jobs.length - 1 && ","}
-                      </span>
-                    ))}
-                  </div>
-                ) : (
-                  "Unassigned Pipeline"
-                )}
+                {pipeline.name}
               </CardTitle>
               <CardDescription>
-                {pipeline.stages?.length || 0} Hiring Stages
+                {pipeline.jobs?.length > 0
+                  ? `${pipeline.jobs.length} linked job${pipeline.jobs.length === 1 ? "" : "s"}`
+                  : "No jobs linked"}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -159,6 +164,11 @@ function PipelinesPage() {
               Create your first hiring pipeline to start managing candidates
               effectively.
             </p>
+            <Button asChild className="mt-6">
+              <Link to="/$slug/pipelines/create" params={{ slug }}>
+                Create Pipeline
+              </Link>
+            </Button>
           </div>
         )}
       </div>

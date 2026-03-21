@@ -11,16 +11,17 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Plus, X, GripVertical, GitBranch, Loader } from "lucide-react";
+import { Plus, X, GitBranch, Loader } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createPipelineFn } from "@/features/services/ats/pipeline";
 import { toast } from "sonner";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
+import { Field, FieldContent, FieldError } from "../ui/field";
 
 const pipelineSchema = z.object({
+  name: z.string().min(1, "Pipeline name is required"),
   stages: z
     .array(
       z.object({
@@ -45,6 +46,7 @@ export function CreatePipelineDialog({
   const form = useForm<PipelineFormValues>({
     resolver: zodResolver(pipelineSchema),
     defaultValues: {
+      name: "",
       stages: [],
     },
   });
@@ -73,6 +75,7 @@ export function CreatePipelineDialog({
     createMutation.mutate({
       data: {
         organizationId,
+        name: data.name,
         stages: data.stages.map((s) => s.name),
       },
     });
@@ -103,7 +106,23 @@ export function CreatePipelineDialog({
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-
+          <Controller
+            control={form.control}
+            name="name"
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldContent>
+                  <Input
+                    aria-invalid={fieldState.invalid}
+                    className="w-full"
+                    {...field}
+                    placeholder="Pipeline name"
+                  />
+                </FieldContent>
+                <FieldError errors={[fieldState.error]} />
+              </Field>
+            )}
+          />
 
           <div className="space-y-2">
             <Label className="flex justify-between items-center">

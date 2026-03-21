@@ -19,12 +19,14 @@ function RouteComponent() {
     organizationBySlugQueryOptions(slug),
   );
   const categories = orgData?.organization?.categories || [];
+  const pipelines = orgData?.organization?.pipelines || [];
 
   return (
     <div>
       <EditJobForm
         job={data.job as JobWithCategory}
         categories={categories}
+        pipelines={pipelines}
         slug={slug}
       />
     </div>

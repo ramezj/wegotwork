@@ -2,12 +2,12 @@ import { useState, useMemo } from "react";
 import { Users, Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "motion/react";
-import { EditPipelineDialog } from "./edit-pipeline-dialog";
 import { ATSFilterBar } from "./ats-filter-bar";
 import { CandidateCard } from "./candidate-card";
 import { CandidateSidebar } from "./candidate-sidebar";
 import { Candidate, CandidateResponse } from "@/types/candidate";
 import { FormFieldConfig } from "@/types/form-config";
+import { Link } from "@tanstack/react-router";
 
 interface ATSListViewProps {
   pipeline: any;
@@ -29,7 +29,6 @@ export function ATSListView({
   onMoveCandidate,
   isMovingCandidate,
   slug,
-  organizationId,
   jobName,
   questions,
 }: ATSListViewProps) {
@@ -72,22 +71,20 @@ export function ATSListView({
             <h2 className="text-lg font-semibold truncate">{jobName}</h2>
           </div>
         </div>
-        <EditPipelineDialog
-          pipeline={pipeline}
-          organizationId={organizationId}
-          trigger={
-            <Button
-              variant="outline"
-              className="gap-2 text-xs font-semibold shrink-0"
-            >
-              <Settings2 className="size-3.5" />
-              <span className="hidden sm:inline">
-                Configure Hiring Pipeline
-              </span>
-              <span className="sm:hidden">Configure</span>
-            </Button>
-          }
-        />
+        <Button
+          variant="outline"
+          className="gap-2 text-xs font-semibold shrink-0"
+          asChild
+        >
+          <Link
+            to="/$slug/pipelines/$pipelineId"
+            params={{ slug, pipelineId: pipeline.id }}
+          >
+            <Settings2 className="size-3.5" />
+            <span className="hidden sm:inline">Configure Hiring Pipeline</span>
+            <span className="sm:hidden">Configure</span>
+          </Link>
+        </Button>
       </div>
 
       {/* Filter Bar */}

@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import {
   useMutation,
   useQueryClient,
+  useSuspenseQuery,
 } from "@tanstack/react-query";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,12 +23,24 @@ import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
 import { Loader, PlusIcon, Briefcase } from "lucide-react";
 import { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 export function CreateJobDialog({ slug }: { slug: string }) {
   const queryClient = useQueryClient();
   const [open, setOpen] = useState(false);
+  const { data: orgData } = useSuspenseQuery(
+    organizationBySlugQueryOptions(slug),
+  );
 
-
+  const pipelines = orgData?.organization?.pipelines || [];
+  const defaultPipelineId =
+    orgData?.organization?.defaultPipelineId || pipelines[0]?.id || "";
 
   const form = useForm({
     defaultValues: {
@@ -45,6 +58,7 @@ export function CreateJobDialog({ slug }: { slug: string }) {
       salaryInterval: "MONTHLY",
       experienceLevel: "ENTRY",
       categoryId: "",
+      pipelineId: defaultPipelineId,
     },
     resolver: zodResolver(jobSchema),
     mode: "onSubmit",
@@ -58,7 +72,23 @@ export function CreateJobDialog({ slug }: { slug: string }) {
       if (data.status === 200) {
         await queryClient.refetchQueries(organizationBySlugQueryOptions(slug));
         toast.success(data.statusText);
-        form.reset();
+        form.reset({
+          title: "",
+          description: "",
+          status: "DRAFT",
+          type: "FULLTIME",
+          locationMode: "ONSITE",
+          country: "",
+          city: "",
+          address: "",
+          salaryMin: 0,
+          salaryMax: 0,
+          currency: "USD",
+          salaryInterval: "MONTHLY",
+          experienceLevel: "ENTRY",
+          categoryId: "",
+          pipelineId: defaultPipelineId,
+        });
         setOpen(false);
       } else {
         toast.error(data.statusText);
@@ -89,7 +119,7 @@ export function CreateJobDialog({ slug }: { slug: string }) {
             Create a Job
           </DialogTitle>
           <DialogDescription>
-            Define your new job opening and connect it to a hiring pipeline.
+            Define your new job opening and assign it to one of your pipelines.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -110,9 +140,39 @@ export function CreateJobDialog({ slug }: { slug: string }) {
               </Field>
             )}
           />
+
+          <Controller
+            control={form.control}
+            name="pipelineId"
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel required>Pipeline</FieldLabel>
+                <FieldContent>
+                  <Select
+                    value={field.value}
+                    onValueChange={field.onChange}
+                    disabled={pipelines.length === 0}
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select a pipeline" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {pipelines.map((pipeline: any) => (
+                        <SelectItem key={pipeline.id} value={pipeline.id}>
+                          {pipeline.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FieldContent>
+                <FieldError errors={[fieldState.error]} />
+              </Field>
+            )}
+          />
+
           <div>
             <Button
-              disabled={mutation.isPending}
+              disabled={mutation.isPending || pipelines.length === 0}
               type="submit"
               className="w-full"
             >

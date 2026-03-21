@@ -112,7 +112,9 @@ model Organization {
   invitations Invitation[]
   jobs        Job[]
   categories  JobCategory[]
-  pipelines   Pipeline[]
+  pipelines   Pipeline[]    @relation("OrganizationPipelines")
+  defaultPipelineId String?
+  defaultPipeline   Pipeline? @relation("OrganizationDefaultPipeline", fields: [defaultPipelineId], references: [id], onDelete: SetNull)
 
   @@unique([slug])
   @@map("organization")
@@ -221,8 +223,10 @@ model Job {
 
 model Pipeline {
   id             String       @id @default(cuid())
+  name           String
   organizationId String
-  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  organization   Organization @relation("OrganizationPipelines", fields: [organizationId], references: [id], onDelete: Cascade)
+  defaultForOrganizations Organization[] @relation("OrganizationDefaultPipeline")
   stages         Stage[]
   jobs           Job[]
   createdAt      DateTime     @default(now())

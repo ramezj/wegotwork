@@ -7,6 +7,7 @@ export const createPipelineFn = createServerFn()
   .inputValidator(
     z.object({
       organizationId: z.string(),
+      name: z.string().min(1, "Pipeline name is required"),
       stages: z.array(z.string()).optional(),
     }),
   )
@@ -25,6 +26,7 @@ export const createPipelineFn = createServerFn()
 
     const pipeline = await prisma.pipeline.create({
       data: {
+        name: data.name,
         organizationId: data.organizationId,
         stages: {
           create: defaultStages.map((name, index) => ({
@@ -62,6 +64,7 @@ export const updatePipelineFn = createServerFn()
   .inputValidator(
     z.object({
       id: z.string(),
+      name: z.string().min(1, "Pipeline name is required"),
       stages: z
         .array(
           z.object({
@@ -81,6 +84,13 @@ export const updatePipelineFn = createServerFn()
     const pipelineId = data.id;
 
     return await prisma.$transaction(async (tx) => {
+      await tx.pipeline.update({
+        where: { id: pipelineId },
+        data: {
+          name: data.name,
+        },
+      });
+
       // Update stages if provided
       if (data.stages) {
         const existingStages = await tx.stage.findMany({
@@ -154,16 +164,72 @@ export const deletePipelineFn = createServerFn()
     const { session } = context;
     if (!session?.user) throw new Error("Unauthorized");
 
-    // Check if it's used by any jobs
-    const jobsCount = await prisma.job.count({
-      where: { pipelineId: data.id },
-    });
+    return await prisma.$transaction(async (tx) => {
+      const pipeline = await tx.pipeline.findFirst({
+        where: {
+          id: data.id,
+          organization: {
+            members: {
+              some: {
+                userId: session.user.id,
+              },
+            },
+          },
+        },
+        include: {
+          organization: true,
+        },
+      });
 
-    if (jobsCount > 0) {
-      throw new Error("Cannot delete pipeline that is being used by jobs");
-    }
+      if (!pipeline) {
+        throw new Error("Pipeline not found");
+      }
 
-    return await prisma.pipeline.delete({
-      where: { id: data.id },
+      const pipelinesCount = await tx.pipeline.count({
+        where: { organizationId: pipeline.organizationId },
+      });
+
+      if (pipelinesCount <= 1) {
+        throw new Error(
+          "You must keep at least one pipeline in the organization.",
+        );
+      }
+
+      const jobsCount = await tx.job.count({
+        where: { pipelineId: data.id },
+      });
+
+      if (jobsCount > 0) {
+        throw new Error("Cannot delete pipeline that is being used by jobs");
+      }
+
+      if (pipeline.organization.defaultPipelineId === pipeline.id) {
+        const replacementPipeline = await tx.pipeline.findFirst({
+          where: {
+            organizationId: pipeline.organizationId,
+            id: {
+              not: pipeline.id,
+            },
+          },
+          orderBy: {
+            createdAt: "asc",
+          },
+        });
+
+        if (!replacementPipeline) {
+          throw new Error("A default pipeline must always exist.");
+        }
+
+        await tx.organization.update({
+          where: { id: pipeline.organizationId },
+          data: {
+            defaultPipelineId: replacementPipeline.id,
+          },
+        });
+      }
+
+      return tx.pipeline.delete({
+        where: { id: data.id },
+      });
     });
   });

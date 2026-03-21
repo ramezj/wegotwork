@@ -24,9 +24,11 @@ import { Route as SlugLayoutJobsRouteRouteImport } from './routes/$slug/_layout/
 import { Route as SlugLayoutCategoriesRouteRouteImport } from './routes/$slug/_layout/categories/route'
 import { Route as SlugLayoutBillingRouteRouteImport } from './routes/$slug/_layout/billing/route'
 import { Route as ViewSlugJobIdIndexRouteImport } from './routes/view/$slug/$jobId/index'
+import { Route as SlugLayoutPipelinesIndexRouteImport } from './routes/$slug/_layout/pipelines/index'
 import { Route as SlugLayoutJobsIndexRouteImport } from './routes/$slug/_layout/jobs/index'
-import { Route as SlugLayoutHiringStagesIndexRouteImport } from './routes/$slug/_layout/hiring-stages/index'
 import { Route as SlugLayoutCandidatesIndexRouteImport } from './routes/$slug/_layout/candidates/index'
+import { Route as SlugLayoutPipelinesCreateRouteImport } from './routes/$slug/_layout/pipelines/create'
+import { Route as SlugLayoutPipelinesPipelineIdRouteImport } from './routes/$slug/_layout/pipelines/$pipelineId'
 import { Route as SlugLayoutJobsJobIdRouteRouteImport } from './routes/$slug/_layout/jobs/$jobId/route'
 import { Route as SlugLayoutCandidatesJobIdRouteRouteImport } from './routes/$slug/_layout/candidates/$jobId/route'
 import { Route as SlugLayoutCandidatesJobIdIndexRouteImport } from './routes/$slug/_layout/candidates/$jobId/index'
@@ -109,21 +111,33 @@ const ViewSlugJobIdIndexRoute = ViewSlugJobIdIndexRouteImport.update({
   path: '/$jobId/',
   getParentRoute: () => ViewSlugRouteRoute,
 } as any)
+const SlugLayoutPipelinesIndexRoute =
+  SlugLayoutPipelinesIndexRouteImport.update({
+    id: '/pipelines/',
+    path: '/pipelines/',
+    getParentRoute: () => SlugLayoutRouteRoute,
+  } as any)
 const SlugLayoutJobsIndexRoute = SlugLayoutJobsIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => SlugLayoutJobsRouteRoute,
 } as any)
-const SlugLayoutHiringStagesIndexRoute =
-  SlugLayoutHiringStagesIndexRouteImport.update({
-    id: '/hiring-stages/',
-    path: '/hiring-stages/',
-    getParentRoute: () => SlugLayoutRouteRoute,
-  } as any)
 const SlugLayoutCandidatesIndexRoute =
   SlugLayoutCandidatesIndexRouteImport.update({
     id: '/candidates/',
     path: '/candidates/',
+    getParentRoute: () => SlugLayoutRouteRoute,
+  } as any)
+const SlugLayoutPipelinesCreateRoute =
+  SlugLayoutPipelinesCreateRouteImport.update({
+    id: '/pipelines/create',
+    path: '/pipelines/create',
+    getParentRoute: () => SlugLayoutRouteRoute,
+  } as any)
+const SlugLayoutPipelinesPipelineIdRoute =
+  SlugLayoutPipelinesPipelineIdRouteImport.update({
+    id: '/pipelines/$pipelineId',
+    path: '/pipelines/$pipelineId',
     getParentRoute: () => SlugLayoutRouteRoute,
   } as any)
 const SlugLayoutJobsJobIdRouteRoute =
@@ -168,9 +182,11 @@ export interface FileRoutesByFullPath {
   '/view/$slug/': typeof ViewSlugIndexRoute
   '/$slug/candidates/$jobId': typeof SlugLayoutCandidatesJobIdRouteRouteWithChildren
   '/$slug/jobs/$jobId': typeof SlugLayoutJobsJobIdRouteRoute
+  '/$slug/pipelines/$pipelineId': typeof SlugLayoutPipelinesPipelineIdRoute
+  '/$slug/pipelines/create': typeof SlugLayoutPipelinesCreateRoute
   '/$slug/candidates/': typeof SlugLayoutCandidatesIndexRoute
-  '/$slug/hiring-stages/': typeof SlugLayoutHiringStagesIndexRoute
   '/$slug/jobs/': typeof SlugLayoutJobsIndexRoute
+  '/$slug/pipelines/': typeof SlugLayoutPipelinesIndexRoute
   '/view/$slug/$jobId/': typeof ViewSlugJobIdIndexRoute
   '/$slug/candidates/$jobId/$candidateId': typeof SlugLayoutCandidatesJobIdCandidateIdRoute
   '/$slug/candidates/$jobId/': typeof SlugLayoutCandidatesJobIdIndexRoute
@@ -187,9 +203,11 @@ export interface FileRoutesByTo {
   '/$slug': typeof SlugLayoutIndexRoute
   '/view/$slug': typeof ViewSlugIndexRoute
   '/$slug/jobs/$jobId': typeof SlugLayoutJobsJobIdRouteRoute
+  '/$slug/pipelines/$pipelineId': typeof SlugLayoutPipelinesPipelineIdRoute
+  '/$slug/pipelines/create': typeof SlugLayoutPipelinesCreateRoute
   '/$slug/candidates': typeof SlugLayoutCandidatesIndexRoute
-  '/$slug/hiring-stages': typeof SlugLayoutHiringStagesIndexRoute
   '/$slug/jobs': typeof SlugLayoutJobsIndexRoute
+  '/$slug/pipelines': typeof SlugLayoutPipelinesIndexRoute
   '/view/$slug/$jobId': typeof ViewSlugJobIdIndexRoute
   '/$slug/candidates/$jobId/$candidateId': typeof SlugLayoutCandidatesJobIdCandidateIdRoute
   '/$slug/candidates/$jobId': typeof SlugLayoutCandidatesJobIdIndexRoute
@@ -212,9 +230,11 @@ export interface FileRoutesById {
   '/view/$slug/': typeof ViewSlugIndexRoute
   '/$slug/_layout/candidates/$jobId': typeof SlugLayoutCandidatesJobIdRouteRouteWithChildren
   '/$slug/_layout/jobs/$jobId': typeof SlugLayoutJobsJobIdRouteRoute
+  '/$slug/_layout/pipelines/$pipelineId': typeof SlugLayoutPipelinesPipelineIdRoute
+  '/$slug/_layout/pipelines/create': typeof SlugLayoutPipelinesCreateRoute
   '/$slug/_layout/candidates/': typeof SlugLayoutCandidatesIndexRoute
-  '/$slug/_layout/hiring-stages/': typeof SlugLayoutHiringStagesIndexRoute
   '/$slug/_layout/jobs/': typeof SlugLayoutJobsIndexRoute
+  '/$slug/_layout/pipelines/': typeof SlugLayoutPipelinesIndexRoute
   '/view/$slug/$jobId/': typeof ViewSlugJobIdIndexRoute
   '/$slug/_layout/candidates/$jobId/$candidateId': typeof SlugLayoutCandidatesJobIdCandidateIdRoute
   '/$slug/_layout/candidates/$jobId/': typeof SlugLayoutCandidatesJobIdIndexRoute
@@ -238,9 +258,11 @@ export interface FileRouteTypes {
     | '/view/$slug/'
     | '/$slug/candidates/$jobId'
     | '/$slug/jobs/$jobId'
+    | '/$slug/pipelines/$pipelineId'
+    | '/$slug/pipelines/create'
     | '/$slug/candidates/'
-    | '/$slug/hiring-stages/'
     | '/$slug/jobs/'
+    | '/$slug/pipelines/'
     | '/view/$slug/$jobId/'
     | '/$slug/candidates/$jobId/$candidateId'
     | '/$slug/candidates/$jobId/'
@@ -257,9 +279,11 @@ export interface FileRouteTypes {
     | '/$slug'
     | '/view/$slug'
     | '/$slug/jobs/$jobId'
+    | '/$slug/pipelines/$pipelineId'
+    | '/$slug/pipelines/create'
     | '/$slug/candidates'
-    | '/$slug/hiring-stages'
     | '/$slug/jobs'
+    | '/$slug/pipelines'
     | '/view/$slug/$jobId'
     | '/$slug/candidates/$jobId/$candidateId'
     | '/$slug/candidates/$jobId'
@@ -281,9 +305,11 @@ export interface FileRouteTypes {
     | '/view/$slug/'
     | '/$slug/_layout/candidates/$jobId'
     | '/$slug/_layout/jobs/$jobId'
+    | '/$slug/_layout/pipelines/$pipelineId'
+    | '/$slug/_layout/pipelines/create'
     | '/$slug/_layout/candidates/'
-    | '/$slug/_layout/hiring-stages/'
     | '/$slug/_layout/jobs/'
+    | '/$slug/_layout/pipelines/'
     | '/view/$slug/$jobId/'
     | '/$slug/_layout/candidates/$jobId/$candidateId'
     | '/$slug/_layout/candidates/$jobId/'
@@ -405,6 +431,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ViewSlugJobIdIndexRouteImport
       parentRoute: typeof ViewSlugRouteRoute
     }
+    '/$slug/_layout/pipelines/': {
+      id: '/$slug/_layout/pipelines/'
+      path: '/pipelines'
+      fullPath: '/$slug/pipelines/'
+      preLoaderRoute: typeof SlugLayoutPipelinesIndexRouteImport
+      parentRoute: typeof SlugLayoutRouteRoute
+    }
     '/$slug/_layout/jobs/': {
       id: '/$slug/_layout/jobs/'
       path: '/'
@@ -412,18 +445,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SlugLayoutJobsIndexRouteImport
       parentRoute: typeof SlugLayoutJobsRouteRoute
     }
-    '/$slug/_layout/hiring-stages/': {
-      id: '/$slug/_layout/hiring-stages/'
-      path: '/hiring-stages'
-      fullPath: '/$slug/hiring-stages/'
-      preLoaderRoute: typeof SlugLayoutHiringStagesIndexRouteImport
-      parentRoute: typeof SlugLayoutRouteRoute
-    }
     '/$slug/_layout/candidates/': {
       id: '/$slug/_layout/candidates/'
       path: '/candidates'
       fullPath: '/$slug/candidates/'
       preLoaderRoute: typeof SlugLayoutCandidatesIndexRouteImport
+      parentRoute: typeof SlugLayoutRouteRoute
+    }
+    '/$slug/_layout/pipelines/create': {
+      id: '/$slug/_layout/pipelines/create'
+      path: '/pipelines/create'
+      fullPath: '/$slug/pipelines/create'
+      preLoaderRoute: typeof SlugLayoutPipelinesCreateRouteImport
+      parentRoute: typeof SlugLayoutRouteRoute
+    }
+    '/$slug/_layout/pipelines/$pipelineId': {
+      id: '/$slug/_layout/pipelines/$pipelineId'
+      path: '/pipelines/$pipelineId'
+      fullPath: '/$slug/pipelines/$pipelineId'
+      preLoaderRoute: typeof SlugLayoutPipelinesPipelineIdRouteImport
       parentRoute: typeof SlugLayoutRouteRoute
     }
     '/$slug/_layout/jobs/$jobId': {
@@ -507,8 +547,10 @@ interface SlugLayoutRouteRouteChildren {
   SlugLayoutTeamRouteRoute: typeof SlugLayoutTeamRouteRoute
   SlugLayoutIndexRoute: typeof SlugLayoutIndexRoute
   SlugLayoutCandidatesJobIdRouteRoute: typeof SlugLayoutCandidatesJobIdRouteRouteWithChildren
+  SlugLayoutPipelinesPipelineIdRoute: typeof SlugLayoutPipelinesPipelineIdRoute
+  SlugLayoutPipelinesCreateRoute: typeof SlugLayoutPipelinesCreateRoute
   SlugLayoutCandidatesIndexRoute: typeof SlugLayoutCandidatesIndexRoute
-  SlugLayoutHiringStagesIndexRoute: typeof SlugLayoutHiringStagesIndexRoute
+  SlugLayoutPipelinesIndexRoute: typeof SlugLayoutPipelinesIndexRoute
 }
 
 const SlugLayoutRouteRouteChildren: SlugLayoutRouteRouteChildren = {
@@ -520,8 +562,10 @@ const SlugLayoutRouteRouteChildren: SlugLayoutRouteRouteChildren = {
   SlugLayoutIndexRoute: SlugLayoutIndexRoute,
   SlugLayoutCandidatesJobIdRouteRoute:
     SlugLayoutCandidatesJobIdRouteRouteWithChildren,
+  SlugLayoutPipelinesPipelineIdRoute: SlugLayoutPipelinesPipelineIdRoute,
+  SlugLayoutPipelinesCreateRoute: SlugLayoutPipelinesCreateRoute,
   SlugLayoutCandidatesIndexRoute: SlugLayoutCandidatesIndexRoute,
-  SlugLayoutHiringStagesIndexRoute: SlugLayoutHiringStagesIndexRoute,
+  SlugLayoutPipelinesIndexRoute: SlugLayoutPipelinesIndexRoute,
 }
 
 const SlugLayoutRouteRouteWithChildren = SlugLayoutRouteRoute._addFileChildren(

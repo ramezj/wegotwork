@@ -106,6 +106,7 @@ function RouteComponent() {
     createPipelineMutation.mutate({
       data: {
         organizationId: job.organizationId,
+        name: "Standard Pipeline",
       },
     });
   };

@@ -23,7 +23,18 @@ export const createJobFn = createServerFn()
       if (!organization) {
         throw new Error("Organization not found");
       }
-      const { questions, categoryId, ...jobData } = data.job;
+      const { questions, categoryId, pipelineId, ...jobData } = data.job;
+
+      const pipeline = await prisma.pipeline.findFirst({
+        where: {
+          id: pipelineId,
+          organizationId: organization.id,
+        },
+      });
+
+      if (!pipeline) {
+        throw new Error("Pipeline not found");
+      }
 
       const job = await prisma.job.create({
         data: {
@@ -37,19 +48,7 @@ export const createJobFn = createServerFn()
             }
             : undefined,
           pipeline: {
-            create: {
-              organizationId: organization.id,
-              stages: {
-                create: [
-                  { name: "Applied", order: 0 },
-                  { name: "Screening", order: 1 },
-                  { name: "Interview", order: 2 },
-                  { name: "Offer", order: 3 },
-                  { name: "Hired", order: 4 },
-                  { name: "Rejected", order: 5 },
-                ],
-              },
-            },
+            connect: { id: pipeline.id },
           },
           questions: {
             create: (questions || []).map((q) => ({

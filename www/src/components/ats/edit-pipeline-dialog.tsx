@@ -18,9 +18,10 @@ import { toast } from "sonner";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
+import { Field, FieldContent, FieldError } from "../ui/field";
 
 const pipelineSchema = z.object({
+  name: z.string().min(1, "Pipeline name is required"),
   stages: z
     .array(
       z.object({
@@ -55,6 +56,7 @@ export function EditPipelineDialog({
   const form = useForm<PipelineFormValues>({
     resolver: zodResolver(pipelineSchema),
     defaultValues: {
+      name: pipeline.name || "",
       stages: pipeline.stages.map((s) => ({ id: s.id, name: s.name })),
     },
   });
@@ -68,6 +70,7 @@ export function EditPipelineDialog({
   useEffect(() => {
     if (open) {
       form.reset({
+        name: pipeline.name || "",
         stages: pipeline.stages.map((s) => ({ id: s.id, name: s.name })),
       });
     }
@@ -91,6 +94,7 @@ export function EditPipelineDialog({
     updateMutation.mutate({
       data: {
         id: pipeline.id,
+        name: data.name,
         stages: data.stages.map((s, index) => ({
           id: s.id,
           name: s.name,
@@ -125,7 +129,23 @@ export function EditPipelineDialog({
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-
+          <Controller
+            control={form.control}
+            name="name"
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldContent>
+                  <Input
+                    aria-invalid={fieldState.invalid}
+                    className="w-full h-9"
+                    {...field}
+                    placeholder="Pipeline name"
+                  />
+                </FieldContent>
+                <FieldError errors={[fieldState.error]} />
+              </Field>
+            )}
+          />
 
           <div className="space-y-2">
             <Label className="flex justify-between items-center">

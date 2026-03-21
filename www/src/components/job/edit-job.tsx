@@ -44,10 +44,12 @@ import { Layout } from "../shared/layout";
 export function EditJobForm({
   job,
   categories,
+  pipelines,
   slug,
 }: {
   job: JobWithCategory;
   categories: JobCategory[];
+  pipelines: { id: string; name: string }[];
   slug: string;
 }) {
   const queryClient = useQueryClient();
@@ -69,6 +71,7 @@ export function EditJobForm({
       salaryInterval: job.salaryInterval || "MONTHLY",
       experienceLevel: job.experienceLevel || "ENTRY",
       categoryId: job.categoryId || "",
+      pipelineId: job.pipelineId || "",
       questions: job.questions.map((q) => ({
         id: q.id,
         label: q.label,
@@ -268,6 +271,34 @@ export function EditJobForm({
                           {categories.map((category) => (
                             <SelectItem key={category.id} value={category.id}>
                               {category.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+              <Controller
+                control={form.control}
+                name="pipelineId"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel required>Pipeline</FieldLabel>
+                    <FieldContent>
+                      <Select
+                        aria-invalid={fieldState.invalid}
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select a pipeline" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {pipelines.map((pipeline) => (
+                            <SelectItem key={pipeline.id} value={pipeline.id}>
+                              {pipeline.name}
                             </SelectItem>
                           ))}
                         </SelectContent>

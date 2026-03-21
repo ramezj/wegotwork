@@ -4,19 +4,19 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { EditPipelineDialog } from "./edit-pipeline-dialog";
 import { moveCandidateStageFn } from "@/features/services/ats/candidate";
+import { Link } from "@tanstack/react-router";
 
 interface PipelineBoardProps {
   pipeline: any;
   candidates: any[];
-  organizationId: string;
+  slug: string;
 }
 
 export function PipelineBoard({
   pipeline,
   candidates,
-  organizationId,
+  slug,
 }: PipelineBoardProps) {
   const queryClient = useQueryClient();
 
@@ -41,10 +41,14 @@ export function PipelineBoard({
     <div className="flex flex-col h-[calc(100vh-14rem)] w-full gap-4">
       <div className="flex items-center gap-3">
         <h2 className="text-xl font-bold tracking-tight">Hiring Pipeline</h2>
-        <EditPipelineDialog
-          pipeline={pipeline}
-          organizationId={organizationId}
-        />
+        <Button variant="outline" asChild>
+          <Link
+            to="/$slug/pipelines/$pipelineId"
+            params={{ slug, pipelineId: pipeline.id }}
+          >
+            Edit Pipeline
+          </Link>
+        </Button>
       </div>
 
       <ScrollArea className="flex-1 w-full whitespace-nowrap">
@@ -61,21 +65,21 @@ export function PipelineBoard({
             />
           ))}
 
-          <EditPipelineDialog
-            pipeline={pipeline}
-            organizationId={organizationId}
-            trigger={
-              <Button
-                variant="outline"
-                className="w-72 min-w-72 h-full border-2 border-dashed flex flex-col items-center justify-center gap-2"
-              >
-                <Plus className="size-6 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground font-medium">
-                  Add New Stage
-                </span>
-              </Button>
-            }
-          />
+          <Button
+            variant="outline"
+            className="w-72 min-w-72 h-full border-2 border-dashed flex flex-col items-center justify-center gap-2"
+            asChild
+          >
+            <Link
+              to="/$slug/pipelines/$pipelineId"
+              params={{ slug, pipelineId: pipeline.id }}
+            >
+              <Plus className="size-6 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground font-medium">
+                Add New Stage
+              </span>
+            </Link>
+          </Button>
         </div>
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
