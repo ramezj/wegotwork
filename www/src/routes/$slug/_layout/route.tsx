@@ -24,11 +24,11 @@ function RouteComponent() {
   const { slug } = Route.useParams();
   return (
     <>
-      <SidebarProvider className="bg-background overscroll-none">
+      <SidebarProvider>
         <AppSidebar slug={slug} session={Route.useRouteContext().session} />
-        <SidebarInset className="bg-background overscroll-none">
+        <SidebarInset>
           <AppHeader />
-          <main className="flex flex-1 flex-col min-h-0 overflow-y-auto overscroll-contain bg-background no-scrollbar">
+          <main className="flex flex-1 flex-col min-h-0 overflow-y-auto no-scrollbar">
             <Suspense fallback={<LoadingLayout title="" />}>
               <Outlet />
             </Suspense>
