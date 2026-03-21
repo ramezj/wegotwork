@@ -16,7 +16,7 @@ import z from "zod";
 import { toast } from "sonner";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
-import { Loader, PlusIcon } from "lucide-react";
+import { FolderPlus, Loader, PlusIcon } from "lucide-react";
 import { useState } from "react";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 
@@ -58,8 +58,11 @@ export function CreateCategoryDialog({ slug }: { slug: string }) {
         </Button>
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Create Category</DialogTitle>
+        <DialogHeader className="items-start text-left">
+          <DialogTitle className="flex items-center gap-2">
+            <FolderPlus className="size-5" />
+            Create Category
+          </DialogTitle>
           <DialogDescription>
             Add a new job category to organize your roles.
           </DialogDescription>

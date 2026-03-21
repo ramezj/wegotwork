@@ -1,5 +1,9 @@
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+
+const pageTitleClass = "text-xl font-semibold tracking-tighter leading-none";
+const pageHeaderRowClass = "flex min-h-10 items-center justify-between gap-3";
+
 export function Layout({
   title,
   primaryButton,
@@ -17,14 +21,14 @@ export function Layout({
     return (
       <div className={cn("flex flex-1 flex-col min-h-0", className)}>
         {/* Sticky Page Header */}
-        <div className="sticky top-0 z-20 p-4 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 border-b flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-xl font-semibold">{title}</h1>
+        <div className="sticky top-0 z-20 border-b bg-background/95 p-4 backdrop-blur supports-backdrop-filter:bg-background/60">
+          <div className={pageHeaderRowClass}>
+            <h1 className={pageTitleClass}>{title}</h1>
+            <div className="flex items-center gap-2">{primaryButton}</div>
           </div>
-          <div className="flex items-center gap-2">{primaryButton}</div>
         </div>
         {/* Content with padding */}
-        <div className="px-4 pb-4 flex-1">{children}</div>
+        <div className="flex-1 px-4 pb-4 pt-4">{children}</div>
       </div>
     );
   }
@@ -33,9 +37,9 @@ export function Layout({
     <div
       className={cn("flex flex-1 flex-col space-y-4 p-4 min-h-0", className)}
     >
-      <div className="flex items-center justify-between min-h-8">
-        <h1 className="text-xl font-semibold ">{title}</h1>
-        {primaryButton}
+      <div className={pageHeaderRowClass}>
+        <h1 className={pageTitleClass}>{title}</h1>
+        <div className="flex items-center gap-2">{primaryButton}</div>
       </div>
       {children}
     </div>

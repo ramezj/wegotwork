@@ -117,14 +117,12 @@ export function CreateJobDialog({ slug }: { slug: string }) {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
-        <DialogHeader>
+        <DialogHeader className="items-start text-left">
           <DialogTitle className="flex items-center gap-2">
             <Briefcase className="size-5" />
             Create a Job
           </DialogTitle>
-          <DialogDescription>
-            Define your new job opening and assign it to one of your pipelines.
-          </DialogDescription>
+          <DialogDescription>Define your new job opening</DialogDescription>
         </DialogHeader>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <Controller
