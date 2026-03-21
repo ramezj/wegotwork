@@ -17,6 +17,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html,
+body {
+  min-height: 100dvh;
+  background: var(--background);
+  overscroll-behavior: none;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
