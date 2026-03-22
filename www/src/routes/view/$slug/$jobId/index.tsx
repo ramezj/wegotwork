@@ -225,10 +225,7 @@ function RouteComponent() {
     );
   }
 
-  const typeLabel = job.type
-    .split("_")
-    .map((w: string) => w.charAt(0) + w.slice(1).toLowerCase())
-    .join("-");
+  const typeLabel = formatJobType(job.type);
 
   const locationLabel =
     job.locationMode.charAt(0) + job.locationMode.slice(1).toLowerCase();
@@ -503,4 +500,21 @@ function RouteComponent() {
       </div>
     </div>
   );
+}
+
+function formatJobType(type: string) {
+  switch (type) {
+    case "FULLTIME":
+      return "Full-time";
+    case "PARTTIME":
+      return "Part-time";
+    case "FULLTIME_PARTTIME":
+      return "Full-time or Part-time";
+    case "INTERNSHIP":
+      return "Internship";
+    case "CONTRACT":
+      return "Contract";
+    default:
+      return type;
+  }
 }
