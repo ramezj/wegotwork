@@ -1,18 +1,16 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Search, ChevronDown } from "lucide-react";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Search } from "lucide-react";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from "../ui/input-group";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Stage {
   id: string;
@@ -39,12 +37,7 @@ export function ATSFilterBar({
   totalCandidates,
   resultsCount,
 }: ATSFilterBarProps) {
-  const isMobile = useIsMobile();
   const activeStage = stages.find((s) => s.id === activeStageId);
-  const activeLabel =
-    activeStageId === "all"
-      ? `All Stages (${totalCandidates})`
-      : `${activeStage?.name} (${activeStage?.count})`;
 
   return (
     <div className="flex flex-col lg:h-16 lg:justify-center p-4 border-b sticky top-0 z-10 bg-background">
@@ -69,34 +62,22 @@ export function ATSFilterBar({
               <Search className="size-4 text-muted-foreground" />
             </InputGroupAddon>
           </InputGroup>
-          <div className="w-full flex-1">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="w-full justify-between font-semibold"
-                >
-                  <span className="truncate">{activeLabel}</span>
-                  <ChevronDown className="ml-2 size-4 shrink-0 opacity-50" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align={isMobile ? "start" : "end"}
-                className="DropdownMenuContent"
-              >
-                <DropdownMenuItem onClick={() => onStageChange("all")}>
+          <div className="w-full sm:w-auto min-w-[200px]">
+            <Select value={activeStageId} onValueChange={onStageChange}>
+              <SelectTrigger className="w-full font-semibold">
+                <SelectValue placeholder="Filter by stage" />
+              </SelectTrigger>
+              <SelectContent align="end">
+                <SelectItem value="all">
                   All Stages ({totalCandidates})
-                </DropdownMenuItem>
+                </SelectItem>
                 {stages.map((stage) => (
-                  <DropdownMenuItem
-                    key={stage.id}
-                    onClick={() => onStageChange(stage.id)}
-                  >
+                  <SelectItem key={stage.id} value={stage.id}>
                     {stage.name} ({stage.count})
-                  </DropdownMenuItem>
+                  </SelectItem>
                 ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+              </SelectContent>
+            </Select>
           </div>
         </div>
       </div>

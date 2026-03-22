@@ -1,14 +1,23 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Users, ChevronRight, Briefcase } from "lucide-react";
+import { Briefcase, Funnel } from "lucide-react";
 import { Job, Candidate } from "generated/prisma/client";
 import { Layout } from "@/components/shared/layout";
 import { JobCardForCandidatesPage } from "@/components/job/job-card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { z } from "zod";
 
 export const Route = createFileRoute("/$slug/_layout/candidates/")({
+  validateSearch: z.object({
+    status: z.enum(["PUBLISHED", "DRAFT", "ARCHIVED", "CLOSED"]).optional(),
+  }),
   component: RouteComponent,
   loader: ({ context, params }) =>
     context.queryClient.ensureQueryData(
@@ -21,6 +30,8 @@ export const Route = createFileRoute("/$slug/_layout/candidates/")({
 
 function RouteComponent() {
   const { slug } = Route.useParams();
+  const { status } = Route.useSearch();
+  const navigate = useNavigate();
   const { data } = useSuspenseQuery(
     organizationBySlugQueryOptions(slug),
   ) as any;
@@ -30,62 +41,73 @@ function RouteComponent() {
   }
 
   const jobs = data.organization.jobs as (Job & { candidates: Candidate[] })[];
+  const filteredJobs = status
+    ? jobs.filter((job) => job.status === status)
+    : jobs;
+
+  const title = status
+    ? `${toStatusLabel(status)} Candidates (${filteredJobs.length})`
+    : "Candidates";
+
+  const handleStatusChange = (value: string) => {
+    navigate({
+      to: "/$slug/candidates",
+      params: { slug },
+      search: value === "ALL" ? {} : { status: value as SearchStatus },
+    });
+  };
 
   return (
-    <Layout title="Candidates">
+    <Layout
+      title={title}
+      primaryButton={
+        <Select value={status || "ALL"} onValueChange={handleStatusChange}>
+          <SelectTrigger
+            aria-label="Filter candidates by job status"
+            className="w-9 justify-center px-0 md:w-40 md:justify-between md:px-3 [&>svg:last-child]:hidden md:[&>svg:last-child]:block"
+          >
+            <>
+              <Funnel className="size-4 md:hidden" />
+              <span className="sr-only md:not-sr-only md:flex md:flex-1 md:items-center md:text-left">
+                <SelectValue placeholder="Filter jobs" />
+              </span>
+            </>
+          </SelectTrigger>
+          <SelectContent align="end">
+            <SelectItem value="ALL">All Jobs</SelectItem>
+            <SelectItem value="PUBLISHED">Published</SelectItem>
+            <SelectItem value="DRAFT">Drafts</SelectItem>
+            <SelectItem value="CLOSED">Closed</SelectItem>
+            <SelectItem value="ARCHIVED">Archived</SelectItem>
+          </SelectContent>
+        </Select>
+      }
+    >
       <div className="grid gap-4">
-        {jobs.map((job) => (
-          // <Link
-          //   key={job.id}
-          //   to="/$slug/candidates/$jobId"
-          //   params={{ slug, jobId: job.id }}
-          //   className="block group"
-          // >
-          //   <Card className="hover:border-primary/50 transition-all overflow-hidden border">
-          //     <CardContent className="p-0">
-          //       <div className="flex items-center p-5 gap-4">
-          //         <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-          //           <Briefcase className="size-5" />
-          //         </div>
-          //         <div className="flex-1 min-w-0">
-          //           <h3 className="font-semibold text-lg truncate group-hover:text-primary transition-colors">
-          //             {job.title}
-          //           </h3>
-          //           <div className="flex items-center gap-3 text-sm text-muted-foreground mt-0.5">
-          //             <div className="flex items-center gap-1">
-          //               <Users className="size-3.5" />
-          //               <span>{job.applicants.length} candidates</span>
-          //             </div>
-          //             <Badge
-          //               variant="outline"
-          //               className="capitalize text-[10px] h-4"
-          //             >
-          //               {job.status.toLowerCase()}
-          //             </Badge>
-          //           </div>
-          //         </div>
-          //         <ChevronRight className="size-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
-          //       </div>
-          //     </CardContent>
-          //   </Card>
-          // </Link>
+        {filteredJobs.map((job) => (
           <JobCardForCandidatesPage
+            key={job.id}
             job={job}
             slug={slug}
             candidates={job.candidates.length}
           />
         ))}
-
-        {jobs.length === 0 && (
-          <div className="text-center py-20 border-2 border-dashed rounded-xl bg-muted/5">
-            <Briefcase className="size-10 text-muted-foreground mx-auto mb-4 opacity-50" />
-            <h3 className="text-lg font-semibold">No jobs found</h3>
-            <p className="text-muted-foreground">
-              You haven't posted any jobs yet.
-            </p>
-          </div>
-        )}
       </div>
     </Layout>
   );
+}
+
+type SearchStatus = "PUBLISHED" | "DRAFT" | "ARCHIVED" | "CLOSED";
+
+function toStatusLabel(status: SearchStatus) {
+  switch (status) {
+    case "PUBLISHED":
+      return "Published";
+    case "DRAFT":
+      return "Draft";
+    case "ARCHIVED":
+      return "Archived";
+    case "CLOSED":
+      return "Closed";
+  }
 }
