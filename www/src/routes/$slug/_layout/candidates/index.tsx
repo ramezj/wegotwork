@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
-import { Briefcase, Funnel } from "lucide-react";
+import { Briefcase, Funnel, ListFilter } from "lucide-react";
 import { Job, Candidate } from "generated/prisma/client";
 import { Layout } from "@/components/shared/layout";
 import { JobCardForCandidatesPage } from "@/components/job/job-card";
@@ -67,7 +67,7 @@ function RouteComponent() {
             className="w-9 justify-center px-0 md:w-40 md:justify-between md:px-3 [&>svg:last-child]:hidden md:[&>svg:last-child]:block"
           >
             <>
-              <Funnel className="size-4 md:hidden" />
+              <ListFilter className="size-4 md:hidden" />
               <span className="sr-only md:not-sr-only md:flex md:flex-1 md:items-center md:text-left">
                 <SelectValue placeholder="Filter jobs" />
               </span>

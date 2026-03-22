@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Funnel } from "lucide-react";
+import { Funnel, ListFilter } from "lucide-react";
 import { z } from "zod";
 
 export const Route = createFileRoute("/$slug/_layout/jobs/")({
@@ -61,7 +61,7 @@ function RouteComponent() {
                 className="w-9 px-0 justify-center md:w-40 md:px-3 md:justify-between [&>svg:last-child]:hidden md:[&>svg:last-child]:block"
               >
                 <>
-                  <Funnel className="size-4 md:hidden" />
+                  <ListFilter className="size-4 md:hidden" />
                   <span className="sr-only md:not-sr-only md:flex md:flex-1 md:items-center md:text-left">
                     <SelectValue placeholder="Filter jobs" />
                   </span>

@@ -63,7 +63,7 @@ export function CandidateSidebar({
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent
-        className="sm:max-w-md w-full h-full flex flex-col p-0"
+        className="sm:max-w-md w-full h-full flex flex-col p-0 data-[state=open]:duration-200 data-[state=closed]:duration-200"
         onOpenAutoFocus={(event) => event.preventDefault()}
       >
         <SheetHeader className="border-b p-4 space-y-2">
