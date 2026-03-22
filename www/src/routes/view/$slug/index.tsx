@@ -3,14 +3,13 @@ import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { viewOrganizationBySlugQueryOptions } from "@/features/queries/organization";
 import { JobCardForViewPage } from "@/components/job/job-card";
 import { CategoryWithJob, JobWithCategory } from "@/types/job/job";
-import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ChevronDown, Check } from "lucide-react";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useState } from "react";
 
 export const Route = createFileRoute("/view/$slug/")({
@@ -42,7 +41,7 @@ const LOCATION_MODES = [
   { value: "HYBRID", label: "Hybrid" },
 ] as const;
 
-function FilterDropdown({
+function FilterSelect({
   label,
   options,
   selected,
@@ -58,36 +57,22 @@ function FilterDropdown({
     : null;
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="justify-between w-full">
-          <span className="truncate">{selectedLabel ?? label}</span>
-          <ChevronDown className="ml-2 h-4 w-4 shrink-0" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        align="start"
-        className="space-y-1 DropdownMenuContent"
-      >
-        <DropdownMenuItem
-          onClick={() => onSelect(null)}
-          className="flex items-center justify-between"
-        >
-          <span>All</span>
-          {!selected && <Check className="h-4 w-4" />}
-        </DropdownMenuItem>
+    <Select
+      value={selected ?? "__all__"}
+      onValueChange={(value) => onSelect(value === "__all__" ? null : value)}
+    >
+      <SelectTrigger className="w-full">
+        <SelectValue>{selectedLabel ?? label}</SelectValue>
+      </SelectTrigger>
+      <SelectContent align="start">
+        <SelectItem value="__all__">All</SelectItem>
         {options.map((option) => (
-          <DropdownMenuItem
-            key={option.value}
-            onClick={() => onSelect(option.value)}
-            className="flex items-center justify-between"
-          >
-            <span>{option.label}</span>
-            {selected === option.value && <Check className="h-4 w-4" />}
-          </DropdownMenuItem>
+          <SelectItem key={option.value} value={option.value}>
+            {option.label}
+          </SelectItem>
         ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </SelectContent>
+    </Select>
   );
 }
 
@@ -163,7 +148,7 @@ function RouteComponent() {
 
           <div className="flex sm:flex-row flex-col gap-2">
             <div className="flex-1">
-              <FilterDropdown
+              <FilterSelect
                 label="Category"
                 options={categories
                   .filter((cat: CategoryWithJob) => cat.jobs.length > 0)
@@ -176,7 +161,7 @@ function RouteComponent() {
               />
             </div>
             <div className="flex-1">
-              <FilterDropdown
+              <FilterSelect
                 label="Employment Type"
                 options={EMPLOYMENT_TYPES}
                 selected={selectedType}
@@ -184,7 +169,7 @@ function RouteComponent() {
               />
             </div>
             <div className="flex-1">
-              <FilterDropdown
+              <FilterSelect
                 label="Location"
                 options={LOCATION_MODES}
                 selected={selectedLocation}
