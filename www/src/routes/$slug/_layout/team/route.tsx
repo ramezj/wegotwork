@@ -7,11 +7,18 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Mail, UserPlus } from "lucide-react";
+import { Copy, Mail, UserPlus } from "lucide-react";
 import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { inviteOrganizationMemberFn } from "@/features/services/organization/invite-member";
 import { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export const Route = createFileRoute("/$slug/_layout/team")({
   component: RouteComponent,
@@ -26,6 +33,7 @@ function RouteComponent() {
   const queryClient = useQueryClient();
   const { data } = useSuspenseQuery(organizationTeamQueryOptions(slug));
   const [email, setEmail] = useState("");
+  const [role, setRole] = useState<"member" | "admin">("member");
 
   if (!data?.success || !data.organization) {
     return <Navigate to="/dashboard" />;
@@ -35,8 +43,16 @@ function RouteComponent() {
     data.currentMemberRole === "owner" || data.currentMemberRole === "admin";
 
   const inviteMutation = useMutation({
-    mutationFn: (emailToInvite: string) =>
-      inviteOrganizationMemberFn({ data: { slug, email: emailToInvite } }),
+    mutationFn: ({
+      emailToInvite,
+      roleToInvite,
+    }: {
+      emailToInvite: string;
+      roleToInvite: "member" | "admin";
+    }) =>
+      inviteOrganizationMemberFn({
+        data: { slug, email: emailToInvite, role: roleToInvite },
+      }),
     onSuccess: (result) => {
       if (!result?.success) {
         toast.error(result?.error || "Failed to send invitation.");
@@ -44,6 +60,7 @@ function RouteComponent() {
       }
       toast.success("Invitation sent.");
       setEmail("");
+      setRole("member");
       queryClient.invalidateQueries({
         queryKey: organizationTeamQueryOptions(slug).queryKey,
       });
@@ -59,7 +76,16 @@ function RouteComponent() {
       toast.error("Please enter an email address.");
       return;
     }
-    inviteMutation.mutate(email.trim());
+    inviteMutation.mutate({
+      emailToInvite: email.trim(),
+      roleToInvite: role,
+    });
+  };
+
+  const copyInvitationLink = async (invitationId: string) => {
+    const inviteUrl = `${window.location.origin}/invite/${invitationId}`;
+    await navigator.clipboard.writeText(inviteUrl);
+    toast.success("Invitation link copied.");
   };
 
   return (
@@ -100,7 +126,10 @@ function RouteComponent() {
               <p className="text-xs text-muted-foreground font-semibold">
                 Your access
               </p>
-              <Badge variant="outline" className="capitalize">
+              <Badge
+                variant="outline"
+                className="h-8 rounded-md px-3 text-sm capitalize"
+              >
                 {data.currentMemberRole || "member"}
               </Badge>
             </div>
@@ -118,7 +147,7 @@ function RouteComponent() {
             {data.members.map((member) => (
               <div
                 key={member.id}
-                className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-border/60 pb-4 last:border-b-0 last:pb-0"
+                className="flex flex-col gap-3 border-b border-border/60 pb-4 last:border-b-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between"
               >
                 <div className="flex items-center gap-3">
                   <Avatar className="size-10">
@@ -140,9 +169,17 @@ function RouteComponent() {
                 </div>
                 <div className="flex items-center gap-2">
                   {member.userId === session.user.id && (
-                    <Badge variant="secondary">You</Badge>
+                    <Badge
+                      variant="secondary"
+                      className="h-8 rounded-md px-3 text-sm capitalize"
+                    >
+                      You
+                    </Badge>
                   )}
-                  <Badge variant="outline" className="capitalize">
+                  <Badge
+                    variant="outline"
+                    className="h-8 rounded-md px-3 text-sm capitalize"
+                  >
                     {member.role}
                   </Badge>
                 </div>
@@ -166,9 +203,23 @@ function RouteComponent() {
                 type="email"
                 placeholder="teammate@company.com"
                 value={email}
+                className="flex-1"
                 disabled={!canInvite || inviteMutation.isPending}
                 onChange={(event) => setEmail(event.target.value)}
               />
+              <Select
+                value={role}
+                onValueChange={(value: "member" | "admin") => setRole(value)}
+                disabled={!canInvite || inviteMutation.isPending}
+              >
+                <SelectTrigger className="w-full sm:w-40">
+                  <SelectValue placeholder="Role" />
+                </SelectTrigger>
+                <SelectContent align="end">
+                  <SelectItem value="member">Member</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
+                </SelectContent>
+              </Select>
               <Button
                 type="submit"
                 disabled={!canInvite || inviteMutation.isPending}
@@ -202,7 +253,7 @@ function RouteComponent() {
               data.invitations.map((invitation) => (
                 <div
                   key={invitation.id}
-                  className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-border/60 pb-4 last:border-b-0 last:pb-0"
+                  className="flex flex-col gap-2 border-b border-border/60 pb-4 last:border-b-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between"
                 >
                   <div className="flex items-center gap-3">
                     <div className="rounded-md border border-border/60 p-2">
@@ -217,10 +268,25 @@ function RouteComponent() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="capitalize">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => copyInvitationLink(invitation.id)}
+                    >
+                      <Copy className="size-4" />
+                      Copy link
+                    </Button>
+                    <Badge
+                      variant="outline"
+                      className="h-8 rounded-md px-3 text-sm capitalize"
+                    >
                       {invitation.role || "member"}
                     </Badge>
-                    <Badge variant="secondary" className="capitalize">
+                    <Badge
+                      variant="secondary"
+                      className="h-8 rounded-md px-3 text-sm capitalize"
+                    >
                       {invitation.status}
                     </Badge>
                   </div>

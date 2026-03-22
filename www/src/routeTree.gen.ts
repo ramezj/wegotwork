@@ -13,6 +13,7 @@ import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ViewIndexRouteImport } from './routes/view/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as InviteInvitationIdRouteImport } from './routes/invite/$invitationId'
 import { Route as ViewSlugRouteRouteImport } from './routes/view/$slug/route'
 import { Route as SlugLayoutRouteRouteImport } from './routes/$slug/_layout/route'
 import { Route as ViewSlugIndexRouteImport } from './routes/view/$slug/index'
@@ -53,6 +54,11 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DashboardRouteRoute,
+} as any)
+const InviteInvitationIdRoute = InviteInvitationIdRouteImport.update({
+  id: '/invite/$invitationId',
+  path: '/invite/$invitationId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ViewSlugRouteRoute = ViewSlugRouteRouteImport.update({
   id: '/view/$slug',
@@ -170,6 +176,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/$slug': typeof SlugLayoutRouteRouteWithChildren
   '/view/$slug': typeof ViewSlugRouteRouteWithChildren
+  '/invite/$invitationId': typeof InviteInvitationIdRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/view/': typeof ViewIndexRoute
   '/$slug/billing': typeof SlugLayoutBillingRouteRoute
@@ -193,6 +200,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/invite/$invitationId': typeof InviteInvitationIdRoute
   '/dashboard': typeof DashboardIndexRoute
   '/view': typeof ViewIndexRoute
   '/$slug/billing': typeof SlugLayoutBillingRouteRoute
@@ -218,6 +226,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/$slug/_layout': typeof SlugLayoutRouteRouteWithChildren
   '/view/$slug': typeof ViewSlugRouteRouteWithChildren
+  '/invite/$invitationId': typeof InviteInvitationIdRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/view/': typeof ViewIndexRoute
   '/$slug/_layout/billing': typeof SlugLayoutBillingRouteRoute
@@ -246,6 +255,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/$slug'
     | '/view/$slug'
+    | '/invite/$invitationId'
     | '/dashboard/'
     | '/view/'
     | '/$slug/billing'
@@ -269,6 +279,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/invite/$invitationId'
     | '/dashboard'
     | '/view'
     | '/$slug/billing'
@@ -293,6 +304,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/$slug/_layout'
     | '/view/$slug'
+    | '/invite/$invitationId'
     | '/dashboard/'
     | '/view/'
     | '/$slug/_layout/billing'
@@ -320,6 +332,7 @@ export interface RootRouteChildren {
   DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
   SlugLayoutRouteRoute: typeof SlugLayoutRouteRouteWithChildren
   ViewSlugRouteRoute: typeof ViewSlugRouteRouteWithChildren
+  InviteInvitationIdRoute: typeof InviteInvitationIdRoute
   ViewIndexRoute: typeof ViewIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
@@ -353,6 +366,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard/'
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRouteRoute
+    }
+    '/invite/$invitationId': {
+      id: '/invite/$invitationId'
+      path: '/invite/$invitationId'
+      fullPath: '/invite/$invitationId'
+      preLoaderRoute: typeof InviteInvitationIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/view/$slug': {
       id: '/view/$slug'
@@ -591,6 +611,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRouteRoute: DashboardRouteRouteWithChildren,
   SlugLayoutRouteRoute: SlugLayoutRouteRouteWithChildren,
   ViewSlugRouteRoute: ViewSlugRouteRouteWithChildren,
+  InviteInvitationIdRoute: InviteInvitationIdRoute,
   ViewIndexRoute: ViewIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
