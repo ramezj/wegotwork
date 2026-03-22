@@ -206,16 +206,10 @@ export function JobCardForLandingPage({
                 {job.title}
               </p>
               <div className="flex flex-row flex-wrap gap-1">
-                {/* {job.category && (
-                  <Badge variant="default">{job.category.name}</Badge>
-                )} */}
                 <Badge variant="default">{formatJobType(job.type)}</Badge>
                 <Badge variant="default">
                   {formatLocationMode(job.locationMode)}
                 </Badge>
-                {/* <Badge variant="outline">
-                  {formatDistanceToNow(new Date(job.createdAt))}
-                </Badge> */}
               </div>
             </div>
 

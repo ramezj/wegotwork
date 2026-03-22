@@ -1,8 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { JobCard, JobCardForLandingPage } from "@/components/job/job-card";
+import { JobCardForLandingPage } from "@/components/job/job-card";
 import { JobWithCategory } from "@/types/job/job";
-import Glow from "../ui/glow";
 
 interface BrowserProps {
   jobs: JobWithCategory[];
@@ -13,12 +12,12 @@ export function Browser({ jobs }: BrowserProps) {
     <Card className="rounded-lg overflow-hidden p-0 gap-0 bg-white">
       {/* Browser chrome */}
       <div className="flex items-center gap-2 p-4 ">
-        <div className="flex gap-1.5 ">
+        <div className="flex gap-1.5">
           <div className="size-3 bg-secondary rounded-full" />
           <div className="size-3 bg-secondary rounded-full" />
           <div className="size-3 bg-secondary rounded-full" />
         </div>
-        <div className="flex-1 ">
+        <div className="flex-1">
           <div className="bg-secondary py-1 text-xs text-primary font-medium text-start p-2 rounded-md">
             jobs.louxapp.com
           </div>

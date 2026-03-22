@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { getSession } from "@/features/auth/server-session";
 import Header from "@/components/shared/header";
 import { Button } from "@/components/ui/button";
-import { BarChart3 } from "lucide-react";
+import { BarChart3, Sparkles } from "lucide-react";
 import { JobWithCategory } from "@/types/job/job";
 import { Browser } from "@/components/shared/browser";
 import {
@@ -36,21 +36,28 @@ function App() {
       <div className="h-16" />
       <Header session={session} />
       <main className="space-y-8 lg:w-[80%] w-full mx-auto">
-        <header className="flex flex-col space-y-8">
-          <section className="flex flex-col items-center text-center px-2">
-            <div className="w-full px-4">
-              {/* <Badge variant={"default"}>Currently in early development</Badge> */}
-              <h1 className="text-4xl tracking-tight sm:text-4xl lg:text-5xl 2xl:text-6xl font-semibold text-balance">
-                You're building fast, why not hire fast too?
+        <header className="flex flex-col space-y-8 px-4">
+          <section className="relative overflow-hidden rounded-none border px-4 py-12 text-center sm:px-8 sm:py-16">
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-32" />
+            <div className="relative mx-auto flex max-w-4xl flex-col items-center space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-none border px-3 py-1 text-sm font-semibold">
+                <Sparkles className="size-4" />
+                Built for fast-moving teams
+              </div>
+              <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
+                You're building fast,
+                <span className="block text-branding">
+                  why not hire fast too?
+                </span>
               </h1>
-              {/* <p className="text-[1rem] font-medium text-balance text-muted-foreground">
-                Start with a career page, then run every job post, application,
-                and hiring decision inside one organized Ark.
-              </p> */}
+              <p className="max-w-2xl text-base font-medium leading-7 text-muted-foreground sm:text-lg">
+                Launch a clean careers page, publish roles quickly, and keep
+                every application and hiring decision in one focused place.
+              </p>
             </div>
           </section>
-          <div className="flex flex-col items-center px-4">
-            <div className="flex flex-row w-full items-center justify-center content-center gap-4">
+          <div className="flex flex-col items-center px-0">
+            <div className="flex w-full flex-row items-center justify-center gap-4">
               <Button variant={"secondary"} asChild className="flex-1 ">
                 <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
                   See Demo
@@ -59,57 +66,14 @@ function App() {
               <Button variant={"default"} asChild className="flex-1">
                 <Link to={"/"} target="_blank">
                   Start Hiring
-                  {/* <ArrowRight className="duration-100 group-hover:-rotate-45" /> */}
                 </Link>
               </Button>
             </div>
           </div>
-          {/* <section className="px-4">
-            <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
-          </section> */}
         </header>
         <section className="px-4">
-          {/* <div className="w-full mx-auto">
-            <div className="relative overflow-hidden rounded-lg">
-              <div
-                className="absolute inset-0 bg-black"
-                // style={{ backgroundImage: "url('/blue.png')" }}
-              />
-              <div className="absolute inset-0" />
-              <div className="relative">
-                <div className="p-2">
-                  <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
-                </div>
-              </div>
-            </div>
-          </div> */}
           <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
         </section>
-        {/* <section className="px-4">
-          <div className="w-full mx-auto">
-            <div className="relative overflow-hidden rounded-2xl bg-black/40">
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('/blue.png')" }}
-              />
-              <div className="absolute inset-0 bg-black/20" />
-              <div className="relative flex flex-col items-center justify-center text-center px-6 py-16 sm:py-20">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">
-                  Beautiful Career Pages
-                </h2>
-                <p className="mt-3 text-sm sm:text-base text-white/80">
-                  Vite. Optimized. Isomorphic. Deploy.
-                </p>
-                <Button
-                  variant={"secondary"}
-                  className="mt-6 bg-white text-black hover:bg-white"
-                >
-                  Start Hiring Now
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section> */}
         <section className="px-4">
           <div className="w-full mx-auto flex flex-col space-y-8">
             <div className="text-center">
@@ -117,16 +81,16 @@ function App() {
                 The simplest all-in-one hiring platform
               </h1>
             </div>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid gap-8 md:grid-cols-2">
               <Card>
                 <CardHeader>
                   <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
                     <Building2 className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="font-semibold mb-2! ">
+                  <CardTitle className="font-semibold">
                     Beautiful Career Pages
                   </CardTitle>
-                  <CardDescription className="text-muted-foreground font-medium ">
+                  <CardDescription className="font-medium text-muted-foreground">
                     Create stunning, branded career pages that showcase your
                     company culture and attract top talent.
                   </CardDescription>
@@ -138,10 +102,10 @@ function App() {
                   <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
                     <FileText className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="font-semibold mb-2! ">
+                  <CardTitle className="font-semibold">
                     Easy job posting
                   </CardTitle>
-                  <CardDescription className="text-muted-foreground font-medium ">
+                  <CardDescription className="font-medium text-muted-foreground">
                     Post jobs in minutes with our intuitive editor. Add
                     requirements, benefits, and company info effortlessly.
                   </CardDescription>
@@ -153,10 +117,10 @@ function App() {
                   <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
                     <Users className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="font-semibold mb-2! ">
+                  <CardTitle className="font-semibold">
                     Applicant management
                   </CardTitle>
-                  <CardDescription className="text-muted-foreground font-medium ">
+                  <CardDescription className="font-medium text-muted-foreground">
                     Track, review, and manage all applications in one place.
                     collaborate with your team seamlessly.
                   </CardDescription>
@@ -168,10 +132,10 @@ function App() {
                   <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
                     <BarChart3 className="h-6 w-6 text-black" />
                   </div>
-                  <CardTitle className="font-semibold mb-2! ">
+                  <CardTitle className="font-semibold">
                     Analytics & insights
                   </CardTitle>
-                  <CardDescription className="text-muted-foreground font-medium ">
+                  <CardDescription className="font-medium text-muted-foreground">
                     Get detailed analytics on job performance, application
                     rates, and hiring metrics.
                   </CardDescription>
