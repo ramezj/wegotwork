@@ -42,14 +42,14 @@ export default function Header({ session }: { session: Session | null }) {
   const authActions = session?.user ? (
     <>
       <Button
-        variant="default"
+        variant="secondary"
         className="font-semibold cursor-pointer "
         onClick={logOut}
       >
         Log Out <LogOut className="size-4 ml-1" />
       </Button>
       <Button
-        variant="branding"
+        variant="default"
         asChild
         className="font-semibold cursor-pointer"
       >
@@ -74,10 +74,10 @@ export default function Header({ session }: { session: Session | null }) {
 
   const mobileActions = session?.user ? (
     <>
-      <Button variant="default" className="" onClick={logOut}>
+      <Button variant="secondary" className="" onClick={logOut}>
         Log Out <LogOut className="size-4 ml-1" />
       </Button>
-      <Button variant="branding" asChild className="">
+      <Button variant="default" asChild className="">
         <Link preload="render" to="/dashboard">
           Open Dashboard
         </Link>

@@ -55,7 +55,7 @@ export function HeaderBase({
     <header
       ref={headerRef}
       className={cn(
-        "px-4 border bg-background/60 backdrop-blur-md overflow-hidden transition-all duration-300 ease-in-out w-full flex flex-col",
+        "px-4 border bg-white overflow-hidden transition-all duration-300 ease-in-out w-full flex flex-col",
         open ? "rounded-lg" : "rounded-lg",
         className,
       )}
@@ -118,7 +118,7 @@ export function HeaderBase({
               : "grid-rows-[0fr] opacity-0 pointer-events-none",
           )}
         >
-          <div 
+          <div
             className="overflow-hidden flex flex-col"
             onClick={(e) => {
               const target = e.target as HTMLElement;
@@ -129,17 +129,10 @@ export function HeaderBase({
           >
             <div className="flex flex-col gap-2 pb-5">
               {mobileNav && (
-                <nav className="flex flex-col gap-1">
-                  {mobileNav}
-                </nav>
+                <nav className="flex flex-col gap-1">{mobileNav}</nav>
               )}
               {mobileActions && (
-                <div className={cn(
-                  "flex flex-col gap-2",
-                  mobileNav ? "border-t pt-4" : "pt-2"
-                )}>
-                  {mobileActions}
-                </div>
+                <div className={cn("flex flex-col gap-2")}>{mobileActions}</div>
               )}
             </div>
           </div>

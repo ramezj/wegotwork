@@ -51,12 +51,12 @@ function App() {
           </section>
           <div className="flex flex-col items-center px-4">
             <div className="flex flex-row w-full items-center justify-center content-center gap-4">
-              <Button variant={"default"} asChild className="flex-1 ">
+              <Button variant={"secondary"} asChild className="flex-1 ">
                 <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
                   See Demo
                 </a>
               </Button>
-              <Button variant={"branding"} asChild className="flex-1">
+              <Button variant={"default"} asChild className="flex-1">
                 <Link to={"/"} target="_blank">
                   Start Hiring
                   {/* <ArrowRight className="duration-100 group-hover:-rotate-45" /> */}
