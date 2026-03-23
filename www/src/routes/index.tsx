@@ -42,7 +42,7 @@ function App() {
               className="pointer-events-none absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: "url('/blue.png')" }}
             />
-            <div className="relative bg-white/90 backdrop-blur-xl px-4 py-12 text-center sm:px-8 sm:py-16">
+            <div className="relative bg-white px-4 py-12 text-center sm:px-8 sm:py-16">
               <div className="mx-auto flex max-w-4xl flex-col items-center space-y-6">
                 <div className="inline-flex items-center gap-2 rounded-none border px-3 py-1 text-sm font-semibold">
                   <Sparkles className="size-4" />
