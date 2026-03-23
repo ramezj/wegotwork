@@ -37,7 +37,7 @@ function App() {
       <Header session={session} />
       <main className="space-y-8 lg:w-[80%] w-full mx-auto">
         <header className="flex flex-col space-y-8 px-4">
-          <section className="relative overflow-hidden rounded-none border p-4">
+          <section className="relative overflow-hidden rounded-none border p-3">
             <div
               className="pointer-events-none absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: "url('/blue.png')" }}
