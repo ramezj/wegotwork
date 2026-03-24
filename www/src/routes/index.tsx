@@ -68,12 +68,12 @@ function App() {
               <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
                 <div className="inline-flex items-center leading-none gap-2 rounded-none border px-3 py-1 text-sm font-semibold">
                   <Sparkles className="size-4" />
-                  built for fast paced teams
+                  Built for fast paced teams
                 </div>
                 <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
-                  you're building fast.
+                  You're building fast.
                   <span className="block text-branding">
-                    why not hire fast too?
+                    Why not hire fast too?
                   </span>
                 </h1>
                 {/* <p className="max-w-xl text-sm font-medium text-muted-foreground sm:text-base">
@@ -86,7 +86,7 @@ function App() {
                     className="w-full sm:w-72"
                   >
                     <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
-                      see demo
+                      See Demo
                     </a>
                   </Button>
                   <Button
@@ -95,7 +95,7 @@ function App() {
                     className="w-full sm:w-72"
                   >
                     <Link to={"/"} target="_blank">
-                      start hiring
+                      Start Hiring
                     </Link>
                   </Button>
                 </div>
@@ -107,8 +107,8 @@ function App() {
           <div className="space-y-8">
             <div className="border px-4 py-8 text-center sm:px-6 sm:py-10">
               <h2 className="mx-auto max-w-3xl text-2xl font-semibold leading-tight text-balance sm:text-3xl">
-                a careers page that already feels polished before you touch a
-                single candidate.
+                Create a career page, post jobs, and manage applicants all in
+                one platform.
               </h2>
             </div>
             <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
