@@ -18,6 +18,12 @@ import {
   Users,
   GitBranch,
   Folder,
+  LayoutGrid,
+  BriefcaseBusiness,
+  UserRound,
+  UsersRound,
+  Folders,
+  Building2,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
@@ -45,17 +51,17 @@ export function AppSidebar({
   const menuItems: menuItem[] = [
     {
       label: "Dashboard",
-      icon: <HomeIcon />,
+      icon: <LayoutGrid />,
       href: `/${slug}`,
     },
     {
       label: "Jobs",
-      icon: <Briefcase />,
+      icon: <BriefcaseBusiness />,
       href: `/${slug}/jobs`,
     },
     {
       label: "Candidates",
-      icon: <Users />,
+      icon: <UsersRound />,
       href: `/${slug}/candidates`,
     },
     {
@@ -67,14 +73,14 @@ export function AppSidebar({
   const categoryMenuItems: menuItem[] = [
     {
       label: "Categories",
-      icon: <Folder />,
+      icon: <Folders />,
       href: `/${slug}/categories`,
     },
   ];
   const teamMenuItems: menuItem[] = [
     {
       label: "Organization",
-      icon: <Building />,
+      icon: <Building2 />,
       href: `/${slug}/organization`,
     },
     {
@@ -84,7 +90,7 @@ export function AppSidebar({
     },
     {
       label: "Team",
-      icon: <Users />,
+      icon: <UsersRound />,
       href: `/${slug}/team`,
     },
   ];
