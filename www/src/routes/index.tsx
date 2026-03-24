@@ -5,13 +5,8 @@ import { Button } from "@/components/ui/button";
 import { BarChart3, Sparkles } from "lucide-react";
 import { JobWithCategory } from "@/types/job/job";
 import { Browser } from "@/components/shared/browser";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Building2, FileText, Users } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   beforeLoad: async () => {
@@ -31,6 +26,33 @@ export const Route = createFileRoute("/")({
 
 function App() {
   const { session } = Route.useRouteContext();
+  const features = [
+    {
+      title: "Beautiful Career Pages",
+      description:
+        "Create clean, branded job pages that feel intentional from the first scroll.",
+      icon: Building2,
+    },
+    {
+      title: "Easy Job Posting",
+      description:
+        "Publish openings quickly with a simple editor for the details that matter.",
+      icon: FileText,
+    },
+    {
+      title: "Applicant Management",
+      description:
+        "Review, move, and organize candidates without your hiring flow turning chaotic.",
+      icon: Users,
+    },
+    {
+      title: "Analytics & Insights",
+      description:
+        "See how jobs perform and where your pipeline is moving or getting stuck.",
+      icon: BarChart3,
+    },
+  ];
+
   return (
     <div className="space-y-12">
       <div className="h-16" />
@@ -82,75 +104,58 @@ function App() {
           </section>
         </header>
         <section className="px-4">
-          <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
+          <div className="space-y-8">
+            <div className="border px-4 py-8 text-center sm:px-6 sm:py-10">
+              <h2 className="mx-auto max-w-3xl text-2xl font-semibold leading-tight text-balance sm:text-3xl">
+                a careers page that already feels polished before you touch a
+                single candidate.
+              </h2>
+            </div>
+            <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
+          </div>
         </section>
         <section className="px-4">
-          <div className="w-full mx-auto flex flex-col space-y-8">
-            <div className="text-center">
-              <h1 className="text-2xl sm:text-4xl lg:text-4xl 2xl:text-6xl font-semibold leading-tight text-balance ">
-                The simplest all-in-one hiring platform
-              </h1>
-            </div>
-            <div className="grid gap-8 md:grid-cols-2">
-              <Card>
-                <CardHeader>
-                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
-                    <Building2 className="h-6 w-6 text-black" />
-                  </div>
-                  <CardTitle className="font-semibold">
-                    Beautiful Career Pages
-                  </CardTitle>
-                  <CardDescription className="font-medium text-muted-foreground">
-                    Create stunning, branded career pages that showcase your
-                    company culture and attract top talent.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
+          <div className="border">
+            <div className="grid lg:grid-cols-[0.95fr_1.55fr]">
+              <div className="border-b px-4 py-8 sm:px-6 sm:py-10 lg:border-b-0 lg:border-r">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  what loux gives you
+                </p>
+                <h2 className="text-2xl font-semibold leading-tight text-balance sm:text-4xl">
+                  The simplest all-in-one hiring platform
+                </h2>
+                <p className="mt-4 max-w-md text-sm font-medium leading-6 text-muted-foreground sm:text-base">
+                  everything you need to publish roles, review applicants, and
+                  keep your hiring process organized without making it feel
+                  heavy.
+                </p>
+              </div>
+              <div className="grid sm:grid-cols-2">
+                {features.map((feature, index) => {
+                  const Icon = feature.icon;
 
-              <Card>
-                <CardHeader>
-                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
-                    <FileText className="h-6 w-6 text-black" />
-                  </div>
-                  <CardTitle className="font-semibold">
-                    Easy job posting
-                  </CardTitle>
-                  <CardDescription className="font-medium text-muted-foreground">
-                    Post jobs in minutes with our intuitive editor. Add
-                    requirements, benefits, and company info effortlessly.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
-                    <Users className="h-6 w-6 text-black" />
-                  </div>
-                  <CardTitle className="font-semibold">
-                    Applicant management
-                  </CardTitle>
-                  <CardDescription className="font-medium text-muted-foreground">
-                    Track, review, and manage all applications in one place.
-                    collaborate with your team seamlessly.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <div className="w-12 h-12 bg-secondary rounded-md flex items-center justify-center mb-4">
-                    <BarChart3 className="h-6 w-6 text-black" />
-                  </div>
-                  <CardTitle className="font-semibold">
-                    Analytics & insights
-                  </CardTitle>
-                  <CardDescription className="font-medium text-muted-foreground">
-                    Get detailed analytics on job performance, application
-                    rates, and hiring metrics.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
+                  return (
+                    <article
+                      key={feature.title}
+                      className={cn(
+                        "px-4 py-8 sm:px-6 sm:py-10",
+                        index < 2 && "border-b",
+                        index % 2 === 0 && "sm:border-r",
+                      )}
+                    >
+                        <div className="mb-5 flex h-12 w-12 items-center justify-center border bg-secondary">
+                          <Icon className="h-6 w-6 text-black" />
+                        </div>
+                        <h3 className="text-xl font-semibold leading-tight">
+                          {feature.title}
+                        </h3>
+                        <p className="mt-3 text-sm font-medium leading-6 text-muted-foreground">
+                          {feature.description}
+                        </p>
+                      </article>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
