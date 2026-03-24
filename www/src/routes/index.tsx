@@ -43,7 +43,7 @@ function App() {
               style={{ backgroundImage: "url('/blue.png')" }}
             />
             <div className="relative bg-white px-4 py-12 text-center sm:px-8 sm:py-16">
-              <div className="mx-auto flex max-w-4xl flex-col items-center space-y-8">
+              <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
                 <div className="inline-flex items-center leading-none gap-2 rounded-none border px-3 py-1 text-sm font-semibold">
                   <Sparkles className="size-4" />
                   built for fast-moving teams
