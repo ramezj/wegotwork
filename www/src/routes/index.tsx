@@ -46,7 +46,7 @@ function App() {
               <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
                 <div className="inline-flex items-center leading-none gap-2 rounded-none border px-3 py-1 text-sm font-semibold">
                   <Sparkles className="size-4" />
-                  built for fast-moving teams
+                  built for fast paced teams
                 </div>
                 <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
                   you're building fast.
