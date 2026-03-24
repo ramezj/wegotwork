@@ -37,7 +37,7 @@ function App() {
       <Header session={session} />
       <main className="space-y-8 lg:w-[80%] w-full mx-auto">
         <header className="flex flex-col space-y-8 px-4">
-          <section className="relative overflow-hidden rounded-none border p-3">
+          <section className="relative overflow-hidden rounded-none p-2.5">
             <div
               className="pointer-events-none absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: "url('/blue.png')" }}
@@ -49,32 +49,37 @@ function App() {
                   Built for fast-moving teams
                 </div>
                 <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
-                  You're building fast,
+                  You're building fast.
                   <span className="block text-branding">
-                    why not hire fast too?
+                    Why not hire fast too?
                   </span>
                 </h1>
-                <p className="max-w-2xl text-base font-medium leading-7 text-muted-foreground sm:text-lg">
-                  Launch a clean careers page, publish roles quickly, and keep
-                  every application and hiring decision in one focused place.
+                <p className="max-w-xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
+                  One place to post jobs, review applicants, and make the hire.
                 </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-2 w-full max-w-sm">
+                  <Button
+                    variant={"secondary"}
+                    asChild
+                    className="w-full sm:w-72"
+                  >
+                    <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
+                      See Demo
+                    </a>
+                  </Button>
+                  <Button
+                    variant={"default"}
+                    asChild
+                    className="w-full sm:w-72"
+                  >
+                    <Link to={"/"} target="_blank">
+                      Start Hiring
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
           </section>
-          <div className="flex flex-col items-center px-0">
-            <div className="flex w-full flex-row items-center justify-center gap-4">
-              <Button variant={"secondary"} asChild className="flex-1 ">
-                <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
-                  See Demo
-                </a>
-              </Button>
-              <Button variant={"default"} asChild className="flex-1">
-                <Link to={"/"} target="_blank">
-                  Start Hiring
-                </Link>
-              </Button>
-            </div>
-          </div>
         </header>
         <section className="px-4">
           <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
