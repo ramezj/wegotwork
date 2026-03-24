@@ -43,8 +43,8 @@ function App() {
               style={{ backgroundImage: "url('/blue.png')" }}
             />
             <div className="relative bg-white px-4 py-12 text-center sm:px-8 sm:py-16">
-              <div className="mx-auto flex max-w-4xl flex-col items-center space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-none border px-3 py-1 text-sm font-semibold">
+              <div className="mx-auto flex max-w-4xl flex-col items-center space-y-8">
+                <div className="inline-flex items-center leading-none gap-2 rounded-none border px-3 py-1 text-sm font-semibold">
                   <Sparkles className="size-4" />
                   built for fast-moving teams
                 </div>
@@ -54,9 +54,9 @@ function App() {
                     why not hire fast too?
                   </span>
                 </h1>
-                <p className="max-w-xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
-                  one place to post jobs, review applicants, and make the hire.
-                </p>
+                {/* <p className="max-w-xl text-sm font-medium text-muted-foreground sm:text-base">
+                  From career page to hiring, everything in one platform
+                </p> */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-2 w-full max-w-sm">
                   <Button
                     variant={"secondary"}
@@ -64,7 +64,7 @@ function App() {
                     className="w-full sm:w-72"
                   >
                     <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
-                      See Demo
+                      see demo
                     </a>
                   </Button>
                   <Button
@@ -73,7 +73,7 @@ function App() {
                     className="w-full sm:w-72"
                   >
                     <Link to={"/"} target="_blank">
-                      Start Hiring
+                      start hiring
                     </Link>
                   </Button>
                 </div>
