@@ -46,16 +46,16 @@ function App() {
               <div className="mx-auto flex max-w-4xl flex-col items-center space-y-6">
                 <div className="inline-flex items-center gap-2 rounded-none border px-3 py-1 text-sm font-semibold">
                   <Sparkles className="size-4" />
-                  Built for fast-moving teams
+                  built for fast-moving teams
                 </div>
                 <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
-                  You're building fast.
+                  you're building fast.
                   <span className="block text-branding">
-                    Why not hire fast too?
+                    why not hire fast too?
                   </span>
                 </h1>
                 <p className="max-w-xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
-                  One place to post jobs, review applicants, and make the hire.
+                  one place to post jobs, review applicants, and make the hire.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-2 w-full max-w-sm">
                   <Button
