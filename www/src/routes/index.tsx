@@ -59,7 +59,7 @@ function App() {
       <Header session={session} />
       <main className="space-y-8 lg:w-[80%] w-full mx-auto">
         <header className="flex flex-col space-y-8 px-4">
-          <section className="relative overflow-hidden rounded-none p-2.5">
+          <section className="relative overflow-hidden rounded-none p-2">
             <div
               className="pointer-events-none absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: "url('/blue.png')" }}
@@ -143,16 +143,16 @@ function App() {
                         index % 2 === 0 && "sm:border-r",
                       )}
                     >
-                        <div className="mb-5 flex h-12 w-12 items-center justify-center border bg-secondary">
-                          <Icon className="h-6 w-6 text-black" />
-                        </div>
-                        <h3 className="text-xl font-semibold leading-tight">
-                          {feature.title}
-                        </h3>
-                        <p className="mt-3 text-sm font-medium leading-6 text-muted-foreground">
-                          {feature.description}
-                        </p>
-                      </article>
+                      <div className="mb-5 flex h-12 w-12 items-center justify-center border bg-secondary">
+                        <Icon className="h-6 w-6 text-black" />
+                      </div>
+                      <h3 className="text-xl font-semibold leading-tight">
+                        {feature.title}
+                      </h3>
+                      <p className="mt-3 text-sm font-medium leading-6 text-muted-foreground">
+                        {feature.description}
+                      </p>
+                    </article>
                   );
                 })}
               </div>
