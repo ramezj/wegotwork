@@ -132,7 +132,7 @@ function App() {
         </header>
         <section className="px-4">
           <div
-            className="bg-cover bg-center p-2"
+            className="bg-cover bg-center p-3"
             style={{ backgroundImage: "url('/blue.png')" }}
           >
             <div className="bg-white">
