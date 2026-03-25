@@ -14,6 +14,9 @@ export type JobWithCategory = Job & {
   questions?: JobQuestion[];
   pipeline?: any; // To allow for the new pipeline relation
   applicants?: any[]; // To allow for the new applicants relation
+  _count?: {
+    candidates: number;
+  };
 };
 
 export type CategoryWithJob = JobCategory & {

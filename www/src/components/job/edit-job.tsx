@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { JobWithCategory } from "@/types/job/job";
@@ -25,12 +26,15 @@ import {
 import type { JobCategory, Office } from "generated/prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { editJobBySlugFn } from "@/features/services/jobs/edit-by-slug";
+import { deleteJobFn } from "@/features/services/jobs/delete-job";
 import {
   Loader,
   MapPin,
   DollarSign,
   FileText,
   Briefcase,
+  TriangleAlert,
+  Trash2,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
@@ -39,6 +43,16 @@ import { organizationBySlugQueryOptions } from "@/features/queries/organization"
 import { FormBuilder } from "../forms/FormBuilder";
 import { FormFieldType } from "@/types/form-config";
 import { Layout } from "../shared/layout";
+import { useNavigate } from "@tanstack/react-router";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
 
 export function EditJobForm({
   job,
@@ -54,6 +68,8 @@ export function EditJobForm({
   slug: string;
 }) {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const form = useForm({
     defaultValues: {
       ...job,
@@ -98,6 +114,29 @@ export function EditJobForm({
     },
     onError: (error) => {
       toast.error(error.message);
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: () => deleteJobFn({ data: { jobId: job.id } }),
+    onSuccess: async (result) => {
+      // setDeleteDialogOpen(false);
+      await queryClient.invalidateQueries({
+        queryKey: ["jobs", slug],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ["organization", slug],
+      });
+
+      toast.success(
+        result.deletedCandidates > 0
+          ? `Job deleted successfully. ${result.deletedCandidates} candidate${result.deletedCandidates === 1 ? "" : "s"} were removed with it.`
+          : "Job deleted successfully",
+      );
+      navigate({ to: "/$slug/jobs", params: { slug } });
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to delete job");
     },
   });
 
@@ -558,7 +597,7 @@ export function EditJobForm({
                         {...field}
                         onChange={(e) => {
                           const val = e.target.valueAsNumber;
-                           field.onChange(isNaN(val) ? undefined : val);
+                          field.onChange(isNaN(val) ? undefined : val);
                         }}
                       />
                     </FieldContent>
@@ -621,6 +660,87 @@ export function EditJobForm({
                 />
               )}
             />
+          </CardContent>
+        </Card>
+
+        <Card className="border-destructive/30">
+          <CardHeader className="flex flex-row items-start gap-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-destructive/10 shrink-0">
+              <TriangleAlert className="h-4 w-4 text-destructive" />
+            </div>
+            <div>
+              <CardTitle className="text-base">Danger Zone</CardTitle>
+              <CardDescription className="text-xs">
+                Delete this job permanently
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4">
+            <p className="text-sm text-muted-foreground">
+              Deleting this job will permanently remove the posting, its
+              application questions, and any candidates attached to it.
+            </p>
+            <div className="flex items-center justify-between gap-4 rounded-md border border-destructive/20 p-4">
+              <div className="space-y-1">
+                <p className="text-sm font-medium">Delete job</p>
+                <p className="text-sm text-muted-foreground">
+                  This cannot be undone.
+                  {job._count?.candidates
+                    ? ` ${job._count.candidates} candidate${job._count.candidates === 1 ? "" : "s"} will also be deleted.`
+                    : ""}
+                </p>
+              </div>
+              <Dialog
+                open={deleteDialogOpen}
+                onOpenChange={setDeleteDialogOpen}
+              >
+                <DialogTrigger asChild>
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    disabled={deleteMutation.isPending}
+                    className="gap-2"
+                  >
+                    {deleteMutation.isPending ? (
+                      <Loader className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Trash2 className="h-4 w-4" />
+                    )}
+                    Delete Job
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[480px]">
+                  <DialogHeader className="items-start text-left">
+                    <DialogTitle>Delete this job?</DialogTitle>
+                    <DialogDescription>
+                      This will permanently delete <strong>{job.title}</strong>,
+                      its application form, and any candidates attached to it.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setDeleteDialogOpen(false)}
+                      disabled={deleteMutation.isPending}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      onClick={() => deleteMutation.mutate()}
+                      disabled={deleteMutation.isPending}
+                    >
+                      {deleteMutation.isPending ? (
+                        <Loader className="h-4 w-4 animate-spin" />
+                      ) : null}
+                      Delete Permanently
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            </div>
           </CardContent>
         </Card>
       </form>
