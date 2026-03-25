@@ -5,6 +5,7 @@ import {
   JobCategory,
   JobQuestion,
   Pipeline,
+  Office,
   Member,
   Invitation,
   User,
@@ -14,9 +15,11 @@ export type OrganizationWithDetails = Organization & {
   jobs: (Job & {
     candidates: Candidate[];
     category: JobCategory | null;
+    office: Office | null;
     questions: JobQuestion[];
   })[];
   categories: JobCategory[];
+  offices: Office[];
   pipelines: Pipeline[];
 };
 
@@ -30,11 +33,13 @@ export type OrganizationResponse = {
 export type ViewOrganizationWithDetails = Organization & {
   jobs: (Job & {
     category: JobCategory | null;
+    office: Office | null;
   })[];
   categories: (JobCategory & {
     jobs: (Job & {
       questions: JobQuestion[];
       category: JobCategory | null;
+      office: Office | null;
     })[];
   })[];
 };

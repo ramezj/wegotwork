@@ -19,6 +19,7 @@ import { createJobFn } from "@/features/services/jobs/create-job";
 import z from "zod";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { pipelinesQueryOptions } from "@/features/queries/ats";
+import { officesQueryOptions } from "@/features/queries/offices";
 import { toast } from "sonner";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
@@ -42,6 +43,7 @@ export function CreateJobDialog({ slug }: { slug: string }) {
   const { data: pipelines } = useSuspenseQuery(
     pipelinesQueryOptions(organizationId),
   );
+  const { data: offices } = useSuspenseQuery(officesQueryOptions(organizationId));
 
   const defaultPipelineId =
     orgData?.organization?.defaultPipelineId || pipelines[0]?.id || "";
@@ -62,6 +64,7 @@ export function CreateJobDialog({ slug }: { slug: string }) {
       salaryInterval: "MONTHLY",
       experienceLevel: "ENTRY",
       categoryId: "",
+      officeId: "",
       pipelineId: defaultPipelineId,
     },
     resolver: zodResolver(jobSchema),
@@ -91,6 +94,7 @@ export function CreateJobDialog({ slug }: { slug: string }) {
           salaryInterval: "MONTHLY",
           experienceLevel: "ENTRY",
           categoryId: "",
+          officeId: "",
           pipelineId: defaultPipelineId,
         });
         setOpen(false);
@@ -137,6 +141,37 @@ export function CreateJobDialog({ slug }: { slug: string }) {
                     placeholder="e.g. Senior Software Engineer"
                     {...field}
                   />
+                </FieldContent>
+                <FieldError errors={[fieldState.error]} />
+              </Field>
+            )}
+          />
+
+          <Controller
+            control={form.control}
+            name="officeId"
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel>Office</FieldLabel>
+                <FieldContent>
+                  <Select
+                    value={field.value || "none"}
+                    onValueChange={(value) =>
+                      field.onChange(value === "none" ? "" : value)
+                    }
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select an office" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="none">No Office</SelectItem>
+                      {offices.map((office: any) => (
+                        <SelectItem key={office.id} value={office.id}>
+                          {office.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </FieldContent>
                 <FieldError errors={[fieldState.error]} />
               </Field>

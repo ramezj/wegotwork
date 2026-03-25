@@ -26,6 +26,7 @@ export const viewJobFn = createServerFn()
               name: true,
             },
           },
+          office: true,
           questions: { orderBy: { order: "asc" } },
         },
       });

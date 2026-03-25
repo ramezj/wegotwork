@@ -23,7 +23,7 @@ export const createJobFn = createServerFn()
       if (!organization) {
         throw new Error("Organization not found");
       }
-      const { questions, categoryId, pipelineId, ...jobData } = data.job;
+      const { questions, categoryId, officeId, pipelineId, ...jobData } = data.job;
 
       const pipeline = await prisma.pipeline.findFirst({
         where: {
@@ -36,6 +36,19 @@ export const createJobFn = createServerFn()
         throw new Error("Pipeline not found");
       }
 
+      const office = officeId
+        ? await prisma.office.findFirst({
+            where: {
+              id: officeId,
+              organizationId: organization.id,
+            },
+          })
+        : null;
+
+      if (officeId && !office) {
+        throw new Error("Office not found");
+      }
+
       const job = await prisma.job.create({
         data: {
           ...jobData,
@@ -46,6 +59,11 @@ export const createJobFn = createServerFn()
             ? {
               connect: { id: categoryId },
             }
+            : undefined,
+          office: office
+            ? {
+                connect: { id: office.id },
+              }
             : undefined,
           pipeline: {
             connect: { id: pipeline.id },

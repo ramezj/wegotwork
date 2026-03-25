@@ -23,6 +23,7 @@ export const getJobByIdFn = createServerFn()
         include: {
           organization: true,
           category: true,
+          office: true,
           questions: { orderBy: { order: "asc" } },
           pipeline: {
             include: {

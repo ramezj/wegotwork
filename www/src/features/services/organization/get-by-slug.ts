@@ -23,6 +23,7 @@ export const getOrganizationBySlugFn = createServerFn()
             include: {
               candidates: true,
               category: true,
+              office: true,
               questions: true,
             },
             orderBy: {
@@ -31,6 +32,11 @@ export const getOrganizationBySlugFn = createServerFn()
             ...(data.limit ? { take: data.limit } : {}),
           },
           categories: {
+            orderBy: {
+              createdAt: "desc",
+            },
+          },
+          offices: {
             orderBy: {
               createdAt: "desc",
             },

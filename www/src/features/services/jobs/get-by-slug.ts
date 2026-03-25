@@ -23,6 +23,7 @@ export const getJobsBySlugFn = createServerFn()
             include: {
               candidates: true,
               category: true,
+              office: true,
             },
           },
         },

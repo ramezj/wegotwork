@@ -3,7 +3,6 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -11,19 +10,14 @@ import {
   useSidebar,
 } from "../ui/sidebar";
 import {
-  Briefcase,
-  Building,
   CreditCard,
-  HomeIcon,
-  Users,
   GitBranch,
-  Folder,
   LayoutGrid,
   BriefcaseBusiness,
-  UserRound,
   UsersRound,
   Folders,
   Building2,
+  MapPinned,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
@@ -75,6 +69,11 @@ export function AppSidebar({
       label: "Categories",
       icon: <Folders />,
       href: `/${slug}/categories`,
+    },
+    {
+      label: "Offices",
+      icon: <MapPinned />,
+      href: `/${slug}/offices`,
     },
   ];
   const teamMenuItems: menuItem[] = [

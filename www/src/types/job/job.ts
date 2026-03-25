@@ -1,11 +1,17 @@
 import { z } from "zod";
 import { formFieldConfigSchema } from "../form-config";
 export { type Job, type JobCategory } from "generated/prisma/client";
-import type { Job, JobCategory, JobQuestion } from "generated/prisma/client";
+import type {
+  Job,
+  JobCategory,
+  JobQuestion,
+  Office,
+} from "generated/prisma/client";
 
 export type JobWithCategory = Job & {
   category: JobCategory | null;
-  questions: JobQuestion[];
+  office: Office | null;
+  questions?: JobQuestion[];
   pipeline?: any; // To allow for the new pipeline relation
   applicants?: any[]; // To allow for the new applicants relation
 };
@@ -42,6 +48,7 @@ export const jobSchema = z.object({
     .enum(["ENTRY", "MID", "SENIOR", "LEAD", "EXECUTIVE"])
     .default("ENTRY"),
   categoryId: z.string().optional(),
+  officeId: z.string().optional(),
   pipelineId: z.string().min(1, "Pipeline is required"),
   questions: z.array(formFieldConfigSchema).optional().default([]),
 });

@@ -253,6 +253,7 @@ function RouteComponent() {
             <MapPin className="size-3" />
             {locationLabel}
           </Badge>
+          {job.office && <Badge variant="secondary">{job.office.name}</Badge>}
         </div>
       </div>
 

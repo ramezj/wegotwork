@@ -30,7 +30,7 @@ export const editJobBySlugFn = createServerFn()
     }
 
     try {
-      const { questions, ...jobData } = data.job;
+      const { questions, officeId, ...jobData } = data.job;
 
       const pipeline = await prisma.pipeline.findFirst({
         where: {
@@ -43,6 +43,19 @@ export const editJobBySlugFn = createServerFn()
         throw new Error("Pipeline not found");
       }
 
+      const office = officeId
+        ? await prisma.office.findFirst({
+            where: {
+              id: officeId,
+              organizationId: authorizedJob.organizationId,
+            },
+          })
+        : null;
+
+      if (officeId && !office) {
+        throw new Error("Office not found");
+      }
+
       const shouldMoveCandidates = authorizedJob.pipelineId !== pipeline.id;
 
       const job = await prisma.job.update({
@@ -52,6 +65,7 @@ export const editJobBySlugFn = createServerFn()
         data: {
           ...jobData,
           categoryId: data.job.categoryId || null,
+          officeId: office?.id || null,
           pipelineId: pipeline.id,
           questions: {
             deleteMany: {},

@@ -22,7 +22,7 @@ import {
   CardTitle,
   CardDescription,
 } from "../ui/card";
-import type { JobCategory } from "generated/prisma/client";
+import type { JobCategory, Office } from "generated/prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { editJobBySlugFn } from "@/features/services/jobs/edit-by-slug";
 import {
@@ -31,7 +31,6 @@ import {
   DollarSign,
   FileText,
   Briefcase,
-  Save,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
@@ -44,11 +43,13 @@ import { Layout } from "../shared/layout";
 export function EditJobForm({
   job,
   categories,
+  offices,
   pipelines,
   slug,
 }: {
   job: JobWithCategory;
   categories: JobCategory[];
+  offices: Office[];
   pipelines: { id: string; name: string }[];
   slug: string;
 }) {
@@ -71,8 +72,9 @@ export function EditJobForm({
       salaryInterval: job.salaryInterval || "MONTHLY",
       experienceLevel: job.experienceLevel || "ENTRY",
       categoryId: job.categoryId || "",
+      officeId: job.officeId || "",
       pipelineId: job.pipelineId || "",
-      questions: job.questions.map((q) => ({
+      questions: (job.questions ?? []).map((q) => ({
         id: q.id,
         label: q.label,
         type: q.type as FormFieldType,
@@ -271,6 +273,37 @@ export function EditJobForm({
                           {categories.map((category) => (
                             <SelectItem key={category.id} value={category.id}>
                               {category.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FieldContent>
+                    <FieldError errors={[fieldState.error]} />
+                  </Field>
+                )}
+              />
+              <Controller
+                control={form.control}
+                name="officeId"
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>Office</FieldLabel>
+                    <FieldContent>
+                      <Select
+                        aria-invalid={fieldState.invalid}
+                        value={field.value || "none"}
+                        onValueChange={(value) =>
+                          field.onChange(value === "none" ? "" : value)
+                        }
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select an office" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="none">No Office</SelectItem>
+                          {offices.map((office) => (
+                            <SelectItem key={office.id} value={office.id}>
+                              {office.name}
                             </SelectItem>
                           ))}
                         </SelectContent>

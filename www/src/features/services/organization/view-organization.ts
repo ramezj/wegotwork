@@ -17,6 +17,7 @@ export const viewOrganizationBySlugFn = createServerFn()
             },
             include: {
               category: true,
+              office: true,
             },
             orderBy: {
               createdAt: "desc",
@@ -31,6 +32,7 @@ export const viewOrganizationBySlugFn = createServerFn()
                 include: {
                   questions: true,
                   category: true,
+                  office: true,
                 },
                 orderBy: {
                   createdAt: "desc",

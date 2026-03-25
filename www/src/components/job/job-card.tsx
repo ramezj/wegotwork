@@ -44,6 +44,9 @@ export function JobCard({ job, slug }: { job: JobWithCategory; slug: string }) {
                 <Badge variant="default">
                   {formatLocationMode(job.locationMode)}
                 </Badge>
+                {job.office && (
+                  <Badge variant="default">{job.office.name}</Badge>
+                )}
                 {/* <Badge variant="outline">
                   {formatDistanceToNow(new Date(job.createdAt))}
                 </Badge> */}
@@ -101,6 +104,9 @@ export function JobCardForViewPage({
                 <Badge variant="default">
                   {formatLocationMode(job.locationMode)}
                 </Badge>
+                {job.office && (
+                  <Badge variant="default">{job.office.name}</Badge>
+                )}
                 {job.showSalary && (
                   <Badge variant="default">
                     {job.salaryMin} - {job.salaryMax}
@@ -210,6 +216,9 @@ export function JobCardForLandingPage({
                 <Badge variant="default">
                   {formatLocationMode(job.locationMode)}
                 </Badge>
+                {job.office && (
+                  <Badge variant="default">{job.office.name}</Badge>
+                )}
               </div>
             </div>
 

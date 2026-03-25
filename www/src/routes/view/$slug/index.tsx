@@ -82,11 +82,19 @@ function RouteComponent() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+  const [selectedOffice, setSelectedOffice] = useState<string | null>(null);
 
   if (!data.organization) return <Navigate to="/" />;
 
   const jobs = data.organization.jobs || [];
   const categories = data.organization.categories || [];
+  const offices = Array.from(
+    new Map(
+      jobs
+        .filter((job) => job.office)
+        .map((job) => [job.office!.id, job.office!]),
+    ).values(),
+  );
 
   // Get all category IDs for filtering
   const categoryIds = new Set(categories.map((c) => c.id));
@@ -106,6 +114,7 @@ function RouteComponent() {
       }
       if (selectedLocation && job.locationMode !== selectedLocation)
         return false;
+      if (selectedOffice && job.officeId !== selectedOffice) return false;
       return true;
     }) as T[];
 
@@ -134,7 +143,8 @@ function RouteComponent() {
     filteredCategories.reduce((sum, cat) => sum + cat.jobs.length, 0) +
     (showUncategorized ? uncategorizedJobs.length : 0);
 
-  const hasActiveFilters = selectedCategory || selectedType || selectedLocation;
+  const hasActiveFilters =
+    selectedCategory || selectedType || selectedLocation || selectedOffice;
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4 w-full">
@@ -174,6 +184,17 @@ function RouteComponent() {
                 options={LOCATION_MODES}
                 selected={selectedLocation}
                 onSelect={setSelectedLocation}
+              />
+            </div>
+            <div className="flex-1">
+              <FilterSelect
+                label="Office"
+                options={offices.map((office) => ({
+                  value: office.id,
+                  label: office.name,
+                }))}
+                selected={selectedOffice}
+                onSelect={setSelectedOffice}
               />
             </div>
           </div>
