@@ -1,10 +1,11 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
-import { Briefcase, Funnel, ListFilter } from "lucide-react";
+import { ListFilter } from "lucide-react";
 import { Job, Candidate } from "generated/prisma/client";
 import { Layout } from "@/components/shared/layout";
 import { JobCardForCandidatesPage } from "@/components/job/job-card";
+import { CreateJobDialog } from "@/components/job/create-job-dialog";
 import {
   Select,
   SelectContent,
@@ -47,7 +48,7 @@ function RouteComponent() {
 
   const title = status
     ? `${toStatusLabel(status)} Candidates (${filteredJobs.length})`
-    : "Candidates";
+    : `Candidates (${jobs.length})`;
 
   const handleStatusChange = (value: string) => {
     navigate({
@@ -56,6 +57,24 @@ function RouteComponent() {
       search: value === "ALL" ? {} : { status: value as SearchStatus },
     });
   };
+
+  if (jobs.length === 0) {
+    return (
+      <Layout
+        title="Candidates (0)"
+        primaryButton={<CreateJobDialog slug={slug} />}
+      >
+        <div className="flex flex-1 items-center justify-center border">
+          <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
+            <h2 className="text-base font-semibold tracking-tight text-muted-foreground">
+              No jobs found
+            </h2>
+            <CreateJobDialog slug={slug} />
+          </div>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout
@@ -83,16 +102,26 @@ function RouteComponent() {
         </Select>
       }
     >
-      <div className="grid gap-4">
-        {filteredJobs.map((job) => (
-          <JobCardForCandidatesPage
-            key={job.id}
-            job={job}
-            slug={slug}
-            candidates={job.candidates.length}
-          />
-        ))}
-      </div>
+      {filteredJobs.length === 0 ? (
+        <div className="flex flex-1 items-center justify-center border">
+          <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
+            <h2 className="text-xl font-semibold tracking-tight text-muted-foreground">
+              No jobs match this filter
+            </h2>
+          </div>
+        </div>
+      ) : (
+        <div className="grid gap-4">
+          {filteredJobs.map((job) => (
+            <JobCardForCandidatesPage
+              key={job.id}
+              job={job}
+              slug={slug}
+              candidates={job.candidates.length}
+            />
+          ))}
+        </div>
+      )}
     </Layout>
   );
 }

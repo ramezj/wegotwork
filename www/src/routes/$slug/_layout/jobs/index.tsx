@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Funnel, ListFilter } from "lucide-react";
+import { ListFilter } from "lucide-react";
 import { z } from "zod";
 
 export const Route = createFileRoute("/$slug/_layout/jobs/")({
@@ -49,6 +49,24 @@ function RouteComponent() {
     });
   };
 
+  if (data.organization.jobs.length === 0) {
+    return (
+      <Layout
+        title="Job Openings (0)"
+        primaryButton={<CreateJobDialog slug={slug} />}
+      >
+        <div className="flex flex-1 items-center justify-center border">
+          <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
+            <h2 className="text-base font-semibold tracking-tight text-muted-foreground">
+              No jobs found
+            </h2>
+            <CreateJobDialog slug={slug} />
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <>
       <Layout
@@ -79,11 +97,21 @@ function RouteComponent() {
           </div>
         }
       >
-        <div className="flex flex-col space-y-4">
-          {filteredJobs.map((job) => (
-            <JobCard slug={slug} key={job.id} job={job} />
-          ))}
-        </div>
+        {filteredJobs.length === 0 ? (
+          <div className="flex flex-1 items-center justify-center border">
+            <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
+              <h2 className="text-xl font-semibold tracking-tight text-muted-foreground">
+                No jobs match this filter
+              </h2>
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col space-y-4">
+            {filteredJobs.map((job) => (
+              <JobCard slug={slug} key={job.id} job={job} />
+            ))}
+          </div>
+        )}
       </Layout>
     </>
   );

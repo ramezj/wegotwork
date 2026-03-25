@@ -24,7 +24,7 @@ function RouteComponent() {
   return (
     <>
       <Layout
-        title="Categories"
+        title={`Categories (${data.organization.categories.length})`}
         primaryButton={<CreateCategoryDialog slug={slug} />}
       >
         <div className="flex flex-col gap-2">

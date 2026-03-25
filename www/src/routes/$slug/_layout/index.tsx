@@ -11,6 +11,8 @@ import {
   Briefcase,
   Building,
   Folder,
+  Folders,
+  MapPinned,
   Settings,
 } from "lucide-react";
 import { JobWithCategory } from "@/types/job/job";
@@ -64,7 +66,12 @@ function RouteComponent() {
           <StatisticCard
             title="Categories"
             amount={data?.organization?.categories?.length || 0}
-            icon={<Folder className="size-4" />}
+            icon={<Folders className="size-4" />}
+          />
+          <StatisticCard
+            title="Offices"
+            amount={data?.organization?.offices?.length || 0}
+            icon={<MapPinned className="size-4" />}
           />
         </div>
         <div className="flex flex-col gap-4">

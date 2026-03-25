@@ -1,5 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from "@tanstack/react-query";
 import { Layout } from "@/components/shared/layout";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,7 +17,6 @@ import {
   Building2,
   MapPin,
   MoreVertical,
-  Plus,
   PlusIcon,
   Settings2,
   Trash2,
@@ -43,7 +46,9 @@ function OfficesPage() {
   );
   const organizationId = orgData?.organization?.id || "";
 
-  const { data: offices } = useSuspenseQuery(officesQueryOptions(organizationId));
+  const { data: offices } = useSuspenseQuery(
+    officesQueryOptions(organizationId),
+  );
 
   const deleteMutation = useMutation({
     mutationFn: deleteOfficeFn,
@@ -61,9 +66,42 @@ function OfficesPage() {
     },
   });
 
+  if (offices.length === 0) {
+    return (
+      <Layout
+        title="Offices (0)"
+        primaryButton={
+          <Button asChild>
+            <Link
+              to="/$slug/offices/create"
+              params={{ slug }}
+              className="group transition-all"
+            >
+              Create Office
+              <PlusIcon className="duration-300 group-hover:rotate-90" />
+            </Link>
+          </Button>
+        }
+      >
+        <div className="flex flex-1 items-center justify-center border">
+          <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
+            <h2 className="text-base font-semibold tracking-tight text-muted-foreground">
+              No offices found
+            </h2>
+            <Button asChild>
+              <Link to="/$slug/offices/create" params={{ slug }}>
+                Create Office
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout
-      title="Offices"
+      title={`Offices (${offices.length})`}
       primaryButton={
         <Button asChild>
           <Link
@@ -79,7 +117,11 @@ function OfficesPage() {
     >
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {offices.map((office: any) => {
-          const locationParts = [office.city, office.state, office.country].filter(Boolean);
+          const locationParts = [
+            office.city,
+            office.state,
+            office.country,
+          ].filter(Boolean);
 
           return (
             <Card
@@ -122,7 +164,9 @@ function OfficesPage() {
                         className="cursor-pointer text-destructive"
                         onClick={() => {
                           if (
-                            confirm("Are you sure you want to delete this office?")
+                            confirm(
+                              "Are you sure you want to delete this office?",
+                            )
                           ) {
                             deleteMutation.mutate({ data: { id: office.id } });
                           }
@@ -135,7 +179,8 @@ function OfficesPage() {
                 </div>
                 <CardTitle className="text-lg">{office.name}</CardTitle>
                 <CardDescription>
-                  {office._count.jobs} linked job{office._count.jobs === 1 ? "" : "s"}
+                  {office._count.jobs} linked job
+                  {office._count.jobs === 1 ? "" : "s"}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2 text-sm text-muted-foreground">
@@ -153,23 +198,6 @@ function OfficesPage() {
             </Card>
           );
         })}
-
-        {offices.length === 0 && (
-          <div className="col-span-full flex flex-col items-center justify-center py-20 text-center">
-            <div className="mb-6 flex size-16 items-center justify-center rounded-full bg-muted text-muted-foreground">
-              <Plus className="size-8" />
-            </div>
-            <h3 className="mb-2 text-xl font-bold">No offices yet</h3>
-            <p className="max-w-sm text-muted-foreground">
-              Create your first office so jobs can be tied to a real company location.
-            </p>
-            <Button asChild className="mt-6">
-              <Link to="/$slug/offices/create" params={{ slug }}>
-                Create Office
-              </Link>
-            </Button>
-          </div>
-        )}
       </div>
     </Layout>
   );
