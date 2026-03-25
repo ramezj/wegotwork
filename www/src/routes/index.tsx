@@ -56,7 +56,46 @@ function App() {
       <Header session={session} />
       <main className="mx-auto w-full space-y-8 lg:w-[80%]">
         <header className="px-4">
-          <section className="text-center border p-8">
+          <section className="relative overflow-hidden rounded-none border p-2">
+            <div className="relative bg-white px-4 py-8 text-center">
+              <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
+                <div className="inline-flex items-center leading-none gap-2 rounded-none border px-4 py-1.5 text-sm font-semibold">
+                  <Sparkles className="size-4" />
+                  built for fast paced teams
+                </div>
+                <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
+                  You're building fast.
+                  <span className="block text-branding">
+                    Why not hire fast too?
+                  </span>
+                </h1>
+                {/* <p className="max-w-xl text-sm font-medium text-muted-foreground sm:text-base">
+                  From career page to hiring, everything in one platform
+                </p> */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-2 w-full max-w-sm">
+                  <Button
+                    variant={"secondary"}
+                    asChild
+                    className="w-full sm:w-72"
+                  >
+                    <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
+                      See Demo
+                    </a>
+                  </Button>
+                  <Button
+                    variant={"default"}
+                    asChild
+                    className="w-full sm:w-72"
+                  >
+                    <Link to={"/"} target="_blank">
+                      Start Hiring
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </section>
+          {/* <section className="text-center border p-8">
             <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
               <div className="inline-flex items-center gap-2 rounded-none border px-3 py-1 text-sm font-semibold leading-none">
                 <Sparkles className="size-4" />
@@ -89,7 +128,7 @@ function App() {
                 </Button>
               </div>
             </div>
-          </section>
+          </section> */}
         </header>
         <section className="px-4">
           <div
