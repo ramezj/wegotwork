@@ -6,7 +6,6 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Field,
   FieldContent,
@@ -26,12 +25,13 @@ interface OfficeEditorFormProps {
   mode: "create" | "edit";
   slug: string;
   organizationId: string;
+  onCreated?: () => void;
+  onCancel?: () => void;
+  wrapInCard?: boolean;
   office?: {
     id: string;
     name: string;
-    address: string | null;
     city: string | null;
-    state: string | null;
     country: string | null;
   };
 }
@@ -40,6 +40,9 @@ export function OfficeEditorForm({
   mode,
   slug,
   organizationId,
+  onCreated,
+  onCancel,
+  wrapInCard = true,
   office,
 }: OfficeEditorFormProps) {
   const navigate = useNavigate();
@@ -49,9 +52,7 @@ export function OfficeEditorForm({
     resolver: zodResolver(officeSchema),
     defaultValues: {
       name: office?.name || "",
-      address: office?.address || "",
       city: office?.city || "",
-      state: office?.state || "",
       country: office?.country || "",
     },
   });
@@ -66,7 +67,10 @@ export function OfficeEditorForm({
         queryKey: ["organization", slug],
       });
       toast.success("Office created successfully");
-      navigate({ to: "/$slug/offices", params: { slug } });
+      onCreated?.();
+      if (!onCreated) {
+        navigate({ to: "/$slug/offices", params: { slug } });
+      }
     },
     onError: (error: any) => {
       toast.error(error.message || "Failed to create office");
@@ -96,9 +100,7 @@ export function OfficeEditorForm({
   const onSubmit = async (data: OfficeFormValues) => {
     const payload = {
       ...data,
-      address: data.address || undefined,
       city: data.city || undefined,
-      state: data.state || undefined,
       country: data.country || undefined,
     };
 
@@ -122,125 +124,91 @@ export function OfficeEditorForm({
     });
   };
 
-  return (
-    <div className="space-y-4">
-      <Card>
-        <CardContent>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <Controller
-              control={form.control}
-              name="name"
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel required>Office Name</FieldLabel>
-                  <FieldContent>
-                    <Input
-                      {...field}
-                      aria-invalid={fieldState.invalid}
-                      placeholder="e.g. New York Office"
-                      disabled={isPending}
-                    />
-                  </FieldContent>
-                  <FieldError errors={[fieldState.error]} />
-                </Field>
-              )}
-            />
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <Controller
-                control={form.control}
-                name="city"
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel>City</FieldLabel>
-                    <FieldContent>
-                      <Input
-                        {...field}
-                        aria-invalid={fieldState.invalid}
-                        placeholder="e.g. New York"
-                        disabled={isPending}
-                      />
-                    </FieldContent>
-                    <FieldError errors={[fieldState.error]} />
-                  </Field>
-                )}
-              />
-
-              <Controller
-                control={form.control}
-                name="state"
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel>State / Region</FieldLabel>
-                    <FieldContent>
-                      <Input
-                        {...field}
-                        aria-invalid={fieldState.invalid}
-                        placeholder="e.g. New York"
-                        disabled={isPending}
-                      />
-                    </FieldContent>
-                    <FieldError errors={[fieldState.error]} />
-                  </Field>
-                )}
-              />
-            </div>
-
-            <Controller
-              control={form.control}
-              name="country"
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Country</FieldLabel>
-                  <FieldContent>
-                    <Input
-                      {...field}
-                      aria-invalid={fieldState.invalid}
-                      placeholder="e.g. United States"
-                      disabled={isPending}
-                    />
-                  </FieldContent>
-                  <FieldError errors={[fieldState.error]} />
-                </Field>
-              )}
-            />
-
-            <Controller
-              control={form.control}
-              name="address"
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel>Address</FieldLabel>
-                  <FieldContent>
-                    <Input
-                      {...field}
-                      aria-invalid={fieldState.invalid}
-                      placeholder="Street address"
-                      disabled={isPending}
-                    />
-                  </FieldContent>
-                  <FieldError errors={[fieldState.error]} />
-                </Field>
-              )}
-            />
-
-            <div className="flex items-center justify-end gap-2">
-              <Button
-                type="button"
-                variant="outline"
+  const formContent = (
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <Controller
+        control={form.control}
+        name="name"
+        render={({ field, fieldState }) => (
+          <Field data-invalid={fieldState.invalid}>
+            <FieldLabel required>Office Name</FieldLabel>
+            <FieldContent>
+              <Input
+                {...field}
+                aria-invalid={fieldState.invalid}
+                placeholder="e.g. New York Office"
                 disabled={isPending}
-                onClick={() => navigate({ to: "/$slug/offices", params: { slug } })}
-              >
-                Cancel
-              </Button>
-              <Button type="submit" disabled={isPending}>
-                {isPending && <Loader className="size-4 animate-spin" />}
-                {mode === "create" ? "Create Office" : "Save Changes"}
-              </Button>
-            </div>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
+              />
+            </FieldContent>
+            <FieldError errors={[fieldState.error]} />
+          </Field>
+        )}
+      />
+
+      <Controller
+        control={form.control}
+        name="city"
+        render={({ field, fieldState }) => (
+          <Field data-invalid={fieldState.invalid}>
+            <FieldLabel>City</FieldLabel>
+            <FieldContent>
+              <Input
+                {...field}
+                aria-invalid={fieldState.invalid}
+                placeholder="e.g. New York"
+                disabled={isPending}
+              />
+            </FieldContent>
+            <FieldError errors={[fieldState.error]} />
+          </Field>
+        )}
+      />
+
+      <Controller
+        control={form.control}
+        name="country"
+        render={({ field, fieldState }) => (
+          <Field data-invalid={fieldState.invalid}>
+            <FieldLabel>Country</FieldLabel>
+            <FieldContent>
+              <Input
+                {...field}
+                aria-invalid={fieldState.invalid}
+                placeholder="e.g. United States"
+                disabled={isPending}
+              />
+            </FieldContent>
+            <FieldError errors={[fieldState.error]} />
+          </Field>
+        )}
+      />
+
+      <div className="flex items-center justify-end gap-2">
+        <Button
+          type="button"
+          variant="outline"
+          disabled={isPending}
+          onClick={() => {
+            if (onCancel) {
+              onCancel();
+              return;
+            }
+            navigate({ to: "/$slug/offices", params: { slug } });
+          }}
+        >
+          Cancel
+        </Button>
+        <Button type="submit" disabled={isPending}>
+          {isPending && <Loader className="size-4 animate-spin" />}
+          {mode === "create" ? "Create Office" : "Save Changes"}
+        </Button>
+      </div>
+    </form>
   );
+
+  if (!wrapInCard) {
+    return formContent;
+  }
+
+  return <div className="rounded-lg border p-6">{formContent}</div>;
 }

@@ -1,36 +1,26 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import {
   useMutation,
   useQueryClient,
   useSuspenseQuery,
 } from "@tanstack/react-query";
 import { Layout } from "@/components/shared/layout";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Building2,
-  MapPin,
-  MoreVertical,
-  PlusIcon,
-  Settings2,
-  Trash2,
-} from "lucide-react";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { officesQueryOptions } from "@/features/queries/offices";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { deleteOfficeFn } from "@/features/services/office/office";
 import { toast } from "sonner";
+import { CreateOfficeDialog } from "@/components/office/create-office-dialog";
+import { OfficeCard } from "@/components/office/office-card";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/$slug/_layout/offices/")({
   component: OfficesPage,
@@ -40,6 +30,7 @@ function OfficesPage() {
   const { slug } = Route.useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const [officeToDelete, setOfficeToDelete] = useState<any | null>(null);
 
   const { data: orgData } = useSuspenseQuery(
     organizationBySlugQueryOptions(slug),
@@ -59,6 +50,7 @@ function OfficesPage() {
       await queryClient.invalidateQueries({
         queryKey: ["organization", slug],
       });
+      setOfficeToDelete(null);
       toast.success("Office deleted successfully");
     },
     onError: (error: any) => {
@@ -70,29 +62,14 @@ function OfficesPage() {
     return (
       <Layout
         title="Offices (0)"
-        primaryButton={
-          <Button asChild>
-            <Link
-              to="/$slug/offices/create"
-              params={{ slug }}
-              className="group transition-all"
-            >
-              Create Office
-              <PlusIcon className="duration-300 group-hover:rotate-90" />
-            </Link>
-          </Button>
-        }
+        primaryButton={<CreateOfficeDialog slug={slug} organizationId={organizationId} />}
       >
         <div className="flex flex-1 items-center justify-center border">
           <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
             <h2 className="text-base font-semibold tracking-tight text-muted-foreground">
               No offices found
             </h2>
-            <Button asChild>
-              <Link to="/$slug/offices/create" params={{ slug }}>
-                Create Office
-              </Link>
-            </Button>
+            <CreateOfficeDialog slug={slug} organizationId={organizationId} />
           </div>
         </div>
       </Layout>
@@ -102,103 +79,69 @@ function OfficesPage() {
   return (
     <Layout
       title={`Offices (${offices.length})`}
-      primaryButton={
-        <Button asChild>
-          <Link
-            to="/$slug/offices/create"
-            params={{ slug }}
-            className="group transition-all"
-          >
-            Create Office
-            <PlusIcon className="duration-300 group-hover:rotate-90" />
-          </Link>
-        </Button>
-      }
+      primaryButton={<CreateOfficeDialog slug={slug} organizationId={organizationId} />}
     >
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {offices.map((office: any) => {
-          const locationParts = [
-            office.city,
-            office.state,
-            office.country,
-          ].filter(Boolean);
-
           return (
-            <Card
+            <OfficeCard
               key={office.id}
-              className="group cursor-pointer overflow-hidden transition-colors hover:border-primary/40"
-              onClick={() =>
+              slug={slug}
+              office={office}
+              onOpen={() =>
                 navigate({
                   to: "/$slug/offices/$officeId",
                   params: { slug, officeId: office.id },
                 })
               }
-            >
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between">
-                  <div className="mb-4 flex size-10 items-center justify-center rounded-md bg-muted text-muted-foreground">
-                    <Building2 className="size-5" />
-                  </div>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={(event) => event.stopPropagation()}
-                      >
-                        <MoreVertical className="size-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem asChild>
-                        <Link
-                          to="/$slug/offices/$officeId"
-                          params={{ slug, officeId: office.id }}
-                          onClick={(event) => event.stopPropagation()}
-                          className="cursor-pointer"
-                        >
-                          <Settings2 className="size-4" /> Edit
-                        </Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        className="cursor-pointer text-destructive"
-                        onClick={() => {
-                          if (
-                            confirm(
-                              "Are you sure you want to delete this office?",
-                            )
-                          ) {
-                            deleteMutation.mutate({ data: { id: office.id } });
-                          }
-                        }}
-                      >
-                        <Trash2 className="size-4" /> Delete
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-                <CardTitle className="text-lg">{office.name}</CardTitle>
-                <CardDescription>
-                  {office._count.jobs} linked job
-                  {office._count.jobs === 1 ? "" : "s"}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
-                {locationParts.length > 0 && (
-                  <div className="flex items-center gap-2">
-                    <MapPin className="size-4" />
-                    <span>{locationParts.join(", ")}</span>
-                  </div>
-                )}
-                {office.address && <p>{office.address}</p>}
-                {locationParts.length === 0 && !office.address && (
-                  <p>No location details added yet.</p>
-                )}
-              </CardContent>
-            </Card>
+              onDelete={() => setOfficeToDelete(office)}
+            />
           );
         })}
       </div>
+
+      <Dialog
+        open={!!officeToDelete}
+        onOpenChange={(open) => {
+          if (!open && !deleteMutation.isPending) {
+            setOfficeToDelete(null);
+          }
+        }}
+      >
+        <DialogContent className="sm:max-w-[480px]">
+          <DialogHeader className="items-start text-left">
+            <DialogTitle>Delete this office?</DialogTitle>
+            <DialogDescription>
+              This will permanently delete{" "}
+              <strong>{officeToDelete?.name}</strong>.
+              {officeToDelete?._count?.jobs
+                ? ` It currently has ${officeToDelete._count.jobs} linked job${officeToDelete._count.jobs === 1 ? "" : "s"}, so you will need to reassign those first.`
+                : " This action cannot be undone."}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex-row justify-end">
+            <Button
+              type="button"
+              variant="outline"
+              disabled={deleteMutation.isPending}
+              onClick={() => setOfficeToDelete(null)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              variant="destructive"
+              disabled={deleteMutation.isPending}
+              onClick={() => {
+                if (!officeToDelete) return;
+                deleteMutation.mutate({ data: { id: officeToDelete.id } });
+              }}
+            >
+              {deleteMutation.isPending ? "Deleting..." : "Delete Office"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 }
