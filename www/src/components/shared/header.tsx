@@ -88,15 +88,17 @@ export default function Header({ session }: { session: Session | null }) {
   );
 
   return (
-    <div className="fixed top-6 inset-x-0 z-50 pointer-events-none mb-8">
-      <div className="w-full lg:w-[80%] mx-auto px-4 pointer-events-auto">
-        <HeaderBase
-          logo={logo}
-          desktopNav={desktopNav}
-          desktopActions={authActions}
-          mobileNav={mobileNav}
-          mobileActions={mobileActions}
-        />
+    <div className="h-[90px]">
+      <div className="fixed top-6 inset-x-0 z-50 pointer-events-none">
+        <div className="w-full lg:w-[80%] mx-auto px-4 pointer-events-auto">
+          <HeaderBase
+            logo={logo}
+            desktopNav={desktopNav}
+            desktopActions={authActions}
+            mobileNav={mobileNav}
+            mobileActions={mobileActions}
+          />
+        </div>
       </div>
     </div>
   );

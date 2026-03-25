@@ -3,8 +3,6 @@ import { getSession } from "@/features/auth/server-session";
 import Header from "@/components/shared/header";
 import { Button } from "@/components/ui/button";
 import { BarChart3, Sparkles } from "lucide-react";
-import { JobWithCategory } from "@/types/job/job";
-import { Browser } from "@/components/shared/browser";
 import { Building2, FileText, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -54,81 +52,76 @@ function App() {
   ];
 
   return (
-    <div className="space-y-12">
-      <div className="h-16" />
+    <div className="space-y-8 pb-8">
       <Header session={session} />
-      <main className="space-y-8 lg:w-[80%] w-full mx-auto">
-        <header className="flex flex-col space-y-8 px-4">
-          <section className="relative overflow-hidden rounded-none p-2">
-            <div
-              className="pointer-events-none absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('/blue.png')" }}
-            />
-            <div className="relative bg-white px-4 py-12 text-center sm:px-8 sm:py-16">
-              <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
-                <div className="inline-flex items-center leading-none gap-2 rounded-none border px-3 py-1 text-sm font-semibold">
-                  <Sparkles className="size-4" />
-                  Built for fast paced teams
-                </div>
-                <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
-                  You're building fast.
-                  <span className="block text-branding">
-                    Why not hire fast too?
-                  </span>
-                </h1>
-                {/* <p className="max-w-xl text-sm font-medium text-muted-foreground sm:text-base">
-                  From career page to hiring, everything in one platform
-                </p> */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-2 w-full max-w-sm">
-                  <Button
-                    variant={"secondary"}
-                    asChild
-                    className="w-full sm:w-72"
-                  >
-                    <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
-                      See Demo
-                    </a>
-                  </Button>
-                  <Button
-                    variant={"default"}
-                    asChild
-                    className="w-full sm:w-72"
-                  >
-                    <Link to={"/"} target="_blank">
-                      Start Hiring
-                    </Link>
-                  </Button>
-                </div>
+      <main className="mx-auto w-full space-y-8 lg:w-[80%]">
+        <header className="px-4">
+          <section className="text-center border p-8">
+            <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
+              <div className="inline-flex items-center gap-2 rounded-none border px-3 py-1 text-sm font-semibold leading-none">
+                <Sparkles className="size-4" />
+                Built for fast paced teams
+              </div>
+              <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl 2xl:text-7xl">
+                You're building fast.
+                <span className="block text-branding">
+                  Why not hire fast too?
+                </span>
+              </h1>
+              <p className="max-w-2xl text-base font-medium text-muted-foreground sm:text-lg">
+                Create a career page, post jobs, and manage applicants all in
+                one focused platform.
+              </p>
+              <div className="flex w-full max-w-sm flex-col items-center justify-center gap-2 sm:flex-row">
+                <Button
+                  variant={"secondary"}
+                  asChild
+                  className="w-full sm:w-72"
+                >
+                  <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
+                    See Demo
+                  </a>
+                </Button>
+                <Button variant={"default"} asChild className="w-full sm:w-72">
+                  <Link to={"/"} target="_blank">
+                    Start Hiring
+                  </Link>
+                </Button>
               </div>
             </div>
           </section>
         </header>
         <section className="px-4">
-          <div className="space-y-8">
-            <div className="border px-4 py-8 text-center sm:px-6 sm:py-10">
-              <h2 className="mx-auto max-w-3xl text-2xl font-semibold leading-tight text-balance sm:text-3xl">
-                Create a career page, post jobs, and manage applicants all in
-                one platform.
-              </h2>
+          <div
+            className="bg-cover bg-center p-2"
+            style={{ backgroundImage: "url('/blue.png')" }}
+          >
+            <div className="bg-white">
+              <img
+                src="/dashboard.png"
+                alt="Loux dashboard preview"
+                className="block h-auto w-full"
+              />
             </div>
-            <Browser jobs={[dummyJobs[0], dummyJobs[1]]} />
           </div>
         </section>
         <section className="px-4">
           <div className="border">
             <div className="grid lg:grid-cols-[0.95fr_1.55fr]">
-              <div className="border-b px-4 py-8 sm:px-6 sm:py-10 lg:border-b-0 lg:border-r">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  what loux gives you
-                </p>
-                <h2 className="text-2xl font-semibold leading-tight text-balance sm:text-4xl">
-                  The simplest all-in-one hiring platform
-                </h2>
-                <p className="mt-4 max-w-md text-sm font-medium leading-6 text-muted-foreground sm:text-base">
-                  everything you need to publish roles, review applicants, and
-                  keep your hiring process organized without making it feel
-                  heavy.
-                </p>
+              <div className="border-b p-4 lg:border-b-0 lg:border-r">
+                <div className="bg-white px-4 py-8 sm:px-6 sm:py-10">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                    what loux gives you
+                  </p>
+                  <h2 className="text-2xl font-semibold leading-tight text-balance sm:text-4xl">
+                    The simplest all-in-one hiring platform
+                  </h2>
+                  <p className="mt-4 max-w-md text-sm font-medium leading-6 text-muted-foreground sm:text-base">
+                    everything you need to publish roles, review applicants, and
+                    keep your hiring process organized without making it feel
+                    heavy.
+                  </p>
+                </div>
               </div>
               <div className="grid sm:grid-cols-2">
                 {features.map((feature, index) => {
@@ -163,94 +156,3 @@ function App() {
     </div>
   );
 }
-
-const dummyJobs: JobWithCategory[] = [
-  {
-    id: "#",
-    title: "Senior Software Engineer",
-    type: "FULLTIME",
-    status: "PUBLISHED",
-    locationMode: "HYBRID",
-    address: "123 Tech Street",
-    country: "United States",
-    city: "San Francisco",
-    description:
-      "We are looking for an experienced software engineer to join our team.",
-    showSalary: false,
-    salaryMin: 120000,
-    salaryMax: 180000,
-    currency: "USD",
-    salaryInterval: "YEARLY",
-    experienceLevel: "SENIOR",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    organizationId: "#",
-    categoryId: "#",
-    pipelineId: "#",
-    category: {
-      id: "#",
-      name: "Engineering",
-      createdAt: new Date(),
-      organizationId: "#",
-    },
-    questions: [],
-  },
-  {
-    id: "#",
-    title: "Product Designer",
-    type: "FULLTIME",
-    status: "PUBLISHED",
-    locationMode: "REMOTE",
-    address: null,
-    country: "United States",
-    city: "Remote",
-    description: "Looking for a product designer with a strong portfolio.",
-    showSalary: false,
-    salaryMin: 100000,
-    salaryMax: 150000,
-    currency: "USD",
-    salaryInterval: "YEARLY",
-    experienceLevel: "MID",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    organizationId: "#",
-    categoryId: "#",
-    pipelineId: "#",
-    category: {
-      id: "#",
-      name: "Design",
-      createdAt: new Date(),
-      organizationId: "#",
-    },
-    questions: [],
-  },
-  {
-    id: "#",
-    title: "Marketing Intern",
-    type: "INTERNSHIP",
-    status: "PUBLISHED",
-    locationMode: "ONSITE",
-    address: "456 Creative Ave",
-    country: "United Kingdom",
-    city: "London",
-    description: "Join our marketing team as an intern and learn the ropes.",
-    showSalary: false,
-    salaryMin: 2000,
-    salaryMax: 3000,
-    currency: "GBP",
-    salaryInterval: "MONTHLY",
-    experienceLevel: "ENTRY",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    organizationId: "#",
-    categoryId: "#",
-    pipelineId: "#",
-    category: {
-      id: "#",
-      name: "Marketing",
-      createdAt: new Date(),
-      organizationId: "#",
-    },
-    questions: [],
-  },
-];

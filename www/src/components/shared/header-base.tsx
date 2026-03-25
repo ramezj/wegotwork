@@ -55,8 +55,7 @@ export function HeaderBase({
     <header
       ref={headerRef}
       className={cn(
-        "px-4 border bg-white overflow-hidden transition-all duration-300 ease-in-out w-full flex flex-col",
-        open ? "rounded-lg" : "rounded-lg",
+        "flex w-full flex-col overflow-hidden border bg-white px-4 transition-all duration-300 ease-in-out rounded-none",
         className,
       )}
     >
