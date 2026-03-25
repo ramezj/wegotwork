@@ -20,7 +20,6 @@ function RouteComponent() {
   const { session } = Route.useRouteContext();
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="h-16" />
       <Header session={session} />
       <main className="flex flex-1 flex-col lg:w-[80%] mx-auto w-full px-4 pt-8">
         <Suspense fallback={<LoadingLayout title="" />}>

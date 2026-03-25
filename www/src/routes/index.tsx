@@ -62,7 +62,7 @@ function App() {
                 <Sparkles className="size-4" />
                 Built for fast paced teams
               </div>
-              <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl 2xl:text-7xl">
+              <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-5xl 2xl:text-6xl">
                 You're building fast.
                 <span className="block text-branding">
                   Why not hire fast too?
