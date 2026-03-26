@@ -1,16 +1,45 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 import { useFieldArray, useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { ArrowDown, ArrowUp, Loader, Plus, X } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUp,
+  Loader,
+  Plus,
+  Trash2,
+  TriangleAlert,
+  X,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Field, FieldContent, FieldError, FieldLabel } from "@/components/ui/field";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  Field,
+  FieldContent,
+  FieldError,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import {
   createPipelineFn,
+  deletePipelineFn,
   updatePipelineFn,
 } from "@/features/services/ats/pipeline";
 
@@ -47,6 +76,7 @@ export function PipelineEditorForm({
 }: PipelineEditorFormProps) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   const form = useForm<PipelineFormValues>({
     resolver: zodResolver(pipelineSchema),
@@ -90,6 +120,21 @@ export function PipelineEditorForm({
     },
     onError: (error: any) => {
       toast.error(error.message || "Failed to update pipeline");
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: deletePipelineFn,
+    onSuccess: async () => {
+      setDeleteDialogOpen(false);
+      await queryClient.refetchQueries({
+        queryKey: ["pipelines", organizationId],
+      });
+      toast.success("Pipeline deleted successfully");
+      navigate({ to: "/$slug/pipelines", params: { slug } });
+    },
+    onError: (error: any) => {
+      toast.error(error.message || "Failed to delete pipeline");
     },
   });
 
@@ -255,6 +300,87 @@ export function PipelineEditorForm({
           </form>
         </CardContent>
       </Card>
+
+      {mode === "edit" && pipeline ? (
+        <Card className="border-destructive/30">
+          <CardHeader className="flex flex-row items-start gap-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-destructive/10 shrink-0">
+              <TriangleAlert className="h-4 w-4 text-destructive" />
+            </div>
+            <div>
+              <CardTitle className="text-base">Danger Zone</CardTitle>
+              <CardDescription className="text-xs">
+                Delete this pipeline permanently
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4">
+            <p className="text-sm text-muted-foreground">
+              Deleting this pipeline will permanently remove it from your
+              organization. Jobs must be moved off this pipeline before it can
+              be deleted.
+            </p>
+
+            <div className="flex items-center justify-between gap-4 rounded-md border border-destructive/20 p-4">
+              <div className="space-y-1">
+                <p className="text-sm font-medium">Delete pipeline</p>
+                <p className="text-sm text-muted-foreground">
+                  Remove <strong>{pipeline.name}</strong> from this
+                  organization.
+                </p>
+              </div>
+
+              <Button
+                type="button"
+                variant="destructive"
+                disabled={deleteMutation.isPending}
+                className="gap-2"
+                onClick={() => setDeleteDialogOpen(true)}
+              >
+                {deleteMutation.isPending ? (
+                  <Loader className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Trash2 className="h-4 w-4" />
+                )}
+                Delete Pipeline
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      ) : null}
+
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogContent className="sm:max-w-[480px]">
+          <DialogHeader className="items-start text-left">
+            <DialogTitle>Delete this pipeline?</DialogTitle>
+            <DialogDescription>
+              This will permanently delete <strong>{pipeline?.name}</strong>.
+              Jobs must be reassigned before this pipeline can be deleted.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex-row justify-end">
+            <Button
+              type="button"
+              variant="outline"
+              disabled={deleteMutation.isPending}
+              onClick={() => setDeleteDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              variant="destructive"
+              disabled={deleteMutation.isPending || !pipeline}
+              onClick={() => {
+                if (!pipeline) return;
+                deleteMutation.mutate({ data: { id: pipeline.id } });
+              }}
+            >
+              {deleteMutation.isPending ? "Deleting..." : "Delete Pipeline"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

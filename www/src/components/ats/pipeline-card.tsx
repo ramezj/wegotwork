@@ -1,24 +1,25 @@
-import { BriefcaseBusiness, MapPin, MapPinned } from "lucide-react";
+import {
+  BriefcaseBusiness,
+  GitBranch,
+  ListTree,
+} from "lucide-react";
 
-type OfficeCardOffice = {
+type PipelineCardPipeline = {
   id: string;
   name: string;
-  city: string | null;
-  country: string | null;
-  _count: {
-    jobs: number;
-  };
+  jobs?: { id: string }[];
+  stages?: { id: string; name: string }[];
 };
 
-export function OfficeCard({
-  office,
+export function PipelineCard({
+  pipeline,
   onOpen,
 }: {
-  office: OfficeCardOffice;
+  pipeline: PipelineCardPipeline;
   onOpen: () => void;
 }) {
-  const location = [office.city, office.country].filter(Boolean).join(", ");
-
+  const stages = pipeline.stages ?? [];
+  const linkedJobs = pipeline.jobs?.length ?? 0;
   return (
     <div
       className="group cursor-pointer border bg-background p-5 transition-colors hover:bg-muted/30"
@@ -27,14 +28,16 @@ export function OfficeCard({
       <div className="flex items-start gap-4">
         <div className="flex min-w-0 items-start gap-4">
           <div className="flex size-12 shrink-0 items-center justify-center border bg-muted/50 text-foreground">
-            <MapPinned className="size-5" />
+            <GitBranch className="size-5" />
           </div>
           <div className="min-w-0 space-y-1">
             <h3 className="truncate text-lg font-semibold tracking-tight">
-              {office.name}
+              {pipeline.name}
             </h3>
             <p className="text-sm text-muted-foreground">
-              {location || "Location details not added yet"}
+              {linkedJobs > 0
+                ? `${linkedJobs} linked job${linkedJobs === 1 ? "" : "s"}`
+                : "No jobs linked yet"}
             </p>
           </div>
         </div>
@@ -47,17 +50,17 @@ export function OfficeCard({
             Linked Jobs
           </div>
           <p className="mt-2 text-2xl font-semibold tracking-tight">
-            {office._count.jobs}
+            {linkedJobs}
           </p>
         </div>
 
         <div className="border bg-muted/20 p-3">
           <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-            <MapPin className="size-3.5" />
-            Office Location
+            <ListTree className="size-3.5" />
+            Pipeline Stages
           </div>
-          <p className="mt-2 text-sm font-medium text-foreground">
-            {location || "Add city and country"}
+          <p className="mt-2 text-2xl font-semibold tracking-tight">
+            {stages.length}
           </p>
         </div>
       </div>
