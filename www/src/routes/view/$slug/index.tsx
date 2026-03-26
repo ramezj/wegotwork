@@ -217,7 +217,9 @@ function RouteComponent() {
           ))}
           {showUncategorized && uncategorizedJobs.length > 0 && (
             <section className="space-y-4">
-              <h3 className="text-xl font-bold">Other Openings</h3>
+              <h3 className="text-xl font-bold">
+                {filteredCategories.length > 0 ? "Other Openings" : "Openings"}
+              </h3>
               <div className="grid gap-4">
                 {uncategorizedJobs.map((job) => (
                   <JobCardForViewPage
