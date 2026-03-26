@@ -61,13 +61,19 @@ function FilterSelect({
       value={selected ?? "__all__"}
       onValueChange={(value) => onSelect(value === "__all__" ? null : value)}
     >
-      <SelectTrigger className="w-full">
+      <SelectTrigger className="w-full font-semibold">
         <SelectValue>{selectedLabel ?? label}</SelectValue>
       </SelectTrigger>
       <SelectContent align="start">
-        <SelectItem value="__all__">All</SelectItem>
+        <SelectItem className="font-semibold" value="__all__">
+          All
+        </SelectItem>
         {options.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
+          <SelectItem
+            className="font-semibold"
+            key={option.value}
+            value={option.value}
+          >
             {option.label}
           </SelectItem>
         ))}
@@ -151,7 +157,7 @@ function RouteComponent() {
       <div className="w-full space-y-4">
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold leading-none">
+            <h2 className="text-xl font-bold leading-none">
               Open Roles ({visibleCount})
             </h2>
           </div>
