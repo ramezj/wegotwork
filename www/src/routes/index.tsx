@@ -63,10 +63,10 @@ function App() {
                   <Sparkles className="size-4" />
                   built for fast paced teams
                 </div>
-                <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
-                  You're building fast.
+                <h1 className="text-3xl text-[#010911] font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
+                  you're building fast.
                   <span className="block text-branding">
-                    Why not hire fast too?
+                    why not hire fast too?
                   </span>
                 </h1>
                 {/* <p className="max-w-xl text-sm font-medium text-muted-foreground sm:text-base">
@@ -137,7 +137,7 @@ function App() {
           >
             <div className="bg-white">
               <img
-                src="/dashboard.png"
+                src="/image.png"
                 alt="Loux dashboard preview"
                 className="block h-auto w-full"
               />
