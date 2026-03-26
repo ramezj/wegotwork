@@ -17,6 +17,7 @@ import { z } from "zod";
 import { uploadResumeFn } from "@/features/services/candidates/upload-resume";
 import { createCandidateFn } from "@/features/services/candidates/create-candidate";
 import { toast } from "sonner";
+import { isRichTextEmpty, sanitizeRichTextHtml } from "@/lib/rich-text";
 import { CheckCircle2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -258,9 +259,14 @@ function RouteComponent() {
       </div>
 
       <Separator />
-      <div className="text-sm leading-7 text-foreground/80 whitespace-pre-wrap">
-        {job.description || "No description provided."}
-      </div>
+      <div
+        className="wysiwyg-content text-sm text-black"
+        dangerouslySetInnerHTML={{
+          __html: isRichTextEmpty(job.description)
+            ? "<p>No description provided.</p>"
+            : sanitizeRichTextHtml(job.description),
+        }}
+      />
       <Separator />
 
       {/* Application form */}

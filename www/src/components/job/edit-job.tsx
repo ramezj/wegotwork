@@ -6,7 +6,6 @@ import { jobSchema } from "@/types/job/job";
 import { Field, FieldLabel, FieldContent, FieldError } from "../ui/field";
 import { Controller } from "react-hook-form";
 import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
 import {
   Select,
   SelectContent,
@@ -53,6 +52,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import { RichTextEditor } from "../ui/rich-text-editor";
 
 export function EditJobForm({
   job,
@@ -248,11 +248,11 @@ export function EditJobForm({
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel>Job Description</FieldLabel>
                   <FieldContent>
-                    <Textarea
-                      aria-invalid={fieldState.invalid}
-                      placeholder="Describe the role, responsibilities, and requirements..."
-                      className="min-h-32 resize-y"
-                      {...field}
+                    <RichTextEditor
+                      value={field.value}
+                      onChange={field.onChange}
+                      placeholder="Describe the role, responsibilities, requirements, and any important context..."
+                      disabled={mutation.isPending}
                     />
                   </FieldContent>
                   <FieldError errors={[fieldState.error]} />

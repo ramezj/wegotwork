@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import {
   BriefcaseBusiness,
-  Building2,
   MapPin,
   MapPinned,
   MoreVertical,

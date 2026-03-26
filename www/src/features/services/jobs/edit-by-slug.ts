@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma";
 import z from "zod";
 import { jobSchema } from "@/types/job/job";
 import { moveCandidatesToPipelineFirstStage } from "./utils";
+import { isRichTextEmpty, sanitizeRichTextHtml } from "@/lib/rich-text";
 
 export const editJobBySlugFn = createServerFn()
   .middleware([authMiddleware])
@@ -64,6 +65,9 @@ export const editJobBySlugFn = createServerFn()
         },
         data: {
           ...jobData,
+          description: isRichTextEmpty(jobData.description)
+            ? null
+            : sanitizeRichTextHtml(jobData.description),
           categoryId: data.job.categoryId || null,
           officeId: office?.id || null,
           pipelineId: pipeline.id,

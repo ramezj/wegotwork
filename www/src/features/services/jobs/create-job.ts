@@ -3,6 +3,7 @@ import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import z from "zod";
 import { jobSchema } from "@/types/job/job";
+import { isRichTextEmpty, sanitizeRichTextHtml } from "@/lib/rich-text";
 
 export const createJobFn = createServerFn()
   .middleware([authMiddleware])
@@ -52,6 +53,9 @@ export const createJobFn = createServerFn()
       const job = await prisma.job.create({
         data: {
           ...jobData,
+          description: isRichTextEmpty(jobData.description)
+            ? null
+            : sanitizeRichTextHtml(jobData.description),
           organization: {
             connect: { id: organization.id },
           },

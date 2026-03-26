@@ -32,6 +32,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { RichTextEditor } from "../ui/rich-text-editor";
 
 export function CreateJobDialog({ slug }: { slug: string }) {
   const queryClient = useQueryClient();
@@ -120,7 +121,7 @@ export function CreateJobDialog({ slug }: { slug: string }) {
           <PlusIcon className="duration-300 group-hover:rotate-90" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-[720px]">
         <DialogHeader className="items-start text-left">
           <DialogTitle className="flex items-center gap-2">
             <Briefcase className="size-5" />
@@ -140,6 +141,25 @@ export function CreateJobDialog({ slug }: { slug: string }) {
                     aria-invalid={fieldState.invalid}
                     placeholder="e.g. Senior Software Engineer"
                     {...field}
+                  />
+                </FieldContent>
+                <FieldError errors={[fieldState.error]} />
+              </Field>
+            )}
+          />
+
+          <Controller
+            control={form.control}
+            name="description"
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel>Job Description</FieldLabel>
+                <FieldContent>
+                  <RichTextEditor
+                    value={field.value}
+                    onChange={field.onChange}
+                    placeholder="Describe the role, responsibilities, requirements, and any important context..."
+                    disabled={mutation.isPending}
                   />
                 </FieldContent>
                 <FieldError errors={[fieldState.error]} />
