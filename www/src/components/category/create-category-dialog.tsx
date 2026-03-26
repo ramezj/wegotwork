@@ -16,7 +16,7 @@ import z from "zod";
 import { toast } from "sonner";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
-import { Folder, Loader, PlusIcon } from "lucide-react";
+import { Folder, Folders, Loader, PlusIcon } from "lucide-react";
 import { useState } from "react";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 
@@ -60,7 +60,7 @@ export function CreateCategoryDialog({ slug }: { slug: string }) {
       <DialogContent>
         <DialogHeader className="items-start text-left">
           <DialogTitle className="flex items-center gap-2">
-            <Folder className="size-5" />
+            <Folders className="size-5" />
             Create Category
           </DialogTitle>
           <DialogDescription>

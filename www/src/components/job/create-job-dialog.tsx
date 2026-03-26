@@ -23,7 +23,7 @@ import { officesQueryOptions } from "@/features/queries/offices";
 import { toast } from "sonner";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
-import { Loader, PlusIcon, Briefcase } from "lucide-react";
+import { Loader, PlusIcon, Briefcase, BriefcaseBusiness } from "lucide-react";
 import { useState } from "react";
 import {
   Select,
@@ -32,7 +32,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { RichTextEditor } from "../ui/rich-text-editor";
 
 export function CreateJobDialog({ slug }: { slug: string }) {
   const queryClient = useQueryClient();
@@ -44,7 +43,9 @@ export function CreateJobDialog({ slug }: { slug: string }) {
   const { data: pipelines } = useSuspenseQuery(
     pipelinesQueryOptions(organizationId),
   );
-  const { data: offices } = useSuspenseQuery(officesQueryOptions(organizationId));
+  const { data: offices } = useSuspenseQuery(
+    officesQueryOptions(organizationId),
+  );
 
   const defaultPipelineId =
     orgData?.organization?.defaultPipelineId || pipelines[0]?.id || "";
@@ -52,7 +53,6 @@ export function CreateJobDialog({ slug }: { slug: string }) {
   const form = useForm({
     defaultValues: {
       title: "",
-      description: "",
       status: "DRAFT",
       type: "FULLTIME",
       locationMode: "ONSITE",
@@ -82,7 +82,6 @@ export function CreateJobDialog({ slug }: { slug: string }) {
         toast.success(data.statusText);
         form.reset({
           title: "",
-          description: "",
           status: "DRAFT",
           type: "FULLTIME",
           locationMode: "ONSITE",
@@ -121,10 +120,10 @@ export function CreateJobDialog({ slug }: { slug: string }) {
           <PlusIcon className="duration-300 group-hover:rotate-90" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[720px]">
+      <DialogContent>
         <DialogHeader className="items-start text-left">
           <DialogTitle className="flex items-center gap-2">
-            <Briefcase className="size-5" />
+            <BriefcaseBusiness className="size-5" />
             Create a Job
           </DialogTitle>
           <DialogDescription>Define your new job opening</DialogDescription>
@@ -141,25 +140,6 @@ export function CreateJobDialog({ slug }: { slug: string }) {
                     aria-invalid={fieldState.invalid}
                     placeholder="e.g. Senior Software Engineer"
                     {...field}
-                  />
-                </FieldContent>
-                <FieldError errors={[fieldState.error]} />
-              </Field>
-            )}
-          />
-
-          <Controller
-            control={form.control}
-            name="description"
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel>Job Description</FieldLabel>
-                <FieldContent>
-                  <RichTextEditor
-                    value={field.value}
-                    onChange={field.onChange}
-                    placeholder="Describe the role, responsibilities, requirements, and any important context..."
-                    disabled={mutation.isPending}
                   />
                 </FieldContent>
                 <FieldError errors={[fieldState.error]} />
