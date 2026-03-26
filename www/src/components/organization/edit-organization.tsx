@@ -19,7 +19,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { JobCategory } from "generated/prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { editJobBySlugFn } from "@/features/services/jobs/edit-by-slug";
-import { Loader, Loader2 } from "lucide-react";
+import { Loader, Loader2, Save } from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 import { jobByIdQueryOptions } from "@/features/queries/jobs";
@@ -134,6 +134,7 @@ export function EditOrganizationForm({
             {mutation.isPending || uploadMutation.isPending
               ? "Save Changes"
               : "Save Changes"}
+            <Save />
           </Button>
         }
       >

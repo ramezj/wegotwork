@@ -34,6 +34,7 @@ import {
   Briefcase,
   TriangleAlert,
   Trash2,
+  Save,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
@@ -157,6 +158,7 @@ export function EditJobForm({
         >
           {mutation.isPending && <Loader className="animate-spin h-4 w-4" />}
           Save Changes
+          <Save />
         </Button>
       }
     >

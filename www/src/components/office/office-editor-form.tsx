@@ -183,7 +183,7 @@ export function OfficeEditorForm({
         )}
       />
 
-      <div className="flex items-center justify-end gap-2">
+      <div className="flex items-center justify-between w-full gap-2">
         <Button
           type="button"
           variant="outline"
