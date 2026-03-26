@@ -96,6 +96,9 @@ export function AppSidebar({
 
   const location = useLocation();
   const { isMobile, setOpenMobile } = useSidebar();
+  const isSidebarItemActive = (href: string) =>
+    location.pathname === href || location.pathname.startsWith(`${href}/`);
+
   const handleItemClick = () => {
     if (isMobile) {
       setOpenMobile(false);
@@ -150,7 +153,7 @@ export function AppSidebar({
               return (
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
-                    isActive={item.href === location.pathname}
+                    isActive={isSidebarItemActive(item.href)}
                     className="cursor-pointer"
                     onClick={handleItemClick}
                     asChild
@@ -167,7 +170,7 @@ export function AppSidebar({
               return (
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
-                    isActive={item.href === location.pathname}
+                    isActive={isSidebarItemActive(item.href)}
                     className="cursor-pointer"
                     onClick={handleItemClick}
                     asChild
