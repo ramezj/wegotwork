@@ -61,9 +61,9 @@ function PricingPage() {
           </div>
         </section>
 
-        <section className="border">
-          <div className="grid gap-px bg-border lg:grid-cols-2">
-            <article className="bg-white p-6 sm:p-8">
+        <section>
+          <div className="grid lg:grid-cols-2">
+            <article className="border bg-white p-6 sm:p-8">
               <div className="space-y-6">
                 <div className="space-y-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
@@ -107,7 +107,7 @@ function PricingPage() {
                   </div>
                   <div className="space-y-2">
                     <h2 className="text-3xl font-semibold tracking-tight">
-                      Custom
+                      $50
                     </h2>
                     <p className="max-w-md text-sm font-medium text-primary-foreground/75">
                       For organizations hiring across offices, teams, or more
