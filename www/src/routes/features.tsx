@@ -93,18 +93,18 @@ function FeaturesPage() {
         <section className="border p-2">
           <div className="bg-white px-6 py-10 text-center sm:px-10 sm:py-14">
             <div className="mx-auto flex max-w-3xl flex-col items-center gap-4">
-              <div className="inline-flex items-center gap-2 border px-4 py-1.5 text-sm font-semibold">
+              {/* <div className="inline-flex items-center gap-2 border px-4 py-1.5 text-sm font-semibold">
                 <Sparkles className="size-4" />
                 everything in one place
-              </div>
+              </div> */}
               <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
                 Features built for teams that want hiring to feel well run.
               </h1>
-              <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
+              {/* <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
                 loux brings the public side of hiring and the internal workflow
                 together, so your team can post roles, review candidates, and
                 stay organized without extra layers.
-              </p>
+              </p> */}
             </div>
           </div>
         </section>
