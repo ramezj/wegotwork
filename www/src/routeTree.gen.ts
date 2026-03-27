@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ViewIndexRouteImport } from './routes/view/index'
@@ -42,6 +43,11 @@ import { Route as SlugLayoutCandidatesJobIdCandidateIdRouteImport } from './rout
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeaturesRoute = FeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
@@ -199,6 +205,7 @@ const SlugLayoutCandidatesJobIdCandidateIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/features': typeof FeaturesRoute
   '/pricing': typeof PricingRoute
   '/$slug': typeof SlugLayoutRouteRouteWithChildren
   '/view/$slug': typeof ViewSlugRouteRouteWithChildren
@@ -229,6 +236,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/features': typeof FeaturesRoute
   '/pricing': typeof PricingRoute
   '/invite/$invitationId': typeof InviteInvitationIdRoute
   '/dashboard': typeof DashboardIndexRoute
@@ -257,6 +265,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/features': typeof FeaturesRoute
   '/pricing': typeof PricingRoute
   '/$slug/_layout': typeof SlugLayoutRouteRouteWithChildren
   '/view/$slug': typeof ViewSlugRouteRouteWithChildren
@@ -290,6 +299,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/features'
     | '/pricing'
     | '/$slug'
     | '/view/$slug'
@@ -320,6 +330,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/features'
     | '/pricing'
     | '/invite/$invitationId'
     | '/dashboard'
@@ -347,6 +358,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dashboard'
+    | '/features'
     | '/pricing'
     | '/$slug/_layout'
     | '/view/$slug'
@@ -379,6 +391,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
+  FeaturesRoute: typeof FeaturesRoute
   PricingRoute: typeof PricingRoute
   SlugLayoutRouteRoute: typeof SlugLayoutRouteRouteWithChildren
   ViewSlugRouteRoute: typeof ViewSlugRouteRouteWithChildren
@@ -394,6 +407,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/features': {
+      id: '/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof FeaturesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -693,6 +713,7 @@ const ViewSlugRouteRouteWithChildren = ViewSlugRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRouteRoute: DashboardRouteRouteWithChildren,
+  FeaturesRoute: FeaturesRoute,
   PricingRoute: PricingRoute,
   SlugLayoutRouteRoute: SlugLayoutRouteRouteWithChildren,
   ViewSlugRouteRoute: ViewSlugRouteRouteWithChildren,
