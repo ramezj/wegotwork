@@ -19,12 +19,15 @@ export default function Header({ session }: { session: Session | null }) {
     //   <img src="/logo.png" alt="loux" className="h-8 w-auto" />
     // </Link>
     <Button asChild className="mr-2" variant="default" size="icon">
-      <Link to="/">L</Link>
+      <Link viewTransition to="/">
+        L
+      </Link>
     </Button>
   );
 
   const desktopNav = navLinks.map((link) => (
     <Link
+      viewTransition
       key={link.label}
       to={link.href}
       className="text-xl font-medium tracking-tight text-muted-foreground hover:text-foreground transition-colors"
