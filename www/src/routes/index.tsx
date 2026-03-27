@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { getSession } from "@/features/auth/server-session";
 import Header from "@/components/shared/header";
 import { Button } from "@/components/ui/button";
 import { BarChart3, Sparkles } from "lucide-react";
@@ -7,10 +6,6 @@ import { Building2, FileText, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
-  beforeLoad: async () => {
-    const session = await getSession();
-    return { session };
-  },
   component: App,
   head: () => ({
     meta: [
@@ -23,7 +18,6 @@ export const Route = createFileRoute("/")({
 });
 
 function App() {
-  const { session } = Route.useRouteContext();
   const features = [
     {
       title: "Beautiful Career Pages",
@@ -53,7 +47,7 @@ function App() {
 
   return (
     <div className="space-y-8 pb-8">
-      <Header session={session} />
+      <Header />
       <main className="mx-auto w-full space-y-8 lg:w-[80%]">
         <header className="px-4">
           <section className="relative overflow-hidden rounded-none border p-2">

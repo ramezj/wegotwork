@@ -7,7 +7,14 @@ import { HeaderBase } from "./header-base";
 import { useNavigate } from "@tanstack/react-router";
 import { authClient } from "@/features/auth/auth-client";
 
-export default function Header({ session }: { session: Session | null }) {
+export default function Header({
+  session: initialSession = null,
+}: {
+  session?: Session | null;
+}) {
+  const { data: clientSession } = authClient.useSession();
+  const session = initialSession ?? clientSession ?? null;
+
   const navLinks = [
     { label: "features", href: "/features" },
     { label: "pricing", href: "/pricing" },
