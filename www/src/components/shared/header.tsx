@@ -10,7 +10,7 @@ import { authClient } from "@/features/auth/auth-client";
 export default function Header({ session }: { session: Session | null }) {
   const navLinks = [
     { label: "features", href: "/" },
-    { label: "pricing", href: "/" },
+    { label: "pricing", href: "/pricing" },
     { label: "about", href: "/" },
   ];
 

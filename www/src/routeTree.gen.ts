@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ViewIndexRouteImport } from './routes/view/index'
@@ -38,6 +39,11 @@ import { Route as SlugLayoutCandidatesJobIdRouteRouteImport } from './routes/$sl
 import { Route as SlugLayoutCandidatesJobIdIndexRouteImport } from './routes/$slug/_layout/candidates/$jobId/index'
 import { Route as SlugLayoutCandidatesJobIdCandidateIdRouteImport } from './routes/$slug/_layout/candidates/$jobId/$candidateId'
 
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -193,6 +199,7 @@ const SlugLayoutCandidatesJobIdCandidateIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/pricing': typeof PricingRoute
   '/$slug': typeof SlugLayoutRouteRouteWithChildren
   '/view/$slug': typeof ViewSlugRouteRouteWithChildren
   '/invite/$invitationId': typeof InviteInvitationIdRoute
@@ -222,6 +229,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/pricing': typeof PricingRoute
   '/invite/$invitationId': typeof InviteInvitationIdRoute
   '/dashboard': typeof DashboardIndexRoute
   '/view': typeof ViewIndexRoute
@@ -249,6 +257,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/pricing': typeof PricingRoute
   '/$slug/_layout': typeof SlugLayoutRouteRouteWithChildren
   '/view/$slug': typeof ViewSlugRouteRouteWithChildren
   '/invite/$invitationId': typeof InviteInvitationIdRoute
@@ -281,6 +290,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/pricing'
     | '/$slug'
     | '/view/$slug'
     | '/invite/$invitationId'
@@ -310,6 +320,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/pricing'
     | '/invite/$invitationId'
     | '/dashboard'
     | '/view'
@@ -336,6 +347,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dashboard'
+    | '/pricing'
     | '/$slug/_layout'
     | '/view/$slug'
     | '/invite/$invitationId'
@@ -367,6 +379,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
+  PricingRoute: typeof PricingRoute
   SlugLayoutRouteRoute: typeof SlugLayoutRouteRouteWithChildren
   ViewSlugRouteRoute: typeof ViewSlugRouteRouteWithChildren
   InviteInvitationIdRoute: typeof InviteInvitationIdRoute
@@ -376,6 +389,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -673,6 +693,7 @@ const ViewSlugRouteRouteWithChildren = ViewSlugRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRouteRoute: DashboardRouteRouteWithChildren,
+  PricingRoute: PricingRoute,
   SlugLayoutRouteRoute: SlugLayoutRouteRouteWithChildren,
   ViewSlugRouteRoute: ViewSlugRouteRouteWithChildren,
   InviteInvitationIdRoute: InviteInvitationIdRoute,
