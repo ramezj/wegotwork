@@ -11,6 +11,7 @@ export const getRouter = () => {
 
   const router = createRouter({
     routeTree,
+    scrollRestoration: true,
     rewrite: {
       input: ({ url }) => {
         const subdomain = url.hostname.split(".")[0];
