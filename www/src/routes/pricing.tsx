@@ -21,10 +21,6 @@ const enterpriseFeatures = [
 ];
 
 export const Route = createFileRoute("/pricing")({
-  beforeLoad: async () => {
-    const session = await getSession();
-    return { session };
-  },
   component: PricingPage,
   head: () => ({
     meta: [
@@ -37,11 +33,9 @@ export const Route = createFileRoute("/pricing")({
 });
 
 function PricingPage() {
-  const { session } = Route.useRouteContext();
-
   return (
     <div className="space-y-8 pb-8">
-      <Header session={session} />
+      <Header />
       <main className="mx-auto w-full space-y-8 px-4 lg:w-[80%]">
         <section className="border p-2">
           <div className="bg-white px-6 py-10 text-center sm:px-10 sm:py-14">

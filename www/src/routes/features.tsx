@@ -74,10 +74,6 @@ const featureGroups = [
 ] as const;
 
 export const Route = createFileRoute("/features")({
-  beforeLoad: async () => {
-    const session = await getSession();
-    return { session };
-  },
   component: FeaturesPage,
   head: () => ({
     meta: [
@@ -90,11 +86,9 @@ export const Route = createFileRoute("/features")({
 });
 
 function FeaturesPage() {
-  const { session } = Route.useRouteContext();
-
   return (
     <div className="space-y-8 pb-8">
-      <Header session={session} />
+      <Header />
       <main className="mx-auto w-full space-y-8 px-4 lg:w-[80%]">
         <section className="border p-2">
           <div className="bg-white px-6 py-10 text-center sm:px-10 sm:py-14">
@@ -137,7 +131,10 @@ function FeaturesPage() {
                   const Icon = item.icon;
 
                   return (
-                    <article key={item.title} className="bg-white px-6 py-8 sm:px-8">
+                    <article
+                      key={item.title}
+                      className="bg-white px-6 py-8 sm:px-8"
+                    >
                       <div className="space-y-4">
                         <div className="flex h-12 w-12 items-center justify-center border bg-secondary">
                           <Icon className="size-5" />
@@ -167,7 +164,8 @@ function FeaturesPage() {
                   Ready to use loux?
                 </p>
                 <h2 className="text-3xl font-semibold tracking-tight text-balance">
-                  Start with the essentials, then grow into a fuller hiring setup.
+                  Start with the essentials, then grow into a fuller hiring
+                  setup.
                 </h2>
               </div>
               <div className="flex flex-col gap-2 sm:flex-row">
