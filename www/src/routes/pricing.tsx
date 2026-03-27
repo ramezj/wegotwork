@@ -66,7 +66,7 @@ function PricingPage() {
             <article className="border bg-white p-6 sm:p-8">
               <div className="space-y-6">
                 <div className="space-y-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  <p className="text-xs font-semibold text-muted-foreground">
                     Free
                   </p>
                   <div className="space-y-2">
@@ -99,44 +99,51 @@ function PricingPage() {
               </div>
             </article>
 
-            <article className="bg-primary p-6 text-primary-foreground sm:p-8">
-              <div className="space-y-6">
-                <div className="space-y-3">
-                  <div className="inline-flex border border-primary-foreground/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
-                    Enterprise
-                  </div>
-                  <div className="space-y-2">
-                    <h2 className="text-3xl font-semibold tracking-tight">
-                      $50
-                    </h2>
-                    <p className="max-w-md text-sm font-medium text-primary-foreground/75">
-                      For organizations hiring across offices, teams, or more
-                      complex workflows.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-3 border-t border-primary-foreground/15 pt-6">
-                  {enterpriseFeatures.map((feature) => (
-                    <div key={feature} className="flex items-start gap-3">
-                      <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-primary-foreground/25">
-                        <Check className="size-3" />
-                      </div>
-                      <p className="text-sm font-medium leading-6">{feature}</p>
+            <article
+              className="bg-cover bg-center p-3"
+              style={{ backgroundImage: "url('/blue.png')" }}
+            >
+              <div className="bg-black/90 p-6 text-white backdrop-blur-md sm:p-8">
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <div className="inline-flex border border-white/20 px-3 py-1 text-xs font-semibold text-white">
+                      Enterprise
                     </div>
-                  ))}
-                </div>
+                    <div className="space-y-2">
+                      <h2 className="text-3xl font-semibold tracking-tight text-white">
+                        $50
+                      </h2>
+                      <p className="max-w-md text-sm font-medium text-white/75">
+                        For organizations hiring across offices, teams, or more
+                        complex workflows.
+                      </p>
+                    </div>
+                  </div>
 
-                <Button
-                  asChild
-                  variant="secondary"
-                  className="w-full sm:w-auto"
-                >
-                  <a href="mailto:hello@louxapp.com?subject=Enterprise%20Plan">
-                    Contact Sales
-                    <ArrowRight className="size-4" />
-                  </a>
-                </Button>
+                  <div className="space-y-3 border-t border-white/15 pt-6">
+                    {enterpriseFeatures.map((feature) => (
+                      <div key={feature} className="flex items-start gap-3">
+                        <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/25 text-white">
+                          <Check className="size-3" />
+                        </div>
+                        <p className="text-sm font-medium leading-6 text-white">
+                          {feature}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Button
+                    asChild
+                    variant="secondary"
+                    className="w-full sm:w-auto"
+                  >
+                    <a href="mailto:hello@louxapp.com?subject=Enterprise%20Plan">
+                      Contact Sales
+                      <ArrowRight className="size-4" />
+                    </a>
+                  </Button>
+                </div>
               </div>
             </article>
           </div>
