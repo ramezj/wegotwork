@@ -68,10 +68,10 @@ function AuthPage() {
           <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
             <div className="border-b bg-white px-6 py-10 sm:px-10 sm:py-12 lg:border-b-0 lg:border-r">
               <div className="max-w-xl space-y-6">
-                <div className="inline-flex items-center gap-2 border px-4 py-1.5 text-sm font-semibold">
+                {/* <div className="inline-flex items-center gap-2 border px-4 py-1.5 text-sm font-semibold">
                   <Sparkles className="size-4" />
                   Access your workspace
-                </div>
+                </div> */}
 
                 <div className="space-y-3">
                   <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
@@ -102,9 +102,9 @@ function AuthPage() {
                     </Button>
                   )}
 
-                  <Button asChild size="lg" variant="secondary">
+                  {/* <Button asChild size="lg" variant="secondary">
                     <Link to="/">Back Home</Link>
-                  </Button>
+                  </Button> */}
                 </div>
 
                 <div className="border-t pt-6">
