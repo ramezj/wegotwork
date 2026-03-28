@@ -12,10 +12,7 @@ import { Link } from "@tanstack/react-router";
 interface ATSListViewProps {
   pipeline: any;
   candidates: (Candidate & { responses: CandidateResponse[] })[];
-  onMoveCandidate: (
-    candidateId: string,
-    newStageId: string,
-  ) => Promise<void>;
+  onMoveCandidate: (candidateId: string, newStageId: string) => Promise<void>;
   isMovingCandidate: boolean;
   slug: string;
   organizationId: string;
@@ -102,11 +99,8 @@ export function ATSListView({
       <div className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col">
         {filteredCandidates.length === 0 ? (
           <div className="flex-1 flex flex-col items-center justify-center p-8 text-muted-foreground bg-muted/5">
-            <Users className="size-10 mb-4 opacity-20" />
-            <p className="text-sm font-medium">No candidates found</p>
-            <p className="text-xs opacity-60">
-              Try adjusting your search or filters
-            </p>
+            <Users className="size-10 mb-2 text-primary" />
+            <p className="font-medium text-primary">No candidates found</p>
           </div>
         ) : (
           <ul className="p-4 space-y-2.5 relative">
@@ -134,7 +128,9 @@ export function ATSListView({
                     stages={stages}
                     slug={slug}
                     onMove={onMoveCandidate}
-                    onSelect={(selected: Candidate & { responses: CandidateResponse[] }) => {
+                    onSelect={(
+                      selected: Candidate & { responses: CandidateResponse[] },
+                    ) => {
                       setSelectedCandidate(selected);
                       setIsSidebarOpen(true);
                     }}
