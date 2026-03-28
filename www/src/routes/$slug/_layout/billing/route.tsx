@@ -7,9 +7,11 @@ export const Route = createFileRoute("/$slug/_layout/billing")({
 });
 
 function RouteComponent() {
+  const { slug } = Route.useParams();
+
   return (
     <Layout title="Billing">
-      <BillingCard />
+      <BillingCard slug={slug} />
     </Layout>
   );
 }
