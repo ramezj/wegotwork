@@ -4,6 +4,18 @@ import { XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+function preventDialogAutoFocus(
+  event: Event,
+  onOpenAutoFocus?: (event: Event) => void
+) {
+  onOpenAutoFocus?.(event)
+  event.preventDefault()
+
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur()
+  }
+}
+
 function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />
 }
@@ -46,6 +58,7 @@ function SheetContent({
   className,
   children,
   side = "right",
+  onOpenAutoFocus,
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Content> & {
   side?: "top" | "right" | "bottom" | "left"
@@ -67,6 +80,9 @@ function SheetContent({
             "data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t",
           className
         )}
+        onOpenAutoFocus={(event) =>
+          preventDialogAutoFocus(event, onOpenAutoFocus)
+        }
         {...props}
       >
         {children}
