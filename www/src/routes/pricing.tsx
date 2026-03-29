@@ -25,8 +25,8 @@ export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       {
-        title: "Pricing - loux",
-        description: "Simple pricing for teams hiring with loux.",
+        title: "Pricing - lunics",
+        description: "Simple pricing for teams hiring with lunics.",
       },
     ],
   }),
@@ -132,7 +132,7 @@ function PricingPage() {
                     variant="secondary"
                     className="w-full sm:w-auto"
                   >
-                    <a href="mailto:hello@louxapp.com?subject=Enterprise%20Plan">
+                    <a href="mailto:hello@lunics.co?subject=Enterprise%20Plan">
                       Contact Sales
                       <ArrowRight className="size-4" />
                     </a>

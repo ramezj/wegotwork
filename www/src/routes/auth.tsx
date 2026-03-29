@@ -43,8 +43,8 @@ export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
       {
-        title: "Sign In - loux",
-        description: "Access your loux hiring workspace.",
+        title: "Sign In - lunics",
+        description: "Access your lunics hiring workspace.",
       },
     ],
   }),

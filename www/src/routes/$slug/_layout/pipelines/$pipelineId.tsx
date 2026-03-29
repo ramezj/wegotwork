@@ -35,7 +35,6 @@ function EditPipelinePage() {
     <Layout title="Edit Pipeline">
       <div className="space-y-4">
         <PipelineEditorForm
-          mode="edit"
           slug={slug}
           organizationId={organizationId}
           pipeline={pipeline}

@@ -22,7 +22,7 @@ export default function Header({
 
   const logo = (
     // <Link to="/" className="mr-2 flex items-center">
-    //   <img src="/logo.png" alt="loux" className="h-8 w-auto" />
+    //   <img src="/logo.png" alt="lunics" className="h-8 w-auto" />
     // </Link>
     <Button asChild className="mr-2" variant="default" size="icon">
       <Link viewTransition to="/">

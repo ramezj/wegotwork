@@ -28,6 +28,7 @@ function RouteComponent() {
   const { session } = Route.useRouteContext();
   const { slug } = Route.useParams();
   const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
+  const previewUrl = `${import.meta.env.DEV ? "http://jobs.localhost:3000" : "https://jobs.lunics.co"}/${slug}`;
   if (!data?.organization) {
     return <Navigate to="/dashboard" />;
   }
@@ -43,10 +44,10 @@ function RouteComponent() {
             </Link>
           </Button>
           <Button asChild className="group ">
-            <Link target="_blank" to="/view/$slug" params={{ slug }}>
+            <a href={previewUrl} target="_blank" rel="noreferrer">
               Preview{" "}
               <ArrowRight className="duration-100 group-hover:-rotate-45" />
-            </Link>
+            </a>
           </Button>
         </div>
       }

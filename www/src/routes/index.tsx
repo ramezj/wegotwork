@@ -18,6 +18,8 @@ export const Route = createFileRoute("/")({
 });
 
 function App() {
+  const demoUrl = "https://demo.lunics.co";
+
   const features = [
     {
       title: "Beautiful Career Pages",
@@ -72,7 +74,7 @@ function App() {
                     asChild
                     className="w-full sm:w-72"
                   >
-                    <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
+                    <a href={demoUrl} target="_blank" rel="noreferrer">
                       See Demo
                     </a>
                   </Button>
@@ -111,7 +113,7 @@ function App() {
                   asChild
                   className="w-full sm:w-72"
                 >
-                  <a href={"https://jobs.wegotwork.co/demo"} target="_blank">
+                  <a href={demoUrl} target="_blank" rel="noreferrer">
                     See Demo
                   </a>
                 </Button>

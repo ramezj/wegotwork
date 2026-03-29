@@ -9,7 +9,7 @@ import { Check, ChevronsUpDown } from "lucide-react";
 import type { Organization } from "generated/prisma/client";
 import { Link } from "@tanstack/react-router";
 import { SidebarMenuButton } from "../ui/sidebar";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 function getOrganizationInitial(name?: string | null) {
   return name?.trim().charAt(0).toUpperCase() || "O";
@@ -18,6 +18,11 @@ function getOrganizationInitial(name?: string | null) {
 function formatOrganizationPlan(plan?: string | null) {
   const normalized = (plan || "FREE").toLowerCase().replace(/_/g, " ");
   return `${normalized.charAt(0).toUpperCase()}${normalized.slice(1)} plan`;
+}
+
+function getOrganizationLogoSrc(logo?: string | null) {
+  if (!logo) return undefined;
+  return `${process.env.R2_PUBLIC_URL || "https://pub-c33c43f7f06946a1ba713658430b64ad.r2.dev"}/${logo}`;
 }
 
 export function OrganizationSelector({
@@ -37,6 +42,10 @@ export function OrganizationSelector({
             className="border bg-background hover:bg-accent hover:text-accent-foreground"
           >
             <Avatar className="h-8 w-8 bg-primary rounded-none">
+              <AvatarImage
+                src={getOrganizationLogoSrc(currentOrganization?.logo)}
+                alt={currentOrganization?.name || "Organization"}
+              />
               <AvatarFallback className="bg-primary rounded-none text-primary-foreground font-light">
                 {getOrganizationInitial(currentOrganization?.name)}
               </AvatarFallback>
@@ -69,6 +78,10 @@ export function OrganizationSelector({
                   preload={false}
                 >
                   <Avatar className="h-8 w-8 bg-primary rounded-none">
+                    <AvatarImage
+                      src={getOrganizationLogoSrc(organization.logo)}
+                      alt={organization.name}
+                    />
                     <AvatarFallback className="bg-primary rounded-none text-primary-foreground font-light">
                       {getOrganizationInitial(organization.name)}
                     </AvatarFallback>

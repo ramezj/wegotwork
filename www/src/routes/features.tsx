@@ -78,8 +78,9 @@ export const Route = createFileRoute("/features")({
   head: () => ({
     meta: [
       {
-        title: "Features - loux",
-        description: "Explore the hiring workflows and tools built into loux.",
+        title: "Features - lunics",
+        description:
+          "Explore the hiring workflows and tools built into lunics.",
       },
     ],
   }),
@@ -101,7 +102,7 @@ function FeaturesPage() {
                 Features built for teams that want hiring to feel well run.
               </h1>
               {/* <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
-                loux brings the public side of hiring and the internal workflow
+                lunics brings the public side of hiring and the internal workflow
                 together, so your team can post roles, review candidates, and
                 stay organized without extra layers.
               </p> */}
@@ -161,7 +162,7 @@ function FeaturesPage() {
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="space-y-2">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  Ready to use loux?
+                  Ready to use lunics?
                 </p>
                 <h2 className="text-3xl font-semibold tracking-tight text-balance">
                   Start with the essentials, then grow into a fuller hiring
