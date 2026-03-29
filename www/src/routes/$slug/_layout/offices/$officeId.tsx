@@ -1,13 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from "@tanstack/react-query";
 import { Layout } from "@/components/shared/layout";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { officesQueryOptions } from "@/features/queries/offices";
 import { OfficeEditorForm } from "@/components/office/office-editor-form";
 import { deleteOfficeFn } from "@/features/services/office/office";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Loader, TriangleAlert, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "@tanstack/react-router";
@@ -27,7 +45,9 @@ function EditOfficePage() {
   );
   const organizationId = orgData?.organization?.id || "";
 
-  const { data: offices } = useSuspenseQuery(officesQueryOptions(organizationId));
+  const { data: offices } = useSuspenseQuery(
+    officesQueryOptions(organizationId),
+  );
   const office = offices.find((item: any) => item.id === officeId);
 
   const deleteMutation = useMutation({
@@ -67,20 +87,21 @@ function EditOfficePage() {
         />
 
         <Card className="border-destructive/30">
-          <CardHeader className="flex flex-row items-start gap-3">
+          <CardHeader className="flex flex-row items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-destructive/10 shrink-0">
               <TriangleAlert className="h-4 w-4 text-destructive" />
             </div>
             <div>
               <CardTitle className="text-base">Danger Zone</CardTitle>
-              <CardDescription className="text-xs">
+              {/* <CardDescription className="text-xs">
                 Delete this office permanently
-              </CardDescription>
+              </CardDescription> */}
             </div>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
             <p className="text-sm text-muted-foreground">
-              Deleting this office will permanently remove it from your organization.
+              Deleting this office will permanently remove it from your
+              organization.
               {office._count?.jobs
                 ? ` ${office._count.jobs} linked job${office._count.jobs === 1 ? "" : "s"} must be reassigned first.`
                 : " This action cannot be undone."}
@@ -94,7 +115,10 @@ function EditOfficePage() {
                 </p>
               </div>
 
-              <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+              <Dialog
+                open={deleteDialogOpen}
+                onOpenChange={setDeleteDialogOpen}
+              >
                 <DialogTrigger asChild>
                   <Button
                     type="button"
@@ -114,7 +138,8 @@ function EditOfficePage() {
                   <DialogHeader className="items-start text-left">
                     <DialogTitle>Delete this office?</DialogTitle>
                     <DialogDescription>
-                      This will permanently delete <strong>{office.name}</strong>.
+                      This will permanently delete{" "}
+                      <strong>{office.name}</strong>.
                       {office._count?.jobs
                         ? ` It currently has ${office._count.jobs} linked job${office._count.jobs === 1 ? "" : "s"}, so you will need to reassign those first.`
                         : " This action cannot be undone."}
@@ -133,9 +158,13 @@ function EditOfficePage() {
                       type="button"
                       variant="destructive"
                       disabled={deleteMutation.isPending}
-                      onClick={() => deleteMutation.mutate({ data: { id: office.id } })}
+                      onClick={() =>
+                        deleteMutation.mutate({ data: { id: office.id } })
+                      }
                     >
-                      {deleteMutation.isPending ? "Deleting..." : "Delete Office"}
+                      {deleteMutation.isPending
+                        ? "Deleting..."
+                        : "Delete Office"}
                     </Button>
                   </DialogFooter>
                 </DialogContent>

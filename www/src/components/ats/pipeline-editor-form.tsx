@@ -303,15 +303,15 @@ export function PipelineEditorForm({
 
       {mode === "edit" && pipeline ? (
         <Card className="border-destructive/30">
-          <CardHeader className="flex flex-row items-start gap-3">
+          <CardHeader className="flex flex-row items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-destructive/10 shrink-0">
               <TriangleAlert className="h-4 w-4 text-destructive" />
             </div>
             <div>
               <CardTitle className="text-base">Danger Zone</CardTitle>
-              <CardDescription className="text-xs">
+              {/* <CardDescription className="text-xs">
                 Delete this pipeline permanently
-              </CardDescription>
+              </CardDescription> */}
             </div>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
