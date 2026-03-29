@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
 });
 
 function App() {
-  const demoUrl = "https://demo.lunics.co";
+  const demoUrl = "https://jobs.lunics.co/demo";
 
   const features = [
     {
