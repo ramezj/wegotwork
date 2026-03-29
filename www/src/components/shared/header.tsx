@@ -18,7 +18,6 @@ export default function Header({
   const navLinks = [
     { label: "features", href: "/features" },
     { label: "pricing", href: "/pricing" },
-    { label: "about", href: "/" },
   ];
 
   const logo = (
