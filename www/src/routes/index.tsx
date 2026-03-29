@@ -10,8 +10,8 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "loux - why not hire fast too?",
-        description: "loux - you're building fast, why not hire fast too?",
+        title: "lunics - why not hire fast too?",
+        description: "lunics - you're building fast, why not hire fast too?",
       },
     ],
   }),
@@ -132,7 +132,7 @@ function App() {
             <div className="bg-white">
               <img
                 src="/image.png"
-                alt="Loux dashboard preview"
+                alt="lunics dashboard preview"
                 className="block h-auto w-full"
               />
             </div>
@@ -144,7 +144,7 @@ function App() {
               <div className="border-b p-4 lg:border-b-0 lg:border-r">
                 <div className="bg-white px-4 py-8 sm:px-6 sm:py-10">
                   <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                    what loux gives you
+                    what lunics gives you
                   </p>
                   <h2 className="text-2xl font-semibold leading-tight text-balance sm:text-4xl">
                     The simplest all-in-one hiring platform
