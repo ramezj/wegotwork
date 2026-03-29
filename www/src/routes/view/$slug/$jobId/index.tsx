@@ -6,8 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { formatJobType } from "@/lib/format-job-type";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, MapPin, Briefcase, Paperclip } from "lucide-react";
+import {
+  ArrowLeft,
+  MapPin,
+  Briefcase,
+  Paperclip,
+  Building2,
+} from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useRef, useState, useMemo } from "react";
 import { useMutation } from "@tanstack/react-query";
@@ -197,331 +204,358 @@ function RouteComponent() {
   }
 
   const { job } = data;
-
-  // -------------------------------------------------------------------------
-  // Success screen
-  // -------------------------------------------------------------------------
   if (isSubmitted) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 space-y-4 text-center">
-        <div className="size-16 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-          <CheckCircle2 className="size-10" />
-        </div>
-        <div className="space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">
-            Application Sent!
-          </h1>
-          <p className="text-muted-foreground max-w-md">
-            Thank you for applying to {job.organization.name}. We've received
-            your application for the {job.title} position and will be in touch
-            soon.
-          </p>
-        </div>
-        <Button asChild variant="outline" className="mt-4">
-          <Link to="/view/$slug" params={{ slug }}>
-            Back to Open Roles
-          </Link>
-        </Button>
+      <div className="mx-auto w-full px-4 py-8 sm:py-10">
+        <section className="border p-2">
+          <div className="flex min-h-[420px] flex-col items-center justify-center bg-white px-6 py-12 text-center sm:px-10">
+            <div className="space-y-5">
+              <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-green-100 text-green-600">
+                <CheckCircle2 className="size-10" />
+              </div>
+              <div className="space-y-2">
+                <p className="text-xs font-semibold uppercase  text-muted-foreground">
+                  Application Submitted
+                </p>
+                <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+                  Your application is in.
+                </h1>
+                <p className="mx-auto max-w-xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
+                  Thank you for applying to {job.organization.name}. We&apos;ve
+                  received your application for the {job.title} role and the
+                  team will review it shortly.
+                </p>
+              </div>
+              <Button asChild variant="outline">
+                <Link to="/view/$slug" params={{ slug }}>
+                  Back to Open Roles
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
       </div>
     );
   }
-
   const typeLabel = formatJobType(job.type);
-
   const locationLabel =
     job.locationMode.charAt(0) + job.locationMode.slice(1).toLowerCase();
-
-  // -------------------------------------------------------------------------
-  // Render
-  // -------------------------------------------------------------------------
+  const additionalQuestionCount = questions.length;
   return (
-    <div className="w-full mx-auto flex flex-col space-y-4 border rounded-lg p-4">
-      {/* Job header */}
-      <div className="flex flex-col space-y-2 text-center items-center">
-        <h1 className="text-3xl font-semibold tracking-tight leading-snug">
-          {job.title}
-        </h1>
-
-        <div className="flex flex-wrap gap-2">
-          {job.category && (
-            <Badge variant="secondary">{job.category.name}</Badge>
-          )}
-          <Badge variant="secondary">
-            <Briefcase className="size-3" />
-            {typeLabel}
-          </Badge>
-          <Badge variant="secondary">
-            <MapPin className="size-3" />
-            {locationLabel}
-          </Badge>
-          {job.office && <Badge variant="secondary">{job.office.name}</Badge>}
-        </div>
-      </div>
-
-      <Separator />
-      <div
-        className="wysiwyg-content text-sm text-black"
-        dangerouslySetInnerHTML={{
-          __html: isRichTextEmpty(job.description)
-            ? "<p>No description provided.</p>"
-            : sanitizeRichTextHtml(job.description),
-        }}
-      />
-      <Separator />
-
-      {/* Application form */}
-      <div className="flex flex-col space-y-4">
-        <h2 className="text-xl font-semibold">Apply</h2>
-
-        <form
-          className="flex flex-col space-y-4"
-          onSubmit={handleSubmit((values) => submitApplication(values))}
-        >
-          {/* ----------------------------------------------------------------
-              Core fields: Name + Email
-          ---------------------------------------------------------------- */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            {/* Full name */}
-            <div className="flex flex-col gap-1.5">
-              <Label htmlFor="name">
-                Full name <span className="text-destructive">*</span>
-              </Label>
-              <Controller
-                name="name"
-                control={control}
-                render={({ field, fieldState }) => (
-                  <Input
-                    id="name"
-                    placeholder="Jane Doe"
-                    aria-invalid={fieldState.invalid}
-                    {...field}
-                  />
-                )}
-              />
-              {errors.name && (
-                <p className="text-sm text-destructive">
-                  {errors.name.message}
-                </p>
-              )}
-            </div>
-
-            {/* Email */}
-            <div className="flex flex-col gap-1.5">
-              <Label htmlFor="email">
-                Email <span className="text-destructive">*</span>
-              </Label>
-              <Controller
-                name="email"
-                control={control}
-                render={({ field, fieldState }) => (
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="jane@example.com"
-                    aria-invalid={fieldState.invalid}
-                    {...field}
-                  />
-                )}
-              />
-              {errors.email && (
-                <p className="text-sm text-destructive">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* ----------------------------------------------------------------
-              Resume / CV
-          ---------------------------------------------------------------- */}
-          <div className="flex flex-col gap-1.5">
-            <Label>
-              Resume / CV <span className="text-destructive">*</span>
-            </Label>
-            <Controller
-              name="resume"
-              control={control}
-              render={({ fieldState }) => (
-                <label
-                  htmlFor="resume"
-                  className="flex items-center gap-2 w-fit cursor-pointer border border-input rounded-sm px-4 py-2 text-sm hover:bg-muted transition-colors"
-                >
-                  <Paperclip className="size-4 shrink-0" />
-                  {resumeFile?.name ?? "Attach file"}
-                  <input
-                    ref={fileInputRef}
-                    aria-invalid={fieldState.invalid}
-                    id="resume"
-                    type="file"
-                    accept=".pdf,.doc,.docx"
-                    className="sr-only"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file)
-                        setValue("resume", file, { shouldValidate: true });
-                    }}
-                  />
-                </label>
-              )}
-            />
-            {errors.resume && (
-              <p className="text-sm text-destructive">
-                {errors.resume.message as string}
-              </p>
-            )}
-          </div>
-
-          {/* ----------------------------------------------------------------
-              Dynamic job-specific questions
-          ---------------------------------------------------------------- */}
-          {questions.length > 0 && (
-            <>
-              <Separator className="my-2" />
-              {questions.map((field) => (
-                <div key={field.id} className="flex flex-col gap-1.5">
-                  <Label htmlFor={field.id}>
-                    {field.label}{" "}
-                    {field.required && (
-                      <span className="text-destructive">*</span>
-                    )}
-                  </Label>
-
-                  {/* SHORT_ANSWER */}
-                  {field.type === "SHORT_ANSWER" && (
-                    <Controller
-                      name={`responses.${field.id}` as any}
-                      control={control}
-                      defaultValue=""
-                      render={({ field: f, fieldState }) => (
-                        <Input
-                          id={field.id}
-                          aria-invalid={fieldState.invalid}
-                          placeholder={field.placeholder || undefined}
-                          {...f}
-                        />
-                      )}
-                    />
-                  )}
-
-                  {/* LONG_ANSWER */}
-                  {field.type === "LONG_ANSWER" && (
-                    <Controller
-                      name={`responses.${field.id}` as any}
-                      control={control}
-                      defaultValue=""
-                      render={({ field: f, fieldState }) => (
-                        <Textarea
-                          id={field.id}
-                          aria-invalid={fieldState.invalid}
-                          placeholder={field.placeholder || undefined}
-                          className="min-h-32"
-                          {...f}
-                        />
-                      )}
-                    />
-                  )}
-
-                  {/* SELECT */}
-                  {field.type === "SELECT" && (
-                    <Controller
-                      name={`responses.${field.id}` as any}
-                      control={control}
-                      defaultValue=""
-                      render={({ field: f, fieldState }) => (
-                        <Select
-                          value={f.value ?? ""}
-                          onValueChange={f.onChange}
-                        >
-                          <SelectTrigger
-                            aria-invalid={fieldState.invalid}
-                            id={field.id}
-                          >
-                            <SelectValue
-                              placeholder={
-                                field.placeholder || "Select an option"
-                              }
-                            />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {(field.options || []).map((option) => (
-                              <SelectItem key={option} value={option}>
-                                {option}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      )}
-                    />
-                  )}
-
-                  {/* CHECKBOX */}
-                  {field.type === "CHECKBOX" && (
-                    <Controller
-                      name={`responses.${field.id}` as any}
-                      control={control}
-                      defaultValue={false}
-                      render={({ field: f, fieldState }) => (
-                        <div className="flex items-center space-x-2">
-                          <Checkbox
-                            id={field.id}
-                            checked={!!f.value}
-                            onCheckedChange={f.onChange}
-                            aria-invalid={fieldState.invalid}
-                          />
-                          <Label
-                            htmlFor={field.id}
-                            className="text-sm font-normal text-muted-foreground"
-                          >
-                            {field.placeholder || "I agree"}
-                          </Label>
-                        </div>
-                      )}
-                    />
-                  )}
-
-                  {/* Inline error */}
-                  {(errors as any)?.responses?.[field.id] && (
-                    <p className="text-sm text-destructive">
-                      {(errors as any).responses[field.id]?.message}
+    <div className="mx-auto w-full py-2">
+      <div className="space-y-8">
+        <section className="border p-2">
+          <div className="bg-white px-6 py-8 sm:px-8 sm:py-10">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-end">
+              <div className="space-y-5">
+                <div className="space-y-3">
+                  <div className="space-y-3">
+                    <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+                      {job.title}
+                    </h1>
+                    <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
+                      Apply to join {job.organization.name} and help build the
+                      next chapter of the team.
                     </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {job.category && (
+                    <Badge variant="secondary">{job.category.name}</Badge>
+                  )}
+                  <Badge variant="secondary">
+                    <Briefcase className="size-3" />
+                    {typeLabel}
+                  </Badge>
+                  <Badge variant="secondary">
+                    <MapPin className="size-3" />
+                    {locationLabel}
+                  </Badge>
+                  {job.office && (
+                    <Badge variant="secondary">{job.office.name}</Badge>
                   )}
                 </div>
-              ))}
-            </>
-          )}
+              </div>
+            </div>
+          </div>
+        </section>
 
-          {/* Submit */}
-          <Button
-            type="submit"
-            size="lg"
-            className="w-full mt-4"
-            disabled={isPending}
-          >
-            {isPending ? "Submitting..." : "Submit application"}
-          </Button>
+        <div className="space-y-8">
+          <section className="border">
+            <div className="bg-white px-6 py-8 sm:px-8 sm:py-10">
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <h2 className="text-2xl font-semibold tracking-tight">
+                    Job Description
+                  </h2>
+                </div>
+                <Separator />
+                <div
+                  className="wysiwyg-content text-sm text-black sm:text-base"
+                  dangerouslySetInnerHTML={{
+                    __html: isRichTextEmpty(job.description)
+                      ? "<p>No description provided.</p>"
+                      : sanitizeRichTextHtml(job.description),
+                  }}
+                />
+              </div>
+            </div>
+          </section>
+          <div>
+            <section className="border">
+              <div className="bg-white px-6 py-8">
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <p className="text-xs font-semibold uppercase  text-muted-foreground">
+                      Apply
+                    </p>
+                    <h2 className="text-2xl font-semibold tracking-tight">
+                      Apply for this role
+                    </h2>
+                    <p className="text-sm font-medium leading-6 text-muted-foreground">
+                      Share your details and we&apos;ll send your application
+                      directly to the hiring team.
+                    </p>
+                  </div>
+                  <Separator />
+                  <form
+                    className="flex flex-col space-y-5"
+                    onSubmit={handleSubmit((values) =>
+                      submitApplication(values),
+                    )}
+                  >
+                    <div className="grid gap-4">
+                      <div className="flex flex-col gap-1.5">
+                        <Label htmlFor="name">
+                          Full name <span className="text-destructive">*</span>
+                        </Label>
+                        <Controller
+                          name="name"
+                          control={control}
+                          render={({ field, fieldState }) => (
+                            <Input
+                              id="name"
+                              placeholder="Jane Doe"
+                              aria-invalid={fieldState.invalid}
+                              {...field}
+                            />
+                          )}
+                        />
+                        {errors.name && (
+                          <p className="text-sm text-destructive">
+                            {errors.name.message}
+                          </p>
+                        )}
+                      </div>
+                      <div className="flex flex-col gap-1.5">
+                        <Label htmlFor="email">
+                          Email <span className="text-destructive">*</span>
+                        </Label>
+                        <Controller
+                          name="email"
+                          control={control}
+                          render={({ field, fieldState }) => (
+                            <Input
+                              id="email"
+                              type="email"
+                              placeholder="jane@example.com"
+                              aria-invalid={fieldState.invalid}
+                              {...field}
+                            />
+                          )}
+                        />
+                        {errors.email && (
+                          <p className="text-sm text-destructive">
+                            {errors.email.message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
 
-          <p className="text-xs text-muted-foreground text-center">
-            By submitting you agree to our privacy policy and terms of service.
-          </p>
-        </form>
+                    <div className="flex flex-col gap-1.5">
+                      <Label>
+                        Resume / CV <span className="text-destructive">*</span>
+                      </Label>
+                      <Controller
+                        name="resume"
+                        control={control}
+                        render={({ fieldState }) => (
+                          <label
+                            htmlFor="resume"
+                            className="flex items-center gap-2 w-fit cursor-pointer border border-input rounded-sm px-4 py-2 text-sm hover:bg-muted transition-colors"
+                          >
+                            <Paperclip className="size-4 shrink-0" />
+                            {resumeFile?.name ?? "Attach file"}
+                            <input
+                              ref={fileInputRef}
+                              aria-invalid={fieldState.invalid}
+                              id="resume"
+                              type="file"
+                              accept=".pdf,.doc,.docx"
+                              className="sr-only"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (file)
+                                  setValue("resume", file, {
+                                    shouldValidate: true,
+                                  });
+                              }}
+                            />
+                          </label>
+                        )}
+                      />
+                      {errors.resume && (
+                        <p className="text-sm text-destructive">
+                          {errors.resume.message as string}
+                        </p>
+                      )}
+                    </div>
+
+                    {questions.length > 0 && (
+                      <>
+                        <Separator />
+                        <div className="space-y-5">
+                          {questions.map((field) => (
+                            <div
+                              key={field.id}
+                              className="flex flex-col gap-1.5"
+                            >
+                              <Label htmlFor={field.id}>
+                                {field.label}{" "}
+                                {field.required && (
+                                  <span className="text-destructive">*</span>
+                                )}
+                              </Label>
+
+                              {field.type === "SHORT_ANSWER" && (
+                                <Controller
+                                  name={`responses.${field.id}` as any}
+                                  control={control}
+                                  defaultValue=""
+                                  render={({ field: f, fieldState }) => (
+                                    <Input
+                                      id={field.id}
+                                      aria-invalid={fieldState.invalid}
+                                      placeholder={
+                                        field.placeholder || undefined
+                                      }
+                                      {...f}
+                                    />
+                                  )}
+                                />
+                              )}
+
+                              {field.type === "LONG_ANSWER" && (
+                                <Controller
+                                  name={`responses.${field.id}` as any}
+                                  control={control}
+                                  defaultValue=""
+                                  render={({ field: f, fieldState }) => (
+                                    <Textarea
+                                      id={field.id}
+                                      aria-invalid={fieldState.invalid}
+                                      placeholder={
+                                        field.placeholder || undefined
+                                      }
+                                      className="min-h-32"
+                                      {...f}
+                                    />
+                                  )}
+                                />
+                              )}
+
+                              {field.type === "SELECT" && (
+                                <Controller
+                                  name={`responses.${field.id}` as any}
+                                  control={control}
+                                  defaultValue=""
+                                  render={({ field: f, fieldState }) => (
+                                    <Select
+                                      value={f.value ?? ""}
+                                      onValueChange={f.onChange}
+                                    >
+                                      <SelectTrigger
+                                        aria-invalid={fieldState.invalid}
+                                        id={field.id}
+                                      >
+                                        <SelectValue
+                                          placeholder={
+                                            field.placeholder ||
+                                            "Select an option"
+                                          }
+                                        />
+                                      </SelectTrigger>
+                                      <SelectContent>
+                                        {(field.options || []).map((option) => (
+                                          <SelectItem
+                                            key={option}
+                                            value={option}
+                                          >
+                                            {option}
+                                          </SelectItem>
+                                        ))}
+                                      </SelectContent>
+                                    </Select>
+                                  )}
+                                />
+                              )}
+
+                              {field.type === "CHECKBOX" && (
+                                <Controller
+                                  name={`responses.${field.id}` as any}
+                                  control={control}
+                                  defaultValue={false}
+                                  render={({ field: f, fieldState }) => (
+                                    <div className="flex items-center space-x-2">
+                                      <Checkbox
+                                        id={field.id}
+                                        checked={!!f.value}
+                                        onCheckedChange={f.onChange}
+                                        aria-invalid={fieldState.invalid}
+                                      />
+                                      <Label
+                                        htmlFor={field.id}
+                                        className="text-sm font-normal text-muted-foreground"
+                                      >
+                                        {field.placeholder || "I agree"}
+                                      </Label>
+                                    </div>
+                                  )}
+                                />
+                              )}
+
+                              {(errors as any)?.responses?.[field.id] && (
+                                <p className="text-sm text-destructive">
+                                  {(errors as any).responses[field.id]?.message}
+                                </p>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </>
+                    )}
+
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full"
+                      disabled={isPending}
+                    >
+                      {isPending ? "Submitting..." : "Submit application"}
+                    </Button>
+
+                    <p className="text-center text-xs text-muted-foreground">
+                      By submitting you agree to our privacy policy and terms of
+                      service.
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
       </div>
     </div>
   );
-}
-
-function formatJobType(type: string) {
-  switch (type) {
-    case "FULLTIME":
-      return "Full-time";
-    case "PARTTIME":
-      return "Part-time";
-    case "FULLTIME_PARTTIME":
-      return "Full-time or Part-time";
-    case "INTERNSHIP":
-      return "Internship";
-    case "CONTRACT":
-      return "Contract";
-    default:
-      return type;
-  }
 }
