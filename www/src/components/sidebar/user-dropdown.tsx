@@ -1,16 +1,15 @@
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Session } from "@/features/auth/auth";
+import type { Session } from "@/features/auth/auth";
 import { authClient } from "@/features/auth/auth-client";
-import { ChevronsUpDown, ChevronUp, Users2 } from "lucide-react";
+import { ChevronsUpDown } from "lucide-react";
 import { useRouter } from "@tanstack/react-router";
 import { SidebarMenuButton } from "../ui/sidebar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export default function UserDropdown({ session }: { session: Session }) {
   const router = useRouter();

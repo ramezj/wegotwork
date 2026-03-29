@@ -55,12 +55,12 @@ function App() {
               <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
                 <div className="inline-flex items-center leading-none gap-2 rounded-none border px-4 py-1.5 text-sm font-semibold">
                   <Sparkles className="size-4" />
-                  built for fast paced teams
+                  Built for fast-paced teams
                 </div>
                 <h1 className="text-3xl text-[#010911] font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
-                  you're building fast.
+                  You're building fast.
                   <span className="block text-branding">
-                    why not hire fast too?
+                    Why not hire fast too?
                   </span>
                 </h1>
                 {/* <p className="max-w-xl text-sm font-medium text-muted-foreground sm:text-base">
@@ -126,7 +126,7 @@ function App() {
         </header>
         <section className="px-4">
           <div
-            className="bg-cover bg-center p-3"
+            className="bg-cover bg-center p-4"
             style={{ backgroundImage: "url('/blue.png')" }}
           >
             <div className="bg-white">
