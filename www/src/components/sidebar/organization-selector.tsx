@@ -12,7 +12,7 @@ import { SidebarMenuButton } from "../ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 function getOrganizationInitial(name?: string | null) {
-  return name?.trim().charAt(0).toUpperCase() || "O";
+  return name?.trim().charAt(0) || "O";
 }
 
 function formatOrganizationPlan(plan?: string | null) {
