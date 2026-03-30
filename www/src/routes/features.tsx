@@ -115,7 +115,7 @@ function FeaturesPage() {
             <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
               <div className="border-b px-6 py-8 lg:border-r lg:border-b-0 sm:px-8">
                 <div className="space-y-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  <p className="text-xs font-semibold uppercase text-muted-foreground">
                     {group.title}
                   </p>
                   <h2 className="text-3xl font-semibold tracking-tight text-balance">
@@ -161,7 +161,7 @@ function FeaturesPage() {
           <div className="bg-white px-6 py-8 sm:px-10 sm:py-10">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                <p className="text-xs font-semibold uppercase text-muted-foreground">
                   Ready to use lunics?
                 </p>
                 <h2 className="text-3xl font-semibold tracking-tight text-balance">

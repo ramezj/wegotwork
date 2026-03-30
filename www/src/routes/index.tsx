@@ -145,14 +145,14 @@ function App() {
             <div className="grid lg:grid-cols-[0.95fr_1.55fr]">
               <div className="border-b p-4 lg:border-b-0 lg:border-r">
                 <div className="bg-white px-4 py-8 sm:px-6 sm:py-10">
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  <p className="mb-3 text-xs font-semibold uppercase text-muted-foreground">
                     what lunics gives you
                   </p>
                   <h2 className="text-2xl font-semibold leading-tight text-balance sm:text-4xl">
                     The simplest all-in-one hiring platform
                   </h2>
                   <p className="mt-4 max-w-md text-sm font-medium leading-6 text-muted-foreground sm:text-base">
-                    everything you need to publish roles, review applicants, and
+                    Everything you need to publish roles, review applicants, and
                     keep your hiring process organized without making it feel
                     heavy.
                   </p>

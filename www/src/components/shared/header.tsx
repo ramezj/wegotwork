@@ -24,11 +24,14 @@ export default function Header({
     // <Link to="/" className="mr-2 flex items-center">
     //   <img src="/logo.png" alt="lunics" className="h-8 w-auto" />
     // </Link>
-    <Button asChild className="mr-2" variant="default" size="icon">
-      <Link viewTransition to="/">
-        L
-      </Link>
-    </Button>
+    // <Button asChild className="mr-2" variant="default" size="icon">
+    //   <Link viewTransition to="/">
+    //     L
+    //   </Link>
+    // </Button>
+    <Link to="/" viewTransition className="flex mr-1 items-center">
+      <span className="text-xl font-bold">lunics</span>
+    </Link>
   );
 
   const desktopNav = navLinks.map((link) => (
