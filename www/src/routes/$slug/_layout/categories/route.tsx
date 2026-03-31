@@ -24,6 +24,7 @@ function RouteComponent() {
   return (
     <>
       <Layout
+        variant="header"
         title={`Categories (${data.organization.categories.length})`}
         primaryButton={<CreateCategoryDialog slug={slug} />}
       >

@@ -78,6 +78,7 @@ function RouteComponent() {
 
   return (
     <Layout
+      variant="header"
       title={title}
       primaryButton={
         <Select value={status || "ALL"} onValueChange={handleStatusChange}>

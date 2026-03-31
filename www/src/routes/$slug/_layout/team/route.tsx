@@ -90,6 +90,7 @@ function RouteComponent() {
 
   return (
     <Layout
+      variant="header"
       title="Team"
       primaryButton={
         <Button asChild variant="outline">

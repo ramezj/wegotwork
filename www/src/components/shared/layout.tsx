@@ -19,7 +19,7 @@ export function Layout({
 }) {
   if (variant === "header") {
     return (
-      <div className={cn("flex flex-1 flex-col min-h-0", className)}>
+      <div className={cn("flex flex-1 flex-col", className)}>
         {/* Sticky Page Header */}
         <div className="sticky top-0 z-20 border-b bg-background/95 p-4 backdrop-blur supports-backdrop-filter:bg-background/60">
           <div className={pageHeaderRowClass}>

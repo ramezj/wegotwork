@@ -121,6 +121,7 @@ export function EditOrganizationForm({
   return (
     <>
       <Layout
+        variant="header"
         title="Edit Organization"
         primaryButton={
           <Button

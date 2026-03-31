@@ -21,8 +21,8 @@ function RouteComponent() {
     return <Navigate to="/dashboard" />;
   }
   return (
-    <div className="space-y-4">
+    <>
       <EditOrganizationForm organization={data.organization} />
-    </div>
+    </>
   );
 }

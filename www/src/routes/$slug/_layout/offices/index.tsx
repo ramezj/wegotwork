@@ -22,29 +22,13 @@ function OfficesPage() {
   const { data: offices } = useSuspenseQuery(
     officesQueryOptions(organizationId),
   );
-
-  if (offices.length === 0) {
-    return (
-      <Layout
-        title="Offices (0)"
-        primaryButton={<CreateOfficeDialog slug={slug} organizationId={organizationId} />}
-      >
-        <div className="flex flex-1 items-center justify-center border">
-          <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
-            <h2 className="text-base font-semibold tracking-tight text-muted-foreground">
-              No offices found
-            </h2>
-            <CreateOfficeDialog slug={slug} organizationId={organizationId} />
-          </div>
-        </div>
-      </Layout>
-    );
-  }
-
   return (
     <Layout
+      variant="header"
       title={`Offices (${offices.length})`}
-      primaryButton={<CreateOfficeDialog slug={slug} organizationId={organizationId} />}
+      primaryButton={
+        <CreateOfficeDialog slug={slug} organizationId={organizationId} />
+      }
     >
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {offices.map((office: any) => {

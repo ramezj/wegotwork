@@ -26,6 +26,7 @@ function PipelinesPage() {
 
   return (
     <Layout
+      variant="header"
       title="Hiring Pipelines"
       primaryButton={
         <Button asChild>

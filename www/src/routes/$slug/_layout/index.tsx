@@ -34,6 +34,7 @@ function RouteComponent() {
   }
   return (
     <Layout
+      variant="header"
       title={data.organization.name}
       primaryButton={
         <div className="flex items-center gap-2">

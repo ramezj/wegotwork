@@ -14,7 +14,7 @@ function RouteComponent() {
 
   if (data.currentMemberRole !== "owner") {
     return (
-      <Layout title="Billing">
+      <Layout variant="header" title="Billing">
         <div className="flex min-h-[360px] items-center justify-center border p-6">
           <div className="max-w-md space-y-2 text-center">
             <p className="text-sm font-medium text-muted-foreground">
@@ -34,7 +34,7 @@ function RouteComponent() {
   }
 
   return (
-    <Layout title="Billing">
+    <Layout variant="header" title="Billing">
       <BillingCard slug={slug} />
     </Layout>
   );
