@@ -167,7 +167,8 @@ function App() {
                       key={feature.title}
                       className={cn(
                         "px-4 py-8 sm:px-6 sm:py-10",
-                        index < 2 && "border-b",
+                        index < 3 && "border-b",
+                        index >= 2 && "sm:border-b-0",
                         index % 2 === 0 && "sm:border-r",
                       )}
                     >
