@@ -28,7 +28,7 @@ export function Layout({
           </div>
         </div>
         {/* Content with padding */}
-        <div className="flex-1 px-4 pb-4 pt-4">{children}</div>
+        <div className="flex-1 p-4">{children}</div>
       </div>
     );
   }
