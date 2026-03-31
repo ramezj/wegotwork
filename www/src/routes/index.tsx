@@ -133,7 +133,7 @@ function App() {
           >
             <div className="bg-white">
               <img
-                src="/image.png"
+                src="/main.png"
                 alt="lunics dashboard preview"
                 className="block h-auto w-full"
               />
