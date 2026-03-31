@@ -25,7 +25,7 @@ export const Route = createFileRoute("/$slug/_layout/candidates/")({
       organizationBySlugQueryOptions(params.slug),
     ),
   head: () => ({
-    meta: [{ title: "Applicants | Hirelou", content: "Manage job applicants" }],
+    meta: [{ title: "Candidates", content: "Manage job applicants" }],
   }),
 });
 

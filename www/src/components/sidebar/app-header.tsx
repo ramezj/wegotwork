@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 import { BellIcon, LogOut } from "lucide-react";
 import { auth } from "@/features/auth/auth";
 import { authClient } from "@/features/auth/auth-client";
-import { ThemeToggle } from "../theme-toggle";
+// import { ThemeToggle } from "../theme-toggle";
 
 export function AppHeader() {
   const matches = useMatches();
@@ -62,7 +62,7 @@ export function AppHeader() {
           <SidebarTrigger />
         </div>
         <div className="flex flex-row gap-2">
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
           <Button variant={"secondary"} className="" onClick={logOut}>
             Log Out <LogOut />
           </Button>
