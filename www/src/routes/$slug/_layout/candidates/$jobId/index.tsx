@@ -112,7 +112,7 @@ function RouteComponent() {
   };
 
   return (
-    <main className="flex flex-1 flex-col space-y-4 p-4 min-h-0">
+    <main className="flex flex-1 flex-col space-y-4 p-4 min-h-0 overflow-hidden">
       {!pipeline ? (
         <div className="flex flex-col items-center justify-center py-24 px-4 border-2 border-dashed rounded-3xl bg-muted/5 text-center max-w-2xl mx-auto my-12">
           <div className="size-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
