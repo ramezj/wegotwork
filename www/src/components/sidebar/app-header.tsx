@@ -23,7 +23,25 @@ export function AppHeader() {
       return "Candidates";
     }
     if (routeId === "/$slug/_layout/") {
-      return "Overview";
+      return "Dashboard";
+    }
+    if (routeId.includes("/pipelines/")) {
+      return "Pipelines";
+    }
+    if (routeId.includes("/categories")) {
+      return "Categories";
+    }
+    if (routeId.includes("/offices")) {
+      return "Offices";
+    }
+    if (routeId.includes("/organization")) {
+      return "Organization";
+    }
+    if (routeId.includes("/billing")) {
+      return "Billing";
+    }
+    if (routeId.includes("/team")) {
+      return "Team";
     }
     return "Dashboard";
   };
