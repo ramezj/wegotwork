@@ -47,7 +47,7 @@ function RouteComponent() {
           <Button asChild className="group ">
             <a href={previewUrl} target="_blank" rel="noreferrer">
               Preview{" "}
-              <ArrowRight className="duration-100 group-hover:-rotate-45" />
+              <ArrowRight className="duration-100 group-hover:rotate-0 -rotate-45" />
             </a>
           </Button>
         </div>

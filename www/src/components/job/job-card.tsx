@@ -64,7 +64,7 @@ export function JobCard({ job, slug }: { job: JobWithCategory; slug: string }) {
             </div> */}
             <div className="shrink-0">
               <div className="px-2">
-                <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
+                <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:rotate-0 -rotate-45" />
               </div>
             </div>
           </div>
@@ -127,7 +127,7 @@ export function JobCardForViewPage({
             </div> */}
             <div className="shrink-0">
               <div className="px-2">
-                <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
+                <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:rotate-0 -rotate-45" />
               </div>
             </div>
           </div>
@@ -178,7 +178,7 @@ export function JobCardForCandidatesPage({
               <div className="px-2">
                 <Button className="">
                   {candidates} {candidates === 1 ? "Candidate" : "Candidates"}
-                  <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
+                  <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:rotate-0 -rotate-45" />
                 </Button>
               </div>
             </div>
@@ -233,7 +233,7 @@ export function JobCardForLandingPage({
             </div> */}
             <div className="shrink-0">
               <div className="px-2">
-                <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
+                <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:rotate-0 -rotate-45" />
               </div>
             </div>
           </div>
