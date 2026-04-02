@@ -21,7 +21,7 @@ export function Layout({
     return (
       <div className={cn("flex flex-1 flex-col", className)}>
         {/* Sticky Page Header */}
-        <div className="sticky top-0 z-20 border-b bg-background/95 p-4 backdrop-blur supports-backdrop-filter:bg-background/60">
+        <div className="sticky h-(--header-height) top-0 z-20 border-b bg-background/95 items-center content-center px-4 backdrop-blur supports-backdrop-filter:bg-background/60">
           <div className={pageHeaderRowClass}>
             <h1 className={pageTitleClass}>{title}</h1>
             <div className="flex items-center gap-2">{primaryButton}</div>
