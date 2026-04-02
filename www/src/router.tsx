@@ -16,7 +16,7 @@ export const getRouter = () => {
       input: ({ url }) => {
         const subdomain = url.hostname.split(".")[0];
 
-        if (subdomain === "jobs") {
+        if (subdomain === "careers") {
           url.pathname = "/view" + url.pathname;
         }
 
@@ -25,7 +25,7 @@ export const getRouter = () => {
       output: ({ url }) => {
         const subdomain = url.hostname.split(".")[0];
 
-        if (subdomain === "jobs" && url.pathname.startsWith("/view")) {
+        if (subdomain === "careers" && url.pathname.startsWith("/view")) {
           url.pathname = url.pathname.replace(/^\/view/, "") || "/";
         }
         return url;

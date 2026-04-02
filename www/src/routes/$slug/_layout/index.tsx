@@ -28,7 +28,7 @@ function RouteComponent() {
   const { session } = Route.useRouteContext();
   const { slug } = Route.useParams();
   const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
-  const previewUrl = `${import.meta.env.DEV ? "http://jobs.localhost:3000" : "https://jobs.lunics.co"}/${slug}`;
+  const previewUrl = `${import.meta.env.DEV ? "http://careers.localhost:3000" : "https://careers.lunics.co"}/${slug}`;
   if (!data?.organization) {
     return <Navigate to="/dashboard" />;
   }
@@ -45,10 +45,10 @@ function RouteComponent() {
             </Link>
           </Button>
           <Button asChild className="group ">
-            <a href={previewUrl} target="_blank" rel="noreferrer">
+            <Link to={previewUrl} target="_blank" rel="noreferrer">
               Preview{" "}
               <ArrowRight className="duration-100 group-hover:rotate-0 -rotate-45" />
-            </a>
+            </Link>
           </Button>
         </div>
       }
