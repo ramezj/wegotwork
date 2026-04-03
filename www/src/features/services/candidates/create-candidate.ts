@@ -3,6 +3,9 @@ import prisma from "@/lib/prisma";
 import { candidateSchema } from "@/types/candidate";
 import { generateDynamicSchema } from "@/lib/dynamic-schema";
 import { FormConfig } from "@/types/form-config";
+import resend from "@/lib/resend";
+import { ApplicationConfirmationEmail } from "@/emails/application-confirmation";
+import { render } from "@react-email/render";
 
 export const createCandidateFn = createServerFn()
   .inputValidator(candidateSchema)
@@ -16,6 +19,9 @@ export const createCandidateFn = createServerFn()
             include: {
               stages: { orderBy: { order: "asc" } },
             },
+          },
+          organization: {
+            select: { name: true, slug: true },
           },
         },
       });
@@ -75,6 +81,34 @@ export const createCandidateFn = createServerFn()
           },
         },
       });
+
+      // Send confirmation email to the applicant
+      try {
+        const isDev = process.env.NODE_ENV === "development";
+        const orgSlug = job.organization?.slug ?? "";
+        const careersUrl = isDev
+          ? `http://careers.localhost:3000/${orgSlug}`
+          : `https://careers.lunics.co/${orgSlug}`;
+
+        const html = await render(
+          ApplicationConfirmationEmail({
+            candidateName: data.name,
+            jobTitle: job.title,
+            organizationName: job.organization?.name ?? "the company",
+            careersUrl,
+          }),
+        );
+
+        await resend.emails.send({
+          from: "lunics <no-reply@lunics.co>",
+          to: [data.email],
+          subject: `Your application for ${job.title} has been received`,
+          html,
+        });
+      } catch (emailError) {
+        // Non-fatal — log but don't fail the submission
+        console.error("Failed to send confirmation email:", emailError);
+      }
 
       return { success: true, candidate };
     } catch (error) {
