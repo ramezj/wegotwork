@@ -13,12 +13,14 @@ import appCss from "../styles.css?url";
 
 import type { QueryClient } from "@tanstack/react-query";
 import { ThemeProvider } from "@/lib/theme-provider";
+import { getThemeServerFn } from "@/lib/theme";
 
 interface MyRouterContext {
   queryClient: QueryClient;
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
+  loader: () => getThemeServerFn(),
   head: () => ({
     meta: [
       {
@@ -44,8 +46,13 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const theme = Route.useLoaderData();
   return (
-    <html lang="en" suppressHydrationWarning className="no-scrollbar">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`no-scrollbar ${theme}`}
+    >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -60,22 +67,22 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {/* <ThemeProvider defaultTheme="light"> */}
-        <Toaster position="bottom-right" />
-        {children}
-        <TanStackDevtools
-          config={{
-            position: "bottom-right",
-          }}
-          plugins={[
-            {
-              name: "Tanstack Router",
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-            TanStackQueryDevtools,
-          ]}
-        />
-        {/* </ThemeProvider> */}
+        <ThemeProvider theme={theme}>
+          <Toaster position="bottom-right" />
+          {children}
+          <TanStackDevtools
+            config={{
+              position: "bottom-right",
+            }}
+            plugins={[
+              {
+                name: "Tanstack Router",
+                render: <TanStackRouterDevtoolsPanel />,
+              },
+              TanStackQueryDevtools,
+            ]}
+          />
+        </ThemeProvider>
         <Scripts />
       </body>
     </html>
