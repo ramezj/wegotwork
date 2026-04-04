@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { BarChart3, Sparkles } from "lucide-react";
 import { Building2, FileText, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Browser } from "@/components/shared/browser";
+import type { JobWithCategory } from "@/types/job/job";
 
 export const Route = createFileRoute("/")({
   component: App,
@@ -47,19 +49,128 @@ function App() {
     },
   ];
 
+  const exampleJobs: JobWithCategory[] = [
+    {
+      id: "demo-1",
+      title: "Senior Frontend Engineer",
+      type: "FULLTIME",
+      locationMode: "REMOTE",
+      status: "PUBLISHED",
+      description: null,
+      showSalary: false,
+      salaryMin: null,
+      salaryMax: null,
+      currency: "USD",
+      salaryInterval: "YEARLY",
+      experienceLevel: "SENIOR",
+      country: null,
+      city: null,
+      address: null,
+      categoryId: null,
+      officeId: null,
+      organizationId: "demo",
+      pipelineId: "demo",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      category: {
+        id: "c1",
+        name: "Engineering",
+        organizationId: "demo",
+        createdAt: new Date(),
+      },
+      office: null,
+    },
+    {
+      id: "demo-2",
+      title: "Product Designer",
+      type: "FULLTIME",
+      locationMode: "HYBRID",
+      status: "PUBLISHED",
+      description: null,
+      showSalary: false,
+      salaryMin: null,
+      salaryMax: null,
+      currency: "USD",
+      salaryInterval: "YEARLY",
+      experienceLevel: "MID",
+      country: null,
+      city: "San Francisco",
+      address: null,
+      categoryId: null,
+      officeId: null,
+      organizationId: "demo",
+      pipelineId: "demo",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      category: {
+        id: "c2",
+        name: "Design",
+        organizationId: "demo",
+        createdAt: new Date(),
+      },
+      office: {
+        id: "o1",
+        name: "SF HQ",
+        country: "US",
+        city: "San Francisco",
+        organizationId: "demo",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    },
+    {
+      id: "demo-3",
+      title: "Growth Marketing Manager",
+      type: "FULLTIME",
+      locationMode: "ONSITE",
+      status: "PUBLISHED",
+      description: null,
+      showSalary: false,
+      salaryMin: null,
+      salaryMax: null,
+      currency: "USD",
+      salaryInterval: "YEARLY",
+      experienceLevel: "MID",
+      country: null,
+      city: "New York",
+      address: null,
+      categoryId: null,
+      officeId: null,
+      organizationId: "demo",
+      pipelineId: "demo",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      category: {
+        id: "c3",
+        name: "Marketing",
+        organizationId: "demo",
+        createdAt: new Date(),
+      },
+      office: {
+        id: "o2",
+        name: "NYC Office",
+        country: "US",
+        city: "New York",
+        organizationId: "demo",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    },
+  ];
+
   return (
     <div className="space-y-8 pb-8">
       <Header />
       <main className="mx-auto w-full space-y-8 lg:w-[80%]">
         <header className="px-4">
           <section className="relative overflow-hidden rounded-none border p-2">
-            <div className="relative bg-white px-4 py-8 text-center">
+            <div className="relative px-4 py-8 text-center">
               <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
                 <div className="inline-flex items-center leading-none gap-2 rounded-none border px-4 py-1.5 text-sm font-semibold">
                   <Sparkles className="size-4" />
                   Built for fast-paced teams
                 </div>
-                <h1 className="text-3xl text-[#010911] font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
+                <h1 className="text-3xl text-[#010911] dark:text-white font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
                   You're building fast.
                   <span className="block text-branding">
                     Why not hire fast too?
@@ -131,13 +242,14 @@ function App() {
             className="bg-cover bg-center p-4"
             style={{ backgroundImage: "url('/blue.png')" }}
           >
-            <div className="bg-white">
+            {/* <div className="bg-white">
               <img
                 src="/main.png"
                 alt="lunics dashboard preview"
                 className="block h-auto w-full"
               />
-            </div>
+            </div> */}
+            <Browser jobs={exampleJobs} />
           </div>
         </section>
         <section className="px-4">

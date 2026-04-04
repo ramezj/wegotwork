@@ -6,6 +6,7 @@ import { LogOut } from "lucide-react";
 import { HeaderBase } from "./header-base";
 import { useNavigate } from "@tanstack/react-router";
 import { authClient } from "@/features/auth/auth-client";
+import { ThemeToggle } from "../theme-toggle";
 
 export default function Header({
   session: initialSession = null,
@@ -53,6 +54,7 @@ export default function Header({
 
   const authActions = session?.user ? (
     <>
+      <ThemeToggle />
       <Button
         variant="secondary"
         className="font-semibold cursor-pointer "
@@ -71,7 +73,10 @@ export default function Header({
       </Button>
     </>
   ) : (
-    <SignInButton />
+    <>
+      <ThemeToggle />
+      <SignInButton />
+    </>
   );
 
   const mobileNav = navLinks.map((link) => (

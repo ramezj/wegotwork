@@ -63,7 +63,6 @@ export function AppHeader() {
           <SidebarTrigger />
         </div>
         <div className="flex flex-row gap-2">
-          {/* <ThemeToggle /> */}
           <ThemeToggle />
           <Button variant={"secondary"} className="" onClick={logOut}>
             Log Out <LogOut />
