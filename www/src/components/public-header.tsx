@@ -1,8 +1,8 @@
 import { Button } from "./ui/button";
 import { Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { ThemeToggle } from "./theme-toggle";
 import { viewOrganizationBySlugQueryOptions } from "@/features/queries/organization";
-import { LinkedInIcon } from "assets/icons/linkedin";
 import { HeaderBase } from "./shared/header-base";
 
 export function PublicHeader({ slug }: { slug: string }) {
@@ -23,6 +23,7 @@ export function PublicHeader({ slug }: { slug: string }) {
 
   const actions = (
     <>
+      <ThemeToggle />
       {/* {data.organization?.linkedIn && (
         <Button variant="default" size="icon" className="group" asChild>
           <Link to={data.organization?.linkedIn} target="_blank">
