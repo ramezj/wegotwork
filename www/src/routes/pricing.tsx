@@ -38,7 +38,7 @@ function PricingPage() {
       <Header />
       <main className="mx-auto w-full space-y-8 px-4 lg:w-[80%]">
         <section className="border p-2">
-          <div className="bg-white px-6 py-10 text-center sm:px-10 sm:py-14">
+          <div className="bg-secondary px-6 py-10 text-center sm:px-10 sm:py-14">
             <div className="mx-auto flex max-w-3xl flex-col items-center gap-4">
               {/* <div className="inline-flex items-center gap-2 border px-4 py-1.5 text-sm font-semibold">
                 <Sparkles className="size-4" />
@@ -57,7 +57,7 @@ function PricingPage() {
 
         <section>
           <div className="grid lg:grid-cols-2">
-            <article className="border bg-white p-6 sm:p-8">
+            <article className="border p-6 sm:p-8">
               <div className="space-y-6">
                 <div className="space-y-3">
                   <p className="text-xs font-semibold text-muted-foreground">
