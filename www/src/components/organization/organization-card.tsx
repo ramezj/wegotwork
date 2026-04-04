@@ -47,7 +47,7 @@ export function OrganizationCard({
                 </CardTitle>
               </div>
             </div>
-            <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:-rotate-45" />
+            <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 -rotate-45 group-hover:rotate-0" />
           </div>
         </CardHeader>
 

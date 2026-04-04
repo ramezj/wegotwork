@@ -256,7 +256,7 @@ function App() {
           <div className="border">
             <div className="grid lg:grid-cols-[0.95fr_1.55fr]">
               <div className="border-b p-4 lg:border-b-0 lg:border-r">
-                <div className="bg-white px-4 py-8 sm:px-6 sm:py-10">
+                <div className="px-4 py-8 sm:px-6 sm:py-10">
                   <p className="mb-3 text-xs font-semibold uppercase text-muted-foreground">
                     what lunics gives you
                   </p>
@@ -285,7 +285,7 @@ function App() {
                       )}
                     >
                       <div className="mb-5 flex h-12 w-12 items-center justify-center border bg-secondary">
-                        <Icon className="h-6 w-6 text-black" />
+                        <Icon className="h-6 w-6" />
                       </div>
                       <h3 className="text-xl font-semibold leading-tight">
                         {feature.title}
