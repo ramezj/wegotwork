@@ -181,22 +181,22 @@ function App() {
                 </p> */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-2 w-full max-w-sm">
                   <Button
-                    variant={"secondary"}
-                    asChild
-                    className="w-full sm:w-72"
-                  >
-                    <a href={demoUrl} target="_blank" rel="noreferrer">
-                      See Demo
-                    </a>
-                  </Button>
-                  <Button
-                    variant={"default"}
+                    variant={"branding"}
                     asChild
                     className="w-full sm:w-72"
                   >
                     <Link to={"/"} target="_blank">
                       Start Hiring
                     </Link>
+                  </Button>
+                  <Button
+                    variant={"default"}
+                    asChild
+                    className="w-full sm:w-72"
+                  >
+                    <a href={demoUrl} target="_blank" rel="noreferrer">
+                      See Demo
+                    </a>
                   </Button>
                 </div>
               </div>

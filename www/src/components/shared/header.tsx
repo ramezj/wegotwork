@@ -56,7 +56,7 @@ export default function Header({
     <>
       <ThemeToggle />
       <Button
-        variant="secondary"
+        variant="outline"
         className="font-semibold cursor-pointer "
         onClick={logOut}
       >

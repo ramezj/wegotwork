@@ -66,7 +66,7 @@ function AuthPage() {
       <main className="mx-auto w-full space-y-8 px-4 lg:w-[80%]">
         <section className="border p-2">
           <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="border-b bg-white px-6 py-10 sm:px-10 sm:py-12 lg:border-b-0 lg:border-r">
+            <div className="border-b-0 bg-secondary px-6 py-10 sm:px-10 sm:py-12 lg:border-b-0 lg:border-r-0">
               <div className="max-w-xl space-y-6">
                 {/* <div className="inline-flex items-center gap-2 border px-4 py-1.5 text-sm font-semibold">
                   <Sparkles className="size-4" />
