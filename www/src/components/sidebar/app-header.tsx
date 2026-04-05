@@ -64,7 +64,7 @@ export function AppHeader() {
         </div>
         <div className="flex flex-row gap-2">
           <ThemeToggle />
-          <Button variant={"secondary"} className="" onClick={logOut}>
+          <Button variant={"outline"} className="" onClick={logOut}>
             Log Out <LogOut />
           </Button>
           {/* <Button variant={"default"}>
