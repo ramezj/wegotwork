@@ -164,7 +164,7 @@ function App() {
       <main className="mx-auto w-full space-y-8 lg:w-[80%]">
         <header className="px-4">
           <section className="relative overflow-hidden rounded-none border p-2">
-            <div className="relative bg-secondary px-4 py-8 text-center">
+            <div className="relative bg-background px-4 py-8 text-center">
               <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
                 <div className="inline-flex items-center leading-none gap-2 rounded-none border px-4 py-1.5 text-sm font-semibold">
                   <Sparkles className="size-4" />
