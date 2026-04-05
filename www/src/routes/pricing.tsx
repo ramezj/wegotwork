@@ -98,7 +98,7 @@ function PricingPage() {
               className="bg-cover bg-center p-2"
               style={{ backgroundImage: "url('/blue.png')" }}
             >
-              <div className="bg-black/90 p-6 text-white backdrop-blur-md sm:p-8">
+              <div className="p-6 text-white bg-black/95 backdrop-blur-2xl sm:p-8">
                 <div className="space-y-6">
                   <div className="space-y-3">
                     <div className="inline-flex border border-white/20 px-3 py-1 text-xs font-semibold text-white">

@@ -242,10 +242,10 @@ function App() {
           <section className="relative overflow-hidden rounded-none border p-2">
             <div className="relative bg-background px-4 py-8 text-center">
               <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
-                <div className="inline-flex items-center leading-none gap-2 rounded-none border px-4 py-1.5 text-sm font-semibold">
+                {/* <div className="inline-flex items-center leading-none gap-2 rounded-none border px-4 py-1.5 text-sm font-semibold">
                   <Sparkles className="size-4" />
                   The #1 hiring software for fast-paced teams
-                </div>
+                </div> */}
                 <h1 className="text-3xl text-[#010911] dark:text-white font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
                   You're building fast.
                   <span className="block text-branding">
