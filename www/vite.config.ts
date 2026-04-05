@@ -22,7 +22,40 @@ const config = defineConfig({
       projects: ['./tsconfig.json'],
     }),
     tailwindcss(),
-    tanstackStart(),
+    tanstackStart({
+      sitemap: {
+        host: 'https://lunics.co',
+      },
+      pages: [
+        {
+          path: '/',
+          sitemap: {
+            priority: 1,
+            changefreq: 'weekly',
+          },
+        },
+        {
+          path: '/features',
+          sitemap: {
+            priority: 0.8,
+            changefreq: 'weekly',
+          },
+        },
+        {
+          path: '/pricing',
+          sitemap: {
+            priority: 0.8,
+            changefreq: 'weekly',
+          },
+        },
+        {
+          path: '/auth',
+          sitemap: {
+            exclude: true,
+          },
+        },
+      ],
+    }),
     viteReact(),
   ],
 })

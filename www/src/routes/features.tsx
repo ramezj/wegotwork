@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { getSession } from "@/features/auth/server-session";
 import Header from "@/components/shared/header";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,9 +8,9 @@ import {
   FileText,
   GitBranch,
   MapPinned,
-  Sparkles,
   Users,
 } from "lucide-react";
+import { buildSeo } from "@/lib/seo";
 
 const featureGroups = [
   {
@@ -75,15 +74,14 @@ const featureGroups = [
 
 export const Route = createFileRoute("/features")({
   component: FeaturesPage,
-  head: () => ({
-    meta: [
-      {
-        title: "Features - lunics",
-        description:
-          "Explore the hiring workflows and tools built into lunics.",
-      },
-    ],
-  }),
+  head: () =>
+    buildSeo({
+      title:
+        "Hiring Software Features for Career Pages and Applicant Management",
+      description:
+        "Explore Lunics features for career pages, job posting, applicant management, hiring pipelines, offices, and team collaboration.",
+      path: "/features",
+    }),
 });
 
 function FeaturesPage() {
@@ -94,17 +92,13 @@ function FeaturesPage() {
         <section className="border p-2">
           <div className="bg-background px-6 py-10 text-center sm:px-10 sm:py-14">
             <div className="mx-auto flex max-w-3xl flex-col items-center gap-4">
-              {/* <div className="inline-flex items-center gap-2 border px-4 py-1.5 text-sm font-semibold">
-                <Sparkles className="size-4" />
-                everything in one place
-              </div> */}
               <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-                Features built for teams that want hiring to feel well run.
+                Features for career pages, job posting, and applicant
+                management.
               </h1>
               {/* <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
-                lunics brings the public side of hiring and the internal workflow
-                together, so your team can post roles, review candidates, and
-                stay organized without extra layers.
+                Lunics helps organizations publish jobs, receive applicants,
+                organize pipelines, and keep hiring moving in one platform.
               </p> */}
             </div>
           </div>
@@ -165,8 +159,7 @@ function FeaturesPage() {
                   Ready to use lunics?
                 </p>
                 <h2 className="text-3xl font-semibold tracking-tight text-balance">
-                  Start with the essentials, then grow into a fuller hiring
-                  setup.
+                  Launch a branded hiring flow without stitching tools together.
                 </h2>
               </div>
               <div className="flex flex-col gap-2 sm:flex-row">
@@ -174,8 +167,8 @@ function FeaturesPage() {
                   <Link to="/pricing">See Pricing</Link>
                 </Button>
                 <Button asChild>
-                  <Link to="/">
-                    Start Hiring
+                  <Link to="/auth" viewTransition>
+                    Start Hiring with Lunics
                     <ArrowRight className="size-4" />
                   </Link>
                 </Button>

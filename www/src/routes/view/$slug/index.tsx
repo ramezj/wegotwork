@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
+import { buildSeo, metaDescription } from "@/lib/seo";
 
 export const Route = createFileRoute("/view/$slug/")({
   component: RouteComponent,
@@ -18,13 +19,55 @@ export const Route = createFileRoute("/view/$slug/")({
     context.queryClient.ensureQueryData(
       viewOrganizationBySlugQueryOptions(params.slug),
     ),
-  head: ({ loaderData }) => ({
-    meta: [
-      {
-        title: `Jobs at ${loaderData?.organization?.name}` || "Hirelou",
-      },
-    ],
-  }),
+  head: ({ loaderData, params }) => {
+    const organization = loaderData?.organization;
+    const publishedJobs = organization?.jobs ?? [];
+    const jobsLabel =
+      publishedJobs.length === 1
+        ? "1 open role"
+        : `${publishedJobs.length} open roles`;
+
+    const description = organization
+      ? metaDescription(
+          organization.description ||
+            `Explore ${jobsLabel} at ${organization.name}. View current openings, learn about the team, and apply online.`,
+        )
+      : "Explore current open roles and apply online.";
+
+    return buildSeo({
+      title: organization ? `${organization.name} Careers` : "Careers",
+      description,
+      path: `/view/${params.slug}`,
+      jsonLd: organization
+        ? [
+            {
+              "@context": "https://schema.org",
+              "@type": "CollectionPage",
+              name: `${organization.name} Careers`,
+              description,
+              url: `https://lunics.co/view/${params.slug}`,
+              mainEntity: {
+                "@type": "ItemList",
+                numberOfItems: publishedJobs.length,
+                itemListElement: publishedJobs.slice(0, 20).map((job, index) => ({
+                  "@type": "ListItem",
+                  position: index + 1,
+                  name: job.title,
+                  url: `https://lunics.co/view/${params.slug}/${job.id}`,
+                })),
+              },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: organization.name,
+              url: organization.website || `https://lunics.co/view/${params.slug}`,
+              description,
+            },
+          ]
+        : undefined,
+    });
+  },
 });
 
 const EMPLOYMENT_TYPES = [

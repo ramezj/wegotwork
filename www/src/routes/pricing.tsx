@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { getSession } from "@/features/auth/server-session";
 import Header from "@/components/shared/header";
 import { Button } from "@/components/ui/button";
-import { Check, Sparkles, ArrowRight } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
+import { buildSeo } from "@/lib/seo";
 
 const freeFeatures = [
   "Careers page and public job listings",
@@ -22,14 +22,13 @@ const enterpriseFeatures = [
 
 export const Route = createFileRoute("/pricing")({
   component: PricingPage,
-  head: () => ({
-    meta: [
-      {
-        title: "Pricing - lunics",
-        description: "Simple pricing for teams hiring with lunics.",
-      },
-    ],
-  }),
+  head: () =>
+    buildSeo({
+      title: "Pricing for Career Page and Hiring Software",
+      description:
+        "See Lunics pricing for career pages, job posting, applicant management, and team hiring workflows.",
+      path: "/pricing",
+    }),
 });
 
 function PricingPage() {
@@ -45,11 +44,12 @@ function PricingPage() {
                 simple pricing
               </div> */}
               <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-                Pricing that stays clear as your team grows.
+                Pricing for teams that need career pages and hiring software in
+                one place.
               </h1>
               {/* <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
-                Start for free, publish your jobs, and move into a tailored
-                enterprise setup when hiring becomes a larger operation.
+                Start with the essentials for job posting and applicant intake,
+                then grow into a fuller hiring workflow as your organization scales.
               </p> */}
             </div>
           </div>
@@ -68,7 +68,8 @@ function PricingPage() {
                       $0
                     </h2>
                     <p className="text-sm font-medium text-muted-foreground">
-                      For teams getting their hiring system in place.
+                      For teams launching a careers page and their first hiring
+                      workflow.
                     </p>
                   </div>
                 </div>
@@ -85,7 +86,7 @@ function PricingPage() {
                 </div>
 
                 <Button asChild className="w-full sm:w-auto">
-                  <Link to="/">
+                  <Link to="/auth">
                     Start Free
                     <ArrowRight className="size-4" />
                   </Link>
@@ -108,8 +109,8 @@ function PricingPage() {
                         $50
                       </h2>
                       <p className="max-w-md text-sm font-medium text-white/75">
-                        For organizations hiring across offices, teams, or more
-                        complex workflows.
+                        For organizations hiring across teams, offices, and more
+                        advanced recruiting workflows.
                       </p>
                     </div>
                   </div>

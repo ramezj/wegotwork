@@ -13,7 +13,6 @@ import {
   MapPin,
   Briefcase,
   Paperclip,
-  Building2,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useRef, useState, useMemo } from "react";
@@ -35,6 +34,141 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { FormFieldConfig } from "@/types/form-config";
+import { absoluteUrl, buildSeo, metaDescription, stripHtml } from "@/lib/seo";
+
+const EMPLOYMENT_TYPE_SCHEMA_MAP: Record<string, string | string[]> = {
+  FULLTIME: "FULL_TIME",
+  PARTTIME: "PART_TIME",
+  FULLTIME_PARTTIME: ["FULL_TIME", "PART_TIME"],
+  INTERNSHIP: "INTERN",
+  CONTRACT: "CONTRACTOR",
+};
+
+const SALARY_INTERVAL_SCHEMA_MAP: Record<string, string> = {
+  HOURLY: "HOUR",
+  DAILY: "DAY",
+  WEEKLY: "WEEK",
+  MONTHLY: "MONTH",
+  QUARTERLY: "MONTH",
+  YEARLY: "YEAR",
+};
+
+function formatLocationSummary(job: any) {
+  if (job.locationMode === "REMOTE") {
+    return job.country ? `Remote (${job.country})` : "Remote";
+  }
+
+  const locationParts = [job.office?.name, job.city, job.country].filter(Boolean);
+  const baseLocation =
+    locationParts.length > 0 ? locationParts.join(", ") : "On-site";
+
+  if (job.locationMode === "HYBRID") {
+    return `Hybrid in ${baseLocation}`;
+  }
+
+  return baseLocation;
+}
+
+function formatSalarySummary(job: any) {
+  if (!job.showSalary || (!job.salaryMin && !job.salaryMax)) {
+    return null;
+  }
+
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: job.currency || "USD",
+    maximumFractionDigits: 0,
+  });
+
+  if (job.salaryMin && job.salaryMax) {
+    return `${formatter.format(job.salaryMin)} - ${formatter.format(job.salaryMax)}`;
+  }
+
+  if (job.salaryMin) {
+    return `From ${formatter.format(job.salaryMin)}`;
+  }
+
+  return `Up to ${formatter.format(job.salaryMax)}`;
+}
+
+function buildJobDescription(job: any) {
+  const location = formatLocationSummary(job);
+  const typeLabel = formatJobType(job.type);
+  const salary = formatSalarySummary(job);
+  const descriptionParts = [
+    `${job.title} at ${job.organization.name}.`,
+    `${typeLabel} role.`,
+    `${location}.`,
+    salary ? `${salary}.` : null,
+    "Apply online with Lunics.",
+  ].filter(Boolean);
+
+  return descriptionParts.join(" ");
+}
+
+function buildJobPostingJsonLd(job: any, slug: string) {
+  const description = stripHtml(job.description) || buildJobDescription(job);
+  const payload: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: job.title,
+    description,
+    datePosted: new Date(job.createdAt).toISOString(),
+    directApply: true,
+    employmentType: EMPLOYMENT_TYPE_SCHEMA_MAP[job.type] || job.type,
+    hiringOrganization: {
+      "@type": "Organization",
+      name: job.organization.name,
+      sameAs: job.organization.website || absoluteUrl(`/view/${slug}`),
+      logo: job.organization.logo
+        ? `${process.env.R2_PUBLIC_URL || "https://pub-c33c43f7f06946a1ba713658430b64ad.r2.dev"}/${job.organization.logo}`
+        : absoluteUrl("/logo512.png"),
+    },
+    identifier: {
+      "@type": "PropertyValue",
+      name: job.organization.name,
+      value: job.id,
+    },
+    url: absoluteUrl(`/view/${slug}/${job.id}`),
+  };
+
+  if (job.category?.name) {
+    payload.industry = job.category.name;
+  }
+
+  if (job.locationMode === "REMOTE") {
+    payload.jobLocationType = "TELECOMMUTE";
+  }
+
+  const addressLocality = job.office?.city || job.city || undefined;
+  const addressCountry = job.office?.country || job.country || undefined;
+
+  if (addressLocality || addressCountry) {
+    payload.jobLocation = {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality,
+        addressCountry,
+      },
+    };
+  }
+
+  if (job.showSalary && (job.salaryMin || job.salaryMax)) {
+    payload.baseSalary = {
+      "@type": "MonetaryAmount",
+      currency: job.currency || "USD",
+      value: {
+        "@type": "QuantitativeValue",
+        minValue: job.salaryMin ?? undefined,
+        maxValue: job.salaryMax ?? undefined,
+        unitText: SALARY_INTERVAL_SCHEMA_MAP[job.salaryInterval] || "MONTH",
+      },
+    };
+  }
+
+  return payload;
+}
 
 export const Route = createFileRoute("/view/$slug/$jobId/")({
   component: RouteComponent,
@@ -52,13 +186,27 @@ export const Route = createFileRoute("/view/$slug/$jobId/")({
   },
   loader: ({ context, params }) =>
     context.queryClient.ensureQueryData(viewJobQueryOptions(params.jobId)),
-  head: ({ loaderData }) => ({
-    meta: [
-      {
-        title: loaderData?.job?.title || "Hirelou",
-      },
-    ],
-  }),
+  head: ({ loaderData, params }) => {
+    if (!loaderData?.success || !loaderData.job) {
+      return buildSeo({
+        title: "Job not found",
+        description: "This job is no longer available.",
+        path: `/view/${params.slug}/${params.jobId}`,
+        noIndex: true,
+      });
+    }
+
+    const description =
+      metaDescription(stripHtml(loaderData.job.description), 150) ||
+      buildJobDescription(loaderData.job);
+
+    return buildSeo({
+      title: `${loaderData.job.title} at ${loaderData.job.organization.name}`,
+      description,
+      path: `/view/${params.slug}/${params.jobId}`,
+      jsonLd: buildJobPostingJsonLd(loaderData.job, params.slug),
+    });
+  },
 });
 
 // ---------------------------------------------------------------------------
@@ -240,7 +388,6 @@ function RouteComponent() {
   const typeLabel = formatJobType(job.type);
   const locationLabel =
     job.locationMode.charAt(0) + job.locationMode.slice(1).toLowerCase();
-  const additionalQuestionCount = questions.length;
   return (
     <div className="mx-auto w-full py-2">
       <div className="space-y-8">

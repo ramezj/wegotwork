@@ -1,5 +1,4 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
-import { Suspense } from "react";
 import { OrganizationHeader } from "@/components/organization/organization-header";
 import { PublicHeader } from "@/components/public-header";
 

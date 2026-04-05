@@ -1,13 +1,13 @@
 import Header from "@/components/shared/header";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/features/auth/auth-client";
+import { buildSeo } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   Building2,
   Check,
   Shield,
-  Sparkles,
   Users2,
 } from "lucide-react";
 
@@ -40,14 +40,13 @@ const highlights = [
 
 export const Route = createFileRoute("/auth")({
   component: AuthPage,
-  head: () => ({
-    meta: [
-      {
-        title: "Sign In - lunics",
-        description: "Access your lunics hiring workspace.",
-      },
-    ],
-  }),
+  head: () =>
+    buildSeo({
+      title: "Sign In",
+      description: "Access your Lunics hiring workspace and organization dashboard.",
+      path: "/auth",
+      noIndex: true,
+    }),
 });
 
 function AuthPage() {

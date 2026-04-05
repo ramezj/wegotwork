@@ -31,7 +31,8 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "TanStack Start Starter",
+        name: "format-detection",
+        content: "telephone=no",
       },
     ],
     links: [

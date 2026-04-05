@@ -6,17 +6,93 @@ import { Building2, FileText, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Browser } from "@/components/shared/browser";
 import type { JobWithCategory } from "@/types/job/job";
+import { buildSeo } from "@/lib/seo";
+
+const platformHighlights = [
+  {
+    title: "Create career pages",
+    description:
+      "Launch branded careers pages that look polished, feel trustworthy, and are ready to share.",
+  },
+  {
+    title: "Post job openings",
+    description:
+      "Publish roles with clear job details, hiring context, location information, and compensation when needed.",
+  },
+  {
+    title: "Receive applicants",
+    description:
+      "Collect candidate applications, resumes, and screening answers in one consistent flow.",
+  },
+  {
+    title: "Manage the hiring process",
+    description:
+      "Review applicants, move candidates through stages, and keep your team aligned without extra tools.",
+  },
+] as const;
+
+const faqItems = [
+  {
+    question: "What is Lunics?",
+    answer:
+      "Lunics is a hiring software platform for organizations and teams that need career pages, job posting, applicant intake, and hiring workflow management in one place.",
+  },
+  {
+    question: "Can Lunics replace disconnected hiring tools?",
+    answer:
+      "Yes. Lunics is built to replace the fragmented setup of separate career page builders, application forms, spreadsheets, and lightweight pipeline tools.",
+  },
+  {
+    question: "Who is Lunics built for?",
+    answer:
+      "Lunics is built for organizations and teams that want a cleaner, more organized hiring process without the overhead of a bloated recruiting stack.",
+  },
+] as const;
 
 export const Route = createFileRoute("/")({
   component: App,
-  head: () => ({
-    meta: [
-      {
-        title: "lunics - why not hire fast too?",
-        description: "lunics - you're building fast, why not hire fast too?",
-      },
-    ],
-  }),
+  head: () =>
+    buildSeo({
+      title: "Career Page and Hiring Software for Organizations and Teams",
+      description:
+        "Lunics helps organizations and teams create career pages, post job openings, receive applicants, and manage the hiring process in one platform.",
+      path: "/",
+      jsonLd: [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Lunics",
+          url: "https://lunics.co",
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "Lunics",
+          applicationCategory: "BusinessApplication",
+          operatingSystem: "Web",
+          url: "https://lunics.co",
+          description:
+            "Hiring software for organizations and teams to create career pages, post jobs, receive applicants, and manage the hiring process in one platform.",
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+          },
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqItems.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.answer,
+            },
+          })),
+        },
+      ],
+    }),
 });
 
 function App() {
@@ -24,27 +100,27 @@ function App() {
 
   const features = [
     {
-      title: "Beautiful Career Pages",
+      title: "Branded Career Pages",
       description:
-        "Create clean, branded job pages that feel intentional from the first scroll.",
+        "Create public hiring pages that feel like a real extension of your company, not an afterthought.",
       icon: Building2,
     },
     {
-      title: "Easy Job Posting",
+      title: "Structured Job Posting",
       description:
-        "Publish openings quickly with a simple editor for the details that matter.",
+        "Publish openings with the details candidates actually need to understand the role and decide to apply.",
       icon: FileText,
     },
     {
       title: "Applicant Management",
       description:
-        "Review, move, and organize candidates without your hiring flow turning chaotic.",
+        "Receive applications, review resumes, and keep candidate information organized from day one.",
       icon: Users,
     },
     {
-      title: "Analytics & Insights",
+      title: "Pipeline Visibility",
       description:
-        "See how jobs perform and where your pipeline is moving or getting stuck.",
+        "Track hiring progress, understand stage movement, and keep the process moving across your team.",
       icon: BarChart3,
     },
   ];
@@ -168,7 +244,7 @@ function App() {
               <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
                 <div className="inline-flex items-center leading-none gap-2 rounded-none border px-4 py-1.5 text-sm font-semibold">
                   <Sparkles className="size-4" />
-                  Built for fast-paced teams
+                  The #1 hiring software for fast-paced teams
                 </div>
                 <h1 className="text-3xl text-[#010911] dark:text-white font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
                   You're building fast.
@@ -176,18 +252,18 @@ function App() {
                     Why not hire fast too?
                   </span>
                 </h1>
-                {/* <p className="max-w-xl text-sm font-medium text-muted-foreground sm:text-base">
-                  From career page to hiring, everything in one platform
+                {/* <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
+                  Lunics helps modern teams run a cleaner hiring process with
+                  branded careers pages, public job listings, applicant intake,
+                  and structured hiring workflows.
                 </p> */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-2 w-full max-w-sm">
+                <div className="flex w-full max-w-md flex-col items-center justify-center gap-2 sm:flex-row">
                   <Button
                     variant={"branding"}
                     asChild
                     className="w-full sm:w-72"
                   >
-                    <Link to={"/"} target="_blank">
-                      Start Hiring
-                    </Link>
+                    <Link to="/auth">Start Hiring</Link>
                   </Button>
                   <Button
                     variant={"default"}
@@ -202,56 +278,17 @@ function App() {
               </div>
             </div>
           </section>
-          {/* <section className="text-center border p-8">
-            <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
-              <div className="inline-flex items-center gap-2 rounded-none border px-3 py-1 text-sm font-semibold leading-none">
-                <Sparkles className="size-4" />
-                Built for fast paced teams
-              </div>
-              <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-5xl 2xl:text-6xl">
-                You're building fast.
-                <span className="block text-branding">
-                  Why not hire fast too?
-                </span>
-              </h1>
-              <p className="max-w-2xl text-base font-medium text-muted-foreground sm:text-lg">
-                Create a career page, post jobs, and manage applicants all in
-                one focused platform.
-              </p>
-              <div className="flex w-full max-w-sm flex-col items-center justify-center gap-2 sm:flex-row">
-                <Button
-                  variant={"secondary"}
-                  asChild
-                  className="w-full sm:w-72"
-                >
-                  <a href={demoUrl} target="_blank" rel="noreferrer">
-                    See Demo
-                  </a>
-                </Button>
-                <Button variant={"default"} asChild className="w-full sm:w-72">
-                  <Link to={"/"} target="_blank">
-                    Start Hiring
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </section> */}
         </header>
+
         <section className="px-4">
           <div
             className="bg-cover bg-center p-2"
             style={{ backgroundImage: "url('/blue.png')" }}
           >
-            {/* <div className="bg-white">
-              <img
-                src="/main.png"
-                alt="lunics dashboard preview"
-                className="block h-auto w-full"
-              />
-            </div> */}
             <Browser jobs={exampleJobs} />
           </div>
         </section>
+
         <section className="px-4">
           <div className="border">
             <div className="grid lg:grid-cols-[0.95fr_1.55fr]">
@@ -261,12 +298,13 @@ function App() {
                     what lunics gives you
                   </p>
                   <h2 className="text-2xl font-semibold leading-tight text-balance sm:text-4xl">
-                    The simplest all-in-one hiring platform
+                    The all-in-one hiring platform for public jobs and internal
+                    workflows
                   </h2>
                   <p className="mt-4 max-w-md text-sm font-medium leading-6 text-muted-foreground sm:text-base">
-                    Everything you need to publish roles, review applicants, and
-                    keep your hiring process organized without making it feel
-                    heavy.
+                    Everything you need to publish openings, receive applicants,
+                    and manage hiring without bouncing between disconnected
+                    tools.
                   </p>
                 </div>
               </div>
@@ -297,6 +335,73 @@ function App() {
                   );
                 })}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-4">
+          <div className="grid gap-px border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {platformHighlights.map((item) => (
+              <article key={item.title} className="bg-background px-5 py-6">
+                <h2 className="text-lg font-semibold tracking-tight">
+                  {item.title}
+                </h2>
+                <p className="mt-2 text-sm font-medium leading-6 text-muted-foreground">
+                  {item.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="px-4">
+          <div className="border p-2">
+            <div className="bg-background px-6 py-8 sm:px-8 sm:py-10">
+              <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+                <div className="space-y-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                    Why teams choose Lunics
+                  </p>
+                  <h2 className="text-3xl font-semibold tracking-tight text-balance">
+                    Built for fast hiring without the bloated recruiting stack
+                  </h2>
+                </div>
+                <div className="space-y-4">
+                  <p className="text-sm font-medium leading-6 text-muted-foreground sm:text-base">
+                    Lunics is a strong fit for companies that want a better
+                    candidate-facing experience and a more organized internal
+                    workflow at the same time.
+                  </p>
+                  <div className="flex flex-col gap-2 sm:flex-row">
+                    <Button asChild>
+                      <Link to="/features">Explore Features</Link>
+                    </Button>
+                    <Button variant="secondary" asChild>
+                      <Link to="/pricing">View Pricing</Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-4">
+          <div className="border">
+            <div className="grid gap-px bg-border lg:grid-cols-3">
+              {faqItems.map((item) => (
+                <article
+                  key={item.question}
+                  className="bg-background px-5 py-6"
+                >
+                  <h2 className="text-lg font-semibold tracking-tight">
+                    {item.question}
+                  </h2>
+                  <p className="mt-2 text-sm font-medium leading-6 text-muted-foreground">
+                    {item.answer}
+                  </p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
