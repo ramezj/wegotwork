@@ -1,16 +1,17 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { organizationBySlugQueryOptions } from "@/features/queries/organization";
+import { jobsBySlugQueryOptions } from "@/features/queries/jobs";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { formatDistanceToNow } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 
 export function RecentApplicants({ slug }: { slug: string }) {
-  const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
+  const { data } = useSuspenseQuery(jobsBySlugQueryOptions(slug));
+  const jobs = data?.jobs || [];
 
   const allApplicants =
-    data?.organization?.jobs
+    jobs
       .flatMap((job: any) =>
-        job.applicants.map((app: any) => ({ ...app, jobTitle: job.title })),
+        (job.candidates || []).map((app: any) => ({ ...app, jobTitle: job.title })),
       )
       .sort(
         (a: any, b: any) =>

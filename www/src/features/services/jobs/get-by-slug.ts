@@ -9,26 +9,27 @@ export const getJobsBySlugFn = createServerFn()
   .handler(async ({ data, context }) => {
     const { session } = context;
     try {
-      const organization = await prisma.organization.findFirst({
+      const jobs = await prisma.job.findMany({
         where: {
-          slug: data.slug,
-          members: {
-            some: {
-              userId: session.user.id,
+          organization: {
+            slug: data.slug,
+            members: {
+              some: {
+                userId: session.user.id,
+              },
             },
           },
         },
         include: {
-          jobs: {
-            include: {
-              candidates: true,
-              category: true,
-              office: true,
-            },
-          },
+          candidates: true,
+          category: true,
+          office: true,
+        },
+        orderBy: {
+          createdAt: "desc",
         },
       });
-      return { success: true, jobs: organization?.jobs || [] };
+      return { success: true, jobs };
     } catch (error) {
       throw new Error("Something Went Wrong");
     }

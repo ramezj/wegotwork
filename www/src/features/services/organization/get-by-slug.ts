@@ -19,38 +19,7 @@ export const getOrganizationBySlugFn = createServerFn()
           },
         },
         include: {
-          jobs: {
-            include: {
-              candidates: true,
-              category: true,
-              office: true,
-              questions: true,
-            },
-            orderBy: {
-              createdAt: "desc",
-            },
-            ...(data.limit ? { take: data.limit } : {}),
-          },
-          categories: {
-            orderBy: {
-              createdAt: "desc",
-            },
-          },
-          offices: {
-            orderBy: {
-              createdAt: "desc",
-            },
-          },
-          pipelines: {
-            include: {
-              stages: {
-                orderBy: {
-                  order: "asc",
-                },
-              },
-              jobs: true,
-            },
-          },
+          members: true,
         },
       });
       return { success: true, organization };

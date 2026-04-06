@@ -1,7 +1,7 @@
-import { createFileRoute, Navigate, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { JobCard } from "@/components/job/job-card";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { organizationBySlugQueryOptions } from "@/features/queries/organization";
+import { jobsBySlugQueryOptions } from "@/features/queries/jobs";
 import { Layout } from "@/components/shared/layout";
 import { CreateJobDialog } from "@/components/job/create-job-dialog";
 import {
@@ -28,18 +28,16 @@ function RouteComponent() {
   const { slug } = Route.useParams();
   const { status } = Route.useSearch();
   const navigate = useNavigate();
-  const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
-  if (!data.organization) {
-    return <Navigate to="/dashboard" />;
-  }
+  const { data } = useSuspenseQuery(jobsBySlugQueryOptions(slug)) as any;
+  const jobs = data?.jobs || [];
 
   const filteredJobs = status
-    ? data.organization.jobs.filter((job) => job.status === status)
-    : data.organization.jobs;
+    ? jobs.filter((job) => job.status === status)
+    : jobs;
 
   const title = status
     ? `${toStatusLabel(status)} Jobs (${filteredJobs.length})`
-    : `Job Openings (${data?.organization?.jobs?.length || 0})`;
+    : `Job Openings (${jobs.length})`;
 
   const handleStatusChange = (value: string) => {
     navigate({

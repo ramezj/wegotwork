@@ -78,7 +78,7 @@ export function CreateJobDialog({ slug }: { slug: string }) {
     },
     onSuccess: async (data) => {
       if (data.status === 200) {
-        await queryClient.refetchQueries(organizationBySlugQueryOptions(slug));
+        await queryClient.invalidateQueries({ queryKey: ["jobs", slug] });
         toast.success(data.statusText);
         form.reset({
           title: "",

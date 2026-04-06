@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { organizationBySlugQueryOptions } from "@/features/queries/organization";
+import { jobsBySlugQueryOptions } from "@/features/queries/jobs";
 import { ListFilter } from "lucide-react";
 import { Job, Candidate } from "generated/prisma/client";
 import { Layout } from "@/components/shared/layout";
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/$slug/_layout/candidates/")({
   component: RouteComponent,
   loader: ({ context, params }) =>
     context.queryClient.ensureQueryData(
-      organizationBySlugQueryOptions(params.slug),
+      jobsBySlugQueryOptions(params.slug),
     ),
   head: () => ({
     meta: [{ title: "Candidates", content: "Manage job applicants" }],
@@ -34,14 +34,14 @@ function RouteComponent() {
   const { status } = Route.useSearch();
   const navigate = useNavigate();
   const { data } = useSuspenseQuery(
-    organizationBySlugQueryOptions(slug),
+    jobsBySlugQueryOptions(slug),
   ) as any;
 
-  if (!data?.success || !data?.organization) {
-    return <div>Failed to load organization</div>;
+  if (!data?.success) {
+    return <div>Failed to load jobs</div>;
   }
 
-  const jobs = data.organization.jobs as (Job & { candidates: Candidate[] })[];
+  const jobs = (data.jobs || []) as (Job & { candidates: Candidate[] })[];
   const filteredJobs = status
     ? jobs.filter((job) => job.status === status)
     : jobs;

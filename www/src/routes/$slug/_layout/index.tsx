@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { StatisticCard } from "@/components/dashboard/statistics";
 import { Button } from "@/components/ui/button";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
+import { jobsBySlugQueryOptions } from "@/features/queries/jobs";
+import { categoriesByOrgSlugQueryOptions } from "@/features/queries/categories";
 import { Layout } from "@/components/shared/layout";
 import { JobCard } from "@/components/job/job-card";
 import { useSuspenseQuery } from "@tanstack/react-query";
@@ -28,10 +30,16 @@ function RouteComponent() {
   const { session } = Route.useRouteContext();
   const { slug } = Route.useParams();
   const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
+  const { data: jobsData } = useSuspenseQuery(jobsBySlugQueryOptions(slug));
+  const { data: categoriesData } = useSuspenseQuery(
+    categoriesByOrgSlugQueryOptions(slug),
+  );
   const previewUrl = `${import.meta.env.DEV ? "http://careers.localhost:3000" : "https://careers.lunics.co"}/${slug}`;
   if (!data?.organization) {
     return <Navigate to="/dashboard" />;
   }
+  const jobs = jobsData?.jobs || [];
+  const categories = categoriesData?.categories || [];
   return (
     <Layout
       variant="header"
@@ -62,17 +70,17 @@ function RouteComponent() {
           />
           <StatisticCard
             title="Jobs"
-            amount={data?.organization?.jobs?.length || 0}
+            amount={jobs.length}
             icon={<Briefcase className="size-4" />}
           />
           <StatisticCard
             title="Categories"
-            amount={data?.organization?.categories?.length || 0}
+            amount={categories.length}
             icon={<Folders className="size-4" />}
           />
           <StatisticCard
             title="Offices"
-            amount={data?.organization?.offices?.length || 0}
+            amount={0}
             icon={<MapPinned className="size-4" />}
           />
         </div>
@@ -84,11 +92,9 @@ function RouteComponent() {
                 {/* <b> ({data?.organization?.jobs?.length || 0})</b> */}
               </h1>
             </div>
-            {data?.organization?.jobs
-              ?.slice(0, 3)
-              .map((job: JobWithCategory) => (
-                <JobCard slug={slug} key={job.id} job={job} />
-              ))}
+            {jobs?.slice(0, 3).map((job: JobWithCategory) => (
+              <JobCard slug={slug} key={job.id} job={job} />
+            ))}
           </div>
         </div>
       </div>

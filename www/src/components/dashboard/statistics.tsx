@@ -32,8 +32,13 @@ export function StatisticCardSkeleton() {
 
 import { Navigate } from "@tanstack/react-router";
 
+import { jobsBySlugQueryOptions } from "@/features/queries/jobs";
+import { categoriesByOrgSlugQueryOptions } from "@/features/queries/categories";
+
 export function StatisticsCards({ slug }: { slug: string }) {
   const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
+  const { data: jobsData } = useSuspenseQuery(jobsBySlugQueryOptions(slug)) as any;
+  const { data: categoriesData } = useSuspenseQuery(categoriesByOrgSlugQueryOptions(slug));
   if (!data?.organization) {
     return <Navigate to="/dashboard" />;
   }
@@ -46,12 +51,12 @@ export function StatisticsCards({ slug }: { slug: string }) {
       />
       <StatisticCard
         title="Jobs"
-        amount={data?.organization?.jobs?.length || 0}
+        amount={jobsData?.jobs?.length || 0}
         icon={<Briefcase className="size-4" />}
       />
       <StatisticCard
         title="Categories"
-        amount={data?.organization?.categories?.length || 0}
+        amount={categoriesData?.categories?.length || 0}
         icon={<Users className="size-4" />}
       />
     </>

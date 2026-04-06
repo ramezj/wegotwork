@@ -1,0 +1,72 @@
+﻿src/components/ats/candidate-card.tsx(1,10): error TS6133: 'Calendar' is declared but its value is never read.
+src/components/ats/candidate-card.tsx(1,42): error TS6133: 'Mail' is declared but its value is never read.
+src/components/ats/candidate-card.tsx(5,1): error TS6133: 'formatDistanceToNow' is declared but its value is never read.
+src/components/auth/auth-buttons.tsx(1,1): error TS6133: 'authClient' is declared but its value is never read.
+src/components/category/create-category-dialog.tsx(19,10): error TS6133: 'Folder' is declared but its value is never read.
+src/components/dashboard/recent-applicants.tsx(11,25): error TS2339: Property 'jobs' does not exist on type '{ members: { id: string; role: Role; createdAt: Date; userId: string; organizationId: string; }[]; } & { name: string; id: string; facebook: string | null; twitter: string | null; plan: OrganizationPlan; ... 10 more ...; billingSubscriptionId: string | null; }'.
+src/components/dashboard/statistics.tsx(49,37): error TS2339: Property 'jobs' does not exist on type '{ members: { id: string; role: Role; createdAt: Date; userId: string; organizationId: string; }[]; } & { name: string; id: string; facebook: string | null; twitter: string | null; plan: OrganizationPlan; ... 10 more ...; billingSubscriptionId: string | null; }'.
+src/components/dashboard/statistics.tsx(54,37): error TS2339: Property 'categories' does not exist on type '{ members: { id: string; role: Role; createdAt: Date; userId: string; organizationId: string; }[]; } & { name: string; id: string; facebook: string | null; twitter: string | null; plan: OrganizationPlan; ... 10 more ...; billingSubscriptionId: string | null; }'.
+src/components/job/create-job-dialog.tsx(26,28): error TS6133: 'Briefcase' is declared but its value is never read.
+src/components/job/edit-job.tsx(41,10): error TS2305: Module '"@/features/queries/jobs"' has no exported member 'jobByIdQueryOptions'.
+src/components/organization/edit-organization.tsx(3,1): error TS6133: 'JobWithCategory' is declared but its value is never read.
+src/components/organization/edit-organization.tsx(4,1): error TS6133: 'jobSchema' is declared but its value is never read.
+src/components/organization/edit-organization.tsx(9,1): error TS6192: All imports in import declaration are unused.
+src/components/organization/edit-organization.tsx(18,29): error TS6133: 'CardHeader' is declared but its value is never read.
+src/components/organization/edit-organization.tsx(18,41): error TS6133: 'CardTitle' is declared but its value is never read.
+src/components/organization/edit-organization.tsx(19,1): error TS6133: 'JobCategory' is declared but its value is never read.
+src/components/organization/edit-organization.tsx(21,1): error TS6133: 'editJobBySlugFn' is declared but its value is never read.
+src/components/organization/edit-organization.tsx(22,10): error TS6133: 'Loader' is declared but its value is never read.
+src/components/organization/edit-organization.tsx(25,1): error TS6133: 'jobByIdQueryOptions' is declared but its value is never read.
+src/components/organization/edit-organization.tsx(25,10): error TS2305: Module '"@/features/queries/jobs"' has no exported member 'jobByIdQueryOptions'.
+src/components/organization/edit-organization.tsx(33,1): error TS6192: All imports in import declaration are unused.
+src/components/shared/nav-sidebar.tsx(13,3): error TS6133: 'SidebarTrigger' is declared but its value is never read.
+src/components/sidebar/app-header.tsx(4,10): error TS6133: 'BellIcon' is declared but its value is never read.
+src/components/sidebar/app-header.tsx(5,1): error TS6133: 'auth' is declared but its value is never read.
+src/components/sidebar/app-header.tsx(11,9): error TS6133: 'matches' is declared but its value is never read.
+src/components/ui/resizable.tsx(10,51): error TS2339: Property 'PanelGroup' does not exist on type 'typeof import("G:/Projects/lunics/loux/www/node_modules/react-resizable-panels/dist/react-resizable-panels")'.
+src/components/ui/resizable.tsx(12,25): error TS2339: Property 'PanelGroup' does not exist on type 'typeof import("G:/Projects/lunics/loux/www/node_modules/react-resizable-panels/dist/react-resizable-panels")'.
+src/components/ui/resizable.tsx(33,51): error TS2339: Property 'PanelResizeHandle' does not exist on type 'typeof import("G:/Projects/lunics/loux/www/node_modules/react-resizable-panels/dist/react-resizable-panels")'.
+src/components/ui/resizable.tsx(37,25): error TS2339: Property 'PanelResizeHandle' does not exist on type 'typeof import("G:/Projects/lunics/loux/www/node_modules/react-resizable-panels/dist/react-resizable-panels")'.
+src/components/ui/resizable.tsx(50,26): error TS2339: Property 'PanelResizeHandle' does not exist on type 'typeof import("G:/Projects/lunics/loux/www/node_modules/react-resizable-panels/dist/react-resizable-panels")'.
+src/components/ui/sidebar.tsx(6,20): error TS6133: 'PanelLeftIcon' is declared but its value is never read.
+src/routes/$slug/_layout/candidates/$jobId/$candidateId.tsx(14,10): error TS2305: Module '"@/features/queries/jobs"' has no exported member 'jobByIdQueryOptions'.
+src/routes/$slug/_layout/candidates/$jobId/$candidateId.tsx(25,3): error TS2322: Type '({ context, params }: LoaderFnContext<Register, Route<Register, Route<Register, RootRoute<Register, undefined, MyRouterContext, AnyContext, AnyContext, ... 6 more ..., undefined>, ... 15 more ..., undefined>, ... 15 more ..., undefined>, ... 7 more ..., undefined>) => Promise<...>' is not assignable to type '(ctx: LoaderFnContext<Register, Route<Register, Route<Register, RootRoute<Register, undefined, MyRouterContext, AnyContext, AnyContext, ... 6 more ..., undefined>, ... 15 more ..., undefined>, ... 15 more ..., undefined>, ... 7 more ..., undefined>) => Promise<...>'.
+  Type 'Promise<[({ evaluations: ({ interviewer: { name: string; id: string; plan: Plan; createdAt: Date; updatedAt: Date; email: string; emailVerified: boolean; image: string | null; }; stage: { ...; }; } & { ...; })[]; activityLogs: ({ ...; } & { ...; })[]; responses: ({ ...; } & { ...; })[]; communications: { ...; }[]; }...' is not assignable to type 'Promise<readonly [{ evaluations: { interviewer: { name: string; id: string; plan: Plan; createdAt: Date; updatedAt: Date; email: string; emailVerified: boolean; image: string | null; }; stage: { ...; }; ... 7 more ...; stageId: string; }[]; ... 11 more ...; currentStageId: string; } | null, {}]>'.
+    Type '[({ evaluations: ({ interviewer: { name: string; id: string; plan: Plan; createdAt: Date; updatedAt: Date; email: string; emailVerified: boolean; image: string | null; }; stage: { ...; }; } & { ...; })[]; activityLogs: ({ ...; } & { ...; })[]; responses: ({ ...; } & { ...; })[]; communications: { ...; }[]; } & { ......' is not assignable to type 'readonly [{ evaluations: { interviewer: { name: string; id: string; plan: Plan; createdAt: Date; updatedAt: Date; email: string; emailVerified: boolean; image: string | null; }; stage: { ...; }; ... 7 more ...; stageId: string; }[]; ... 11 more ...; currentStageId: string; } | null, {}]'.
+      Type at position 1 in source is not compatible with type at position 1 in target.
+        Type 'unknown' is not assignable to type '{}'.
+src/routes/$slug/_layout/candidates/$jobId/$candidateId.tsx(95,31): error TS2339: Property 'job' does not exist on type '{}'.
+src/routes/$slug/_layout/candidates/$jobId/$candidateId.tsx(105,23): error TS2339: Property 'job' does not exist on type '{}'.
+src/routes/$slug/_layout/candidates/$jobId/$candidateId.tsx(106,45): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/routes/$slug/_layout/candidates/$jobId/route.tsx(1,27): error TS6133: 'Link' is declared but its value is never read.
+src/routes/$slug/_layout/candidates/$jobId/route.tsx(4,1): error TS6133: 'Button' is declared but its value is never read.
+src/routes/$slug/_layout/candidates/$jobId/route.tsx(5,1): error TS6192: All imports in import declaration are unused.
+src/routes/$slug/_layout/candidates/$jobId/route.tsx(17,11): error TS6133: 'slug' is declared but its value is never read.
+src/routes/$slug/_layout/candidates/$jobId/route.tsx(28,9): error TS6133: 'job' is declared but its value is never read.
+src/routes/$slug/_layout/index.tsx(15,3): error TS6133: 'Folder' is declared but its value is never read.
+src/routes/$slug/_layout/index.tsx(30,9): error TS6133: 'session' is declared but its value is never read.
+src/routes/$slug/_layout/jobs/$jobId/route.tsx(3,10): error TS2305: Module '"@/features/queries/jobs"' has no exported member 'jobByIdQueryOptions'.
+src/routes/$slug/_layout/jobs/$jobId/route.tsx(17,13): error TS2339: Property 'job' does not exist on type '{}'.
+src/routes/$slug/_layout/jobs/$jobId/route.tsx(23,45): error TS2339: Property 'categories' does not exist on type '{ members: { id: string; role: Role; createdAt: Date; userId: string; organizationId: string; }[]; } & { name: string; id: string; facebook: string | null; twitter: string | null; plan: OrganizationPlan; ... 10 more ...; billingSubscriptionId: string | null; }'.
+src/routes/$slug/_layout/jobs/$jobId/route.tsx(33,14): error TS18046: 'data' is of type 'unknown'.
+src/routes/$slug/_layout/offices/$officeId.tsx(16,3): error TS6133: 'CardDescription' is declared but its value is never read.
+src/routes/index.tsx(4,21): error TS6133: 'Sparkles' is declared but its value is never read.
+src/routes/invite/$invitationId.tsx(32,28): error TS2339: Property 'invitation' does not exist on type 'never'.
+src/routes/invite/$invitationId.tsx(33,32): error TS2339: Property 'invitation' does not exist on type 'never'.
+src/routes/view/$slug/$jobId/index.tsx(3,10): error TS2305: Module '"@/features/queries/jobs"' has no exported member 'viewJobQueryOptions'.
+src/routes/view/$slug/$jobId/index.tsx(175,3): error TS2322: Type '({ context, params }: BeforeLoadContextOptions<Register, Route<Register, RootRoute<Register, undefined, MyRouterContext, AnyContext, AnyContext, {}, ... 5 more ..., undefined>, ... 15 more ..., undefined>, ... 6 more ..., undefined>) => Promise<...>' is not assignable to type '(ctx: BeforeLoadContextOptions<Register, Route<Register, RootRoute<Register, undefined, MyRouterContext, AnyContext, AnyContext, {}, ... 5 more ..., undefined>, ... 15 more ..., undefined>, ... 6 more ..., undefined>) => Promise<...>'.
+  Type 'Promise<{ data: unknown; }>' is not assignable to type 'Promise<{ data: {}; }>'.
+    Type '{ data: unknown; }' is not assignable to type '{ data: {}; }'.
+      Types of property 'data' are incompatible.
+        Type 'unknown' is not assignable to type '{}'.
+src/routes/view/$slug/$jobId/index.tsx(179,10): error TS18046: 'data' is of type 'unknown'.
+src/routes/view/$slug/$jobId/index.tsx(187,3): error TS2322: Type '({ context, params }: LoaderFnContext<Register, Route<Register, RootRoute<Register, undefined, MyRouterContext, AnyContext, AnyContext, {}, ... 5 more ..., undefined>, ... 15 more ..., undefined>, ... 7 more ..., undefined>) => Promise<...>' is not assignable to type '(ctx: LoaderFnContext<Register, Route<Register, RootRoute<Register, undefined, MyRouterContext, AnyContext, AnyContext, {}, ... 5 more ..., undefined>, ... 15 more ..., undefined>, ... 7 more ..., undefined>) => Promise<...>'.
+  Type 'Promise<unknown>' is not assignable to type 'Promise<{}>'.
+    Type 'unknown' is not assignable to type '{}'.
+src/routes/view/$slug/$jobId/index.tsx(190,22): error TS2339: Property 'success' does not exist on type '{}'.
+src/routes/view/$slug/$jobId/index.tsx(190,45): error TS2339: Property 'job' does not exist on type '{}'.
+src/routes/view/$slug/$jobId/index.tsx(200,44): error TS2339: Property 'job' does not exist on type '{}'.
+src/routes/view/$slug/$jobId/index.tsx(201,38): error TS2339: Property 'job' does not exist on type '{}'.
+src/routes/view/$slug/$jobId/index.tsx(204,28): error TS2339: Property 'job' does not exist on type '{}'.
+src/routes/view/$slug/$jobId/index.tsx(204,55): error TS2339: Property 'job' does not exist on type '{}'.
+src/routes/view/$slug/$jobId/index.tsx(207,48): error TS2339: Property 'job' does not exist on type '{}'.
