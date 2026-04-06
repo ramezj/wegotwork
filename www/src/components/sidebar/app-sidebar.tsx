@@ -12,16 +12,13 @@ import {
 import {
   CreditCard,
   GitBranch,
-  LayoutGrid,
   BriefcaseBusiness,
   UsersRound,
   Folders,
   Building2,
   MapPinned,
 } from "lucide-react";
-import { Link } from "@tanstack/react-router";
-import { useLocation } from "@tanstack/react-router";
-// import { Button } from "../ui/button";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Session } from "@/features/auth/auth";
 import UserDropdown from "./user-dropdown";
 import { useSuspenseQuery } from "@tanstack/react-query";
@@ -44,14 +41,9 @@ export function AppSidebar({
 
   const menuItems: menuItem[] = [
     {
-      label: "Dashboard",
-      icon: <LayoutGrid />,
-      href: `/${slug}`,
-    },
-    {
       label: "Jobs",
       icon: <BriefcaseBusiness />,
-      href: `/${slug}/jobs`,
+      href: `/${slug}`,
     },
     {
       label: "Candidates",
@@ -99,6 +91,20 @@ export function AppSidebar({
   const isSidebarItemActive = (href: string) =>
     location.pathname === href || location.pathname.startsWith(`${href}/`);
 
+  // We test against standard paths to determine if we are on a job details page synchronously
+  // This avoids TanStack Router 'useMatches' flickering during Suspense transitions.
+  const isJobDetailRoute =
+    location.pathname.startsWith(`/${slug}/`) &&
+    ![
+      "/candidates",
+      "/pipelines",
+      "/categories",
+      "/offices",
+      "/organization",
+      "/billing",
+      "/team",
+    ].some((p) => location.pathname.includes(p));
+
   const handleItemClick = () => {
     if (isMobile) {
       setOpenMobile(false);
@@ -130,8 +136,8 @@ export function AppSidebar({
           <SidebarMenu className="gap-1">
             {menuItems.map((item, index) => {
               const isActive =
-                item.label === "Dashboard"
-                  ? location.pathname === item.href
+                item.label === "Jobs"
+                  ? location.pathname === item.href || isJobDetailRoute
                   : location.pathname.includes(item.href);
               return (
                 <SidebarMenuItem key={index}>

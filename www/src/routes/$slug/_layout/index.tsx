@@ -1,103 +1,117 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { StatisticCard } from "@/components/dashboard/statistics";
-import { Button } from "@/components/ui/button";
-import { organizationBySlugQueryOptions } from "@/features/queries/organization";
-import { jobsBySlugQueryOptions } from "@/features/queries/jobs";
-import { categoriesByOrgSlugQueryOptions } from "@/features/queries/categories";
-import { Layout } from "@/components/shared/layout";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { JobCard } from "@/components/job/job-card";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { Navigate } from "@tanstack/react-router";
+import { jobsBySlugQueryOptions } from "@/features/queries/jobs";
+import { Layout } from "@/components/shared/layout";
+import { CreateJobDialog } from "@/components/job/create-job-dialog";
 import {
-  ArrowRight,
-  Briefcase,
-  Building,
-  Folder,
-  Folders,
-  MapPinned,
-  Settings,
-} from "lucide-react";
-import { JobWithCategory } from "@/types/job/job";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { ListFilter } from "lucide-react";
+import { z } from "zod";
 
 export const Route = createFileRoute("/$slug/_layout/")({
+  validateSearch: z.object({
+    status: z.enum(["PUBLISHED", "DRAFT", "ARCHIVED", "CLOSED"]).optional(),
+  }),
   component: RouteComponent,
+  loader: async ({ context, params }) => {
+    await context.queryClient.ensureQueryData(jobsBySlugQueryOptions(params.slug));
+  },
   head: () => ({
-    meta: [{ title: "Dashboard", content: "Dashboard" }, { name: "Dashboard" }],
+    meta: [{ title: "Jobs", content: "Jobs" }, { name: "Jobs" }],
   }),
 });
 
 function RouteComponent() {
-  const { session } = Route.useRouteContext();
   const { slug } = Route.useParams();
-  const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
-  const { data: jobsData } = useSuspenseQuery(jobsBySlugQueryOptions(slug));
-  const { data: categoriesData } = useSuspenseQuery(
-    categoriesByOrgSlugQueryOptions(slug),
-  );
-  const previewUrl = `${import.meta.env.DEV ? "http://careers.localhost:3000" : "https://careers.lunics.co"}/${slug}`;
-  if (!data?.organization) {
-    return <Navigate to="/dashboard" />;
-  }
-  const jobs = jobsData?.jobs || [];
-  const categories = categoriesData?.categories || [];
+  const { status } = Route.useSearch();
+  const navigate = useNavigate();
+  const { data } = useSuspenseQuery(jobsBySlugQueryOptions(slug)) as any;
+  const jobs = data?.jobs || [];
+
+  const filteredJobs = status
+    ? jobs.filter((job: any) => job.status === status)
+    : jobs;
+
+  const title = status
+    ? `${toStatusLabel(status)} Jobs (${filteredJobs.length})`
+    : `Job Openings (${jobs.length})`;
+
+  const handleStatusChange = (value: string) => {
+    navigate({
+      to: "/$slug",
+      params: { slug },
+      search: value === "ALL" ? {} : { status: value as SearchStatus },
+    });
+  };
+
   return (
-    <Layout
-      variant="header"
-      title={data.organization.name}
-      primaryButton={
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="icon" asChild>
-            <Link to="/$slug/organization" params={{ slug }}>
-              <Settings className="size-4" />
-              <span className="sr-only">Organization settings</span>
-            </Link>
-          </Button>
-          <Button asChild className="group ">
-            <Link to={previewUrl} target="_blank" rel="noreferrer">
-              Preview{" "}
-              <ArrowRight className="duration-100 group-hover:rotate-0 -rotate-45" />
-            </Link>
-          </Button>
-        </div>
-      }
-    >
-      <div className="flex flex-col gap-4">
-        <div className="flex lg:flex-row flex-col gap-4">
-          <StatisticCard
-            title="Organization"
-            amount={data?.organization?.name || ""}
-            icon={<Building className="size-4" />}
-          />
-          <StatisticCard
-            title="Jobs"
-            amount={jobs.length}
-            icon={<Briefcase className="size-4" />}
-          />
-          <StatisticCard
-            title="Categories"
-            amount={categories.length}
-            icon={<Folders className="size-4" />}
-          />
-          <StatisticCard
-            title="Offices"
-            amount={0}
-            icon={<MapPinned className="size-4" />}
-          />
-        </div>
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col space-y-4">
-            <div>
-              <h1 className="text-xl font-semibold ">
-                Recent Jobs
-                {/* <b> ({data?.organization?.jobs?.length || 0})</b> */}
-              </h1>
+    <>
+      <Layout
+        variant="header"
+        title={title}
+        primaryButton={
+          <div className="flex items-center gap-2">
+            <Select value={status || "ALL"} onValueChange={handleStatusChange}>
+              <SelectTrigger
+                aria-label="Filter jobs by status"
+                className="w-9 px-0 justify-center md:w-40 md:px-3 md:justify-between [&>svg:last-child]:hidden md:[&>svg:last-child]:block"
+              >
+                <>
+                  <ListFilter className="size-4 md:hidden" />
+                  <span className="sr-only md:not-sr-only md:flex md:flex-1 md:items-center md:text-left">
+                    <SelectValue placeholder="Filter jobs" />
+                  </span>
+                </>
+              </SelectTrigger>
+              <SelectContent align="end">
+                <SelectItem value="ALL">All Jobs</SelectItem>
+                <SelectItem value="PUBLISHED">Published</SelectItem>
+                <SelectItem value="DRAFT">Drafts</SelectItem>
+                <SelectItem value="CLOSED">Closed</SelectItem>
+                <SelectItem value="ARCHIVED">Archived</SelectItem>
+              </SelectContent>
+            </Select>
+            <CreateJobDialog slug={slug} />
+          </div>
+        }
+      >
+        {filteredJobs.length === 0 ? (
+          <div className="flex flex-1 items-center justify-center border">
+            <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
+              <h2 className="text-xl font-semibold tracking-tight text-muted-foreground">
+                No jobs found
+              </h2>
             </div>
-            {jobs?.slice(0, 3).map((job: JobWithCategory) => (
+          </div>
+        ) : (
+          <div className="flex flex-col space-y-4">
+            {filteredJobs.map((job: any) => (
               <JobCard slug={slug} key={job.id} job={job} />
             ))}
           </div>
-        </div>
-      </div>
-    </Layout>
+        )}
+      </Layout>
+    </>
   );
+}
+
+type SearchStatus = "PUBLISHED" | "DRAFT" | "ARCHIVED" | "CLOSED";
+
+function toStatusLabel(status: SearchStatus) {
+  switch (status) {
+    case "PUBLISHED":
+      return "Published";
+    case "DRAFT":
+      return "Draft";
+    case "ARCHIVED":
+      return "Archived";
+    case "CLOSED":
+      return "Closed";
+  }
 }

@@ -1,15 +1,11 @@
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { useNavigate, useMatches } from "@tanstack/react-router";
+import { useParams } from "@tanstack/react-router";
 import { Button } from "../ui/button";
-import { BellIcon, LogOut } from "lucide-react";
-import { auth } from "@/features/auth/auth";
-import { authClient } from "@/features/auth/auth-client";
+import { ArrowRight } from "lucide-react";
 import { ThemeToggle } from "../theme-toggle";
 // import { ThemeToggle } from "../theme-toggle";
 
 export function AppHeader() {
-  const matches = useMatches();
-
   const getTitle = () => {
     // const routeId = matches[matches.length - 1]?.routeId;
 
@@ -48,11 +44,8 @@ export function AppHeader() {
   };
 
   const title = getTitle();
-  const navigate = useNavigate();
-  const logOut = async () => {
-    await authClient.signOut();
-    navigate({ to: "/" });
-  };
+  const { slug } = useParams({ strict: false });
+  const previewUrl = `${import.meta.env.DEV ? "http://careers.localhost:3000" : "https://careers.lunics.co"}/${slug}`;
   return (
     <header className="sticky top-0 z-10 flex h-(--header-height) shrink-0 items-center gap-2 border-b backdrop-blur supports-[backdrop-filter]:bg-background/60 md:rounded-t-xl">
       <div className="flex w-full justify-between items-center gap-1 px-4">
@@ -64,9 +57,14 @@ export function AppHeader() {
         </div>
         <div className="flex flex-row gap-2">
           <ThemeToggle />
-          <Button variant={"outline"} className="" onClick={logOut}>
-            Log Out <LogOut />
-          </Button>
+          {slug && (
+            <Button asChild className="group h-8">
+              <a href={previewUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1">
+                Preview{" "}
+                <ArrowRight className="size-4 duration-100 group-hover:rotate-0 -rotate-45" />
+              </a>
+            </Button>
+          )}
           {/* <Button variant={"default"}>
             <BellIcon fill="currentColor" />
           </Button> */}
