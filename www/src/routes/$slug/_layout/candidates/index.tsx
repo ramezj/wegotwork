@@ -58,49 +58,52 @@ function RouteComponent() {
     });
   };
 
-  if (jobs.length === 0) {
-    return (
-      <Layout
-        title="Candidates (0)"
-        primaryButton={<CreateJobDialog slug={slug} />}
-      >
-        <div className="flex flex-1 items-center justify-center border">
-          <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
-            <h2 className="text-base font-semibold tracking-tight text-muted-foreground">
-              No jobs found
-            </h2>
-            <CreateJobDialog slug={slug} />
-          </div>
-        </div>
-      </Layout>
-    );
-  }
+  // if (jobs.length === 0) {
+  //   return (
+  //     <Layout
+  //       title="Candidates (0)"
+  //       primaryButton={<CreateJobDialog slug={slug} />}
+  //     >
+  //       <div className="flex flex-1 items-center justify-center border">
+  //         <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
+  //           <h2 className="text-base font-semibold tracking-tight text-muted-foreground">
+  //             No jobs found
+  //           </h2>
+  //           <CreateJobDialog slug={slug} />
+  //         </div>
+  //       </div>
+  //     </Layout>
+  //   );
+  // }
 
   return (
     <Layout
       variant="header"
       title={title}
       primaryButton={
-        <Select value={status || "ALL"} onValueChange={handleStatusChange}>
-          <SelectTrigger
-            aria-label="Filter candidates by job status"
-            className="w-9 justify-center px-0 md:w-40 md:justify-between md:px-3 [&>svg:last-child]:hidden md:[&>svg:last-child]:block"
-          >
-            <>
-              <ListFilter className="size-4 md:hidden" />
-              <span className="sr-only md:not-sr-only md:flex md:flex-1 md:items-center md:text-left">
-                <SelectValue placeholder="Filter jobs" />
-              </span>
-            </>
-          </SelectTrigger>
-          <SelectContent align="end">
-            <SelectItem value="ALL">All Jobs</SelectItem>
-            <SelectItem value="PUBLISHED">Published</SelectItem>
-            <SelectItem value="DRAFT">Drafts</SelectItem>
-            <SelectItem value="CLOSED">Closed</SelectItem>
-            <SelectItem value="ARCHIVED">Archived</SelectItem>
-          </SelectContent>
-        </Select>
+        <div className="flex items-center gap-2">
+          <Select value={status || "ALL"} onValueChange={handleStatusChange}>
+            <SelectTrigger
+              aria-label="Filter candidates by job status"
+              className="w-9 justify-center px-0 md:w-40 md:justify-between md:px-3 [&>svg:last-child]:hidden md:[&>svg:last-child]:block"
+            >
+              <>
+                <ListFilter className="size-4 md:hidden" />
+                <span className="sr-only md:not-sr-only md:flex md:flex-1 md:items-center md:text-left">
+                  <SelectValue placeholder="Filter jobs" />
+                </span>
+              </>
+            </SelectTrigger>
+            <SelectContent align="end">
+              <SelectItem value="ALL">All Jobs</SelectItem>
+              <SelectItem value="PUBLISHED">Published</SelectItem>
+              <SelectItem value="DRAFT">Drafts</SelectItem>
+              <SelectItem value="CLOSED">Closed</SelectItem>
+              <SelectItem value="ARCHIVED">Archived</SelectItem>
+            </SelectContent>
+          </Select>
+          <CreateJobDialog slug={slug} />
+        </div>
       }
     >
       {filteredJobs.length === 0 ? (

@@ -49,23 +49,23 @@ function RouteComponent() {
     });
   };
 
-  if (data.organization.jobs.length === 0) {
-    return (
-      <Layout
-        title="Job Openings (0)"
-        primaryButton={<CreateJobDialog slug={slug} />}
-      >
-        <div className="flex flex-1 items-center justify-center border">
-          <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
-            <h2 className="text-base font-semibold tracking-tight text-muted-foreground">
-              No jobs found
-            </h2>
-            <CreateJobDialog slug={slug} />
-          </div>
-        </div>
-      </Layout>
-    );
-  }
+  // if (data.organization.jobs.length === 0) {
+  //   return (
+  //     <Layout
+  //       title="Job Openings (0)"
+  //       primaryButton={<CreateJobDialog slug={slug} />}
+  //     >
+  //       <div className="flex flex-1 items-center justify-center border">
+  //         <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
+  //           <h2 className="text-base font-semibold tracking-tight text-muted-foreground">
+  //             No jobs found
+  //           </h2>
+  //           <CreateJobDialog slug={slug} />
+  //         </div>
+  //       </div>
+  //     </Layout>
+  //   );
+  // }
 
   return (
     <>
@@ -102,7 +102,7 @@ function RouteComponent() {
           <div className="flex flex-1 items-center justify-center border">
             <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
               <h2 className="text-xl font-semibold tracking-tight text-muted-foreground">
-                No jobs match this filter
+                No jobs found
               </h2>
             </div>
           </div>
