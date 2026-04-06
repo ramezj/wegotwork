@@ -10,6 +10,13 @@ export const createOrganizationFn = createServerFn()
   .handler(async ({ data, context }) => {
     const { session } = context;
     try {
+      const existingOrg = await prisma.organization.findUnique({
+        where: { slug: data.slug },
+      });
+      if (existingOrg) {
+        return { success: false, error: "Slug is already in use" };
+      }
+
       const organization = await prisma.$transaction(async (tx) => {
         const createdOrganization = await tx.organization.create({
           data: {

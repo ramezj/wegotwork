@@ -8,6 +8,9 @@ import { organizationsQueryOptions } from "@/features/queries/organization";
 export const Route = createFileRoute("/dashboard/")({
   component: RouteComponent,
   ssr: true,
+  head: () => ({
+    meta: [{ title: "Dashboard", content: "Dashboard" }, { name: "Dashboard" }],
+  }),
   loader: ({ context }) =>
     context.queryClient.ensureQueryData(organizationsQueryOptions()),
 });
