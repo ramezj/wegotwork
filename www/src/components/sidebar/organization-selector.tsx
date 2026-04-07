@@ -73,7 +73,7 @@ export function OrganizationSelector({
                 className="cursor-pointer"
               >
                 <Link
-                  to="/$slug"
+                  to="/$slug/jobs"
                   params={{ slug: organization.slug }}
                   preload={false}
                 >

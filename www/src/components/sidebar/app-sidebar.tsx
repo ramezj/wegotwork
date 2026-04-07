@@ -43,7 +43,7 @@ export function AppSidebar({
     {
       label: "Jobs",
       icon: <BriefcaseBusiness />,
-      href: `/${slug}`,
+      href: `/${slug}/jobs`,
     },
     {
       label: "Candidates",
@@ -88,33 +88,23 @@ export function AppSidebar({
 
   const location = useLocation();
   const { isMobile, setOpenMobile } = useSidebar();
+  
+  // Clean, flawless matching based entirely on URL prefixes mapping to Sidebar paths seamlessly
   const isSidebarItemActive = (href: string) =>
     location.pathname === href || location.pathname.startsWith(`${href}/`);
-
-  // We test against standard paths to determine if we are on a job details page synchronously
-  // This avoids TanStack Router 'useMatches' flickering during Suspense transitions.
-  const isJobDetailRoute =
-    location.pathname.startsWith(`/${slug}/`) &&
-    ![
-      "/candidates",
-      "/pipelines",
-      "/categories",
-      "/offices",
-      "/organization",
-      "/billing",
-      "/team",
-    ].some((p) => location.pathname.includes(p));
 
   const handleItemClick = () => {
     if (isMobile) {
       setOpenMobile(false);
     }
   };
+  
   const { data } = useSuspenseQuery({
     queryKey: ["organizations"],
     queryFn: getAllOrganizationsFn,
     staleTime: 60 * 60 * 1000,
   });
+
   return (
     <Sidebar variant="sidebar">
       <SidebarHeader className="h-(--header-height) border-b flex items-center align-middle justify-center">
@@ -135,14 +125,10 @@ export function AppSidebar({
         <SidebarGroup className="py-2">
           <SidebarMenu className="gap-1">
             {menuItems.map((item, index) => {
-              const isActive =
-                item.label === "Jobs"
-                  ? location.pathname === item.href || isJobDetailRoute
-                  : location.pathname.includes(item.href);
               return (
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
-                    isActive={isActive}
+                    isActive={isSidebarItemActive(item.href)}
                     className="cursor-pointer"
                     onClick={handleItemClick}
                     asChild

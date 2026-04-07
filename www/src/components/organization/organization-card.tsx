@@ -23,7 +23,7 @@ export function OrganizationCard({
 }) {
   return (
     <Link
-      to="/$slug"
+      to="/$slug/jobs"
       params={{ slug: organization.slug }}
       className="group block h-full"
     >
@@ -63,7 +63,7 @@ export function OrganizationCard({
                 Free
               </Badge>
             )}
-            <Badge variant={"default"}>/{organization.slug}</Badge>
+            <Badge variant={"default"}>/{organization.slug}/jobs</Badge>
           </div>
         </CardContent>
 
