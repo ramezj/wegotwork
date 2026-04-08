@@ -47,7 +47,7 @@ export function AppHeader() {
   const { slug } = useParams({ strict: false });
   const previewUrl = `${import.meta.env.DEV ? "http://careers.localhost:3000" : "https://careers.lunics.co"}/${slug}`;
   return (
-    <header className="sticky top-0 z-10 flex h-(--header-height) shrink-0 items-center gap-2 border-b bg-background md:rounded-t-xl">
+    <header className="sticky top-0 z-10 flex h-(--header-height) shrink-0 items-center gap-2 border-b bg-card md:rounded-t-xl">
       <div className="flex w-full justify-between items-center gap-1 px-4">
         <div className="hidden md:flex">
           <h1 className="text-base font-semibold ">{title}</h1>

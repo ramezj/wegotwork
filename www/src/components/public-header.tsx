@@ -23,7 +23,7 @@ export function PublicHeader({ slug }: { slug: string }) {
 
   const actions = (
     <>
-      <ThemeToggle />
+      {/* <ThemeToggle /> */}
       {/* {data.organization?.linkedIn && (
         <Button variant="default" size="icon" className="group" asChild>
           <Link to={data.organization?.linkedIn} target="_blank">
@@ -41,10 +41,5 @@ export function PublicHeader({ slug }: { slug: string }) {
     </>
   );
 
-  return (
-    <HeaderBase
-      logo={logo}
-      desktopActions={actions}
-    />
-  );
+  return <HeaderBase logo={logo} desktopActions={actions} />;
 }
