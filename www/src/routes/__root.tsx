@@ -47,13 +47,9 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  const theme = Route.useLoaderData();
+  // const theme = Route.useLoaderData();
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`no-scrollbar ${theme}`}
-    >
+    <html lang="en" suppressHydrationWarning className={`no-scrollbar`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -68,22 +64,22 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <ThemeProvider theme={theme}>
-          <Toaster position="bottom-right" />
-          {children}
-          <TanStackDevtools
-            config={{
-              position: "bottom-right",
-            }}
-            plugins={[
-              {
-                name: "Tanstack Router",
-                render: <TanStackRouterDevtoolsPanel />,
-              },
-              TanStackQueryDevtools,
-            ]}
-          />
-        </ThemeProvider>
+        {/* <ThemeProvider theme={theme}> */}
+        <Toaster position="bottom-right" />
+        {children}
+        <TanStackDevtools
+          config={{
+            position: "bottom-right",
+          }}
+          plugins={[
+            {
+              name: "Tanstack Router",
+              render: <TanStackRouterDevtoolsPanel />,
+            },
+            TanStackQueryDevtools,
+          ]}
+        />
+        {/* </ThemeProvider> */}
         <Scripts />
       </body>
     </html>

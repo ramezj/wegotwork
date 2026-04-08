@@ -2,7 +2,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useParams } from "@tanstack/react-router";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
-import { ThemeToggle } from "../theme-toggle";
+// import { ThemeToggle } from "../theme-toggle";
 // import { ThemeToggle } from "../theme-toggle";
 
 export function AppHeader() {
@@ -47,7 +47,7 @@ export function AppHeader() {
   const { slug } = useParams({ strict: false });
   const previewUrl = `${import.meta.env.DEV ? "http://careers.localhost:3000" : "https://careers.lunics.co"}/${slug}`;
   return (
-    <header className="sticky top-0 z-10 flex h-(--header-height) shrink-0 items-center gap-2 border-b backdrop-blur supports-[backdrop-filter]:bg-background/60 md:rounded-t-xl">
+    <header className="sticky top-0 z-10 flex h-(--header-height) shrink-0 items-center gap-2 border-b bg-background md:rounded-t-xl">
       <div className="flex w-full justify-between items-center gap-1 px-4">
         <div className="hidden md:flex">
           <h1 className="text-base font-semibold ">{title}</h1>
@@ -56,10 +56,15 @@ export function AppHeader() {
           <SidebarTrigger />
         </div>
         <div className="flex flex-row gap-2">
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
           {slug && (
             <Button asChild className="group h-8">
-              <a href={previewUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1">
+              <a
+                href={previewUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1"
+              >
                 Preview{" "}
                 <ArrowRight className="size-4 duration-100 group-hover:rotate-0 -rotate-45" />
               </a>

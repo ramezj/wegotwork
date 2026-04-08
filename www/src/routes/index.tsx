@@ -239,17 +239,17 @@ function App() {
       <Header />
       <main className="mx-auto w-full space-y-8 lg:w-[80%]">
         <header className="px-4">
-          <section className="relative overflow-hidden rounded-none border p-2">
-            <div className="relative bg-background px-4 py-8 text-center">
+          <section className="relative overflow-hidden rounded-none border p-2 bg-[#f2f1ed] dark:bg-background">
+            <div className="relative bg-[#f2f1ed] dark:bg-background px-4 py-8 text-center">
               <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
                 {/* <div className="inline-flex items-center leading-none gap-2 rounded-none border px-4 py-1.5 text-sm font-semibold">
                   <Sparkles className="size-4" />
                   The #1 hiring software for fast-paced teams
                 </div> */}
-                <h1 className="text-3xl text-[#010911] dark:text-white font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
-                  You're building fast.
-                  <span className="block text-branding">
-                    Why not hire fast too?
+                <h1 className="text-3xl text-[#0d0d0d] dark:text-white font-normal tracking-tighter text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
+                  you're building fast.
+                  <span className="block text-[#0d0d0d] font-normal tracking-tighter">
+                    why not hire fast too?
                   </span>
                 </h1>
                 {/* <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
@@ -259,7 +259,7 @@ function App() {
                 </p> */}
                 <div className="flex w-full max-w-md flex-col items-center justify-center gap-2 sm:flex-row">
                   <Button
-                    variant={"branding"}
+                    variant={"outline"}
                     asChild
                     className="w-full sm:w-72"
                   >
@@ -281,18 +281,18 @@ function App() {
         </header>
 
         <section className="px-4">
-          <div
-            className="bg-cover bg-center p-2"
-            style={{ backgroundImage: "url('/blue.png')" }}
-          >
-            <Browser jobs={exampleJobs} />
-          </div>
+          {/* <div */}
+          {/* className="bg-cover bg-center p-2 bg-[#0d0d0d]" */}
+          {/* // style={{ backgroundImage: "url('/blue.png')" }} */}
+          {/* > */}
+          <Browser jobs={exampleJobs} />
+          {/* </div> */}
         </section>
 
         <section className="px-4">
           <div className="border">
             <div className="grid lg:grid-cols-[0.95fr_1.55fr]">
-              <div className="border-b p-4 lg:border-b-0 lg:border-r">
+              <div className="border-b p-4 lg:border-b-0 lg:border-r bg-[#f2f1ed]">
                 <div className="px-4 py-8 sm:px-6 sm:py-10">
                   <p className="mb-3 text-xs font-semibold uppercase text-muted-foreground">
                     what lunics gives you
@@ -316,7 +316,7 @@ function App() {
                     <article
                       key={feature.title}
                       className={cn(
-                        "px-4 py-8 sm:px-6 sm:py-10",
+                        "px-4 py-8 sm:px-6 sm:py-10 ",
                         index < 3 && "border-b",
                         index >= 2 && "sm:border-b-0",
                         index % 2 === 0 && "sm:border-r",
