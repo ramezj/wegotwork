@@ -11,7 +11,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ListFilter } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, ListFilter } from "lucide-react";
 import { z } from "zod";
 
 export const Route = createFileRoute("/$slug/_layout/jobs/")({
@@ -20,7 +21,9 @@ export const Route = createFileRoute("/$slug/_layout/jobs/")({
   }),
   component: RouteComponent,
   loader: async ({ context, params }) => {
-    await context.queryClient.ensureQueryData(jobsBySlugQueryOptions(params.slug));
+    await context.queryClient.ensureQueryData(
+      jobsBySlugQueryOptions(params.slug),
+    );
   },
   head: () => ({
     meta: [{ title: "Jobs", content: "Jobs" }, { name: "Jobs" }],
@@ -53,21 +56,23 @@ function RouteComponent() {
   return (
     <>
       <Layout
-        variant="header"
+        // variant="header"
         title={title}
         primaryButton={
           <div className="flex items-center gap-2">
             <Select value={status || "ALL"} onValueChange={handleStatusChange}>
               <SelectTrigger
+                asChild
                 aria-label="Filter jobs by status"
-                className="w-9 px-0 justify-center md:w-40 md:px-3 md:justify-between [&>svg:last-child]:hidden md:[&>svg:last-child]:block"
+                className="w-9 justify-center px-0 md:w-40 md:justify-between md:px-3"
               >
-                <>
+                <Button type="button" variant="outlineSecondary">
                   <ListFilter className="size-4 md:hidden" />
                   <span className="sr-only md:not-sr-only md:flex md:flex-1 md:items-center md:text-left">
                     <SelectValue placeholder="Filter jobs" />
                   </span>
-                </>
+                  <ChevronDown className="text-muted-foreground hidden size-4 opacity-50 md:block" />
+                </Button>
               </SelectTrigger>
               <SelectContent align="end">
                 <SelectItem value="ALL">All Jobs</SelectItem>

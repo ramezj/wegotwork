@@ -1,5 +1,4 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getCookie, setCookie } from "@tanstack/react-start/server";
 import * as z from "zod";
 
 const postThemeValidator = z.union([z.literal("light"), z.literal("dark")]);
@@ -9,12 +8,17 @@ const storageKey = "_preferred-theme";
 const isProduction = process.env.NODE_ENV === "production";
 
 export const getThemeServerFn = createServerFn().handler(
-  async () => (getCookie(storageKey) || "dark") as T,
+  async () => {
+    const { getCookie } = await import("@tanstack/react-start/server");
+    return (getCookie(storageKey) || "dark") as T;
+  },
 );
 
 export const setThemeServerFn = createServerFn({ method: "POST" })
   .inputValidator(postThemeValidator)
   .handler(async ({ data }) => {
+    const { setCookie } = await import("@tanstack/react-start/server");
+
     // In production, set domain=".lunics.co" so the cookie is shared between
     // lunics.co and careers.lunics.co. In dev, omit domain (host-only) because
     // domain=".localhost" is unreliable across browsers — each dev origin
