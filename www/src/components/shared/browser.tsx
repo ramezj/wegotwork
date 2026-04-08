@@ -11,7 +11,7 @@ export function Browser({ jobs }: BrowserProps) {
   return (
     <Card className="rounded-lg overflow-hidden p-0 gap-0 bg-primary ">
       {/* Browser chrome */}
-      <div className="flex items-center gap-2 p-4 ">
+      <div className="flex items-center gap-2 p-4">
         <div className="flex gap-1.5">
           <div className="size-3 bg-red-400 rounded-full" />
           <div className="size-3 bg-yellow-400 rounded-full" />

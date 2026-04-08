@@ -53,7 +53,7 @@ export const Route = createFileRoute("/")({
   component: App,
   head: () =>
     buildSeo({
-      title: "Career Page and Hiring Software for Organizations and Teams",
+      title: "lunics",
       description:
         "Lunics helps organizations and teams create career pages, post job openings, receive applicants, and manage the hiring process in one platform.",
       path: "/",
@@ -246,10 +246,10 @@ function App() {
                   <Sparkles className="size-4" />
                   The #1 hiring software for fast-paced teams
                 </div> */}
-                <h1 className="text-3xl text-[#0d0d0d] dark:text-white font-normal tracking-tighter text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
-                  you're building fast.
+                <h1 className="text-[35px] leading-none text-[#0d0d0d] dark:text-white font-normal tracking-tighter text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
+                  you're building fast,
                   <span className="block text-[#0d0d0d] font-normal tracking-tighter">
-                    why not hire fast too?
+                    now let's hire fast too.
                   </span>
                 </h1>
                 {/* <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">

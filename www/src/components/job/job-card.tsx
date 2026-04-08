@@ -203,7 +203,7 @@ export function JobCardForLandingPage({
       to={isDemo ? "/" : "/$slug/jobs/$jobId"}
       params={{ slug, jobId: job.id }}
     >
-      <Card className="w-full group min-h-28 bg-card transition-all flex flex-row border items-center p-5 cursor-pointer gap-0">
+      <Card className="w-full group min-h-28 bg-card border-none transition-all flex flex-row border items-center p-5 cursor-pointer gap-0">
         <div className="flex flex-1 flex-col">
           <div className="flex items-center justify-between">
             {/* job information */}
