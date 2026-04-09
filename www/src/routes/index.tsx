@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import Header from "@/components/shared/header";
 import { Button } from "@/components/ui/button";
-import { BarChart3, Sparkles } from "lucide-react";
+import { BarChart3 } from "lucide-react";
 import { Building2, FileText, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Browser } from "@/components/shared/browser";
@@ -241,14 +241,14 @@ function App() {
         <header className="px-4">
           <section className="relative overflow-hidden rounded-none border p-2 bg-[#f2f1ed] dark:bg-background">
             <div className="relative bg-[#f2f1ed] dark:bg-background px-4 py-8 text-center">
-              <div className="mx-auto flex max-w-4xl flex-col items-center gap-4">
+              <div className="animate-hero-reveal mx-auto flex max-w-4xl flex-col items-center gap-4">
                 {/* <div className="inline-flex items-center leading-none gap-2 rounded-none border px-4 py-1.5 text-sm font-semibold">
                   <Sparkles className="size-4" />
                   The #1 hiring software for fast-paced teams
                 </div> */}
                 <h1 className="text-[35px] leading-none text-[#0d0d0d] dark:text-white font-normal tracking-tighter text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
                   you're building fast,
-                  <span className="block text-[#0d0d0d] font-normal tracking-tighter">
+                  <span className="block text-[#0d0d0d] dark:text-white font-normal tracking-tighter">
                     now let's hire fast too.
                   </span>
                 </h1>
@@ -292,7 +292,7 @@ function App() {
         <section className="px-4">
           <div className="border">
             <div className="grid lg:grid-cols-[0.95fr_1.55fr]">
-              <div className="border-b p-4 lg:border-b-0 lg:border-r bg-[#f2f1ed]">
+              <div className="border-b p-4 lg:border-b-0 lg:border-r bg-secondary dark:bg-card">
                 <div className="px-4 py-8 sm:px-6 sm:py-10">
                   <p className="mb-3 text-xs font-semibold uppercase text-muted-foreground">
                     what lunics gives you
@@ -316,19 +316,19 @@ function App() {
                     <article
                       key={feature.title}
                       className={cn(
-                        "px-4 py-8 sm:px-6 sm:py-10 ",
-                        index < 3 && "border-b",
+                        "bg-primary px-4 py-8 sm:px-6 sm:py-10",
+                        index < 3 && "border-b border-white/10",
                         index >= 2 && "sm:border-b-0",
-                        index % 2 === 0 && "sm:border-r",
+                        index % 2 === 0 && "sm:border-r sm:border-white/10",
                       )}
                     >
-                      <div className="mb-5 flex h-12 w-12 items-center justify-center border bg-secondary">
-                        <Icon className="h-6 w-6" />
+                      <div className="mb-5 flex h-12 w-12 items-center justify-center bg-background">
+                        <Icon className="h-6 w-6 text-primary" />
                       </div>
-                      <h3 className="text-xl font-semibold leading-tight">
+                      <h3 className="text-xl font-semibold leading-tight text-primary-foreground">
                         {feature.title}
                       </h3>
-                      <p className="mt-3 text-sm font-medium leading-6 text-muted-foreground">
+                      <p className="mt-3 text-sm font-medium leading-6 text-primary-foreground/60">
                         {feature.description}
                       </p>
                     </article>
@@ -342,7 +342,7 @@ function App() {
         <section className="px-4">
           <div className="grid gap-px border bg-border sm:grid-cols-2 lg:grid-cols-4">
             {platformHighlights.map((item) => (
-              <article key={item.title} className="bg-background px-5 py-6">
+              <article key={item.title} className="bg-secondary px-5 py-6">
                 <h2 className="text-lg font-semibold tracking-tight">
                   {item.title}
                 </h2>
@@ -356,7 +356,7 @@ function App() {
 
         <section className="px-4">
           <div className="border p-2">
-            <div className="bg-background px-6 py-8 sm:px-8 sm:py-10">
+            <div className="bg-secondary px-6 py-8 sm:px-8 sm:py-10">
               <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="space-y-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">

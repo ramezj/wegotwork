@@ -91,9 +91,9 @@ function FeaturesPage() {
       <main className="mx-auto w-full space-y-8 px-4 lg:w-[80%]">
         <section className="border p-2">
           <div className="bg-background px-6 py-10 text-center sm:px-10 sm:py-14">
-            <div className="mx-auto flex max-w-3xl flex-col items-center gap-4">
-              <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-                Features for career pages, job posting, and applicant
+            <div className="animate-hero-reveal mx-auto flex max-w-3xl flex-col items-center gap-4">
+              <h1 className="max-w-4xl text-4xl font-normal tracking-tight text-balance sm:text-5xl">
+                features for career pages, job posting, and applicant
                 management.
               </h1>
               {/* <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
