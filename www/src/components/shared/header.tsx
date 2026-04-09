@@ -31,7 +31,7 @@ export default function Header({
     //   </Link>
     // </Button>
     <Link to="/" viewTransition className="flex mr-1 items-center">
-      <span className="text-xl font-bold">lunics</span>
+      <span className="text-xl font-semibold tracking-tight">lunics</span>
     </Link>
   );
 
@@ -40,7 +40,7 @@ export default function Header({
       viewTransition
       key={link.label}
       to={link.href}
-      className="text-xl font-medium tracking-tight text-muted-foreground hover:text-foreground transition-colors"
+      className="text-xl font-normal tracking-tight text-muted-foreground hover:text-foreground transition-colors"
     >
       {link.label}
     </Link>
@@ -57,7 +57,7 @@ export default function Header({
       {/* <ThemeToggle /> */}
       <Button
         variant="outline"
-        className="font-semibold cursor-pointer "
+        className="font-semibold cursor-pointer lowercase"
         onClick={logOut}
       >
         Log Out <LogOut className="size-4 ml-1" />
@@ -65,7 +65,7 @@ export default function Header({
       <Button
         variant="default"
         asChild
-        className="font-semibold cursor-pointer"
+        className="font-semibold cursor-pointer lowercase"
       >
         <Link preload="render" to="/dashboard">
           Open Dashboard
@@ -83,7 +83,7 @@ export default function Header({
     <Link
       key={link.label}
       to={link.href}
-      className="flex items-center p-2 rounded-md text-base font-medium text-foreground hover:bg-muted transition-colors"
+      className="flex items-center p-2 rounded-md text-base font-normal text-foreground hover:bg-muted transition-colors"
     >
       {link.label}
     </Link>

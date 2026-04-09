@@ -261,14 +261,14 @@ function App() {
                   <Button
                     variant={"outline"}
                     asChild
-                    className="w-full sm:w-72"
+                    className="w-full sm:w-60 lowercase"
                   >
                     <Link to="/auth">Start Hiring</Link>
                   </Button>
                   <Button
                     variant={"default"}
                     asChild
-                    className="w-full sm:w-72"
+                    className="w-full sm:w-60 lowercase"
                   >
                     <a href={demoUrl} target="_blank" rel="noreferrer">
                       See Demo
@@ -316,19 +316,19 @@ function App() {
                     <article
                       key={feature.title}
                       className={cn(
-                        "bg-primary px-4 py-8 sm:px-6 sm:py-10",
-                        index < 3 && "border-b border-white/10",
+                        "bg-secondary px-4 py-8 sm:px-6 sm:py-10",
+                        index < 3 && "border-b",
                         index >= 2 && "sm:border-b-0",
-                        index % 2 === 0 && "sm:border-r sm:border-white/10",
+                        index % 2 === 0 && "sm:border-r",
                       )}
                     >
-                      <div className="mb-5 flex h-12 w-12 items-center justify-center bg-background">
-                        <Icon className="h-6 w-6 text-primary" />
+                      <div className="mb-5 flex h-12 w-12 items-center justify-center bg-primary">
+                        <Icon className="h-6 w-6 text-primary-foreground" />
                       </div>
-                      <h3 className="text-xl font-normal leading-tight text-primary-foreground">
+                      <h3 className="text-xl font-normal leading-tight text-primary tracking-tight">
                         {feature.title}
                       </h3>
-                      <p className="mt-3 text-sm font-normal leading-6 text-primary-foreground/60">
+                      <p className="mt-3 text-sm font-normal leading-6 text-muted-foreground">
                         {feature.description}
                       </p>
                     </article>
