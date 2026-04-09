@@ -294,14 +294,14 @@ function App() {
             <div className="grid lg:grid-cols-[0.95fr_1.55fr]">
               <div className="border-b p-4 lg:border-b-0 lg:border-r bg-secondary dark:bg-card">
                 <div className="px-4 py-8 sm:px-6 sm:py-10">
-                  <p className="mb-3 text-xs font-semibold uppercase text-muted-foreground">
+                  {/* <p className="mb-3 text-xs font-semibold uppercase text-muted-foreground">
                     what lunics gives you
-                  </p>
-                  <h2 className="text-2xl font-semibold leading-tight text-balance sm:text-4xl">
+                  </p> */}
+                  <h2 className="text-2xl font-normal leading-tight tracking-tight text-balance sm:text-4xl">
                     The all-in-one hiring platform for public jobs and internal
                     workflows
                   </h2>
-                  <p className="mt-4 max-w-md text-sm font-medium leading-6 text-muted-foreground sm:text-base">
+                  <p className="mt-4 max-w-md text-sm font-normal leading-6 text-muted-foreground sm:text-base">
                     Everything you need to publish openings, receive applicants,
                     and manage hiring without bouncing between disconnected
                     tools.
@@ -325,10 +325,10 @@ function App() {
                       <div className="mb-5 flex h-12 w-12 items-center justify-center bg-background">
                         <Icon className="h-6 w-6 text-primary" />
                       </div>
-                      <h3 className="text-xl font-semibold leading-tight text-primary-foreground">
+                      <h3 className="text-xl font-normal leading-tight text-primary-foreground">
                         {feature.title}
                       </h3>
-                      <p className="mt-3 text-sm font-medium leading-6 text-primary-foreground/60">
+                      <p className="mt-3 text-sm font-normal leading-6 text-primary-foreground/60">
                         {feature.description}
                       </p>
                     </article>
@@ -343,10 +343,10 @@ function App() {
           <div className="grid gap-px border bg-border sm:grid-cols-2 lg:grid-cols-4">
             {platformHighlights.map((item) => (
               <article key={item.title} className="bg-secondary px-5 py-6">
-                <h2 className="text-lg font-semibold tracking-tight">
+                <h2 className="text-lg font-normal tracking-tight">
                   {item.title}
                 </h2>
-                <p className="mt-2 text-sm font-medium leading-6 text-muted-foreground">
+                <p className="mt-2 text-sm font-normal leading-6 text-muted-foreground">
                   {item.description}
                 </p>
               </article>

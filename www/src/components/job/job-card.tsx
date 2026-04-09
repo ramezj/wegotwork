@@ -203,25 +203,21 @@ export function JobCardForLandingPage({
       to={isDemo ? "/" : "/$slug/jobs/$jobId"}
       params={{ slug, jobId: job.id }}
     >
-      <Card className="w-full group min-h-28 bg-card border-none transition-all flex flex-row border items-center p-5 cursor-pointer gap-0">
+      <Card className="w-full group min-h-28 bg-background border-none transition-all flex flex-row border items-center p-5 cursor-pointer gap-0">
         <div className="flex flex-1 flex-col">
           <div className="flex items-center justify-between">
             {/* job information */}
             <div className="flex flex-col gap-2 flex-1 min-w-0">
-              <p className="font-bold text-lg truncate text-balance text-[#0d0d0d]">
+              <p className="font-medium text-lg truncate text-balance text-primary">
                 {job.title}
               </p>
               <div className="flex flex-row flex-wrap gap-1">
-                <Badge variant="default" className="bg-[#0d0d0d]">
-                  {formatJobType(job.type)}
-                </Badge>
-                <Badge variant="default" className="bg-[#0d0d0d]">
+                <Badge variant="default">{formatJobType(job.type)}</Badge>
+                <Badge variant="default">
                   {formatLocationMode(job.locationMode)}
                 </Badge>
                 {job.office && (
-                  <Badge variant="default" className="bg-[#0d0d0d]">
-                    {job.office.name}
-                  </Badge>
+                  <Badge variant="default">{job.office.name}</Badge>
                 )}
               </div>
             </div>
@@ -237,7 +233,7 @@ export function JobCardForLandingPage({
             </div> */}
             <div className="shrink-0">
               <div className="px-2">
-                <ArrowRight className="h-5 w-5 text-[#0d0d0d] group-hover:text-primary shrink-0 duration-100 group-hover:rotate-0 -rotate-45" />
+                <ArrowRight className="h-5 w-5 text-primary shrink-0 duration-100 group-hover:rotate-0 -rotate-45" />
               </div>
             </div>
           </div>

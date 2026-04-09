@@ -195,7 +195,7 @@ code {
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: #0d0d0d;
-  --primary-foreground: oklch(0.985 0 0);
+  --primary-foreground: #f7f7f4;
   --secondary: #f2f1ed;
   --secondary-foreground: oklch(0.205 0 0);
   --muted: #f2f1ed;

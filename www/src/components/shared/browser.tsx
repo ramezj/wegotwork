@@ -9,7 +9,7 @@ interface BrowserProps {
 
 export function Browser({ jobs }: BrowserProps) {
   return (
-    <Card className="rounded-lg overflow-hidden p-0 gap-0 bg-primary ">
+    <Card className="rounded-none overflow-hidden p-0 gap-0 bg-secondary">
       {/* Browser chrome */}
       <div className="flex items-center gap-2 p-4">
         <div className="flex gap-1.5">
@@ -18,7 +18,7 @@ export function Browser({ jobs }: BrowserProps) {
           <div className="size-3 bg-green-400 rounded-full" />
         </div>
         <div className="flex-1">
-          <div className="bg-card py-1 text-xs text-[#0d0d0d] font-normal text-start p-2 rounded-md">
+          <div className="bg-background py-1 text-xs text-primary font-normal text-start p-2 rounded-none">
             jobs.lunics.co
           </div>
         </div>
@@ -27,13 +27,13 @@ export function Browser({ jobs }: BrowserProps) {
       {/* Browser content */}
       <div className="p-4">
         <div className="flex flex-col items-center text-center space-y-4 py-6 -mt-4">
-          <Avatar className="w-16 h-16 rounded-lg">
-            <AvatarFallback className="text-2xl bg-card font-normal text-primary">
+          <Avatar className="w-16 h-16 bg-primary">
+            <AvatarFallback className="text-2xl bg-primary font-normal text-primary-foreground">
               L
             </AvatarFallback>
           </Avatar>
           <div className="space-y-4">
-            <h3 className="text-3xl md:text-4xl font-normal tracking-tighter leading-none text-primary-foreground">
+            <h3 className="text-3xl md:text-4xl font-normal tracking-tighter leading-none text-primary">
               lunics
             </h3>
             <p className="text-muted-foreground text-base text-balance font-normal leading-none ">
