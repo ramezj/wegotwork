@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { jobsBySlugQueryOptions } from "@/features/queries/jobs";
 import { ListFilter } from "lucide-react";
-import { Job, Candidate } from "generated/prisma/client";
+import { Job } from "generated/prisma/client";
 import { Layout } from "@/components/shared/layout";
 import { JobCardForCandidatesPage } from "@/components/job/job-card";
 import { CreateJobDialog } from "@/components/job/create-job-dialog";
@@ -41,7 +41,7 @@ function RouteComponent() {
     return <div>Failed to load jobs</div>;
   }
 
-  const jobs = (data.jobs || []) as (Job & { candidates: Candidate[] })[];
+  const jobs = (data.jobs || []) as (Job & { _count?: { candidates: number } })[];
   const filteredJobs = status
     ? jobs.filter((job) => job.status === status)
     : jobs;
@@ -121,7 +121,7 @@ function RouteComponent() {
               key={job.id}
               job={job}
               slug={slug}
-              candidates={job.candidates.length}
+              candidates={job._count?.candidates ?? 0}
             />
           ))}
         </div>

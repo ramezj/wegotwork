@@ -8,14 +8,14 @@ import { fileURLToPath, URL } from 'url'
 import tailwindcss from '@tailwindcss/vite'
 import { nitro } from 'nitro/vite'
 
-const config = defineConfig({
+const config = defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   plugins: [
-    devtools(),
+    mode === 'development' ? devtools() : undefined,
     nitro(),
     // this is the plugin that enables path aliases
     viteTsConfigPaths({
@@ -57,7 +57,7 @@ const config = defineConfig({
       ],
     }),
     viteReact(),
-  ],
-})
+  ].filter(Boolean),
+}))
 
 export default config

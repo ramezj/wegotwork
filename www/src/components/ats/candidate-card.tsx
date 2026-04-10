@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { formatDistanceToNow } from "date-fns";
 import { Link } from "@tanstack/react-router";
-import { Candidate, CandidateResponse } from "@/types/candidate";
+import { type ATSCandidate } from "./types";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,11 +16,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 interface CandidateCardProps {
-  candidate: Candidate & { responses: CandidateResponse[] };
+  candidate: ATSCandidate;
   stages: any[];
   slug: string;
   onMove: (candidateId: string, newStageId: string) => void;
-  onSelect: (candidate: Candidate & { responses: CandidateResponse[] }) => void;
+  onSelect: (candidate: ATSCandidate) => void;
 }
 
 function getInitials(name: string): string {

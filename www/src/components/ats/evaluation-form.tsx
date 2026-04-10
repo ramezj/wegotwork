@@ -25,7 +25,9 @@ export function EvaluationForm({
   const mutation = useMutation({
     mutationFn: createEvaluationFn,
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      // Evaluations are shown on candidate/job detail views.
+      queryClient.invalidateQueries({ queryKey: ["candidate-history"] });
+      queryClient.invalidateQueries({ queryKey: ["job"] });
       toast.success("Evaluation submitted");
       setScore(0);
       setFeedback("");

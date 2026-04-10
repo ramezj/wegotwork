@@ -12,7 +12,6 @@ import TanStackQueryDevtools from "../tanstack-query/devtools";
 import appCss from "../styles.css?url";
 
 import type { QueryClient } from "@tanstack/react-query";
-import { ThemeProvider } from "@/lib/theme-provider";
 import { getThemeServerFn } from "@/lib/theme";
 
 interface MyRouterContext {
@@ -67,18 +66,20 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         {/* <ThemeProvider theme={theme}> */}
         <Toaster position="bottom-right" />
         {children}
-        <TanStackDevtools
-          config={{
-            position: "bottom-right",
-          }}
-          plugins={[
-            {
-              name: "Tanstack Router",
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-            TanStackQueryDevtools,
-          ]}
-        />
+        {import.meta.env.DEV ? (
+          <TanStackDevtools
+            config={{
+              position: "bottom-right",
+            }}
+            plugins={[
+              {
+                name: "Tanstack Router",
+                render: <TanStackRouterDevtoolsPanel />,
+              },
+              TanStackQueryDevtools,
+            ]}
+          />
+        ) : null}
         {/* </ThemeProvider> */}
         <Scripts />
       </body>

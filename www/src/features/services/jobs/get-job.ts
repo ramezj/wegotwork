@@ -31,10 +31,26 @@ export const getJobByIdFn = createServerFn()
             },
           },
           candidates: {
-            include: {
-              currentStage: true,
-              evaluations: true,
-              responses: true,
+            select: {
+              id: true,
+              jobId: true,
+              name: true,
+              email: true,
+              status: true,
+              createdAt: true,
+              updatedAt: true,
+              resumeKey: true,
+              currentStageId: true,
+              responses: {
+                select: {
+                  id: true,
+                  candidateId: true,
+                  questionId: true,
+                  answer: true,
+                  createdAt: true,
+                  updatedAt: true,
+                },
+              },
             },
           },
           _count: {

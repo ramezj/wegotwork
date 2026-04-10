@@ -43,7 +43,8 @@ function RouteComponent() {
           data: { jobId, pipelineId: newPipeline.id },
         });
       }
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries({ queryKey: ["job", jobId] });
+      queryClient.invalidateQueries({ queryKey: ["pipelines", data?.job?.organizationId || ""] });
       toast.success("Pipeline created and linked successfully");
     },
   });
@@ -51,7 +52,8 @@ function RouteComponent() {
   const linkPipelineMutation = useMutation({
     mutationFn: linkJobToPipelineFn,
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries({ queryKey: ["job", jobId] });
+      queryClient.invalidateQueries({ queryKey: ["pipelines", data?.job?.organizationId || ""] });
       toast.success("Job linked to pipeline successfully");
     },
     onError: (error: any) => {

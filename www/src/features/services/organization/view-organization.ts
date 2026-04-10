@@ -30,7 +30,6 @@ export const viewOrganizationBySlugFn = createServerFn()
                   status: "PUBLISHED",
                 },
                 include: {
-                  questions: true,
                   category: true,
                   office: true,
                 },

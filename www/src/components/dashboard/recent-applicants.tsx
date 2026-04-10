@@ -1,23 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { jobsBySlugQueryOptions } from "@/features/queries/jobs";
+import { recentApplicantsByOrgSlugQueryOptions } from "@/features/queries/candidates";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { formatDistanceToNow } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 
 export function RecentApplicants({ slug }: { slug: string }) {
-  const { data } = useSuspenseQuery(jobsBySlugQueryOptions(slug));
-  const jobs = data?.jobs || [];
-
-  const allApplicants =
-    jobs
-      .flatMap((job: any) =>
-        (job.candidates || []).map((app: any) => ({ ...app, jobTitle: job.title })),
-      )
-      .sort(
-        (a: any, b: any) =>
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-      )
-      .slice(0, 5) || [];
+  const { data } = useSuspenseQuery(recentApplicantsByOrgSlugQueryOptions(slug));
+  const allApplicants = data?.applicants || [];
 
   return (
     <Card className="w-full border rounded-md shadow-sm">
@@ -39,7 +28,7 @@ export function RecentApplicants({ slug }: { slug: string }) {
                 <div className="flex flex-col gap-1">
                   <p className="font-medium text-sm">{applicant.name}</p>
                   <p className="text-xs text-muted-foreground line-clamp-1">
-                    {applicant.jobTitle}
+                    {applicant.job?.title}
                   </p>
                 </div>
                 <div className="flex flex-col items-end gap-2">

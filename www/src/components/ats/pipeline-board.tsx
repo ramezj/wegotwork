@@ -23,7 +23,10 @@ export function PipelineBoard({
   const moveMutation = useMutation({
     mutationFn: moveCandidateStageFn,
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      // Candidate moves impact any views that read candidates/pipelines.
+      // Be specific to avoid refetching the entire app cache.
+      queryClient.invalidateQueries({ queryKey: ["job"] });
+      queryClient.invalidateQueries({ queryKey: ["jobs"] });
       toast.success("Candidate moved successfully");
     },
     onError: (error: any) => {

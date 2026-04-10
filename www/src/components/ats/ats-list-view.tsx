@@ -5,13 +5,13 @@ import { motion, AnimatePresence } from "motion/react";
 import { ATSFilterBar } from "./ats-filter-bar";
 import { CandidateCard } from "./candidate-card";
 import { CandidateSidebar } from "./candidate-sidebar";
-import { Candidate, CandidateResponse } from "@/types/candidate";
 import { FormFieldConfig } from "@/types/form-config";
 import { Link } from "@tanstack/react-router";
+import { type ATSCandidate } from "./types";
 
 interface ATSListViewProps {
   pipeline: any;
-  candidates: (Candidate & { responses: CandidateResponse[] })[];
+  candidates: ATSCandidate[];
   onMoveCandidate: (candidateId: string, newStageId: string) => Promise<void>;
   isMovingCandidate: boolean;
   slug: string;
@@ -33,7 +33,7 @@ export function ATSListView({
   const [activeStageId, setActiveStageId] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCandidate, setSelectedCandidate] = useState<
-    (Candidate & { responses: CandidateResponse[] }) | null
+    ATSCandidate | null
   >(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -129,7 +129,7 @@ export function ATSListView({
                     slug={slug}
                     onMove={onMoveCandidate}
                     onSelect={(
-                      selected: Candidate & { responses: CandidateResponse[] },
+                      selected: ATSCandidate,
                     ) => {
                       setSelectedCandidate(selected);
                       setIsSidebarOpen(true);

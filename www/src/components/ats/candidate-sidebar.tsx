@@ -17,13 +17,13 @@ import {
 import { Mail, FileText, Download, ExternalLink, User } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { useState } from "react";
-import { Candidate, CandidateResponse } from "@/types/candidate";
 import { Link } from "@tanstack/react-router";
 import { FormFieldConfig } from "@/types/form-config";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { type ATSCandidate } from "./types";
 
 interface CandidateSidebarProps {
-  candidate: (Candidate & { responses: CandidateResponse[] }) | null;
+  candidate: ATSCandidate | null;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   stages: any[];
