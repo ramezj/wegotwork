@@ -345,32 +345,34 @@ function App() {
         <section className="px-4">
           <div className="grid gap-px border bg-border sm:grid-cols-2 lg:grid-cols-4">
             {platformHighlights.map((item) => (
-              <article key={item.title} className="bg-secondary px-5 py-6">
-                <h2 className="text-lg font-normal tracking-tight">
-                  {item.title}
-                </h2>
-                <p className="mt-2 text-sm font-normal leading-6 text-muted-foreground">
-                  {item.description}
-                </p>
+              <article key={item.title} className="bg-secondary p-2">
+                <div className="bg-background p-4 h-full">
+                  <h2 className="text-lg font-normal tracking-tight text-primary">
+                    {item.title}
+                  </h2>
+                  <p className="mt-2 text-sm font-normal leading-6 text-muted-foreground">
+                    {item.description}
+                  </p>
+                </div>
               </article>
             ))}
           </div>
         </section>
 
         <section className="px-4">
-          <div className="border p-2">
-            <div className="bg-secondary px-6 py-8 sm:px-8 sm:py-10">
+          <div className="border p-2 bg-secondary">
+            <div className="bg-background px-6 py-8 sm:px-8 sm:py-10">
               <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="space-y-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  <p className="font-normal text-muted-foreground">
                     Why teams choose Lunics
                   </p>
-                  <h2 className="text-3xl font-semibold tracking-tight text-balance">
+                  <h2 className="text-3xl font-normal tracking-tight text-balance">
                     Built for fast hiring without the bloated recruiting stack
                   </h2>
                 </div>
                 <div className="space-y-4">
-                  <p className="text-sm font-medium leading-6 text-muted-foreground sm:text-base">
+                  <p className="font-normal leading-6 text-muted-foreground sm:text-base">
                     Lunics is a strong fit for companies that want a better
                     candidate-facing experience and a more organized internal
                     workflow at the same time.
@@ -379,7 +381,7 @@ function App() {
                     <Button asChild>
                       <Link to="/features">Explore Features</Link>
                     </Button>
-                    <Button variant="secondary" asChild>
+                    <Button variant="outline" asChild>
                       <Link to="/pricing">View Pricing</Link>
                     </Button>
                   </div>
@@ -393,16 +395,15 @@ function App() {
           <div className="border">
             <div className="grid gap-px bg-border lg:grid-cols-3">
               {faqItems.map((item) => (
-                <article
-                  key={item.question}
-                  className="bg-background px-5 py-6"
-                >
-                  <h2 className="text-lg font-semibold tracking-tight">
-                    {item.question}
-                  </h2>
-                  <p className="mt-2 text-sm font-medium leading-6 text-muted-foreground">
-                    {item.answer}
-                  </p>
+                <article key={item.question} className="bg-secondary p-2">
+                  <div className="bg-background p-5 h-full">
+                    <h2 className="text-lg font-normal tracking-tight">
+                      {item.question}
+                    </h2>
+                    <p className="mt-2 text-sm font-normal leading-6 text-muted-foreground">
+                      {item.answer}
+                    </p>
+                  </div>
                 </article>
               ))}
             </div>

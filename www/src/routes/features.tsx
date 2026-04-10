@@ -109,7 +109,7 @@ function FeaturesPage() {
             <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
               <div className="border-b bg-secondary px-6 py-8 lg:border-r lg:border-b-0 sm:px-8">
                 <div className="space-y-3">
-                  <p className="text-xs font-normal uppercase text-muted-foreground">
+                  <p className="font-normal text-muted-foreground">
                     {group.title}
                   </p>
                   <h2 className="text-3xl font-normal tracking-tight text-balance">
@@ -126,8 +126,8 @@ function FeaturesPage() {
                   const Icon = item.icon;
 
                   return (
-                    <article key={item.title} className="bg-background p-2">
-                      <div className="space-y-4 p-6 bg-secondary">
+                    <article key={item.title} className="bg-secondary p-2">
+                      <div className="space-y-4 p-5 bg-background h-full">
                         <div className="flex h-12 w-12 items-center justify-center bg-primary">
                           <Icon className="size-5 text-primary-foreground" />
                         </div>
@@ -148,8 +148,8 @@ function FeaturesPage() {
           </section>
         ))}
 
-        <section className="border p-2">
-          <div className="bg-secondary px-6 py-8 sm:px-10 sm:py-10">
+        <section className="border p-2 bg-secondary">
+          <div className="bg-background px-6 py-8 sm:px-10 sm:py-10">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="space-y-2">
                 <p className="font-normal text-muted-foreground">
@@ -160,7 +160,7 @@ function FeaturesPage() {
                 </h2>
               </div>
               <div className="flex flex-col gap-2 sm:flex-row">
-                <Button variant="secondary" asChild>
+                <Button variant="outline" asChild>
                   <Link to="/pricing">See Pricing</Link>
                 </Button>
                 <Button asChild>

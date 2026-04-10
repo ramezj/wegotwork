@@ -92,14 +92,14 @@ function PricingPage() {
             </article>
 
             <article className="bg-secondary p-2 border">
-              <div className="p-6 sm:p-8 bg-primary">
+              <div className="p-6 sm:p-8 bg-background">
                 <div className="space-y-6">
                   <div className="space-y-3">
-                    <div className="inline-flex border px-3 py-1 text-xs font-normal text-primary-foreground">
+                    <div className="inline-flex border px-3 py-1 text-xs font-normal text-primary-foreground bg-primary">
                       Enterprise
                     </div>
                     <div className="space-y-2">
-                      <h2 className="text-3xl font-normal tracking-tight text-primary-foreground">
+                      <h2 className="text-3xl font-normal tracking-tight text-primary">
                         $50
                       </h2>
                       <p className="max-w-md text-sm font-normal text-muted-foreground">
@@ -109,13 +109,13 @@ function PricingPage() {
                     </div>
                   </div>
 
-                  <div className="space-y-3 border-t border-white/15 pt-6">
+                  <div className="space-y-3 border-t pt-6">
                     {enterpriseFeatures.map((feature) => (
                       <div key={feature} className="flex items-start gap-3">
-                        <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/25 text-white">
+                        <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-primary">
                           <Check className="size-3" />
                         </div>
-                        <p className="text-sm font-normal leading-6 text-primary-foreground">
+                        <p className="text-sm font-normal leading-6 text-primary">
                           {feature}
                         </p>
                       </div>
@@ -124,7 +124,7 @@ function PricingPage() {
 
                   <Button
                     asChild
-                    variant="secondary"
+                    variant="default"
                     className="w-full sm:w-auto"
                   >
                     <a href="mailto:hello@lunics.co?subject=Enterprise%20Plan">
@@ -138,7 +138,7 @@ function PricingPage() {
           </div>
         </section>
 
-        <section className="border px-6 py-6 sm:px-8 bg-secondary">
+        <section className="border p-5 bg-secondary">
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="space-y-2">
               <p className="font-normal tracking-tight text-muted-foreground">
