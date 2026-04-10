@@ -88,7 +88,7 @@ export function AppSidebar({
 
   const location = useLocation();
   const { isMobile, setOpenMobile } = useSidebar();
-  
+
   // Clean, flawless matching based entirely on URL prefixes mapping to Sidebar paths seamlessly
   const isSidebarItemActive = (href: string) =>
     location.pathname === href || location.pathname.startsWith(`${href}/`);
@@ -98,7 +98,7 @@ export function AppSidebar({
       setOpenMobile(false);
     }
   };
-  
+
   const { data } = useSuspenseQuery({
     queryKey: ["organizations"],
     queryFn: getAllOrganizationsFn,
@@ -129,7 +129,7 @@ export function AppSidebar({
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={isSidebarItemActive(item.href)}
-                    className="cursor-pointer"
+                    className="cursor-pointer hover:bg-background data-[active=true]:bg-background border border-transparent data-[active=true]:border-input data-[active=true]:border hover:border-input transition duration-100"
                     onClick={handleItemClick}
                     asChild
                   >
@@ -146,7 +146,7 @@ export function AppSidebar({
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={isSidebarItemActive(item.href)}
-                    className="cursor-pointer"
+                    className="cursor-pointer hover:bg-background data-[active=true]:bg-background border border-transparent data-[active=true]:border-input data-[active=true]:border hover:border-input transition duration-100"
                     onClick={handleItemClick}
                     asChild
                   >
@@ -163,7 +163,7 @@ export function AppSidebar({
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={isSidebarItemActive(item.href)}
-                    className="cursor-pointer"
+                    className="cursor-pointer hover:bg-background data-[active=true]:bg-background border border-transparent data-[active=true]:border-input data-[active=true]:border hover:border-input transition duration-100"
                     onClick={handleItemClick}
                     asChild
                   >
@@ -178,7 +178,7 @@ export function AppSidebar({
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="h-(--footer-height) border-t flex items-center align-middle justify-center">
+      <SidebarFooter className="h-(--footer-height) border-t flex items-center align-middle justify-center ">
         <SidebarMenu>
           <SidebarMenuItem>
             <UserDropdown session={session} />

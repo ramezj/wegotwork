@@ -54,12 +54,12 @@ export function OrganizationCard({
         <CardContent className="space-y-4">
           <div className="flex items-center gap-2 text-sm flex-wrap">
             {organization.plan === "PREMIUM" ? (
-              <Badge variant={"outline"} className="">
+              <Badge variant={"outline"} className="bg-background">
                 <Sparkles className="h-3 w-3" />
                 Premium
               </Badge>
             ) : (
-              <Badge variant={"outline"} className="">
+              <Badge variant={"outline"} className="bg-background">
                 Free
               </Badge>
             )}
