@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { jobsBySlugQueryOptions } from "@/features/queries/jobs";
-import { ListFilter } from "lucide-react";
+import { ChevronDown, ListFilter } from "lucide-react";
 import { Job } from "generated/prisma/client";
 import { Layout } from "@/components/shared/layout";
 import { JobCardForCandidatesPage } from "@/components/job/job-card";
@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 import { z } from "zod";
 
 export const Route = createFileRoute("/$slug/_layout/candidates/")({
@@ -21,9 +22,7 @@ export const Route = createFileRoute("/$slug/_layout/candidates/")({
   }),
   component: RouteComponent,
   loader: ({ context, params }) =>
-    context.queryClient.ensureQueryData(
-      jobsBySlugQueryOptions(params.slug),
-    ),
+    context.queryClient.ensureQueryData(jobsBySlugQueryOptions(params.slug)),
   head: () => ({
     meta: [{ title: "Candidates", content: "Manage job applicants" }],
   }),
@@ -33,15 +32,15 @@ function RouteComponent() {
   const { slug } = Route.useParams();
   const { status } = Route.useSearch();
   const navigate = useNavigate();
-  const { data } = useSuspenseQuery(
-    jobsBySlugQueryOptions(slug),
-  ) as any;
+  const { data } = useSuspenseQuery(jobsBySlugQueryOptions(slug)) as any;
 
   if (!data?.success) {
     return <div>Failed to load jobs</div>;
   }
 
-  const jobs = (data.jobs || []) as (Job & { _count?: { candidates: number } })[];
+  const jobs = (data.jobs || []) as (Job & {
+    _count?: { candidates: number };
+  })[];
   const filteredJobs = status
     ? jobs.filter((job) => job.status === status)
     : jobs;
@@ -84,15 +83,17 @@ function RouteComponent() {
         <div className="flex items-center gap-2">
           <Select value={status || "ALL"} onValueChange={handleStatusChange}>
             <SelectTrigger
+              asChild
               aria-label="Filter candidates by job status"
-              className="w-9 justify-center px-0 md:w-40 md:justify-between md:px-3 [&>svg:last-child]:hidden md:[&>svg:last-child]:block"
+              className="w-9 justify-center px-0 md:w-40 md:justify-between md:px-3"
             >
-              <>
+              <Button type="button" variant="outlineSecondary">
                 <ListFilter className="size-4 md:hidden" />
                 <span className="sr-only md:not-sr-only md:flex md:flex-1 md:items-center md:text-left">
                   <SelectValue placeholder="Filter jobs" />
                 </span>
-              </>
+                <ChevronDown className="text-muted-foreground hidden size-4 opacity-50 md:block" />
+              </Button>
             </SelectTrigger>
             <SelectContent align="end">
               <SelectItem value="ALL">All Jobs</SelectItem>
@@ -107,10 +108,10 @@ function RouteComponent() {
       }
     >
       {filteredJobs.length === 0 ? (
-        <div className="flex flex-1 items-center justify-center border">
+        <div className="flex flex-1 items-center justify-center border bg-secondary">
           <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
-            <h2 className="text-xl font-semibold tracking-tight text-muted-foreground">
-              No jobs match this filter
+            <h2 className="text-xl font-semibold tracking-tight text-primary">
+              No jobs found
             </h2>
           </div>
         </div>

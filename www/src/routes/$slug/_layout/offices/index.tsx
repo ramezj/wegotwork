@@ -30,22 +30,32 @@ function OfficesPage() {
         <CreateOfficeDialog slug={slug} organizationId={organizationId} />
       }
     >
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {offices.map((office: any) => {
-          return (
-            <OfficeCard
-              key={office.id}
-              office={office}
-              onOpen={() =>
-                navigate({
-                  to: "/$slug/offices/$officeId",
-                  params: { slug, officeId: office.id },
-                })
-              }
-            />
-          );
-        })}
-      </div>
+      {offices.length === 0 ? (
+        <div className="flex flex-1 items-center justify-center border bg-secondary">
+          <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
+            <h2 className="text-xl font-semibold tracking-tight text-primary">
+              No Offices found
+            </h2>
+          </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {offices.map((office: any) => {
+            return (
+              <OfficeCard
+                key={office.id}
+                office={office}
+                onOpen={() =>
+                  navigate({
+                    to: "/$slug/offices/$officeId",
+                    params: { slug, officeId: office.id },
+                  })
+                }
+              />
+            );
+          })}
+        </div>
+      )}
     </Layout>
   );
 }
