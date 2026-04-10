@@ -36,8 +36,8 @@ function PricingPage() {
     <div className="space-y-8 pb-8">
       <Header />
       <main className="mx-auto w-full space-y-8 px-4 lg:w-[80%]">
-        <section className="border p-2">
-          <div className="bg-background px-6 py-10 text-center sm:px-10 sm:py-14">
+        <section className="border p-2 bg-secondary">
+          <div className="bg-secondary px-6 py-10 text-center sm:px-10 sm:py-14">
             <div className="animate-hero-reveal mx-auto flex max-w-3xl flex-col items-center gap-4">
               {/* <div className="inline-flex items-center gap-2 border px-4 py-1.5 text-sm font-semibold">
                 <Sparkles className="size-4" />
@@ -56,17 +56,15 @@ function PricingPage() {
 
         <section>
           <div className="grid lg:grid-cols-2">
-            <article className="border p-6 sm:p-8">
+            <article className="border p-6 sm:p-8 bg-secondary">
               <div className="space-y-6">
                 <div className="space-y-3">
-                  <p className="text-xs font-semibold text-muted-foreground">
+                  <p className="text-xs font-normal text-muted-foreground">
                     Free
                   </p>
                   <div className="space-y-2">
-                    <h2 className="text-3xl font-semibold tracking-tight">
-                      $0
-                    </h2>
-                    <p className="text-sm font-medium text-muted-foreground">
+                    <h2 className="text-3xl font-normal tracking-tight">$0</h2>
+                    <p className="text-sm font-normal text-muted-foreground">
                       For teams launching a careers page and their first hiring
                       workflow.
                     </p>
@@ -93,21 +91,18 @@ function PricingPage() {
               </div>
             </article>
 
-            <article
-              className="bg-cover bg-center p-2"
-              style={{ backgroundImage: "url('/blue.png')" }}
-            >
-              <div className="p-6 text-white bg-black/95 backdrop-blur-2xl sm:p-8">
+            <article className="bg-secondary p-2 border">
+              <div className="p-6 sm:p-8 bg-primary">
                 <div className="space-y-6">
                   <div className="space-y-3">
-                    <div className="inline-flex border border-white/20 px-3 py-1 text-xs font-semibold text-white">
+                    <div className="inline-flex border px-3 py-1 text-xs font-normal text-primary-foreground">
                       Enterprise
                     </div>
                     <div className="space-y-2">
-                      <h2 className="text-3xl font-semibold tracking-tight text-white">
+                      <h2 className="text-3xl font-normal tracking-tight text-primary-foreground">
                         $50
                       </h2>
-                      <p className="max-w-md text-sm font-medium text-white/75">
+                      <p className="max-w-md text-sm font-normal text-muted-foreground">
                         For organizations hiring across teams, offices, and more
                         advanced recruiting workflows.
                       </p>
@@ -120,7 +115,7 @@ function PricingPage() {
                         <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/25 text-white">
                           <Check className="size-3" />
                         </div>
-                        <p className="text-sm font-medium leading-6 text-white">
+                        <p className="text-sm font-normal leading-6 text-primary-foreground">
                           {feature}
                         </p>
                       </div>
@@ -143,41 +138,41 @@ function PricingPage() {
           </div>
         </section>
 
-        <section className="border px-6 py-6 sm:px-8">
+        <section className="border px-6 py-6 sm:px-8 bg-secondary">
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              <p className="font-normal tracking-tight text-muted-foreground">
                 Included
               </p>
-              <h3 className="text-2xl font-semibold tracking-tight">
+              <h3 className="text-2xl font-normal tracking-tight">
                 The essentials are built in from day one.
               </h3>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              <div className="border px-4 py-4">
-                <p className="text-sm font-semibold">Branded careers page</p>
-                <p className="mt-1 text-sm font-medium text-muted-foreground">
+              <div className="border px-4 py-4 bg-background">
+                <p className="text-sm font-normal">Branded careers page</p>
+                <p className="mt-1 text-sm font-normal text-muted-foreground">
                   Publish roles on a public page that feels clean and ready to
                   share.
                 </p>
               </div>
-              <div className="border px-4 py-4">
-                <p className="text-sm font-semibold">Hiring workflow</p>
-                <p className="mt-1 text-sm font-medium text-muted-foreground">
+              <div className="border px-4 py-4 bg-background">
+                <p className="text-sm font-normal">Hiring workflow</p>
+                <p className="mt-1 text-sm font-normal text-muted-foreground">
                   Move candidates through stages without losing context or
                   structure.
                 </p>
               </div>
-              <div className="border px-4 py-4">
-                <p className="text-sm font-semibold">Applications and forms</p>
-                <p className="mt-1 text-sm font-medium text-muted-foreground">
+              <div className="border px-4 py-4 bg-background">
+                <p className="text-sm font-normal">Applications and forms</p>
+                <p className="mt-1 text-sm font-normal text-muted-foreground">
                   Collect the right details from candidates with custom
                   questions.
                 </p>
               </div>
-              <div className="border px-4 py-4">
-                <p className="text-sm font-semibold">Team-ready foundation</p>
-                <p className="mt-1 text-sm font-medium text-muted-foreground">
+              <div className="border px-4 py-4 bg-background">
+                <p className="text-sm font-normal">Team-ready foundation</p>
+                <p className="mt-1 text-sm font-normal text-muted-foreground">
                   Offices, categories, and pipelines are already part of the
                   workflow.
                 </p>

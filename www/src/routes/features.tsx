@@ -89,8 +89,8 @@ function FeaturesPage() {
     <div className="space-y-8 pb-8">
       <Header />
       <main className="mx-auto w-full space-y-8 px-4 lg:w-[80%]">
-        <section className="border p-2">
-          <div className="bg-background px-6 py-10 text-center sm:px-10 sm:py-14">
+        <section className="border p-2 bg-secondary">
+          <div className="bg-secondary px-6 py-10 text-center sm:px-10 sm:py-14">
             <div className="animate-hero-reveal mx-auto flex max-w-3xl flex-col items-center gap-4">
               <h1 className="max-w-4xl text-4xl font-normal tracking-tight text-balance sm:text-5xl">
                 features for career pages, job posting, and applicant
@@ -107,15 +107,15 @@ function FeaturesPage() {
         {featureGroups.map((group) => (
           <section key={group.title} className="border">
             <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
-              <div className="border-b px-6 py-8 lg:border-r lg:border-b-0 sm:px-8">
+              <div className="border-b bg-secondary px-6 py-8 lg:border-r lg:border-b-0 sm:px-8">
                 <div className="space-y-3">
-                  <p className="text-xs font-semibold uppercase text-muted-foreground">
+                  <p className="text-xs font-normal uppercase text-muted-foreground">
                     {group.title}
                   </p>
-                  <h2 className="text-3xl font-semibold tracking-tight text-balance">
+                  <h2 className="text-3xl font-normal tracking-tight text-balance">
                     {group.title}
                   </h2>
-                  <p className="max-w-md text-sm font-medium leading-6 text-muted-foreground">
+                  <p className="max-w-md text-sm font-normal leading-6 text-muted-foreground">
                     {group.description}
                   </p>
                 </div>
@@ -126,19 +126,16 @@ function FeaturesPage() {
                   const Icon = item.icon;
 
                   return (
-                    <article
-                      key={item.title}
-                      className="px-6 py-8 sm:px-8 bg-white dark:bg-black"
-                    >
-                      <div className="space-y-4">
-                        <div className="flex h-12 w-12 items-center justify-center border bg-secondary">
-                          <Icon className="size-5" />
+                    <article key={item.title} className="bg-background p-2">
+                      <div className="space-y-4 p-6 bg-secondary">
+                        <div className="flex h-12 w-12 items-center justify-center bg-primary">
+                          <Icon className="size-5 text-primary-foreground" />
                         </div>
                         <div className="space-y-2">
-                          <h3 className="text-xl font-semibold tracking-tight">
+                          <h3 className="text-xl font-normal tracking-tight">
                             {item.title}
                           </h3>
-                          <p className="text-sm font-medium leading-6 text-muted-foreground">
+                          <p className="text-sm font-normal leading-6 text-muted-foreground">
                             {item.description}
                           </p>
                         </div>
@@ -155,10 +152,10 @@ function FeaturesPage() {
           <div className="bg-secondary px-6 py-8 sm:px-10 sm:py-10">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase text-muted-foreground">
+                <p className="font-normal text-muted-foreground">
                   Ready to use lunics?
                 </p>
-                <h2 className="text-3xl font-semibold tracking-tight text-balance">
+                <h2 className="text-3xl font-normal tracking-tight text-balance">
                   Launch a branded hiring flow without stitching tools together.
                 </h2>
               </div>

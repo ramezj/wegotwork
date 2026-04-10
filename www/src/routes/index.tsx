@@ -316,21 +316,24 @@ function App() {
                     <article
                       key={feature.title}
                       className={cn(
-                        "bg-secondary px-4 py-8 sm:px-6 sm:py-10",
+                        "bg-secondary p-2",
                         index < 3 && "border-b",
                         index >= 2 && "sm:border-b-0",
                         index % 2 === 0 && "sm:border-r",
                       )}
                     >
-                      <div className="mb-5 flex h-12 w-12 items-center justify-center bg-primary">
-                        <Icon className="h-6 w-6 text-primary-foreground" />
+                      {" "}
+                      <div className="bg-background p-6">
+                        <div className="mb-5 flex h-12 w-12 items-center justify-center bg-primary">
+                          <Icon className="h-6 w-6 text-primary-foreground" />
+                        </div>
+                        <h3 className="text-xl font-normal leading-tight text-primary tracking-tight">
+                          {feature.title}
+                        </h3>
+                        <p className="mt-3 text-sm font-normal leading-6 text-muted-foreground">
+                          {feature.description}
+                        </p>
                       </div>
-                      <h3 className="text-xl font-normal leading-tight text-primary tracking-tight">
-                        {feature.title}
-                      </h3>
-                      <p className="mt-3 text-sm font-normal leading-6 text-muted-foreground">
-                        {feature.description}
-                      </p>
                     </article>
                   );
                 })}
