@@ -323,7 +323,7 @@ function App() {
                       )}
                     >
                       {" "}
-                      <div className="bg-background p-6">
+                      <div className="bg-background p-6 h-full">
                         <div className="mb-5 flex h-12 w-12 items-center justify-center bg-primary">
                           <Icon className="h-6 w-6 text-primary-foreground" />
                         </div>
