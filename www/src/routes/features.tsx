@@ -127,7 +127,7 @@ function FeaturesPage() {
 
                   return (
                     <article key={item.title} className="bg-secondary p-2">
-                      <div className="space-y-4 p-5 bg-background h-full">
+                      <div className="space-y-4 p-5 bg-background border border-input h-full">
                         <div className="flex h-12 w-12 items-center justify-center bg-primary">
                           <Icon className="size-5 text-primary-foreground" />
                         </div>
@@ -149,7 +149,7 @@ function FeaturesPage() {
         ))}
 
         <section className="border p-2 bg-secondary">
-          <div className="bg-background px-6 py-8 sm:px-10 sm:py-10">
+          <div className="bg-background border border-input px-6 py-8 sm:px-10 sm:py-10">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="space-y-2">
                 <p className="font-normal text-muted-foreground">

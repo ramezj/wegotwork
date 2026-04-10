@@ -322,8 +322,7 @@ function App() {
                         index % 2 === 0 && "sm:border-r",
                       )}
                     >
-                      {" "}
-                      <div className="bg-background p-6 h-full">
+                      <div className="bg-background border border-input p-6 h-full">
                         <div className="mb-5 flex h-12 w-12 items-center justify-center bg-primary">
                           <Icon className="h-6 w-6 text-primary-foreground" />
                         </div>
@@ -346,7 +345,7 @@ function App() {
           <div className="grid gap-px border bg-border sm:grid-cols-2 lg:grid-cols-4">
             {platformHighlights.map((item) => (
               <article key={item.title} className="bg-secondary p-2">
-                <div className="bg-background p-4 h-full">
+                <div className="bg-background border border-input p-4 h-full">
                   <h2 className="text-lg font-normal tracking-tight text-primary">
                     {item.title}
                   </h2>
@@ -361,7 +360,7 @@ function App() {
 
         <section className="px-4">
           <div className="border p-2 bg-secondary">
-            <div className="bg-background px-6 py-8 sm:px-8 sm:py-10">
+            <div className="bg-background border border-input px-6 py-8 sm:px-8 sm:py-10">
               <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="space-y-3">
                   <p className="font-normal text-muted-foreground">
@@ -396,7 +395,7 @@ function App() {
             <div className="grid gap-px bg-border lg:grid-cols-3">
               {faqItems.map((item) => (
                 <article key={item.question} className="bg-secondary p-2">
-                  <div className="bg-background p-5 h-full">
+                  <div className="bg-background border border-input p-5 h-full">
                     <h2 className="text-lg font-normal tracking-tight">
                       {item.question}
                     </h2>

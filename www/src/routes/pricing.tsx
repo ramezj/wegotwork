@@ -92,7 +92,7 @@ function PricingPage() {
             </article>
 
             <article className="bg-secondary p-2 border">
-              <div className="p-6 sm:p-8 bg-background">
+              <div className="p-6 sm:p-8 bg-background border border-input">
                 <div className="space-y-6">
                   <div className="space-y-3">
                     <div className="inline-flex border px-3 py-1 text-xs font-normal text-primary-foreground bg-primary">
@@ -149,28 +149,28 @@ function PricingPage() {
               </h3>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              <div className="border px-4 py-4 bg-background">
+              <div className="border px-4 py-4 bg-background border-input">
                 <p className="text-sm font-normal">Branded careers page</p>
                 <p className="mt-1 text-sm font-normal text-muted-foreground">
                   Publish roles on a public page that feels clean and ready to
                   share.
                 </p>
               </div>
-              <div className="border px-4 py-4 bg-background">
+              <div className="border px-4 py-4 bg-background border-input">
                 <p className="text-sm font-normal">Hiring workflow</p>
                 <p className="mt-1 text-sm font-normal text-muted-foreground">
                   Move candidates through stages without losing context or
                   structure.
                 </p>
               </div>
-              <div className="border px-4 py-4 bg-background">
+              <div className="border px-4 py-4 bg-background border-input">
                 <p className="text-sm font-normal">Applications and forms</p>
                 <p className="mt-1 text-sm font-normal text-muted-foreground">
                   Collect the right details from candidates with custom
                   questions.
                 </p>
               </div>
-              <div className="border px-4 py-4 bg-background">
+              <div className="border px-4 py-4 bg-background border-input">
                 <p className="text-sm font-normal">Team-ready foundation</p>
                 <p className="mt-1 text-sm font-normal text-muted-foreground">
                   Offices, categories, and pipelines are already part of the
