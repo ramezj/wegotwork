@@ -192,7 +192,7 @@ code {
   --foreground: oklch(0.145 0 0);
   --card: #f2f1ed;
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
+  --popover: #f7f7f4;
   --popover-foreground: oklch(0.145 0 0);
   --primary: #0d0d0d;
   --primary-foreground: #f7f7f4;

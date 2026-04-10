@@ -109,8 +109,13 @@ export function EditJobForm({
     mutationFn: (data: z.infer<typeof jobSchema>) =>
       editJobBySlugFn({ data: { jobId: job.id, job: data } }),
     onSuccess: async () => {
-      await queryClient.refetchQueries(jobByIdQueryOptions(job.id));
-      await queryClient.refetchQueries(organizationBySlugQueryOptions(slug));
+      await Promise.all([
+        queryClient.refetchQueries(jobByIdQueryOptions(job.id)),
+        queryClient.invalidateQueries({ queryKey: ["jobs", slug] }),
+        queryClient.invalidateQueries({
+          queryKey: organizationBySlugQueryOptions(slug).queryKey,
+        }),
+      ]);
       toast.success("Job updated successfully");
     },
     onError: (error) => {

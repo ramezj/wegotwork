@@ -39,7 +39,7 @@ export function OrganizationSelector({
           <SidebarMenuButton
             size={"lg"}
             variant={"default"}
-            className="border bg-background hover:bg-accent hover:text-accent-foreground"
+            className="border bg-background hover:bg-background hover:text-accent-foreground"
           >
             <Avatar className="h-8 w-8 bg-primary rounded-none">
               <AvatarImage
@@ -50,7 +50,7 @@ export function OrganizationSelector({
                 {getOrganizationInitial(currentOrganization?.name)}
               </AvatarFallback>
             </Avatar>
-            <div className="grid min-w-0 flex-1 text-left text-sm leading-tight">
+            <div className="grid min-w-0 flex-1 text-left text-sm leading-tight text-primary">
               <span className="truncate font-medium">
                 {currentOrganization?.name || "Select Organization"}
               </span>

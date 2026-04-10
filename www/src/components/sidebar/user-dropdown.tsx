@@ -20,7 +20,7 @@ export default function UserDropdown({ session }: { session: Session }) {
           <SidebarMenuButton
             size={"lg"}
             variant={"outline"}
-            className="border bg-background hover:bg-accent hover:text-accent-foreground"
+            className="border bg-background text-primary hover:bg-background hover:text-primary"
           >
             <Avatar className="h-8 w-8 bg-primary rounded-none">
               <AvatarFallback className="bg-primary rounded-none text-primary-foreground font-light">
