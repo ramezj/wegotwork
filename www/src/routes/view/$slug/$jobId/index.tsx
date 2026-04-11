@@ -8,12 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { formatJobType } from "@/lib/format-job-type";
 import { Separator } from "@/components/ui/separator";
-import {
-  ArrowLeft,
-  MapPin,
-  Briefcase,
-  Paperclip,
-} from "lucide-react";
+import { ArrowLeft, MapPin, Briefcase, Paperclip } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useRef, useState, useMemo } from "react";
 import { useMutation } from "@tanstack/react-query";
@@ -58,7 +53,9 @@ function formatLocationSummary(job: any) {
     return job.country ? `Remote (${job.country})` : "Remote";
   }
 
-  const locationParts = [job.office?.name, job.city, job.country].filter(Boolean);
+  const locationParts = [job.office?.name, job.city, job.country].filter(
+    Boolean,
+  );
   const baseLocation =
     locationParts.length > 0 ? locationParts.join(", ") : "On-site";
 
@@ -391,8 +388,8 @@ function RouteComponent() {
   return (
     <div className="mx-auto w-full py-2">
       <div className="space-y-8">
-        <section className="border p-2">
-          <div className="bg-white px-6 py-8 sm:px-8 sm:py-10">
+        <section className="border">
+          <div className="bg-secondary px-6 py-8 sm:px-8 sm:py-10">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-end">
               <div className="space-y-5">
                 <div className="space-y-3">
@@ -430,7 +427,7 @@ function RouteComponent() {
 
         <div className="space-y-8">
           <section className="border">
-            <div className="bg-white px-6 py-8 sm:px-8 sm:py-10">
+            <div className="bg-secondary px-6 py-8 sm:px-8 sm:py-10">
               <div className="space-y-6">
                 <div className="space-y-2">
                   <h2 className="text-2xl font-semibold tracking-tight">
@@ -451,7 +448,7 @@ function RouteComponent() {
           </section>
           <div>
             <section className="border">
-              <div className="bg-white px-6 py-8">
+              <div className="bg-secondary px-6 py-8">
                 <div className="space-y-6">
                   <div className="space-y-2">
                     <p className="text-xs font-semibold uppercase  text-muted-foreground">
