@@ -6,6 +6,7 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { Toaster } from "@/components/ui/sonner";
+import { Measurer } from "mesurer";
 
 import TanStackQueryDevtools from "../tanstack-query/devtools";
 
@@ -61,10 +62,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           rel="stylesheet"
         />
         <HeadContent />
+        {/* {import.meta.env.DEV && <Measurer />} */}
       </head>
       <body>
         {/* <ThemeProvider theme={theme}> */}
         <Toaster position="bottom-right" />
+        {/* {process.env.NODE_ENV === "development" && <Measurer />} */}
         {children}
         {import.meta.env.DEV ? (
           <TanStackDevtools

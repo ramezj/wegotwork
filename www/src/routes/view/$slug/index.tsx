@@ -208,12 +208,12 @@ function RouteComponent() {
     selectedCategory || selectedType || selectedLocation || selectedOffice;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4">
       {/* Filters header */}
-      <div className="space-y-4">
-        <h2 className="text-xl font-medium leading-none">
+      <div>
+        {/* <h2 className="text-xl font-medium leading-none">
           Open Roles ({visibleCount})
-        </h2>
+        </h2> */}
         <div className="flex sm:flex-row flex-col gap-2">
           <div className="flex-1">
             <FilterSelect
@@ -262,7 +262,9 @@ function RouteComponent() {
       <div className="space-y-4">
         {filteredCategories.map((category: CategoryWithJob) => (
           <section key={category.id} className="space-y-4">
-            <h3 className="text-xl font-medium">{category.name}</h3>
+            <h3 className="text-xl font-medium leading-none">
+              {category.name} ({category.jobs.length})
+            </h3>
             <div className="grid gap-4">
               {category.jobs.map((job) => (
                 <JobCardForViewPage
@@ -277,8 +279,9 @@ function RouteComponent() {
 
         {showUncategorized && uncategorizedJobs.length > 0 && (
           <section className="space-y-4">
-            <h3 className="text-xl font-medium">
-              {filteredCategories.length > 0 ? "Other Openings" : "Openings"}
+            <h3 className="text-xl font-medium leading-none">
+              {filteredCategories.length > 0 ? "Other Openings" : "Openings"} (
+              {uncategorizedJobs.length})
             </h3>
             <div className="grid gap-4">
               {uncategorizedJobs.map((job) => (

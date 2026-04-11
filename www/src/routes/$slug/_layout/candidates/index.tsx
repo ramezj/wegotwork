@@ -46,8 +46,8 @@ function RouteComponent() {
     : jobs;
 
   const title = status
-    ? `${toStatusLabel(status)} Candidates (${filteredJobs.length})`
-    : `Candidates (${jobs.length})`;
+    ? `${toStatusLabel(status)} Jobs (${filteredJobs.length})`
+    : `Jobs (${jobs.length})`;
 
   const handleStatusChange = (value: string) => {
     navigate({
@@ -110,7 +110,7 @@ function RouteComponent() {
       {filteredJobs.length === 0 ? (
         <div className="flex flex-1 items-center justify-center border bg-secondary">
           <div className="flex max-w-sm flex-col items-center justify-center gap-2 text-center">
-            <h2 className="text-xl font-semibold tracking-tight text-primary">
+            <h2 className="text-xl font-medium tracking-tight text-primary">
               No jobs found
             </h2>
           </div>
