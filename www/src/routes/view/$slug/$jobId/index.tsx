@@ -266,7 +266,7 @@ type ApplicationFormValues = {
 // ---------------------------------------------------------------------------
 function RouteComponent() {
   const { slug, jobId } = Route.useParams();
-  const { data } = useSuspenseQuery(viewJobQueryOptions(jobId)) as any;
+  const { data } = useSuspenseQuery(viewJobQueryOptions(jobId));
   const [isSubmitted, setIsSubmitted] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -359,10 +359,10 @@ function RouteComponent() {
                 <CheckCircle2 className="size-10" />
               </div>
               <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase  text-muted-foreground">
+                <p className="text-xs font-normal uppercase  text-muted-foreground">
                   Application Submitted
                 </p>
-                <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+                <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
                   Your application is in.
                 </h1>
                 <p className="mx-auto max-w-xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
@@ -386,18 +386,18 @@ function RouteComponent() {
   const locationLabel =
     job.locationMode.charAt(0) + job.locationMode.slice(1).toLowerCase();
   return (
-    <div className="mx-auto w-full py-2">
-      <div className="space-y-8">
+    <div className="mx-auto w-full">
+      <div className="space-y-4">
         <section className="border">
-          <div className="bg-secondary px-6 py-8 sm:px-8 sm:py-10">
+          <div className="bg-secondary p-8">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-end">
               <div className="space-y-5">
                 <div className="space-y-3">
                   <div className="space-y-3">
-                    <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+                    <h1 className="max-w-4xl text-4xl font-normal tracking-tight text-balance sm:text-4xl">
                       {job.title}
                     </h1>
-                    <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
+                    <p className="max-w-2xl text-sm font-normal leading-6 text-muted-foreground sm:text-base">
                       Apply to join {job.organization.name} and help build the
                       next chapter of the team.
                     </p>
@@ -406,55 +406,56 @@ function RouteComponent() {
 
                 <div className="flex flex-wrap gap-2">
                   {job.category && (
-                    <Badge variant="secondary">{job.category.name}</Badge>
+                    <Badge variant="default">{job.category.name}</Badge>
                   )}
-                  <Badge variant="secondary">
-                    <Briefcase className="size-3" />
+                  <Badge variant="default">
+                    <Briefcase />
                     {typeLabel}
                   </Badge>
-                  <Badge variant="secondary">
-                    <MapPin className="size-3" />
+                  <Badge variant="default">
+                    <MapPin />
                     {locationLabel}
                   </Badge>
                   {job.office && (
-                    <Badge variant="secondary">{job.office.name}</Badge>
+                    <Badge variant="default">{job.office.name}</Badge>
                   )}
                 </div>
               </div>
             </div>
           </div>
         </section>
-
-        <div className="space-y-8">
-          <section className="border">
-            <div className="bg-secondary px-6 py-8 sm:px-8 sm:py-10">
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <h2 className="text-2xl font-semibold tracking-tight">
-                    Job Description
-                  </h2>
+        <div className="space-y-4">
+          {job.description && (
+            <section className="border">
+              <div className="bg-secondary px-6 py-8 sm:px-8 sm:py-10">
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <h2 className="text-2xl font-normal tracking-tight">
+                      Job Description
+                    </h2>
+                  </div>
+                  <Separator />
+                  <div
+                    className="wysiwyg-content text-sm text-black sm:text-base"
+                    dangerouslySetInnerHTML={{
+                      __html: isRichTextEmpty(job.description)
+                        ? "<p>No description provided.</p>"
+                        : sanitizeRichTextHtml(job.description),
+                    }}
+                  />
                 </div>
-                <Separator />
-                <div
-                  className="wysiwyg-content text-sm text-black sm:text-base"
-                  dangerouslySetInnerHTML={{
-                    __html: isRichTextEmpty(job.description)
-                      ? "<p>No description provided.</p>"
-                      : sanitizeRichTextHtml(job.description),
-                  }}
-                />
               </div>
-            </div>
-          </section>
+            </section>
+          )}
           <div>
             <section className="border">
               <div className="bg-secondary px-6 py-8">
                 <div className="space-y-6">
                   <div className="space-y-2">
-                    <p className="text-xs font-semibold uppercase  text-muted-foreground">
+                    <p className="text-xs font-normal uppercase  text-muted-foreground">
                       Apply
                     </p>
-                    <h2 className="text-2xl font-semibold tracking-tight">
+                    <h2 className="text-2xl font-normal tracking-tight">
                       Apply for this role
                     </h2>
                     <p className="text-sm font-medium leading-6 text-muted-foreground">
