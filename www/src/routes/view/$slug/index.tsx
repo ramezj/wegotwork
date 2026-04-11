@@ -208,99 +208,97 @@ function RouteComponent() {
     selectedCategory || selectedType || selectedLocation || selectedOffice;
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-4 w-full">
-      <div className="w-full space-y-4">
-        <div className="flex flex-col space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-medium leading-none">
-              Open Roles ({visibleCount})
-            </h2>
-          </div>
-
-          <div className="flex sm:flex-row flex-col gap-2">
-            <div className="flex-1">
-              <FilterSelect
-                label="Category"
-                options={categories
-                  .filter((cat: CategoryWithJob) => cat.jobs.length > 0)
-                  .map((cat: CategoryWithJob) => ({
-                    value: cat.id,
-                    label: cat.name,
-                  }))}
-                selected={selectedCategory}
-                onSelect={setSelectedCategory}
-              />
-            </div>
-            <div className="flex-1">
-              <FilterSelect
-                label="Employment Type"
-                options={EMPLOYMENT_TYPES}
-                selected={selectedType}
-                onSelect={setSelectedType}
-              />
-            </div>
-            <div className="flex-1">
-              <FilterSelect
-                label="Location"
-                options={LOCATION_MODES}
-                selected={selectedLocation}
-                onSelect={setSelectedLocation}
-              />
-            </div>
-            <div className="flex-1">
-              <FilterSelect
-                label="Office"
-                options={offices.map((office) => ({
-                  value: office.id,
-                  label: office.name,
+    <div className="space-y-8">
+      {/* Filters header */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-medium leading-none">
+          Open Roles ({visibleCount})
+        </h2>
+        <div className="flex sm:flex-row flex-col gap-2">
+          <div className="flex-1">
+            <FilterSelect
+              label="Category"
+              options={categories
+                .filter((cat: CategoryWithJob) => cat.jobs.length > 0)
+                .map((cat: CategoryWithJob) => ({
+                  value: cat.id,
+                  label: cat.name,
                 }))}
-                selected={selectedOffice}
-                onSelect={setSelectedOffice}
-              />
-            </div>
+              selected={selectedCategory}
+              onSelect={setSelectedCategory}
+            />
+          </div>
+          <div className="flex-1">
+            <FilterSelect
+              label="Employment Type"
+              options={EMPLOYMENT_TYPES}
+              selected={selectedType}
+              onSelect={setSelectedType}
+            />
+          </div>
+          <div className="flex-1">
+            <FilterSelect
+              label="Location"
+              options={LOCATION_MODES}
+              selected={selectedLocation}
+              onSelect={setSelectedLocation}
+            />
+          </div>
+          <div className="flex-1">
+            <FilterSelect
+              label="Office"
+              options={offices.map((office) => ({
+                value: office.id,
+                label: office.name,
+              }))}
+              selected={selectedOffice}
+              onSelect={setSelectedOffice}
+            />
           </div>
         </div>
+      </div>
 
-        <div className="space-y-4">
-          {filteredCategories.map((category: CategoryWithJob) => (
-            <section key={category.id} className="space-y-4">
-              <h3 className="text-xl font-medium">{category.name}</h3>
-              <div className="grid gap-4">
-                {category.jobs.map((job) => (
-                  <JobCardForViewPage
-                    key={job.id}
-                    slug={slug}
-                    job={{ ...job, category } as JobWithCategory}
-                  />
-                ))}
-              </div>
-            </section>
-          ))}
-          {showUncategorized && uncategorizedJobs.length > 0 && (
-            <section className="space-y-4">
-              <h3 className="text-xl font-medium">
-                {filteredCategories.length > 0 ? "Other Openings" : "Openings"}
-              </h3>
-              <div className="grid gap-4">
-                {uncategorizedJobs.map((job) => (
-                  <JobCardForViewPage
-                    key={job.id}
-                    slug={slug}
-                    job={job as JobWithCategory}
-                  />
-                ))}
-              </div>
-            </section>
-          )}
+      {/* Job listings */}
+      <div className="space-y-8">
+        {filteredCategories.map((category: CategoryWithJob) => (
+          <section key={category.id} className="space-y-4">
+            <h3 className="text-xl font-medium">{category.name}</h3>
+            <div className="grid gap-4">
+              {category.jobs.map((job) => (
+                <JobCardForViewPage
+                  key={job.id}
+                  slug={slug}
+                  job={{ ...job, category } as JobWithCategory}
+                />
+              ))}
+            </div>
+          </section>
+        ))}
 
-          {visibleCount === 0 && (
-            <p className="text-muted-foreground text-center py-12">
-              {hasActiveFilters
-                ? "No jobs match the selected filters."
-                : "No job openings found."}
-            </p>
-          )}
-        </div>
+        {showUncategorized && uncategorizedJobs.length > 0 && (
+          <section className="space-y-4">
+            <h3 className="text-xl font-medium">
+              {filteredCategories.length > 0 ? "Other Openings" : "Openings"}
+            </h3>
+            <div className="grid gap-4">
+              {uncategorizedJobs.map((job) => (
+                <JobCardForViewPage
+                  key={job.id}
+                  slug={slug}
+                  job={job as JobWithCategory}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {visibleCount === 0 && (
+          <p className="text-muted-foreground text-center py-12">
+            {hasActiveFilters
+              ? "No jobs match the selected filters."
+              : "No job openings found."}
+          </p>
+        )}
       </div>
     </div>
   );

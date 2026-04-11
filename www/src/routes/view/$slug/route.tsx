@@ -10,16 +10,17 @@ function RouteComponent() {
   const { slug } = Route.useParams();
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-screen pb-8 pt-6">
+      {/* Sticky nav — pt-6 on outer matches the top-6 initial offset visually */}
       <div className="lg:w-[80%] w-full mx-auto sticky top-6 z-50 px-4">
         <PublicHeader slug={slug} />
       </div>
-      <main className="flex-1 flex flex-col items-center py-12 space-y-4 w-full">
-        <div className="w-full lg:w-[80%] px-4 mx-auto space-y-4">
-          <OrganizationHeader slug={slug} />
-          <Outlet />
-        </div>
-      </main>
+
+      {/* Explicit mt-8 ensures a reliable space-y-8 gap below the header */}
+      <div className="w-full lg:w-[80%] px-4 mx-auto space-y-8 mt-8">
+        <OrganizationHeader slug={slug} />
+        <Outlet />
+      </div>
     </div>
   );
 }
