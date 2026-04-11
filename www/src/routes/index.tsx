@@ -247,9 +247,9 @@ function App() {
                   The #1 hiring software for fast-paced teams
                 </div> */}
                 <h1 className="text-[35px] leading-none text-[#0d0d0d] dark:text-white font-normal tracking-tighter text-balance sm:text-4xl lg:text-5xl 2xl:text-6xl">
-                  you're building fast,
+                  You're building fast,
                   <span className="block text-[#0d0d0d] dark:text-white font-normal tracking-tighter">
-                    now let's hire fast too.
+                    Now let's hire fast too.
                   </span>
                 </h1>
                 {/* <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
@@ -261,14 +261,14 @@ function App() {
                   <Button
                     variant={"outline"}
                     asChild
-                    className="w-full sm:w-60 lowercase"
+                    className="w-full sm:w-60 "
                   >
                     <Link to="/auth">Start Hiring</Link>
                   </Button>
                   <Button
                     variant={"default"}
                     asChild
-                    className="w-full sm:w-60 lowercase"
+                    className="w-full sm:w-60 "
                   >
                     <a href={demoUrl} target="_blank" rel="noreferrer">
                       See Demo

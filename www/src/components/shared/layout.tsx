@@ -23,7 +23,7 @@ export function Layout({
         {/* Sticky Page Header */}
         <div className="sticky h-(--header-height) top-0 z-20 border-b bg-background/95 items-center content-center px-4 backdrop-blur supports-backdrop-filter:bg-background/60">
           <div className={pageHeaderRowClass}>
-            <h1 className={pageTitleClass}>{title}</h1>
+            <h1 className={cn(pageTitleClass, "font-medium")}>{title}</h1>
             <div className="flex items-center gap-2">{primaryButton}</div>
           </div>
         </div>

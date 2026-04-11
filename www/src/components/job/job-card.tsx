@@ -33,7 +33,7 @@ export function JobCard({ job, slug }: { job: JobWithCategory; slug: string }) {
           <div className="flex items-center justify-between">
             {/* job information */}
             <div className="flex flex-col gap-2 flex-1 min-w-0">
-              <p className="font-bold text-lg truncate text-balance">
+              <p className="font-medium text-lg truncate text-balance">
                 {job.title}
               </p>
               <div className="flex flex-row flex-wrap gap-1">
@@ -54,15 +54,15 @@ export function JobCard({ job, slug }: { job: JobWithCategory; slug: string }) {
             </div>
 
             {/* view job button */}
-            {/* <div className="sm:block hidden shrink-0">
+            <div className="sm:block hidden shrink-0">
               <div className="px-2">
-                <Button className="lowercase">
+                <Button className="font-medium">
                   View Job
-                  <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
+                  {/* <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" /> */}
                 </Button>
               </div>
-            </div> */}
-            <div className="shrink-0">
+            </div>
+            <div className="shrink-0 sm:hidden block">
               <div className="px-2">
                 <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:rotate-0 -rotate-45" />
               </div>
@@ -119,7 +119,7 @@ export function JobCardForViewPage({
             </div>
             <div className="sm:block hidden shrink-0">
               <div className="px-2">
-                <Button className="">
+                <Button className="font-medium">
                   View Job
                   {/* <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" /> */}
                 </Button>
@@ -158,7 +158,7 @@ export function JobCardForCandidatesPage({
           <div className="flex items-center justify-between">
             {/* job information */}
             <div className="flex flex-col gap-2 flex-1 min-w-0">
-              <p className="font-bold text-lg truncate text-balance">
+              <p className="font-medium text-lg truncate text-balance">
                 {job.title}
               </p>
               <div className="flex flex-row flex-wrap gap-1">
@@ -176,7 +176,7 @@ export function JobCardForCandidatesPage({
             </div>
             <div className="">
               <div className="px-2">
-                <Button className="">
+                <Button className="font-medium">
                   {candidates} {candidates === 1 ? "Candidate" : "Candidates"}
                   <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:rotate-0 -rotate-45" />
                 </Button>
@@ -225,7 +225,7 @@ export function JobCardForLandingPage({
             {/* view job button */}
             <div className="sm:block hidden shrink-0">
               <div className="px-2">
-                <Button className="">
+                <Button className="font-medium">
                   View Job
                   {/* <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" /> */}
                 </Button>

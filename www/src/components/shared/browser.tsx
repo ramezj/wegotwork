@@ -34,7 +34,7 @@ export function Browser({ jobs }: BrowserProps) {
           </Avatar>
           <div className="space-y-4">
             <h3 className="text-3xl md:text-4xl font-normal tracking-tighter leading-none text-primary">
-              lunics
+              Lunics
             </h3>
             <p className="text-muted-foreground text-base text-balance font-normal leading-none ">
               Explore our open positions and join our team in building the

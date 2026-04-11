@@ -113,7 +113,7 @@ function FilterSelect({
         <Button
           type="button"
           variant="outlineSecondary"
-          className="flex items-center justify-between"
+          className="flex items-center justify-between font-medium"
         >
           <SelectValue>{selectedLabel ?? label}</SelectValue>
           <ChevronDown className="size-4" />
