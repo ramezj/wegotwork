@@ -26,11 +26,11 @@ function PipelinesPage() {
   const { data: pipelines } = useSuspenseQuery(
     pipelinesQueryOptions(organizationId || ""),
   );
-
+  const title = `Hiring Pipelines (${pipelines?.length})`;
   return (
     <Layout
       variant="header"
-      title="Hiring Pipelines"
+      title={title}
       primaryButton={
         <Button asChild>
           <Link

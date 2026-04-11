@@ -259,7 +259,7 @@ function RouteComponent() {
       </div>
 
       {/* Job listings */}
-      <div className="space-y-8">
+      <div className="space-y-4">
         {filteredCategories.map((category: CategoryWithJob) => (
           <section key={category.id} className="space-y-4">
             <h3 className="text-xl font-medium">{category.name}</h3>
