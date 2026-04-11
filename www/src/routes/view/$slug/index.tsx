@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/select";
 import { useState } from "react";
 import { buildSeo, metaDescription } from "@/lib/seo";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, ChevronsUpDown } from "lucide-react";
 
 export const Route = createFileRoute("/view/$slug/")({
   component: RouteComponent,
@@ -49,19 +51,22 @@ export const Route = createFileRoute("/view/$slug/")({
               mainEntity: {
                 "@type": "ItemList",
                 numberOfItems: publishedJobs.length,
-                itemListElement: publishedJobs.slice(0, 20).map((job, index) => ({
-                  "@type": "ListItem",
-                  position: index + 1,
-                  name: job.title,
-                  url: `https://lunics.co/view/${params.slug}/${job.id}`,
-                })),
+                itemListElement: publishedJobs
+                  .slice(0, 20)
+                  .map((job, index) => ({
+                    "@type": "ListItem",
+                    position: index + 1,
+                    name: job.title,
+                    url: `https://lunics.co/view/${params.slug}/${job.id}`,
+                  })),
               },
             },
             {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: organization.name,
-              url: organization.website || `https://lunics.co/view/${params.slug}`,
+              url:
+                organization.website || `https://lunics.co/view/${params.slug}`,
               description,
             },
           ]
@@ -104,8 +109,15 @@ function FilterSelect({
       value={selected ?? "__all__"}
       onValueChange={(value) => onSelect(value === "__all__" ? null : value)}
     >
-      <SelectTrigger className="w-full font-semibold">
-        <SelectValue>{selectedLabel ?? label}</SelectValue>
+      <SelectTrigger asChild className="w-full font-semibold">
+        <Button
+          type="button"
+          variant="outlineSecondary"
+          className="flex items-center justify-between"
+        >
+          <SelectValue>{selectedLabel ?? label}</SelectValue>
+          <ChevronDown className="size-4" />
+        </Button>
       </SelectTrigger>
       <SelectContent align="start">
         <SelectItem className="font-semibold" value="__all__">

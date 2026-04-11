@@ -117,15 +117,15 @@ export function JobCardForViewPage({
                 </Badge> */}
               </div>
             </div>
-            {/* <div className="sm:block hidden shrink-0">
+            <div className="sm:block hidden shrink-0">
               <div className="px-2">
                 <Button className="">
                   View Job
-                  <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
+                  {/* <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" /> */}
                 </Button>
               </div>
-            </div> */}
-            <div className="shrink-0">
+            </div>
+            <div className="shrink-0 sm:hidden block">
               <div className="px-2">
                 <ArrowRight className="h-5 w-5 text-foreground group-hover:text-primary shrink-0 duration-100 group-hover:rotate-0 -rotate-45" />
               </div>
@@ -223,15 +223,15 @@ export function JobCardForLandingPage({
             </div>
 
             {/* view job button */}
-            {/* <div className="sm:block hidden shrink-0">
+            <div className="sm:block hidden shrink-0">
               <div className="px-2">
-                <Button className="lowercase">
+                <Button className="">
                   View Job
-                  <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" />
+                  {/* <ArrowRight className="h-5 w-5 shrink-0 duration-100 group-hover:-rotate-45" /> */}
                 </Button>
               </div>
-            </div> */}
-            <div className="shrink-0">
+            </div>
+            <div className="shrink-0 sm:hidden block">
               <div className="px-2">
                 <ArrowRight className="h-5 w-5 text-primary shrink-0 duration-100 group-hover:rotate-0 -rotate-45" />
               </div>
