@@ -109,14 +109,18 @@ function RichTextEditorInner({
         <ToolbarButton
           active={editor?.isActive("bold")}
           onClick={() => editor?.chain().focus().toggleBold().run()}
-          disabled={disabled || !editor?.can().chain().focus().toggleBold().run()}
+          disabled={
+            disabled || !editor?.can().chain().focus().toggleBold().run()
+          }
         >
           <Bold className="size-4" />
         </ToolbarButton>
         <ToolbarButton
           active={editor?.isActive("italic")}
           onClick={() => editor?.chain().focus().toggleItalic().run()}
-          disabled={disabled || !editor?.can().chain().focus().toggleItalic().run()}
+          disabled={
+            disabled || !editor?.can().chain().focus().toggleItalic().run()
+          }
         >
           <Italic className="size-4" />
         </ToolbarButton>
@@ -138,14 +142,18 @@ function RichTextEditorInner({
         </ToolbarButton>
         <ToolbarButton
           active={editor?.isActive("heading", { level: 2 })}
-          onClick={() => editor?.chain().focus().toggleHeading({ level: 2 }).run()}
+          onClick={() =>
+            editor?.chain().focus().toggleHeading({ level: 2 }).run()
+          }
           disabled={disabled}
         >
           <Heading2 className="size-4" />
         </ToolbarButton>
         <ToolbarButton
           active={editor?.isActive("heading", { level: 3 })}
-          onClick={() => editor?.chain().focus().toggleHeading({ level: 3 }).run()}
+          onClick={() =>
+            editor?.chain().focus().toggleHeading({ level: 3 }).run()
+          }
           disabled={disabled}
         >
           <Heading3 className="size-4" />
@@ -195,7 +203,7 @@ function RichTextEditorInner({
           <EditorContent
             editor={editor}
             className={cn(
-              "wysiwyg-editor",
+              "wysiwyg-editor bg-background",
               disabled &&
                 "pointer-events-none cursor-not-allowed bg-muted/20 opacity-80",
             )}
@@ -234,7 +242,8 @@ function ToolbarButton({
       size="icon"
       className={cn(
         "size-8",
-        active && "bg-foreground text-background hover:bg-foreground/90 hover:text-background",
+        active &&
+          "bg-foreground text-background hover:bg-foreground/90 hover:text-background",
       )}
       disabled={disabled}
       onMouseDown={(event) => {
