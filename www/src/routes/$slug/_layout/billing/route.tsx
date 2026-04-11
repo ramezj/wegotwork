@@ -6,6 +6,9 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 
 export const Route = createFileRoute("/$slug/_layout/billing")({
   component: RouteComponent,
+  head: () => ({
+    meta: [{ title: "Billing", content: "Manage billing" }],
+  }),
 });
 
 function RouteComponent() {

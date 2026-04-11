@@ -9,6 +9,9 @@ import { PipelineCard } from "@/components/ats/pipeline-card";
 
 export const Route = createFileRoute("/$slug/_layout/pipelines/")({
   component: PipelinesPage,
+  head: () => ({
+    meta: [{ title: "Pipelines", content: "Manage hiring pipelines" }],
+  }),
 });
 
 function PipelinesPage() {

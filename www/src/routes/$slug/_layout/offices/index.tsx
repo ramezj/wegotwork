@@ -8,6 +8,9 @@ import { OfficeCard } from "@/components/office/office-card";
 
 export const Route = createFileRoute("/$slug/_layout/offices/")({
   component: OfficesPage,
+  head: () => ({
+    meta: [{ title: "Offices", content: "Manage offices" }],
+  }),
 });
 
 function OfficesPage() {
