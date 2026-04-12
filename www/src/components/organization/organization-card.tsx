@@ -42,7 +42,7 @@ export function OrganizationCard({
                 </AvatarFallback>
               </Avatar>
               <div className="flex-1 min-w-0">
-                <CardTitle className="text-xl truncate group-hover:text-primary transition-colors font-semibold">
+                <CardTitle className="text-xl truncate group-hover:text-primary transition-colors font-medium">
                   {organization.name}
                 </CardTitle>
               </div>
@@ -68,7 +68,7 @@ export function OrganizationCard({
         </CardContent>
 
         <CardFooter className="border-t">
-          <div className="flex items-center text-sm font-semibold text-primary">
+          <div className="flex items-center text-sm font-normal text-primary">
             View Organization
           </div>
         </CardFooter>

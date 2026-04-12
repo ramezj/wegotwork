@@ -129,7 +129,7 @@ export function AppSidebar({
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={isSidebarItemActive(item.href)}
-                    className="cursor-pointer hover:bg-background data-[active=true]:bg-background border border-transparent data-[active=true]:border-input data-[active=true]:border hover:border-input transition duration-100"
+                    className="cursor-pointer hover:bg-background data-[active=true]:bg-background active:bg-background focus:bg-background border border-transparent data-[active=true]:border-input data-[active=true]:border hover:border-input transition duration-100"
                     onClick={handleItemClick}
                     asChild
                   >
@@ -146,7 +146,7 @@ export function AppSidebar({
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={isSidebarItemActive(item.href)}
-                    className="cursor-pointer hover:bg-background data-[active=true]:bg-background border border-transparent data-[active=true]:border-input data-[active=true]:border hover:border-input transition duration-100"
+                    className="cursor-pointer hover:bg-background data-[active=true]:bg-background active:bg-background focus:bg-background border border-transparent data-[active=true]:border-input data-[active=true]:border hover:border-input transition duration-100"
                     onClick={handleItemClick}
                     asChild
                   >
@@ -163,7 +163,7 @@ export function AppSidebar({
                 <SidebarMenuItem key={index}>
                   <SidebarMenuButton
                     isActive={isSidebarItemActive(item.href)}
-                    className="cursor-pointer hover:bg-background data-[active=true]:bg-background border border-transparent data-[active=true]:border-input data-[active=true]:border hover:border-input transition duration-100"
+                    className="cursor-pointer hover:bg-background data-[active=true]:bg-background active:bg-background focus:bg-background border border-transparent data-[active=true]:border-input data-[active=true]:border hover:border-input transition duration-100"
                     onClick={handleItemClick}
                     asChild
                   >

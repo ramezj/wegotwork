@@ -29,7 +29,7 @@ function RouteComponent() {
         <div className="mx-auto py-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="space-y-3">
-              <h1 className="text-3xl tracking-tight font-semibold ">
+              <h1 className="text-3xl tracking-tight font-normal">
                 Your Organizations
               </h1>
             </div>
@@ -46,10 +46,10 @@ function RouteComponent() {
           {/* Stats Bar */}
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-2xl tracking-tight font-semibold ">
+              <h2 className="text-2xl tracking-tight font-normal ">
                 All Organizations
               </h2>
-              <p className="text-sm font-semibold text-muted-foreground mt-1">
+              <p className="text-sm font-normal text-muted-foreground mt-1">
                 {data.organizations.length}{" "}
                 {data.organizations.length === 1
                   ? "organization"
