@@ -19,7 +19,7 @@ export function Browser({ jobs }: BrowserProps) {
         </div>
         <div className="flex-1">
           <div className="bg-background border border-input py-1 text-xs text-primary font-normal text-start p-2 rounded-none">
-            careers.lunics.co
+            careers.lunics.co/demo
           </div>
         </div>
       </div>
