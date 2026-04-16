@@ -391,16 +391,12 @@ function RouteComponent() {
         <section className="border rounded-md">
           <div className="bg-secondary p-8">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-end">
-              <div className="space-y-5">
-                <div className="space-y-3">
-                  <div className="space-y-3">
+              <div className="space-y-2">
+                <div className="space-y-2">
+                  <div className="space-y-2">
                     <h1 className="max-w-4xl text-4xl font-normal tracking-tight text-balance sm:text-4xl">
                       {job.title}
                     </h1>
-                    <p className="max-w-2xl text-sm font-normal leading-6 text-muted-foreground sm:text-base">
-                      Apply to join {job.organization.name} and help build the
-                      next chapter of the team.
-                    </p>
                   </div>
                 </div>
 
@@ -449,19 +445,16 @@ function RouteComponent() {
           )}
           <div>
             <section className="border rounded-md">
-              <div className="bg-secondary px-6 py-8">
-                <div className="space-y-6">
+              <div className="bg-secondary p-8">
+                <div className="space-y-4">
                   <div className="space-y-2">
-                    <p className="text-xs font-normal uppercase  text-muted-foreground">
-                      Apply
-                    </p>
                     <h2 className="text-2xl font-normal tracking-tight">
                       Apply for this role
                     </h2>
-                    <p className="text-sm font-medium leading-6 text-muted-foreground">
+                    {/* <p className="text-sm font-medium leading-6 text-muted-foreground">
                       Share your details and we&apos;ll send your application
                       directly to the hiring team.
-                    </p>
+                    </p> */}
                   </div>
                   <Separator />
                   <form
@@ -689,11 +682,6 @@ function RouteComponent() {
                     >
                       {isPending ? "Submitting..." : "Submit application"}
                     </Button>
-
-                    <p className="text-center text-xs text-muted-foreground">
-                      By submitting you agree to our privacy policy and terms of
-                      service.
-                    </p>
                   </form>
                 </div>
               </div>
