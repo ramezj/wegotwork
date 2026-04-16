@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/$slug/_layout/candidates/")({
   validateSearch: z.object({
@@ -23,9 +24,14 @@ export const Route = createFileRoute("/$slug/_layout/candidates/")({
   component: RouteComponent,
   loader: ({ context, params }) =>
     context.queryClient.ensureQueryData(jobsBySlugQueryOptions(params.slug)),
-  head: () => ({
-    meta: [{ title: "Candidates", content: "Manage job applicants" }],
-  }),
+  head: () => {
+    return buildSeo({
+      title: "Candidates",
+      description: "",
+      path: "",
+      noIndex: true,
+    });
+  },
 });
 
 function RouteComponent() {

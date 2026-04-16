@@ -6,9 +6,21 @@ import { JobWithCategory } from "@/types/job/job";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { pipelinesQueryOptions } from "@/features/queries/ats";
 import { officesQueryOptions } from "@/features/queries/offices";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/$slug/_layout/jobs/$jobId")({
   component: RouteComponent,
+  loader: ({ context, params }) =>
+    context.queryClient.ensureQueryData(jobByIdQueryOptions(params.jobId)),
+  head: ({ loaderData }) => {
+    const title = loaderData?.job?.title;
+    return buildSeo({
+      title: title ?? "Edit Job",
+      description: "",
+      path: "",
+      noIndex: true,
+    });
+  },
 });
 
 function RouteComponent() {
@@ -25,7 +37,9 @@ function RouteComponent() {
   const { data: pipelines } = useSuspenseQuery(
     pipelinesQueryOptions(organizationId),
   );
-  const { data: offices } = useSuspenseQuery(officesQueryOptions(organizationId));
+  const { data: offices } = useSuspenseQuery(
+    officesQueryOptions(organizationId),
+  );
 
   return (
     <div>

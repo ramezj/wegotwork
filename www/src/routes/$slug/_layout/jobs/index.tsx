@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ListFilter } from "lucide-react";
 import { z } from "zod";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/$slug/_layout/jobs/")({
   validateSearch: z.object({
@@ -25,9 +26,14 @@ export const Route = createFileRoute("/$slug/_layout/jobs/")({
       jobsBySlugQueryOptions(params.slug),
     );
   },
-  head: () => ({
-    meta: [{ title: "Jobs", content: "Jobs" }, { name: "Jobs" }],
-  }),
+  head: () => {
+    return buildSeo({
+      title: "Jobs",
+      description: "",
+      path: "",
+      noIndex: true,
+    });
+  },
 });
 
 function RouteComponent() {

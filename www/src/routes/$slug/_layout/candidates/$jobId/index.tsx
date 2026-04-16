@@ -21,9 +21,22 @@ import { Layout } from "@/components/shared/layout";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { ATSListView } from "@/components/ats/ats-list-view";
+import { jobByIdQueryOptions } from "@/features/queries/jobs";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/$slug/_layout/candidates/$jobId/")({
   component: RouteComponent,
+  loader: ({ context, params }) =>
+    context.queryClient.ensureQueryData(jobByIdQueryOptions(params.jobId)),
+  head: ({ loaderData }) => {
+    const title = loaderData?.job?.title;
+    return buildSeo({
+      title: title ?? "Candidates",
+      description: "",
+      path: "",
+      noIndex: true,
+    });
+  },
 });
 
 function RouteComponent() {
