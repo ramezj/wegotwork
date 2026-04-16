@@ -19,7 +19,7 @@ export function Browser({ jobs }: BrowserProps) {
         </div>
         <div className="flex-1">
           <div className="bg-background border border-input py-1 text-xs text-primary font-normal text-start p-2 rounded-md">
-            careers.lunics.co/demo
+            careers.minstra.co/demo
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@ export function Browser({ jobs }: BrowserProps) {
           </Avatar>
           <div className="space-y-4">
             <h3 className="text-3xl md:text-4xl font-normal tracking-tighter leading-none text-primary">
-              Lunics
+              Minstra
             </h3>
             <p className="text-muted-foreground text-base text-balance font-normal leading-none ">
               Explore our open positions and join our team in building the

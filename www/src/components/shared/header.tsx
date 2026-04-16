@@ -31,7 +31,7 @@ export default function Header({
     //   </Link>
     // </Button>
     <Link to="/" viewTransition className="flex mr-1 items-center">
-      <span className="text-xl font-medium tracking-tight">Lunics</span>
+      <span className="text-xl font-medium tracking-tight">Minstra</span>
     </Link>
   );
 
