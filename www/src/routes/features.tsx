@@ -89,7 +89,7 @@ function FeaturesPage() {
     <div className="space-y-8 pb-8">
       <Header />
       <main className="mx-auto w-full space-y-8 px-4 lg:w-[80%]">
-        <section className="border p-2 bg-secondary">
+        <section className="border p-2 bg-secondary rounded-md">
           <div className="bg-secondary px-6 py-10 text-center sm:px-10 sm:py-14">
             <div className="animate-hero-reveal mx-auto flex max-w-3xl flex-col items-center gap-4">
               <h1 className="max-w-4xl text-4xl font-normal tracking-tight text-balance sm:text-5xl">
@@ -105,7 +105,7 @@ function FeaturesPage() {
         </section>
 
         {featureGroups.map((group) => (
-          <section key={group.title} className="border">
+          <section key={group.title} className="border rounded-md">
             <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
               <div className="border-b bg-secondary px-6 py-8 lg:border-r lg:border-b-0 sm:px-8">
                 <div className="space-y-3">
@@ -127,7 +127,7 @@ function FeaturesPage() {
 
                   return (
                     <article key={item.title} className="bg-secondary p-2">
-                      <div className="space-y-4 p-5 bg-background border border-input h-full">
+                      <div className="space-y-4 p-5 bg-background border border-input h-full rounded-md">
                         <div className="flex h-12 w-12 items-center justify-center bg-primary">
                           <Icon className="size-5 text-primary-foreground" />
                         </div>
@@ -148,8 +148,8 @@ function FeaturesPage() {
           </section>
         ))}
 
-        <section className="border p-2 bg-secondary">
-          <div className="bg-background border border-input px-6 py-8 sm:px-10 sm:py-10">
+        <section className="border p-2 bg-secondary rounded-md">
+          <div className="bg-background border border-input px-6 py-8 sm:px-10 sm:py-10 rounded-md">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="space-y-2">
                 <p className="font-normal text-muted-foreground">

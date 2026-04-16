@@ -9,7 +9,7 @@ interface BrowserProps {
 
 export function Browser({ jobs }: BrowserProps) {
   return (
-    <Card className="rounded-none overflow-hidden p-0 gap-0 bg-secondary">
+    <Card className="rounded-md overflow-hidden p-0 gap-0 bg-secondary">
       {/* Browser chrome */}
       <div className="flex items-center gap-2 p-4">
         <div className="flex gap-1.5">
@@ -18,7 +18,7 @@ export function Browser({ jobs }: BrowserProps) {
           <div className="size-3 bg-green-400 rounded-full" />
         </div>
         <div className="flex-1">
-          <div className="bg-background border border-input py-1 text-xs text-primary font-normal text-start p-2 rounded-none">
+          <div className="bg-background border border-input py-1 text-xs text-primary font-normal text-start p-2 rounded-md">
             careers.lunics.co/demo
           </div>
         </div>

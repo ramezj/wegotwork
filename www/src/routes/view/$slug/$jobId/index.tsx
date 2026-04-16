@@ -388,7 +388,7 @@ function RouteComponent() {
   return (
     <div className="mx-auto w-full">
       <div className="space-y-4">
-        <section className="border">
+        <section className="border rounded-md">
           <div className="bg-secondary p-8">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-end">
               <div className="space-y-5">
@@ -448,7 +448,7 @@ function RouteComponent() {
             </section>
           )}
           <div>
-            <section className="border">
+            <section className="border rounded-md">
               <div className="bg-secondary px-6 py-8">
                 <div className="space-y-6">
                   <div className="space-y-2">

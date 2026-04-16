@@ -36,7 +36,7 @@ function PricingPage() {
     <div className="space-y-8 pb-8">
       <Header />
       <main className="mx-auto w-full space-y-8 px-4 lg:w-[80%]">
-        <section className="border p-2 bg-secondary">
+        <section className="border p-2 bg-secondary rounded-md">
           <div className="bg-secondary px-6 py-10 text-center sm:px-10 sm:py-14">
             <div className="animate-hero-reveal mx-auto flex max-w-3xl flex-col items-center gap-4">
               {/* <div className="inline-flex items-center gap-2 border px-4 py-1.5 text-sm font-semibold">
@@ -54,9 +54,9 @@ function PricingPage() {
           </div>
         </section>
 
-        <section>
+        <section className="border rounded-md overflow-hidden">
           <div className="grid lg:grid-cols-2">
-            <article className="border p-6 sm:p-8 bg-secondary">
+            <article className="border-b lg:border-b-0 lg:border-r p-6 sm:p-8 bg-secondary">
               <div className="space-y-6">
                 <div className="space-y-3">
                   <p className="text-xs font-normal text-muted-foreground">
@@ -91,8 +91,8 @@ function PricingPage() {
               </div>
             </article>
 
-            <article className="bg-secondary p-2 border">
-              <div className="p-6 sm:p-8 bg-background border border-input">
+            <article className="bg-secondary p-2">
+              <div className="p-6 sm:p-8 bg-background border border-input rounded-md">
                 <div className="space-y-6">
                   <div className="space-y-3">
                     <div className="inline-flex border px-3 py-1 text-xs font-normal text-primary-foreground bg-primary">
@@ -138,7 +138,7 @@ function PricingPage() {
           </div>
         </section>
 
-        <section className="border p-5 bg-secondary">
+        <section className="border p-5 bg-secondary rounded-md">
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="space-y-2">
               <p className="font-normal tracking-tight text-muted-foreground">
@@ -149,7 +149,7 @@ function PricingPage() {
               </h3>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              <div className="border px-4 py-4 bg-background border-input">
+              <div className="border px-4 py-4 bg-background border-input rounded-md">
                 <p className="text-sm font-normal">Branded careers page</p>
                 <p className="mt-1 text-sm font-normal text-muted-foreground">
                   Publish roles on a public page that feels clean and ready to

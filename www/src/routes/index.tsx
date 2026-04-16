@@ -239,7 +239,7 @@ function App() {
       <Header />
       <main className="mx-auto w-full space-y-8 lg:w-[80%]">
         <header className="px-4">
-          <section className="relative overflow-hidden rounded-none border p-2 bg-[#f2f1ed] dark:bg-background">
+          <section className="relative overflow-hidden rounded-md border p-2 bg-[#f2f1ed] dark:bg-background">
             <div className="relative bg-[#f2f1ed] dark:bg-background px-4 py-8 text-center">
               <div className="animate-hero-reveal mx-auto flex max-w-4xl flex-col items-center gap-4">
                 {/* <div className="inline-flex items-center leading-none gap-2 rounded-none border px-4 py-1.5 text-sm font-semibold">
@@ -281,18 +281,13 @@ function App() {
         </header>
 
         <section className="px-4">
-          {/* <div */}
-          {/* className="bg-cover bg-center p-2 bg-[#0d0d0d]" */}
-          {/* // style={{ backgroundImage: "url('/blue.png')" }} */}
-          {/* > */}
           <Browser jobs={exampleJobs} />
-          {/* </div> */}
         </section>
 
         <section className="px-4">
-          <div className="border">
+          <div className="border rounded-md">
             <div className="grid lg:grid-cols-[0.95fr_1.55fr]">
-              <div className="border-b p-4 lg:border-b-0 lg:border-r bg-secondary dark:bg-card">
+              <div className="border-b p-4 lg:border-b-0 lg:border-r bg-secondary">
                 <div className="px-4 py-8 sm:px-6 sm:py-10">
                   {/* <p className="mb-3 text-xs font-semibold uppercase text-muted-foreground">
                     what lunics gives you
@@ -322,7 +317,7 @@ function App() {
                         index % 2 === 0 && "sm:border-r",
                       )}
                     >
-                      <div className="bg-background border border-input p-6 h-full">
+                      <div className="bg-background border border-input p-6 h-full rounded-md">
                         <div className="mb-5 flex h-12 w-12 items-center justify-center bg-primary">
                           <Icon className="h-6 w-6 text-primary-foreground" />
                         </div>
@@ -342,10 +337,10 @@ function App() {
         </section>
 
         <section className="px-4">
-          <div className="grid gap-px border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-px border bg-border sm:grid-cols-2 lg:grid-cols-4 rounded-md">
             {platformHighlights.map((item) => (
               <article key={item.title} className="bg-secondary p-2">
-                <div className="bg-background border border-input p-4 h-full">
+                <div className="bg-background border border-input p-4 h-full rounded-md">
                   <h2 className="text-lg font-normal tracking-tight text-primary">
                     {item.title}
                   </h2>
@@ -359,8 +354,8 @@ function App() {
         </section>
 
         <section className="px-4">
-          <div className="border p-2 bg-secondary">
-            <div className="bg-background border border-input px-6 py-8 sm:px-8 sm:py-10">
+          <div className="border p-2 bg-secondary rounded-md">
+            <div className="bg-background border border-input px-6 py-8 sm:px-8 sm:py-10 rounded-md">
               <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="space-y-3">
                   <p className="font-normal text-muted-foreground">
@@ -391,11 +386,11 @@ function App() {
         </section>
 
         <section className="px-4">
-          <div className="border">
+          <div className="border rounded-md">
             <div className="grid gap-px bg-border lg:grid-cols-3">
               {faqItems.map((item) => (
                 <article key={item.question} className="bg-secondary p-2">
-                  <div className="bg-background border border-input p-5 h-full">
+                  <div className="bg-background border border-input p-5 h-full rounded-md">
                     <h2 className="text-lg font-normal tracking-tight">
                       {item.question}
                     </h2>

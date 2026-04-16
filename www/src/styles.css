@@ -187,7 +187,7 @@ code {
 }
 
 :root {
-  --radius: 0rem;
+  --radius: 0.25rem;
   --background: #f7f7f4;
   --foreground: oklch(0.145 0 0);
   --card: #f2f1ed;

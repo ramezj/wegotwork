@@ -9,7 +9,7 @@ export function OrganizationHeader({ slug }: { slug: string }) {
   }
   const org = data.organization;
   return (
-    <div className="border border-input bg-secondary">
+    <div className="border border-input bg-secondary rounded-md">
       <div className="bg-secondary px-6 py-10 sm:px-10 sm:py-14">
         <div className="flex flex-col items-center text-center space-y-4 max-w-2xl mx-auto">
           <Avatar className="w-16 h-16">
