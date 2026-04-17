@@ -1,9 +1,9 @@
-export const SITE_NAME = "lunics";
+export const SITE_NAME = "Minstra";
 export const SITE_URL = "https://lunics.co";
 export const DEFAULT_OG_IMAGE = "/main.png";
 export const DEFAULT_TITLE = "Career Page and Hiring Software for Teams";
 export const DEFAULT_DESCRIPTION =
-  "Lunics is hiring software for organizations and teams to create career pages, post job openings, receive applicants, and manage the hiring process in one platform.";
+  "Minstra is hiring software for organizations and teams to create career pages, post job openings, receive applicants, and manage the hiring process in one platform.";
 
 type JsonLd = Record<string, unknown>;
 
@@ -108,11 +108,7 @@ export function buildSeo({
     { name: "twitter:image", content: resolvedImage },
   ];
 
-  const jsonLdEntries = Array.isArray(jsonLd)
-    ? jsonLd
-    : jsonLd
-      ? [jsonLd]
-      : [];
+  const jsonLdEntries = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
 
   jsonLdEntries.forEach((entry) => {
     meta.push({ "script:ld+json": entry });
