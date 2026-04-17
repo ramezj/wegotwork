@@ -15,15 +15,18 @@ import { Link } from "@tanstack/react-router";
 export function BillingCard({ slug }: { slug: string }) {
   const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
   const organization = data.organization;
-  const plan = organization?.plan;
-  const planName = plan?.name || "Free";
-  const isPaidPlan = plan?.code !== "free";
+
+  if (!organization) return null;
+
+  const plan = organization.plan;
+  const planName = plan.name;
+  const isPaidPlan = plan.code !== "free";
 
   return (
     <Card>
       <CardHeader className="flex flex-row items-start gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-secondary">
-          <CreditCard className="h-5 w-5 text-secondary-foreground" />
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary">
+          <CreditCard className="h-5 w-5 text-primary-foreground" />
         </div>
         <div className="space-y-1">
           <CardTitle className="text-base">Organization Billing</CardTitle>
@@ -34,7 +37,7 @@ export function BillingCard({ slug }: { slug: string }) {
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid gap-4 md:grid-cols-2">
-          <div className="border p-4">
+          <div className="border p-4 bg-background">
             <p className="text-xs font-semibold text-muted-foreground">
               Current Plan
             </p>
@@ -49,7 +52,7 @@ export function BillingCard({ slug }: { slug: string }) {
             </p>
           </div>
 
-          <div className="border p-4">
+          <div className="border p-4 bg-background">
             <p className="text-xs font-semibold  text-muted-foreground">
               Plan Status
             </p>
@@ -66,7 +69,7 @@ export function BillingCard({ slug }: { slug: string }) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 border p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 border p-4 sm:flex-row sm:items-center sm:justify-between bg-background">
           <div className="space-y-1">
             <p className="text-sm font-medium">
               {isPaidPlan

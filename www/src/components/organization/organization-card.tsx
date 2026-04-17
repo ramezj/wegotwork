@@ -21,7 +21,7 @@ export function OrganizationCard({
 }: {
   organization: OrganizationWithPlan;
 }) {
-  const isPaidPlan = organization.plan.code !== "free";
+  // const isPaidPlan = organization.subscription.plan.code !== "free";
 
   return (
     <Link
@@ -55,7 +55,7 @@ export function OrganizationCard({
 
         <CardContent className="space-y-4">
           <div className="flex items-center gap-2 text-sm flex-wrap">
-            {isPaidPlan ? (
+            {organization.plan.code !== "free" ? (
               <Badge variant={"outline"} className="bg-background">
                 <Sparkles className="h-3 w-3" />
                 {organization.plan.name}

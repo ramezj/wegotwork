@@ -40,9 +40,8 @@ function RouteComponent() {
   const { slug } = Route.useParams();
   const { status } = Route.useSearch();
   const navigate = useNavigate();
-  const { data } = useSuspenseQuery(jobsBySlugQueryOptions(slug)) as any;
+  const { data } = useSuspenseQuery(jobsBySlugQueryOptions(slug));
   const jobs = data?.jobs || [];
-
   const filteredJobs = status
     ? jobs.filter((job: any) => job.status === status)
     : jobs;

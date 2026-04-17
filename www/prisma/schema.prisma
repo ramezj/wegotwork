@@ -27,6 +27,13 @@ enum Role {
   member
 }
 
+enum SubscriptionStatus {
+  ACTIVE
+  TRIALING
+  PAST_DUE
+  CANCELED
+}
+
 model User {
   id            String    @id
   name          String
@@ -99,27 +106,32 @@ model Verification {
 }
 
 model Organization {
-  id          String       @id @default(cuid()) 
-  name        String
-  slug        String
-  logo        String?
-  website     String?
-  twitter String?
-  linkedIn    String?
-  instagram String?
-  facebook String?
-  createdAt   DateTime      @default(now())
-  description    String?
-  members     Member[]
-  invitations Invitation[]
-  jobs        Job[]
-  categories  JobCategory[]
-  offices     Office[]
-  pipelines   Pipeline[]    @relation("OrganizationPipelines")
-  defaultPipelineId String?
-  defaultPipeline   Pipeline? @relation("OrganizationDefaultPipeline", fields: [defaultPipelineId], references: [id], onDelete: SetNull)
-  planId      String
-  plan        Plan         @relation(fields: [planId], references: [id], onDelete: Restrict)
+  id                      String             @id @default(cuid())
+  name                    String
+  slug                    String
+  logo                    String?
+  website                 String?
+  twitter                 String?
+  linkedIn                String?
+  instagram               String?
+  facebook                String?
+  createdAt               DateTime           @default(now())
+  description             String?
+  members                 Member[]
+  invitations             Invitation[]
+  jobs                    Job[]
+  categories              JobCategory[]
+  offices                 Office[]
+  pipelines               Pipeline[]         @relation("OrganizationPipelines")
+  defaultPipelineId       String?
+  defaultPipeline         Pipeline?          @relation("OrganizationDefaultPipeline", fields: [defaultPipelineId], references: [id], onDelete: SetNull)
+  planId                  String
+  plan                    Plan               @relation(fields: [planId], references: [id], onDelete: Restrict)
+  // Subscription lifecycle
+  subscriptionStatus      SubscriptionStatus @default(ACTIVE)
+  subscriptionPeriodStart DateTime           @default(now())
+  subscriptionPeriodEnd   DateTime?
+  subscriptionExternalId  String?            // Future: Stripe subscription ID
 
   @@unique([slug])
   @@index([planId])
@@ -132,6 +144,11 @@ model Plan {
   name          String
   isSystem      Boolean        @default(false)
   isActive      Boolean        @default(true)
+  // Limits: -1 means unlimited
+  maxJobs       Int            @default(3)
+  maxMembers    Int            @default(5)
+  maxOffices    Int            @default(1)
+  maxPipelines  Int            @default(1)
   organizations Organization[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
