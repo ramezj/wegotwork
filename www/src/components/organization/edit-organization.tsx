@@ -19,8 +19,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { JobCategory } from "generated/prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { editJobBySlugFn } from "@/features/services/jobs/edit-by-slug";
-import { Loader, Loader2, Save } from "lucide-react";
+import { Loader, Loader2, Save, TriangleAlert, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import { useNavigate } from "@tanstack/react-router";
+import { deleteOrganizationFn } from "@/features/services/organization/delete-organization";
 import { useQueryClient } from "@tanstack/react-query";
 import { jobByIdQueryOptions } from "@/features/queries/jobs";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
@@ -58,6 +69,21 @@ export function EditOrganizationForm({
 
   const [preview, setPreview] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const deleteMutation = useMutation({
+    mutationFn: () => deleteOrganizationFn({ data: { id: organization.id } }),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["organizations"] });
+      toast.success("Organization deleted successfully");
+      navigate({ to: "/dashboard" });
+    },
+    onError: (error) => {
+      toast.error(error.message || "Failed to delete organization");
+    },
+  });
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const logoValue = form.watch("logo");
 
@@ -271,6 +297,84 @@ export function EditOrganizationForm({
                   </Field>
                 )}
               />
+            </CardContent>
+          </Card>
+
+          <Card className="border-destructive/30">
+            <CardHeader className="flex flex-row items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-destructive/10 shrink-0">
+                <TriangleAlert className="h-4 w-4 text-destructive" />
+              </div>
+              <div>
+                <CardTitle className="text-base">Danger Zone</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-4">
+              <p className="text-sm text-muted-foreground">
+                Deleting this organization will permanently remove it and all
+                its associated data, including jobs, candidates, and team
+                members.
+              </p>
+              <div className="flex items-center justify-between gap-4 rounded-md border border-destructive/20 p-4">
+                <div className="space-y-1">
+                  <p className="text-sm font-medium">Delete organization</p>
+                  <p className="text-sm text-muted-foreground">
+                    This action cannot be undone.
+                  </p>
+                </div>
+                <Dialog
+                  open={deleteDialogOpen}
+                  onOpenChange={setDeleteDialogOpen}
+                >
+                  <DialogTrigger asChild>
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      disabled={deleteMutation.isPending}
+                      className="gap-2"
+                    >
+                      {deleteMutation.isPending ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <Trash2 className="h-4 w-4" />
+                      )}
+                      Delete Organization
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[480px]">
+                    <DialogHeader className="items-start text-left">
+                      <DialogTitle>Delete this organization?</DialogTitle>
+                      <DialogDescription>
+                        This will permanently delete{" "}
+                        <strong>{organization.name}</strong> and all of its
+                        associated data including jobs and candidates. This
+                        action cannot be undone.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => setDeleteDialogOpen(false)}
+                        disabled={deleteMutation.isPending}
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        onClick={() => deleteMutation.mutate()}
+                        disabled={deleteMutation.isPending}
+                      >
+                        {deleteMutation.isPending ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : null}
+                        Delete Permanently
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </div>
             </CardContent>
           </Card>
         </form>
