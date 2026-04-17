@@ -1,8 +1,4 @@
-import {
-  BriefcaseBusiness,
-  GitBranch,
-  ListTree,
-} from "lucide-react";
+import { BriefcaseBusiness, GitBranch, ListTree } from "lucide-react";
 
 type PipelineCardPipeline = {
   id: string;
@@ -22,12 +18,12 @@ export function PipelineCard({
   const linkedJobs = pipeline.jobs?.length ?? 0;
   return (
     <div
-      className="group cursor-pointer border bg-background p-5 transition-colors hover:bg-muted/30"
+      className="group cursor-pointer border bg-secondary p-5 rounded-md"
       onClick={onOpen}
     >
       <div className="flex items-start gap-4">
         <div className="flex min-w-0 items-start gap-4">
-          <div className="flex size-12 shrink-0 items-center justify-center border bg-muted/50 text-foreground">
+          <div className="flex size-12 shrink-0 items-center justify-center bg-primary text-primary-foreground rounded-md">
             <GitBranch className="size-5" />
           </div>
           <div className="min-w-0 space-y-1">
@@ -44,7 +40,7 @@ export function PipelineCard({
       </div>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
-        <div className="border bg-muted/20 p-3">
+        <div className="border bg-background rounded-md p-3">
           <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
             <BriefcaseBusiness className="size-3.5" />
             Linked Jobs
@@ -54,7 +50,7 @@ export function PipelineCard({
           </p>
         </div>
 
-        <div className="border bg-muted/20 p-3">
+        <div className="border bg-background rounded-md p-3">
           <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
             <ListTree className="size-3.5" />
             Pipeline Stages
