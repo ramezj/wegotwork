@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CreateOrganization } from "@/components/organization/create-organization";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { OrganizationCard } from "@/components/organization/organization-card";
-import type { Organization } from "generated/prisma/client";
 import { organizationsQueryOptions } from "@/features/queries/organization";
+import type { OrganizationWithPlan } from "@/types/organization";
 
 export const Route = createFileRoute("/dashboard/")({
   component: RouteComponent,
@@ -64,7 +64,7 @@ function RouteComponent() {
             {data.organizations.map((organization) => (
               <OrganizationCard
                 key={organization.id}
-                organization={organization as Organization}
+                organization={organization as OrganizationWithPlan}
               />
             ))}
           </div>

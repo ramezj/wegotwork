@@ -15,10 +15,9 @@ import { Link } from "@tanstack/react-router";
 export function BillingCard({ slug }: { slug: string }) {
   const { data } = useSuspenseQuery(organizationBySlugQueryOptions(slug));
   const organization = data.organization;
-  const plan = organization?.plan || "FREE";
-  const status = organization?.subscriptionStatus || "FREE";
-  const isPremium = plan === "PREMIUM";
-  const formattedStatus = status.toLowerCase().replace("_", " ");
+  const plan = organization?.plan;
+  const planName = plan?.name || "Free";
+  const isPaidPlan = plan?.code !== "free";
 
   return (
     <Card>
@@ -41,29 +40,27 @@ export function BillingCard({ slug }: { slug: string }) {
             </p>
             <div className="mt-3 flex items-center gap-2">
               <Building2 className="h-4 w-4 text-muted-foreground" />
-              <p className="text-lg font-semibold">
-                {isPremium ? "Premium" : "Free"}
-              </p>
+              <p className="text-lg font-semibold">{planName}</p>
             </div>
             <p className="mt-2 text-sm text-muted-foreground">
-              {isPremium
-                ? "$50 per organization"
+              {isPaidPlan
+                ? "This organization is on a paid Lunics plan."
                 : "Start free, then upgrade when your team needs more."}
             </p>
           </div>
 
           <div className="border p-4">
             <p className="text-xs font-semibold  text-muted-foreground">
-              Subscription Status
+              Plan Status
             </p>
             <div className="mt-3">
-              <Badge variant={isPremium ? "default" : "secondary"}>
-                {formattedStatus}
+              <Badge variant={isPaidPlan ? "default" : "secondary"}>
+                {plan?.isActive ? "active" : "inactive"}
               </Badge>
             </div>
             <p className="mt-2 text-sm text-muted-foreground">
-              {isPremium
-                ? "Your organization has access to premium billing features."
+              {isPaidPlan
+                ? "Your organization is linked to an active paid plan record."
                 : "Your organization is currently using the free plan."}
             </p>
           </div>
@@ -72,19 +69,19 @@ export function BillingCard({ slug }: { slug: string }) {
         <div className="flex flex-col gap-2 border p-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-1">
             <p className="text-sm font-medium">
-              {isPremium
+              {isPaidPlan
                 ? "Need changes to your subscription?"
                 : "Ready to upgrade this organization?"}
             </p>
             <p className="text-sm text-muted-foreground">
-              {isPremium
+              {isPaidPlan
                 ? "Manage billing and subscription details for this organization."
-                : "Premium is billed at $50 per organization."}
+                : "See the current public pricing options for Lunics plans."}
             </p>
           </div>
           <Button asChild className="w-full sm:w-auto">
             <Link to="/pricing">
-              {isPremium ? "View Plans" : "See Pricing"}
+              {isPaidPlan ? "View Plans" : "See Pricing"}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>

@@ -13,24 +13,13 @@ datasource db {
   provider = "postgresql"
 }
 
-enum Plan {
-  FREE
-  PRO
-  ENTERPRISE
-}
+// enum UserPlan {
+//   FREE
+//   PRO
+//   ENTERPRISE
 
-enum OrganizationPlan {
-  FREE
-  PREMIUM
-}
-
-enum OrganizationSubscriptionStatus {
-  FREE
-  ACTIVE
-  PAST_DUE
-  CANCELED
-  INCOMPLETE
-}
+//   @@map("Plan")
+// }
 
 enum Role {
   owner
@@ -48,7 +37,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
-  plan          Plan      @default(FREE)
+  // plan          UserPlan  @default(FREE)
   members     Member[]
   invitations Invitation[]
   evaluations Evaluation[]
@@ -129,13 +118,25 @@ model Organization {
   pipelines   Pipeline[]    @relation("OrganizationPipelines")
   defaultPipelineId String?
   defaultPipeline   Pipeline? @relation("OrganizationDefaultPipeline", fields: [defaultPipelineId], references: [id], onDelete: SetNull)
-  plan        OrganizationPlan               @default(FREE)
-  subscriptionStatus OrganizationSubscriptionStatus @default(FREE)
-  billingCustomerId String?
-  billingSubscriptionId String?
+  planId      String
+  plan        Plan         @relation(fields: [planId], references: [id], onDelete: Restrict)
 
   @@unique([slug])
+  @@index([planId])
   @@map("organization")
+}
+
+model Plan {
+  id            String         @id @default(cuid())
+  code          String         @unique
+  name          String
+  isSystem      Boolean        @default(false)
+  isActive      Boolean        @default(true)
+  organizations Organization[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@map("plan")
 }
 
 model Member {

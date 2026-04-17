@@ -5,11 +5,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { Organization } from "generated/prisma/client";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "../ui/badge";
+import type { OrganizationWithPlan } from "@/types/organization";
 
 function getOrganizationLogoSrc(logo?: string | null) {
   if (!logo) return undefined;
@@ -19,8 +19,10 @@ function getOrganizationLogoSrc(logo?: string | null) {
 export function OrganizationCard({
   organization,
 }: {
-  organization: Organization;
+  organization: OrganizationWithPlan;
 }) {
+  const isPaidPlan = organization.plan.code !== "free";
+
   return (
     <Link
       to="/$slug/jobs"
@@ -53,10 +55,10 @@ export function OrganizationCard({
 
         <CardContent className="space-y-4">
           <div className="flex items-center gap-2 text-sm flex-wrap">
-            {organization.plan === "PREMIUM" ? (
+            {isPaidPlan ? (
               <Badge variant={"outline"} className="bg-background">
                 <Sparkles className="h-3 w-3" />
-                Premium
+                {organization.plan.name}
               </Badge>
             ) : (
               <Badge variant={"outline"} className="bg-background">

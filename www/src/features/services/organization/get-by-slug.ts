@@ -21,6 +21,7 @@ export const getOrganizationBySlugFn = createServerFn()
         include: {
           members: true,
           categories: true,
+          plan: true,
         },
       });
       return { success: true, organization };

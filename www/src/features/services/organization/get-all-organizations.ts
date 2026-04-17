@@ -1,15 +1,27 @@
 import { createServerFn } from "@tanstack/react-start";
 import { authMiddleware } from "@/features/auth/middleware";
-import { auth } from "@/features/auth/auth";
-import { getRequest } from "@tanstack/react-start/server";
+import prisma from "@/lib/prisma";
 
 export const getAllOrganizationsFn = createServerFn()
   .middleware([authMiddleware])
-  .handler(async () => {
+  .handler(async ({ context }) => {
     try {
-      const organizations = await auth.api.listOrganizations({
-        headers: await getRequest().headers,
+      const organizations = await prisma.organization.findMany({
+        where: {
+          members: {
+            some: {
+              userId: context.session.user.id,
+            },
+          },
+        },
+        include: {
+          plan: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
       });
+
       return { success: true, organizations };
     } catch (error) {
       throw new Error("Something Went Wrong");

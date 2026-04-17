@@ -6,18 +6,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Check, ChevronsUpDown } from "lucide-react";
-import type { Organization } from "generated/prisma/client";
 import { Link } from "@tanstack/react-router";
 import { SidebarMenuButton } from "../ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import type { OrganizationWithPlan } from "@/types/organization";
 
 function getOrganizationInitial(name?: string | null) {
   return name?.trim().charAt(0) || "O";
 }
 
-function formatOrganizationPlan(plan?: string | null) {
-  const normalized = (plan || "FREE").toLowerCase().replace(/_/g, " ");
-  return `${normalized.charAt(0).toUpperCase()}${normalized.slice(1)} plan`;
+function formatOrganizationPlan(
+  plan?: Pick<OrganizationWithPlan["plan"], "name"> | null,
+) {
+  return `${plan?.name || "Free"} plan`;
 }
 
 function getOrganizationLogoSrc(logo?: string | null) {
@@ -29,8 +30,8 @@ export function OrganizationSelector({
   organizations,
   currentOrganization,
 }: {
-  organizations?: Organization[];
-  currentOrganization?: Organization;
+  organizations?: OrganizationWithPlan[];
+  currentOrganization?: OrganizationWithPlan;
 }) {
   return (
     <>

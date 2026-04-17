@@ -19,6 +19,7 @@ export const getOrganizationTeamFn = createServerFn()
           },
         },
         include: {
+          plan: true,
           members: {
             include: {
               user: true,

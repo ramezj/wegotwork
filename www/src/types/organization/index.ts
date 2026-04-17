@@ -9,9 +9,15 @@ import {
   Member,
   Invitation,
   User,
+  Plan,
 } from "generated/prisma/client";
 
+export type OrganizationWithPlan = Organization & {
+  plan: Plan;
+};
+
 export type OrganizationWithDetails = Organization & {
+  plan: Plan;
   jobs: (Job & {
     candidates: Candidate[];
     category: JobCategory | null;
@@ -56,7 +62,7 @@ export type OrganizationTeamMember = Member & {
 
 export type OrganizationTeamResponse = {
   success: boolean;
-  organization: Organization | null;
+  organization: OrganizationWithPlan | null;
   members: OrganizationTeamMember[];
   invitations: Invitation[];
   currentMemberRole: "owner" | "admin" | "member" | null;

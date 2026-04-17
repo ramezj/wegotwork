@@ -22,9 +22,9 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { Session } from "@/features/auth/auth";
 import UserDropdown from "./user-dropdown";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { getAllOrganizationsFn } from "@/features/services/organization/get-all-organizations";
+import { organizationsQueryOptions } from "@/features/queries/organization";
 import { OrganizationSelector } from "./organization-selector";
-import type { Organization } from "generated/prisma/client";
+import type { OrganizationWithPlan } from "@/types/organization";
 
 export function AppSidebar({
   session,
@@ -99,11 +99,7 @@ export function AppSidebar({
     }
   };
 
-  const { data } = useSuspenseQuery({
-    queryKey: ["organizations"],
-    queryFn: getAllOrganizationsFn,
-    staleTime: 60 * 60 * 1000,
-  });
+  const { data } = useSuspenseQuery(organizationsQueryOptions());
 
   return (
     <Sidebar variant="sidebar">
@@ -111,11 +107,11 @@ export function AppSidebar({
         <SidebarMenu className="">
           <SidebarMenuItem className="items-center content-center text-center">
             <OrganizationSelector
-              organizations={data?.organizations as Organization[]}
+              organizations={data?.organizations as OrganizationWithPlan[]}
               currentOrganization={
                 data?.organizations.find(
                   (org) => org.slug === slug,
-                ) as Organization
+                ) as OrganizationWithPlan
               }
             />
           </SidebarMenuItem>

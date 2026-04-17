@@ -3,6 +3,7 @@ import { createOrganizationSchema } from "@/types/organization/schemas";
 import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import { Role } from "generated/prisma/client";
+import { getSystemPlan } from "./plans";
 
 export const createOrganizationFn = createServerFn()
   .middleware([authMiddleware])
@@ -10,6 +11,8 @@ export const createOrganizationFn = createServerFn()
   .handler(async ({ data, context }) => {
     const { session } = context;
     try {
+      const freePlan = await getSystemPlan("free");
+
       const existingOrg = await prisma.organization.findUnique({
         where: { slug: data.slug },
       });
@@ -22,6 +25,7 @@ export const createOrganizationFn = createServerFn()
           data: {
             name: data.name,
             slug: data.slug,
+            planId: freePlan.id,
             members: {
               create: {
                 userId: session.user.id,
