@@ -351,31 +351,28 @@ function RouteComponent() {
   const { job } = data;
   if (isSubmitted) {
     return (
-      <div className="mx-auto w-full px-4 py-8 sm:py-10">
-        <section className="border p-2">
-          <div className="flex min-h-[420px] flex-col items-center justify-center bg-white px-6 py-12 text-center sm:px-10">
+      <div className="mx-auto w-full rounded-md">
+        <section className="border rounded-md">
+          <div className="flex flex-col items-center justify-center rounded-md bg-secondary text-center py-6">
             <div className="space-y-5">
-              <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-green-100 text-green-600">
+              {/* <div className="mx-auto flex size-16 items-center justify-center rounded-lg bg-green-200 text-green-600">
                 <CheckCircle2 className="size-10" />
-              </div>
-              <div className="space-y-2">
-                <p className="text-xs font-normal uppercase  text-muted-foreground">
-                  Application Submitted
-                </p>
+              </div> */}
+              <div className="space-y-4">
                 <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-                  Your application is in.
+                  Application sent!
                 </h1>
                 <p className="mx-auto max-w-xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
                   Thank you for applying to {job.organization.name}. We&apos;ve
                   received your application for the {job.title} role and the
                   team will review it shortly.
                 </p>
+                <Button asChild variant="outline">
+                  <Link viewTransition to="/view/$slug" params={{ slug }}>
+                    Back to Open Roles
+                  </Link>
+                </Button>
               </div>
-              <Button asChild variant="outline">
-                <Link to="/view/$slug" params={{ slug }}>
-                  Back to Open Roles
-                </Link>
-              </Button>
             </div>
           </div>
         </section>
