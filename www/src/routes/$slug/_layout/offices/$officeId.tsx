@@ -91,7 +91,7 @@ function EditOfficePage() {
           office={office}
         />
 
-        <Card className="border-destructive/30">
+        <Card className="border-destructive">
           <CardHeader className="flex flex-row items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-destructive/10 shrink-0">
               <TriangleAlert className="h-4 w-4 text-destructive" />
@@ -125,17 +125,8 @@ function EditOfficePage() {
                 onOpenChange={setDeleteDialogOpen}
               >
                 <DialogTrigger asChild>
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    disabled={deleteMutation.isPending}
-                    className="gap-2"
-                  >
-                    {deleteMutation.isPending ? (
-                      <Loader className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <Trash2 className="h-4 w-4" />
-                    )}
+                  <Button type="button" variant="destructive" className="gap-2">
+                    <Trash2 className="h-4 w-4" />
                     Delete Office
                   </Button>
                 </DialogTrigger>
@@ -167,9 +158,12 @@ function EditOfficePage() {
                         deleteMutation.mutate({ data: { id: office.id } })
                       }
                     >
-                      {deleteMutation.isPending
-                        ? "Deleting..."
-                        : "Delete Office"}
+                      {deleteMutation.isPending ? (
+                        <Loader className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <Trash2 className="h-4 w-4" />
+                      )}
+                      Delete Office
                     </Button>
                   </DialogFooter>
                 </DialogContent>

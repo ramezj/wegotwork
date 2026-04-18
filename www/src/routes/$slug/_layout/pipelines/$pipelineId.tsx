@@ -31,10 +31,10 @@ function EditPipelinePage() {
   }
 
   return (
-    <Layout title="Edit Pipeline">
-      <div className="space-y-4">
-        <PipelineEditorForm slug={slug} pipeline={pipeline} />
-      </div>
-    </Layout>
+    // <Layout variant="header" title="Edit Pipeline">
+    <div className="space-y-4">
+      <PipelineEditorForm slug={slug} pipeline={pipeline} />
+    </div>
+    // </Layout>
   );
 }

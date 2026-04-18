@@ -9,6 +9,7 @@ import {
   ArrowDown,
   ArrowUp,
   Loader,
+  Loader2,
   Plus,
   Trash2,
   TriangleAlert,
@@ -35,6 +36,7 @@ import {
   deletePipelineFn,
   updatePipelineFn,
 } from "@/features/services/ats/pipeline";
+import { Layout } from "../shared/layout";
 
 const pipelineSchema = z.object({
   name: z.string().min(1, "Pipeline name is required"),
@@ -131,10 +133,29 @@ export function PipelineEditorForm({
   };
 
   return (
-    <div className="space-y-4">
+    <Layout
+      variant="header"
+      title="Edit Pipeline"
+      primaryButton={
+        <Button
+          form="pipeline-form"
+          type="submit"
+          disabled={updateMutation.isPending}
+        >
+          {updateMutation.isPending && (
+            <Loader className="size-4 animate-spin" />
+          )}
+          Save Changes
+        </Button>
+      }
+    >
       <Card>
         <CardContent>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4"
+            id="pipeline-form"
+          >
             <Controller
               control={form.control}
               name="name"
@@ -245,30 +266,11 @@ export function PipelineEditorForm({
                 Add Stage
               </Button>
             </div>
-
-            <div className="flex items-center justify-end gap-2">
-              <Button
-                type="button"
-                variant="outline"
-                disabled={updateMutation.isPending}
-                onClick={() =>
-                  navigate({ to: "/$slug/pipelines", params: { slug } })
-                }
-              >
-                Cancel
-              </Button>
-              <Button type="submit" disabled={updateMutation.isPending}>
-                {updateMutation.isPending && (
-                  <Loader className="size-4 animate-spin" />
-                )}
-                Save Changes
-              </Button>
-            </div>
           </form>
         </CardContent>
       </Card>
 
-      <Card className="border-destructive/30">
+      <Card className="border-destructive mt-4">
         <CardHeader className="flex flex-row items-center gap-3">
           <div className="flex h-8 w-8 items-center justify-center rounded-md bg-destructive/10 shrink-0">
             <TriangleAlert className="h-4 w-4 text-destructive" />
@@ -295,15 +297,11 @@ export function PipelineEditorForm({
             <Button
               type="button"
               variant="destructive"
-              disabled={deleteMutation.isPending}
+              // disabled={deleteMutation.isPending}
               className="gap-2"
               onClick={() => setDeleteDialogOpen(true)}
             >
-              {deleteMutation.isPending ? (
-                <Loader className="h-4 w-4 animate-spin" />
-              ) : (
-                <Trash2 className="h-4 w-4" />
-              )}
+              <Trash2 />
               Delete Pipeline
             </Button>
           </div>
@@ -336,11 +334,16 @@ export function PipelineEditorForm({
                 deleteMutation.mutate({ data: { id: pipeline.id } })
               }
             >
-              {deleteMutation.isPending ? "Deleting..." : "Delete Pipeline"}
+              {deleteMutation.isPending ? (
+                <Loader className="h-4 w-4 animate-spin" />
+              ) : (
+                <Trash2 />
+              )}
+              Delete Pipeline
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
+    </Layout>
   );
 }

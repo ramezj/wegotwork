@@ -670,7 +670,7 @@ export function EditJobForm({
           </CardContent>
         </Card>
 
-        <Card className="border-destructive/30">
+        <Card className="border-destructive">
           <CardHeader className="flex flex-row items-center gap-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-destructive/10 shrink-0">
               <TriangleAlert className="h-4 w-4 text-destructive" />
@@ -705,14 +705,9 @@ export function EditJobForm({
                   <Button
                     type="button"
                     variant="destructive"
-                    disabled={deleteMutation.isPending}
+                    // disabled={deleteMutation.isPending}
                     className="gap-2"
                   >
-                    {deleteMutation.isPending ? (
-                      <Loader className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <Trash2 className="h-4 w-4" />
-                    )}
                     Delete Job
                   </Button>
                 </DialogTrigger>
@@ -742,7 +737,7 @@ export function EditJobForm({
                       {deleteMutation.isPending ? (
                         <Loader className="h-4 w-4 animate-spin" />
                       ) : null}
-                      Delete Permanently
+                      Delete Job
                     </Button>
                   </DialogFooter>
                 </DialogContent>
