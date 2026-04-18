@@ -4,6 +4,7 @@ import { Layout } from "@/components/shared/layout";
 import { PipelineEditorForm } from "@/components/ats/pipeline-editor-form";
 import { pipelinesQueryOptions } from "@/features/queries/ats";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
+import { Pipeline } from "generated/prisma/client";
 
 export const Route = createFileRoute("/$slug/_layout/pipelines/$pipelineId")({
   component: EditPipelinePage,
@@ -11,22 +12,16 @@ export const Route = createFileRoute("/$slug/_layout/pipelines/$pipelineId")({
 
 function EditPipelinePage() {
   const { slug, pipelineId } = Route.useParams();
-
-  const { data: orgData } = useSuspenseQuery(
-    organizationBySlugQueryOptions(slug),
+  const { data } = useSuspenseQuery(pipelinesQueryOptions(slug));
+  const pipeline = data.pipielines?.find(
+    (item: Pipeline) => item.id === pipelineId,
   );
-  const organizationId = orgData?.organization?.id;
-
-  const { data: pipelines } = useSuspenseQuery(
-    pipelinesQueryOptions(organizationId || ""),
-  );
-
-  const pipeline = pipelines?.find((item: any) => item.id === pipelineId);
-
-  if (!organizationId || !pipeline) {
+  if (!data.ok || !pipeline) {
     return (
       <Layout title="Edit Pipeline">
-        <div className="text-sm text-muted-foreground">Pipeline not found.</div>
+        <div className="text-sm text-muted-foreground">
+          {data.error || "Pipeline not found."}
+        </div>
       </Layout>
     );
   }
@@ -34,11 +29,7 @@ function EditPipelinePage() {
   return (
     <Layout title="Edit Pipeline">
       <div className="space-y-4">
-        <PipelineEditorForm
-          slug={slug}
-          organizationId={organizationId}
-          pipeline={pipeline}
-        />
+        <PipelineEditorForm slug={slug} pipeline={pipeline} />
       </div>
     </Layout>
   );

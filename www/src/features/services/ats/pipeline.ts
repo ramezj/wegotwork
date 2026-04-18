@@ -1,3 +1,4 @@
+import { isRedirect, redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
@@ -6,7 +7,7 @@ import { z } from "zod";
 export const createPipelineFn = createServerFn()
   .inputValidator(
     z.object({
-      organizationId: z.string(),
+      slug: z.string(),
       name: z.string().min(1, "Pipeline name is required"),
       stages: z.array(z.string()).optional(),
     }),
@@ -14,8 +15,6 @@ export const createPipelineFn = createServerFn()
   .middleware([authMiddleware])
   .handler(async ({ data, context }) => {
     const { session } = context;
-    if (!session?.user) throw new Error("Unauthorized");
-
     const defaultStages = data.stages || [
       "Screening",
       "Phone Interview",
@@ -23,42 +22,94 @@ export const createPipelineFn = createServerFn()
       "Onsite Interview",
       "Offer",
     ];
-
-    const pipeline = await prisma.pipeline.create({
-      data: {
-        name: data.name,
-        organizationId: data.organizationId,
-        stages: {
-          create: defaultStages.map((name, index) => ({
-            name,
-            order: index,
-          })),
+    try {
+      const organization = await prisma.organization.findUnique({
+        where: {
+          slug: data.slug,
+          members: {
+            some: {
+              userId: context.session.user.id,
+            },
+          },
         },
-      },
-      include: {
-        stages: true,
-      },
-    });
-
-    return pipeline;
+        select: {
+          id: true,
+        },
+      });
+      if (!organization) {
+        throw redirect({ to: "/dashboard" });
+      }
+      const pipeline = await prisma.pipeline.create({
+        data: {
+          name: data.name,
+          organizationId: organization.id,
+          stages: {
+            create: defaultStages.map((name, index) => ({
+              name,
+              order: index,
+            })),
+          },
+        },
+        include: {
+          stages: true,
+        },
+      });
+      return {
+        ok: true,
+        pipeline,
+      };
+    } catch (error) {
+      return {
+        ok: false,
+        error: "Failed to create pipeline",
+      };
+    }
   });
 
 export const getPipelinesFn = createServerFn()
-  .inputValidator(z.object({ organizationId: z.string() }))
+  .inputValidator(z.object({ slug: z.string() }))
   .middleware([authMiddleware])
   .handler(async ({ data, context }) => {
     const { session } = context;
-    if (!session?.user) throw new Error("Unauthorized");
-
-    return await prisma.pipeline.findMany({
-      where: { organizationId: data.organizationId },
-      include: {
-        stages: {
-          orderBy: { order: "asc" },
+    try {
+      const organization = await prisma.organization.findFirst({
+        where: {
+          slug: data.slug,
+          members: {
+            some: {
+              userId: session.user.id,
+            },
+          },
         },
-        jobs: true,
-      },
-    });
+        select: {
+          pipelines: {
+            include: {
+              jobs: true,
+              stages: {
+                orderBy: {
+                  order: "asc",
+                },
+              },
+            },
+          },
+        },
+      });
+      if (!organization) {
+        console.error("organization not found, from pipelinesFn");
+        throw redirect({ to: "/dashboard" });
+      }
+      console.log("organization found, from pipelines");
+      return { ok: true, pipelines: organization.pipelines };
+    } catch (error) {
+      if (isRedirect(error)) {
+        throw error;
+      }
+      console.error("Error loading pipelines:", error);
+      return {
+        ok: false,
+        error: "Couldn't load pipelines, please try again later.",
+      };
+    }
   });
 export const updatePipelineFn = createServerFn()
   .inputValidator(

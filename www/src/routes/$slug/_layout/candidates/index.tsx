@@ -39,21 +39,16 @@ function RouteComponent() {
   const { status } = Route.useSearch();
   const navigate = useNavigate();
   const { data } = useSuspenseQuery(jobsBySlugQueryOptions(slug)) as any;
-
-  if (!data?.success) {
-    return <div>Failed to load jobs</div>;
+  if (!data.success) {
+    return <div className="p-4 text-red-400">{data.error}</div>;
   }
-
-  const jobs = (data.jobs || []) as (Job & {
-    _count?: { candidates: number };
-  })[];
   const filteredJobs = status
-    ? jobs.filter((job) => job.status === status)
-    : jobs;
+    ? data.jobs.filter((job: any) => job.status === status)
+    : data.jobs;
 
   const title = status
     ? `${toStatusLabel(status)} Jobs (${filteredJobs.length})`
-    : `Jobs (${jobs.length})`;
+    : `Jobs (${data.jobs.length})`;
 
   const handleStatusChange = (value: string) => {
     navigate({

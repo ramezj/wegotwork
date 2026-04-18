@@ -41,13 +41,13 @@ interface EditPipelineDialogProps {
     stages: { id: string; name: string; order: number }[];
     jobs?: { title: string }[];
   };
-  organizationId: string;
+  slug: string;
   trigger?: React.ReactNode;
 }
 
 export function EditPipelineDialog({
   pipeline,
-  organizationId,
+  slug,
   trigger,
 }: EditPipelineDialogProps) {
   const [open, setOpen] = useState(false);
@@ -80,7 +80,7 @@ export function EditPipelineDialog({
     mutationFn: updatePipelineFn,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["pipelines", organizationId],
+        queryKey: ["pipelines", slug],
       });
       toast.success("Pipeline updated successfully");
       setOpen(false);

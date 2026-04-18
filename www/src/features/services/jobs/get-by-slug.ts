@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { authMiddleware } from "@/features/auth/middleware";
 import prisma from "@/lib/prisma";
 import z from "zod";
+import { isRedirect, redirect } from "@tanstack/react-router";
 
 export const getJobsBySlugFn = createServerFn()
   .middleware([authMiddleware])
@@ -9,38 +10,47 @@ export const getJobsBySlugFn = createServerFn()
   .handler(async ({ data, context }) => {
     const { session } = context;
     try {
-      const jobs = await prisma.job.findMany({
+      const organization = await prisma.organization.findFirst({
         where: {
-          organization: {
-            slug: data.slug,
-            members: {
-              some: {
-                userId: session.user.id,
-              },
+          slug: data.slug,
+          members: {
+            some: {
+              userId: session.user.id,
             },
           },
         },
         select: {
-          id: true,
-          title: true,
-          type: true,
-          status: true,
-          locationMode: true,
-          createdAt: true,
-          category: true,
-          office: true,
-          _count: {
+          jobs: {
+            orderBy: { createdAt: "desc" },
             select: {
-              candidates: true,
+              id: true,
+              title: true,
+              type: true,
+              status: true,
+              locationMode: true,
+              createdAt: true,
+              category: true,
+              office: true,
+              _count: { select: { candidates: true } },
             },
           },
         },
-        orderBy: {
-          createdAt: "desc",
-        },
       });
-      return { success: true, jobs };
+      if (!organization) {
+        console.error("Not a member or org doesnt exist");
+        throw redirect({ to: "/dashboard" });
+      }
+      console.log("organization found");
+      return { success: true, jobs: organization.jobs };
     } catch (error) {
-      throw new Error("Something Went Wrong");
+      console.error(error);
+      if (isRedirect(error)) {
+        throw error;
+      }
+      return {
+        success: false,
+        jobs: [],
+        error: "Couldn't load jobs, please try again later.",
+      };
     }
   });

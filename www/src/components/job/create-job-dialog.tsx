@@ -19,7 +19,6 @@ import { createJobFn } from "@/features/services/jobs/create-job";
 import z from "zod";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { pipelinesQueryOptions } from "@/features/queries/ats";
-import { officesQueryOptions } from "@/features/queries/offices";
 import { toast } from "sonner";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
@@ -39,16 +38,13 @@ export function CreateJobDialog({ slug }: { slug: string }) {
   const { data: orgData } = useSuspenseQuery(
     organizationBySlugQueryOptions(slug),
   );
-  const organizationId = orgData?.organization?.id || "";
-  const { data: pipelines } = useSuspenseQuery(
-    pipelinesQueryOptions(organizationId),
-  );
-  const { data: offices } = useSuspenseQuery(
-    officesQueryOptions(organizationId),
-  );
+  const { data: pipelinesData } = useSuspenseQuery(pipelinesQueryOptions(slug));
+  const pipelines = pipelinesData?.pipelines || [];
 
   const defaultPipelineId =
-    orgData?.organization?.defaultPipelineId || pipelines[0]?.id || "";
+    orgData?.organization?.defaultPipelineId ||
+    (pipelines.length > 0 ? pipelines[0].id : "") ||
+    "";
 
   const form = useForm({
     defaultValues: {
@@ -165,11 +161,7 @@ export function CreateJobDialog({ slug }: { slug: string }) {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="none">No Office</SelectItem>
-                      {offices.map((office: any) => (
-                        <SelectItem key={office.id} value={office.id}>
-                          {office.name}
-                        </SelectItem>
-                      ))}
+                      {[]}
                     </SelectContent>
                   </Select>
                 </FieldContent>

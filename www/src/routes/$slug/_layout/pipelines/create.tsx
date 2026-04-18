@@ -79,8 +79,6 @@ function CreatePipelinePage() {
     organizationBySlugQueryOptions(slug),
   );
 
-  const organizationId = orgData?.organization?.id;
-
   const form = useForm<PipelineFormValues>({
     resolver: zodResolver(pipelineSchema),
     defaultValues: {
@@ -99,9 +97,8 @@ function CreatePipelinePage() {
   const createMutation = useMutation({
     mutationFn: createPipelineFn,
     onSuccess: async () => {
-      if (!organizationId) return;
       await queryClient.refetchQueries({
-        queryKey: ["pipelines", organizationId],
+        queryKey: ["pipelines", slug],
       });
       toast.success("Pipeline created successfully");
       navigate({ to: "/$slug/pipelines", params: { slug } });
@@ -116,25 +113,14 @@ function CreatePipelinePage() {
   };
 
   const onSubmit = async (data: PipelineFormValues) => {
-    if (!organizationId) return;
     await createMutation.mutateAsync({
       data: {
-        organizationId,
+        slug,
         name: data.name,
         stages: data.stages.map((stage) => stage.name),
       },
     });
   };
-
-  if (!organizationId) {
-    return (
-      <Layout title="Create Pipeline">
-        <div className="text-sm text-muted-foreground">
-          Organization not found.
-        </div>
-      </Layout>
-    );
-  }
 
   return (
     <Layout
@@ -147,7 +133,9 @@ function CreatePipelinePage() {
           disabled={createMutation.isPending}
           className="gap-2"
         >
-          {createMutation.isPending && <Loader className="size-4 animate-spin" />}
+          {createMutation.isPending && (
+            <Loader className="size-4 animate-spin" />
+          )}
           Create Pipeline
         </Button>
       }
@@ -175,8 +163,8 @@ function CreatePipelinePage() {
                   </div>
                   <p className="max-w-2xl text-sm text-muted-foreground">
                     Create the hiring flow your team will use from intake to
-                    decision. Start with the recommended stages, rename
-                    anything you need, and reorder the flow before saving.
+                    decision. Start with the recommended stages, rename anything
+                    you need, and reorder the flow before saving.
                   </p>
                 </div>
               </div>

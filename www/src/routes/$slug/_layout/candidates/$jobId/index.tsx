@@ -51,13 +51,13 @@ function RouteComponent() {
   const createPipelineMutation = useMutation({
     mutationFn: createPipelineFn,
     onSuccess: async (newPipeline) => {
-      if (newPipeline?.id) {
+      if (newPipeline?.ok && newPipeline?.pipeline?.id) {
         await linkPipelineMutation.mutateAsync({
-          data: { jobId, pipelineId: newPipeline.id },
+          data: { jobId, pipelineId: newPipeline.pipeline.id },
         });
       }
       queryClient.invalidateQueries({ queryKey: ["job", jobId] });
-      queryClient.invalidateQueries({ queryKey: ["pipelines", data?.job?.organizationId || ""] });
+      queryClient.invalidateQueries({ queryKey: ["pipelines", slug] });
       toast.success("Pipeline created and linked successfully");
     },
   });
@@ -66,7 +66,7 @@ function RouteComponent() {
     mutationFn: linkJobToPipelineFn,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["job", jobId] });
-      queryClient.invalidateQueries({ queryKey: ["pipelines", data?.job?.organizationId || ""] });
+      queryClient.invalidateQueries({ queryKey: ["pipelines", slug] });
       toast.success("Job linked to pipeline successfully");
     },
     onError: (error: any) => {
@@ -74,10 +74,8 @@ function RouteComponent() {
     },
   });
 
-  const { data: pipelinesData } = useSuspenseQuery(
-    pipelinesQueryOptions(data?.job?.organizationId || ""),
-  );
-  const pipelines = pipelinesData || [];
+  const { data: pipelinesData } = useSuspenseQuery(pipelinesQueryOptions(slug));
+  const pipelines = pipelinesData?.pipelines || [];
 
   const moveMutation = useMutation({
     mutationFn: moveCandidateStageFn,
@@ -120,7 +118,7 @@ function RouteComponent() {
   const handleCreateDefaultPipeline = () => {
     createPipelineMutation.mutate({
       data: {
-        organizationId: job.organizationId,
+        slug,
         name: "Standard Pipeline",
       },
     });

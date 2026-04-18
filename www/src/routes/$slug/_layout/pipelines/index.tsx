@@ -1,7 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { pipelinesQueryOptions } from "@/features/queries/ats";
-import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { Layout } from "@/components/shared/layout";
 import { Button } from "@/components/ui/button";
 import { Plus, PlusIcon } from "lucide-react";
@@ -12,21 +11,21 @@ export const Route = createFileRoute("/$slug/_layout/pipelines/")({
   head: () => ({
     meta: [{ title: "Pipelines", content: "Manage hiring pipelines" }],
   }),
+  loader: async ({ context, params }) => {
+    await context.queryClient.ensureQueryData(
+      pipelinesQueryOptions(params.slug),
+    );
+  },
 });
 
 function PipelinesPage() {
   const { slug } = Route.useParams();
   const navigate = useNavigate();
-
-  const { data: orgData } = useSuspenseQuery(
-    organizationBySlugQueryOptions(slug),
-  );
-  const organizationId = orgData?.organization?.id;
-
-  const { data: pipelines } = useSuspenseQuery(
-    pipelinesQueryOptions(organizationId || ""),
-  );
-  const title = `Hiring Pipelines (${pipelines?.length})`;
+  const { data } = useSuspenseQuery(pipelinesQueryOptions(slug));
+  if (!data.ok) {
+    return <div className="p-4 text-red-400">{data.error}</div>;
+  }
+  const title = `Hiring Pipelines (${data.pipelines?.length})`;
   return (
     <Layout
       variant="header"
@@ -45,7 +44,7 @@ function PipelinesPage() {
       }
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {pipelines?.map((pipeline: any) => (
+        {data.pipelines?.map((pipeline: any) => (
           <PipelineCard
             key={pipeline.id}
             pipeline={pipeline}
@@ -58,7 +57,7 @@ function PipelinesPage() {
           />
         ))}
 
-        {pipelines?.length === 0 && (
+        {data.pipelines?.length === 0 && (
           <div className="col-span-full flex flex-col items-center justify-center py-20 text-center">
             <div className="size-16 rounded-full bg-muted flex items-center justify-center text-muted-foreground mb-6">
               <Plus className="size-8" />

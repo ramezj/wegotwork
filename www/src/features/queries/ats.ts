@@ -2,10 +2,10 @@ import { queryOptions } from "@tanstack/react-query";
 import { getPipelinesFn } from "../services/ats/pipeline";
 import { getCandidateHistoryFn } from "../services/ats/candidate";
 
-export const pipelinesQueryOptions = (organizationId: string) =>
+export const pipelinesQueryOptions = (slug: string) =>
   queryOptions({
-    queryKey: ["pipelines", organizationId],
-    queryFn: () => getPipelinesFn({ data: { organizationId } }),
+    queryKey: ["pipelines", slug],
+    queryFn: () => getPipelinesFn({ data: { slug } }),
   });
 
 export const candidateHistoryQueryOptions = (candidateId: string) =>

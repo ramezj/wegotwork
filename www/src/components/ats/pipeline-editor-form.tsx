@@ -56,7 +56,6 @@ function formatStageCount(count: number) {
 
 interface PipelineEditorFormProps {
   slug: string;
-  organizationId: string;
   pipeline: {
     id: string;
     name: string;
@@ -66,7 +65,6 @@ interface PipelineEditorFormProps {
 
 export function PipelineEditorForm({
   slug,
-  organizationId,
   pipeline,
 }: PipelineEditorFormProps) {
   const navigate = useNavigate();
@@ -93,7 +91,7 @@ export function PipelineEditorForm({
     mutationFn: updatePipelineFn,
     onSuccess: async () => {
       await queryClient.refetchQueries({
-        queryKey: ["pipelines", organizationId],
+        queryKey: ["pipelines", slug],
       });
       toast.success("Pipeline updated successfully");
       navigate({ to: "/$slug/pipelines", params: { slug } });
@@ -108,7 +106,7 @@ export function PipelineEditorForm({
     onSuccess: async () => {
       setDeleteDialogOpen(false);
       await queryClient.refetchQueries({
-        queryKey: ["pipelines", organizationId],
+        queryKey: ["pipelines", slug],
       });
       toast.success("Pipeline deleted successfully");
       navigate({ to: "/$slug/pipelines", params: { slug } });
@@ -192,7 +190,8 @@ export function PipelineEditorForm({
                         size="icon"
                         className="size-7"
                         disabled={
-                          index === fields.length - 1 || updateMutation.isPending
+                          index === fields.length - 1 ||
+                          updateMutation.isPending
                         }
                         onClick={() => move(index, index + 1)}
                       >
@@ -333,7 +332,9 @@ export function PipelineEditorForm({
               type="button"
               variant="destructive"
               disabled={deleteMutation.isPending}
-              onClick={() => deleteMutation.mutate({ data: { id: pipeline.id } })}
+              onClick={() =>
+                deleteMutation.mutate({ data: { id: pipeline.id } })
+              }
             >
               {deleteMutation.isPending ? "Deleting..." : "Delete Pipeline"}
             </Button>

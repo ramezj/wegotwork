@@ -34,12 +34,10 @@ const pipelineSchema = z.object({
 type PipelineFormValues = z.infer<typeof pipelineSchema>;
 
 interface CreatePipelineDialogProps {
-  organizationId: string;
+  slug: string;
 }
 
-export function CreatePipelineDialog({
-  organizationId,
-}: CreatePipelineDialogProps) {
+export function CreatePipelineDialog({ slug }: CreatePipelineDialogProps) {
   const [open, setOpen] = useState(false);
   const queryClient = useQueryClient();
 
@@ -60,7 +58,7 @@ export function CreatePipelineDialog({
     mutationFn: createPipelineFn,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["pipelines", organizationId],
+        queryKey: ["pipelines", slug],
       });
       toast.success("Pipeline created successfully");
       setOpen(false);
@@ -74,7 +72,7 @@ export function CreatePipelineDialog({
   const onSubmit = (data: PipelineFormValues) => {
     createMutation.mutate({
       data: {
-        organizationId,
+        slug,
         name: data.name,
         stages: data.stages.map((s) => s.name),
       },
