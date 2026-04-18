@@ -25,6 +25,11 @@ export const Route = createFileRoute("/$slug/_layout/team")({
   head: () => ({
     meta: [{ title: "Team", content: "Team" }, { name: "Team" }],
   }),
+  loader: async ({ context, params }) => {
+    await context.queryClient.ensureQueryData(
+      organizationTeamQueryOptions(params.slug),
+    );
+  },
 });
 
 function RouteComponent() {

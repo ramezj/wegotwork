@@ -10,13 +10,7 @@ import { officesQueryOptions } from "@/features/queries/offices";
 import { OfficeEditorForm } from "@/components/office/office-editor-form";
 import { deleteOfficeFn } from "@/features/services/office/office";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -33,6 +27,17 @@ import { useState } from "react";
 
 export const Route = createFileRoute("/$slug/_layout/offices/$officeId")({
   component: EditOfficePage,
+  loader: async ({ context, params }) => {
+    const orgData = await context.queryClient.ensureQueryData(
+      organizationBySlugQueryOptions(params.slug),
+    );
+    const organizationId = orgData?.organization?.id;
+    if (organizationId) {
+      await context.queryClient.ensureQueryData(
+        officesQueryOptions(organizationId),
+      );
+    }
+  },
 });
 
 function EditOfficePage() {

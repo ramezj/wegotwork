@@ -13,13 +13,18 @@ export const Route = createFileRoute("/$slug/_layout/categories")({
       { name: "Categories" },
     ],
   }),
+  loader: async ({ context, params }) => {
+    await context.queryClient.ensureQueryData(
+      categoriesByOrgSlugQueryOptions(params.slug),
+    );
+  },
 });
 
 function RouteComponent() {
   const { slug } = Route.useParams();
   const { data } = useSuspenseQuery(categoriesByOrgSlugQueryOptions(slug));
   const categories = data?.categories || [];
-  
+
   return (
     <>
       <Layout

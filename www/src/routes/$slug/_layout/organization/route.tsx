@@ -12,6 +12,11 @@ export const Route = createFileRoute("/$slug/_layout/organization")({
       { name: "Organization" },
     ],
   }),
+  loader: async ({ context, params }) => {
+    await context.queryClient.ensureQueryData(
+      organizationBySlugQueryOptions(params.slug),
+    );
+  },
 });
 
 function RouteComponent() {

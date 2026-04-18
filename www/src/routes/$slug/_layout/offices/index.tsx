@@ -11,6 +11,17 @@ export const Route = createFileRoute("/$slug/_layout/offices/")({
   head: () => ({
     meta: [{ title: "Offices", content: "Manage offices" }],
   }),
+  loader: async ({ context, params }) => {
+    const orgData = await context.queryClient.ensureQueryData(
+      organizationBySlugQueryOptions(params.slug),
+    );
+    const organizationId = orgData?.organization?.id;
+    if (organizationId) {
+      await context.queryClient.ensureQueryData(
+        officesQueryOptions(organizationId),
+      );
+    }
+  },
 });
 
 function OfficesPage() {

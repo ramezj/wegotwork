@@ -9,6 +9,11 @@ export const Route = createFileRoute("/$slug/_layout/billing")({
   head: () => ({
     meta: [{ title: "Billing", content: "Manage billing" }],
   }),
+  loader: async ({ context, params }) => {
+    await context.queryClient.ensureQueryData(
+      organizationTeamQueryOptions(params.slug),
+    );
+  },
 });
 
 function RouteComponent() {
