@@ -293,7 +293,7 @@ function App() {
 
         <section className="px-4">
           <div className="border rounded-md">
-            <div className="grid lg:grid-cols-[0.95fr_1.55fr]">
+            <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
               <div className="border-b p-2 lg:border-b-0 lg:border-r bg-secondary">
                 <div className="px-4 py-8 sm:px-6 sm:py-10 bg-background h-full border rounded-md flex flex-col justify-center text-start space-y-2">
                   {/* <p className="mb-3 text-xs font-semibold uppercase text-muted-foreground">
@@ -362,23 +362,6 @@ function App() {
         <section className="px-4">
           <div className="border rounded-md">
             <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="border-b lg:border-b-0 lg:border-r bg-secondary">
-                <div className="p-2 h-full flex flex-col justify-center">
-                  <div className="bg-background border border-input rounded-md p-6 lg:p-8 h-full flex flex-col justify-center space-y-2">
-                    <h2 className="text-3xl font-normal tracking-tight text-balance lg:text-4xl">
-                      Who is Minstra for?
-                    </h2>
-                    <p className="text-sm font-normal text-muted-foreground sm:text-base">
-                      Minstra is designed specifically for small teams who need
-                      a powerful hiring tool without the enterprise complexity
-                      or price tag. If you're tired of spreadsheets but
-                      enterprise ATS feels like overkill, you're in the right
-                      place.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
               <div className="grid sm:grid-cols-2 lg:grid-cols-1">
                 <div className="bg-secondary p-2 border-b sm:border-r lg:border-r-0 lg:border-b">
                   <div className="bg-background border border-input rounded-md p-5 h-full">
@@ -437,6 +420,23 @@ function App() {
                       friendly platform that won't confuse your clients or your
                       candidates.
                     </p>
+                  </div>
+                </div>
+              </div>
+              <div className="border-b lg:border-b-0 lg:border-l bg-secondary">
+                <div className="p-2 h-full flex flex-col justify-center">
+                  <div className="bg-background border border-input rounded-md p-6 lg:p-8 h-full flex flex-col justify-center space-y-2">
+                    <h2 className="text-3xl font-normal tracking-tight text-balance lg:text-4xl">
+                      Who is Minstra for?
+                    </h2>
+                    <p className="text-sm font-normal text-muted-foreground sm:text-base">
+                      Minstra is designed specifically for small teams who need
+                      a powerful hiring tool without the enterprise complexity
+                      or price tag.
+                    </p>
+                    {/* If you're tired of spreadsheets but
+                      enterprise ATS feels like overkill, you're in the right
+                      place. */}
                   </div>
                 </div>
               </div>
