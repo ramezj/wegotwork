@@ -2,7 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import Header from "@/components/shared/header";
 import { Button } from "@/components/ui/button";
 import { BarChart3 } from "lucide-react";
-import { Building2, FileText, Users } from "lucide-react";
+import {
+  Building2,
+  FileText,
+  Users,
+  Rocket,
+  HeartHandshake,
+  Sparkles,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Browser } from "@/components/shared/browser";
 import type { JobWithCategory } from "@/types/job/job";
@@ -318,8 +325,8 @@ function App() {
                       )}
                     >
                       <div className="bg-background border border-input p-6 h-full rounded-md">
-                        <div className="mb-5 flex h-12 w-12 items-center justify-center bg-primary">
-                          <Icon className="h-6 w-6 text-primary-foreground" />
+                        <div className="mb-5 flex h-10 w-10 items-center justify-center bg-primary rounded-md">
+                          <Icon className="h-5 w-5 text-primary-foreground" />
                         </div>
                         <h3 className="text-xl font-normal leading-tight text-primary tracking-tight">
                           {feature.title}
@@ -336,7 +343,7 @@ function App() {
           </div>
         </section>
 
-        <section className="px-4">
+        {/* <section className="px-4">
           <div className="grid gap-px border bg-border sm:grid-cols-2 lg:grid-cols-4 rounded-md">
             {platformHighlights.map((item) => (
               <article key={item.title} className="bg-secondary p-2">
@@ -350,6 +357,73 @@ function App() {
                 </div>
               </article>
             ))}
+          </div>
+        </section> */}
+
+        <section className="px-4">
+          <div className="border bg-secondary rounded-md px-4 py-8">
+            <div className="flex flex-col gap-8">
+              <div className="text-center">
+                <h2 className="text-3xl font-normal tracking-tight text-balance">
+                  Who is Minstra for?
+                </h2>
+                <p className="max-w-2xl mx-auto text-sm font-normal leading-6 text-muted-foreground sm:text-base">
+                  Minstra is designed specifically for small teams who need a
+                  powerful hiring tool without the enterprise complexity or
+                  price tag.
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div className="border border-input p-5 rounded-md bg-background flex flex-col gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center bg-primary rounded-md">
+                    <Rocket className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-lg font-normal tracking-tight">
+                      Early-stage Startups
+                    </h3>
+                    <p className="text-sm font-normal leading-6 text-muted-foreground">
+                      You're hiring your first 10-20 people. You need to look
+                      professional to candidates but don't have time to
+                      configure complex ATS systems.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="border border-input p-5 rounded-md bg-background flex flex-col gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center bg-primary rounded-md">
+                    <HeartHandshake className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-lg font-normal tracking-tight">
+                      Growing SMBs
+                    </h3>
+                    <p className="text-sm font-normal leading-6 text-muted-foreground">
+                      You're scaling from 20 to 50+ people. Spreadsheets aren't
+                      cutting it anymore, but enterprise tools feel like
+                      overkill and cost too much.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="border border-input p-5 rounded-md bg-background flex flex-col gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center bg-primary rounded-md">
+                    <Sparkles className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-lg font-normal tracking-tight">
+                      Small Agencies
+                    </h3>
+                    <p className="text-sm font-normal leading-6 text-muted-foreground">
+                      You help clients hire and need a clean, white-label
+                      friendly platform that won't confuse your clients or your
+                      candidates.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
