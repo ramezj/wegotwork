@@ -40,19 +40,19 @@ const platformHighlights = [
 
 const faqItems = [
   {
-    question: "What is Lunics?",
+    question: "What is Minstra?",
     answer:
-      "Lunics is a hiring software platform for organizations and teams that need career pages, job posting, applicant intake, and hiring workflow management in one place.",
+      "Minstra is a hiring software platform for organizations and teams that need career pages, job posting, applicant intake, and hiring workflow management in one place.",
   },
   {
-    question: "Can Lunics replace disconnected hiring tools?",
+    question: "Can Minstra replace disconnected hiring tools?",
     answer:
-      "Yes. Lunics is built to replace the fragmented setup of separate career page builders, application forms, spreadsheets, and lightweight pipeline tools.",
+      "Yes. Minstra is built to replace the fragmented setup of separate career page builders, application forms, spreadsheets, and lightweight pipeline tools.",
   },
   {
-    question: "Who is Lunics built for?",
+    question: "Who is Minstra built for?",
     answer:
-      "Lunics is built for organizations and teams that want a cleaner, more organized hiring process without the overhead of a bloated recruiting stack.",
+      "Minstra is built for organizations and teams that want a cleaner, more organized hiring process without the overhead of a bloated recruiting stack.",
   },
 ] as const;
 
@@ -60,21 +60,21 @@ export const Route = createFileRoute("/")({
   component: App,
   head: () =>
     buildSeo({
-      title: "lunics",
+      title: "Minstra",
       description:
-        "Lunics helps organizations and teams create career pages, post job openings, receive applicants, and manage the hiring process in one platform.",
+        "Minstra helps organizations and teams create career pages, post job openings, receive applicants, and manage the hiring process in one platform.",
       path: "/",
       jsonLd: [
         {
           "@context": "https://schema.org",
           "@type": "WebSite",
-          name: "Lunics",
+          name: "Minstra",
           url: "https://lunics.co",
         },
         {
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
-          name: "Lunics",
+          name: "Minstra",
           applicationCategory: "BusinessApplication",
           operatingSystem: "Web",
           url: "https://lunics.co",
@@ -260,7 +260,7 @@ function App() {
                   </span>
                 </h1>
                 {/* <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
-                  Lunics helps modern teams run a cleaner hiring process with
+                  Minstra helps modern teams run a cleaner hiring process with
                   branded careers pages, public job listings, applicant intake,
                   and structured hiring workflows.
                 </p> */}
@@ -294,16 +294,15 @@ function App() {
         <section className="px-4">
           <div className="border rounded-md">
             <div className="grid lg:grid-cols-[0.95fr_1.55fr]">
-              <div className="border-b p-4 lg:border-b-0 lg:border-r bg-secondary">
-                <div className="px-4 py-8 sm:px-6 sm:py-10">
+              <div className="border-b p-2 lg:border-b-0 lg:border-r bg-secondary">
+                <div className="px-4 py-8 sm:px-6 sm:py-10 bg-background h-full border rounded-md flex flex-col justify-center text-start space-y-2">
                   {/* <p className="mb-3 text-xs font-semibold uppercase text-muted-foreground">
-                    what lunics gives you
+                    what Minstra gives you
                   </p> */}
-                  <h2 className="text-2xl font-normal leading-tight tracking-tight text-balance sm:text-4xl">
-                    The all-in-one hiring platform for public jobs and internal
-                    workflows
+                  <h2 className="text-2xl font-normal tracking-tight text-balance sm:text-4xl">
+                    The all-in-one hiring platform
                   </h2>
-                  <p className="mt-4 max-w-md text-sm font-normal leading-6 text-muted-foreground sm:text-base">
+                  <p className="max-w-md text-sm font-normal text-muted-foreground sm:text-base">
                     Everything you need to publish openings, receive applicants,
                     and manage hiring without bouncing between disconnected
                     tools.
@@ -361,45 +360,59 @@ function App() {
         </section> */}
 
         <section className="px-4">
-          <div className="border bg-secondary rounded-md p-2 space-y-4">
-            <div className="flex flex-col space-y-4">
-              <div className="text-center space-y-2 mt-2">
-                <h2 className="text-3xl font-normal tracking-tight text-balance">
-                  Who is Minstra for?
-                </h2>
-                <p className="max-w-2xl mx-auto text-sm font-normal leading-6 text-muted-foreground sm:text-base">
-                  Minstra is designed specifically for small teams who need a
-                  powerful hiring tool without the enterprise complexity or
-                  price tag.
-                </p>
+          <div className="border rounded-md">
+            <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="border-b lg:border-b-0 lg:border-r bg-secondary">
+                <div className="p-2 h-full flex flex-col justify-center">
+                  <div className="bg-background border border-input rounded-md p-6 lg:p-8 h-full flex flex-col justify-center space-y-2">
+                    <h2 className="text-3xl font-normal tracking-tight text-balance lg:text-4xl">
+                      Who is Minstra for?
+                    </h2>
+                    <p className="text-sm font-normal text-muted-foreground sm:text-base">
+                      Minstra is designed specifically for small teams who need
+                      a powerful hiring tool without the enterprise complexity
+                      or price tag. If you're tired of spreadsheets but
+                      enterprise ATS feels like overkill, you're in the right
+                      place.
+                    </p>
+                  </div>
+                </div>
               </div>
 
-              <div className="grid gap-2 sm:grid-cols-3">
-                <div className="border border-input p-5 rounded-md bg-background flex flex-col gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center bg-primary rounded-md">
-                    <Rocket className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-lg font-normal tracking-tight">
-                      Early-stage Startups
-                    </h3>
-                    <p className="text-sm font-normal leading-6 text-muted-foreground">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-1">
+                <div className="bg-secondary p-2 border-b sm:border-r lg:border-r-0 lg:border-b">
+                  <div className="bg-background border border-input rounded-md p-5 h-full">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-10 w-10 items-center justify-center bg-primary rounded-md shrink-0">
+                        <Rocket className="h-5 w-5 text-primary-foreground" />
+                      </div>
+                      <div className="flex flex-col">
+                        <h3 className="text-base font-normal tracking-tight leading-none">
+                          Early-stage Startups
+                        </h3>
+                      </div>
+                    </div>
+                    <p className="mt-3 text-sm font-normal leading-5 text-muted-foreground">
                       You're hiring your first 10-20 people. You need to look
-                      professional to candidates but don't have time to
-                      configure complex ATS systems.
+                      professional to candidates but don't want to spend time
+                      configuring complex ATS systems.
                     </p>
                   </div>
                 </div>
 
-                <div className="border border-input p-5 rounded-md bg-background flex flex-col gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center bg-primary rounded-md">
-                    <HeartHandshake className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-lg font-normal tracking-tight">
-                      Growing SMEs
-                    </h3>
-                    <p className="text-sm font-normal leading-6 text-muted-foreground">
+                <div className="bg-secondary p-2 border-b sm:border-r-0 lg:border-b">
+                  <div className="bg-background border border-input rounded-md p-5 h-full">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-10 w-10 items-center justify-center bg-primary rounded-md shrink-0">
+                        <HeartHandshake className="h-5 w-5 text-primary-foreground" />
+                      </div>
+                      <div className="flex flex-col">
+                        <h3 className="text-base font-normal tracking-tight leading-none">
+                          Growing SMEs
+                        </h3>
+                      </div>
+                    </div>
+                    <p className="mt-3 text-sm font-normal leading-5 text-muted-foreground">
                       You're scaling from 20 to 50+ people. Spreadsheets aren't
                       cutting it anymore, but enterprise tools feel like
                       overkill and cost too much.
@@ -407,15 +420,19 @@ function App() {
                   </div>
                 </div>
 
-                <div className="border border-input p-5 rounded-md bg-background flex flex-col gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center bg-primary rounded-md">
-                    <Sparkles className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-lg font-normal tracking-tight">
-                      Small Agencies
-                    </h3>
-                    <p className="text-sm font-normal leading-6 text-muted-foreground">
+                <div className="bg-secondary p-2 sm:col-span-2 lg:col-span-1">
+                  <div className="bg-background border border-input rounded-md p-5 h-full">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-10 w-10 items-center justify-center bg-primary rounded-md shrink-0">
+                        <Sparkles className="h-5 w-5 text-primary-foreground" />
+                      </div>
+                      <div className="flex flex-col">
+                        <h3 className="text-base font-normal tracking-tight leading-none">
+                          Small Agencies
+                        </h3>
+                      </div>
+                    </div>
+                    <p className="mt-3 text-sm font-normal leading-5 text-muted-foreground">
                       You help clients hire and need a clean, white-label
                       friendly platform that won't confuse your clients or your
                       candidates.
@@ -433,7 +450,7 @@ function App() {
               <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="space-y-3">
                   <p className="font-normal text-muted-foreground">
-                    Why teams choose Lunics
+                    Why teams choose Minstra
                   </p>
                   <h2 className="text-3xl font-normal tracking-tight text-balance">
                     Built for fast hiring without the bloated recruiting stack
@@ -441,7 +458,7 @@ function App() {
                 </div>
                 <div className="space-y-4">
                   <p className="font-normal leading-6 text-muted-foreground sm:text-base">
-                    Lunics is a strong fit for companies that want a better
+                    Minstra is a strong fit for companies that want a better
                     candidate-facing experience and a more organized internal
                     workflow at the same time.
                   </p>

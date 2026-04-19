@@ -42,7 +42,7 @@ export function Browser({ jobs }: BrowserProps) {
             </p>
           </div>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-2">
           {jobs.map((job, index) => (
             <div key={index}>
               <JobCardForLandingPage job={job} slug="#" isDemo />
