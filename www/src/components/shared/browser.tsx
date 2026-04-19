@@ -11,7 +11,7 @@ export function Browser({ jobs }: BrowserProps) {
   return (
     <Card className="rounded-md overflow-hidden p-0 gap-0 bg-secondary">
       {/* Browser chrome */}
-      <div className="flex items-center gap-2 p-4">
+      <div className="flex items-center gap-2 p-2">
         <div className="flex gap-1.5">
           <div className="size-3 bg-red-400 rounded-full" />
           <div className="size-3 bg-yellow-400 rounded-full" />
@@ -25,7 +25,7 @@ export function Browser({ jobs }: BrowserProps) {
       </div>
 
       {/* Browser content */}
-      <div className="p-4">
+      <div className="p-2">
         <div className="flex flex-col items-center text-center space-y-4 py-6 -mt-4">
           <Avatar className="w-16 h-16 bg-primary">
             <AvatarFallback className="text-2xl bg-primary font-normal text-primary-foreground">

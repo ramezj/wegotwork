@@ -361,9 +361,9 @@ function App() {
         </section> */}
 
         <section className="px-4">
-          <div className="border bg-secondary rounded-md px-4 py-8">
-            <div className="flex flex-col gap-8">
-              <div className="text-center">
+          <div className="border bg-secondary rounded-md p-2 space-y-4">
+            <div className="flex flex-col space-y-4">
+              <div className="text-center space-y-2 mt-2">
                 <h2 className="text-3xl font-normal tracking-tight text-balance">
                   Who is Minstra for?
                 </h2>
@@ -374,7 +374,7 @@ function App() {
                 </p>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid gap-2 sm:grid-cols-3">
                 <div className="border border-input p-5 rounded-md bg-background flex flex-col gap-4">
                   <div className="flex h-10 w-10 items-center justify-center bg-primary rounded-md">
                     <Rocket className="h-5 w-5 text-primary-foreground" />
@@ -397,7 +397,7 @@ function App() {
                   </div>
                   <div className="flex flex-col gap-2">
                     <h3 className="text-lg font-normal tracking-tight">
-                      Growing SMBs
+                      Growing SMEs
                     </h3>
                     <p className="text-sm font-normal leading-6 text-muted-foreground">
                       You're scaling from 20 to 50+ people. Spreadsheets aren't
@@ -459,7 +459,7 @@ function App() {
           </div>
         </section>
 
-        <section className="px-4">
+        {/* <section className="px-4">
           <div className="border rounded-md">
             <div className="grid gap-px bg-border lg:grid-cols-3">
               {faqItems.map((item) => (
@@ -476,7 +476,7 @@ function App() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
     </div>
   );
