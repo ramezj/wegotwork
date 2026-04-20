@@ -75,10 +75,6 @@ function CreatePipelinePage() {
   const { slug } = Route.useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { data: orgData } = useSuspenseQuery(
-    organizationBySlugQueryOptions(slug),
-  );
-
   const form = useForm<PipelineFormValues>({
     resolver: zodResolver(pipelineSchema),
     defaultValues: {
@@ -86,14 +82,11 @@ function CreatePipelinePage() {
       stages: buildDefaultStages(),
     },
   });
-
   const { fields, append, remove, move, replace } = useFieldArray({
     control: form.control,
     name: "stages",
   });
-
   const watchedStages = form.watch("stages") ?? [];
-
   const createMutation = useMutation({
     mutationFn: createPipelineFn,
     onSuccess: async () => {
@@ -180,7 +173,7 @@ function CreatePipelinePage() {
               </Button>
             </div>
 
-            <Separator className="my-6" />
+            <Separator className="my-4" />
 
             <Controller
               control={form.control}
@@ -361,7 +354,6 @@ function CreatePipelinePage() {
                               aria-invalid={fieldState.invalid}
                               placeholder={`Stage ${index + 1} name`}
                               disabled={createMutation.isPending}
-                              className="h-10"
                             />
                           </FieldContent>
                           <FieldError errors={[fieldState.error]} />
