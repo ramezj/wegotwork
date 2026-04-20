@@ -1,24 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import Header from "@/components/shared/header";
 import { Button } from "@/components/ui/button";
-import { Check, ArrowRight } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Check } from "lucide-react";
 import { buildSeo } from "@/lib/seo";
+import plansData from "@/data/plans.json";
 
-const freeFeatures = [
-  "Careers page and public job listings",
-  "Job posting and application intake",
-  "Pipeline and stage management",
-  "Candidate review and movement",
-  "Categories and offices support",
-];
-
-const enterpriseFeatures = [
-  "Everything in Free",
-  "Custom onboarding and rollout support",
-  "Multi-team hiring workflows",
-  "Advanced collaboration and permissions",
-  "Priority support and tailored setup",
-];
+// Helper to format quota values (-1 = Unlimited)
+const formatQuota = (value: number) => (value === -1 ? "Unlimited" : value);
 
 export const Route = createFileRoute("/pricing")({
   component: PricingPage,
@@ -54,91 +43,104 @@ function PricingPage() {
           </div>
         </section>
 
-        <section className="border rounded-md overflow-hidden">
-          <div className="grid lg:grid-cols-2">
-            <article className="border-b lg:border-b-0 lg:border-r p-6 sm:p-8 bg-secondary">
-              <div className="space-y-6">
-                <div className="space-y-3">
-                  <p className="text-xs font-normal text-muted-foreground">
-                    Free
+        <section className="grid gap-4 lg:grid-cols-3">
+          {plansData.plans.map((plan) => (
+            <Card
+              key={plan.id}
+              className={`p-6 flex flex-col ${plan.isPopular ? "border-primary relative" : ""}`}
+            >
+              {plan.isPopular && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="inline-flex items-center rounded-md bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
+                    Most Popular
+                  </span>
+                </div>
+              )}
+              <div className="flex flex-col flex-1">
+                <div className="space-y-2">
+                  <p className="text-xs font-normal text-muted-foreground uppercase tracking-wide">
+                    {plan.name}
                   </p>
-                  <div className="space-y-2">
-                    <h2 className="text-3xl font-normal tracking-tight">$0</h2>
-                    <p className="text-sm font-normal text-muted-foreground">
-                      For teams launching a careers page and their first hiring
-                      workflow.
-                    </p>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-normal tracking-tight">
+                      {plan.priceLabel.split("/")[0]}
+                    </span>
+                    {plan.priceLabel.includes("/") && (
+                      <span className="text-sm text-muted-foreground">
+                        /{plan.priceLabel.split("/")[1]}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    {plan.description}
+                  </p>
+                </div>
+
+                <div className="space-y-3 border-t pt-4 mt-4">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground">Active jobs</span>
+                    <span className="font-medium">
+                      {formatQuota(plan.quotas.maxJobs)}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground">Team members</span>
+                    <span className="font-medium">
+                      {formatQuota(plan.quotas.maxMembers)}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground">Offices</span>
+                    <span className="font-medium">
+                      {formatQuota(plan.quotas.maxOffices)}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground">Pipelines</span>
+                    <span className="font-medium">
+                      {formatQuota(plan.quotas.maxPipelines)}
+                    </span>
                   </div>
                 </div>
 
-                <div className="space-y-3 border-t pt-6">
-                  {freeFeatures.map((feature) => (
-                    <div key={feature} className="flex items-start gap-3">
-                      <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border">
-                        <Check className="size-3" />
-                      </div>
-                      <p className="text-sm font-medium leading-6">{feature}</p>
+                <div className="space-y-2 pt-4 flex-1">
+                  {plan.features.map((feature) => (
+                    <div key={feature} className="flex items-start gap-2">
+                      <Check
+                        className={`mt-0.5 size-4 shrink-0 ${plan.isPopular ? "text-primary" : "text-muted-foreground"}`}
+                      />
+                      <p
+                        className={`text-sm ${plan.isPopular ? "" : "text-muted-foreground"}`}
+                      >
+                        {feature}
+                      </p>
                     </div>
                   ))}
                 </div>
 
-                <Button asChild className="w-full sm:w-auto">
-                  <Link to="/auth">
-                    Start Free
-                    <ArrowRight className="size-4" />
-                  </Link>
-                </Button>
-              </div>
-            </article>
-
-            <article className="bg-secondary p-2">
-              <div className="p-6 sm:p-8 bg-background border border-input rounded-md">
-                <div className="space-y-6">
-                  <div className="space-y-3">
-                    <div className="inline-flex border px-3 py-1 text-xs font-normal text-primary-foreground bg-primary">
-                      Enterprise
-                    </div>
-                    <div className="space-y-2">
-                      <h2 className="text-3xl font-normal tracking-tight text-primary">
-                        $50
-                      </h2>
-                      <p className="max-w-md text-sm font-normal text-muted-foreground">
-                        For organizations hiring across teams, offices, and more
-                        advanced recruiting workflows.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 border-t pt-6">
-                    {enterpriseFeatures.map((feature) => (
-                      <div key={feature} className="flex items-start gap-3">
-                        <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-primary">
-                          <Check className="size-3" />
-                        </div>
-                        <p className="text-sm font-normal leading-6 text-primary">
-                          {feature}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
+                {plan.cta.href ? (
                   <Button
                     asChild
-                    variant="default"
-                    className="w-full sm:w-auto"
+                    variant={plan.cta.variant as "default" | "outline"}
+                    className="w-full mt-6"
                   >
-                    <a href="mailto:hello@lunics.co?subject=Enterprise%20Plan">
-                      Contact Sales
-                      <ArrowRight className="size-4" />
-                    </a>
+                    <a href={plan.cta.href}>{plan.cta.text}</a>
                   </Button>
-                </div>
+                ) : (
+                  <Button
+                    asChild
+                    variant={plan.cta.variant as "default" | "outline"}
+                    className="w-full mt-6"
+                  >
+                    <Link to="/auth">{plan.cta.text}</Link>
+                  </Button>
+                )}
               </div>
-            </article>
-          </div>
+            </Card>
+          ))}
         </section>
 
-        <section className="border p-5 bg-secondary rounded-md">
+        {/* <section className="border p-5 bg-secondary rounded-md">
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="space-y-2">
               <p className="font-normal tracking-tight text-muted-foreground">
@@ -179,7 +181,7 @@ function PricingPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
     </div>
   );

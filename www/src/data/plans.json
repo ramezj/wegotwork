@@ -1,0 +1,84 @@
+{
+  "plans": [
+    {
+      "id": "plan_free",
+      "code": "free",
+      "name": "Free",
+      "price": 0,
+      "priceLabel": "$0",
+      "description": "For teams just getting started with hiring.",
+      "quotas": {
+        "maxJobs": 3,
+        "maxMembers": 3,
+        "maxOffices": 1,
+        "maxPipelines": 1
+      },
+      "features": [
+        "Branded careers page",
+        "Custom application forms",
+        "Basic candidate pipeline",
+        "Email notifications"
+      ],
+      "cta": {
+        "text": "Start Free",
+        "variant": "outline"
+      },
+      "isPopular": false
+    },
+    {
+      "id": "plan_premium",
+      "code": "premium",
+      "name": "Premium",
+      "price": 29,
+      "priceLabel": "$29/month",
+      "description": "For growing teams ready to scale their hiring.",
+      "quotas": {
+        "maxJobs": 25,
+        "maxMembers": 10,
+        "maxOffices": 5,
+        "maxPipelines": 5
+      },
+      "features": [
+        "Everything in Free, plus:",
+        "Up to 25 active jobs",
+        "Up to 10 team members",
+        "Multiple offices",
+        "Custom pipelines",
+        "Priority support"
+      ],
+      "cta": {
+        "text": "Get Premium",
+        "variant": "default"
+      },
+      "isPopular": true
+    },
+    {
+      "id": "plan_enterprise",
+      "code": "enterprise",
+      "name": "Enterprise",
+      "price": null,
+      "priceLabel": "Custom",
+      "description": "For organizations with advanced hiring needs.",
+      "quotas": {
+        "maxJobs": -1,
+        "maxMembers": -1,
+        "maxOffices": -1,
+        "maxPipelines": -1
+      },
+      "features": [
+        "Everything in Premium, plus:",
+        "Unlimited jobs & users",
+        "SSO & advanced security",
+        "Dedicated account manager",
+        "Custom integrations",
+        "SLA guarantee"
+      ],
+      "cta": {
+        "text": "Contact Sales",
+        "variant": "outline",
+        "href": "mailto:hello@lunics.co?subject=Enterprise%20Plan"
+      },
+      "isPopular": false
+    }
+  ]
+}

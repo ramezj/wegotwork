@@ -1,14 +1,30 @@
 import prisma from "@/lib/prisma";
+import plansData from "@/data/plans.json";
 
-const SYSTEM_PLANS = [
-  { id: "plan_free", code: "free", name: "Free" },
-  { id: "plan_premium", code: "premium", name: "Premium" },
-  { id: "plan_enterprise", code: "enterprise", name: "Enterprise" },
-] as const;
+const SYSTEM_PLANS = plansData.plans.map((plan) => ({
+  id: plan.id,
+  code: plan.code,
+  name: plan.name,
+  maxJobs: plan.quotas.maxJobs,
+  maxMembers: plan.quotas.maxMembers,
+  maxOffices: plan.quotas.maxOffices,
+  maxPipelines: plan.quotas.maxPipelines,
+}));
 
 export type SystemPlanCode = (typeof SYSTEM_PLANS)[number]["code"];
 
-type SystemPlanMap = Record<SystemPlanCode, { id: string; code: string; name: string }>;
+type SystemPlanMap = Record<
+  SystemPlanCode,
+  {
+    id: string;
+    code: string;
+    name: string;
+    maxJobs: number;
+    maxMembers: number;
+    maxOffices: number;
+    maxPipelines: number;
+  }
+>;
 
 export async function ensureSystemPlans(): Promise<SystemPlanMap> {
   return prisma.$transaction(async (tx) => {
@@ -24,6 +40,10 @@ export async function ensureSystemPlans(): Promise<SystemPlanMap> {
         name: true,
         isSystem: true,
         isActive: true,
+        maxJobs: true,
+        maxMembers: true,
+        maxOffices: true,
+        maxPipelines: true,
       },
     });
 
@@ -43,6 +63,10 @@ export async function ensureSystemPlans(): Promise<SystemPlanMap> {
           name: plan.name,
           isSystem: true,
           isActive: true,
+          maxJobs: plan.maxJobs,
+          maxMembers: plan.maxMembers,
+          maxOffices: plan.maxOffices,
+          maxPipelines: plan.maxPipelines,
         })),
         skipDuplicates: true,
       });
@@ -58,7 +82,11 @@ export async function ensureSystemPlans(): Promise<SystemPlanMap> {
       if (
         existingPlan.name !== plan.name ||
         !existingPlan.isSystem ||
-        !existingPlan.isActive
+        !existingPlan.isActive ||
+        existingPlan.maxJobs !== plan.maxJobs ||
+        existingPlan.maxMembers !== plan.maxMembers ||
+        existingPlan.maxOffices !== plan.maxOffices ||
+        existingPlan.maxPipelines !== plan.maxPipelines
       ) {
         await tx.plan.update({
           where: { id: existingPlan.id },
@@ -66,6 +94,10 @@ export async function ensureSystemPlans(): Promise<SystemPlanMap> {
             name: plan.name,
             isSystem: true,
             isActive: true,
+            maxJobs: plan.maxJobs,
+            maxMembers: plan.maxMembers,
+            maxOffices: plan.maxOffices,
+            maxPipelines: plan.maxPipelines,
           },
         });
       }
@@ -81,6 +113,10 @@ export async function ensureSystemPlans(): Promise<SystemPlanMap> {
         id: true,
         code: true,
         name: true,
+        maxJobs: true,
+        maxMembers: true,
+        maxOffices: true,
+        maxPipelines: true,
       },
     });
 
