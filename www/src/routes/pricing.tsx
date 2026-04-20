@@ -44,7 +44,7 @@ function PricingPage() {
                 simple pricing
               </div> */}
               <h1 className="max-w-4xl text-4xl font-normal tracking-tight text-balance sm:text-5xl">
-                pricing that is simple & straightforward.
+                No surprises. No hidden fees. Just pricing.
               </h1>
               {/* <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
                 Start with the essentials for job posting and applicant intake,

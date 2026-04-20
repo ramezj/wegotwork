@@ -93,8 +93,7 @@ function FeaturesPage() {
           <div className="bg-secondary px-6 py-10 text-center sm:px-10 sm:py-14">
             <div className="animate-hero-reveal mx-auto flex max-w-3xl flex-col items-center gap-4">
               <h1 className="max-w-4xl text-4xl font-normal tracking-tight text-balance sm:text-5xl">
-                features for career pages, job posting, and applicant
-                management.
+                For growing teams who need to move fast.
               </h1>
               {/* <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground sm:text-base">
                 Lunics helps organizations publish jobs, receive applicants,
