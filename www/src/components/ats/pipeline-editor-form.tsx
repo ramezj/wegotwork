@@ -8,15 +8,15 @@ import { toast } from "sonner";
 import {
   ArrowDown,
   ArrowUp,
-  Loader,
   Loader2,
   Plus,
+  Save,
   Trash2,
   TriangleAlert,
-  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardTitle } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -141,21 +141,37 @@ export function PipelineEditorForm({
           form="pipeline-form"
           type="submit"
           disabled={updateMutation.isPending}
+          className="gap-2"
         >
-          {updateMutation.isPending && (
-            <Loader className="size-4 animate-spin" />
-          )}
           Save Changes
+          {updateMutation.isPending ? (
+            <Loader2 className="size-4 animate-spin" />
+          ) : (
+            <Save className="size-4" />
+          )}
         </Button>
       }
     >
-      <Card>
-        <CardContent>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-4"
-            id="pipeline-form"
-          >
+      <form
+        id="pipeline-form"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-4"
+      >
+        {/* Pipeline Details */}
+        <Card className="p-4">
+          <div className="space-y-4">
+            {/* <div className="flex items-start justify-between">
+              <div className="space-y-1">
+                <CardTitle className="text-base">Pipeline Details</CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Update the pipeline name and configuration
+                </p>
+              </div>
+              <Badge variant="secondary">
+                {formatStageCount(fields.length)}
+              </Badge>
+            </div> */}
+
             <Controller
               control={form.control}
               name="name"
@@ -166,7 +182,7 @@ export function PipelineEditorForm({
                     <Input
                       {...field}
                       aria-invalid={fieldState.invalid}
-                      placeholder="Pipeline name"
+                      placeholder="e.g. Engineering Hiring, Sales Team, etc."
                       disabled={updateMutation.isPending}
                     />
                   </FieldContent>
@@ -174,91 +190,23 @@ export function PipelineEditorForm({
                 </Field>
               )}
             />
+          </div>
+        </Card>
 
-            <div className="space-y-3">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <h2 className="text-sm font-medium">Hiring Stages</h2>
-                  <p className="text-sm text-muted-foreground">
-                    Add, rename, remove, and reorder stages for this pipeline.
-                  </p>
-                </div>
-                <span className="text-xs text-muted-foreground">
-                  {formatStageCount(fields.length)}
-                </span>
+        {/* Stages List */}
+        <Card className="p-4">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="space-y-1">
+                <CardTitle className="text-base">Stages</CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Define each step candidates move through
+                </p>
               </div>
-
-              <div className="space-y-3">
-                {fields.map((field, index) => (
-                  <div
-                    key={field.id}
-                    className="flex items-center gap-2 rounded-lg border p-3"
-                  >
-                    <div className="flex flex-col gap-1">
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="icon"
-                        className="size-7"
-                        disabled={index === 0 || updateMutation.isPending}
-                        onClick={() => move(index, index - 1)}
-                      >
-                        <ArrowUp className="size-3.5" />
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="icon"
-                        className="size-7"
-                        disabled={
-                          index === fields.length - 1 ||
-                          updateMutation.isPending
-                        }
-                        onClick={() => move(index, index + 1)}
-                      >
-                        <ArrowDown className="size-3.5" />
-                      </Button>
-                    </div>
-
-                    <div className="flex-1">
-                      <Controller
-                        control={form.control}
-                        name={`stages.${index}.name`}
-                        render={({ field, fieldState }) => (
-                          <Field data-invalid={fieldState.invalid}>
-                            <FieldContent>
-                              <Input
-                                {...field}
-                                aria-invalid={fieldState.invalid}
-                                placeholder={`Stage ${index + 1} name`}
-                                disabled={updateMutation.isPending}
-                              />
-                            </FieldContent>
-                            <FieldError errors={[fieldState.error]} />
-                          </Field>
-                        )}
-                      />
-                    </div>
-
-                    <Button
-                      type="button"
-                      variant="destructive"
-                      size="icon"
-                      disabled={fields.length === 1 || updateMutation.isPending}
-                      onClick={() => remove(index)}
-                    >
-                      <X className="size-4" />
-                    </Button>
-                  </div>
-                ))}
-              </div>
-
-              <FieldError errors={[form.formState.errors.stages as any]} />
-
               <Button
                 type="button"
                 variant="outline"
-                className="w-full gap-2"
+                className="gap-2"
                 disabled={updateMutation.isPending}
                 onClick={() => append({ name: "" })}
               >
@@ -266,46 +214,130 @@ export function PipelineEditorForm({
                 Add Stage
               </Button>
             </div>
-          </form>
-        </CardContent>
-      </Card>
 
-      <Card className="border-destructive mt-4">
-        <CardHeader className="flex flex-row items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-destructive/10 shrink-0">
-            <TriangleAlert className="h-4 w-4 text-destructive" />
-          </div>
-          <div>
-            <CardTitle className="text-base">Danger Zone</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          <p className="text-sm text-muted-foreground">
-            Deleting this pipeline will permanently remove it from your
-            organization. Jobs must be moved off this pipeline before it can be
-            deleted.
-          </p>
+            <div>
+              {fields.length === 0 ? (
+                <div className="rounded-lg border border-dashed p-8 text-center">
+                  <p className="text-sm text-muted-foreground">No stages yet</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Add stages to define your hiring flow
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {fields.map((field, index) => (
+                    <div
+                      key={field.id}
+                      className="group flex items-center gap-3 rounded-lg border bg-background p-3"
+                    >
+                      {/* Stage Number */}
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary text-xs font-medium text-primary-foreground">
+                        {index + 1}
+                      </div>
 
-          <div className="flex items-center justify-between gap-4 rounded-md border border-destructive/20 p-4">
-            <div className="space-y-1">
-              <p className="text-sm font-medium">Delete pipeline</p>
+                      {/* Stage Input */}
+                      <Controller
+                        control={form.control}
+                        name={`stages.${index}.name`}
+                        render={({ field: stageField, fieldState }) => (
+                          <div className="flex-1 min-w-0">
+                            <Input
+                              {...stageField}
+                              placeholder={`Stage ${index + 1} name`}
+                              disabled={updateMutation.isPending}
+                              className="h-9"
+                            />
+                            {fieldState.error && (
+                              <p className="text-xs text-destructive mt-1">
+                                {fieldState.error.message}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      />
+
+                      {/* Actions */}
+                      <div className="flex items-center gap-1">
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="size-8"
+                          disabled={index === 0 || updateMutation.isPending}
+                          onClick={() => move(index, index - 1)}
+                        >
+                          <ArrowUp className="size-4" />
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="size-8"
+                          disabled={
+                            index === fields.length - 1 ||
+                            updateMutation.isPending
+                          }
+                          onClick={() => move(index, index + 1)}
+                        >
+                          <ArrowDown className="size-4" />
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="size-8 text-destructive hover:text-destructive hover:bg-destructive/10"
+                          disabled={
+                            fields.length === 1 || updateMutation.isPending
+                          }
+                          onClick={() => remove(index)}
+                        >
+                          <Trash2 className="size-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <FieldError errors={[form.formState.errors.stages as any]} />
+            </div>
+          </div>
+        </Card>
+      </form>
+
+      <Card className="border-destructive mt-4 p-4">
+        <div className="flex items-start justify-between gap-4 mb-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-destructive/10 shrink-0">
+              <TriangleAlert className="h-4 w-4 text-destructive" />
+            </div>
+            <div>
+              <CardTitle className="text-base">Danger Zone</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Remove <strong>{pipeline.name}</strong> from this organization.
+                Permanently delete this pipeline
               </p>
             </div>
-
-            <Button
-              type="button"
-              variant="destructive"
-              // disabled={deleteMutation.isPending}
-              className="gap-2"
-              onClick={() => setDeleteDialogOpen(true)}
-            >
-              <Trash2 />
-              Delete Pipeline
-            </Button>
           </div>
-        </CardContent>
+        </div>
+
+        <div className="flex items-center justify-between gap-4 rounded-md border border-destructive/20 p-4 bg-destructive/5">
+          <div className="space-y-1">
+            <p className="text-sm font-medium">Delete pipeline</p>
+            <p className="text-sm text-muted-foreground">
+              Remove <strong>{pipeline.name}</strong> from this organization.
+            </p>
+          </div>
+
+          <Button
+            type="button"
+            variant="destructive"
+            className="gap-2"
+            onClick={() => setDeleteDialogOpen(true)}
+          >
+            Delete Pipeline
+            <Trash2 className="size-4" />
+          </Button>
+        </div>
       </Card>
 
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
@@ -330,16 +362,17 @@ export function PipelineEditorForm({
               type="button"
               variant="destructive"
               disabled={deleteMutation.isPending}
+              className="gap-2"
               onClick={() =>
                 deleteMutation.mutate({ data: { id: pipeline.id } })
               }
             >
-              {deleteMutation.isPending ? (
-                <Loader className="h-4 w-4 animate-spin" />
-              ) : (
-                <Trash2 />
-              )}
               Delete Pipeline
+              {deleteMutation.isPending ? (
+                <Loader2 className="size-4 animate-spin" />
+              ) : (
+                <Trash2 className="size-4" />
+              )}
             </Button>
           </DialogFooter>
         </DialogContent>

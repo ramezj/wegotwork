@@ -5,12 +5,16 @@ import { Layout } from "@/components/shared/layout";
 import { Button } from "@/components/ui/button";
 import { Plus, PlusIcon } from "lucide-react";
 import { PipelineCard } from "@/components/ats/pipeline-card";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/$slug/_layout/pipelines/")({
   component: PipelinesPage,
-  head: () => ({
-    meta: [{ title: "Pipelines", content: "Manage hiring pipelines" }],
-  }),
+  head: () => {
+    return buildSeo({
+      title: "Pipelines",
+      description: "Manage hiring pipelines",
+    });
+  },
   loader: async ({ context, params }) => {
     await context.queryClient.ensureQueryData(
       pipelinesQueryOptions(params.slug),

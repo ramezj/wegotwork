@@ -211,12 +211,12 @@ export function CreateJobDialog({ slug }: { slug: string }) {
               type="submit"
               className="w-full"
             >
+              Create Job
               {mutation.isPending ? (
                 <Loader2 className="size-4 animate-spin" />
               ) : (
                 <PlusIcon />
               )}
-              Create Job
             </Button>
           </div>
         </form>

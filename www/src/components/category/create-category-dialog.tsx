@@ -16,9 +16,10 @@ import z from "zod";
 import { toast } from "sonner";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
-import { Folder, Folders, Loader, PlusIcon } from "lucide-react";
+import { Folder, Folders, Loader, Loader2, Plus, PlusIcon } from "lucide-react";
 import { useState } from "react";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
+import { categoriesByOrgSlugQueryOptions } from "@/features/queries/categories";
 
 export function CreateCategoryDialog({ slug }: { slug: string }) {
   const [open, setOpen] = useState(false);
@@ -35,7 +36,7 @@ export function CreateCategoryDialog({ slug }: { slug: string }) {
     mutationFn: (data: z.infer<typeof categorySchema>) =>
       createCategoryFn({ data: { slug, category: data } }),
     onSuccess: async () => {
-      await queryClient.refetchQueries(organizationBySlugQueryOptions(slug));
+      await queryClient.refetchQueries(categoriesByOrgSlugQueryOptions(slug));
       toast.success("Category created successfully");
       form.reset();
       setOpen(false);
@@ -90,8 +91,12 @@ export function CreateCategoryDialog({ slug }: { slug: string }) {
             className="w-full"
             type="submit"
           >
-            {mutation.isPending && <Loader className="animate-spin" />}
             Create Category
+            {mutation.isPending ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              <Plus />
+            )}
           </Button>
         </form>
       </DialogContent>

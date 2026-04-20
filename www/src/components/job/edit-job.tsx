@@ -35,6 +35,7 @@ import {
   TriangleAlert,
   Trash2,
   Save,
+  Loader2,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
@@ -712,6 +713,7 @@ export function EditJobForm({
                     className="gap-2"
                   >
                     Delete Job
+                    <Trash2 />
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[480px]">
@@ -737,10 +739,12 @@ export function EditJobForm({
                       onClick={() => deleteMutation.mutate()}
                       disabled={deleteMutation.isPending}
                     >
-                      {deleteMutation.isPending ? (
-                        <Loader className="h-4 w-4 animate-spin" />
-                      ) : null}
                       Delete Job
+                      {deleteMutation.isPending ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <Trash2 />
+                      )}
                     </Button>
                   </DialogFooter>
                 </DialogContent>

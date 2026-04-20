@@ -1,18 +1,14 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import {
-  useMutation,
-  useQueryClient,
-  useSuspenseQuery,
-} from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Layout } from "@/components/shared/layout";
-import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import { createPipelineFn } from "@/features/services/ats/pipeline";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardTitle } from "@/components/ui/card";
 import {
   Field,
   FieldContent,
@@ -20,26 +16,38 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 import {
   ArrowDown,
   ArrowUp,
-  Check,
-  GitBranch,
-  Loader,
+  Loader2,
   Plus,
-  X,
+  Sparkles,
+  Trash2,
 } from "lucide-react";
-
+import { buildSeo } from "@/lib/seo";
 const CREATE_PIPELINE_FORM_ID = "create-pipeline-form";
-const DEFAULT_STAGE_NAMES = ["Applied", "Screen", "Interview", "Offer"];
-const SUGGESTED_STAGE_NAMES = [
-  "Applied",
-  "Screen",
-  "Take-home",
-  "Interview",
-  "Final interview",
-  "Offer",
+
+const PIPELINE_TEMPLATES = [
+  {
+    name: "Standard",
+    description: "For most roles",
+    stages: ["Applied", "Screen", "Interview", "Offer"],
+  },
+  {
+    name: "Technical",
+    description: "With assessment",
+    stages: ["Applied", "Screen", "Take-home", "Interview", "Offer"],
+  },
+  {
+    name: "Senior",
+    description: "Multi-interview",
+    stages: ["Applied", "Screen", "Interview", "Final Interview", "Offer"],
+  },
+  {
+    name: "Agency",
+    description: "Client approval",
+    stages: ["Received", "Review", "Shortlist", "Client Submit", "Placement"],
+  },
 ];
 
 const pipelineSchema = z.object({
@@ -55,20 +63,20 @@ const pipelineSchema = z.object({
 
 type PipelineFormValues = z.infer<typeof pipelineSchema>;
 
-function buildDefaultStages() {
-  return DEFAULT_STAGE_NAMES.map((name) => ({ name }));
-}
-
-function buildSuggestedStages() {
-  return SUGGESTED_STAGE_NAMES.map((name) => ({ name }));
-}
-
 function formatStageCount(count: number) {
   return `${count} stage${count === 1 ? "" : "s"}`;
 }
 
 export const Route = createFileRoute("/$slug/_layout/pipelines/create")({
   component: CreatePipelinePage,
+  head: () => {
+    return buildSeo({
+      title: "Create Pipeline",
+      description: "Create a new hiring pipeline",
+      path: "",
+      noIndex: true,
+    });
+  },
 });
 
 function CreatePipelinePage() {
@@ -79,7 +87,7 @@ function CreatePipelinePage() {
     resolver: zodResolver(pipelineSchema),
     defaultValues: {
       name: "",
-      stages: buildDefaultStages(),
+      stages: PIPELINE_TEMPLATES[0].stages.map((name) => ({ name })),
     },
   });
   const { fields, append, remove, move, replace } = useFieldArray({
@@ -101,8 +109,8 @@ function CreatePipelinePage() {
     },
   });
 
-  const handleLoadSuggestedFlow = () => {
-    replace(buildSuggestedStages());
+  const handleLoadTemplate = (stages: string[]) => {
+    replace(stages.map((name) => ({ name })));
   };
 
   const onSubmit = async (data: PipelineFormValues) => {
@@ -126,54 +134,34 @@ function CreatePipelinePage() {
           disabled={createMutation.isPending}
           className="gap-2"
         >
-          {createMutation.isPending && (
-            <Loader className="size-4 animate-spin" />
-          )}
           Create Pipeline
+          {createMutation.isPending ? (
+            <Loader2 className="size-4 animate-spin" />
+          ) : (
+            <Plus className="size-4" />
+          )}
         </Button>
       }
     >
       <form
         id={CREATE_PIPELINE_FORM_ID}
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6"
+        className="space-y-4"
       >
-        <section className="grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_320px]">
-          <div className="rounded-xl border bg-secondary p-6">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-              <div className="space-y-4">
-                <div className="flex size-10 items-center justify-center rounded-md bg-primary">
-                  <GitBranch className="size-5 text-primary-foreground" />
-                </div>
-                <div className="space-y-2">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h2 className="text-lg font-semibold tracking-tight">
-                      Pipeline setup
-                    </h2>
-                    <Badge variant="secondary">
-                      {formatStageCount(fields.length)}
-                    </Badge>
-                  </div>
-                  <p className="max-w-2xl text-sm text-muted-foreground">
-                    Create the hiring flow your team will use from intake to
-                    decision. Start with the recommended stages, rename anything
-                    you need, and reorder the flow before saving.
-                  </p>
-                </div>
+        {/* Pipeline Name & Templates */}
+        <Card className="p-4">
+          <div className="space-y-4">
+            {/* <div className="flex items-start justify-between">
+              <div className="space-y-1">
+                <CardTitle className="text-base">Pipeline Details</CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Name your pipeline and choose a starting template
+                </p>
               </div>
-              <Button
-                type="button"
-                variant="outline"
-                className="gap-2"
-                disabled={createMutation.isPending}
-                onClick={handleLoadSuggestedFlow}
-              >
-                <Check className="size-4" />
-                Load Recommended Flow
-              </Button>
-            </div>
-
-            <Separator className="my-4" />
+              <Badge variant="secondary">
+                {formatStageCount(fields.length)}
+              </Badge>
+            </div> */}
 
             <Controller
               control={form.control}
@@ -185,7 +173,7 @@ function CreatePipelinePage() {
                     <Input
                       {...field}
                       aria-invalid={fieldState.invalid}
-                      placeholder="e.g. Product Hiring"
+                      placeholder="e.g. Engineering Hiring, Sales Team, etc."
                       disabled={createMutation.isPending}
                     />
                   </FieldContent>
@@ -193,53 +181,67 @@ function CreatePipelinePage() {
                 </Field>
               )}
             />
-          </div>
 
-          <section className="rounded-xl border bg-background p-5">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="text-sm font-semibold">Live Preview</p>
-                <p className="text-xs text-muted-foreground">
-                  How this flow will read to your team.
-                </p>
+            {/* Template Selector */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <Sparkles className="size-4 text-muted-foreground" />
+                <span className="text-sm font-medium">
+                  Start with a template
+                </span>
               </div>
-              <Badge variant="outline">{formatStageCount(fields.length)}</Badge>
-            </div>
-
-            <div className="space-y-4">
-              <div className="space-y-3">
-                {watchedStages.map((stage, index) => (
-                  <div key={`${stage.name}-${index}`}>
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-xs font-semibold">
-                        {index + 1}
-                      </div>
-                      <div className="min-w-0">
-                        <p className="truncate text-sm font-medium">
-                          {stage.name?.trim() || `Stage ${index + 1}`}
-                        </p>
-                      </div>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {PIPELINE_TEMPLATES.map((template) => (
+                  <button
+                    key={template.name}
+                    type="button"
+                    onClick={() => handleLoadTemplate(template.stages)}
+                    disabled={createMutation.isPending}
+                    className="rounded-lg border bg-background p-4 text-left transition-colors hover:bg-secondary hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-medium text-sm">
+                        {template.name}
+                      </span>
+                      <Badge variant="outline" className="text-xs">
+                        {template.stages.length}
+                      </Badge>
                     </div>
-                    {index < watchedStages.length - 1 && (
-                      <div className="ml-[13px] mt-2 h-4 w-px bg-border" />
-                    )}
-                  </div>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {template.description}
+                    </p>
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      {template.stages.slice(0, 3).map((stage) => (
+                        <span
+                          key={stage}
+                          className="inline-flex items-center rounded bg-secondary px-1.5 py-0.5 text-[10px] text-secondary-foreground"
+                        >
+                          {stage}
+                        </span>
+                      ))}
+                      {template.stages.length > 3 && (
+                        <span className="inline-flex items-center rounded bg-secondary px-1.5 py-0.5 text-[10px] text-secondary-foreground">
+                          +{template.stages.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  </button>
                 ))}
               </div>
             </div>
-          </section>
-        </section>
+          </div>
+        </Card>
 
-        <section className="rounded-xl border bg-background p-6">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <div className="space-y-1">
-              <h3 className="text-base font-semibold">Hiring stages</h3>
-              <p className="text-sm text-muted-foreground">
-                Keep the flow short, action-oriented, and easy for your team to
-                scan at a glance.
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
+        {/* Stages List */}
+        <Card className="p-4">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between gap-4">
+              <div className="space-y-1">
+                <CardTitle className="text-base">Stages</CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Define each step candidates move through
+                </p>
+              </div>
               <Button
                 type="button"
                 variant="outline"
@@ -251,59 +253,49 @@ function CreatePipelinePage() {
                 Add Stage
               </Button>
             </div>
-          </div>
 
-          <Separator className="my-6" />
-
-          {fields.length === 0 ? (
-            <div className="rounded-xl border border-dashed p-8 text-center">
-              <div className="mx-auto flex size-10 items-center justify-center rounded-md bg-secondary">
-                <GitBranch className="size-5 text-secondary-foreground" />
-              </div>
-              <h4 className="mt-4 text-sm font-semibold">
-                No stages in this flow yet
-              </h4>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Add a stage manually or load the recommended flow to get
-                started.
-              </p>
-              <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-                <Button
-                  type="button"
-                  variant="outline"
-                  disabled={createMutation.isPending}
-                  onClick={() => append({ name: "" })}
-                >
-                  Add Stage
-                </Button>
-                <Button
-                  type="button"
-                  disabled={createMutation.isPending}
-                  onClick={handleLoadSuggestedFlow}
-                >
-                  Load Recommended Flow
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {fields.map((field, index) => (
-                <div
-                  key={field.id}
-                  className="flex items-start gap-3 rounded-xl border bg-background px-4 py-4"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-secondary text-sm font-semibold text-secondary-foreground">
-                    {index + 1}
-                  </div>
-
-                  <div className="flex-1 space-y-2">
-                    <div className="flex items-center justify-between gap-3">
-                      <div>
-                        <p className="text-sm font-medium">Stage {index + 1}</p>
-                        <p className="text-xs text-muted-foreground">
-                          Candidates arrive here in this order.
-                        </p>
+            <div>
+              {fields.length === 0 ? (
+                <div className="rounded-lg border border-dashed p-8 text-center">
+                  <p className="text-sm text-muted-foreground">No stages yet</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Add stages manually or select a template above
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {fields.map((field, index) => (
+                    <div
+                      key={field.id}
+                      className="group flex items-center gap-3 rounded-lg border bg-background p-3"
+                    >
+                      {/* Stage Number */}
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary text-xs font-medium text-primary-foreground">
+                        {index + 1}
                       </div>
+
+                      {/* Stage Input */}
+                      <Controller
+                        control={form.control}
+                        name={`stages.${index}.name`}
+                        render={({ field: stageField, fieldState }) => (
+                          <div className="flex-1 min-w-0">
+                            <Input
+                              {...stageField}
+                              placeholder={`Stage ${index + 1} name`}
+                              disabled={createMutation.isPending}
+                              className="h-9"
+                            />
+                            {fieldState.error && (
+                              <p className="text-xs text-destructive mt-1">
+                                {fieldState.error.message}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      />
+
+                      {/* Actions */}
                       <div className="flex items-center gap-1">
                         <Button
                           type="button"
@@ -313,7 +305,7 @@ function CreatePipelinePage() {
                           disabled={index === 0 || createMutation.isPending}
                           onClick={() => move(index, index - 1)}
                         >
-                          <ArrowUp className="size-3.5" />
+                          <ArrowUp className="size-4" />
                         </Button>
                         <Button
                           type="button"
@@ -326,48 +318,53 @@ function CreatePipelinePage() {
                           }
                           onClick={() => move(index, index + 1)}
                         >
-                          <ArrowDown className="size-3.5" />
+                          <ArrowDown className="size-4" />
                         </Button>
                         <Button
                           type="button"
                           variant="ghost"
                           size="icon"
-                          className="size-8 text-destructive hover:text-destructive"
+                          className="size-8 text-destructive hover:text-destructive hover:bg-destructive/10"
                           disabled={
                             fields.length === 1 || createMutation.isPending
                           }
                           onClick={() => remove(index)}
                         >
-                          <X className="size-4" />
+                          <Trash2 className="size-4" />
                         </Button>
                       </div>
                     </div>
+                  ))}
+                </div>
+              )}
 
-                    <Controller
-                      control={form.control}
-                      name={`stages.${index}.name`}
-                      render={({ field, fieldState }) => (
-                        <Field data-invalid={fieldState.invalid}>
-                          <FieldContent>
-                            <Input
-                              {...field}
-                              aria-invalid={fieldState.invalid}
-                              placeholder={`Stage ${index + 1} name`}
-                              disabled={createMutation.isPending}
-                            />
-                          </FieldContent>
-                          <FieldError errors={[fieldState.error]} />
-                        </Field>
-                      )}
-                    />
+              <FieldError errors={[form.formState.errors.stages as any]} />
+            </div>
+          </div>
+        </Card>
+
+        {/* Preview */}
+        {/* <Card className="bg-secondary/50">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium">
+              Pipeline Preview
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-wrap items-center gap-2">
+              {watchedStages.map((stage, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <div className="rounded-md bg-background border px-3 py-1.5 text-sm">
+                    {stage.name?.trim() || `Stage ${index + 1}`}
                   </div>
+                  {index < watchedStages.length - 1 && (
+                    <span className="text-muted-foreground">→</span>
+                  )}
                 </div>
               ))}
             </div>
-          )}
-
-          <FieldError errors={[form.formState.errors.stages as any]} />
-        </section>
+          </CardContent>
+        </Card> */}
       </form>
     </Layout>
   );
