@@ -146,11 +146,11 @@ function CreatePipelinePage() {
         className="space-y-6"
       >
         <section className="grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_320px]">
-          <div className="rounded-xl border bg-background p-6">
+          <div className="rounded-xl border bg-secondary p-6">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div className="space-y-4">
-                <div className="flex size-10 items-center justify-center rounded-md bg-secondary">
-                  <GitBranch className="size-5 text-secondary-foreground" />
+                <div className="flex size-10 items-center justify-center rounded-md bg-primary">
+                  <GitBranch className="size-5 text-primary-foreground" />
                 </div>
                 <div className="space-y-2">
                   <div className="flex flex-wrap items-center gap-2">
@@ -194,7 +194,6 @@ function CreatePipelinePage() {
                       aria-invalid={fieldState.invalid}
                       placeholder="e.g. Product Hiring"
                       disabled={createMutation.isPending}
-                      className="h-11"
                     />
                   </FieldContent>
                   <FieldError errors={[fieldState.error]} />
@@ -214,7 +213,7 @@ function CreatePipelinePage() {
               <Badge variant="outline">{formatStageCount(fields.length)}</Badge>
             </div>
 
-            <div className="mt-5 space-y-4">
+            <div className="space-y-4">
               <div className="space-y-3">
                 {watchedStages.map((stage, index) => (
                   <div key={`${stage.name}-${index}`}>

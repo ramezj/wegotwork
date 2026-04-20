@@ -161,9 +161,12 @@ export function EditJobForm({
           disabled={mutation.isPending}
           className="gap-2"
         >
-          {mutation.isPending && <Loader className="animate-spin h-4 w-4" />}
+          {mutation.isPending ? (
+            <Loader className="animate-spin h-4 w-4" />
+          ) : (
+            <Save />
+          )}
           Save Changes
-          <Save />
         </Button>
       }
     >

@@ -1,25 +1,14 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { JobWithCategory } from "@/types/job/job";
-import { jobSchema } from "@/types/job/job";
 import { Field, FieldLabel, FieldContent, FieldError } from "../ui/field";
 import { Controller } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
 import { Button } from "../ui/button";
 import z from "zod";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { JobCategory } from "generated/prisma/client";
 import { useMutation } from "@tanstack/react-query";
-import { editJobBySlugFn } from "@/features/services/jobs/edit-by-slug";
-import { Loader, Loader2, Save, TriangleAlert, Trash2 } from "lucide-react";
+import { Loader2, Save, TriangleAlert, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -33,7 +22,6 @@ import {
 import { useNavigate } from "@tanstack/react-router";
 import { deleteOrganizationFn } from "@/features/services/organization/delete-organization";
 import { useQueryClient } from "@tanstack/react-query";
-import { jobByIdQueryOptions } from "@/features/queries/jobs";
 import { organizationBySlugQueryOptions } from "@/features/queries/organization";
 import type { Organization } from "generated/prisma/client";
 import { editOrganizationSchema } from "@/types/organization/schemas";
@@ -41,12 +29,6 @@ import { editOrganizationFn } from "@/features/services/organization/edit-organi
 import { uploadLogoFn } from "@/features/services/organization/upload-logo";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useRef, useState } from "react";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-  InputGroupText,
-} from "../ui/input-group";
 import { Layout } from "../shared/layout";
 
 export function EditOrganizationForm({
@@ -155,13 +137,12 @@ export function EditOrganizationForm({
             form="edit-organization-form"
             disabled={mutation.isPending || uploadMutation.isPending}
           >
-            {(mutation.isPending || uploadMutation.isPending) && (
+            {mutation.isPending || uploadMutation.isPending ? (
               <Loader2 className="animate-spin" />
+            ) : (
+              <Save />
             )}
-            {mutation.isPending || uploadMutation.isPending
-              ? "Save Changes"
-              : "Save Changes"}
-            <Save />
+            Save Changes
           </Button>
         }
       >
@@ -300,7 +281,7 @@ export function EditOrganizationForm({
             </CardContent>
           </Card>
 
-          <Card className="border-destructive/30">
+          <Card className="border-destructive">
             <CardHeader className="flex flex-row items-center gap-3">
               <div className="flex h-8 w-8 items-center justify-center rounded-md bg-destructive/10 shrink-0">
                 <TriangleAlert className="h-4 w-4 text-destructive" />
@@ -330,14 +311,9 @@ export function EditOrganizationForm({
                     <Button
                       type="button"
                       variant="destructive"
-                      disabled={deleteMutation.isPending}
                       className="gap-2"
                     >
-                      {deleteMutation.isPending ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                      ) : (
-                        <Trash2 className="h-4 w-4" />
-                      )}
+                      <Trash2 />
                       Delete Organization
                     </Button>
                   </DialogTrigger>
@@ -368,7 +344,9 @@ export function EditOrganizationForm({
                       >
                         {deleteMutation.isPending ? (
                           <Loader2 className="h-4 w-4 animate-spin" />
-                        ) : null}
+                        ) : (
+                          <Trash2 />
+                        )}
                         Delete Permanently
                       </Button>
                     </DialogFooter>

@@ -22,7 +22,13 @@ import { pipelinesQueryOptions } from "@/features/queries/ats";
 import { toast } from "sonner";
 import { Field, FieldContent, FieldError, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
-import { Loader, PlusIcon, Briefcase, BriefcaseBusiness } from "lucide-react";
+import {
+  Loader,
+  PlusIcon,
+  Briefcase,
+  BriefcaseBusiness,
+  Loader2,
+} from "lucide-react";
 import { useState } from "react";
 import {
   Select,
@@ -206,10 +212,11 @@ export function CreateJobDialog({ slug }: { slug: string }) {
               className="w-full"
             >
               {mutation.isPending ? (
-                <Loader className="mr-2 size-5 animate-spin" />
+                <Loader2 className="size-4 animate-spin" />
               ) : (
-                "Create Job Posting"
+                <PlusIcon />
               )}
+              Create Job
             </Button>
           </div>
         </form>
