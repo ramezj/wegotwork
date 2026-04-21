@@ -47,7 +47,7 @@ function PricingPage() {
           {plansData.plans.map((plan) => (
             <Card
               key={plan.id}
-              className={`p-6 flex flex-col ${plan.isPopular ? "border-primary relative" : ""}`}
+              className={`p-6 flex flex-col ${plan.isPopular ? "relative" : ""}`}
             >
               {plan.isPopular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">

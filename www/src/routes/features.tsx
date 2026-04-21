@@ -127,7 +127,7 @@ function FeaturesPage() {
                   return (
                     <article key={item.title} className="bg-secondary p-2">
                       <div className="space-y-4 p-5 bg-background border border-input h-full rounded-md">
-                        <div className="flex h-12 w-12 items-center justify-center bg-primary">
+                        <div className="flex h-10 w-10 items-center justify-center bg-primary rounded-md">
                           <Icon className="size-5 text-primary-foreground" />
                         </div>
                         <div className="space-y-2">
