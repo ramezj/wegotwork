@@ -30,7 +30,6 @@ import {
   Loader,
   MapPin,
   DollarSign,
-  FileText,
   Briefcase,
   TriangleAlert,
   Trash2,
@@ -162,12 +161,12 @@ export function EditJobForm({
           disabled={mutation.isPending}
           className="gap-2"
         >
+          Save Changes
           {mutation.isPending ? (
-            <Loader className="animate-spin h-4 w-4" />
+            <Loader2 className="animate-spin h-4 w-4" />
           ) : (
             <Save />
           )}
-          Save Changes
         </Button>
       }
     >
@@ -643,19 +642,15 @@ export function EditJobForm({
         </Card>
 
         {/* Application Form */}
-        <Card>
-          <CardHeader className="flex flex-row items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center bg-primary shrink-0">
-              <FileText className="h-4 w-4 text-primary-foreground" />
-            </div>
-            <div>
+        <Card className="p-4">
+          <div className="space-y-4">
+            <div className="space-y-1">
               <CardTitle className="text-base">Application Form</CardTitle>
-              <CardDescription className="text-xs">
-                Custom questions candidates will answer
-              </CardDescription>
+              <p className="text-sm text-muted-foreground">
+                Custom questions candidates will answer when applying
+              </p>
             </div>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-4">
+
             <Controller
               control={form.control}
               name="questions"
@@ -671,7 +666,7 @@ export function EditJobForm({
                 />
               )}
             />
-          </CardContent>
+          </div>
         </Card>
 
         <Card className="border-destructive">

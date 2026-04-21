@@ -21,13 +21,13 @@ export function OfficeCard({
 
   return (
     <div
-      className="group cursor-pointer border bg-background p-5 transition-colors hover:bg-muted/30"
+      className="group cursor-pointer border bg-secondary p-5 transition-colors rounded-md"
       onClick={onOpen}
     >
       <div className="flex items-start gap-4">
         <div className="flex min-w-0 items-start gap-4">
-          <div className="flex size-12 shrink-0 items-center justify-center border bg-muted/50 text-foreground">
-            <MapPinned className="size-5" />
+          <div className="flex size-12 shrink-0 items-center justify-center bg-primary rounded-md text-foreground">
+            <MapPinned className="size-5 text-primary-foreground" />
           </div>
           <div className="min-w-0 space-y-1">
             <h3 className="truncate text-lg font-semibold tracking-tight">
@@ -40,8 +40,8 @@ export function OfficeCard({
         </div>
       </div>
 
-      <div className="mt-6 grid gap-3 sm:grid-cols-2">
-        <div className="border bg-muted/20 p-3">
+      <div className="mt-6 grid gap-3 sm:grid-cols-1">
+        <div className="border bg-background p-3 rounded-md">
           <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
             <BriefcaseBusiness className="size-3.5" />
             Linked Jobs
@@ -51,15 +51,15 @@ export function OfficeCard({
           </p>
         </div>
 
-        <div className="border bg-muted/20 p-3">
+        {/* <div className="border bg-background p-3 rounded-md">
           <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
             <MapPin className="size-3.5" />
             Office Location
           </div>
-          <p className="mt-2 text-sm font-medium text-foreground">
-            {location || "Add city and country"}
+          <p className="mt-2 text-2xl font-semibold tracking-tight">
+            {office.city || "City"}
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

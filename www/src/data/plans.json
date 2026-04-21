@@ -6,7 +6,7 @@
       "name": "Free",
       "price": 0,
       "priceLabel": "$0",
-      "description": "For teams just getting started with hiring.",
+      "description": "For teams that are just getting started with hiring.",
       "quotas": {
         "maxJobs": 3,
         "maxMembers": 3,

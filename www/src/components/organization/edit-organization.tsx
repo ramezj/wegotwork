@@ -137,12 +137,12 @@ export function EditOrganizationForm({
             form="edit-organization-form"
             disabled={mutation.isPending || uploadMutation.isPending}
           >
+            Save Changes
             {mutation.isPending || uploadMutation.isPending ? (
               <Loader2 className="animate-spin" />
             ) : (
               <Save />
             )}
-            Save Changes
           </Button>
         }
       >

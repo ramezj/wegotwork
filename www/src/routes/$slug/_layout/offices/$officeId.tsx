@@ -20,7 +20,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Loader, TriangleAlert, Trash2 } from "lucide-react";
+import { Loader, TriangleAlert, Trash2, Save, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
@@ -82,10 +82,26 @@ function EditOfficePage() {
   }
 
   return (
-    <Layout title="Edit Office">
+    <Layout
+      variant="header"
+      title="Edit Office"
+      primaryButton={
+        <Button
+          type="submit"
+          form="edit-office-form"
+          disabled={deleteMutation.isPending}
+        >
+          {deleteMutation.isPending ? (
+            <Loader2 className="animate-spin" />
+          ) : (
+            <Save className="h-4 w-4" />
+          )}
+          Save Changes
+        </Button>
+      }
+    >
       <div className="space-y-4">
         <OfficeEditorForm
-          mode="edit"
           slug={slug}
           organizationId={organizationId}
           office={office}
@@ -126,8 +142,8 @@ function EditOfficePage() {
               >
                 <DialogTrigger asChild>
                   <Button type="button" variant="destructive" className="gap-2">
-                    <Trash2 className="h-4 w-4" />
                     Delete Office
+                    <Trash2 className="h-4 w-4" />
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[480px]">
@@ -158,12 +174,12 @@ function EditOfficePage() {
                         deleteMutation.mutate({ data: { id: office.id } })
                       }
                     >
+                      Delete Office
                       {deleteMutation.isPending ? (
-                        <Loader className="h-4 w-4 animate-spin" />
+                        <Loader2 className="h-4 w-4 animate-spin" />
                       ) : (
                         <Trash2 className="h-4 w-4" />
                       )}
-                      Delete Office
                     </Button>
                   </DialogFooter>
                 </DialogContent>

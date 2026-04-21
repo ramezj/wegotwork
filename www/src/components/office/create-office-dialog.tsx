@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { OfficeEditorForm } from "@/components/office/office-editor-form";
+import { CreateOfficeForm } from "@/components/office/create-office-form";
 
 export function CreateOfficeDialog({
   slug,
@@ -38,13 +38,10 @@ export function CreateOfficeDialog({
             Add a new office location for this organization.
           </DialogDescription>
         </DialogHeader>
-        <OfficeEditorForm
-          mode="create"
+        <CreateOfficeForm
           slug={slug}
           organizationId={organizationId}
-          wrapInCard={false}
           onCreated={() => setOpen(false)}
-          onCancel={() => setOpen(false)}
         />
       </DialogContent>
     </Dialog>
