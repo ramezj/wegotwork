@@ -6,18 +6,21 @@
       "name": "Free",
       "price": 0,
       "priceLabel": "$0",
-      "description": "For teams that are just getting started with hiring.",
+      "pricePeriod": "/mo",
+      "description": "No credit card required",
       "quotas": {
-        "maxJobs": 3,
-        "maxMembers": 3,
+        "maxJobs": 1,
+        "maxMembers": 1,
         "maxOffices": 1,
         "maxPipelines": 1
       },
       "features": [
-        "Branded careers page",
-        "Custom application forms",
-        "Basic candidate pipeline",
-        "Email notifications"
+        "1 published job",
+        "50 candidates / job",
+        "1 seat",
+        "30-day resume retention",
+        "Core ATS pipeline",
+        "Email confirmations"
       ],
       "cta": {
         "text": "Start Free",
@@ -26,57 +29,91 @@
       "isPopular": false
     },
     {
-      "id": "plan_premium",
-      "code": "premium",
-      "name": "Premium",
-      "price": 29,
-      "priceLabel": "$29/month",
-      "description": "For growing teams ready to scale their hiring.",
+      "id": "plan_starter",
+      "code": "starter",
+      "name": "Starter",
+      "price": 59,
+      "priceLabel": "$59",
+      "pricePeriod": "/mo",
+      "badge": "vs Polymer $149 — 60% cheaper",
+      "description": "For small teams starting to hire",
       "quotas": {
-        "maxJobs": 25,
-        "maxMembers": 10,
+        "maxJobs": 3,
+        "maxMembers": 5,
+        "maxOffices": 2,
+        "maxPipelines": 2
+      },
+      "features": [
+        "3 published jobs",
+        "200 candidates / job",
+        "5 seats",
+        "6-month resume retention",
+        "Full ATS pipeline",
+        "Workflow emails (up to 2 extra)"
+      ],
+      "cta": {
+        "text": "Get Starter",
+        "variant": "default"
+      },
+      "isPopular": false
+    },
+    {
+      "id": "plan_growth",
+      "code": "growth",
+      "name": "Growth",
+      "price": 129,
+      "priceLabel": "$129",
+      "pricePeriod": "/mo",
+      "badge": "vs Polymer $279 — 54% cheaper",
+      "description": "For growing teams scaling hiring",
+      "quotas": {
+        "maxJobs": 10,
+        "maxMembers": 20,
         "maxOffices": 5,
         "maxPipelines": 5
       },
       "features": [
-        "Everything in Free, plus:",
-        "Up to 25 active jobs",
-        "Up to 10 team members",
-        "Multiple offices",
-        "Custom pipelines",
+        "10 published jobs",
+        "500 candidates / job",
+        "20 seats",
+        "12-month resume retention",
+        "Full ATS pipeline",
+        "Workflow emails (up to 5 extra)",
         "Priority support"
       ],
       "cta": {
-        "text": "Get Premium",
+        "text": "Get Growth",
         "variant": "default"
       },
       "isPopular": true
     },
     {
-      "id": "plan_enterprise",
-      "code": "enterprise",
-      "name": "Enterprise",
-      "price": null,
-      "priceLabel": "Custom",
-      "description": "For organizations with advanced hiring needs.",
+      "id": "plan_scale",
+      "code": "scale",
+      "name": "Scale",
+      "price": 249,
+      "priceLabel": "$249",
+      "pricePeriod": "/mo",
+      "badge": "vs Polymer $499 — 50% cheaper",
+      "description": "For larger teams with high volume",
       "quotas": {
-        "maxJobs": -1,
-        "maxMembers": -1,
-        "maxOffices": -1,
-        "maxPipelines": -1
+        "maxJobs": 20,
+        "maxMembers": 50,
+        "maxOffices": 10,
+        "maxPipelines": 10
       },
       "features": [
-        "Everything in Premium, plus:",
-        "Unlimited jobs & users",
-        "SSO & advanced security",
-        "Dedicated account manager",
-        "Custom integrations",
-        "SLA guarantee"
+        "20 published jobs",
+        "1,000 candidates / job",
+        "50 seats",
+        "24-month resume retention",
+        "Full ATS pipeline",
+        "Workflow emails (up to 10 extra)",
+        "Dedicated support"
       ],
       "cta": {
-        "text": "Contact Sales",
-        "variant": "outline",
-        "href": "mailto:hello@lunics.co?subject=Enterprise%20Plan"
+        "text": "Get Scale",
+        "variant": "default"
       },
       "isPopular": false
     }

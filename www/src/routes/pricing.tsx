@@ -6,9 +6,6 @@ import { Check } from "lucide-react";
 import { buildSeo } from "@/lib/seo";
 import plansData from "@/data/plans.json";
 
-// Helper to format quota values (-1 = Unlimited)
-const formatQuota = (value: number) => (value === -1 ? "Unlimited" : value);
-
 export const Route = createFileRoute("/pricing")({
   component: PricingPage,
   head: () =>
@@ -43,11 +40,11 @@ function PricingPage() {
           </div>
         </section>
 
-        <section className="grid gap-4 lg:grid-cols-3">
+        <section className="grid gap-8 xl:grid-cols-4">
           {plansData.plans.map((plan) => (
             <Card
               key={plan.id}
-              className={`p-6 flex flex-col ${plan.isPopular ? "relative" : ""}`}
+              className={`p-5 flex flex-col h-full ${plan.isPopular ? "relative" : ""}`}
             >
               {plan.isPopular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -56,49 +53,48 @@ function PricingPage() {
                   </span>
                 </div>
               )}
-              <div className="flex flex-col flex-1">
+              <div className="flex flex-col h-full">
                 <div className="space-y-2">
-                  <p className="text-xs font-normal text-muted-foreground uppercase tracking-wide">
+                  <p className="text-sm font-medium text-foreground">
                     {plan.name}
                   </p>
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl font-normal tracking-tight">
                       {plan.priceLabel.split("/")[0]}
                     </span>
-                    {plan.priceLabel.includes("/") && (
-                      <span className="text-sm text-muted-foreground">
-                        /{plan.priceLabel.split("/")[1]}
-                      </span>
-                    )}
+                    <span className="text-sm text-muted-foreground">
+                      {plan.pricePeriod}
+                    </span>
                   </div>
-                  <p className="text-sm text-muted-foreground">
+
+                  <p className="text-xs text-muted-foreground">
                     {plan.description}
                   </p>
                 </div>
 
-                <div className="space-y-3 border-t pt-4 mt-4">
+                <div className="space-y-2 pt-4 border-t mt-4">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Active jobs</span>
+                    <span className="text-muted-foreground">Jobs</span>
                     <span className="font-medium">
-                      {formatQuota(plan.quotas.maxJobs)}
+                      {plan.quotas.maxJobs === -1
+                        ? "Unlimited"
+                        : plan.quotas.maxJobs}
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Team members</span>
+                    <span className="text-muted-foreground">Seats</span>
                     <span className="font-medium">
-                      {formatQuota(plan.quotas.maxMembers)}
+                      {plan.quotas.maxMembers === -1
+                        ? "Unlimited"
+                        : plan.quotas.maxMembers}
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">Offices</span>
                     <span className="font-medium">
-                      {formatQuota(plan.quotas.maxOffices)}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Pipelines</span>
-                    <span className="font-medium">
-                      {formatQuota(plan.quotas.maxPipelines)}
+                      {plan.quotas.maxOffices === -1
+                        ? "Unlimited"
+                        : plan.quotas.maxOffices}
                     </span>
                   </div>
                 </div>
@@ -110,7 +106,7 @@ function PricingPage() {
                         className={`mt-0.5 size-4 shrink-0 ${plan.isPopular ? "text-primary" : "text-muted-foreground"}`}
                       />
                       <p
-                        className={`text-sm ${plan.isPopular ? "" : "text-muted-foreground"}`}
+                        className={`text-sm ${plan.isPopular ? "text-foreground" : "text-muted-foreground"}`}
                       >
                         {feature}
                       </p>
