@@ -17,7 +17,7 @@ function RouteComponent() {
       </div>
 
       {/* Explicit mt-8 ensures a reliable space-y-8 gap below the header */}
-      <div className="w-full lg:w-[80%] px-4 mx-auto space-y-4 mt-4">
+      <div className="w-full lg:w-[80%] px-4 mx-auto space-y-8 mt-8">
         <OrganizationHeader slug={slug} />
         <Outlet />
       </div>

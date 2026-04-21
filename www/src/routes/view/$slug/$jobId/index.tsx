@@ -384,7 +384,7 @@ function RouteComponent() {
     job.locationMode.charAt(0) + job.locationMode.slice(1).toLowerCase();
   return (
     <div className="mx-auto w-full">
-      <div className="space-y-4">
+      <div className="space-y-8">
         <section className="border rounded-md">
           <div className="bg-secondary p-8">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-end">

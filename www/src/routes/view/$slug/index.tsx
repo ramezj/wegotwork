@@ -208,7 +208,7 @@ function RouteComponent() {
     selectedCategory || selectedType || selectedLocation || selectedOffice;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-8">
       {/* Filters header */}
       <div>
         {/* <h2 className="text-xl font-medium leading-none">
