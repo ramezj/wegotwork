@@ -9,17 +9,17 @@
       "pricePeriod": "/mo",
       "description": "No credit card required",
       "quotas": {
-        "maxJobs": 1,
+        "maxJobs": 2,
         "maxMembers": 1,
         "maxOffices": 1,
-        "maxPipelines": 1
+        "maxPipelines": 2
       },
       "features": [
-        "1 published job",
-        "50 candidates / job",
+        "2 published jobs",
+        "100 candidates / job",
         "1 seat",
         "30-day resume retention",
-        "Core ATS pipeline",
+        "Full ATS pipeline",
         "Email confirmations"
       ],
       "cta": {
@@ -32,20 +32,20 @@
       "id": "plan_starter",
       "code": "starter",
       "name": "Starter",
-      "price": 59,
-      "priceLabel": "$59",
+      "price": 100,
+      "priceLabel": "$100",
       "pricePeriod": "/mo",
       "badge": "vs Polymer $149 — 60% cheaper",
       "description": "For small teams starting to hire",
       "quotas": {
-        "maxJobs": 3,
-        "maxMembers": 5,
-        "maxOffices": 2,
+        "maxJobs": 10,
+        "maxMembers": 10,
+        "maxOffices": 10,
         "maxPipelines": 2
       },
       "features": [
-        "3 published jobs",
-        "200 candidates / job",
+        "10 published jobs",
+        "1000 candidates / job",
         "5 seats",
         "6-month resume retention",
         "Full ATS pipeline",
@@ -55,64 +55,32 @@
         "text": "Get Starter",
         "variant": "default"
       },
-      "isPopular": false
+      "isPopular": true
     },
     {
       "id": "plan_growth",
       "code": "growth",
       "name": "Growth",
-      "price": 129,
-      "priceLabel": "$129",
+      "price": 200,
+      "priceLabel": "$200",
       "pricePeriod": "/mo",
-      "badge": "vs Polymer $279 — 54% cheaper",
       "description": "For growing teams scaling hiring",
       "quotas": {
-        "maxJobs": 10,
+        "maxJobs": 20,
         "maxMembers": 20,
-        "maxOffices": 5,
+        "maxOffices": 10,
         "maxPipelines": 5
       },
       "features": [
-        "10 published jobs",
-        "500 candidates / job",
+        "20 published jobs",
+        "1000 candidates / job",
         "20 seats",
         "12-month resume retention",
         "Full ATS pipeline",
-        "Workflow emails (up to 5 extra)",
-        "Priority support"
+        "Workflow emails (up to 5 extra)"
       ],
       "cta": {
         "text": "Get Growth",
-        "variant": "default"
-      },
-      "isPopular": true
-    },
-    {
-      "id": "plan_scale",
-      "code": "scale",
-      "name": "Scale",
-      "price": 249,
-      "priceLabel": "$249",
-      "pricePeriod": "/mo",
-      "badge": "vs Polymer $499 — 50% cheaper",
-      "description": "For larger teams with high volume",
-      "quotas": {
-        "maxJobs": 20,
-        "maxMembers": 50,
-        "maxOffices": 10,
-        "maxPipelines": 10
-      },
-      "features": [
-        "20 published jobs",
-        "1,000 candidates / job",
-        "50 seats",
-        "24-month resume retention",
-        "Full ATS pipeline",
-        "Workflow emails (up to 10 extra)",
-        "Dedicated support"
-      ],
-      "cta": {
-        "text": "Get Scale",
         "variant": "default"
       },
       "isPopular": false

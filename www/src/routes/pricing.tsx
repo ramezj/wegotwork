@@ -40,7 +40,7 @@ function PricingPage() {
           </div>
         </section>
 
-        <section className="grid gap-8 xl:grid-cols-4">
+        <section className="grid gap-8 xl:grid-cols-3">
           {plansData.plans.map((plan) => (
             <Card
               key={plan.id}
@@ -114,7 +114,7 @@ function PricingPage() {
                   ))}
                 </div>
 
-                {plan.cta.href ? (
+                {/* {plan.cta.href ? (
                   <Button
                     asChild
                     variant={plan.cta.variant as "default" | "outline"}
@@ -130,7 +130,14 @@ function PricingPage() {
                   >
                     <Link to="/auth">{plan.cta.text}</Link>
                   </Button>
-                )}
+                )} */}
+                <Button
+                  asChild
+                  variant={plan.cta.variant as "default" | "outline"}
+                  className="w-full mt-6"
+                >
+                  <Link to="/auth">{plan.cta.text}</Link>
+                </Button>
               </div>
             </Card>
           ))}
