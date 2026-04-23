@@ -24,6 +24,7 @@ import { Loader, TriangleAlert, Trash2, Save, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/$slug/_layout/offices/$officeId")({
   component: EditOfficePage,
@@ -37,6 +38,12 @@ export const Route = createFileRoute("/$slug/_layout/offices/$officeId")({
         officesQueryOptions(organizationId),
       );
     }
+  },
+  head: () => {
+    return buildSeo({
+      title: "Edit Office",
+      description: "Edit Office",
+    });
   },
 });
 

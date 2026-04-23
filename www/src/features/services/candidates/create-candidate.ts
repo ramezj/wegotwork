@@ -11,6 +11,19 @@ export const createCandidateFn = createServerFn()
   .inputValidator(candidateSchema)
   .handler(async ({ data }) => {
     try {
+      const doesCandidateExist = await prisma.job.findUnique({
+        where: {
+          id: data.jobId,
+          candidates: {
+            some: {
+              email: data.email,
+            },
+          },
+        },
+      });
+      if (doesCandidateExist) {
+        return { success: false, error: "Already Applied to Job" };
+      }
       const job = await prisma.job.findUnique({
         where: { id: data.jobId },
         include: {
@@ -62,10 +75,12 @@ export const createCandidateFn = createServerFn()
           status: "SUBMITTED",
           currentStageId: firstStageId,
           responses: {
-            create: Object.entries(data.responses).map(([questionId, answer]) => ({
-              questionId,
-              answer: answer as any,
-            })),
+            create: Object.entries(data.responses).map(
+              ([questionId, answer]) => ({
+                questionId,
+                answer: answer as any,
+              }),
+            ),
           },
         },
       });
