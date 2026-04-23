@@ -5,12 +5,16 @@ import { organizationBySlugQueryOptions } from "@/features/queries/organization"
 import { officesQueryOptions } from "@/features/queries/offices";
 import { CreateOfficeDialog } from "@/components/office/create-office-dialog";
 import { OfficeCard } from "@/components/office/office-card";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/$slug/_layout/offices/")({
   component: OfficesPage,
-  head: () => ({
-    meta: [{ title: "Offices", content: "Manage offices" }],
-  }),
+  head: () => {
+    return buildSeo({
+      title: "Offices",
+      description: "Offices",
+    });
+  },
   loader: async ({ context, params }) => {
     const orgData = await context.queryClient.ensureQueryData(
       organizationBySlugQueryOptions(params.slug),

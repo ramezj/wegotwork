@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Users, Settings2 } from "lucide-react";
+import { Users, Settings2, UsersRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "motion/react";
 import { ATSFilterBar } from "./ats-filter-bar";
@@ -32,9 +32,8 @@ export function ATSListView({
   const stages = pipeline.stages || [];
   const [activeStageId, setActiveStageId] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCandidate, setSelectedCandidate] = useState<
-    ATSCandidate | null
-  >(null);
+  const [selectedCandidate, setSelectedCandidate] =
+    useState<ATSCandidate | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const stageData = useMemo(() => {
@@ -61,8 +60,8 @@ export function ATSListView({
       {/* Pipeline Header */}
       <div className="h-16 p-4 border-b flex items-center justify-between gap-4 shrink-0">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="size-8 rounded-md bg-primary/10 flex items-center justify-center text-primary border border-primary/20 shrink-0">
-            <Users className="size-4" />
+          <div className="size-8 rounded-md bg-secondary flex items-center justify-center text-secondary-foreground border shrink-0">
+            <UsersRound className="size-4" />
           </div>
           <div className="min-w-0">
             <h2 className="text-lg font-semibold truncate">{jobName}</h2>
@@ -128,9 +127,7 @@ export function ATSListView({
                     stages={stages}
                     slug={slug}
                     onMove={onMoveCandidate}
-                    onSelect={(
-                      selected: ATSCandidate,
-                    ) => {
+                    onSelect={(selected: ATSCandidate) => {
                       setSelectedCandidate(selected);
                       setIsSidebarOpen(true);
                     }}

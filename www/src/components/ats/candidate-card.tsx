@@ -47,7 +47,7 @@ export function CandidateCard({
   return (
     <Card
       onClick={() => onSelect(candidate)}
-      className="relative w-full group bg-card hover:bg-muted/50 transition-all duration-150 flex flex-row items-center p-4 cursor-pointer gap-4 overflow-hidden"
+      className="relative w-full group bg-secondary hover:bg-muted/50 transition-all duration-150 flex flex-row items-center p-4 cursor-pointer gap-4 overflow-hidden"
     >
       {/* Avatar */}
       <div

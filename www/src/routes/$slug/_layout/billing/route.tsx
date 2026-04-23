@@ -3,12 +3,16 @@ import { BillingCard } from "@/components/billing/billing-card";
 import { Layout } from "@/components/shared/layout";
 import { organizationTeamQueryOptions } from "@/features/queries/organization";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/$slug/_layout/billing")({
   component: RouteComponent,
-  head: () => ({
-    meta: [{ title: "Billing", content: "Manage billing" }],
-  }),
+  head: () => {
+    return buildSeo({
+      title: "Billing",
+      description: "Manage billing",
+    });
+  },
   loader: async ({ context, params }) => {
     await context.queryClient.ensureQueryData(
       organizationTeamQueryOptions(params.slug),

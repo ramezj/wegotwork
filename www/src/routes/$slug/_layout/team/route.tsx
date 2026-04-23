@@ -11,7 +11,9 @@ import { Copy, Mail, UserPlus } from "lucide-react";
 import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { inviteOrganizationMemberFn } from "@/features/services/organization/invite-member";
-import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import {
   Select,
   SelectContent,
@@ -19,12 +21,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Field,
+  FieldContent,
+  FieldError,
+  FieldLabel,
+} from "@/components/ui/field";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/$slug/_layout/team")({
   component: RouteComponent,
-  head: () => ({
-    meta: [{ title: "Team", content: "Team" }, { name: "Team" }],
-  }),
+  head: () => {
+    return buildSeo({
+      title: "Team",
+      description: "Manage team members",
+    });
+  },
   loader: async ({ context, params }) => {
     await context.queryClient.ensureQueryData(
       organizationTeamQueryOptions(params.slug),
@@ -32,13 +44,26 @@ export const Route = createFileRoute("/$slug/_layout/team")({
   },
 });
 
+const inviteSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+  role: z.enum(["member", "admin"]),
+});
+
+type InviteFormValues = z.infer<typeof inviteSchema>;
+
 function RouteComponent() {
   const { session } = Route.useRouteContext();
   const { slug } = Route.useParams();
   const queryClient = useQueryClient();
   const { data } = useSuspenseQuery(organizationTeamQueryOptions(slug));
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState<"member" | "admin">("member");
+
+  const form = useForm<InviteFormValues>({
+    resolver: zodResolver(inviteSchema),
+    defaultValues: {
+      email: "",
+      role: "member",
+    },
+  });
 
   if (!data?.success || !data.organization) {
     return <Navigate to="/dashboard" />;
@@ -48,15 +73,9 @@ function RouteComponent() {
     data.currentMemberRole === "owner" || data.currentMemberRole === "admin";
 
   const inviteMutation = useMutation({
-    mutationFn: ({
-      emailToInvite,
-      roleToInvite,
-    }: {
-      emailToInvite: string;
-      roleToInvite: "member" | "admin";
-    }) =>
+    mutationFn: (values: InviteFormValues) =>
       inviteOrganizationMemberFn({
-        data: { slug, email: emailToInvite, role: roleToInvite },
+        data: { slug, email: values.email, role: values.role },
       }),
     onSuccess: (result) => {
       if (!result?.success) {
@@ -64,8 +83,7 @@ function RouteComponent() {
         return;
       }
       toast.success("Invitation sent.");
-      setEmail("");
-      setRole("member");
+      form.reset();
       queryClient.invalidateQueries({
         queryKey: organizationTeamQueryOptions(slug).queryKey,
       });
@@ -75,16 +93,8 @@ function RouteComponent() {
     },
   });
 
-  const handleInviteSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    if (!email.trim()) {
-      toast.error("Please enter an email address.");
-      return;
-    }
-    inviteMutation.mutate({
-      emailToInvite: email.trim(),
-      roleToInvite: role,
-    });
+  const onSubmit = (values: InviteFormValues) => {
+    inviteMutation.mutate(values);
   };
 
   const copyInvitationLink = async (invitationId: string) => {
@@ -200,44 +210,64 @@ function RouteComponent() {
               Invite teammates
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3">
-            <form
-              onSubmit={handleInviteSubmit}
-              className="flex flex-col gap-3 sm:flex-row"
-            >
-              <Input
-                type="email"
-                placeholder="teammate@company.com"
-                value={email}
-                className="flex-1"
-                disabled={!canInvite || inviteMutation.isPending}
-                onChange={(event) => setEmail(event.target.value)}
-              />
-              <Select
-                value={role}
-                onValueChange={(value: "member" | "admin") => setRole(value)}
-                disabled={!canInvite || inviteMutation.isPending}
-              >
-                <SelectTrigger className="w-full sm:w-40">
-                  <SelectValue placeholder="Role" />
-                </SelectTrigger>
-                <SelectContent align="end">
-                  <SelectItem value="member">Member</SelectItem>
-                  <SelectItem value="admin">Admin</SelectItem>
-                </SelectContent>
-              </Select>
-              <Button
-                type="submit"
-                disabled={!canInvite || inviteMutation.isPending}
-              >
-                {inviteMutation.isPending ? "Sending..." : "Send invite"}
-              </Button>
+          <CardContent>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <div className="grid gap-4 sm:grid-cols-[1fr,140px,auto] sm:items-end">
+                <Controller
+                  control={form.control}
+                  name="email"
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <FieldLabel required>Email address</FieldLabel>
+                      <FieldContent>
+                        <Input
+                          aria-invalid={fieldState.invalid}
+                          type="email"
+                          placeholder="teammate@company.com"
+                          disabled={!canInvite || inviteMutation.isPending}
+                          {...field}
+                        />
+                      </FieldContent>
+                      <FieldError errors={[fieldState.error]} />
+                    </Field>
+                  )}
+                />
+                <Controller
+                  control={form.control}
+                  name="role"
+                  render={({ field }) => (
+                    <Field>
+                      <FieldLabel>Role</FieldLabel>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                        disabled={!canInvite || inviteMutation.isPending}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select role" />
+                        </SelectTrigger>
+                        <SelectContent align="end">
+                          <SelectItem value="member">Member</SelectItem>
+                          <SelectItem value="admin">Admin</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </Field>
+                  )}
+                />
+                <Button
+                  type="submit"
+                  disabled={!canInvite || inviteMutation.isPending}
+                  className="w-full sm:w-auto"
+                >
+                  {inviteMutation.isPending ? "Sending..." : "Send invite"}
+                </Button>
+              </div>
+              {!canInvite && (
+                <p className="text-sm text-muted-foreground">
+                  You do not have permission to invite new members.
+                </p>
+              )}
             </form>
-            {!canInvite && (
-              <p className="text-sm text-muted-foreground">
-                You do not have permission to invite new members.
-              </p>
-            )}
           </CardContent>
         </Card>
 

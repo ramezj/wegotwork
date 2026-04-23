@@ -4,19 +4,20 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { CreateCategoryDialog } from "@/components/category/create-category-dialog";
 import { Card } from "@/components/ui/card";
 import { categoriesByOrgSlugQueryOptions } from "@/features/queries/categories";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/$slug/_layout/categories")({
   component: RouteComponent,
-  head: () => ({
-    meta: [
-      { title: "Categories", content: "Categories" },
-      { name: "Categories" },
-    ],
-  }),
   loader: async ({ context, params }) => {
     await context.queryClient.ensureQueryData(
       categoriesByOrgSlugQueryOptions(params.slug),
     );
+  },
+  head: () => {
+    return buildSeo({
+      title: "Categories",
+      description: "Categories",
+    });
   },
 });
 
