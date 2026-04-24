@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import Header from "@/components/shared/header";
+import { Footer } from "@/components/shared/footer";
 import { Button } from "@/components/ui/button";
 import { BarChart3 } from "lucide-react";
 import {
@@ -495,6 +496,9 @@ function App() {
           </div>
         </section> */}
       </main>
+      {/* <div className="mx-auto w-full lg:w-[80%] px-4">
+        <Footer />
+      </div> */}
     </div>
   );
 }
