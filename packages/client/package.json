@@ -1,5 +1,5 @@
 {
-  "name": "www",
+  "name": "@loux/client",
   "private": true,
   "type": "module",
   "packageManager": "npm@10.9.2",

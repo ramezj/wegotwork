@@ -1,0 +1,25 @@
+{
+  "name": "loux",
+  "version": "1.0.0",
+  "description": "Heliup 2.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramezj/loux.git"
+  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ramezj/loux/issues"
+  },
+  "homepage": "https://github.com/ramezj/loux#readme"
+}
