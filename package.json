@@ -4,7 +4,9 @@
   "description": "Heliup 2.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "npm i",
+    "build:client": "npm run build -w @loux/client",
+    "start:client": "npm run start -w @loux/client"
   },
   "repository": {
     "type": "git",
